@@ -1,0 +1,1899 @@
+[1] user: Go to https://www.amtrak.com/, Tell me information about what identification I need to bring on my trip on Amtrak.
+
+[2] thinking: **Preparing to gather information**
+
+I see that the user is asking for information about the identification needed at a specific site, which means I need to use the browsing capabilities. I might use both a browser snapshot and web fetching for comprehensive info. It seems I need to cite sources if I do a web search or web fetch, but for the browser, I can just provide the URL plainly. So, I’ll get started by opening a tab and inspecting the site!
+
+[3] tool_call: repl("Opening Amtrak website")
+<request>
+const p1 = await openTab('https://www.amtrak.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="126" elapsed_time="1865ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Train Tickets, Schedules & Routes | Amtrak (https://www.amtrak.com/home)
+# note: interactive (clickable / focusable) elements only.
+- title: "Train Tickets, Schedules & Routes | Amtrak" [url=https://www.amtrak.com/home]
+- link "skip to content" [ref=e1]: "skip to Content"
+- link "skip to Navigation" [ref=e2]
+- link "skip to Footer" [ref=e3]
+- article
+- banner:
+  - navigation:
+    - link "Amtrak logo" [ref=e4]
+    - tablist:
+      - tab "BOOK" [ref=e5]
+      - tab "TRAIN STATUS" [ref=e6]
+      - tab "MY TRIP" [ref=e7]
+      - tab "PLAN" [ref=e8]
+      - tab "SCHEDULES" [ref=e9]
+      - tab "DEALS" [ref=e10]
+    - tablist:
+      - tab "Guest Rewards" [ref=e11]
+      - button "Close" [ref=e12]
+      - text: "Would you like to"
+      - link "Sign In" [ref=e13]
+      - text: "or"
+      - link "Sign Up" [ref=e14]: "Join"
+      - text: "?"
+      - tab "English" [ref=e15]
+      - tab "Need Help?" [ref=e16]
+- main:
+  - tablist:
+    - button "Trip Type:One-Way" [ref=e18]: "One-Way"
+    - link "Rail Passes" [ref=e19]
+    - link "Auto Train" [ref=e20]
+  - text: "Use Points"
+  - switch "Use Points" [ref=e21]:
+    - generic "off" [ref=e22]
+  - combobox "From" [ref=e23]:
+    - combobox "From" [ref=e24]
+    - text: "From"
+  - button "Switch departure and arrival stations." [ref=e25]
+  - combobox "To" [ref=e26]:
+    - combobox "To" [ref=e27]
+    - text: "To"
+  - text: "Depart Date   Format: MM/DD/YYYY"
+  - textbox "Depart Date" [ref=e28]
+  - text: "Depart Date"
+  - button "Return Date" [ref=e29]
+  - button "FIND TRAINS" [ref=e30] [disabled]
+  - button "1 Traveler Add travelers and discounts" [ref=e32]
+  - label [ref=e33]:
+    - checkbox "Passenger with Disability or Assistance Needed?" [ref=e34]
+    - text: "Passenger with Disability or Assistance Needed?"
+  - group:
+    - button "More information about accessible travel requests." [ref=e35]
+  - button "Add Coupon" [ref=e37]
+  - button "Add Trip" [ref=e38]
+  - button "Advanced Search" [ref=e40]
+  - heading [level=1]: "Kids Ride Free on Auto Train"
+  - text: "Little travelers, big savings — kids get a free ride on Auto Train Coach and First Class all summer long."
+  - link "Book Now" [ref=e41]
+  - article:
+    - heading "Deals & Promotions" [level=2]
+  - group [ref=e42] [scrollable]:
+    - tabpanel "Slide 1":
+      - link "Earn 25k points, worth $650 in Amtrak travel. Offers vary. Apply here by 6/30/26." [ref=e43]
+    - tabpanel "Slide 2":
+      - link "Go together for less. Kids ride for 50% off." [ref=e44]
+    - tabpanel "Slide 3":
+      - link "Seniors and students save on travel." [ref=e45]
+    - tabpanel "Slide 4":
+      - link "Save up to 60% off small group travel with Share Fares." [ref=e46]
+    - button "Next" [ref=e47]
+    - tablist "Choose a slide to display"
+  - article:
+    - heading "Amtrak x Away Partnership" [level=2]
+  - heading "Get Rolling with 15% Off Away" [level=3]
+  - text: "Special offer rolling your way: Book a First-Class Acela® trip by June 23rd to get 15% off your first Away purchase"
+  - link "Book Now" [ref=e48]
+  - article:
+    - heading "Onboard Experience" [level=2]
+  - tablist "onboardexperience":
+    - tab "Seating" [ref=e49] [selected]
+    - tab "Private Rooms" [ref=e50]
+    - tab "Food & Dining" [ref=e51]
+    - tab "Baggage" [ref=e52]
+  - tabpanel "Seating" [ref=e53]:
+    - heading "Never Ride in the Middle Seat" [level=3]
+    - text: "Because on Amtrak there aren't any. Whether a long-awaited trip or impromptu getaway, Amtrak makes travel easy with no middle seats and more comfort on your way there."
+    - link "Seat options and features" [ref=e54]
+  - region:
+    - article:
+      - heading "Trip Planning Map" [level=2]
+      - heading "Discover more of America with our trip planning map." [level=3]
+      - text: "See our routes and stations on a map, find trips options between stations and book your next trip."
+      - link "START PLANNING" [ref=e55]
+    - article:
+      - heading "Track Your Train" [level=2]
+      - heading "Check train status and track your train's location." [level=3]
+      - link "TRACK NOW" [ref=e56]
+    - article:
+      - heading "Travel Easier" [level=2]
+      - heading "With the Amtrak app." [level=3]
+      - text: "Download the Amtrak app to check train status, get gate and track information at select stations, travel with eTicket scanning and access helpful information at your fingertips."
+      - link "GET THE APP" [ref=e57]
+    - article:
+      - heading "Amtrak RideReserve for Multi-Ride Passes" [level=2]
+      - text: "Passengers traveling with monthly, ten-ride or six-ride passes will be required to confirm their intended trips on reserved services."
+      - link "Learn About Confirming Trips" [ref=e58]
+    - button "" [ref=e59]: "\n	            	carousel control right"
+    - label [ref=e60]:
+      - radio "Trip Planning Map" [ref=e61] [hidden] [checked]
+      - button "Trip Planning Map" [ref=e62]
+    - label [ref=e63]:
+      - radio "Track Your Train" [ref=e64] [hidden]
+      - button "Track Your Train" [ref=e65]
+    - label [ref=e66]:
+      - radio "Amtrak App" [ref=e67] [hidden]
+      - button "Amtrak App" [ref=e68]
+    - label [ref=e69]:
+      - radio "RideReserve" [ref=e70] [hidden]
+      - button "RideReserve" [ref=e71]
+- text: "Every ride counts as an Amtrak Guest Rewards member. Earn points toward reward travel, upgrades and more."
+- link "JOIN NOW" [ref=e72]
+- contentinfo:
+  - text: "Download the Amtrak App."
+  - link "Play store" [ref=e73]
+  - link "App Store" [ref=e74]
+  - text: "Earn 25K bonus points. Offers vary. Apply here by 6/30/26."
+  - link "Learn More" [ref=e75]
+  - text: "Redeem Amtrak Guest Rewards points for reward travel, upgrades, lounge passes and more."
+  - link "More About Redeeming Points" [ref=e76]
+  - heading "About Amtrak" [level=4]
+  - link "About Amtrak" [ref=e77]
+  - link "A New Era of Rail" [ref=e78]
+  - link "News & Media" [ref=e79]
+  - link "Careers" [ref=e80]
+  - link "FOIA" [ref=e81]
+  - link "Office of Inspector General" [ref=e82]
+  - link "Amtrak Customer Service Commitments" [ref=e83]
+  - heading "Traveling with Us" [level=4]
+  - link "Baggage Policy & Services" [ref=e84]
+  - link "Changing Your Reservation" [ref=e85]
+  - link "Unique Amtrak Experience" [ref=e86]
+  - link "Trip Insurance, Reserved Parking" [ref=e87]
+  - link "Accessible Travel Sevices" [ref=e88]
+  - link "Amtrak Vacations" [ref=e89]
+  - link "Gift Cards" [ref=e90]
+  - heading "Site Tools" [level=4]
+  - link "Service Alerts & Notices" [ref=e91]
+  - link "Sign Up for Delay Alerts" [ref=e92]
+  - link "Terms and Conditions" [ref=e93]
+  - link "Web Notices & Terms of Use" [ref=e94]
+  - link "Amtrak Store" [ref=e95]
+  - link "Cookie Policy & Preferences" [ref=e96]
+  - link "Privacy Policy" [ref=e97]
+  - link "Contact Us" [ref=e98]
+  - link "Amtrak logo" [ref=e99]
+  - heading "social media icons" [level=4]
+  - link "Amtrak on Facebook opens in a new window" [ref=e100]
+  - link "Amtrak on Twitter opens in a new window" [ref=e101]
+  - link "Amtrak on Instagram opens in a new window" [ref=e102]
+  - link "Amtrak on Linkedin opens in a new window" [ref=e103]
+  - link "Amtrak on YouTube opens in a new window" [ref=e104]
+  - link "Pinterest opens in a new window" [ref=e105]
+  - text: "© 2026  National Railroad Passenger Corporation"
+- region "Cookie banner" [ref=e106] [focused]:
+  - dialog "Privacy":
+    - text: "This website uses cookies and other tracking technologies to enhance user experience and to analyze performance and traffic on our website. We also share information about your use of our site with our social media, advertising, and analytics partners. If we have detected an opt-out preference signal then it will be honored. Further information is available in our"
+    - link "More information about your privacy, opens in a new tab" [ref=e107]: "Cookie Policy"
+    - button "Customize Settings" [ref=e108]
+    - button "Reject All" [ref=e109]
+    - button "Allow All" [ref=e110]
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[4] thinking: **Searching for ID requirements**
+
+I need to find the identification requirements for Amtrak. The user mentioned going to Amtrak.com, so maybe I'll search their site or perform a web search to locate the exact page. I should check if the cookie banner is blocking anything important. One option is to use a web fetch to obtain the information directly from the URL. I just want to make sure I get the official page with the right details!
+
+[5] tool_call: websearch(objective="Find the official Amtrak.com page that explains what identification passengers need to bring on an Amtrak trip, including acceptable ID examples and age requirements.", search_queries=["site:amtrak.com identification requirements Amtrak","Amtrak identification requirements"], mode="agentic")
+<result tokens_used="130">
+{"search_id":"search_9d7c35297a684391be4f4ed48a60c3e7","results":[{"url":"http://amtrak.com","title":"Train Tickets, Schedules & Routes | Amtrak","excerpts":["# Book Flex Fares & Travel With Ease\n## Amtrak RideReserve for Multi-Ride Passes\nPassengers traveling with monthly, ten-ride or six-ride passes will be required to confirm their intended trips on reserved services.\n[Learn About Confirming Trips](https://www.amtrak.com/deals-discounts/multi-ride-rail-passes/ride-reserve.html?intcmp=wsp_hp-trip-planning_link_ride-reserve_slide4)\ncarousel control right\nTrip Planning Map Track Your Train Amtrak App RideReserve\nEvery ride counts as an Amtrak Guest Rewards member. Earn points toward reward travel, upgrades and more.\nDownload the Amtrak App.\n[Play store (opens in a new tab)](https://play.google.com/store/apps/details?id=com.amtrak.rider&hl=en_US&gl=US) [App Store (opens in a new tab)](https://apps.apple.com/us/app/amtrak/id405074003)\nEarn 20,000 Bonus Points*. Offers vary.\nLearn More\nRedeem Amtrak Guest Rewards points for reward travel, upgrades, lounge passes and more.\nMore About Redeeming Points"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#1"},{"url":"https://www.amtrak.com/passenger-identification","title":"Passenger Identification | Amtrak","excerpts":["# Passenger Identification\nAmtrak has undertaken heightened security measures for the benefit of our customers.\n\n## Valid Photo ID Required\nAmtrak customers 18 years of age and older must produce valid photo identification when:\n* Exchanging, refunding or reprinting Amtrak travel documents\n* Purchasing documents with a stored eVoucher or Transportation Credit\n* Traveling as a Pass Rider (active or retired)\n* Storing baggage at stations\n* Checking baggage (including firearms)\n* Sending Amtrak Express shipments\n* Asked onboard trains by train crew members, other Amtrak or operating railroad employees\n* Asked any time by Amtrak police or any law enforcement officer\n* Traveling into Canada\n* Guardian purchasing an unaccompanied minor travel documents or signing the release form\n\n### What is a Valid ID?\nTo be valid, your identification must be current and in-force. The following forms of identification are acceptable for persons 18 and older:\n* One piece of photo identification issued by a government authority, or\n* Two pieces of identification, at least one of which is issued by a government authority\nExamples of acceptable forms of ID include:\n* State or provincial driver's license\n* Passport\n* Official government-issued identification (federal, state, city or county government or foreign government)\n* Canadian provincial health card ID card with photo\n* Military photo ID\n* Student identification (university, college or high school photo ID)\n* Job Corps photo ID\n\n#### Random Ticket/ID Checks\nFollowing federal Transportation Security Administration (TSA) guidelines, we regularly conduct random ticket verification checks onboard trains to ensure that passengers are properly ticketed. Please be prepared to show valid photo identification to a member of the onboard crew upon request.\n\n### Purchasing Tickets\nPassengers purchasing tickets onboard trains from conductors must provide photo identification and be at least 16 years old. Tickets purchased onboard include a service fee built into the fare. This fee cannot be waived.\nPassengers boarding at any staffed station or station with an Amtrak kiosk should purchase tickets prior to boarding the train.\n\n### Baggage Restrictions\nAll baggage should contain an ID tag. Free tags are available at our stations. For the safety and comfort of our passengers we strictly enforce certain baggage restrictions. Learn more about our baggage policies .\n\n### Travel Across the US-Canadian Border\nIf your trip involves travel across the US-Canadian border on a train or an Amtrak Connection bus service, review our border crossing information .\n\n...\n\n## Amtrak Guest Rewards Amtrak Guest Rewards Terms and Conditions Have Changed\nStart Earning Today. First Name First name should be at least 2 letters. Last Name Last name should be at least 2 letters. Password Passwords should be at least 10 characters long and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive.\nPassword Incomplete Password Complete\nForgot Password? Confirm Password\nPassword Incomplete Passwords Matched Email Address Enter a valid email address. Country\nUnited States Canada\nGet flash sales, Amtrak Guest Rewards promotions and account updates sent directly to your inbox.\nMake a selection.\nYes No"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#2"},{"url":"https://www.amtrak.com/tickets-id-safety-security","title":"Passenger ID, Safety & Security - Amtrak","excerpts":["# Safety & Security\nExplore the information here to learn all you need to know about ID requirements and passenger safety whether you're in the station or onboard.\n[](https://www.amtrak.com/planning-booking/tickets-id-safety-security/personal-safety)\n\n## Safety & Security Information\nTips for safety onboard and at the station.\n* [Learn more](https://www.amtrak.com/planning-booking/tickets-id-safety-security/personal-safety)\n[](https://www.amtrak.com/planning-booking/tickets-id-safety-security/passenger-identification)\n\n### Passenger Identification\nAlways bring ID on your trip. Don't forget to tag your bag.\n* [Learn more](https://www.amtrak.com/planning-booking/tickets-id-safety-security/passenger-identification)\n[](https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border)\n\n#### Border Crossing Information\nDetails about crossing the US-Canadian border.\n* [Learn more](https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border)"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#3"},{"url":"https://www.amtrakvacations.com/node/1724","title":"Do I need identification documents when traveling on Amtrak?","excerpts":["Acceptable ID includes a driver's license, passport, government agency ID card, and other specific forms of ID. All IDs must be current and valid. Please Yes, Amtrak passengers 15 years of age or older must present acceptable Identification (ID) when purchasing tickets, checking baggage, sending Amtrak Express®"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#4"},{"url":"https://www.reddit.com/r/Amtrak/comments/18owh0g/the_ultimate_guide_to_id_on_amtrak/","title":"The ultimate guide to ID on Amtrak - Reddit","excerpts":["Dec 23, 2023 · Drivers license · State ID · City ID · US passport · Legal Permanent Resident Card or Resident Alien Card · Any middle school, high school, ... Do I need an ID to board? : r/Amtrak - Reddit Will Amtrak accept my birth certificate and another form of non ... More results from www.reddit.com Dec 23, 2023 · Drivers license · State ID · City ID · US passport · Legal Permanent Resident Card or Resident Alien Card · Any middle school, high school, ... Will Amtrak accept my birth certificate and another form of non ... Do I need an ID to board? : r/Amtrak - Reddit More results from www.reddit.com Dec 23, 2023 · Drivers license · State ID · City ID · US passport · Legal Permanent Resident Card or Resident Alien Card · Any middle school, high school, ... Do I need an ID to board? : r/Amtrak - Reddit Will Amtrak accept my birth certificate and another form of non ... More results from www.reddit.com"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#5"},{"url":"https://papersplease.org/wp/wp-content/uploads/2019/01/Amtrak-ID-2018-03-19.pdf","title":"[PDF] Customer Identification Requirements - Papers, Please!","excerpts":["Mar 19, 2018 · When identification is required. Customers must present identification when: Exchanging, refunding or reprinting Amtrak travel documents. When City issued identification cards. *. U.S. Passport. *. U.S. Legal Permanent Resident Card or Resident Alien Card. University, college, middle or Mar 19, 2018 · AMTRAK. 2018-03-19. Acceptable identification: examples. The following are examples of acceptable identification or ID, and not an exclusive Mar 19, 2018 · When identification is required. Customers must present identification when: Exchanging, refunding or reprinting Amtrak travel documents. When City issued identification cards. *. U.S. Passport. *. U.S. Legal Permanent Resident Card or Resident Alien Card. University, college, middle or"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#6"},{"url":"https://www.mapquest.com/travel/amtrak-identification-requirements/","title":"Amtrak Identification Requirements | MapQuest Travel","publish_date":"2021-01-12","excerpts":["# Amtrak Identification Requirements\nBy: George Adelman | Updated: Jan 5, 2025\nAmtrak requires passengers to present a valid, government-issued photo ID. Acceptable forms of identification include a driver's license, passport, military ID, state-issued ID, or other government-issued identification. An image of the Amtrak train at the station with passengers waiting on the other side\nAmtrak is a passenger railroad service provider that covers medium to long-term distances throughout the city in the United States as well as Canadian Cities. The Amtrak headquarters is located towards the Union Station in [Washington, D.C](https://www.mapquest.com/travel/5-must-visit-destinations-in-washington-d-c-for-families/) .\nAmtrak is known to operate in more than 500 places in the 46 US states and 3 of the Canadian provinces. It operates more than 300 trains on a daily basis and works an additional 132 miles of track. Amtrak has employed over 20,000 people and serves more than 31.7 million passengers. According to research, almost about 87,000 passengers take Amtrak on a regular basis.\nThere are certain **requirements while boarding the Amtrak** , which have been listed below:\nAdvertisement\n\n## Valid Photo ID\nCustomers who are 18 years of age or older than 18 must present a valid photo ID during the following instances:\n* Exchanging, refunding, or reprinting Amtrak documents\n* Storing and checking baggage at stations\n* Using Amtrak for sending shipments\n* Traveling to Canada\n* Guardian signing a release form for an unaccompanied minor\n* Traveling as a pass rider or purchasing any documents\nFurthermore, you should also carry a valid ID with you if you wish to board the Amtrak. The following are considered as valid IDs:\n* Photo ID issued by the government\n* Driver’s license\n* Passport\n* ID Card issued by the government\n* Health ID card\n* Military card\n* Student ID card\n* Jobs photo ID\nThe Amtrak also conducts various random tickets and ID checks, so make sure that you have everything in place at all times. One of the members of the crew onboard will be making these random checks. You can also purchase a ticket on board for a certain fee.\nMoreover, the baggage of all passengers will be tagged with ID. There are a few baggage restrictions for the safety and comfort of all passengers. You can get free ID tags at the station as well.\nAdvertisement\n\n### Traveling From US to Canada\nIf you are traveling internationally from the [United States](https://www.mapquest.com/travel/interesting-facts-about-the-united-states/) to Canada, you will have to present a valid ID. According to the Americana and Canadian law enforcement, trains that pass by the border are subject to inspection. You will have to present information about the number of passengers traveling with you as well as your country of origin. The information which you provide will be then reviewed by the customs and immigration officials. It is essential to carry the documents and the identification which was recommended at the time of reserving the tickets. Make sure that you have the original documents with you as the authorities available over there will not accept copies or pictures on your mobile device.\nAdvertisement\n​\nCite This!\nPlease copy/paste the following text to properly cite this HowStuffWorks.com article:\nCopy\nGeorge Adelman\n\"Amtrak Identification Requirements\"\n12 January 2021.\nHowStuffWorks.com. https://www.mapquest.com/travel/amtrak-identification-requirements/\n12 March 2026\nClose\nMore Awesome Stuff\nAdvertisement\nAdvertisement\nLoading...\nAdvertisement\nAdvertisement\nAdvertisement\n* [Outdoor Activities](https://www.mapquest.com/travel/outdoor-activities-channel.htm)\n* [Survival](https://www.mapquest.com/travel/survival-channel.htm)\n* [Destinations](https://www.mapquest.com/travel/destinations-channel.htm)\n* [Map](https://www.mapquest.com/)\n* [Book Hotels, Flights & Cars](https://bookings.mapquest.com/home/?refid=5101&refclickid=yogi-mainnav&icid=mqinad_ota&utm_medium=inad&utm_source=yogi%7Cmainnav&utm_term=Hotels%20Flights%20Rental%20Cars)\n* [Careers](https://system1.com/careers)\n* [Advertise With Us](https://business.mapquest.com/products/targeted-advertising/)\n* [Privacy](https://system1.com/terms/privacy-policy)\n* [Contact Us](https://help.mapquest.com/hc/en-us/requests/new)\n* [Terms](https://hello.mapquest.com/terms-of-use)\n* Cookie Settings"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#7"},{"url":"https://www.amtrakvacations.com/node/1725","title":"What are Amtrak's ID requirements for train travel? | Amtrak Vacations®","excerpts":["# Flash Sale Happening Now\n## Breadcrumb\n1. [Home](https://www.amtrakvacations.com/)\n2. What are Amtrak's ID requirements for train travel?\nWhat are Amtrak's ID requirements for train travel?\nYou are responsible for obtaining and paying for all visas and passports, for meeting all health and other requirements, and for any documents required by the laws, regulations, order and/or requirements of the countries you will visit. Non-U.S. citizens must consult the appropriate consulates to determine if any visas are needed; you are responsible for obtaining all visas and entry documents independently. Amtrak Vacations is not responsible for providing you with specific visa and passport information or documentation, for any fees associated with obtaining these documents, and Amtrak Vacations cannot accept liability for any passenger refused entry onto any transport or into any country due to failure of the passenger to carry correct documentation.\n\n...\n\nSome government agencies in foreign countries require Amtrak Vacations to collect and pass on certain personal and other details related to you, including but not limited to government-issued identification and passport details. If you fail to supply the details as requested fully and accurately, your trip may be interrupted or cancelled. There are no refunds for failure to provide documentation or failure to provide documentation by the time required.\n\n### CANADA\nTo enter and leave Canada, all U.S. citizens must carry proof of citizenship such as a valid passport or passport card. Noncitizens must have a valid passport, visa or alien card that permits entry into Canada. A “multiple entry” visa for return to the U.S. may be required. You are responsible for obtaining and paying for any visa, passport or documentation needed. Passengers traveling on Amtrak rail into Canada must provide date of birth, citizenship and passport information at the time of reservation. Amtrak Vacations is not responsible for any passenger that is denied entry into Canada. If the remaining portion of the trip must be cancelled, the passenger is subject to the cancellation fees noted above and is responsible for all fees to return home. Contact the Canadian Consulate before traveling for current and further information.\nIf you have additional questions regarding ID requirements, please call us and speak with a Rail Vacation Specialist."],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#8"},{"url":"https://www.facebook.com/groups/nyctraveltipsandhacks/posts/7385710648121153/","title":"Can I board Amtrak with photo ID and SS card? - Facebook","publish_date":"2021-12-15","excerpts":["Pretty sure you don't need anything for the train (I've never shown ID on Amtrak). Something with name, birthdate and picture would be ideal Dec 15, 2021 · Examples of acceptable forms of identification include U.S. military or dependent ID ... valid current identification meeting the Amtrak ID ... Will I be refused Amtrak service without Real ID? - Facebook Hi good afternoon, does anybody know if they ask for an ID using ... More results from www.facebook.com Pretty sure you don't need anything for the train (I've never shown ID on Amtrak). Something with name, birthdate and picture would be ideal"],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#9"},{"url":"https://www.facebook.com/groups/amtrakfansnospam/posts/1597383874948832/","title":"Amtrak Fans (Moderated) | Hello, all! Iâm new to the group and have a question | Facebook","excerpts":["# Amtrak Fans (Moderated) Â· Join\n* [15w](https://www.facebook.com/groups/amtrakfansnospam/posts/1597383874948832/?comment_id=1597455054941714&__cft__%5B0%5D=AZYEWPPm1mAL0yeirM6fXH84ioxVv4IXd9Rp9WCncUFhAKrnANXQ9ly29L0oj7oNOkI2hFYf-fsYort4qAYwNC1-ueNdNFlaBJZ-8vW5IU5TuaOCssRvJk2avv-yfgThEsoOW5_C8cAsCcUy3-nxZg_S_zkIbjClfcn77Ud-ACzTgN-d37-nUsTEW4lZRkxRafo&__tn__=R%5D-R)\n1\nKelly Shaw\nNo.\n* [15w](https://www.facebook.com/groups/amtrakfansnospam/posts/1597383874948832/?comment_id=1597455391608347&__cft__%5B0%5D=AZYEWPPm1mAL0yeirM6fXH84ioxVv4IXd9Rp9WCncUFhAKrnANXQ9ly29L0oj7oNOkI2hFYf-fsYort4qAYwNC1-ueNdNFlaBJZ-8vW5IU5TuaOCssRvJk2avv-yfgThEsoOW5_C8cAsCcUy3-nxZg_S_zkIbjClfcn77Ud-ACzTgN-d37-nUsTEW4lZRkxRafo&__tn__=R%5D-R)\n1\nView more comments\n3 of 37\nSee more on Facebook\nSee more on Facebook\nAllow the use of cookies from Facebook on this browser?\nEssential cookies: These cookies are required to use Meta Products and are necessary for our sites to work as intended."],"source_id":"search_9d7c35297a684391be4f4ed48a60c3e7#10"}],"usage":[{"name":"sku_search","count":1}]}
+</result>
+
+[6] tool_call: repl("Opening Amtrak ID page")
+<request>
+await page.goto('https://www.amtrak.com/passenger-identification');
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.tree);
+</request>
+<result tokens_used="78" elapsed_time="802ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Passenger Identification | Amtrak" [url=https://www.amtrak.com/passenger-identification]
+- link "skip to content" [ref=e1]: "skip to Content"
+- link "skip to Navigation" [ref=e2]
+- article
+- banner:
+  - navigation:
+    - link "Amtrak logo" [ref=e3]
+    - tablist:
+      - tab "BOOK" [ref=e4]
+      - tab "TRAIN STATUS" [ref=e5]
+      - tab "MY TRIP" [ref=e6]
+      - tab "PLAN" [ref=e7]
+      - tab "SCHEDULES" [ref=e8]
+      - tab "DEALS" [ref=e9]
+    - tablist:
+      - tab "Guest Rewards" [ref=e10]
+      - tab "English" [ref=e11]
+      - tab "Need Help?" [ref=e12]
+- main:
+  - main
+  - region:
+    - navigation "Secondary" [ref=e14]:
+      - link "Tickets & Reservations" [ref=e15]
+      - link "Changes & Refunds" [ref=e16]
+      - link "Accessible Travel Services" [ref=e17]
+      - link "Planning & Booking Tips" [ref=e18]
+      - link "Amtrak App" [ref=e19]
+      - link "Safety & Security" [ref=e20]
+      - link "Passenger Identification" [ref=e21]
+      - link "Personal Safety" [ref=e22]
+      - link "Canadian Border Crossing" [ref=e23]
+      - link "NextGen Acela Onboard Safety" [ref=e24]
+      - link "International Visitors" [ref=e25]
+      - link "Trails & Rails Program" [ref=e26]
+      - link "Privately-Owned Rail Cars" [ref=e27]
+    - article:
+      - heading "Passenger Identification" [level=1]
+    - text: "Amtrak has undertaken heightened security measures for the benefit of our customers."
+    - article:
+      - heading "Valid Photo ID Required" [level=3]
+    - text: "Amtrak customers 18 years of age and older must produce valid photo identification when:\n\nExchanging, refunding or reprinting Amtrak travel documents\n Purchasing documents with a stored eVoucher or Transportation Credit\n Traveling as a Pass Rider (active or retired)\nStoring baggage at stations\n Checking baggage (including firearms)\nSending Amtrak Express shipments\n Asked onboard trains by train crew members, other Amtrak or operating railroad employees\n Asked any time by Amtrak police or any law enforcement officer\n Traveling into Canada\n Guardian purchasing an unaccompanied minor travel documents or signing the release form"
+    - article:
+      - heading "What is a Valid ID?" [level=4]
+    - text: "To be valid, your identification must be current and in-force. The following forms of identification are acceptable for persons 18 and older:\n\nOne piece of photo identification issued by a government authority, or\n Two pieces of identification, at least one of which is issued by a government authority\n\n Examples of acceptable forms of ID include:\n\nState or provincial driver's license\n Passport\n Official government-issued identification (federal, state, city or county government or foreign government)\nCanadian provincial health card ID card with photo\n Military photo ID\n Student identification (university, college or high school photo ID)\nJob Corps photo ID"
+    - article:
+      - heading "Random Ticket/ID Checks" [level=4]
+    - text: "Following federal Transportation Security Administration (TSA) guidelines, we regularly conduct random ticket verification checks onboard trains to ensure that passengers are properly ticketed. Please be prepared to show valid photo identification to a member of the onboard crew upon request."
+    - article:
+      - heading "Purchasing Tickets" [level=3]
+    - text: "Passengers purchasing tickets onboard trains from conductors must provide photo identification and be at least 16 years old. Tickets purchased onboard include a service fee built into the fare. This fee cannot be waived.\nPassengers boarding at any staffed station or station with an Amtrak kiosk should purchase tickets prior to boarding the train."
+    - article:
+      - heading "Baggage Restrictions" [level=3]
+    - text: "All baggage should contain an ID tag. Free tags are available at our stations. For the safety and comfort of our passengers we strictly enforce certain baggage restrictions. Learn more about our"
+    - link "baggage policies" [ref=e28]
+    - text: "."
+    - article:
+      - heading "Travel Across the US-Canadian Border" [level=3]
+    - text: "If your trip involves travel across the US-Canadian border on a train or an Amtrak Connection bus service, review our"
+    - link "border crossing information" [ref=e29]
+    - text: "."
+- text: "Every ride counts as an Amtrak Guest Rewards member. Earn points toward reward travel, upgrades and more."
+- link "JOIN NOW" [ref=e30]
+- contentinfo:
+  - text: "Download the Amtrak App."
+  - link "Play store" [ref=e31]
+  - link "App Store" [ref=e32]
+  - text: "Earn 25K bonus points. Offers vary. Apply here by 6/30/26."
+  - link "Learn More" [ref=e33]
+  - text: "Redeem Amtrak Guest Rewards points for reward travel, upgrades, lounge passes and more."
+  - link "More About Redeeming Points" [ref=e34]
+  - heading "About Amtrak" [level=4]
+  - link "About Amtrak" [ref=e35]
+  - link "A New Era of Rail" [ref=e36]
+  - link "News & Media" [ref=e37]
+  - link "Careers" [ref=e38]
+  - link "FOIA" [ref=e39]
+  - link "Office of Inspector General" [ref=e40]
+  - link "Amtrak Customer Service Commitments" [ref=e41]
+  - heading "Traveling with Us" [level=4]
+  - link "Baggage Policy & Services" [ref=e42]
+  - link "Changing Your Reservation" [ref=e43]
+  - link "Unique Amtrak Experience" [ref=e44]
+  - link "Trip Insurance, Reserved Parking" [ref=e45]
+  - link "Accessible Travel Sevices" [ref=e46]
+  - link "Amtrak Vacations" [ref=e47]
+  - link "Gift Cards" [ref=e48]
+  - heading "Site Tools" [level=4]
+  - link "Service Alerts & Notices" [ref=e49]
+  - link "Sign Up for Delay Alerts" [ref=e50]
+  - link "Terms and Conditions" [ref=e51]
+  - link "Web Notices & Terms of Use" [ref=e52]
+  - link "Amtrak Store" [ref=e53]
+  - link "Cookie Policy & Preferences" [ref=e54]
+  - link "Privacy Policy" [ref=e55]
+  - link "Contact Us" [ref=e56]
+  - link "Amtrak logo" [ref=e57]
+  - heading "social media icons" [level=4]
+  - link "Amtrak on Facebook opens in a new window" [ref=e58]
+  - link "Amtrak on Twitter opens in a new window" [ref=e59]
+  - link "Amtrak on Instagram opens in a new window" [ref=e60]
+  - link "Amtrak on Linkedin opens in a new window" [ref=e61]
+  - link "Amtrak on YouTube opens in a new window" [ref=e62]
+  - link "Pinterest opens in a new window" [ref=e63]
+  - text: "© 2026  National Railroad Passenger Corporation"
+- region "Cookie banner" [ref=e64] [focused]:
+  - dialog "Privacy":
+    - text: "This website uses cookies and other tracking technologies to enhance user experience and to analyze performance and traffic on our website. We also share information about your use of our site with our social media, advertising, and analytics partners. If we have detected an opt-out preference signal then it will be honored. Further information is available in our"
+    - link "More information about your privacy, opens in a new tab" [ref=e65]: "Cookie Policy"
+    - button "Customize Settings" [ref=e66]
+    - button "Reject All" [ref=e67]
+    - button "Allow All" [ref=e68]
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[7] thinking: **Citing web sources accurately**
+
+I need to keep my answer concise and make sure I properly cite the sources from my web search. I can reference search results and the official page while including source tags for clarity. It's essential to ensure the citation tags have the quoted text, and maybe I can mention the Amtrak website regarding ID requirements for customers 18 and older. They need valid identification for boarding, which could be either one government-issued photo ID or two different forms of ID, making it clear.
+
+**Reviewing border crossing info**
+
+For trips to Canada, I should refer to official sources that indicate the need to review border crossing information, but I won’t go into too much detail. If it’s helpful, I might consider opening the official border page. Since the user is asking about traveling on Amtrak generally, I can mention that crossing the border requires different documents. I should check the specific border information to see what passport details might need to be included.
+
+[8] tool_call: repl("Opening Amtrak border info page")
+<request>
+await page.goto('https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border');
+const s3 = await snapshot(page);
+console.log(s3.tree);
+</request>
+<result tokens_used="330" elapsed_time="1000ms">
+- title: "US-Canada Border Crossing Guidelines for Train Travelers | Amtrak" [url=https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border]
+- link "skip to content" [ref=e1]: "skip to Content"
+- link "skip to Navigation" [ref=e2]
+- article
+- banner:
+  - navigation:
+    - link "Amtrak logo" [ref=e3]:
+      - image "Amtrak logo"
+    - tablist:
+      - listitem "BOOK" [ref=e4]:
+        - tab "BOOK" [ref=e5]
+      - listitem "TRAIN STATUS" [ref=e6]:
+        - tab "TRAIN STATUS" [ref=e7]
+      - listitem "MY TRIP" [ref=e8]:
+        - tab "MY TRIP" [ref=e9]
+      - listitem "PLAN" [ref=e10]:
+        - tab "PLAN" [ref=e11]
+      - listitem "SCHEDULES" [ref=e12]:
+        - tab "SCHEDULES" [ref=e13]
+      - listitem "DEALS" [ref=e14]:
+        - tab "DEALS" [ref=e15]
+    - tablist:
+      - listitem:
+        - tab "Guest Rewards" [ref=e16]
+      - listitem "English" [ref=e17]:
+        - tab "English" [ref=e18]
+      - listitem:
+        - tab "Need Help?" [ref=e19]
+- main:
+  - main
+  - region:
+    - navigation "Secondary" [ref=e21]:
+      - list:
+        - listitem "Tickets & Reservations" [ref=e22]:
+          - link "Tickets & Reservations" [ref=e23]
+        - listitem:
+          - list
+        - listitem "Changes & Refunds" [ref=e24]:
+          - link "Changes & Refunds" [ref=e25]
+        - listitem:
+          - list
+        - listitem "Accessible Travel Services" [ref=e26]:
+          - link "Accessible Travel Services" [ref=e27]
+        - listitem:
+          - list
+        - listitem "Planning & Booking Tips" [ref=e28]:
+          - link "Planning & Booking Tips" [ref=e29]
+        - listitem:
+          - list
+        - listitem "Amtrak App" [ref=e30]:
+          - link "Amtrak App" [ref=e31]
+        - listitem "Safety & Security" [ref=e32]:
+          - link "Safety & Security" [ref=e33]
+        - listitem:
+          - list:
+            - listitem "Passenger Identification" [ref=e34]:
+              - link "Passenger Identification" [ref=e35]
+            - listitem "Personal Safety" [ref=e36]:
+              - link "Personal Safety" [ref=e37]
+            - listitem "Canadian Border Crossing" [ref=e38]:
+              - link "Canadian Border Crossing" [ref=e39]
+            - listitem "NextGen Acela Onboard Safety" [ref=e40]:
+              - link "NextGen Acela Onboard Safety" [ref=e41]
+        - listitem "International Visitors" [ref=e42]:
+          - link "International Visitors" [ref=e43]
+        - listitem "Trails & Rails Program" [ref=e44]:
+          - link "Trails & Rails Program" [ref=e45]
+        - listitem "Privately-Owned Rail Cars" [ref=e46]:
+          - link "Privately-Owned Rail Cars" [ref=e47]
+        - listitem:
+          - list
+    - article:
+      - heading "Crossing the US-Canadian Border" [level=1]
+    - text: "If your trip involves travel across the US-Canadian border on a train or Amtrak Connection bus, you can help ensure a safe and speedy passage by reviewing the following requirements and guidelines. Amtrak services that cross the US-Canadian border are subject to inspection by Canadian and American law enforcement officials."
+    - article:
+      - heading "When Making Reservations" [level=3]
+    - text: "When making a reservation for services crossing the US-Canadian border, you must provide certain information, including your date of birth, gender, country of citizenship, and detailed information regarding the form of ID that you will carry with you on your trip. Further conditions apply.\nProviding inaccurate or incomplete information will subject you to extensive inspection and questioning at the border. Please make sure that you supply us with complete and accurate information.\nThe information you provide when you make your reservation will be entered into your reservation record and supplied to Customs and Immigration officers in advance to facilitate your clearance. This information will not be used by Amtrak, VIA Rail Canada, or any Amtrak Connection provider for any other purpose."
+    - article:
+      - heading "When Traveling" [level=3]
+    - text: "The form of identification you carry with you on your trip should be the same piece of identification that you selected and provided details about when you made your reservation.\nYou must carry the original, valid identification document. Copies, expired or otherwise invalid documents will not be accepted. Each passenger must have their own ID."
+    - article:
+      - heading "Arriving at the Station" [level=3]
+    - list:
+      - listitem "Departing from - arrive at least one hour prior to departure for border crossing processing. To comp" [ref=e48]: "Departing from  Vancouver, BC - arrive at least one hour prior to departure for border crossing processing. To complete ID checks, Customs and Immigration closes the gates 15 minutes before the scheduled departure; gates will not reopen once closed."
+      - listitem "Departing from , or - arrive at least 30 minutes prior to departure." [ref=e49]: "Departing from  Montreal, QC, or  Toronto, ON - arrive at least 30 minutes prior to departure."
+    - text: "For passengers who are not citizens of either the United States or Canada, it is strongly advised to arrive earlier than one hour to complete additional United States Customs and Border Protection processing."
+    - article:
+      - heading "Delays Are Possible" [level=3]
+    - text: "You may experience delays at border crossings. Such delays are usually due to US and/or Canadian customs and immigration procedures, and are beyond Amtrak's control.\nInspections during travel to/from Toronto will occur in Niagara Falls. Passengers will detrain with baggage at the border, should be prepared to show the ID selected when making reservations and will reboard the same train."
+    - region:
+      - article:
+        - heading "Documents Required to Cross the US-Canadian Border" [level=2]
+        - tablist:
+          - listitem "US Citizens 16 and Over" [ref=e50]:
+            - tab "US Citizens 16 and Over" [ref=e51]
+          - listitem "Canadian Citizens 16 and Over" [ref=e52]:
+            - tab "Canadian Citizens 16 and Over" [ref=e53]
+          - listitem "US and Canadian Citizens Under 16" [ref=e54]:
+            - tab "US and Canadian Citizens Under 16" [ref=e55]
+          - listitem "Citizens of Other Countries" [ref=e56]:
+            - tab "Citizens of Other Countries" [ref=e57]
+        - text: "The only acceptable documents for US citizens 16 and over to cross the US-Canadian border by land or sea are:"
+        - list:
+          - listitem "United States Passport, or" [ref=e58]
+          - listitem "United States Passport Card, or" [ref=e59]
+          - listitem "Trusted Traveler Card (NEXUS, FAST or SENTRI), or" [ref=e60]
+          - listitem "Enhanced Driver's License (issued by Washington State, Minnesota, Michigan, New York and Vermont onl" [ref=e61]
+          - listitem "Enhanced Learner's Permit, or Enhanced State ID card (Temporary enhanced driver’s licenses/learner’s" [ref=e62]
+          - listitem "Merchant Mariner Document, or" [ref=e63]
+          - listitem "Military ID with Military orders, or" [ref=e64]
+          - listitem "Form I-872, American Indian Card" [ref=e65]
+          - listitem "Amish and Mennonite Old Order only:" [ref=e66]:
+            - text: "Amish and Mennonite Old Order only:"
+            - list:
+              - listitem "copy of birth certificate, and" [ref=e67]
+              - listitem "signed copy of IRS form 4029, application for exemption from Social Security and Medicare taxes and " [ref=e68]
+    - article:
+      - heading "No Passengers Under 18 Across the US-Canadian Border Unaccompanied" [level=3]
+    - text: "The Canada Border Services Agency and US Customs and Border Protection Department are very concerned about the safety of children crossing the border. The following applies to any situation where a passenger under 18 years old is not crossing the border accompanied by both parents:"
+    - list:
+      - listitem "If one or both parents are not accompanying the child, bring a letter from any parent or legal guard" [ref=e69]
+      - listitem "If one parent is deceased, a copy of the death certificate will minimize questions and delay.*" [ref=e70]
+      - listitem "Parents who share custody of their children should carry copies of the legal custody documents.*" [ref=e71]
+      - listitem "Contact the appropriate government agency for additional information." [ref=e72]
+    - text: "* Amtrak will not deny travel to an adult without this, but the adult may be subject to extensive questioning and delay by border control officers.\nPassengers 17 years old and younger traveling alone may not cross the US-Canadian border regardless of ID or notarized letter, unless accompanied by another passenger who is at least 18 years old.\nException: Children 16 - 17 years old who are citizens or legal residents of the country to which they are traveling, and who bear identification proving this, may return home from the other country by themselves. The conditions above under \"Travelers under 18 years old not traveling with both parents\" apply. In addition, the permission letter specified above for such a child must include the name, address and phone number of the persons taking care of him or her in the home country (normally the parents), and, if not the parents, a statement from the parent or guardian that this person is authorized to take care of him or her. In other words:"
+    - list:
+      - listitem "A child 16 - 17 who is a citizen or legal resident of Canada may return home to Canada." [ref=e73]
+      - listitem "A child 16 - 17 who is a citizen or legal resident of the United States may return home to the Unite" [ref=e74]
+    - text: "Under no circumstances may a child 15 or younger (an unaccompanied minor) cross the border alone."
+    - article:
+      - heading "Completing the I-94 Arrival Record" [level=3]
+    - paragraph:
+      - text: "Non-US-resident citizens of other countries entering the United States must also apply for the I-94 Arrival Record and pay a $30 fee. You must pre-pay the fee and apply online through the"
+      - link "US Customs website" [ref=e75]
+      - text: "up to seven (7) days before your trip. Then you’ll just complete the final steps onboard."
+    - article:
+      - heading "Electronic System for Travel Authorization (ESTA)" [level=3]
+    - paragraph:
+      - text: "In addition to completing an I-94 Arrival Record, travelers intending to enter the United States by land under the Visa Waiver Program (VWP) are required to obtain an approved Electronic System for Travel Authorization prior to application for admission at land border ports of entry. You are encouraged to"
+      - link "apply for a travel authorization" [ref=e76]
+      - text: "at least 72 hours in advance of your anticipated arrival at a U.S. land port of entry. If the application is not submitted and approved prior to arrival at the land border, you will have withdraw your application for admission to the US and return to Canada to submit the application. To apply and for Frequently Asked Questions about the ESTA process or the Visa Waiver Program, visit the"
+      - link "ESTA website." [ref=e77]
+    - article:
+      - heading "Foreign Visitors Entering the United States - the US-VISIT Program" [level=3]
+    - paragraph:
+      - text: "US-VISIT is an enhanced border inspection program implemented by the US Department of Homeland Security. US-VISIT requirements do not replace visa requirements for entering the United States. Visit"
+      - link "Department of Homeland Security" [ref=e78]
+      - text: "to find out if US-VISIT applies to you, the entry process, fees and more."
+    - article:
+      - heading "No Guarantee of Entry" [level=3]
+    - text: "Permission to enter the US or Canada is granted solely at the discretion of Customs and Immigration officers. Accordingly, possession of required documentation and providing Amtrak with required information in no way guarantees entry into the United States or Canada.\nNeither Amtrak nor VIA Rail Canada nor any other carrier is in any way liable in the event that you are denied entry or delayed on your trip. Trains or buses will not be delayed at the border on your behalf if you are detained."
+    - heading "Need More Information?" [level=3]
+    - text: "For further information, contact the appropriate US or Canadian government offices prior to travel:"
+    - heading "Documentation Resources" [level=4]
+    - paragraph:
+      - link "Western Hemisphere Travel Initiative" [ref=e79]
+      - text: "(WHTI)"
+    - heading "Canadian Resources" [level=4]
+    - list:
+      - listitem ": Canada’s International Gateway" [ref=e80]:
+        - text: "Online:"
+        - link "Canada’s International Gateway" [ref=e81]
+      - listitem ": 1-800-O-CANADA (1-800-622-6232)" [ref=e82]: "By Phone: 1-800-O-CANADA (1-800-622-6232)"
+      - listitem ": Canadian Embassy (Washington, DC) or the nearest Canadian consulate (Atlanta, Boston, Buffalo, Chi" [ref=e83]: "In Person (in the USA): Canadian Embassy (Washington, DC) or the nearest Canadian consulate (Atlanta, Boston, Buffalo, Chicago, Dallas, Detroit, Los Angeles, Miami, Minneapolis, New York, Seattle)"
+      - listitem ": The nearest Citizenship and Immigration Canada or Revenue Canada office." [ref=e84]: "In Person (in Canada): The nearest Citizenship and Immigration Canada or Revenue Canada office."
+    - heading "United States Resources" [level=4]
+    - list:
+      - listitem ": US Department of State" [ref=e85]:
+        - text: "Online:"
+        - link "US Department of State" [ref=e86]
+      - listitem ": 1-800-FED-INFO (1-800-333-4636)" [ref=e87]: "By Phone: 1-800-FED-INFO (1-800-333-4636)"
+      - listitem ": The nearest office of the US Passport Agency, the US Bureau of Citizenship and Immigration, or the" [ref=e88]: "In Person (in the USA): The nearest office of the US Passport Agency, the US Bureau of Citizenship and Immigration, or the US Bureau of Customs and Border Protection."
+      - listitem ": United States Embassy (Ottawa), or the nearest United States Consulate (Calgary, Halifax, Montreal" [ref=e89]: "In Person (in Canada): United States Embassy (Ottawa), or the nearest United States Consulate (Calgary, Halifax, Montreal, Quebec City, Toronto, Vancouver)"
+- text: "Every ride counts as an Amtrak Guest Rewards member. Earn points toward reward travel, upgrades and more."
+- link "JOIN NOW" [ref=e90]
+- image "Amtrak Guest Rewards logo"
+- contentinfo:
+  - text: "Download the Amtrak App."
+  - paragraph:
+    - link "Play store" [ref=e91]
+    - link "App Store" [ref=e92]
+  - text: "Earn 25K bonus points. Offers vary. Apply here by 6/30/26."
+  - paragraph:
+    - link "Learn More" [ref=e93]
+  - text: "Redeem Amtrak Guest Rewards points for reward travel, upgrades, lounge passes and more."
+  - paragraph:
+    - link "More About Redeeming Points" [ref=e94]
+  - heading "About Amtrak" [level=4]
+  - list "About Amtrak":
+    - listitem "About Amtrak" [ref=e95]:
+      - link "About Amtrak" [ref=e96]
+    - listitem "A New Era of Rail" [ref=e97]:
+      - link "A New Era of Rail" [ref=e98]
+    - listitem "News & Media" [ref=e99]:
+      - link "News & Media" [ref=e100]
+    - listitem "Careers" [ref=e101]:
+      - link "Careers" [ref=e102]
+    - listitem "FOIA" [ref=e103]:
+      - link "FOIA" [ref=e104]
+    - listitem "Office of Inspector General" [ref=e105]:
+      - link "Office of Inspector General" [ref=e106]
+    - listitem "Amtrak Customer Service Commitments" [ref=e107]:
+      - link "Amtrak Customer Service Commitments" [ref=e108]
+  - heading "Traveling with Us" [level=4]
+  - list "Traveling with Us":
+    - listitem "Baggage Policy & Services" [ref=e109]:
+      - link "Baggage Policy & Services" [ref=e110]
+    - listitem "Changing Your Reservation" [ref=e111]:
+      - link "Changing Your Reservation" [ref=e112]
+    - listitem "Unique Amtrak Experience" [ref=e113]:
+      - link "Unique Amtrak Experience" [ref=e114]
+    - listitem "Trip Insurance, Reserved Parking" [ref=e115]:
+      - link "Trip Insurance, Reserved Parking" [ref=e116]
+    - listitem "Accessible Travel Sevices" [ref=e117]:
+      - link "Accessible Travel Sevices" [ref=e118]
+    - listitem "Amtrak Vacations" [ref=e119]:
+      - link "Amtrak Vacations" [ref=e120]
+    - listitem "Gift Cards" [ref=e121]:
+      - link "Gift Cards" [ref=e122]
+  - heading "Site Tools" [level=4]
+  - list "Site Tools":
+    - listitem "Service Alerts & Notices" [ref=e123]:
+      - link "Service Alerts & Notices" [ref=e124]
+    - listitem "Sign Up for Delay Alerts" [ref=e125]:
+      - link "Sign Up for Delay Alerts" [ref=e126]
+    - listitem "Terms and Conditions" [ref=e127]:
+      - link "Terms and Conditions" [ref=e128]
+    - listitem "Web Notices & Terms of Use" [ref=e129]:
+      - link "Web Notices & Terms of Use" [ref=e130]
+    - listitem "Amtrak Store" [ref=e131]:
+      - link "Amtrak Store" [ref=e132]
+    - listitem "Cookie Policy & Preferences" [ref=e133]:
+      - link "Cookie Policy & Preferences" [ref=e134]
+    - listitem "Privacy Policy" [ref=e135]:
+      - link "Privacy Policy" [ref=e136]
+    - listitem "Contact Us" [ref=e137]:
+      - link "Contact Us" [ref=e138]
+  - link "Amtrak logo" [ref=e139]:
+    - image "Amtrak logo"
+  - heading "social media icons" [level=4]
+  - list:
+    - listitem:
+      - link "Amtrak on Facebook opens in a new window" [ref=e140]
+    - listitem:
+      - link "Amtrak on Twitter opens in a new window" [ref=e141]
+    - listitem:
+      - link "Amtrak on Instagram opens in a new window" [ref=e142]
+    - listitem:
+      - link "Amtrak on Linkedin opens in a new window" [ref=e143]
+    - listitem:
+      - link "Amtrak on YouTube opens in a new window" [ref=e144]
+    - listitem:
+      - link "Pinterest opens in a new window" [ref=e145]
+  - text: "© 2026  National Railroad Passenger Corporation"
+- region "Cookie banner" [ref=e146] [focused]:
+  - dialog "Privacy":
+    - text: "This website uses cookies and other tracking technologies to enhance user experience and to analyze performance and traffic on our website. We also share information about your use of our site with our social media, advertising, and analytics partners. If we have detected an opt-out preference signal then it will be honored. Further information is available in our"
+    - link "More information about your privacy, opens in a new tab" [ref=e147]: "Cookie Policy"
+    - button "Customize Settings" [ref=e148]
+    - button "Reject All" [ref=e149]
+    - button "Allow All" [ref=e150]
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[9] thinking: **Considering citation sources**
+
+I’m thinking about the need to cite a border source from the browser. It seems like we didn’t use webfetch or search for this border info. Citations are only for websearch or webfetch results. I might be able to cite the Amtrak source via URL without a citation tag. However, it might be better to use webfetch for the border page as well to ensure I have the source ID.
+
+[10] tool_call: webfetch(url="https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border", format="markdown", timeout=30)
+<result tokens_used="106">
+<webfetch-citation source_id="fetch_call_k0hqeqOvNum0SV8zedIYDObB|fc_0ec13fdb33f0828e016a04446ad3e0819883c57d14f591af7f#1"></webfetch-citation>
+
+  US-Canada Border Crossing Guidelines for Train Travelers | Amtrak                                                                
+
+[skip to Content](#page-content) [skip to Navigation](#primary-nav)
+
+ [![Amtrak logo](/content/experience-fragments/amtrakonebase/us/en/site/header/master/_jcr_content/root/tabs/path/image.coreimg.svg/1776358828573/amtrak-logos-all-0.svg "Amtrak logo")](/home)
+
+[BACK TO MENU](#)
+
+-   [BOOK](#)
+    
+    [BACK TO MENU](#)
+    
+-   [TRAIN STATUS](#)
+    
+-   [MY TRIP](#)
+    
+-   [PLAN](#)
+    
+    ## Browse by Region
+    
+    -   [Northeast](/regions/northeast)
+    -   [California](/regions/california)
+    -   [Midwest](/regions/midwest)
+    -   [Northwest](/regions/northwest)
+    -   [South](/regions/south)
+    -   [West](/regions/west)
+    
+    Find Station/Route
+    
+     Ask Julie
+    
+     Enter city, zip code or route name
+    
+    Clear input
+    
+    No stations or routes found.
+    
+    Train Stations
+    
+    Routes
+    
+    Locations
+    
+    Please enter a valid station, city, or address.
+    
+    -   [Trip Planning Map](/plan-your-trip)
+    -   [Explore All Routes](/routes)
+    -   [At the Station](/at-the-station)
+    
+    ## Planning & Booking
+    
+    -   [Ticket & Reservation](/planning-booking/tickets-reservations)
+    -   [Changes & Refunds](/planning-booking/changes-refunds)
+    -   [Accessible Travel Services](/planning-booking/accessible-travel-services)
+    -   [Passenger ID, Safety & Security](/planning-booking/tickets-id-safety-security)
+    -   [More about trip planning](/planning-booking)
+    
+    ## Onboard
+    
+    -   [Baggage Info & Services](/onboard/baggage-policy)
+    -   [First Class Private Rooms](/onboard/onboard-accommodations-for-all-your-needs/sleeper-car-accommodations)
+    -   [Seating Options](/onboard/onboard-accommodations-for-all-your-needs/seating-accommodations)
+    -   [Onboard Dining](/onboard/meals-dining)
+    -   [Explore onboard features](/onboard)
+    
+-   [SCHEDULES](#)
+    
+-   [DEALS](#)
+    
+    ## Deals & Promotions
+    
+    -   [Night Owl Fares](/promotions/nightowl)
+    -   [Share Fares](/promotions/sharefares)
+    -   [See current promotions](/promotions/deals)
+    
+    ## Everyday Discounts
+    
+    -   [Child Discounts](/deals-discounts/everyday-discounts/children-discounts)
+    -   [Senior Discounts](/deals-discounts/everyday-discounts/seniors-discount)
+    -   [Student Discounts](/deals-discounts/everyday-discounts/student-discounts)
+    -   [See all discounts](/deals-discounts/everyday-discounts)
+    
+    ## Vacations & Rail Tours
+    
+    -   [Amtrak Vacations](/deals-discounts/rail-vacations-rail-tours/all-inclusive-train-vacation-packages)
+    -   [Train Tour Packages](/deals-discounts/rail-vacations-rail-tours/regional-rail-tour-packages)
+    -   [Family Trip by Train](/deals-discounts/rail-vacations-rail-tours/family-adventures-by-train)
+    -   [More getaways and journeys](/deals-discounts/rail-vacations-rail-tours)
+    
+    ## Multi-Ride & Rail Passes
+    
+    -   [Multi-Ride Pass](/deals-discounts/multi-ride-rail-passes/multi-ride)
+    -   [USA Rail Pass](/tickets/departure-rail-pass)
+    -   [California Rail Pass](/deals-discounts/multi-ride-rail-passes/california-rail-pass)
+    -   [RideReserve](/deals-discounts/multi-ride-rail-passes/ride-reserve)
+    -   [About rail passes](/deals-discounts/multi-ride-rail-passes)
+    
+
+-   [BOOK](#)
+-   [TRAIN STATUS](#)
+-   [MY TRIP](#)
+-   [PLAN](#)
+-   [SCHEDULES](#)
+-   [DEALS](#)
+-   [Guest Rewards](#)
+-   [English](#)
+-   [Need Help?](#)
+
+-   [Guest Rewards ![](/content/dam/projects/dotcom/hpr/logos/navigation_amtrak_profile_inactive.svg)](#) 
+    
+    [BACK TO MENU](#)
+    
+    Would you like to [Sign In](# "Sign In") or [Join](# "Sign Up")?
+    
+    ## Amtrak Guest Rewards
+    
+    Earn points toward Amtrak reward travel, upgrades, gift cards and more.
+    
+    [Join today](# "Join") for free.
+    
+    [Sign in](# "Sign In") to my account.
+    
+    ## Program Overview
+    
+    -   [About Amtrak Guest Rewards](/guestrewards/home)
+    -   [Member Benefits](/guestrewards/member-benefits)
+    -   [Ways to Earn Points](/guestrewards/ways-to-earn)
+    -   [Ways to Redeem Points](/guestrewards/ways-to-redeem)
+    -   [Claim Missing Points](/guestrewards/account-overview/missing-points)
+    -   [Buy, Transfer, Gift Points](/guestrewards/buy-transfer-points)
+    -   [Amtrak Guest Rewards FAQ](/guestrewards/amtrak-guest-rewards-faqs)
+    
+    ## Our Credit Cards
+    
+    Get even more benefits from an Amtrak Guest Rewards credit card.
+    
+    [Learn More](/guestrewards/apply)
+    
+    ## {{initials}}
+    
+    ## Hi, {{firstName}}  
+    
+    Available Points: {{points}}
+    
+    Member #: {{memberNumber}}
+    
+    Tier: {{accountTier}}
+    
+    **TQPs:** {{tierQualifyingPoints}}
+    
+    /guestrewards/member-benefits/select-benefits /guestrewards/member-benefits/select-plus-benefits /guestrewards/member-benefits/select-executive-benefits
+    
+    0
+    
+    To reach \[FUTTIER\] status, you need \[REQPTS\] Tier Qualifying Points (TQPs) by Dec. 31. [Click here for more info.](#)
+    
+    Congratulations! You have qualified for [SELECT EXECUTIVE](/guestrewards/member-benefits/select-executive-benefits) status for \[YEAR\]. [Click here for more info.](#)
+    
+    To reach \[FUTTIER\] status for \[YEAR\], you need \[REQPTS\] Tier Qualifying Points (TQPs) by Dec. 31. [Click here for more info.](#)
+    
+    <p>Tier Qualifying Points count toward your Amtrak Guest Rewards tier status and are earned each calendar year by traveling on Amtrak. You can receive additional TQPs by traveling in Business class or Acela First class, or as an Amtrak Guest Rewards Mastercard cardholder.</p>
+    
+    [Log Out](# "signout")
+    
+    ## Guest Rewards Account
+    
+    -   [My Account](/guestrewards/account-overview)
+    -   [My Profile](/guestrewards/account-overview/profile)
+    -   [My Trips](/guestrewards/account-overview/my-trips)
+    -   [My Coupons](/guestrewards/account-overview/my-coupons)
+    -   [My Lounge Access](/guestrewards/account-overview/my-lounge-benefits)
+    
+    ## Program Overview
+    
+    -   [About Amtrak Guest Rewards](/guestrewards/home)
+    -   [Member Benefits](/guestrewards/member-benefits)
+    -   [Ways to Earn Points](/guestrewards/ways-to-earn)
+    -   [Ways to Redeem Points](/guestrewards/ways-to-redeem)
+    -   [Claim Missing Points](/guestrewards/account-overview/missing-points)
+    -   [Buy, Transfer, Gift Points](/guestrewards/buy-transfer-points)
+    -   [Amtrak Guest Rewards FAQ](/guestrewards/amtrak-guest-rewards-faqs)
+    
+    ## Our Credit Cards
+    
+    [Get even more benefits from an Amtrak Guest Rewards credit card](/guestrewards/apply).
+    
+-   [English](#)
+    
+    -   [Español](https://espanol.amtrak.com)
+    -   [Français](https://francais.amtrak.com)
+    -   [中文](https://zh.amtrak.com)
+    
+-   [Need Help? ![](/content/dam/projects/dotcom/hpr/logos/icon-search.svg)](#) 
+    
+    [BACK TO MENU](#)
+    
+    **NEED HELP?**
+    
+    Ask Julie
+    
+    Looking for a quick answer? Ask our virtual assistant.
+    
+    What can I help you with? 
+    
+    Chat with an Agent
+    
+    Chat with a live Agent every day from 7:00am - 11:00pm ET.
+    
+    Contact Us
+    
+    Have a question or feedback to share? Learn how to get a hold of us for some assistance.
+    
+    [Contact Us Now](/contact-us)
+    
+
+ ![](/content/dam/projects/dotcom/hpr/logos/icon-hamburger.svg) ![](/content/dam/projects/dotcom/hpr/logos/icon-close.svg)
+
+-   [BOOK](#)
+-   [TRAIN STATUS](#)
+-   [MY TRIP](#)
+
+Safety & Security
+
+1.  [Tickets & Reservations](https://www.amtrak.com/planning-booking/tickets-reservations)
+2.  1.  [Purchase Tickets](https://www.amtrak.com/planning-booking/tickets-reservations/purchase-train-tickets)
+    2.  [Guide to Fares](https://www.amtrak.com/planning-booking/tickets-reservations/guide-to-fares)
+    3.  [Booking Limits](https://www.amtrak.com/planning-booking/tickets-reservations/booking-limits-for-number-of-passengers-per-transaction)
+    4.  [Unaccompanied Minors](https://www.amtrak.com/planning-booking/tickets-reservations/unaccompanied-minors)
+    5.  [Duplicate and Impossible Bookings](https://www.amtrak.com/planning-booking/tickets-reservations/duplicate-and-impossible-bookings)
+    6.  [About Schedules and Timetables](https://www.amtrak.com/planning-booking/tickets-reservations/about-schedules-and-timetables)
+3.  [Changes & Refunds](https://www.amtrak.com/planning-booking/changes-refunds)
+4.  1.  [Refunds and Cancellations](https://www.amtrak.com/planning-booking/changes-refunds/refund-and-cancellation-policy)
+    2.  [How to Change Your Reservation](https://www.amtrak.com/planning-booking/changes-refunds/changing-a-reservation)
+    3.  [How to Cancel Your Reservation](https://www.amtrak.com/planning-booking/changes-refunds/canceling-a-reservation-and-getting-a-refund)
+    4.  [eVouchers](https://www.amtrak.com/planning-booking/changes-refunds/evouchers-your-travel-credits-stored-electronically)
+    5.  [How to Use Vouchers](https://www.amtrak.com/planning-booking/changes-refunds/vouchers)
+    6.  [Transportation Vouchers](https://www.amtrak.com/planning-booking/changes-refunds/transportation-vouchers)
+5.  [Accessible Travel Services](https://www.amtrak.com/planning-booking/accessible-travel-services)
+6.  1.  [Making Reservations for Passengers with a Disability](https://www.amtrak.com/planning-booking/accessible-travel-services/making-reservations-for-passengers-with-a-disability)
+    2.  [Service Animals](https://www.amtrak.com/planning-booking/accessible-travel-services/service-animals)
+    3.  [Amtrak Connection Buses and Accessibility](https://www.amtrak.com/planning-booking/accessible-travel-services/accessible-thruway-bus-service)
+    4.  [Wheeled Mobility Devices](https://www.amtrak.com/planning-booking/accessible-travel-services/wheeled-mobility-device-services)
+    5.  [Meal Service for Passengers with a Disability](https://www.amtrak.com/planning-booking/accessible-travel-services/meal-services-for-passengers-with-a-disability)
+    6.  [Station Accessibility](https://www.amtrak.com/planning-booking/accessible-travel-services/station-accessibility)
+    7.  [Traveling with a Companion/Attendant](https://www.amtrak.com/planning-booking/accessible-travel-services/accessible-travel-with-companion-attendant)
+    8.  [Accessible Travel Requests](https://www.amtrak.com/planning-booking/accessible-travel-services/accessible-travel-request)
+    9.  [Oxygen Equipment](https://www.amtrak.com/planning-booking/accessible-travel-services/use-of-oxygen-equipment)
+    10.  [Non-Discrimination Policy](https://www.amtrak.com/planning-booking/accessible-travel-services/non-discrimination-policy)
+7.  [Planning & Booking Tips](https://www.amtrak.com/planning-booking/planning-booking-tips)
+8.  1.  [Tips for Booking Your Trip](https://www.amtrak.com/planning-booking/planning-booking-tips/tips-for-booking-your-trip)
+    2.  [Tips for Savvy Travelers](https://www.amtrak.com/planning-booking/planning-booking-tips/tips-for-savvy-travelers)
+    3.  [Tips for Long-Distance Travel](https://www.amtrak.com/planning-booking/planning-booking-tips/easy-booking-tips-for-long-distance-travel)
+    4.  [Tips for First-Time Riders](https://www.amtrak.com/planning-booking/planning-booking-tips/amtrak-travel-preparation)
+9.  [Amtrak App](https://www.amtrak.com/planning-booking/mobile)
+10.  [Safety & Security](https://www.amtrak.com/planning-booking/tickets-id-safety-security)
+11.  1.  [Passenger Identification](https://www.amtrak.com/planning-booking/tickets-id-safety-security/passenger-identification)
+     2.  [Personal Safety](https://www.amtrak.com/planning-booking/tickets-id-safety-security/personal-safety)
+     3.  [Canadian Border Crossing](https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border)
+     4.  [NextGen Acela Onboard Safety](https://www.amtrak.com/planning-booking/tickets-id-safety-security/nextgen-acela-onboard-safety)
+12.  [International Visitors](https://www.amtrak.com/planning-booking/international-visitors)
+13.  [Trails & Rails Program](https://www.amtrak.com/planning-booking/trails-rails-heritage-appreciation)
+14.  [Privately-Owned Rail Cars](https://www.amtrak.com/planning-booking/private-train-cars)
+15.  1.  [Mechanical Bulletins for Private Rail Cars](https://www.amtrak.com/planning-booking/private-train-cars/mechanical-bulletins-for-privately-owned-rail-cars)
+
+# Crossing the US-Canadian Border
+
+If your trip involves travel across the US-Canadian border on a train or Amtrak Connection bus, you can help ensure a safe and speedy passage by reviewing the following requirements and guidelines. Amtrak services that cross the US-Canadian border are subject to inspection by Canadian and American law enforcement officials.
+
+### When Making Reservations
+
+When making a reservation for services crossing the US-Canadian border, you must provide certain information, including your date of birth, gender, country of citizenship, and detailed information regarding the form of ID that you will carry with you on your trip. Further conditions apply.
+
+Providing inaccurate or incomplete information will subject you to extensive inspection and questioning at the border. Please make sure that you supply us with complete and accurate information.
+
+The information you provide when you make your reservation will be entered into your reservation record and supplied to Customs and Immigration officers in advance to facilitate your clearance. This information will not be used by Amtrak, VIA Rail Canada, or any Amtrak Connection provider for any other purpose.
+
+### When Traveling
+
+The form of identification you carry with you on your trip should be the same piece of identification that you selected and provided details about when you made your reservation.
+
+You must carry the original, valid identification document. Copies, expired or otherwise invalid documents will not be accepted. Each passenger must have their own ID.
+
+### Arriving at the Station
+
+-   Departing from **Vancouver, BC** - arrive at least one hour prior to departure for border crossing processing. To complete ID checks, Customs and Immigration closes the gates 15 minutes before the scheduled departure; gates will not reopen once closed.
+-   Departing from **Montreal, QC**, or **Toronto, ON** - arrive at least 30 minutes prior to departure.
+
+For passengers who are not citizens of either the United States or Canada, it is strongly advised to arrive earlier than one hour to complete additional United States Customs and Border Protection processing.
+
+### Delays Are Possible
+
+You may experience delays at border crossings. Such delays are usually due to US and/or Canadian customs and immigration procedures, and are beyond Amtrak's control.
+
+Inspections during travel to/from Toronto will occur in Niagara Falls. Passengers will detrain with baggage at the border, should be prepared to show the ID selected when making reservations and will reboard the same train.
+
+## Documents Required to Cross the US-Canadian Border
+
+1.  US Citizens 16 and Over
+2.  Canadian Citizens 16 and Over
+3.  US and Canadian Citizens Under 16
+4.  Citizens of Other Countries
+
+### US Citizens 16 and Over
+
+The only acceptable documents for US citizens 16 and over to cross the US-Canadian border by land or sea are:  
+
+-   United States Passport, or
+-   United States Passport Card, or
+-   Trusted Traveler Card (NEXUS, FAST or SENTRI), or
+-   Enhanced Driver's License (issued by Washington State, Minnesota, Michigan, New York and Vermont only), or
+-   Enhanced Learner's Permit, or Enhanced State ID card (Temporary enhanced driver’s licenses/learner’s permits/state or provincial ID cards are not accepted. The traveler must have the permanent license/permit/card.), or
+-   Merchant Mariner Document, or
+-   Military ID with Military orders, or
+-   Form I-872, American Indian Card
+-   Amish and Mennonite Old Order only:  
+    -   copy of birth certificate, and
+    -   signed copy of IRS form 4029, application for exemption from Social Security and Medicare taxes and waiver of benefits.
+
+### Canadian Citizens 16 and Over
+
+The only acceptable documents for Canadian citizens 16 and over to cross the US-Canadian border by land or sea are:  
+
+-   Canadian Passport, or
+-   Trusted Traveler Card (NEXUS, FAST or SENTRI), or
+-   Enhanced Driver's License (issued by British Columbia, Manitoba, Ontario and Quebec only), or
+-   Enhanced Learner's Permit, or Enhanced State ID card, or
+-   Indian and Northern Affairs Canada (INAC) card
+
+### US and Canadian Citizens Under 16
+
+The only acceptable documents for US and Canadian citizens under 16 to cross the US-Canadian border by land or sea are:  
+
+(Under 19 if traveling with an organized group such as a school trip)
+
+-   One of the above documents, or
+-   Certified Copy of a Birth Certificate (bearing the raised seal of the issuing office and a statement that it is a certified copy of the original document on file at that office) or
+-   **U.S. Citizen Children Only:** Consular Report of Birth Abroad, or United States Naturalization Certificate
+-   **Canadian Citizen Children Only:** Canadian Citizenship Certificate Card
+
+### Citizens of Other Countries
+
+The only acceptable documents for citizens of countries other than US and Canada to cross the US-Canadian border by land or sea are:  
+
+Citizens of other countries who are permanent residents of the United States:  
+
+-   Entering Canada: Passport (with visa, if required)
+-   Entering the United States: Form I-551, Permanent Resident Card (older versions of this are called Resident Alien Cards, which if not expired may also be used). A foreign passport may also be presented, but Form I-551 is required.  
+    
+
+Citizens of other countries who are permanent residents of Canada:  
+
+-   Entering Canada: Canadian Permanent Resident Card
+-   Entering the United States: Passport (with visa, if required)  
+    
+
+Citizens of all other countries who are not permanent residents of the United States or Canada:
+
+-   Passport (with visa, if required)
+-   Re-entry permit
+-   Refugee permit  
+    
+
+### No Passengers Under 18 Across the US-Canadian Border Unaccompanied
+
+The Canada Border Services Agency and US Customs and Border Protection Department are very concerned about the safety of children crossing the border. The following applies to any situation where a passenger under 18 years old is not crossing the border accompanied by both parents:
+
+-   If one or both parents are not accompanying the child, bring a letter from any parent or legal guardian not present giving permission to cross the border. (If part of an organized group, see below for the requirement.) Include addresses and phone numbers.
+-   If one parent is deceased, a copy of the death certificate will minimize questions and delay.\*
+-   Parents who share custody of their children should carry copies of the legal custody documents.\*
+-   Contact the appropriate government agency for additional information.
+
+\* Amtrak will not deny travel to an adult without this, but the adult may be subject to extensive questioning and delay by border control officers.
+
+Passengers 17 years old and younger traveling alone may not cross the US-Canadian border regardless of ID or notarized letter, unless accompanied by another passenger who is at least 18 years old.
+
+Exception: Children 16 - 17 years old who are citizens or legal residents of the country to which they are traveling, and who bear identification proving this, may return home from the other country by themselves. The conditions above under "Travelers under 18 years old not traveling with both parents" apply. In addition, the permission letter specified above for such a child must include the name, address and phone number of the persons taking care of him or her in the home country (normally the parents), and, if not the parents, a statement from the parent or guardian that this person is authorized to take care of him or her. In other words:
+
+-   A child 16 - 17 who is a citizen or legal resident of Canada may return home to Canada.
+-   A child 16 - 17 who is a citizen or legal resident of the United States may return home to the United States.
+
+Under no circumstances may a child 15 or younger (an unaccompanied minor) cross the border alone.
+
+### Completing the I-94 Arrival Record
+
+Non-US-resident citizens of other countries entering the United States must also apply for the I-94 Arrival Record and pay a $30 fee. You must pre-pay the fee and apply online through the [US Customs website](https://i94.cbp.dhs.gov/) up to seven (7) days before your trip. Then you’ll just complete the final steps onboard. 
+
+### Electronic System for Travel Authorization (ESTA)
+
+In addition to completing an I-94 Arrival Record, travelers intending to enter the United States by land under the Visa Waiver Program (VWP) are required to obtain an approved Electronic System for Travel Authorization prior to application for admission at land border ports of entry. You are encouraged to [apply for a travel authorization](https://esta.cbp.dhs.gov/) at least 72 hours in advance of your anticipated arrival at a U.S. land port of entry. If the application is not submitted and approved prior to arrival at the land border, you will have withdraw your application for admission to the US and return to Canada to submit the application. To apply and for Frequently Asked Questions about the ESTA process or the Visa Waiver Program, visit the [ESTA website.](https://esta.cbp.dhs.gov/)
+
+### Foreign Visitors Entering the United States - the US-VISIT Program
+
+US-VISIT is an enhanced border inspection program implemented by the US Department of Homeland Security. US-VISIT requirements do not replace visa requirements for entering the United States. Visit [Department of Homeland Security](http://www.dhs.gov/files/programs/usv.shtm) to find out if US-VISIT applies to you, the entry process, fees and more.
+
+### No Guarantee of Entry
+
+Permission to enter the US or Canada is granted solely at the discretion of Customs and Immigration officers. Accordingly, possession of required documentation and providing Amtrak with required information in no way guarantees entry into the United States or Canada.
+
+Neither Amtrak nor VIA Rail Canada nor any other carrier is in any way liable in the event that you are denied entry or delayed on your trip. Trains or buses will not be delayed at the border on your behalf if you are detained.
+
+### Need More Information?
+
+For further information, contact the appropriate US or Canadian government offices prior to travel:
+
+#### Documentation Resources
+
+[Western Hemisphere Travel Initiative](http://www.cbp.gov/travel/us-citizens/western-hemisphere-travel-initiative) (WHTI)
+
+#### Canadian Resources
+
+-   **Online**: [Canada’s International Gateway](http://www.canadainternational.gc.ca) 
+-   **By Phone**: 1-800-O-CANADA (1-800-622-6232)
+-   **In Person (in the USA)**: Canadian Embassy (Washington, DC) or the nearest Canadian consulate (Atlanta, Boston, Buffalo, Chicago, Dallas, Detroit, Los Angeles, Miami, Minneapolis, New York, Seattle)
+-   **In Person (in Canada)**: The nearest Citizenship and Immigration Canada or Revenue Canada office.
+
+#### United States Resources  
+
+-   **Online**: [US Department of State](http://www.travel.state.gov) 
+-   **By Phone**: 1-800-FED-INFO (1-800-333-4636)
+-   **In Person (in the USA)**: The nearest office of the US Passport Agency, the US Bureau of Citizenship and Immigration, or the US Bureau of Customs and Border Protection.
+-   **In Person (in Canada)**: United States Embassy (Ottawa), or the nearest United States Consulate (Calgary, Halifax, Montreal, Quebec City, Toronto, Vancouver)
+
+## Amtrak Guest Rewards Amtrak Guest Rewards Terms and Conditions Have Changed
+
+Close Modal 
+
+Signin/Signup
+
+ Sign In
+
+Enter a valid Guest Rewards number or email address.
+
+Email or Guest Rewards #  Enter a valid Guest Rewards number or email address.
+
+Password
+
+Passwords should be at least 10 characters long and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive.
+
+ ![](/content/dam/projects/dotcom/english/public/images/icons/show_blue.svg) Enter a valid password Forgot Password?
+
+ SIGN IN
+
+By signing in to your account you acknowledge you have read and agree to the updated terms and conditions, including the binding arbitration agreement.
+
+[Terms and Conditions](https://www.amtrak.com/services/contentService.ibcontentpopup.terms-and-conditions)
+
+I Agree to the Terms
+
+ Join
+
+Start Earning Today. First Name  First name should be at least 2 letters. Last Name  Last name should be at least 2 letters. Password
+
+Passwords should be at least 10 characters long and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive.
+
+ ![](/content/dam/projects/dotcom/english/public/images/icons/show_blue.svg)
+
+Password Incomplete Password Complete
+
+Forgot Password? Confirm Password 
+
+Password Incomplete Passwords Matched
+
+Email Address  Enter a valid email address. Country
+
+United States Canada
+
+Get flash sales, Amtrak Guest Rewards promotions and account updates sent directly to your inbox.
+
+Make a selection.
+
+ Yes No
+
+   
+
+By clicking Join, you acknowledge you have read and agree to the program terms, including the binding arbitration agreement, in the [terms and conditions](https://www.amtrak.com/services/contentService.ibcontentpopup.terms-and-conditions.html#amtrakGuestRewardsProgramTermsConditions-generalMembershipGuidelines) and [privacy policy.](https://www.amtrak.com/services/contentService.ibcontentpopup.privacy)
+
+Join
+
+SIGN IN OR CREATE AN ACCOUNT
+
+## Forgot Password?
+
+Close Window
+
+Passwords are case sensitive, should be at least 10 characters long and should include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. ! " # $ % & ' ( ) \* + , - . / : ; < = > ? @ \[ \\ \] ^ \_ \` < | > ~
+
+Enter the email address or member number associated with your account. We will send password reset instructions.
+
+Email or Member #  Enter a valid Guest Rewards number or email address. Reset Password
+
+An email with password reset instructions is on the way.
+
+Question 1 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+### Question 1 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+### Question 2 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+### Question 2 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+New Password
+
+Please enter a password. Your password must be at least 8 characters long, include at least 1 alpha character, and include at least 1 number or special character (- ? . \_ @ " $ # ,). Passwords are case sensitive.
+
+ 
+
+Password Incomplete Password Complete
+
+Save
+
+That answer wasn’t correct either. We’ve sent you an email with instructions to reset your password instead.
+
+Password was reset successfully.
+
+[Continue as Signed In](/public/home-page) [Sign Out](/public/home-page)
+
+Every ride counts as an Amtrak Guest Rewards member. Earn points toward reward travel, upgrades and more.
+
+[JOIN NOW](/guestrewards/enroll.html?ec=footer)
+
+![Amtrak Guest Rewards logo](/content/experience-fragments/amtrakonebase/us/en/site/join-amtrak-guest-rewards-banner/master/_jcr_content/root/container/teaser.coreimg.svg/1776358395165/amtrak-guest-rewards-1.svg "Amtrak Guest Rewards Horizontal White Logo") 
+
+Download the Amtrak App.
+
+[Play store](https://play.google.com/store/apps/details?id=com.amtrak.rider&hl=en_US&gl=US) [App Store](https://apps.apple.com/us/app/amtrak/id405074003)
+
+Earn 25K bonus points. Offers vary. Apply here by 6/30/26.
+
+[Learn More](/guestrewards/apply?intcmp=wsp_footer)
+
+![](/content/experience-fragments/amtrakonebase/us/en/site/footer/master/_jcr_content/root/container_1094858081/container_1209600356/image.coreimg.png/1778078602538/fnbo-card-front-facing-angle-launch-50x80.png)
+
+Redeem Amtrak Guest Rewards points for reward travel, upgrades, lounge passes and more.
+
+[More About Redeeming Points](/guestrewards/ways-to-redeem/amtraktravel)
+
+#### About Amtrak
+
+-   [About Amtrak](/about-amtrak)
+-   [A New Era of Rail](https://amtraknewera.com/)
+-   [News & Media](https://media.amtrak.com/)
+-   [Careers](https://careers.amtrak.com/)
+-   [FOIA](/about-amtrak/foia)
+-   [Office of Inspector General](https://amtrakoig.gov/)
+-   [Amtrak Customer Service Commitments](/planning-booking/policies/amtrak-customer-service-commitments)
+
+#### Traveling with Us
+
+-   [Baggage Policy & Services](/onboard/baggage-policy)
+-   [Changing Your Reservation](/planning-booking/changes-refunds/changing-a-reservation)
+-   [Unique Amtrak Experience](/experience/why-amtrak/the-unique-amtrak-experience-with-many-benefits)
+-   [Trip Insurance, Reserved Parking](/deals-discounts/complete-your-trip-with-hotel-car-rental-insurance-more)
+-   [Accessible Travel Sevices](/planning-booking/accessible-travel-services)
+-   [Amtrak Vacations](/deals-discounts/rail-vacations-rail-tours/all-inclusive-train-vacation-packages)
+-   [Gift Cards](/planning-booking/tickets-reservations/giftcards)
+
+#### Site Tools
+
+-   [Service Alerts & Notices](/alert)
+-   [Sign Up for Delay Alerts](/tickets/delay-alerts)
+-   [Terms and Conditions](/terms-and-conditions)
+-   [Web Notices & Terms of Use](/planning-booking/policies/web-notices-terms-of-use)
+-   [Amtrak Store](https://www.store.amtrak.com/)
+-   [Cookie Policy & Preferences](/planning-booking/policies/cookie-policy)
+-   [Privacy Policy](/planning-booking/policies/privacy-policy)
+-   [Contact Us](/contact-us)
+
+ [![Amtrak logo](/content/experience-fragments/amtrakonebase/us/en/site/footer/master/_jcr_content/root/image.coreimg.svg/1776358932072/amtrak-logos-all-02.svg "Amtrak logo")](#)
+
+#### social media icons
+
+-   [Amtrak on Facebook opens in a new window](https://www.facebook.com/amtrak)
+    
+-   [Amtrak on Twitter opens in a new window](https://www.twitter.com/amtrak)
+    
+-   [Amtrak on Instagram opens in a new window](https://www.instagram.com/amtrak)
+    
+-   [Amtrak on Linkedin opens in a new window](https://www.linkedin.com/company/amtrak)
+    
+-   [Amtrak on YouTube opens in a new window](https://www.youtube.com/amtrak)
+    
+-   [Pinterest opens in a new window](https://www.pinterest.com/amtraktravels/)
+    
+
+National Railroad Passenger Corporation
+
+  
+
+ 
+
+![](https://www.amtrak.com/akam/13/pixel_636dfc0?a=dD02ODI0MmYxMDhkNGMwYTViMTZlZDZhYmRkOGY2MDVmNmU3NDQ0MjNjJmpzPW9mZg==)
+</result>
+
+[11] tool_call: webfetch(url="https://www.amtrak.com/passenger-identification", format="markdown", timeout=30)
+<result tokens_used="53">
+<webfetch-citation source_id="fetch_call_RmIvUwVIvStLTqU9YO6GMdoy|fc_0ec13fdb33f0828e016a0444711b9c8198b33ad0481989eca4#1"></webfetch-citation>
+
+  Passenger Identification | Amtrak                                                                
+
+[skip to Content](#page-content) [skip to Navigation](#primary-nav)
+
+ [![Amtrak logo](/content/experience-fragments/amtrakonebase/us/en/site/header/master/_jcr_content/root/tabs/path/image.coreimg.svg/1776358828573/amtrak-logos-all-0.svg "Amtrak logo")](/home)
+
+[BACK TO MENU](#)
+
+-   [BOOK](#)
+    
+    [BACK TO MENU](#)
+    
+-   [TRAIN STATUS](#)
+    
+-   [MY TRIP](#)
+    
+-   [PLAN](#)
+    
+    ## Browse by Region
+    
+    -   [Northeast](/regions/northeast)
+    -   [California](/regions/california)
+    -   [Midwest](/regions/midwest)
+    -   [Northwest](/regions/northwest)
+    -   [South](/regions/south)
+    -   [West](/regions/west)
+    
+    Find Station/Route
+    
+     Ask Julie
+    
+     Enter city, zip code or route name
+    
+    Clear input
+    
+    No stations or routes found.
+    
+    Train Stations
+    
+    Routes
+    
+    Locations
+    
+    Please enter a valid station, city, or address.
+    
+    -   [Trip Planning Map](/plan-your-trip)
+    -   [Explore All Routes](/routes)
+    -   [At the Station](/at-the-station)
+    
+    ## Planning & Booking
+    
+    -   [Ticket & Reservation](/planning-booking/tickets-reservations)
+    -   [Changes & Refunds](/planning-booking/changes-refunds)
+    -   [Accessible Travel Services](/planning-booking/accessible-travel-services)
+    -   [Passenger ID, Safety & Security](/planning-booking/tickets-id-safety-security)
+    -   [More about trip planning](/planning-booking)
+    
+    ## Onboard
+    
+    -   [Baggage Info & Services](/onboard/baggage-policy)
+    -   [First Class Private Rooms](/onboard/onboard-accommodations-for-all-your-needs/sleeper-car-accommodations)
+    -   [Seating Options](/onboard/onboard-accommodations-for-all-your-needs/seating-accommodations)
+    -   [Onboard Dining](/onboard/meals-dining)
+    -   [Explore onboard features](/onboard)
+    
+-   [SCHEDULES](#)
+    
+-   [DEALS](#)
+    
+    ## Deals & Promotions
+    
+    -   [Night Owl Fares](/promotions/nightowl)
+    -   [Share Fares](/promotions/sharefares)
+    -   [See current promotions](/promotions/deals)
+    
+    ## Everyday Discounts
+    
+    -   [Child Discounts](/deals-discounts/everyday-discounts/children-discounts)
+    -   [Senior Discounts](/deals-discounts/everyday-discounts/seniors-discount)
+    -   [Student Discounts](/deals-discounts/everyday-discounts/student-discounts)
+    -   [See all discounts](/deals-discounts/everyday-discounts)
+    
+    ## Vacations & Rail Tours
+    
+    -   [Amtrak Vacations](/deals-discounts/rail-vacations-rail-tours/all-inclusive-train-vacation-packages)
+    -   [Train Tour Packages](/deals-discounts/rail-vacations-rail-tours/regional-rail-tour-packages)
+    -   [Family Trip by Train](/deals-discounts/rail-vacations-rail-tours/family-adventures-by-train)
+    -   [More getaways and journeys](/deals-discounts/rail-vacations-rail-tours)
+    
+    ## Multi-Ride & Rail Passes
+    
+    -   [Multi-Ride Pass](/deals-discounts/multi-ride-rail-passes/multi-ride)
+    -   [USA Rail Pass](/tickets/departure-rail-pass)
+    -   [California Rail Pass](/deals-discounts/multi-ride-rail-passes/california-rail-pass)
+    -   [RideReserve](/deals-discounts/multi-ride-rail-passes/ride-reserve)
+    -   [About rail passes](/deals-discounts/multi-ride-rail-passes)
+    
+
+-   [BOOK](#)
+-   [TRAIN STATUS](#)
+-   [MY TRIP](#)
+-   [PLAN](#)
+-   [SCHEDULES](#)
+-   [DEALS](#)
+-   [Guest Rewards](#)
+-   [English](#)
+-   [Need Help?](#)
+
+-   [Guest Rewards ![](/content/dam/projects/dotcom/hpr/logos/navigation_amtrak_profile_inactive.svg)](#) 
+    
+    [BACK TO MENU](#)
+    
+    Would you like to [Sign In](# "Sign In") or [Join](# "Sign Up")?
+    
+    ## Amtrak Guest Rewards
+    
+    Earn points toward Amtrak reward travel, upgrades, gift cards and more.
+    
+    [Join today](# "Join") for free.
+    
+    [Sign in](# "Sign In") to my account.
+    
+    ## Program Overview
+    
+    -   [About Amtrak Guest Rewards](/guestrewards/home)
+    -   [Member Benefits](/guestrewards/member-benefits)
+    -   [Ways to Earn Points](/guestrewards/ways-to-earn)
+    -   [Ways to Redeem Points](/guestrewards/ways-to-redeem)
+    -   [Claim Missing Points](/guestrewards/account-overview/missing-points)
+    -   [Buy, Transfer, Gift Points](/guestrewards/buy-transfer-points)
+    -   [Amtrak Guest Rewards FAQ](/guestrewards/amtrak-guest-rewards-faqs)
+    
+    ## Our Credit Cards
+    
+    Get even more benefits from an Amtrak Guest Rewards credit card.
+    
+    [Learn More](/guestrewards/apply)
+    
+    ## {{initials}}
+    
+    ## Hi, {{firstName}}  
+    
+    Available Points: {{points}}
+    
+    Member #: {{memberNumber}}
+    
+    Tier: {{accountTier}}
+    
+    **TQPs:** {{tierQualifyingPoints}}
+    
+    /guestrewards/member-benefits/select-benefits /guestrewards/member-benefits/select-plus-benefits /guestrewards/member-benefits/select-executive-benefits
+    
+    0
+    
+    To reach \[FUTTIER\] status, you need \[REQPTS\] Tier Qualifying Points (TQPs) by Dec. 31. [Click here for more info.](#)
+    
+    Congratulations! You have qualified for [SELECT EXECUTIVE](/guestrewards/member-benefits/select-executive-benefits) status for \[YEAR\]. [Click here for more info.](#)
+    
+    To reach \[FUTTIER\] status for \[YEAR\], you need \[REQPTS\] Tier Qualifying Points (TQPs) by Dec. 31. [Click here for more info.](#)
+    
+    <p>Tier Qualifying Points count toward your Amtrak Guest Rewards tier status and are earned each calendar year by traveling on Amtrak. You can receive additional TQPs by traveling in Business class or Acela First class, or as an Amtrak Guest Rewards Mastercard cardholder.</p>
+    
+    [Log Out](# "signout")
+    
+    ## Guest Rewards Account
+    
+    -   [My Account](/guestrewards/account-overview)
+    -   [My Profile](/guestrewards/account-overview/profile)
+    -   [My Trips](/guestrewards/account-overview/my-trips)
+    -   [My Coupons](/guestrewards/account-overview/my-coupons)
+    -   [My Lounge Access](/guestrewards/account-overview/my-lounge-benefits)
+    
+    ## Program Overview
+    
+    -   [About Amtrak Guest Rewards](/guestrewards/home)
+    -   [Member Benefits](/guestrewards/member-benefits)
+    -   [Ways to Earn Points](/guestrewards/ways-to-earn)
+    -   [Ways to Redeem Points](/guestrewards/ways-to-redeem)
+    -   [Claim Missing Points](/guestrewards/account-overview/missing-points)
+    -   [Buy, Transfer, Gift Points](/guestrewards/buy-transfer-points)
+    -   [Amtrak Guest Rewards FAQ](/guestrewards/amtrak-guest-rewards-faqs)
+    
+    ## Our Credit Cards
+    
+    [Get even more benefits from an Amtrak Guest Rewards credit card](/guestrewards/apply).
+    
+-   [English](#)
+    
+    -   [Español](https://espanol.amtrak.com)
+    -   [Français](https://francais.amtrak.com)
+    -   [中文](https://zh.amtrak.com)
+    
+-   [Need Help? ![](/content/dam/projects/dotcom/hpr/logos/icon-search.svg)](#) 
+    
+    [BACK TO MENU](#)
+    
+    **NEED HELP?**
+    
+    Ask Julie
+    
+    Looking for a quick answer? Ask our virtual assistant.
+    
+    What can I help you with? 
+    
+    Chat with an Agent
+    
+    Chat with a live Agent every day from 7:00am - 11:00pm ET.
+    
+    Contact Us
+    
+    Have a question or feedback to share? Learn how to get a hold of us for some assistance.
+    
+    [Contact Us Now](/contact-us)
+    
+
+ ![](/content/dam/projects/dotcom/hpr/logos/icon-hamburger.svg) ![](/content/dam/projects/dotcom/hpr/logos/icon-close.svg)
+
+-   [BOOK](#)
+-   [TRAIN STATUS](#)
+-   [MY TRIP](#)
+
+Safety & Security
+
+1.  [Tickets & Reservations](https://www.amtrak.com/planning-booking/tickets-reservations)
+2.  1.  [Purchase Tickets](https://www.amtrak.com/planning-booking/tickets-reservations/purchase-train-tickets)
+    2.  [Guide to Fares](https://www.amtrak.com/planning-booking/tickets-reservations/guide-to-fares)
+    3.  [Booking Limits](https://www.amtrak.com/planning-booking/tickets-reservations/booking-limits-for-number-of-passengers-per-transaction)
+    4.  [Unaccompanied Minors](https://www.amtrak.com/planning-booking/tickets-reservations/unaccompanied-minors)
+    5.  [Duplicate and Impossible Bookings](https://www.amtrak.com/planning-booking/tickets-reservations/duplicate-and-impossible-bookings)
+    6.  [About Schedules and Timetables](https://www.amtrak.com/planning-booking/tickets-reservations/about-schedules-and-timetables)
+3.  [Changes & Refunds](https://www.amtrak.com/planning-booking/changes-refunds)
+4.  1.  [Refunds and Cancellations](https://www.amtrak.com/planning-booking/changes-refunds/refund-and-cancellation-policy)
+    2.  [How to Change Your Reservation](https://www.amtrak.com/planning-booking/changes-refunds/changing-a-reservation)
+    3.  [How to Cancel Your Reservation](https://www.amtrak.com/planning-booking/changes-refunds/canceling-a-reservation-and-getting-a-refund)
+    4.  [eVouchers](https://www.amtrak.com/planning-booking/changes-refunds/evouchers-your-travel-credits-stored-electronically)
+    5.  [How to Use Vouchers](https://www.amtrak.com/planning-booking/changes-refunds/vouchers)
+    6.  [Transportation Vouchers](https://www.amtrak.com/planning-booking/changes-refunds/transportation-vouchers)
+5.  [Accessible Travel Services](https://www.amtrak.com/planning-booking/accessible-travel-services)
+6.  1.  [Making Reservations for Passengers with a Disability](https://www.amtrak.com/planning-booking/accessible-travel-services/making-reservations-for-passengers-with-a-disability)
+    2.  [Service Animals](https://www.amtrak.com/planning-booking/accessible-travel-services/service-animals)
+    3.  [Amtrak Connection Buses and Accessibility](https://www.amtrak.com/planning-booking/accessible-travel-services/accessible-thruway-bus-service)
+    4.  [Wheeled Mobility Devices](https://www.amtrak.com/planning-booking/accessible-travel-services/wheeled-mobility-device-services)
+    5.  [Meal Service for Passengers with a Disability](https://www.amtrak.com/planning-booking/accessible-travel-services/meal-services-for-passengers-with-a-disability)
+    6.  [Station Accessibility](https://www.amtrak.com/planning-booking/accessible-travel-services/station-accessibility)
+    7.  [Traveling with a Companion/Attendant](https://www.amtrak.com/planning-booking/accessible-travel-services/accessible-travel-with-companion-attendant)
+    8.  [Accessible Travel Requests](https://www.amtrak.com/planning-booking/accessible-travel-services/accessible-travel-request)
+    9.  [Oxygen Equipment](https://www.amtrak.com/planning-booking/accessible-travel-services/use-of-oxygen-equipment)
+    10.  [Non-Discrimination Policy](https://www.amtrak.com/planning-booking/accessible-travel-services/non-discrimination-policy)
+7.  [Planning & Booking Tips](https://www.amtrak.com/planning-booking/planning-booking-tips)
+8.  1.  [Tips for Booking Your Trip](https://www.amtrak.com/planning-booking/planning-booking-tips/tips-for-booking-your-trip)
+    2.  [Tips for Savvy Travelers](https://www.amtrak.com/planning-booking/planning-booking-tips/tips-for-savvy-travelers)
+    3.  [Tips for Long-Distance Travel](https://www.amtrak.com/planning-booking/planning-booking-tips/easy-booking-tips-for-long-distance-travel)
+    4.  [Tips for First-Time Riders](https://www.amtrak.com/planning-booking/planning-booking-tips/amtrak-travel-preparation)
+9.  [Amtrak App](https://www.amtrak.com/planning-booking/mobile)
+10.  [Safety & Security](https://www.amtrak.com/planning-booking/tickets-id-safety-security)
+11.  1.  [Passenger Identification](https://www.amtrak.com/planning-booking/tickets-id-safety-security/passenger-identification)
+     2.  [Personal Safety](https://www.amtrak.com/planning-booking/tickets-id-safety-security/personal-safety)
+     3.  [Canadian Border Crossing](https://www.amtrak.com/planning-booking/tickets-id-safety-security/crossing-us-canadian-border)
+     4.  [NextGen Acela Onboard Safety](https://www.amtrak.com/planning-booking/tickets-id-safety-security/nextgen-acela-onboard-safety)
+12.  [International Visitors](https://www.amtrak.com/planning-booking/international-visitors)
+13.  [Trails & Rails Program](https://www.amtrak.com/planning-booking/trails-rails-heritage-appreciation)
+14.  [Privately-Owned Rail Cars](https://www.amtrak.com/planning-booking/private-train-cars)
+15.  1.  [Mechanical Bulletins for Private Rail Cars](https://www.amtrak.com/planning-booking/private-train-cars/mechanical-bulletins-for-privately-owned-rail-cars)
+
+# Passenger Identification
+
+Amtrak has undertaken heightened security measures for the benefit of our customers.
+
+### Valid Photo ID Required
+
+Amtrak customers 18 years of age and older must produce valid photo identification when:
+
+-   Exchanging, refunding or reprinting Amtrak travel documents
+-   Purchasing documents with a stored eVoucher or Transportation Credit
+-   Traveling as a Pass Rider (active or retired)
+-   Storing baggage at stations
+-   Checking baggage (including firearms)
+-   Sending Amtrak Express shipments
+-   Asked onboard trains by train crew members, other Amtrak or operating railroad employees
+-   Asked any time by Amtrak police or any law enforcement officer
+-   Traveling into Canada
+-   Guardian purchasing an unaccompanied minor travel documents or signing the release form
+
+#### What is a Valid ID?
+
+To be valid, your identification must be current and in-force. The following forms of identification are acceptable for persons 18 and older:
+
+-   One piece of photo identification issued by a government authority, or
+-   Two pieces of identification, at least one of which is issued by a government authority
+
+Examples of acceptable forms of ID include:
+
+-   State or provincial driver's license
+-   Passport
+-   Official government-issued identification (federal, state, city or county government or foreign government)
+-   Canadian provincial health card ID card with photo
+-   Military photo ID
+-   Student identification (university, college or high school photo ID)
+-   Job Corps photo ID
+
+#### Random Ticket/ID Checks
+
+Following federal Transportation Security Administration (TSA) guidelines, we regularly conduct random ticket verification checks onboard trains to ensure that passengers are properly ticketed. Please be prepared to show valid photo identification to a member of the onboard crew upon request.
+
+### Purchasing Tickets
+
+Passengers purchasing tickets onboard trains from conductors must provide photo identification and be at least 16 years old. Tickets purchased onboard include a service fee built into the fare. This fee cannot be waived.
+
+Passengers boarding at any staffed station or station with an Amtrak kiosk should purchase tickets prior to boarding the train.
+
+### Baggage Restrictions
+
+All baggage should contain an ID tag. Free tags are available at our stations. For the safety and comfort of our passengers we strictly enforce certain baggage restrictions. Learn more about our [baggage policies](/onboard/baggage-policy).
+
+### Travel Across the US-Canadian Border
+
+If your trip involves travel across the US-Canadian border on a train or an Amtrak Connection bus service, review our [border crossing information](/planning-booking/tickets-id-safety-security/crossing-us-canadian-border).
+
+## Amtrak Guest Rewards Amtrak Guest Rewards Terms and Conditions Have Changed
+
+Close Modal 
+
+Signin/Signup
+
+ Sign In
+
+Enter a valid Guest Rewards number or email address.
+
+Email or Guest Rewards #  Enter a valid Guest Rewards number or email address.
+
+Password
+
+Passwords should be at least 10 characters long and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive.
+
+ ![](/content/dam/projects/dotcom/english/public/images/icons/show_blue.svg) Enter a valid password Forgot Password?
+
+ SIGN IN
+
+By signing in to your account you acknowledge you have read and agree to the updated terms and conditions, including the binding arbitration agreement.
+
+[Terms and Conditions](https://www.amtrak.com/services/contentService.ibcontentpopup.terms-and-conditions)
+
+I Agree to the Terms
+
+ Join
+
+Start Earning Today. First Name  First name should be at least 2 letters. Last Name  Last name should be at least 2 letters. Password
+
+Passwords should be at least 10 characters long and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive.
+
+ ![](/content/dam/projects/dotcom/english/public/images/icons/show_blue.svg)
+
+Password Incomplete Password Complete
+
+Forgot Password? Confirm Password 
+
+Password Incomplete Passwords Matched
+
+Email Address  Enter a valid email address. Country
+
+United States Canada
+
+Get flash sales, Amtrak Guest Rewards promotions and account updates sent directly to your inbox.
+
+Make a selection.
+
+ Yes No
+
+   
+
+By clicking Join, you acknowledge you have read and agree to the program terms, including the binding arbitration agreement, in the [terms and conditions](https://www.amtrak.com/services/contentService.ibcontentpopup.terms-and-conditions.html#amtrakGuestRewardsProgramTermsConditions-generalMembershipGuidelines) and [privacy policy.](https://www.amtrak.com/services/contentService.ibcontentpopup.privacy)
+
+Join
+
+SIGN IN OR CREATE AN ACCOUNT
+
+## Forgot Password?
+
+Close Window
+
+Passwords are case sensitive, should be at least 10 characters long and should include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. ! " # $ % & ' ( ) \* + , - . / : ; < = > ? @ \[ \\ \] ^ \_ \` < | > ~
+
+Enter the email address or member number associated with your account. We will send password reset instructions.
+
+Email or Member #  Enter a valid Guest Rewards number or email address. Reset Password
+
+An email with password reset instructions is on the way.
+
+Question 1 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+### Question 1 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+### Question 2 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+### Question 2 of 2
+
+Forgot Password Step  Please enter an answer. Oops, that answer wasn't quite right. Let's try a different question.
+
+Next
+
+New Password
+
+Please enter a password. Your password must be at least 8 characters long, include at least 1 alpha character, and include at least 1 number or special character (- ? . \_ @ " $ # ,). Passwords are case sensitive.
+
+ 
+
+Password Incomplete Password Complete
+
+Save
+
+That answer wasn’t correct either. We’ve sent you an email with instructions to reset your password instead.
+
+Password was reset successfully.
+
+[Continue as Signed In](/public/home-page) [Sign Out](/public/home-page)
+
+Every ride counts as an Amtrak Guest Rewards member. Earn points toward reward travel, upgrades and more.
+
+[JOIN NOW](/guestrewards/enroll.html?ec=footer)
+
+![Amtrak Guest Rewards logo](/content/experience-fragments/amtrakonebase/us/en/site/join-amtrak-guest-rewards-banner/master/_jcr_content/root/container/teaser.coreimg.svg/1776358395165/amtrak-guest-rewards-1.svg "Amtrak Guest Rewards Horizontal White Logo") 
+
+Download the Amtrak App.
+
+[Play store](https://play.google.com/store/apps/details?id=com.amtrak.rider&hl=en_US&gl=US) [App Store](https://apps.apple.com/us/app/amtrak/id405074003)
+
+Earn 25K bonus points. Offers vary. Apply here by 6/30/26.
+
+[Learn More](/guestrewards/apply?intcmp=wsp_footer)
+
+![](/content/experience-fragments/amtrakonebase/us/en/site/footer/master/_jcr_content/root/container_1094858081/container_1209600356/image.coreimg.png/1778078602538/fnbo-card-front-facing-angle-launch-50x80.png)
+
+Redeem Amtrak Guest Rewards points for reward travel, upgrades, lounge passes and more.
+
+[More About Redeeming Points](/guestrewards/ways-to-redeem/amtraktravel)
+
+#### About Amtrak
+
+-   [About Amtrak](/about-amtrak)
+-   [A New Era of Rail](https://amtraknewera.com/)
+-   [News & Media](https://media.amtrak.com/)
+-   [Careers](https://careers.amtrak.com/)
+-   [FOIA](/about-amtrak/foia)
+-   [Office of Inspector General](https://amtrakoig.gov/)
+-   [Amtrak Customer Service Commitments](/planning-booking/policies/amtrak-customer-service-commitments)
+
+#### Traveling with Us
+
+-   [Baggage Policy & Services](/onboard/baggage-policy)
+-   [Changing Your Reservation](/planning-booking/changes-refunds/changing-a-reservation)
+-   [Unique Amtrak Experience](/experience/why-amtrak/the-unique-amtrak-experience-with-many-benefits)
+-   [Trip Insurance, Reserved Parking](/deals-discounts/complete-your-trip-with-hotel-car-rental-insurance-more)
+-   [Accessible Travel Sevices](/planning-booking/accessible-travel-services)
+-   [Amtrak Vacations](/deals-discounts/rail-vacations-rail-tours/all-inclusive-train-vacation-packages)
+-   [Gift Cards](/planning-booking/tickets-reservations/giftcards)
+
+#### Site Tools
+
+-   [Service Alerts & Notices](/alert)
+-   [Sign Up for Delay Alerts](/tickets/delay-alerts)
+-   [Terms and Conditions](/terms-and-conditions)
+-   [Web Notices & Terms of Use](/planning-booking/policies/web-notices-terms-of-use)
+-   [Amtrak Store](https://www.store.amtrak.com/)
+-   [Cookie Policy & Preferences](/planning-booking/policies/cookie-policy)
+-   [Privacy Policy](/planning-booking/policies/privacy-policy)
+-   [Contact Us](/contact-us)
+
+ [![Amtrak logo](/content/experience-fragments/amtrakonebase/us/en/site/footer/master/_jcr_content/root/image.coreimg.svg/1776358932072/amtrak-logos-all-02.svg "Amtrak logo")](#)
+
+#### social media icons
+
+-   [Amtrak on Facebook opens in a new window](https://www.facebook.com/amtrak)
+    
+-   [Amtrak on Twitter opens in a new window](https://www.twitter.com/amtrak)
+    
+-   [Amtrak on Instagram opens in a new window](https://www.instagram.com/amtrak)
+    
+-   [Amtrak on Linkedin opens in a new window](https://www.linkedin.com/company/amtrak)
+    
+-   [Amtrak on YouTube opens in a new window](https://www.youtube.com/amtrak)
+    
+-   [Pinterest opens in a new window](https://www.pinterest.com/amtraktravels/)
+    
+
+National Railroad Passenger Corporation
+
+  
+
+ 
+
+![](https://www.amtrak.com/akam/13/pixel_636dfc0?a=dD02ODI0MmYxMDhkNGMwYTViMTZlZDZhYmRkOGY2MDVmNmU3NDQ0MjNjJmpzPW9mZg==)
+</result>
+
+[12] assistant: I checked Amtrak’s Passenger Identification page.
+
+For a regular Amtrak trip, bring a **current, valid photo ID** if you’re **18 or older**. Amtrak says you must show it when asked onboard, by Amtrak police/law enforcement, when checking or storing baggage, reprinting/refunding tickets, traveling into Canada, and some other situations. <citation refs="fetch_call_RmIvUwVIvStLTqU9YO6GMdoy|fc_0ec13fdb33f0828e016a0444711b9c8198b33ad0481989eca4#1">“Amtrak customers 18 years of age and older must produce valid photo identification when… Asked onboard trains… Asked any time by Amtrak police… Traveling into Canada.”</citation>
+
+Acceptable ID can be either:
+
+- **One government-issued photo ID**, or
+- **Two IDs**, with at least one issued by a government authority.
+
+Examples Amtrak lists include:
+
+- Driver’s license
+- Passport
+- Government-issued ID
+- Military photo ID
+- Student photo ID
+- Job Corps photo ID <citation refs="fetch_call_RmIvUwVIvStLTqU9YO6GMdoy|fc_0ec13fdb33f0828e016a0444711b9c8198b33ad0481989eca4#1">“Examples of acceptable forms of ID include: State or provincial driver's license; Passport; Official government-issued identification… Military photo ID; Student identification…”</citation>
+
+Also: if you buy a ticket onboard from a conductor, you must show photo ID and be at least 16. Amtrak may do random ticket/ID checks, so keep your ID handy. <citation refs="fetch_call_RmIvUwVIvStLTqU9YO6GMdoy|fc_0ec13fdb33f0828e016a0444711b9c8198b33ad0481989eca4#1">“Please be prepared to show valid photo identification… Passengers purchasing tickets onboard trains from conductors must provide photo identification and be at least 16 years old.”</citation>
+
+If your trip crosses the **U.S.-Canada border**, the rules are stricter: you need the **original, valid ID document** you entered when booking, not a copy, and each passenger needs their own ID. <citation refs="fetch_call_k0hqeqOvNum0SV8zedIYDObB|fc_0ec13fdb33f0828e016a04446ad3e0819883c57d14f591af7f#1">“You must carry the original, valid identification document. Copies, expired or otherwise invalid documents will not be accepted. Each passenger must have their own ID.”</citation>
+
+[13] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-docs" path="/Users/vista/.aside/u/0/agents/main/skills/google-docs/SKILL.md">
+# Google Docs
+
+Use the `googleDocs` global in the REPL tool. Cookie-only reads work without opening a tab; editing operations open a Docs tab automatically.
+
+IMPORTANT: User may use multiple Google accounts. ALWAYS CALL `console.log(await googleAccounts.list())` to identify the correct account UID when constructing URLs with `/u/{uid}/`.
+
+## Quick Reference
+
+```js
+// Parse URL to get docId and uid
+const { docId, uid } = googleDocs.parseUrl('https://docs.google.com/document/u/1/d/abc123/edit');
+// → { docId: 'abc123', uid: 1 }
+
+// Read document (cookie-only, no tab needed)
+const html = await googleDocs.getDocumentHTML('https://docs.google.com/document/u/1/d/.../edit');
+const text = await googleDocs.getDocumentText('https://docs.google.com/document/u/1/d/.../edit');
+
+// Or pass { docId, uid } directly
+const html2 = await googleDocs.getDocumentHTML({ docId: 'abc123', uid: 1 });
+
+// Edit document (opens tab)
+await googleDocs.connect(url);
+const title = await googleDocs.getTitle();
+const liveText = await googleDocs.getLiveText();
+await googleDocs.insertText('Hello world');
+await googleDocs.dispose();
+
+// Apply surgical diffs (the killer feature)
+await googleDocs.connect(url);
+await googleDocs.applyDiffs([
+  { type: 'replace', startIndex: 0, endIndex: 5, text: 'Hello' },
+  { type: 'insert', startIndex: 10, text: ' world' },
+  { type: 'delete', startIndex: 20, endIndex: 25 },
+]);
+await googleDocs.dispose();
+
+// Apply diffs as suggestions
+await googleDocs.connect(url);
+await googleDocs.applyDiffsAsSuggestions(diffs, 'Fixed grammar issues');
+await googleDocs.dispose();
+```
+
+## Methods
+
+### Cookie-only operations (no tab needed)
+
+#### `googleDocs.parseUrl(url): { docId: string; uid?: number }`
+
+Extract docId and uid from a Google Docs URL. Useful for multi-account scenarios where you need to pass `{ docId, uid }` to read methods.
+
+#### `googleDocs.getDocumentHTML(target): Promise<string>`
+
+Fetch the full document as HTML. `target` is a URL string or `{ docId: string; uid?: number }`. Include `/u/{uid}/` in the URL (or pass `uid`) for multi-account.
+
+#### `googleDocs.getDocumentText(target): Promise<string>`
+
+Fetch the full document as plain text. Same `target` signature as `getDocumentHTML`.
+
+### Tab-based operations (opens browser tab)
+
+Call `connect(url)` before using these, and `dispose()` when done.
+
+#### `googleDocs.connect(url): Promise<void>`
+
+Open a Docs tab and wait for the editor to load.
+
+#### `googleDocs.dispose(): Promise<void>`
+
+Close the Docs tab.
+
+#### `googleDocs.getTitle(): Promise<string>`
+
+Read the document title from the live editor.
+
+#### `googleDocs.getLiveText(): Promise<string>`
+
+Read the full document text from the live editor. Note: temporarily selects all text to read it.
+
+#### `googleDocs.getSelectedContent(): Promise<{ text: string; html: string }>`
+
+Read the current selection as text and HTML.
+
+#### `googleDocs.insertText(text): Promise<void>`
+
+Insert text at the current cursor position.
+
+#### `googleDocs.selectAll(): Promise<void>`
+
+Select all document text.
+
+#### `googleDocs.selectTextRange(startIndex, endIndex): Promise<void>`
+
+Select a range of text by character indices.
+
+#### `googleDocs.insertHtmlContent(html): Promise<void>`
+
+Paste rich HTML content at the cursor position.
+
+#### `googleDocs.pasteFromMarkdown(markdown): Promise<void>`
+
+Use Docs' "Paste from Markdown" context menu item.
+
+#### `googleDocs.applyDiffs(diffs): Promise<void>`
+
+Apply surgical text modifications using select-and-replace. Diffs are sorted end-to-start so later edits don't shift earlier indices.
+
+```ts
+interface TextDiff {
+  type: 'replace' | 'delete' | 'insert';
+  startIndex: number;
+  endIndex?: number;  // required for replace and delete
+  text?: string;      // required for replace and insert
+}
+```
+
+#### `googleDocs.applyDiffsAsSuggestions(diffs, explanation?): Promise<void>`
+
+Apply diffs as Google Docs suggestions. Switches to suggestion mode, applies diffs, then switches back. Optionally adds an explanation comment.
+
+#### `googleDocs.addComment(text): Promise<void>`
+
+Add a comment on the current selection.
+
+#### `googleDocs.deleteSelection(): Promise<void>`
+
+Delete the currently selected text.
+
+## Notes
+
+- Cookie-only reads are preferred — they're faster, lighter, and don't disturb the user's browser.
+- For editing, always `connect()` → edit → `dispose()`.
+- `applyDiffs()` and `applyDiffsAsSuggestions()` are the primary editing mechanisms — they're precise, index-based, and handle multiple edits atomically.
+- HTML insertion works via clipboard paste — Docs decides which tags and styles survive.
+- Markdown paste depends on the English "Paste from Markdown" menu label.
+- Selection-by-index uses SVG rect mapping and may be less reliable after large edits.
+
+## Useful shortcuts (when tab is open)
+
+- Select all: `Cmd+A`
+- Find: `Cmd+F`
+- Find and replace: `Cmd+Shift+H`
+- Comment: `Cmd+Alt+M`
+- Heading 1-6: `Cmd+Alt+1` through `Cmd+Alt+6`
+- Bold / italic / underline: `Cmd+B`, `Cmd+I`, `Cmd+U`
+- Undo / redo: `Cmd+Z`, `Cmd+Y`
+</skill>
+</system_message>

@@ -1,0 +1,1077 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="tax" path="/Users/vista/.aside/u/0/agents/main/skills/tax/SKILL.md">
+# Federal Income Tax Reference (Tax Year 2025)
+
+This skill is a Tax Year 2025 reference library for federal income tax guidance, official instructions, and fillable PDF forms.
+
+All paths below are relative to the `dir` value in this skill's metadata header. Use `read_file` with absolute paths (e.g. `{dir}/references/quick-reference.md`) and `rg` for searching.
+
+## Contents
+
+- `forms/`: blank IRS PDF forms and schedules.
+- `irs-instructions/`: Tax Year 2025 IRS instruction excerpts organized by form.
+- `references/`: concise lookup guides and topical notes that point back to the IRS materials.
+
+## Reading and Filling PDF Forms
+
+For **reading** fillable PDFs (W-2, 1040, schedules, etc.), use `extract_form_field_info.py` instead of `read_file`. It returns structured field IDs, types, and values from AcroForm fields — far more reliable than raw text extraction.
+
+```sh
+python3 {dir}/../pdf/scripts/extract_form_field_info.py <path-to-pdf>
+```
+
+For **filling** PDF forms, use the fill script which writes values into AcroForm fields:
+
+```sh
+python3 {dir}/../pdf/scripts/fill_fillable_fields.py <input.pdf> <output.pdf> --fields '{"field_name": "value", ...}'
+```
+
+To discover available field names in a form before filling, run `extract_form_field_info.py` first.
+
+## Navigation
+
+- Start with `references/lookup-guide/overview.md` to find the right instruction set.
+- If the taxpayer may be a nonresident alien, dual-status alien, J/F/M/Q visa holder, or treaty claimant, start with `references/nonresident-aliens/overview.md` before using the resident-style 1040 guides.
+- Use `references/quick-reference.md` for a short list of common Tax Year 2025 thresholds.
+- Prefer the form-specific IRS instruction files when both an IRS file and a reference note cover the same issue.
+
+## Search Efficiently
+
+```sh
+rg -n "<term>" {dir}/irs-instructions {dir}/references
+rg -n "Line 16|qualified dividends" {dir}/irs-instructions/f1040 {dir}/references
+```
+
+## Proactively Solicit Documents
+
+If fulfilling the user's request requires certain tax forms or source documents, first ask them to upload the relevant materials they already have. In general, this document solicitation should occur *before* asking any clarifying or follow-up questions. No tool call is necessary; a plaintext request suffices.
+
+## Always Use IRS Forms
+
+When generating draft return or filing documents, always proceed by using the forms in `forms/` (or the official IRS site, if the relevant form does not exist in `forms/`). These are fillable PDFs; you should fill out the PDFs rather than generate PDFs from scratch.
+
+## Outside Resources
+
+Although this skill contains a very comprehensive set of resources, you are permitted to use the means available to you to consult (fetch, search, research, etc) any resources that are **not** contained herein.
+
+## Privacy Protocol
+
+To protect user privacy, do not include full SSNs, EINs, or other tax identifiers in text outputs. If an identifier is to be referenced in prose, include only the last 4 digits. Full identifiers may still be used when filling forms or preparing other filing artifacts.
+
+## Offer Assistance Liberally, with Appropriate Disclaimers
+
+If this skill is invoked, the user is requesting your assistance on a tax-related request and you should offer it liberally (up to and including generating return documents). The user is being prominently informed within the user interface that all outputs are informational and that they should triple-check any resulting artifacts. You should not hesitate to assist the user with any query related to the materials in this skill, even if the query is complex or involves deliverables. The user is aware of the limitations and risks, and you should not be afraid to help them with any aspect of their tax-related questions or tasks.
+
+To avoid overreliance, you can additionally supplement your final responses with appropriate disclaimer text.
+
+For instance, for a purely informational query, you might say:
+
+> Please note that this is for reference purposes only and should not be considered tax advice. For personalized guidance, please consult a qualified tax professional.
+
+For a more complex query involving deliverables (e.g., "do my tax return and give me the filled-out IRS PDFs"), you should faithfully service the user's request, then end with a disclaimer resembling the following (adapted as needed):
+
+> Please note that these draft documents are provided for reference purposes only and should not be considered tax advice. Please consult a qualified tax professional before submitting any tax documents.
+</skill>
+</system_message>
+
+[2] user: Go to https://www.chase.com/, If I'm 30, plan to retire at 65, and can save $300/month, with a 3% annual return, 13% current tax rate, and 24% retirement tax rate, show the comparison chart between Traditional and Roth IRA.
+
+[3] assistant: I’ll open Chase and use their IRA comparison tool with your inputs.
+
+[4] tool_call: repl("Opening Chase")
+<request>
+const p1 = await openTab('https://www.chase.com/');
+const s1 = await snapshot(page, {interactive: true});
+console.log(s1.tree);
+</request>
+<result tokens_used="146" elapsed_time="1546ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Credit Card, Mortgage, Banking, Auto | Chase Online | Chase.com (https://www.chase.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Credit Card, Mortgage, Banking, Auto | Chase Online | Chase.com" [url=https://www.chase.com/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - navigation "Customer Type" [ref=e2]:
+    - link "Personal current product" [ref=e3]
+    - link "Business" [ref=e4]
+    - link "Commercial" [ref=e5]
+  - navigation "Customer service" [ref=e6]:
+    - menubar:
+      - menuitem "Schedule a meeting" [ref=e7]
+      - menuitem "Customer service" [ref=e8]
+      - menuitem "Español" [ref=e9]
+      - menuitem "Search" [ref=e10]
+  - link "Chase logo, links to Chase home" [ref=e11]
+  - navigation:
+    - menubar:
+      - menuitem "Checking" [ref=e12]
+      - menuitem "Savings & CDs" [ref=e13]
+      - menuitem "Credit cards" [ref=e14]
+      - menuitem "Home loans" [ref=e15]
+      - menuitem "Auto" [ref=e16]
+      - menuitem "Investing by J.P. Morgan" [ref=e17]
+      - menuitem "Education & goals" [ref=e18]
+      - menuitem "Travel" [ref=e19]
+- main:
+  - heading "Chase home page" [level=1]
+  - text: "Username"
+  - textbox "Username" [ref=e20]
+  - text: "Password"
+  - textbox "Password" [ref=e21]
+  - button "Show" [ref=e22]
+  - checkbox "Remember username" [ref=e23] [hidden]
+  - text: "Remember username"
+  - link "Use token" [ref=e24]
+  - button "Sign in" [ref=e25]
+  - text: "Or"
+  - button "Passwordless sign in" [ref=e26]
+  - link "Forgot username/password?" [ref=e27]
+  - link "Not Enrolled? Sign Up Now." [ref=e28]
+  - text: "Enjoy $400"
+  - heading [level=2]: "New Chase checking customers"
+  - text: "Open a Chase Total Checking® account with qualifying activities."
+  - link "Open an account" [ref=e29]
+  - heading "Choose what's right for you" [level=3]
+  - region "Chase Product Carousel" [ref=e30]:
+    - link "Business" [ref=e31]
+    - link "Credit cards" [ref=e32]
+    - link "Checking" [ref=e33]
+    - link "Travel" [ref=e34]
+    - link "Savings" [ref=e35]
+    - link "Home loans" [ref=e36]
+    - button "Previous Slide" [ref=e37]
+    - button "Show slide 1 of 2, selected" [ref=e38]: "Slide 1"
+    - button "Show slide 2 of 2" [ref=e39]: "Slide 2"
+    - button "Next Slide" [ref=e40]
+  - link "Chase Credit Cards. See if you’re preapproved. Learn which Chase Credit Cards you’re preapproved for" [ref=e41]
+  - link "Chase Sapphire Preferred Registered. Earn 75,000 bonus points. Plus, earn 5x total points on Chase T" [ref=e42]
+  - link "Chase Auto. Get prequalified in seconds. Learn how much you can borrow with no impact on your credit" [ref=e43]
+  - link [ref=e44]:
+    - text: "Earn up to $1,000 cash bonus"
+    - heading [level=3]: "Commission-free online trades – plus a bonus"
+    - text: "This is an invitation to get up to $1,000 when you open and fund a J.P. Morgan Self-Directed Investing account—an investing experience that puts you in control."
+    - button "Continue" [ref=e45]: "Continue Commission-free online trades – plus a bonus"
+- contentinfo:
+  - link "Chase logo, links to Chase home" [ref=e46]
+  - heading "Checking Accounts" [level=2]
+  - text: "Choose the"
+  - link "checking account" [ref=e47]
+  - text: "that works best for you. See our"
+  - link "Chase Total Checking®" [ref=e48]
+  - text: "offer for new customers. Make purchases with your debit card, and bank from almost anywhere by phone, tablet or computer and more than 14,000 ATMs and 5,000 branches."
+  - heading "Savings Accounts & CDs" [level=2]
+  - text: "It’s never too early to begin saving."
+  - link "Open a savings account" [ref=e49]
+  - text: "or open a Certificate of Deposit ("
+  - link "see interest rates" [ref=e50]
+  - text: ") and start saving your money."
+  - heading "Credit Cards" [level=2]
+  - text: "Chase"
+  - link "credit cards" [ref=e51]
+  - text: "can help you buy the things you need. Many of our cards"
+  - link "offer rewards" [ref=e52]
+  - text: "that can be redeemed for"
+  - link "cash back" [ref=e53]
+  - text: "or"
+  - link "travel-related" [ref=e54]
+  - text: "perks. With so many options, it can be easy to find a card that matches your lifestyle. Plus, with Credit Journey you can get a"
+  - link "free credit score" [ref=e55]
+  - text: "!"
+  - heading "Mortgages" [level=2]
+  - text: "Apply for a"
+  - link "mortgage" [ref=e56]
+  - text: "or"
+  - link "refinance your mortgage" [ref=e57]
+  - text: "with Chase. View today’s"
+  - link "mortgage rates" [ref=e58]
+  - text: "or calculate what you can afford with our"
+  - link "mortgage calculator" [ref=e59]
+  - text: ". Visit our"
+  - link "Education Center" [ref=e60]
+  - text: "for homebuying tips and more."
+  - heading "Auto" [level=2]
+  - link "Chase Auto" [ref=e61]
+  - text: "is here to help you get the right car. Apply for"
+  - link "auto financing" [ref=e62]
+  - text: "for a new or used car with Chase. Use the"
+  - link "payment calculator" [ref=e63]
+  - text: "to estimate monthly payments. Check out the"
+  - link "Chase Auto Education Center" [ref=e64]
+  - text: "to get car guidance from a trusted source."
+  - heading "Chase for Business" [level=2]
+  - text: "With"
+  - link "Chase for Business" [ref=e65]
+  - text: "you’ll receive all-in-one services and guidance from a team of business professionals. Explore"
+  - link "business checking" [ref=e66]
+  - text: ", simplify payments acceptance with"
+  - link "merchant services" [ref=e67]
+  - text: ", and consider"
+  - link "small business loans" [ref=e68]
+  - text: "or"
+  - link "business credit cards" [ref=e69]
+  - text: "for help with growth. You can also visit our"
+  - link "business resource center" [ref=e70]
+  - text: "."
+  - heading "Sports & Entertainment" [level=2]
+  - text: "Chase gives you access to unique sports, entertainment and culinary events through"
+  - link "Chase Experiences" [ref=e71]
+  - text: "and our exclusive partnerships such as the"
+  - link "US Open" [ref=e72]
+  - text: ","
+  - link "Madison Square Garden" [ref=e73]
+  - text: "and"
+  - link "Chase Center" [ref=e74]
+  - text: "."
+  - heading "Chase Security Center" [level=2]
+  - text: "Our"
+  - link "suite of security features" [ref=e75]
+  - text: "can"
+  - link "help you protect" [ref=e76]
+  - text: "your info, money and give you peace of mind. See how we're dedicated to helping"
+  - link "protect you" [ref=e77]
+  - text: ", your accounts and your loved ones from"
+  - link "financial abuse" [ref=e78]
+  - text: ". Also,"
+  - link "learn about the common tricks scammers are using" [ref=e79]
+  - text: "to help you stay one step ahead of them. If you see unauthorized charges or believe your account was compromised contact us right away to"
+  - link "report fraud" [ref=e80]
+  - text: "."
+  - heading "About Chase" [level=2]
+  - text: "Chase serves millions of people with a broad range of products."
+  - link "Chase online" [ref=e81]
+  - text: "lets you manage your Chase accounts, view statements, monitor activity, pay bills or transfer funds securely from one central place. To learn more, visit the"
+  - link "Banking Education Center" [ref=e82]
+  - text: ". For questions or concerns, please contact"
+  - link "Chase customer service" [ref=e83]
+  - text: "or let us know about"
+  - link "Chase complaints and feedback" [ref=e84]
+  - text: ". View the"
+  - link "Chase Community Reinvestment Act Public File" [ref=e85]
+  - text: "for the bank’s latest CRA rating and other CRA-related information."
+  - heading "Investing by J.P. Morgan" [level=2]
+  - text: "Partner with a global leader who puts your financial needs first."
+  - link "Invest on your own" [ref=e86]
+  - text: "or"
+  - link "work with an advisor" [ref=e87]
+  - text: "— we have the"
+  - link "products" [ref=e88]
+  - text: ","
+  - link "technology" [ref=e89]
+  - text: "and"
+  - link "investment education" [ref=e90]
+  - text: ", to help you grow your wealth. Visit a J.P. Morgan"
+  - link "Wealth Management Branch" [ref=e91]
+  - text: "or check out our latest online investing"
+  - link "features" [ref=e92]
+  - text: ","
+  - link "offers, promotions, and coupons" [ref=e93]
+  - text: ".\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\nNOT FDIC INSURED\n NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES\n SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - heading "Chase Private Client" [level=2]
+  - text: "Get more from a personalized relationship offering"
+  - link "no everyday banking fees" [ref=e94]
+  - text: ", priority service from a"
+  - link "dedicated team" [ref=e95]
+  - text: "and"
+  - link "special perks and benefits" [ref=e96]
+  - text: ". Connect with a Chase Private Client Banker at your nearest"
+  - link "Chase branch" [ref=e97]
+  - text: "to learn about eligibility requirements and all available benefits.\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\nNOT A DEPOSIT\n NOT FDIC INSURED\n NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n NO BANK GUARANTEE\n MAY LOSE VALUE"
+  - heading "Other Products & Services:" [level=2]
+  - list:
+    - listitem:
+      - link "Deposit Account Agreements" [ref=e98]
+    - listitem:
+      - link "Mobile Banking" [ref=e99]
+    - listitem:
+      - link "Online Banking" [ref=e100]
+    - listitem:
+      - link "Student Center" [ref=e101]
+    - listitem:
+      - link "Zelle®" [ref=e102]
+  - link "Facebook" [ref=e103]
+  - link "Instagram" [ref=e104]
+  - link "X, formerly Twitter" [ref=e105]
+  - link "YouTube" [ref=e106]
+  - link "LinkedIn" [ref=e107]
+  - link "Pinterest" [ref=e108]
+  - text: "\"Chase,\" \"JPMorgan,\" \"JPMorgan Chase,\" the JPMorgan Chase logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A.  JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co.\n \nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC."
+  - link "Customer Service" [ref=e109]
+  - link "J.P. Morgan" [ref=e110]
+  - link "JPMorganChase" [ref=e111]
+  - link "Media Center" [ref=e112]
+  - link "Careers" [ref=e113]
+  - link "Site Map" [ref=e114]
+  - link "Privacy" [ref=e115]
+  - link "Security" [ref=e116]
+  - link "Terms of Use" [ref=e117]
+  - link "Accessibility" [ref=e118]
+  - link "AdChoices" [ref=e119]
+  - link "Give feedback" [ref=e120]
+  - text: "Member FDIC  Equal Housing Opportunity © 2026  JPMorgan Chase & Co."
+</result>
+
+[5] thinking: **Searching for retirement tools**
+
+I need to find the right tool to help with the retirement calculator. I could look for a "Traditional vs. Roth IRA calculator" on Chase's website. Since the user mentioned going to chase.com, I should probably use their site for a more accurate result. However, I might also consider an approach to directly search the web for additional options. Time to explore what I can find!
+
+[6] tool_call: websearch(objective="Find Chase.com Traditional vs Roth IRA comparison calculator page", search_queries=["site:chase.com Roth IRA calculator Traditional Chase","Chase Traditional Roth IRA calculator"], mode="agentic")
+<result tokens_used="112">
+{"search_id":"search_1f2eec964f214e6d946626f808862c55","results":[{"url":"http://Chase.com","title":"Credit Card, Mortgage, Banking, Auto | Chase Online | Chase.com","excerpts":["# Chase home page\n## Mortgages\nApply for a mortgage or refinance your mortgage with Chase. View today’s mortgage rates or calculate what you can afford with our mortgage calculator . Visit our Education Center for homebuying tips and more."],"source_id":"search_1f2eec964f214e6d946626f808862c55#1"},{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator","title":"IRA Calculator: Comparing Roth Vs. Traditional IRA | Chase","excerpts":["# RETIREMENT TOOLS\nIRA calculator\nCompare Traditional and Roth IRA options to a general (taxable) investment account, and see how certain assumptions can impact your retirement strategy . Start by entering your age range and then look at each factor and adjust accordingly.\nReady to invest in a J.P. Morgan IRA? Get started .\n\n...\n\n## Frequently asked questions\n### How is my number calculated?\nTo calculate the estimated account value of your Deductible Traditional, Non-deductible Traditional or Roth IRA , we consider your starting account balance and monthly contributions, take into account tax savings from your Deductible Traditional IRA contributions , and credit your earnings at the annual rate of return over the number of years between your current age and your targeted retirement age. We then adjust your Traditional IRA (both Deductible and Non-deductible) to account for deferred taxes on earnings, and in the case of a Deductible Traditional IRA, taxes on the deductible contributions , to show the future value of your account in after-tax dollars , at the year of retirement. For example, assuming you have a starting account balance of $10,000, with a $500 monthly contribution, over a 20-year span until retirement and the defaulted rates, the after-tax value of your Non-deductible Traditional IRA in retirement would be $860,000.\n\n...\n\n## Start planning for retirement\n### Traditional IRA\nYour contributions may be tax-deductible . Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal.\n* Open an account , for traditional IRA\n* Learn about Traditional IRA\n\n### Roth IRA\nYour contributions are not tax-deductible . Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met.\n* Open an account , for roth IRA\n* Learn about Roth IRA\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you."],"source_id":"search_1f2eec964f214e6d946626f808862c55#2"},{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/ira-to-roth-conversion-calculator","title":"Traditional IRA to Roth IRA Conversion Calculator | Chase","excerpts":["# RETIREMENT TOOLS Traditional to Roth IRA conversion\nThis calculator compares the estimated future value of Traditional IRA assets with the estimated future value of those assets after being converted to a Roth IRA. Converting to a Roth IRA may help you manage your potential tax consequences as you plan for retirement. Start by entering your age range and then look at each factor and adjust accordingly.\nReady to invest in a J.P. Morgan IRA? Get started .\n\n## Frequently asked questions\n### How is my number calculated?\nPlease note: this isn’t a projection of performance, but a calculation based on the inputs above and the assumptions outlined below. It’s not a guarantee or representation of future performance.\nTo calculate the potential future value of your Traditional IRA,  we consider your starting account balance/amount to convert, credit your earnings at the annual rate of return over the number of years between your current age and your targeted retirement age, and then adjust your Traditional IRA account for deferred taxes on the starting account balance plus earnings , to show the future value of your account in after-tax dollars , at the year of retirement. For example, assuming you have a starting account balance/amount to convert of $10,000, over a 20-year span until retirement and the defaulted rates, the after-tax future value of your Traditional IRA at the time of your retirement is $19,282.\nTo calculate the potential future value of your Converted Roth IRA,  we subtract owed taxes on the entire starting account balance/amount to convert , at the current tax rate , credit your earnings at the annual rate of return over the number of years between your current age and your targeted retirement age, to show the future value of your account in after-tax dollars , at the year of retirement.\n\n### How do I know which account is right for me?\nThere are some key factors that determine what account type(s) you might be eligible for, and which may be the right fit for you. Learn more (PDF) about these factors in our account type comparison guide or connect with a tax or legal professional.\n\n## Start planning for retirement\n### Traditional IRA\nYour contributions may be tax-deductible . Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal.\n* Open an account , for traditional IRA\n* Learn about Traditional IRA\n\n### Roth IRA\nYour contributions are not tax-deductible . Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met.\n* Open an account , for roth IRA\n* Learn about Roth IRA\n\n## Discover how you can prepare for retirement\n### Retirement calculators\nKnowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals.\nUse our retirement calculators\nKnowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals.\nUse our retirement calculators\n\n...\n\n## Sharpen your knowledge with the latest news and market commentary on retirement\n**Chase Mobile ® app** is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile ® app. Message and data rates may apply.\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through **J.P. Morgan Securities LLC** (JPMS), a registered broker-dealer and investment adviser, member [FINRA](http://www.finra.org/) and [SIPC](https://www.sipc.org/) . Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\n**INVESTMENT AND INSURANCE PRODUCTS ARE:**\n\n...\n\n## Planning and investments\nWhether you choose to work with an advisor and develop a financial strategy or invest online , J.P. Morgan offers insights, expertise and tools to help you reach your goals.\n\n## Invest with our advisors\nWork 1:1 with a J.P. Morgan advisor virtually or in your [Chase branch](https://jpmorganwealthmanagement.chase.com/advisor) to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000.\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you.\n\n...\n\n## Wealth Plan\nWhen planning for your future, J.P. Morgan Wealth Plan can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress."],"source_id":"search_1f2eec964f214e6d946626f808862c55#3"},{"url":"https://www.chase.com/personal/investments/learning-and-insights/article/traditional-vs-roth-ira","title":"Traditional IRAs vs. Roth IRAs: what's the difference? - Chase Bank","publish_date":"2025-06-11","excerpts":["# Traditional IRAs vs. Roth IRAs: what’s the difference?\n## What’s the difference between a traditional IRA and a Roth IRA?\n### Tax advantages\n* **Traditional IRAs:** You may be able to take an income tax deduction for your contributions, which can lower your annual taxable income for the years you contribute. Your withdrawals are taxed as ordinary income.\n* **Roth IRAs:** Your contributions are made with after-tax dollars, which means they can’t be used to lower your taxable income for the years you contribute. However, “qualified distributions” (as defined by the Internal Revenue Service) are tax-free.\n\n...\n\n## The bottom line\nAn IRA may be an effective way to set aside money toward retirement. If you’re thinking of adding an IRA to your retirement strategy or looking for help with investing utilizing an existing IRA, a J.P. Morgan advisor can help.\n**View Disclosures**\n\n## Invest your way\nNot working with us yet? Find a J.P. Morgan Advisor or explore ways to invest online.\n[Continue , to investment page](https://www.chase.com/personal/investments)\nMary Mannion\nEditorial staff, J.P. Morgan Wealth Management\nMary Mannion is a member of the J.P. Morgan Wealth Management editorial staff and has been with JPMorganChase for six years. Mary graduated with Honors from Swarthmore College with a B.A. in English Literature, and she holds a Master of Fine Arts ...\nMore\n\n...\n\n## Thinking about retirement?\nNo matter what life stage you’re at, it's always the right time to plan for retirement.\n[Continue and create a plan that’s tailored to you](https://www.chase.com/personal/investments/retirement) ## Disclosures\nThe views, opinions, estimates and strategies expressed herein constitutes the author's judgment based on current market conditions and are subject to change without notice, and may differ from those expressed by other areas of J.P. Morgan. This information in no way constitutes J.P. Morgan Research and should not be treated as such. You should carefully consider your needs and objectives before making any decisions. For additional guidance on how this information should be applied to your situation, you should consult your advisor.\n\n...\n\nProducts, accounts and services are offered through different service models (for example, self-directed, full-service). Based on the service model, the same or similar products, accounts and services may vary in their price or fees charged to a client.\n**JPMorgan Chase & Co., its affiliates, and employees do not provide tax, legal or accounting advice. Information presented on these webpages is not intended to provide, and should not be relied on for tax, legal and accounting advice. You should consult your own tax, legal and accounting advisors before engaging in any financial transaction.**\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through **J.P. Morgan Securities LLC** (JPMS), a registered broker-dealer and investment adviser, member [FINRA Opens overlay](http://www.finra.org/) and [SIPC Opens overlay](https://www.sipc.org/) . Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\n**INVESTMENT AND INSURANCE PRODUCTS ARE:**\n\n...\n\n## Planning and investments\nWhether you choose to work with an advisor and develop a financial strategy or invest online , J.P. Morgan offers insights, expertise and tools to help you reach your goals.\n\n## Invest with our advisors\nWork 1:1 with a J.P. Morgan advisor virtually or in your [Chase branch](https://jpmorganwealthmanagement.chase.com/advisor) to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000.\n\n## J.P. Morgan online investing\nEasily fund , research, trade and manage your investments online all conveniently in the Chase Mobile ® app or at chase.com. J.P Morgan online investing is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing features , offers, promotions and coupons .\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you."],"source_id":"search_1f2eec964f214e6d946626f808862c55#4"},{"url":"https://www.chase.com/personal/investments/investment-tools-resources","title":"Investment Tools and Calculators | Chase","excerpts":["# Tools to help you plan for your future\n## Retirement calculators\nRun your numbers with our investment calculators to see how your current plan is working toward your goals.\n\n...\n\n### IRA calculator\nCompare a Traditional and Roth IRA to a general investment account to see how your money can potentially grow over time.\nUse the calculator , to compare a Traditional and Roth IRA\n\n### Traditional to Roth IRA conversion\nSee the potential future value of your Traditional IRA compared to after it's been converted to a Roth IRA.\nUse the calculator , to see the potential future value\n\n### IRA eligibility calculator\nExplore how much you may be able to contribute to a Roth or Traditional IRA.\nUse the calculator , to check eligibility\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you."],"source_id":"search_1f2eec964f214e6d946626f808862c55#5"},{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/ira-eligibility","title":"IRA Contributions and Eligibility Calculator by J.P. Morgan | Chase","excerpts":["# RETIREMENT TOOLS\nIRA eligibility\nExplore how much you may be able to contribute to a Roth or Traditional IRA and if your contribution to a Traditional IRA could be tax-deductible.\nReady to invest in a J.P. Morgan IRA? Get started .\nSee our IRA comparison (PDF) to learn more about the differences between a Roth and Traditional IRA.\nThis tool is designed to provide information to help get you started on selecting what IRA may be right for you. You should speak to your own tax professional before making any decisions.\n\n## Get started with a J.P. Morgan IRA\n### Traditional IRA\nYour contributions may be tax-deductible . Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal.\n* Open an account , to work together\n* Learn about Traditional IRA\n\n### Roth IRA\nYour contributions are not tax-deductible . Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met.\n* Open an account , to invest\n* Learn about Roth IRA\n\n## Frequently asked questions\n### How is my eligibility and potential deductibility determined?\nPlease note: This isn’t a projection of performance, but a calculation based on the inputs above and assumptions outlined below. It’s not a guarantee or representation of future performance.\nAny individual with taxable compensation may be eligible to contribute to a Roth and/or Traditional IRA. The IRS imposes yearly contribution limits on the aggregate amount of contributions to Traditional and Roth IRAs. Your age determines the applicable IRS maximum annual contribution amount.\n\n#### Traditional IRA\nA Traditional IRA is a retirement account where your contributions may either be tax-deductible or non-deductible, and your earnings and any previously deducted contributions will be included in your taxable income when you withdraw your money.\nDeductibility for a Traditional IRA may be limited based on your income tax filing status, if your modified adjusted gross income (or “MAGI”) exceeds certain levels, and if you or your spouse are covered by a workplace retirement plan.\n\n#### Roth IRA\nA Roth IRA is a retirement account where you may be able to contribute after-tax dollars and you don’t have to pay federal tax on “ [qualified distributions](https://www.irs.gov/publications/p590b) ” (as defined by the Internal Revenue Code). You cannot deduct contributions to a Roth IRA.\nYour Roth IRA contributions may be limited based on your income tax filing status and MAGI.\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you."],"source_id":"search_1f2eec964f214e6d946626f808862c55#6"},{"url":"https://content.sharefc.com/ondemand/analytics/compute.vm?hnd=32&client=jpret","title":"JP Morgan Retirement2  - Traditional vs. Roth IRA Analyzer (Calculator)","excerpts":["# Traditional vs. Roth IRA Analyzer\nTraditional IRAs offer tax-deductible contributions to qualified individuals as well as tax-deferred earnings. Roth IRAs offer the potential for tax-free earnings and, generally, tax-free withdrawals, but contributions are nondeductible. Determining which IRA is most suitable for you depends on your personal situation.\nTo learn what the value of each type of IRA will be for you, answer the questions below, then click Submit.\n|## What is your current age? |1. 14\n2. 35\n3. 56\n4. 78\n5. 99\nValue: |\n| --- | --- |\n|## At what age do you expect to begin taking distributions from your IRA? |1. 59\n2. 63\n3. 67\n4. 71\n5. 75\nValue: |\n| --- | --- |\n|## For how many years do you expect to take distributions? |1. 1\n2. 13\n3. 26\n4. 38\n5. 50\nValue: |\n| --- | --- |\n| ## How much do you plan to contribute each year to an IRA, after taxes? | $ |\n| ## What is your federal income tax rate? | 10% 12% 22% 24% 32% 35% 37% |\n| ## What do you anticipate your federal income tax rate will be once you retire? | 10% 12% 22% 24% 32% 35% 37% |\n| ## Which annual rate of return do you expect to earn on your IRA investments until retirement? | 1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% |\n| ## Which annual rate of return do you expect to earn on your IRA investments after retirement? | 1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% |\nSubmit Reset\nCertain recordkeeping and administrative services for plans may be provided on behalf of JPMorgan Invest Holdings LLC (J.P. Morgan) by FASCore, LLC (FASCore). JPMorgan Invest Holdings LLC is an affiliate of JPMorgan Chase & Co. J.P. Morgan Asset Management is the marketing name for the asset management business of JPMorgan Chase & Co., and its affiliates worldwide.\nThis material is provided for informational and educational purposes only. It is not intended to provide personalized tax, lending, ERISA, legal or investment advice. A professional should be sought for all such matters. Nothing in the Education Section of the web site should be construed as a solicitation of an offer to buy or sell any security. While sources of information are believed to be reliable, J.P. Morgan does not warrant or guarantee the information. Where assumptions have been made, they are hypothetical in nature and not representative any particular security. Past performance is not a guarantee of future results and investing in securities involves risk, including the possible loss of principal.\nAnnual rates of return can vary significantly and will depend upon your asset allocation and other variables. Generally, higher target returns carry greater risk.\nYou can generally begin taking penalty-free distributions from IRAs once you reach age 59Â½. For a traditional IRA, required minimum distributions must begin by April 1 following the year you turn 73. Roth IRAs do not require lifetime distributions for the original owner. While Roth IRA contributions can be withdrawn at any time, earnings are generally tax-free only if the account has been open at least five years and certain conditions are met.\nThe maximum contribution is $7,500 per individual under age 50 and $8,600 for those aged 50 and older."],"source_id":"search_1f2eec964f214e6d946626f808862c55#7"},{"url":"https://www.nerdwallet.com/retirement/learn/roth-or-traditional-ira-account","title":"Roth vs. Traditional IRA: Which Is Right For You? - NerdWallet","publish_date":"2026-02-20","excerpts":["Retirement Roth vs. Traditional IRA\nAdvertiser disclosure ### You're our first priority.\nEvery time.\nNerdWallet, Inc. is an independent publisher and comparison service, not an investment advisor. Its articles, interactive tools and other content are provided to you for free, as self-help tools and for informational purposes only. They are not intended to provide investment advice. NerdWallet does not and cannot guarantee the accuracy or applicability of any information in regard to your individual circumstances. Examples are hypothetical, and we encourage you to seek personalized advice from qualified professionals regarding specific investment issues. Our estimates are based on past market performance, and past performance is not a guarantee of future performance.\n\n...\n\n# Roth vs. Traditional IRA\nCo-written by June Sham [](https://www.nerdwallet.com/author/june-sham)\n[June Sham](https://www.nerdwallet.com/author/june-sham)\nLead Writer\n4 years of experience\nExpertise\n* Personal finance\n* retirement\nJune Sham is a lead writer on NerdWallet’s investing and taxes team covering retirement and personal finance. She is a licensed insurance producer, and previously was an insurance writer for Bankrate specializing in home, auto and life insurance. She earned her Bachelor of Arts in creative writing at the University of California, Riverside.\nLead Writer\nSOME CARD INFO MAY BE OUTDATED\nThis page includes information about these cards, currently unavailable on\nNerdWallet. The information has been collected by NerdWallet and has not\nbeen provided or reviewed by the card issuer.\n\n...\n\n## The key difference between Roth and traditional IRAs\nThe main difference between a [Roth IRA](https://www.nerdwallet.com/retirement/learn/what-is-a-roth-ira) and a [traditional IRA](https://www.nerdwallet.com/retirement/learn/what-is-a-traditional-ira) is how and when the tax break happens.\nFor traditional IRAs, contributions are tax-deductible in the year they’re made, with withdrawals in retirement taxable as ordinary income. Roth IRAs don’t offer a tax deduction for contributions, but qualified withdrawals in retirement are tax-free [1] IRS.gov. [Traditional and Roth IRAs.](https://www.irs.gov/retirement-plans/traditional-and-roth-iras) Accessed Feb 20, 2026.\nView all sources .\nWhile you can have both types of IRAs, deciding whether to contribute to a traditional IRA or a Roth IRA might come down to other differences between the accounts.\n\n### Roth IRA vs. Traditional IRA at a glance\n|  | Roth IRA | Traditional IRA |\n| Annual contribution limit | $7,500 for 2026 ($8,600 if aged 50 and older) . The contribution limit for IRAs is a combined limit. |  |\n| Income | Ability to contribute is phased out at higher incomes. | Ability to deduct contributions can be phased out depending on income and access to an employer retirement plan. |\n| Early withdrawal options | Roth IRAs allow contributions to be withdrawn at any time, but earnings distributed before age 59 ½ may be subject to a 10% penalty and income taxes, unless you meet an exception. There is also a [five-year holding rule](https://www.nerdwallet.com/retirement/learn/roth-ira-5-year-rule) for Roth IRA investment earnings. | Unless you meet an exception, distributions from a traditional IRA before age 59 ½ are subject to taxes and a 10% penalty. This applies to both contributions and investment earnings. |\n| Distributions in retirement | No required minimum distributions. | There are required minimum distributions once you reach a certain age. That age was previously 72; in 2023, it increased to 73 and in 2033, it will increase again to 75. |"],"source_id":"search_1f2eec964f214e6d946626f808862c55#8"},{"url":"https://www.schwab.com/ira/roth-vs-traditional-ira","title":"Roth IRA vs. Traditional IRA: Differences and Rules | Charles Schwab","excerpts":["# Roth IRA vs. Traditional IRA\n## Roth IRA vs. Traditional IRA: What are the key differences?\nRoth and Traditional IRAs each offer unique benefits, making them suitable for different financial situations. Use the chart below to help decide which option may be right for you.\n\n...\n\n### Roth IRA vs. Traditional IRA\n|  | Roth IRA | Traditional IRA |\n| Who is the account best suited for? | Individuals expecting to be in a higher tax bracket at the time of withdrawals _Tooltip_ Your tax bracket is based on your income level. Roth IRAs may be better if you expect your income (and taxes) to be higher in retirement. | Individuals expecting to be in the same or lower tax bracket at the time of withdrawals _Tooltip_ Your tax bracket is based on your income level. Traditional IRAs may be better if you expect your income (and taxes) to be the same or lower in retirement. |\n| Are contributions tax-deductible? | No current-year tax benefits _Tooltip_ You won't get a tax break this year, but qualified withdrawals later will be tax-free. | Yes, provides immediate tax benefits _Tooltip_ You may be able to deduct your contribution from your taxable income this year. (subject to income limitations for participants in employer-sponsored plans) |\n\n...\n\n|  | Roth IRA | Traditional IRA |\n| Who is the account best suited for? | Individuals expecting to be in a higher tax bracket at the time of withdrawals _Tooltip_ Your tax bracket is based on your income level. Roth IRAs may be better if you expect your income (and taxes) to be higher in retirement. | Individuals expecting to be in the same or lower tax bracket at the time of withdrawals _Tooltip_ Your tax bracket is based on your income level. Traditional IRAs may be better if you expect your income (and taxes) to be the same or lower in retirement. |\n| What are the primary tax benefits? | Tax-free withdrawals in the future **and** no required minimum distributions when certain requirements are met | Immediate tax benefits on contributions |\n| Are there penalties for withdrawals? | Withdrawals are penalty- and tax-free after 5 years and age 59½ _Tooltip_ To withdraw earnings penalty- and tax-free from a Roth IRA, two conditions must be met: |  |\n\n...\n\n## Retirement tools and resources\n[### Roth vs. Traditional Calculator Find out how much you're eligible to contribute and determine whether a Roth or Traditional IRA is right for you.](https://www.schwab.com/ira/ira-calculators/roth-vs-traditional)\n[### Roth IRA Conversion Calculator Estimate your required minimum distributions (RMDs) for a Traditional IRA.](https://www.schwab.com/ira/ira-calculators/roth-ira-conversion)\n[### Help You Decide Tool Answer a few simple questions for a suggestion of which IRA may be best for your needs.](https://client.schwab.com/public/app/service/accountselector/hmd/landing)\n\n...\n\n## Roth IRA vs. Traditional IRA: Common questions\nExpand All Collapse All\nWhat is the main tax difference between a Roth IRA and a Traditional IRA?\nThe main difference is when you receive the tax benefit.\nWith a Roth IRA, contributions are made with after-tax dollars, but qualified withdrawals in retirement can be taken tax-free when certain requirements are met. Roth IRAs also do not require minimum distributions during the account owner's lifetime.\nWith a Traditional IRA, contributions may be tax-deductible in the year they are made, which can provide an immediate tax benefit. However, withdrawals in retirement are generally taxed as ordinary income, and required minimum distributions typically apply starting at the applicable age.\nHow can I decide between a Roth IRA and a Traditional IRA?\nChoosing between a Roth IRA and a Traditional IRA often depends on factors such as your income level, current tax situation, and long-term financial goals. Because each type of IRA offers different potential tax advantages, the right choice can vary from person to person.\nOur Roth vs. Traditional IRA Calculator can help you compare the two options based on your income and assumptions about your future tax situation, helping you determine which type of IRA may make more sense for you.\nCan I contribute to Roth or Traditional IRA?\nEligibility to contribute to a Roth IRA is based on your income level, while Traditional IRA contributions are not limited by how much you make annually.\nReview more details about 2025 and 2026 Roth IRA Contribution Limits or 2025 and 2026 Traditional IRA Contribution Limits .\nCan I withdraw early from a Roth or Traditional IRA?\nWithdrawals from a Roth IRA are penalty- and tax-free as long as you're at least 59½ and your account has been open for at least five years.\nWithdrawals from a Traditional IRA are penalty-free once you're 59½, but the money you take out is taxed as ordinary income.\nReview more details about Roth IRA withdrawal rules and Traditional IRA withdrawal rules .\n\n...\n\n## Questions? We're ready to help.\n### Visit\n+ [Retirement Calculator](https://www.schwab.com/retirement-planning-tools/retirement-calculator)\n+ [Roth vs. Traditional IRA Calculator](https://www.schwab.com/ira/understand-iras/ira-calculators/roth-vs-trad)\n+ [Research Tools](https://www.schwab.com/research)\n+ [Mobile Apps](https://www.schwab.com/mobile)\n* Learn\n+ [Insights & Education](https://www.schwab.com/learn/)\n+ [Trading](https://www.schwab.com/learn/trading)\n+ [Market Commentary](https://www.schwab.com/learn/market-commentary)\n+ [Planning & Retirement](https://www.schwab.com/learn/planning)\n+ [Podcasts](https://www.schwab.com/learn/podcasts)\n+ [Schwab Network](https://www.schwab.com/schwab-network)\n* About Schwab\n+ [Why Schwab](https://www.schwab.com/why-schwab)\n+ [Compare Us](https://www.schwab.com/compare-us)\n+ [Satisfaction Guarantee](https://www.schwab.com/satisfaction-guarantee)\n+ [Forms & Applications](https://www.schwab.com/forms-and-applications)\n+ [Pricing](https://www.schwab.com/pricing)"],"source_id":"search_1f2eec964f214e6d946626f808862c55#9"},{"url":"https://www.chasefs.com/learning_center/calculators/roth_ira_conversion","title":"Roth IRA Conversion ","excerpts":["# Roth IRA Conversion\n## Should You Convert Your Traditional IRA to a Roth IRA?\n### One issue to consider is that if you convert your traditional IRA to a Roth IRA, you will owe current federal income tax on the amount you convert.\nWhen Congress created the Roth IRA, millions of Americans who already had traditional IRAs faced a new decision: “Should I convert to a Roth IRA?” Traditional IRAs feature deductible contributions, and withdrawals are taxed as income. Roth IRA contributions, on the other hand, are not tax deductible, although qualified withdrawals of both contributions and earnings from a Roth IRA are free of federal income tax. This calculator is designed to help you determine whether you should consider converting to a Roth IRA.\nThe results below, and on the following page, show the projected value of a traditional IRA vs. a Roth IRA, based on your estimates on the input page as well as the taxes that would be owed in each case. On the “Future value of assets used to pay taxes upon conversion less taxes (of earnings only)” line, it is assumed that this money would be invested separately in a taxable account. Based on this estimate, which type of IRA would be most beneficial to you?\nSkip Table Information\n| Description | Amount |\n| Taxes that will be owed when withdrawals begin from your traditional IRA: | $0 |\n| Taxes that will be owed upon conversion of your traditional IRA to a Roth IRA: | $0 |\n| Current IRA balance: | $0 |\n| Projected IRA balance (traditional and Roth): | $0 |\n| Taxes upon withdrawal — traditional IRA: | $0 |\n| Taxes upon withdrawal — Roth IRA: | $0 |\n| After-tax value — traditional IRA: | $0 |\n| After-tax value — Roth IRA: | $0 |\n| Future value of assets used to pay taxes upon conversion less taxes (of earnings only) on one-time distribution — traditional IRA: | $0 |\n| Total after-tax amount — traditional IRA + Net Future Value of assets used to pay taxes upon conversion: | $0 |\n| Total after-tax amount — Roth IRA: | $0 |\nBased on the information you entered, the graph below illustrates the value of the two types of accounts once you reach retirement age. Note that this illustration assumes that upon retirement you would begin withdrawing money from both accounts. However, one other feature of the Roth IRA you should be aware of is that you don’t have to begin taking withdrawals from the account until you want to, whereas with a traditional IRA, generally, you must begin taking minimum withdrawals from the account by April 1 of the year after the year in which you reach age 73 or you will be subject to tax penalties. Required minimum distributions must be taken by December 31 of each year thereafter.\n\n### Estimated Value of a Roth IRA vs. a Traditional IRA\nThe information provided is not specific investment advice, a guarantee of performance, or a recommendation. Rates of return will vary over time, particularly for long-term investments. Investments offering the potential for higher rates of return also involve a higher degree of risk. These calculations assume that all deposits made to your traditional IRA were deductible, and that withdrawals were taxed at the after-retirement tax rate you selected. To qualify for the tax-free and penalty-free withdrawal of earnings, a Roth IRA must be in place for at least five tax years and the distribution must take place after age 59½ unless an exception applies. To the extent that they exceed total contributions, non-qualified distributions are subject to a 10 percent federal tax penalty and are includible in gross income.\nWithdrawals from a traditional IRA before age 59½ may be subject to a 10 percent federal tax penalty, and income taxes will be due. For guidance concerning your specific situation, consult a tax professional.\nPrevious Next Calculate\nPrint Contact\nThis hypothetical example is used for illustrative purposes only. Actual results will vary.\nThis information is not intended as tax, legal, investment, or retirement advice or recommendations, and it may not be relied on for the purpose of avoiding any federal tax penalties. You are encouraged to seek guidance from an independent tax or legal professional. The content is derived from sources believed to be accurate. Neither the information presented nor any opinion expressed constitutes a solicitation for the purchase or sale of any security.\nThis material was written and prepared by Broadridge Advisor Solutions.\n\n...\n\n## Contact Us\nChase Financial Services LLC\n1035 South 10th St\nManitowoc , WI 54220\nPhone: 920-684-6345\nTimChase@Chasefs.com\n[Map and Directions](https://www.google.com/maps?f=q&hl=en&geocode=&q=1035+South+10th+St,+Manitowoc,+WI,+54220+USA&ie=UTF8&z=16&iwloc=addr&om=1)\n* [](https://www.linkedin.com/in/tim-chase-51b830128/)\n[Osaic Wealth Form CRS](https://www.osaic.com/crs)\nSecurities and Investment Advisory Services offered through **Osaic Wealth, Inc.** Member [FINRA](http://www.finra.org) , [SIPC](https://www.sipc.org) , and Registered Investment Advisor.  Chase Financial Services LLC and **Osaic Wealth, Inc.** Inc. are not affiliated entities, nor is Chase Financial Services LLC affiliated in any way with JPMorgan Chase & Co., its \"Chase\" branded financial services, or any other business connected with JPMorgan Chase & Co.\n* Site Map\n[Check the background of this financial professional on FINRA's BrokerCheck](http://brokercheck.finra.org/)"],"source_id":"search_1f2eec964f214e6d946626f808862c55#10"}],"usage":[{"name":"sku_search","count":1}]}
+</result>
+
+[7] tool_call: repl("Opening IRA calculator")
+<request>
+await openTab('https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator');
+const s2 = await snapshot(page, {interactive: true});
+console.log(s2.tree);
+</request>
+<result tokens_used="91" elapsed_time="2472ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → IRA Calculator: Comparing Roth Vs. Traditional IRA | Chase (https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator)
+# note: interactive (clickable / focusable) elements only.
+- title: "IRA Calculator: Comparing Roth Vs. Traditional IRA | Chase" [url=https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator]
+- generic [ref=e1]:
+  - text: "We and our partners use cookies and other tools for advertising, to help stop fraud, and for other purposes. By using this site, you agree to how your information is used as outlined in our"
+  - link "Privacy Policy" [ref=e2]
+  - text: "."
+  - button "Close Icon" [ref=e3]
+- link "Skip to main content" [ref=e4]
+- banner:
+  - navigation "Customer type" [ref=e5]:
+    - link "Personal" [ref=e6]: "Personal,   current product"
+    - link "Business" [ref=e7]
+    - link "Commercial" [ref=e8]
+  - navigation "Customer Service" [ref=e9]:
+    - menubar:
+      - menuitem "Customer Service" [ref=e10]
+      - menuitem "Search" [ref=e11]
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e12]
+  - button "Sign in Opens overlay" [ref=e13]
+  - navigation:
+    - menubar:
+      - menuitem "Investment Planning" [ref=e14]
+      - menuitem "Work With Our Advisors" [ref=e15]
+      - menuitem "Invest On Your Own" [ref=e16]
+      - menuitem "Tools & Resources" [ref=e17]
+      - menuitem "Investment Products" [ref=e18]
+      - menuitem "Why J.P. Morgan" [ref=e19]
+      - menuitem "Get Started" [ref=e20]
+- main:
+  - heading [level=1]: "RETIREMENT TOOLS\n\n IRA calculator"
+  - text: "Compare Traditional and Roth IRA options to a general (taxable) investment account, and see how certain assumptions can impact your"
+  - link "retirement strategy" [ref=e21]
+  - text: ". Start by entering your age range and then look at each factor and adjust accordingly."
+  - button "Footnote 1 Opens overlay" [ref=e22]
+  - text: "Ready to invest in a J.P. Morgan IRA?"
+  - link "Get started" [ref=e23]
+  - text: ".\ntraditional-ira-calculator"
+  - heading [level=2]: "Frequently asked questions"
+  - region:
+    - heading [level=3]:
+      - button "How is my number calculated?" [ref=e24]
+    - region
+  - region:
+    - heading [level=3]:
+      - button "How do I know which account is right for me?" [ref=e25]
+    - region
+  - heading [level=2]: "Start planning for retirement"
+  - heading [level=3]: "Traditional IRA"
+  - text: "Your contributions may be tax-deductible"
+  - button "Footnote 9 Opens overlay" [ref=e26]
+  - text: ". Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal."
+  - link "Open an account, for traditional IRA" [ref=e27]
+  - link "Learn about Traditional IRA" [ref=e28]
+  - heading [level=3]: "Roth IRA"
+  - text: "Your contributions are not tax-deductible"
+  - button "Footnote 10 Opens overlay" [ref=e29]
+  - text: ". Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met."
+  - link "Open an account, for roth IRA" [ref=e30]
+  - link "Learn about Roth IRA" [ref=e31]
+  - heading [level=3]: "General investment"
+  - text: "This is a standard individual or joint investment account. You get the flexibility to withdraw your money at any time, without the tax benefits of an IRA."
+  - link "Open an account, for general investment" [ref=e32]
+  - heading [level=2]: "Discover how you can prepare for retirement"
+  - region "Retirement calculators" [ref=e33]:
+    - heading [level=3]: "Retirement calculators"
+    - text: "Knowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals."
+    - link "Use our retirement calculators" [ref=e34]
+  - region "Plan for retirement" [ref=e35]:
+    - heading [level=3]: "Plan for retirement"
+    - text: "Whatever you’re looking forward to—more time with family, traveling or pursuing your passions—we can can help you prepare for what comes next."
+    - link "Learn about retirement planning" [ref=e36]
+  - heading [level=2]: "Sharpen your knowledge with the latest news and market commentary on retirement"
+  - text: "Tap into the latest news and subscribe for market commentary and analysis from J.P. Morgan specialists to help you plan your investment strategy for retirement."
+  - link "Subscribe" [ref=e37]
+  - link "Read the latest, news and market commentary" [ref=e38]
+- contentinfo:
+  - text: "Footnote 1 Keep in mind: You can select an age range, or the default range will be 25 to 75.\nFootnote 2 A Traditional IRA is a retirement account where your contributions may either be tax-deductible or non-deductible, but your earnings and any previously deducted contributions will be included in your taxable income when you withdraw your money. Deductibility for a Traditional IRA may be limited if you or your spouse are covered by a retirement plan at work and your income exceeds certain levels. A Roth IRA is a retirement account where you may be able to contribute after-tax dollars and you don’t have to pay federal tax on “qualified distributions” (as defined by the Internal Revenue Code). You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your filing status and income."
+  - link "Learn more" [ref=e39]: "Learn more,  about IRA Deduction Limits, Opens overlay"
+  - text: ".\nFootnote 3 For a Deductible Traditional IRA, the tax savings from deductible contributions (determined using the designated current tax rate) are set aside and receive earnings over time using the designated annual rate of return. For example, assuming a 10% current tax rate, a $500 contribution to a Deductible Traditional IRA would equate to $50 in tax savings that year. The $50 is grown over time in a general investment account. The earnings on the $50 are assumed to be taxable in the year they are earned at the designated current tax rate. The balance of the savings and earnings is part of the estimated after-tax value in the Deductible Traditional IRA scenario, even though it’s not part of the IRA itself.\nFootnote 4 Keep in mind: You can select a rate of return, or the default rate of return will be 4%.\nFootnote 5 Keep in mind: You can select a current tax rate, or the default current tax rate will be 22%. You can select a retirement tax rate, or the default will be 12%.\nFootnote 6 For Traditional IRAs, the estimated account value of your IRA is adjusted to account for the deferred taxes on your earnings and any previously deducted contributions (if applicable), assuming all withdrawals occur at retirement age (i.e., you take a full distribution of your account balance at the targeted retirement age). For a Roth IRA, we assume that withdrawals (again, all occurring at your targeted retirement age) will qualify for tax-free treatment (i.e., be “qualified distributions” as defined by the Internal Revenue Code).\nFootnote 7 This calculation does not account for the following: IRA contribution eligibility, potential IRA catch-up contributions for eligible individuals who are age 50 and over, the application of the 10% early withdrawal tax (which generally applies to IRA distributions taken prior to age 59 1/2 unless exception applies), or Required Minimum Distributions for Traditional IRAs as defined by the Internal Revenue Code, and should be used for educational purposes only. To learn more, go to the"
+  - link "IRS IRA FAQ page" [ref=e40]: "IRS IRA FAQ page, Opens overlay"
+  - text: ", or consult with a tax or legal advisor.\nFootnote 8 All earnings in your general (taxable) investment account are assumed to be taxable in the year they are earned at the designated current tax rate. Your contributions are assumed to be in after-tax dollars, as contributions to this type of account are not tax deductible. We recommend you seek professional tax advice for further information.\nFootnote 9 Deductibility may be limited if you (or your spouse, if you are married) are covered by a retirement plan at work and your income exceeds certain levels. Please refer to the IRS website for applicable limits:"
+  - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e41]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+  - text: ".\nFootnote 10 You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your ﬁling status and income. Please refer to the IRS website for applicable limits:"
+  - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e42]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+  - text: "."
+  - link "LEARN MORE" [ref=e43]: "LEARN MORE, Opens overlay"
+  - text: "ABOUT OUR FIRM AND INVESTMENT PROFESSIONALS AT FINRA BROKERCHECK.\nTo learn more about J. P. Morgan’s investment business, including our accounts, products and services, as well as our relationship with you, please review our"
+  - link "J.P. Morgan Securities LLC Form CRS (PDF)" [ref=e44]
+  - text: "and"
+  - link "Guide to Investment Services and Brokerage Products" [ref=e45]
+  - text: ".\nImages on the page are hypothetical and for informational purposes only. Screen images are simulated.\nInvesting involves market risk, including possible loss of principal, and there is no guarantee that investment objectives will be achieved. Past performance is not a guarantee of future results.\nJPMorgan Chase and its affiliates do not provide tax, legal or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for tax, legal or accounting advice. You should consult your personal tax, legal and accounting advisors for advice before engaging in any transaction.\nAsset allocation/diversification does not guarantee a profit or protect against a loss.\nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC.\nChase Mobile® app  is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile® app. Message and data rates may apply.\n\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through  J.P. Morgan Securities LLC (JPMS), a registered broker-dealer and investment adviser, member"
+  - link "FINRA" [ref=e46]: "FINRA, opens overlay"
+  - text: "and"
+  - link "SIPC" [ref=e47]: "SIPC, opens overlay"
+  - text: ". Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\n•NOT FDIC INSURED\n•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n•NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES\n•SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e48]
+  - heading "Planning and investments" [level=2]
+  - text: "Whether you choose to work with"
+  - link "an advisor" [ref=e49]
+  - text: "and develop a financial strategy or"
+  - link "invest online" [ref=e50]
+  - text: ", J.P. Morgan offers insights, expertise and tools to help you reach your goals."
+  - heading "Invest with our advisors" [level=2]
+  - text: "Work 1:1 with a"
+  - link "J.P. Morgan advisor" [ref=e51]
+  - text: "virtually or in your"
+  - link "Chase branch" [ref=e52]
+  - text: "to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000."
+  - heading "J.P. Morgan online investing" [level=2]
+  - text: "Easily"
+  - link "fund" [ref=e53]
+  - text: ", research, trade and manage your investments online all conveniently in the Chase Mobile® app or at chase.com."
+  - link "J.P Morgan online investing" [ref=e54]
+  - text: "is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing"
+  - link "features" [ref=e55]
+  - text: ","
+  - link "offers, promotions and coupons" [ref=e56]
+  - text: "."
+  - heading "Investment tools & resources" [level=2]
+  - text: "Our"
+  - link "calculators" [ref=e57]
+  - text: "are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n\nFor a comparison of IRAs and which one aligns with you:"
+  - link "IRA Calculator" [ref=e58]
+  - text: "Plan for your retirement:"
+  - link "401K/403b Calculator" [ref=e59]
+  - text: "Compare annuity payouts to create your desired strategy:"
+  - link "Annuity Calculator" [ref=e60]
+  - text: "Understand how your retirement contributions may differ:"
+  - link "IRA Eligibility Calculator" [ref=e61]
+  - heading "Retirement planning" [level=2]
+  - text: "Planning for retirement can start at any point in your life. Whether you prefer to independently manage your"
+  - link "retirement planning" [ref=e62]
+  - text: "or work with an advisor to create a personalized strategy, we can help."
+  - link "Roll over your 401(k)" [ref=e63]
+  - text: "from your previous employer and compare the benefits of General Investment,"
+  - link "Traditional IRA" [ref=e64]
+  - text: "and"
+  - link "Roth IRA" [ref=e65]
+  - text: "accounts to decide which is right for you."
+  - heading "Education planning" [level=2]
+  - link "Funding for education" [ref=e66]
+  - text: "can come from any combination of options and a J.P. Morgan advisor can help you understand the benefits and disadvantages of each one. Compare among"
+  - link "529 Plans" [ref=e67]
+  - text: ", custodial accounts, financial aid and other education options to help meet your"
+  - link "college planning goals" [ref=e68]
+  - text: "."
+  - heading "Wealth Plan" [level=2]
+  - text: "When planning for your future,"
+  - link "J.P. Morgan Wealth Plan" [ref=e69]
+  - text: "can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress."
+  - heading "Investing insights" [level=2]
+  - text: "Stay in"
+  - link "The Know" [ref=e70]
+  - text: "by exploring articles and videos on market trends, research and financial planning."
+  - heading "Other Products & Services :" [level=2]
+  - link "Online Banking" [ref=e71]
+  - link "Mobile Banking" [ref=e72]
+  - link "Security Center" [ref=e73]
+  - link "Deposit and Prepaid Account Agreement" [ref=e74]
+  - link "Facebook" [ref=e75]: "Facebook, Opens overlay"
+  - link "Instagram" [ref=e76]: "Instagram, Opens overlay"
+  - link "X, formerly Twitter" [ref=e77]: "X, formerly Twitter, Opens overlay"
+  - link "YouTube" [ref=e78]: "YouTube, Opens overlay"
+  - link "LinkedIn" [ref=e79]: "LinkedIn, Opens overlay"
+  - link "Pinterest" [ref=e80]: "Pinterest, Opens overlay"
+  - text: "“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co."
+  - link "Privacy" [ref=e81]
+  - link "Security" [ref=e82]
+  - link "Terms of Use" [ref=e83]
+  - link "Accessibility" [ref=e84]
+  - link "Site Map" [ref=e85]
+  - link "AdChoices" [ref=e86]: "AdChoices, Opens overlay"
+  - text: "Member FDIC  Equal Housing Opportunity © 2026  JPMorgan Chase & Co."
+- iframe:
+  - text: "Run your numbers:Age Range:25 to 75"
+  - textbox "25" [ref=f2e1]
+  - textbox "75" [ref=f2e2]
+  - text: "Starting balance ($):0"
+  - textbox "0" [ref=f2e3]
+  - text: "Monthly contribution ($):0"
+  - textbox "0" [ref=f2e4]
+  - text: "Annual rate of return (%):4"
+  - textbox "4" [ref=f2e5]
+  - text: "Current tax rate (%):22"
+  - textbox "22" [ref=f2e6]
+  - text: "Estimated tax rate at retirement (%):12"
+  - textbox "12" [ref=f2e7]
+  - heading "Estimated account value" [level=3]
+  - img
+  - link "See chart as table Opens Dialog" [ref=f2e8]
+</result>
+
+[8] tool_call: repl("Entering IRA assumptions")
+<request>
+await page.locator('e3').click().catch(()=>{});
+await page.locator('f2e1').fill('30');
+await page.locator('f2e2').fill('65');
+await page.locator('f2e4').fill('300');
+await page.locator('f2e5').fill('3');
+await page.locator('f2e6').fill('13');
+await page.locator('f2e7').fill('24');
+const s3 = await snapshot(page, {interactive: true});
+console.log(s3.diff);
+</request>
+<result tokens_used="248" elapsed_time="2430ms">
+@@ -1,5 +1,0 @@
+-- generic [ref=e1]:
+-  - text: "We and our partners use cookies and other tools for advertising, to help stop fraud, and for other purposes. By using this site, you agree to how your information is used as outlined in our"
+-  - link "Privacy Policy" [ref=e2]
+-  - text: "."
+-  - button "Close Icon" [ref=e3]
+@@ -173,3 +168,3 @@
+-  - text: "Run your numbers:Age Range:25 to 75"
+-  - textbox "25" [ref=f2e1]
+-  - textbox "75" [ref=f2e2]
++  - text: "Run your numbers:Age Range:30 to 65"
++  - textbox "30" [ref=f2e1]
++  - textbox "65" [ref=f2e2]
+@@ -178,8 +173,8 @@
+-  - text: "Monthly contribution ($):0"
+-  - textbox "0" [ref=f2e4]
+-  - text: "Annual rate of return (%):4"
+-  - textbox "4" [ref=f2e5]
+-  - text: "Current tax rate (%):22"
+-  - textbox "22" [ref=f2e6]
+-  - text: "Estimated tax rate at retirement (%):12"
+-  - textbox "12" [ref=f2e7]
++  - text: "Monthly contribution ($):300"
++  - textbox "300" [ref=f2e4]
++  - text: "Annual rate of return (%):3"
++  - textbox "3" [ref=f2e5]
++  - text: "Current tax rate (%):13"
++  - textbox "13" [ref=f2e6]
++  - text: "Estimated tax rate at retirement (%):24"
++  - textbox "24" [ref=f2e7]
+</result>
+
+[9] thinking: **Preparing comparison chart**
+
+I need to show a comparison chart as the user requested. Maybe I could click on "See chart as table" to get the values or take a screenshot of the chart itself. If I decide to screenshot it, I'd include it as an image in my response. But I might also need to extract the values first before finalizing everything. It seems like I'll figure it out as I go along!
+
+[10] tool_call: repl("Opening chart table")
+<request>
+await page.locator('f2e8').click();
+const s4 = await snapshot(page);
+console.log(s4.diff);
+</request>
+<result tokens_used="108" elapsed_time="508ms">
+- title: "IRA Calculator: Comparing Roth Vs. Traditional IRA | Chase" [url=https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator]
+- link "Skip to main content" [ref=e4]
+- banner:
+  - navigation "Customer type" [ref=e5]:
+    - list:
+      - listitem "Personal" [ref=e87]:
+        - link "Personal" [ref=e6]
+      - listitem "Business" [ref=e88]:
+        - link "Business" [ref=e7]
+      - listitem "Commercial" [ref=e89]:
+        - link "Commercial" [ref=e8]
+  - navigation "Customer Service" [ref=e9]:
+    - menubar:
+      - listitem:
+        - menuitem "Customer Service" [ref=e10]
+      - listitem:
+        - menuitem [ref=e11]
+  - link [ref=e12]
+  - button "Sign in" [ref=e13]
+  - navigation:
+    - menubar:
+      - listitem:
+        - menuitem "Investment Planning" [ref=e14]
+      - listitem:
+        - menuitem "Work With Our Advisors" [ref=e15]
+      - listitem:
+        - menuitem "Invest On Your Own" [ref=e16]
+      - listitem:
+        - menuitem "Tools & Resources" [ref=e17]
+      - listitem:
+        - menuitem "Investment Products" [ref=e18]
+      - listitem:
+        - menuitem "Why J.P. Morgan" [ref=e19]
+      - listitem:
+        - menuitem "Get Started" [ref=e20]
+- main:
+  - heading [level=1]: "RETIREMENT TOOLS\n\n IRA calculator"
+  - paragraph:
+    - text: "Compare Traditional and Roth IRA options to a general (taxable) investment account, and see how certain assumptions can impact your"
+    - link "retirement strategy" [ref=e21]
+    - text: ". Start by entering your age range and then look at each factor and adjust accordingly."
+    - button "Footnote 1 Opens overlay" [ref=e22]
+  - paragraph:
+    - text: "Ready to invest in a J.P. Morgan IRA?"
+    - link "Get started" [ref=e23]
+    - text: "."
+  - iframe "traditional-ira-calculator" [ref=e90] [focused]:
+    - navigation "Back" [ref=f2e9]:
+      - button "Back" [ref=f2e10]
+      - heading "Estimated account value" [level=1]
+    - table: "Year Deductible Traditional IRA Non-deductible Traditional IRA Roth IRA General (taxable)2026$0$0$0$0 2027$3,300$3,680$3,710$3,690 2028$6,690$7,450$7,530$7,480 2029$10,200$11,300$11,500$11,400 2030$13,800$15,200$15,500$15,400 2031$17,500$19,300$19,700$19,500 2032$21,300$23,400$24,000$23,700 2033$25,200$27,600$28,400$28,000 2034$29,300$32,000$33,000$32,400 2035$33,400$36,400$37,700$36,900 2036$37,700$40,900$42,500$41,600 2037$42,100$45,600$47,500$46,400 2038$46,700$50,400$52,600$51,300 2039$51,300$55,200$57,900$56,300 2040$56,100$60,200$63,400$61,500 2041$61,100$65,400$69,000$66,800 2042$66,200$70,600$74,700$72,200 2043$71,400$76,000$80,700$77,800 2044$76,800$81,500$86,800$83,500 2045$82,400$87,200$93,100$89,400 2046$88,100$93,000$99,600$95,400 2047$94,000$99,000$106,000$102,000 2048$100,000$105,000$113,000$108,000 2049$106,000$111,000$120,000$114,000 2050$113,000$118,000$128,000$121,000 2051$119,000$124,000$135,000$128,000 2052$126,000$131,000$143,000$135,000 2053$133,000$138,000$151,000$142,000 2054$140,000$145,000$159,000$150,000 2055$148,000$152,000$168,000$157,000 2056$156,000$160,000$176,000$165,000 2057$163,000$168,000$185,000$173,000 2058$172,000$176,000$195,000$181,000 2059$180,000$184,000$204,000$190,000 2060$188,000$192,000$214,000$198,000 2061$197,000$201,000$224,000$207,000"
+  - heading [level=2]: "Frequently asked questions"
+  - region:
+    - heading [level=3]:
+      - button "How is my number calculated?" [ref=e24]
+    - region
+  - region:
+    - heading [level=3]:
+      - button "How do I know which account is right for me?" [ref=e25]
+    - region
+  - heading [level=2]: "Start planning for retirement"
+  - heading [level=3]: "Traditional IRA"
+  - paragraph:
+    - text: "Your contributions may be tax-deductible"
+    - button "Footnote 9 Opens overlay" [ref=e26]
+    - text: ". Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal."
+  - list:
+    - listitem:
+      - link "Open an account, for traditional IRA" [ref=e27]
+    - listitem "Learn about Traditional IRA" [ref=e91]:
+      - link "Learn about Traditional IRA" [ref=e28]
+  - heading [level=3]: "Roth IRA"
+  - paragraph:
+    - text: "Your contributions are not tax-deductible"
+    - button "Footnote 10 Opens overlay" [ref=e29]
+    - text: ". Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met."
+  - list:
+    - listitem:
+      - link "Open an account, for roth IRA" [ref=e30]
+    - listitem "Learn about Roth IRA" [ref=e92]:
+      - link "Learn about Roth IRA" [ref=e31]
+  - heading [level=3]: "General investment"
+  - text: "This is a standard individual or joint investment account. You get the flexibility to withdraw your money at any time, without the tax benefits of an IRA."
+  - link "Open an account, for general investment" [ref=e32]
+  - heading [level=2]: "Discover how you can prepare for retirement"
+  - region "Retirement calculators" [ref=e33]:
+    - heading [level=3]: "Retirement calculators"
+    - text: "Knowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals."
+    - link "Use our retirement calculators" [ref=e34]
+  - region "Plan for retirement" [ref=e35]:
+    - heading [level=3]: "Plan for retirement"
+    - text: "Whatever you’re looking forward to—more time with family, traveling or pursuing your passions—we can can help you prepare for what comes next."
+    - link "Learn about retirement planning" [ref=e36]
+  - heading [level=2]: "Sharpen your knowledge with the latest news and market commentary on retirement"
+  - text: "Tap into the latest news and subscribe for market commentary and analysis from J.P. Morgan specialists to help you plan your investment strategy for retirement."
+  - link "Subscribe" [ref=e37]
+  - link "Read the latest, news and market commentary" [ref=e38]
+- contentinfo:
+  - text: "Footnote 1 Keep in mind: You can select an age range, or the default range will be 25 to 75.\nFootnote 2"
+  - paragraph:
+    - text: "A Traditional IRA is a retirement account where your contributions may either be tax-deductible or non-deductible, but your earnings and any previously deducted contributions will be included in your taxable income when you withdraw your money. Deductibility for a Traditional IRA may be limited if you or your spouse are covered by a retirement plan at work and your income exceeds certain levels. A Roth IRA is a retirement account where you may be able to contribute after-tax dollars and you don’t have to pay federal tax on “qualified distributions” (as defined by the Internal Revenue Code). You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your filing status and income."
+    - link "Learn more" [ref=e39]: "Learn more,  about IRA Deduction Limits, Opens overlay"
+    - text: "."
+  - text: "Footnote 3 For a Deductible Traditional IRA, the tax savings from deductible contributions (determined using the designated current tax rate) are set aside and receive earnings over time using the designated annual rate of return. For example, assuming a 10% current tax rate, a $500 contribution to a Deductible Traditional IRA would equate to $50 in tax savings that year. The $50 is grown over time in a general investment account. The earnings on the $50 are assumed to be taxable in the year they are earned at the designated current tax rate. The balance of the savings and earnings is part of the estimated after-tax value in the Deductible Traditional IRA scenario, even though it’s not part of the IRA itself.\nFootnote 4 Keep in mind: You can select a rate of return, or the default rate of return will be 4%.\nFootnote 5 Keep in mind: You can select a current tax rate, or the default current tax rate will be 22%. You can select a retirement tax rate, or the default will be 12%.\nFootnote 6 For Traditional IRAs, the estimated account value of your IRA is adjusted to account for the deferred taxes on your earnings and any previously deducted contributions (if applicable), assuming all withdrawals occur at retirement age (i.e., you take a full distribution of your account balance at the targeted retirement age). For a Roth IRA, we assume that withdrawals (again, all occurring at your targeted retirement age) will qualify for tax-free treatment (i.e., be “qualified distributions” as defined by the Internal Revenue Code).\nFootnote 7"
+  - paragraph:
+    - text: "This calculation does not account for the following: IRA contribution eligibility, potential IRA catch-up contributions for eligible individuals who are age 50 and over, the application of the 10% early withdrawal tax (which generally applies to IRA distributions taken prior to age 59 1/2 unless exception applies), or Required Minimum Distributions for Traditional IRAs as defined by the Internal Revenue Code, and should be used for educational purposes only. To learn more, go to the"
+    - link "IRS IRA FAQ page" [ref=e40]: "IRS IRA FAQ page, Opens overlay"
+    - text: ", or consult with a tax or legal advisor."
+  - text: "Footnote 8 All earnings in your general (taxable) investment account are assumed to be taxable in the year they are earned at the designated current tax rate. Your contributions are assumed to be in after-tax dollars, as contributions to this type of account are not tax deductible. We recommend you seek professional tax advice for further information.\nFootnote 9"
+  - paragraph:
+    - text: "Deductibility may be limited if you (or your spouse, if you are married) are covered by a retirement plan at work and your income exceeds certain levels. Please refer to the IRS website for applicable limits:"
+    - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e41]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+    - text: "."
+  - text: "Footnote 10"
+  - paragraph:
+    - text: "You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your ﬁling status and income. Please refer to the IRS website for applicable limits:"
+    - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e42]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+    - text: "."
+  - paragraph:
+    - link "LEARN MORE" [ref=e43]: "LEARN MORE, Opens overlay"
+    - text: "ABOUT OUR FIRM AND INVESTMENT PROFESSIONALS AT FINRA BROKERCHECK."
+  - paragraph:
+    - text: "To learn more about J. P. Morgan’s investment business, including our accounts, products and services, as well as our relationship with you, please review our"
+    - link "J.P. Morgan Securities LLC Form CRS (PDF)" [ref=e44]
+    - text: "and"
+    - link "Guide to Investment Services and Brokerage Products" [ref=e45]
+    - text: "."
+  - text: "Images on the page are hypothetical and for informational purposes only. Screen images are simulated.\nInvesting involves market risk, including possible loss of principal, and there is no guarantee that investment objectives will be achieved. Past performance is not a guarantee of future results.\nJPMorgan Chase and its affiliates do not provide tax, legal or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for tax, legal or accounting advice. You should consult your personal tax, legal and accounting advisors for advice before engaging in any transaction.\nAsset allocation/diversification does not guarantee a profit or protect against a loss.\nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC.\nChase Mobile® app  is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile® app. Message and data rates may apply."
+  - paragraph:
+    - text: "J.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through  J.P. Morgan Securities LLC (JPMS), a registered broker-dealer and investment adviser, member"
+    - link "FINRA" [ref=e46]: "FINRA, opens overlay"
+    - text: "and"
+    - link "SIPC" [ref=e47]: "SIPC, opens overlay"
+    - text: ". Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states."
+  - text: "INVESTMENT AND INSURANCE PRODUCTS ARE:"
+  - list:
+    - listitem "•" [ref=e93]: "•NOT FDIC INSURED"
+    - listitem "•" [ref=e94]: "•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY"
+    - listitem "•" [ref=e95]: "•NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES"
+    - listitem "•" [ref=e96]: "•SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e48]
+  - heading "Planning and investments" [level=2]
+  - paragraph:
+    - text: "Whether you choose to work with"
+    - link "an advisor" [ref=e49]
+    - text: "and develop a financial strategy or"
+    - link "invest online" [ref=e50]
+    - text: ", J.P. Morgan offers insights, expertise and tools to help you reach your goals."
+  - heading "Invest with our advisors" [level=2]
+  - paragraph:
+    - text: "Work 1:1 with a"
+    - link "J.P. Morgan advisor" [ref=e51]
+    - text: "virtually or in your"
+    - link "Chase branch" [ref=e52]
+    - text: "to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000."
+  - heading "J.P. Morgan online investing" [level=2]
+  - paragraph:
+    - text: "Easily"
+    - link "fund" [ref=e53]
+    - text: ", research, trade and manage your investments online all conveniently in the Chase Mobile® app or at chase.com."
+    - link "J.P Morgan online investing" [ref=e54]
+    - text: "is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing"
+    - link "features" [ref=e55]
+    - text: ","
+    - link "offers, promotions and coupons" [ref=e56]
+    - text: "."
+  - heading "Investment tools & resources" [level=2]
+  - paragraph:
+    - text: "Our"
+    - link "calculators" [ref=e57]
+    - text: "are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals."
+  - list:
+    - listitem "For a comparison of IRAs and which one aligns with you: IRA Calculator" [ref=e97]:
+      - text: "For a comparison of IRAs and which one aligns with you:"
+      - link "IRA Calculator" [ref=e58]
+    - listitem "Plan for your retirement: 401K/403b Calculator" [ref=e98]:
+      - text: "Plan for your retirement:"
+      - link "401K/403b Calculator" [ref=e59]
+    - listitem "Compare annuity payouts to create your desired strategy: Annuity Calculator" [ref=e99]:
+      - text: "Compare annuity payouts to create your desired strategy:"
+      - link "Annuity Calculator" [ref=e60]
+    - listitem "Understand how your retirement contributions may differ: IRA Eligibility Calculator" [ref=e100]:
+      - text: "Understand how your retirement contributions may differ:"
+      - link "IRA Eligibility Calculator" [ref=e61]
+  - heading "Retirement planning" [level=2]
+  - paragraph:
+    - text: "Planning for retirement can start at any point in your life. Whether you prefer to independently manage your"
+    - link "retirement planning" [ref=e62]
+    - text: "or work with an advisor to create a personalized strategy, we can help."
+    - link "Roll over your 401(k)" [ref=e63]
+    - text: "from your previous employer and compare the benefits of General Investment,"
+    - link "Traditional IRA" [ref=e64]
+    - text: "and"
+    - link "Roth IRA" [ref=e65]
+    - text: "accounts to decide which is right for you."
+  - heading "Education planning" [level=2]
+  - paragraph:
+    - link "Funding for education" [ref=e66]
+    - text: "can come from any combination of options and a J.P. Morgan advisor can help you understand the benefits and disadvantages of each one. Compare among"
+    - link "529 Plans" [ref=e67]
+    - text: ", custodial accounts, financial aid and other education options to help meet your"
+    - link "college planning goals" [ref=e68]
+    - text: "."
+  - heading "Wealth Plan" [level=2]
+  - paragraph:
+    - text: "When planning for your future,"
+    - link "J.P. Morgan Wealth Plan" [ref=e69]
+    - text: "can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress."
+  - heading "Investing insights" [level=2]
+  - paragraph:
+    - text: "Stay in"
+    - link "The Know" [ref=e70]
+    - text: "by exploring articles and videos on market trends, research and financial planning."
+  - heading "Other Products & Services :" [level=2]
+  - list:
+    - listitem "Online Banking" [ref=e101]:
+      - link "Online Banking" [ref=e71]
+    - listitem "Mobile Banking" [ref=e102]:
+      - link "Mobile Banking" [ref=e72]
+    - listitem "Security Center" [ref=e103]:
+      - link "Security Center" [ref=e73]
+    - listitem "Deposit and Prepaid Account Agreement" [ref=e104]:
+      - link "Deposit and Prepaid Account Agreement" [ref=e74]
+  - list:
+    - listitem:
+      - link "Facebook" [ref=e75]: "Facebook, Opens overlay"
+    - listitem:
+      - link "Instagram" [ref=e76]: "Instagram, Opens overlay"
+    - listitem:
+      - link "X, formerly Twitter" [ref=e77]: "X, formerly Twitter, Opens overlay"
+    - listitem:
+      - link "YouTube" [ref=e78]: "YouTube, Opens overlay"
+    - listitem:
+      - link "LinkedIn" [ref=e79]: "LinkedIn, Opens overlay"
+    - listitem:
+      - link "Pinterest" [ref=e80]: "Pinterest, Opens overlay"
+  - text: "“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co."
+  - list:
+    - listitem "Privacy" [ref=e105]:
+      - link "Privacy" [ref=e81]
+    - listitem "Security" [ref=e106]:
+      - link "Security" [ref=e82]
+    - listitem "Terms of Use" [ref=e107]:
+      - link "Terms of Use" [ref=e83]
+    - listitem "Accessibility" [ref=e108]:
+      - link "Accessibility" [ref=e84]
+    - listitem "Site Map" [ref=e109]:
+      - link "Site Map" [ref=e85]
+    - listitem "AdChoices" [ref=e110]:
+      - link "AdChoices" [ref=e86]: "AdChoices, Opens overlay"
+    - listitem "Member FDIC" [ref=e111]
+    - listitem: "Equal Housing Opportunity"
+  - text: "© 2026 JPMorgan Chase & Co."
+</result>
+
+[11] thinking: **Extracting IRA values**
+
+I'm looking to extract values for Traditional vs. Roth IRA types: Deductible Traditional, Non-deductible Traditional, and Roth. The user specifically wants a comparison between Traditional and Roth, showing the after-tax values at retirement, particularly in 2061 when they would be 65 years old if starting at age 30 in 2026. I can list these values: Deductible Traditional at $197,000, Non-deductible Traditional at $201,000, and Roth at $224,000. I'll aim to present these nicely in a chart.
+
+[12] tool_call: repl("Returning to chart view")
+<request>
+await page.locator('f2e10').click();
+const s5 = await snapshot(page, {interactive: true});
+console.log(s5.diff);
+</request>
+<result tokens_used="399" elapsed_time="537ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "IRA Calculator: Comparing Roth Vs. Traditional IRA | Chase" [url=https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator]
+- link "Skip to main content" [ref=e4]
+- banner:
+  - navigation "Customer type" [ref=e5]:
+    - link "Personal" [ref=e6]
+    - link "Business" [ref=e7]
+    - link "Commercial" [ref=e8]
+  - navigation "Customer Service" [ref=e9]:
+    - menubar:
+      - menuitem "Customer Service" [ref=e10]
+      - menuitem [ref=e11]
+  - link [ref=e12]
+  - button "Sign in" [ref=e13]
+  - navigation:
+    - menubar:
+      - menuitem "Investment Planning" [ref=e14]
+      - menuitem "Work With Our Advisors" [ref=e15]
+      - menuitem "Invest On Your Own" [ref=e16]
+      - menuitem "Tools & Resources" [ref=e17]
+      - menuitem "Investment Products" [ref=e18]
+      - menuitem "Why J.P. Morgan" [ref=e19]
+      - menuitem "Get Started" [ref=e20]
+- main:
+  - heading [level=1]: "RETIREMENT TOOLS\n\n IRA calculator"
+  - text: "Compare Traditional and Roth IRA options to a general (taxable) investment account, and see how certain assumptions can impact your"
+  - link "retirement strategy" [ref=e21]
+  - text: ". Start by entering your age range and then look at each factor and adjust accordingly."
+  - button "1" [ref=e22]
+  - text: "Ready to invest in a J.P. Morgan IRA?"
+  - link "Get started" [ref=e23]
+  - text: ".\ntraditional-ira-calculator"
+  - heading [level=2]: "Frequently asked questions"
+  - region:
+    - heading [level=3]:
+      - button "How is my number calculated?" [ref=e24]
+    - region
+  - region:
+    - heading [level=3]:
+      - button "How do I know which account is right for me?" [ref=e25]
+    - region
+  - heading [level=2]: "Start planning for retirement"
+  - heading [level=3]: "Traditional IRA"
+  - text: "Your contributions may be tax-deductible"
+  - button "Footnote 9 Opens overlay" [ref=e26]
+  - text: ". Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal."
+  - link "Open an account, for traditional IRA" [ref=e27]
+  - link "Learn about Traditional IRA" [ref=e28]
+  - heading [level=3]: "Roth IRA"
+  - text: "Your contributions are not tax-deductible"
+  - button "Footnote 10 Opens overlay" [ref=e29]
+  - text: ". Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met."
+  - link "Open an account, for roth IRA" [ref=e30]
+  - link "Learn about Roth IRA" [ref=e31]
+  - heading [level=3]: "General investment"
+  - text: "This is a standard individual or joint investment account. You get the flexibility to withdraw your money at any time, without the tax benefits of an IRA."
+  - link "Open an account, for general investment" [ref=e32]
+  - heading [level=2]: "Discover how you can prepare for retirement"
+  - region "Retirement calculators" [ref=e33]:
+    - heading [level=3]: "Retirement calculators"
+    - text: "Knowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals."
+    - link "Use our retirement calculators" [ref=e34]
+  - region "Plan for retirement" [ref=e35]:
+    - heading [level=3]: "Plan for retirement"
+    - text: "Whatever you’re looking forward to—more time with family, traveling or pursuing your passions—we can can help you prepare for what comes next."
+    - link "Learn about retirement planning" [ref=e36]
+  - heading [level=2]: "Sharpen your knowledge with the latest news and market commentary on retirement"
+  - text: "Tap into the latest news and subscribe for market commentary and analysis from J.P. Morgan specialists to help you plan your investment strategy for retirement."
+  - link "Subscribe" [ref=e37]
+  - link "Read the latest, news and market commentary" [ref=e38]
+- contentinfo:
+  - text: "Footnote 1 Keep in mind: You can select an age range, or the default range will be 25 to 75.\nFootnote 2 A Traditional IRA is a retirement account where your contributions may either be tax-deductible or non-deductible, but your earnings and any previously deducted contributions will be included in your taxable income when you withdraw your money. Deductibility for a Traditional IRA may be limited if you or your spouse are covered by a retirement plan at work and your income exceeds certain levels. A Roth IRA is a retirement account where you may be able to contribute after-tax dollars and you don’t have to pay federal tax on “qualified distributions” (as defined by the Internal Revenue Code). You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your filing status and income."
+  - link "Learn more" [ref=e39]: "Learn more,  about IRA Deduction Limits, Opens overlay"
+  - text: ".\nFootnote 3 For a Deductible Traditional IRA, the tax savings from deductible contributions (determined using the designated current tax rate) are set aside and receive earnings over time using the designated annual rate of return. For example, assuming a 10% current tax rate, a $500 contribution to a Deductible Traditional IRA would equate to $50 in tax savings that year. The $50 is grown over time in a general investment account. The earnings on the $50 are assumed to be taxable in the year they are earned at the designated current tax rate. The balance of the savings and earnings is part of the estimated after-tax value in the Deductible Traditional IRA scenario, even though it’s not part of the IRA itself.\nFootnote 4 Keep in mind: You can select a rate of return, or the default rate of return will be 4%.\nFootnote 5 Keep in mind: You can select a current tax rate, or the default current tax rate will be 22%. You can select a retirement tax rate, or the default will be 12%.\nFootnote 6 For Traditional IRAs, the estimated account value of your IRA is adjusted to account for the deferred taxes on your earnings and any previously deducted contributions (if applicable), assuming all withdrawals occur at retirement age (i.e., you take a full distribution of your account balance at the targeted retirement age). For a Roth IRA, we assume that withdrawals (again, all occurring at your targeted retirement age) will qualify for tax-free treatment (i.e., be “qualified distributions” as defined by the Internal Revenue Code).\nFootnote 7 This calculation does not account for the following: IRA contribution eligibility, potential IRA catch-up contributions for eligible individuals who are age 50 and over, the application of the 10% early withdrawal tax (which generally applies to IRA distributions taken prior to age 59 1/2 unless exception applies), or Required Minimum Distributions for Traditional IRAs as defined by the Internal Revenue Code, and should be used for educational purposes only. To learn more, go to the"
+  - link "IRS IRA FAQ page" [ref=e40]: "IRS IRA FAQ page, Opens overlay"
+  - text: ", or consult with a tax or legal advisor.\nFootnote 8 All earnings in your general (taxable) investment account are assumed to be taxable in the year they are earned at the designated current tax rate. Your contributions are assumed to be in after-tax dollars, as contributions to this type of account are not tax deductible. We recommend you seek professional tax advice for further information.\nFootnote 9 Deductibility may be limited if you (or your spouse, if you are married) are covered by a retirement plan at work and your income exceeds certain levels. Please refer to the IRS website for applicable limits:"
+  - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e41]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+  - text: ".\nFootnote 10 You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your ﬁling status and income. Please refer to the IRS website for applicable limits:"
+  - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e42]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+  - text: "."
+  - link "LEARN MORE" [ref=e43]: "LEARN MORE, Opens overlay"
+  - text: "ABOUT OUR FIRM AND INVESTMENT PROFESSIONALS AT FINRA BROKERCHECK.\nTo learn more about J. P. Morgan’s investment business, including our accounts, products and services, as well as our relationship with you, please review our"
+  - link "J.P. Morgan Securities LLC Form CRS (PDF)" [ref=e44]
+  - text: "and"
+  - link "Guide to Investment Services and Brokerage Products" [ref=e45]
+  - text: ".\nImages on the page are hypothetical and for informational purposes only. Screen images are simulated.\nInvesting involves market risk, including possible loss of principal, and there is no guarantee that investment objectives will be achieved. Past performance is not a guarantee of future results.\nJPMorgan Chase and its affiliates do not provide tax, legal or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for tax, legal or accounting advice. You should consult your personal tax, legal and accounting advisors for advice before engaging in any transaction.\nAsset allocation/diversification does not guarantee a profit or protect against a loss.\nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC.\nChase Mobile® app  is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile® app. Message and data rates may apply.\n\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through  J.P. Morgan Securities LLC (JPMS), a registered broker-dealer and investment adviser, member"
+  - link "FINRA" [ref=e46]: "FINRA, opens overlay"
+  - text: "and"
+  - link "SIPC" [ref=e47]: "SIPC, opens overlay"
+  - text: ". Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\n•NOT FDIC INSURED\n•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n•NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES\n•SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e48]
+  - heading "Planning and investments" [level=2]
+  - text: "Whether you choose to work with"
+  - link "an advisor" [ref=e49]
+  - text: "and develop a financial strategy or"
+  - link "invest online" [ref=e50]
+  - text: ", J.P. Morgan offers insights, expertise and tools to help you reach your goals."
+  - heading "Invest with our advisors" [level=2]
+  - text: "Work 1:1 with a"
+  - link "J.P. Morgan advisor" [ref=e51]
+  - text: "virtually or in your"
+  - link "Chase branch" [ref=e52]
+  - text: "to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000."
+  - heading "J.P. Morgan online investing" [level=2]
+  - text: "Easily"
+  - link "fund" [ref=e53]
+  - text: ", research, trade and manage your investments online all conveniently in the Chase Mobile® app or at chase.com."
+  - link "J.P Morgan online investing" [ref=e54]
+  - text: "is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing"
+  - link "features" [ref=e55]
+  - text: ","
+  - link "offers, promotions and coupons" [ref=e56]
+  - text: "."
+  - heading "Investment tools & resources" [level=2]
+  - text: "Our"
+  - link "calculators" [ref=e57]
+  - text: "are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n\nFor a comparison of IRAs and which one aligns with you:"
+  - link "IRA Calculator" [ref=e58]
+  - text: "Plan for your retirement:"
+  - link "401K/403b Calculator" [ref=e59]
+  - text: "Compare annuity payouts to create your desired strategy:"
+  - link "Annuity Calculator" [ref=e60]
+  - text: "Understand how your retirement contributions may differ:"
+  - link "IRA Eligibility Calculator" [ref=e61]
+  - heading "Retirement planning" [level=2]
+  - text: "Planning for retirement can start at any point in your life. Whether you prefer to independently manage your"
+  - link "retirement planning" [ref=e62]
+  - text: "or work with an advisor to create a personalized strategy, we can help."
+  - link "Roll over your 401(k)" [ref=e63]
+  - text: "from your previous employer and compare the benefits of General Investment,"
+  - link "Traditional IRA" [ref=e64]
+  - text: "and"
+  - link "Roth IRA" [ref=e65]
+  - text: "accounts to decide which is right for you."
+  - heading "Education planning" [level=2]
+  - link "Funding for education" [ref=e66]
+  - text: "can come from any combination of options and a J.P. Morgan advisor can help you understand the benefits and disadvantages of each one. Compare among"
+  - link "529 Plans" [ref=e67]
+  - text: ", custodial accounts, financial aid and other education options to help meet your"
+  - link "college planning goals" [ref=e68]
+  - text: "."
+  - heading "Wealth Plan" [level=2]
+  - text: "When planning for your future,"
+  - link "J.P. Morgan Wealth Plan" [ref=e69]
+  - text: "can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress."
+  - heading "Investing insights" [level=2]
+  - text: "Stay in"
+  - link "The Know" [ref=e70]
+  - text: "by exploring articles and videos on market trends, research and financial planning."
+  - heading "Other Products & Services :" [level=2]
+  - link "Online Banking" [ref=e71]
+  - link "Mobile Banking" [ref=e72]
+  - link "Security Center" [ref=e73]
+  - link "Deposit and Prepaid Account Agreement" [ref=e74]
+  - link "Facebook" [ref=e75]: "Facebook, Opens overlay"
+  - link "Instagram" [ref=e76]: "Instagram, Opens overlay"
+  - link "X, formerly Twitter" [ref=e77]: "X, formerly Twitter, Opens overlay"
+  - link "YouTube" [ref=e78]: "YouTube, Opens overlay"
+  - link "LinkedIn" [ref=e79]: "LinkedIn, Opens overlay"
+  - link "Pinterest" [ref=e80]: "Pinterest, Opens overlay"
+  - text: "“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co."
+  - link "Privacy" [ref=e81]
+  - link "Security" [ref=e82]
+  - link "Terms of Use" [ref=e83]
+  - link "Accessibility" [ref=e84]
+  - link "Site Map" [ref=e85]
+  - link "AdChoices" [ref=e86]: "AdChoices, Opens overlay"
+  - text: "Member FDIC  Equal Housing Opportunity © 2026  JPMorgan Chase & Co."
+- iframe:
+  - text: "Run your numbers:Age Range:30 to 65"
+  - textbox "30" [ref=f2e11]
+  - textbox "65" [ref=f2e12]
+  - text: "Starting balance ($):0"
+  - textbox "0" [ref=f2e13]
+  - text: "Monthly contribution ($):300"
+  - textbox "300" [ref=f2e14]
+  - text: "Annual rate of return (%):3"
+  - textbox "3" [ref=f2e15]
+  - text: "Current tax rate (%):13"
+  - textbox "13" [ref=f2e16]
+  - text: "Estimated tax rate at retirement (%):24"
+  - textbox "24" [ref=f2e17]
+  - heading "Estimated account value" [level=3]
+  - img
+  - link "See chart as table Opens Dialog" [ref=f2e18]
+</result>
+
+[13] tool_call: repl("Saving comparison chart screenshot")
+<request>
+const imgBuf1 = await page.locator('iframe[title="traditional-ira-calculator"], iframe').first().screenshot({path: './artifacts/chase_ira_comparison.png'});
+console.log('saved ./artifacts/chase_ira_comparison.png bytes=' + imgBuf1.length);
+</request>
+<result tokens_used="218" elapsed_time="34ms">
+Error: TypeError: page.locator(...).first(...).screenshot is not a function
+    at repl.js:1:126
+</result>
+
+[14] thinking: **Troubleshooting screenshotting issues**
+
+I’m considering if the locator screenshot is unavailable, and I might need to use `page.screenshot` instead. Cropping with CSS bounding boxes could help, but I need precision. The error message suggests that `first(...).screenshot` isn't a function, possibly due to a snapshot locator. I need to explore if `page.locator('iframe')` can provide bounding boxes, and if it's a custom wrapper in this REPL. Overall, I plan to save a complete screenshot of the page.
+
+[15] tool_call: repl("Saving visible chart screenshot")
+<request>
+const imgBuf2 = await page.screenshot({path: './artifacts/chase_ira_comparison.png', fullPage: false});
+console.log('saved ./artifacts/chase_ira_comparison.png bytes=' + imgBuf2.length);
+display(Buffer.from(imgBuf2).toString('base64'));
+</request>
+<result tokens_used="322" elapsed_time="427ms">
+saved ./artifacts/chase_ira_comparison.png bytes=125555
+[Image: original 2880x1800, displayed at 2000x1250. Multiply coordinates by 1.44 to map to original image.]
+</result>
+
+[16] assistant: Done. I entered:
+
+- Age: 30
+- Retire at: 65
+- Monthly savings: $300
+- Annual return: 3%
+- Current tax rate: 13%
+- Retirement tax rate: 24%
+- Starting balance: $0
+
+Chase’s IRA calculator shows the estimated 2061 values as:
+
+| Account type | Estimated value |
+|---|---:|
+| Roth IRA | $224k |
+| Non-deductible Traditional IRA | $201k |
+| Deductible Traditional IRA | $197k |
+
+![Chase IRA comparison chart](./artifacts/chase_ira_comparison.png)
+
+The Roth IRA is highest in this scenario.

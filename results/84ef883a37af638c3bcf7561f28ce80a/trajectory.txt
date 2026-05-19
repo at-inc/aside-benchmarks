@@ -1,0 +1,3400 @@
+[1] user: Go to https://www.cars.com/, Find the cheapest used hatchback car listing in Madison which has black interiors with a heated seat option and premium sound system.
+
+[2] tool_call: write_todos:
+Todo list updated:
+- [in_progress] t1: Search Cars.com used hatchbacks near Madison and apply/inspect relevant filters
+- [pending] t2: Verify cheapest listing details: interior color, heated seats, premium sound
+- [pending] t3: Report listing with price, vehicle, location, link, and evidence
+
+[3] tool_call: repl("Opening Cars.com")
+<request>
+const p1 = await openTab('https://www.cars.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="61" elapsed_time="3875ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → New Cars, Used Cars, Car Dealers, Prices & Reviews | Cars.com (https://www.cars.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "New Cars, Used Cars, Car Dealers, Prices & Reviews | Cars.com" [url=https://www.cars.com/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - navigation "primary" [ref=e2]:
+    - link "Cars.com, Homepage Logo" [ref=e3]
+    - link "Buy" [ref=e4]
+    - button "Buy menu" [ref=e5]
+    - link "Sell" [ref=e6]
+    - button "Sell menu" [ref=e7]
+    - link "Research" [ref=e8]
+    - button "Research menu" [ref=e9]
+    - link "Finance" [ref=e10]
+    - button "Finance menu" [ref=e11]
+    - button "Menu" [ref=e12]:
+      - img "Menu"
+      - text: "Account."
+- main:
+  - region:
+    - link "Sponsored content Sponsored: The 2026 Nissan Rogue Built for noisy, crazy, Happy Chaos" [ref=e13]
+  - heading "Imagine the possibilities" [level=1]
+  - tab "Shop cars for sale" [ref=e14] [selected]
+  - tab "Sell your car" [ref=e16]
+  - tabpanel "Shop cars for sale":
+    - text: "Try \n    \n       finding a car with me, Carson™great deals under $20k SUVs w/carplay under $30k using your own words luxury suvs under $30k"
+    - textbox "Try finding a car with me, Carson™great deals under $20kSUVs w/carplay under $30kusing your own word" [ref=e18] [placeholder="Search by make, model, budget..."]
+    - button [ref=e19] [disabled]:
+      - img "search"
+    - text: "- Or search by -\n      \n      \n        \n      \n    \n      \n      \n      \n        \n          \n        \n        \n          \n            \n              New/used"
+    - combobox "New & used" [ref=e20]:
+      - option "New & used" (selected) value="all"
+      - option "New & certified" value="new_cpo"
+      - option "New" value="new"
+      - option "Used" value="used"
+      - option "Certified" value="cpo"
+    - text: "Make"
+    - combobox "BMW" [ref=e21]:
+      - option "All makes"
+      - option "Acura" value="acura"
+      - option "Audi" value="audi"
+      - option "BMW" (selected) value="bmw"
+      - option "Buick" value="buick"
+      - option "Cadillac" value="cadillac"
+      - option "Chevrolet" value="chevrolet"
+      - option "Chrysler" value="chrysler"
+      - option "Dodge" value="dodge"
+      - option "Ford" value="ford"
+      - option "Genesis" value="genesis"
+      - option "GMC" value="gmc"
+      - option "Honda" value="honda"
+      - option "Hyundai" value="hyundai"
+      - option "INFINITI" value="infiniti"
+      - option "Jaguar" value="jaguar"
+      - option "Jeep" value="jeep"
+      - option "Kia" value="kia"
+      - option "Land Rover" value="land_rover"
+      - option "Lexus" value="lexus"
+      - option "Lincoln" value="lincoln"
+      - option "Mazda" value="mazda"
+      - option "Mercedes-Benz" value="mercedes_benz"
+      - option "MINI" value="mini"
+      - option "Mitsubishi" value="mitsubishi"
+      - option "Nissan" value="nissan"
+      - option "Porsche" value="porsche"
+      - option "RAM" value="ram"
+      - option "Subaru" value="subaru"
+      - option "Tesla" value="tesla"
+      - option "Toyota" value="toyota"
+      - option "Volkswagen" value="volkswagen"
+      - option "Volvo" value="volvo"
+      - option "AC" value="ac"
+      - option "Acura" value="acura"
+      - option "Alfa Romeo" value="alfa_romeo"
+      - option "AM General" value="am_general"
+      - option "American Motors" value="american_motors"
+      - option "Aston Martin" value="aston_martin"
+      - option "Auburn" value="auburn"
+      - option "Audi" value="audi"
+      - option "Austin-Healey" value="austin_healey"
+      - option "Avanti Motors" value="avanti_motors"
+      - option "Bentley" value="bentley"
+      - option "BMW" value="bmw"
+      - option "Bricklin" value="bricklin"
+      - option "Bugatti" value="bugatti"
+      - option "Buick" value="buick"
+      - option "Cadillac" value="cadillac"
+      - option "Chevrolet" value="chevrolet"
+      - option "Chrysler" value="chrysler"
+      - option "Cord" value="cord"
+      - option "Daewoo" value="daewoo"
+      - option "Datsun" value="datsun"
+      - option "Delorean" value="delorean"
+      - option "Desoto" value="desoto"
+      - option "DeTomaso" value="detomaso"
+      - option "Dodge" value="dodge"
+      - option "Edsel" value="edsel"
+      - option "Excalibur" value="excalibur"
+      - option "Ferrari" value="ferrari"
+      - option "FIAT" value="fiat"
+      - option "Fisker" value="fisker"
+      - option "Ford" value="ford"
+      - option "Genesis" value="genesis"
+      - option "Geo" value="geo"
+      - option "GMC" value="gmc"
+      - option "Honda" value="honda"
+      - option "Hudson" value="hudson"
+      - option "Hummer" value="hummer"
+      - option "Hyundai" value="hyundai"
+      - option "INEOS" value="ineos"
+      - option "INFINITI" value="infiniti"
+      - option "International" value="international"
+      - option "Isuzu" value="isuzu"
+      - option "Jaguar" value="jaguar"
+      - option "Jeep" value="jeep"
+      - option "Jensen" value="jensen"
+      - option "Karma" value="karma"
+      - option "Kia" value="kia"
+      - option "Koenigsegg" value="koenigsegg"
+      - option "Lamborghini" value="lamborghini"
+      - option "Lancia" value="lancia"
+      - option "Land Rover" value="land_rover"
+      - option "Lexus" value="lexus"
+      - option "Lincoln" value="lincoln"
+      - option "Lotus" value="lotus"
+      - option "Lucid" value="lucid"
+      - option "Maserati" value="maserati"
+      - option "Maybach" value="maybach"
+      - option "Mazda" value="mazda"
+      - option "McLaren" value="mclaren"
+      - option "Mercedes-Benz" value="mercedes_benz"
+      - option "Mercury" value="mercury"
+      - option "MG" value="mg"
+      - option "MINI" value="mini"
+      - option "Mitsubishi" value="mitsubishi"
+      - option "Morgan" value="morgan"
+      - option "Nash" value="nash"
+      - option "Nissan" value="nissan"
+      - option "Oldsmobile" value="oldsmobile"
+      - option "Packard" value="packard"
+      - option "Pagani" value="pagani"
+      - option "Panoz" value="panoz"
+      - option "Plymouth" value="plymouth"
+      - option "Polestar" value="polestar"
+      - option "Pontiac" value="pontiac"
+      - option "Porsche" value="porsche"
+      - option "Qvale" value="qvale"
+      - option "RAM" value="ram"
+      - option "Rivian" value="rivian"
+      - option "Rolls-Royce" value="rolls_royce"
+      - option "Saab" value="saab"
+      - option "Saleen" value="saleen"
+      - option "Saturn" value="saturn"
+      - option "Scion" value="scion"
+      - option "smart"
+      - option "Studebaker" value="studebaker"
+      - option "Subaru" value="subaru"
+      - option "Sunbeam" value="sunbeam"
+      - option "Suzuki" value="suzuki"
+      - option "Tesla" value="tesla"
+      - option "Toyota" value="toyota"
+      - option "Triumph" value="triumph"
+      - option "VinFast" value="vinfast"
+      - option "Volkswagen" value="volkswagen"
+      - option "Volvo" value="volvo"
+      - option "Willys" value="willys"
+    - text: "Model"
+    - combobox "135" [ref=e22]:
+      - option "All models"
+      - option "1-Series" value="bmw-1_series"
+      - option "128" value="bmw-128"
+      - option "135" (selected) value="bmw-135"
+      - option "1500" value="bmw-1500"
+      - option "2-Series" value="bmw-2_series"
+      - option "228" value="bmw-228"
+      - option "228 Gran Coupe" value="bmw-228_gran_coupe"
+      - option "230" value="bmw-230"
+      - option "2000" value="bmw-2000"
+      - option "2500" value="bmw-2500"
+      - option "2600" value="bmw-2600"
+      - option "3" value="bmw-3"
+      - option "3-Series" value="bmw-3_series"
+      - option "318" value="bmw-318"
+      - option "320" value="bmw-320"
+      - option "323" value="bmw-323"
+      - option "325" value="bmw-325"
+      - option "328" value="bmw-328"
+      - option "328 Gran Turismo" value="bmw-328_gran_turismo"
+      - option "328d" value="bmw-328d"
+      - option "330" value="bmw-330"
+      - option "330 Gran Turismo" value="bmw-330_gran_turismo"
+      - option "330e" value="bmw-330e"
+      - option "335" value="bmw-335"
+      - option "335 Gran Turismo" value="bmw-335_gran_turismo"
+      - option "340" value="bmw-340"
+      - option "340 Gran Turismo" value="bmw-340_gran_turismo"
+      - option "4-Series" value="bmw-4_series"
+      - option "428" value="bmw-428"
+      - option "428 Gran Coupe" value="bmw-428_gran_coupe"
+      - option "430" value="bmw-430"
+      - option "430 Gran Coupe" value="bmw-430_gran_coupe"
+      - option "435" value="bmw-435"
+      - option "435 Gran Coupe" value="bmw-435_gran_coupe"
+      - option "440" value="bmw-440"
+      - option "440 Gran Coupe" value="bmw-440_gran_coupe"
+      - option "5-Series" value="bmw-5_series"
+      - option "525" value="bmw-525"
+      - option "528" value="bmw-528"
+      - option "530" value="bmw-530"
+      - option "530e" value="bmw-530e"
+      - option "535" value="bmw-535"
+      - option "535 Gran Turismo" value="bmw-535_gran_turismo"
+      - option "535d" value="bmw-535d"
+      - option "540" value="bmw-540"
+      - option "550" value="bmw-550"
+      - option "550 Gran Turismo" value="bmw-550_gran_turismo"
+      - option "550e" value="bmw-550e"
+      - option "6-Series" value="bmw-6_series"
+      - option "600" value="bmw-600"
+      - option "640" value="bmw-640"
+      - option "640 Gran Coupe" value="bmw-640_gran_coupe"
+      - option "640 Gran Turismo" value="bmw-640_gran_turismo"
+      - option "645" value="bmw-645"
+      - option "650" value="bmw-650"
+      - option "650 Gran Coupe" value="bmw-650_gran_coupe"
+      - option "ALPINA B6 Gran Coupe" value="bmw-alpina_b6_gran_coupe"
+      - option "7-Series" value="bmw-7_series"
+      - option "740" value="bmw-740"
+      - option "740e" value="bmw-740e"
+      - option "745" value="bmw-745"
+      - option "745e" value="bmw-745e"
+      - option "750" value="bmw-750"
+      - option "750e" value="bmw-750e"
+      - option "760" value="bmw-760"
+      - option "ALPINA B7" value="bmw-alpina_b7"
+      - option "8-Series" value="bmw-8_series"
+      - option "840" value="bmw-840"
+      - option "840 Gran Coupe" value="bmw-840_gran_coupe"
+      - option "850" value="bmw-850"
+      - option "ALPINA B8 Gran Coupe" value="bmw-alpina_b8_gran_coupe"
+      - option "i-Series" value="bmw-i_series"
+      - option "i3" value="bmw-i3"
+      - option "i4 Gran Coupe" value="bmw-i4_gran_coupe"
+      - option "i7" value="bmw-i7"
+      - option "i8" value="bmw-i8"
+      - option "iX" value="bmw-ix"
+      - option "i5" value="bmw-i5"
+      - option "M-Series" value="bmw-m_series"
+      - option "M" value="bmw-m"
+      - option "M2" value="bmw-m2"
+      - option "M235" value="bmw-m235"
+      - option "M235 Gran Coupe" value="bmw-m235_gran_coupe"
+      - option "M240" value="bmw-m240"
+      - option "M3" value="bmw-m3"
+      - option "M340" value="bmw-m340"
+      - option "M4" value="bmw-m4"
+      - option "M440" value="bmw-m440"
+      - option "M440 Gran Coupe" value="bmw-m440_gran_coupe"
+      - option "M5" value="bmw-m5"
+      - option "M550" value="bmw-m550"
+      - option "M6" value="bmw-m6"
+      - option "M6 Gran Coupe" value="bmw-m6_gran_coupe"
+      - option "M760" value="bmw-m760"
+      - option "M8" value="bmw-m8"
+      - option "M8 Gran Coupe" value="bmw-m8_gran_coupe"
+      - option "M850" value="bmw-m850"
+      - option "M850 Gran Coupe" value="bmw-m850_gran_coupe"
+      - option "X-Series" value="bmw-x_series"
+      - option "ALPINA XB7" value="bmw-alpina_xb7"
+      - option "X1" value="bmw-x1"
+      - option "X2" value="bmw-x2"
+      - option "X3" value="bmw-x3"
+      - option "X3 M" value="bmw-x3_m"
+      - option "X3 PHEV" value="bmw-x3_phev"
+      - option "X4" value="bmw-x4"
+      - option "X4 M" value="bmw-x4_m"
+      - option "X5" value="bmw-x5"
+      - option "X5 eDrive" value="bmw-x5_edrive"
+      - option "X5 M" value="bmw-x5_m"
+      - option "X5 PHEV" value="bmw-x5_phev"
+      - option "X6" value="bmw-x6"
+      - option "X6 M" value="bmw-x6_m"
+      - option "X7" value="bmw-x7"
+      - option "XM" value="bmw-xm"
+      - option "Z3" value="bmw-z3"
+      - option "Z4" value="bmw-z4"
+      - option "Z8" value="bmw-z8"
+    - text: "Distance"
+    - combobox "All miles from" [ref=e23]:
+      - option "10 miles" value="10"
+      - option "20 miles" value="20"
+      - option "30 miles" value="30"
+      - option "40 miles" value="40"
+      - option "50 miles" value="50"
+      - option "75 miles" value="75"
+      - option "100 miles" value="100"
+      - option "150 miles" value="150"
+      - option "200 miles" value="200"
+      - option "250 miles" value="250"
+      - option "500 miles" value="500"
+      - option "All miles from" (selected) value="all"
+    - text: "ZIP"
+    - textbox "94109" [ref=e24]
+    - text: "Show 57 matches"
+    - button [ref=e25]
+  - tablist "features"
+  - region
+  - iframe "Advertisement" [ref=e26]:
+    - link "Advertisement" [ref=f20e1]
+  - region:
+    - text: "Cars.com news"
+    - heading "The Best Cars of 2026 have arrived" [level=2]
+    - text: "After testing over 100 vehicles, the Cars.com editors have awarded the 6 best cars of 2026.\n        \n        \n          \n            See the winners"
+    - link [ref=e27]
+    - text: "Shop the Best of 2026"
+    - link [ref=e28]
+  - region
+  - heading "Welcome back!" [level=2]
+  - text: "Check out these recommendations based on cars you've viewed.\n  \n    \n      \n        \n          \n            \n              Silver 2017 BMW 650 xDrive Coupe"
+  - link "2017 BMW 650 xDrive" [ref=e29]
+  - text: "$25,311\n\n\n        \n          $200 price drop\n        \n\n\n\n               58,954 mi.\n            \n      \n        \n      \n    \n          \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n        \n      \n        \n          \n            \n              Blue 2017 BMW 230 i Convertible"
+  - link "2017 BMW 230 i" [ref=e30]
+  - text: "$20,000\n\n\n\n\n               52,400 mi.\n            \n      \n        \n      \n    \n          \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n        \n      \n        \n          \n            \n              Iconic Silver Metallic 2023 Ford Explorer XLT SUV"
+  - link "2023 Ford Explorer XLT" [ref=e31]
+  - text: "$28,995\n\n\n\n\n               49,388 mi.\n            \n      \n        \n      \n    \n          \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n        \n      \n        \n          \n            \n              Soul Red Crystal Metallic 2023 Mazda Mazda3 2.5 Turbo AWD Hatchback"
+  - link "2023 Mazda Mazda3 2.5 Turbo AWD" [ref=e32]
+  - text: "$23,888\n\n\n        \n          $400 price drop\n        \n\n\n\n               67,751 mi.\n            \n      \n        \n      \n    \n          \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n        \n      \n      \n\n    \n      \n        \n          \n          Sign up for more recommendations.\n        \n\n        \n          Sign up"
+  - button [ref=e33]
+  - text: "Already have an account?\n          \n            Sign in."
+  - button [ref=e34]
+  - group "card carousel":
+    - contentinfo
+  - region:
+    - banner
+  - region
+  - heading "Popular categories" [level=2]
+  - tab "Electric" [ref=e35] [selected]
+  - tab "SUV" [ref=e37]
+  - tab "Sedan" [ref=e39]
+  - tab "Pickup Truck" [ref=e41]
+  - tab "Luxury" [ref=e43]
+  - tab "Crossover" [ref=e45]
+  - tab "Hybrid" [ref=e47]
+  - tab "Diesel" [ref=e49]
+  - tab "Coupe" [ref=e51]
+  - tab "Hatchback" [ref=e53]
+  - tab "Wagon" [ref=e55]
+  - tab "Convertible" [ref=e57]
+  - tab "Minivan" [ref=e59]
+  - tab "Plug-in Hybrid" [ref=e61]
+  - tab "Van" [ref=e63]
+  - tabpanel "Electric":
+    - text: "All new EVs\n      \n       \n        Experience the best way to search new cars"
+    - link "Shop new cars" [ref=e65]
+    - text: "Tesla Model 3"
+    - link "Shop now" [ref=e66]: "Shop now\n     for Tesla Model 3"
+    - text: "Tesla Model S"
+    - link "Shop now" [ref=e67]: "Shop now\n     for Tesla Model S"
+    - text: "Nissan Leaf"
+    - link "Shop now" [ref=e68]: "Shop now\n     for Nissan Leaf"
+    - text: "Tesla Model Y"
+    - link "Shop now" [ref=e69]: "Shop now\n     for Tesla Model Y"
+    - text: "Ford Mustang Mach-E"
+    - link "Shop now" [ref=e70]: "Shop now\n     for Ford Mustang Mach-E"
+    - text: "Ford F-150 Lightning"
+    - link "Shop now" [ref=e71]: "Shop now\n     for Ford F-150 Lightning"
+    - text: "BMW i3"
+    - link "Shop now" [ref=e72]: "Shop now\n     for BMW i3"
+    - text: "Volkswagen ID.4"
+    - link "Shop now" [ref=e73]: "Shop now\n     for Volkswagen ID.4"
+    - text: "What to know before purchasing an EV"
+    - link "Watch EV101 Series Now" [ref=e74]: "Watch EV101 Series Now\n     for What to know before purchasing an EV"
+    - link "See more electric cars" [ref=e75]
+    - link "Shop all cars" [ref=e76]
+  - img "Scroll tab list to right" [ref=e78]
+  - button [ref=e79]
+  - tablist "Popular categories" [ref=e80] [scrollable]
+  - region:
+    - banner
+  - region
+  - text: "Get started"
+  - button [ref=e81]
+  - heading "Your Garage" [level=2]
+  - heading "Add your car. Track its value." [level=3]
+  - text: "Add your car to Your Garage to track its market value and cash in when\n          the time is right to sell."
+  - link "Learn more - Your Garage" [ref=e82]: "Learn more"
+  - text: "Already have an account?\n          Sign in"
+  - button [ref=e83]
+  - text: "."
+  - region
+  - heading "Sell your car your way" [level=2]
+  - text: "Get an offer online  and quickly complete the transaction with a local dealer.\n          \n        \n        \n          OR\n        \n        \n          \n          \n             List your car for free. Set your own price and easily showcase your car on Cars.com.\n          \n        \n      \n      \n        Get started"
+  - link [ref=e84]
+  - region
+  - heading "Trending searches near you" [level=2]
+  - tab "Porsche Cayenne 2017+ Under $67K" [ref=e85] [selected]
+  - tabpanel "Porsche Cayenne 2017+ Under $67K":
+    - link "Porsche Certified Porsche Cayenne" [ref=e87]
+    - text: "$65,995\n          \n        \n      \n      \n         \n          27,972 mi."
+    - link "Used Porsche Cayenne" [ref=e88]
+    - text: "$23,301\n          \n        \n      \n      \n         \n          92,865 mi."
+    - link "Porsche Certified Porsche Cayenne" [ref=e89]
+    - text: "$66,995\n          \n        \n      \n      \n         \n          17,642 mi."
+    - link "Porsche Certified Porsche Cayenne" [ref=e90]
+    - text: "$66,800\n          \n        \n      \n      \n         \n          12,775 mi."
+    - link "Used Porsche Cayenne" [ref=e91]
+    - text: "$57,750\n          \n        \n      \n      \n         \n          45,800 mi."
+    - link "Used Porsche Cayenne" [ref=e92]
+    - text: "$31,495\n          \n        \n      \n      \n         \n          53,783 mi."
+    - link "Used Porsche Cayenne" [ref=e93]
+    - text: "$35,000\n          \n        \n      \n      \n         \n          62,782 mi."
+    - link "Used Porsche Cayenne" [ref=e94]
+    - text: "$53,995\n          \n        \n      \n      \n         \n          29,957 mi."
+    - link "Used Porsche Cayenne" [ref=e95]
+    - text: "$59,894\n          \n        \n      \n      \n         \n          39,391 mi."
+    - link "Porsche Certified Porsche Cayenne" [ref=e96]
+    - text: "$65,995\n          \n        \n      \n      \n         \n          27,972 mi."
+    - link "See more Porsche Cayenne 2017+ Under $67K" [ref=e97]
+  - tab "Used SUV" [ref=e98]
+  - tab "Used Under $15K" [ref=e100]
+  - tab "Used Electric" [ref=e102]
+  - tab "Used GMC Sierra 1500 2019+ Truck Under $50K Gasoline" [ref=e104]
+  - tab "Porsche 911 2022+" [ref=e106]
+  - tab "Under $45K Gasoline" [ref=e108]
+  - img "Scroll tab list to right" [ref=e111]
+  - button [ref=e112]
+  - tablist "Trending searches near you" [ref=e113] [scrollable]
+  - region:
+    - banner
+  - heading "Ready for a new ride? Explore the latest vehicles" [level=2]
+  - text: "View latest models\n            \n             \n              Compare vehicles side-by-side\n            \n             \n              Discover award winning cars\n            \n          \n        \n      \n        \n      \n    \n        \n           \n            Research new cars"
+  - link [ref=e115]
+  - text: "Compare cars"
+  - link [ref=e117]
+  - text: "Featured storefront"
+  - heading "Mercedes-Benz" [level=2]
+  - text: "Intelligent driver assistance with modern connectivity in Mercedes-Benz® luxury vehicles.\n    \n      \n        About this brand"
+  - link [ref=e118]
+  - region
+  - heading "Compare top rated vehicles" [level=2]
+  - link "Tesla Model Y vs. Ford Mustang Mach-E" [ref=e119]
+  - link "Honda Accord vs. Toyota Camry" [ref=e120]
+  - link "Honda CR-V vs. Toyota RAV4" [ref=e121]
+  - region:
+    - banner
+  - heading "News & reviews" [level=2]
+  - link "toyota-prius-nightshade-2025-01-exterior-front-angle May Toyota Prius Deals" [ref=e122]
+  - link "lexus-nx-350h-f-sport-2026-01-exterior-overhead-profile The 2026 Lexus NX 350h Is Efficient and Styl" [ref=e123]
+  - link "honda-passport-2026-03-interior-car-seat Which Cars Fit 3 Car Seats?" [ref=e124]
+  - link "toyota-corolla-cross-2026-01-exterior-front-angle 10 Biggest News Stories of the Week: Toyota Coroll" [ref=e125]
+  - heading "Trending near you" [level=3]
+  - text: "1"
+  - link "New Tesla Model Y Trim Drops Price of AWD $7,000" [ref=e126]
+  - text: "2"
+  - link "These Hybrid SUVs Have the Best MPG" [ref=e127]
+  - text: "3"
+  - link "The 2026 Honda Civic Type R Is the Best-Driving New Car Under $100,000: Review" [ref=e128]
+  - text: "4"
+  - link "2026 Volkswagen Tiguan Breaks Nissan Lock With Compact SUV Challenge Win" [ref=e129]
+  - text: "5"
+  - link "Toyota's Production Problems Mean the 2026 RAV4 Is Pricey and Hard to Find" [ref=e130]
+  - link "See all news" [ref=e131]
+  - region
+  - region
+  - heading "Popular searches" [level=2]
+  - heading "Popular new cars for sale" [ref=e132] [level=3]
+  - button [ref=e133]
+  - heading "Popular used cars for sale" [ref=e134] [level=3]
+  - button [ref=e135]
+  - heading "Research popular new cars for sale" [ref=e136] [level=3]
+  - button [ref=e137]
+  - heading "Research popular used cars" [ref=e138] [level=3]
+  - button [ref=e139]
+  - region:
+    - banner
+- contentinfo:
+  - heading "Shop" [level=2]
+  - link "Used Cars" [ref=e140]
+  - link "New Cars" [ref=e141]
+  - link "Certified Pre-Owned" [ref=e142]
+  - link "Cars for Sale by Owner" [ref=e143]
+  - link "Find a Dealer" [ref=e144]
+  - link "Pickup Trucks Buying Guide" [ref=e145]
+  - link "Electric Cars Buying Guide" [ref=e146]
+  - link "Financing" [ref=e147]
+  - button [ref=e148]
+  - region
+  - heading "Research & News" [level=2]
+  - link "Consumer Car Reviews" [ref=e149]
+  - link "Car News & Expert Reviews" [ref=e150]
+  - link "Compare Cars" [ref=e151]
+  - link "Best Cars Rankings" [ref=e152]
+  - link "Safety & Recalls" [ref=e153]
+  - link "American-Made Index" [ref=e154]
+  - link "Video Reviews" [ref=e155]
+  - button [ref=e156]
+  - region
+  - heading "Sell" [level=2]
+  - link "Sell Your Car" [ref=e157]
+  - link "Get Instant Offer" [ref=e158]
+  - link "Free Listing on Cars dot com" [ref=e159]: "Free Listing on Cars.com"
+  - link "Selling Guides & Tips" [ref=e160]
+  - button [ref=e161]
+  - region
+  - heading "Tools & Services" [level=2]
+  - link "Car Loan Calculators" [ref=e162]
+  - link "Car Affordability Calculator" [ref=e163]
+  - link "Ship a Car" [ref=e164]
+  - link "Car Warranty" [ref=e165]
+  - link "Car Insurance" [ref=e166]
+  - link "Car Maintenance" [ref=e167]
+  - link "Site Map" [ref=e168]
+  - button [ref=e169]
+  - region
+  - heading "Top Metro Areas" [level=2]
+  - link "Chicago, IL" [ref=e170]
+  - link "Houston, TX" [ref=e171]
+  - link "Los Angeles, CA" [ref=e172]
+  - link "Phoenix, AZ" [ref=e173]
+  - link "Atlanta, GA" [ref=e174]
+  - link "Philadelphia, PA" [ref=e175]
+  - link "New York, NY" [ref=e176]
+  - link "San Diego, CA" [ref=e177]
+  - button [ref=e178]
+  - region
+  - heading "For Dealers" [level=2]
+  - link "Explore Cars Commerce, External link" [ref=e179]: "Explore Cars Commerce"
+  - link "Log In To Your Platform, External link" [ref=e180]: "Log In To Your Platform"
+  - button [ref=e181]
+  - region
+  - text: "Our Mobile App"
+  - link "Download on the App Store" [ref=e182]
+  - link "Get it on Google Play" [ref=e183]
+  - text: "Connect With Us"
+  - link "TikTok, External link" [ref=e184]
+  - link "Facebook, External link" [ref=e185]
+  - link "Youtube, External link" [ref=e186]
+  - link "Instagram, External link" [ref=e187]
+  - link "Pinterest, External link" [ref=e188]
+  - heading "Popular Car Models" [level=2]
+  - heading "Toyota" [level=3]:
+    - link "Toyota" [ref=e189]
+  - link "Toyota RAV4" [ref=e190]
+  - link "Toyota Prius" [ref=e191]
+  - link "Toyota Tacoma" [ref=e192]
+  - link "Toyota Camry" [ref=e193]
+  - link "Toyota 4Runner" [ref=e194]
+  - heading "Honda" [level=3]:
+    - link "Honda" [ref=e195]
+  - link "Honda CR-V" [ref=e196]
+  - link "Honda Civic" [ref=e197]
+  - link "Honda Accord" [ref=e198]
+  - link "Honda Pilot" [ref=e199]
+  - link "Honda HR-V" [ref=e200]
+  - heading "Ford" [level=3]:
+    - link "Ford" [ref=e201]
+  - link "Ford Maverick" [ref=e202]
+  - link "Ford Bronco" [ref=e203]
+  - link "Ford F-150" [ref=e204]
+  - link "Ford Mustang Mach-E" [ref=e205]
+  - link "Ford Explorer" [ref=e206]
+  - heading "Jeep" [level=3]:
+    - link "Jeep" [ref=e207]
+  - link "Jeep Wrangler" [ref=e208]
+  - link "Jeep Grand Cherokee" [ref=e209]
+  - link "Jeep Wagoneer" [ref=e210]
+  - link "Jeep Grand Wagoneer" [ref=e211]
+  - link "Jeep Cherokee" [ref=e212]
+  - heading "Chevrolet" [level=3]:
+    - link "Chevrolet" [ref=e213]
+  - link "Chevrolet Corvette" [ref=e214]
+  - link "Chevrolet Silverado 1500" [ref=e215]
+  - link "Chevrolet Traverse" [ref=e216]
+  - link "Chevrolet Tahoe" [ref=e217]
+  - link "Chevrolet Colorado" [ref=e218]
+  - heading "Kia" [level=3]:
+    - link "Kia" [ref=e219]
+  - link "Kia Sportage" [ref=e220]
+  - link "Kia Sorento" [ref=e221]
+  - link "Kia Stinger" [ref=e222]
+  - link "Kia K5" [ref=e223]
+  - link "Kia EV6" [ref=e224]
+  - button [ref=e225]
+  - region
+  - link "About Cars dot com" [ref=e226]: "About Cars.com"
+  - link "Contact Us" [ref=e227]
+  - link "Investor Relations, External link" [ref=e228]: "Investor Relations"
+  - link "Careers" [ref=e229]
+  - link "Licensing & Rights, External link" [ref=e230]: "Licensing & Rights"
+  - link "Fraud Awareness" [ref=e231]
+  - link "Feedback" [ref=e232]
+  - link "Terms & Conditions of Use" [ref=e233]
+  - link "Privacy Notice" [ref=e234]
+  - link "California Privacy Notice" [ref=e235]
+  - link "My Privacy ChoicesCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e236]: "My Privacy Choices"
+  - button "Cookie Preferences" [ref=e237]
+  - link "Accessibility Statement" [ref=e238]
+  - link "Ad Choices" [ref=e239]
+  - text: "© 2026 Cars.com. All rights reserved."
+</result>
+
+[4] thinking: **Searching for car listings**
+
+I’m considering searching for "Used Hatchbacks for Sale in Madison, WI" on Cars.com. It seems the default radius for searches might not be exact, so I think setting it to 50 miles could help for cheaper options, even in Chicago. Using Madison's ZIP code 53703, I can filter by distance and check features like heated seats and premium sound systems. I want to sort by list price too. I should proceed with setting up this search!
+
+[5] tool_call: repl("Opening filtered Cars.com search")
+<request>
+const url2 = 'https://www.cars.com/shopping/results/?stock_type=used&body_style_slugs[]=hatchback&interior_color_slugs[]=black&feature_slugs[]=heated_seats&feature_slugs[]=premium_sound_system&maximum_distance=50&zip=53703&sort=list_price';
+await openTab(url2);
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.tree);
+</request>
+<result tokens_used="598" elapsed_time="3375ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → Used Hatchbacks for Sale Near Madison, WI | Cars.com (https://www.cars.com/shopping/results/?body_style_slugs[]=hatchback&convenience_features[]=heated_seats&entertainment_features[]…)
+# note: interactive (clickable / focusable) elements only.
+- title: "Used Hatchbacks for Sale Near Madison, WI | Cars.com" [url=https://www.cars.com/shopping/results/?body_style_slugs[]=hatchback&convenience_features[]=heated_seats&entertainment_features[]…]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - navigation "primary" [ref=e2]:
+    - link "Cars.com" [ref=e3]
+    - link "Buy" [ref=e4]
+    - button "Buy menu" [ref=e5]
+    - link "Sell" [ref=e6]
+    - button "Sell menu" [ref=e7]
+    - link "Research" [ref=e8]
+    - button "Research menu" [ref=e9]
+    - link "Finance" [ref=e10]
+    - button "Finance menu" [ref=e11]
+    - button [ref=e12]:
+      - img "Menu"
+      - text: "Account."
+- main:
+  - banner:
+    - heading "Used hatchbacks for sale near Madison, WI" [level=1]
+  - region "Applied filters and sort" [ref=e13]:
+    - text: "Used"
+    - button [ref=e14]:
+      - img "Remove filter" [ref=e15]
+    - text: "Hatchback"
+    - button [ref=e16]:
+      - img "Remove filter" [ref=e17]
+    - text: "Black Interior"
+    - button [ref=e18]:
+      - img "Remove filter" [ref=e19]
+    - text: "Heated Seats"
+    - button [ref=e20]:
+      - img "Remove filter" [ref=e21]
+    - text: "Premium Sound System"
+    - button [ref=e22]:
+      - img "Remove filter" [ref=e23]
+    - combobox "Sort: Lowest price" [ref=e27]
+  - region "Listings" [ref=e30]:
+    - link "Skip to Filters" [ref=e31]
+    - group:
+      - text: "1  of  6"
+      - group "White 2013 Chevrolet Sonic RS White 2013 Chevrolet Sonic RS White 2013 Chevrolet Sonic RS White 2013" [ref=e32] [scrollable]
+    - button [ref=e33]
+    - text: "$4,900"
+    - img "Mileage"
+    - text: "148,213 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $88/mo"
+    - button [ref=e35]
+    - heading [level=2]:
+      - link "Used 2013 Chevrolet Sonic RS" [ref=e36]
+    - button "Good Deal" [ref=e37]
+    - button "High Demand" [ref=e40]
+    - text: "Quality Cars LLC\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e42]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Ice Storm Metallic 2013 Ford C-Max Energi SEL Ice Storm Metallic 2013 Ford C-Max Energi SEL Ice Stor" [ref=e43] [scrollable]
+    - button [ref=e44]
+    - text: "$7,500"
+    - img "Mileage"
+    - text: "110,763 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $135/mo"
+    - button [ref=e46]
+    - heading [level=2]:
+      - link "Used 2013 Ford C-Max Energi SEL" [ref=e47]
+    - button "Great Deal" [ref=e48]
+    - button "High Demand" [ref=e51]
+    - text: "Metro Ford of Madison"
+    - img "Review rating"
+    - text: "3.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e53]
+    - img "Listing location"
+    - text: "Madison, WI (7 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Fathom Blue 2016 Kia Soul !Fathom Blue 2016 Kia Soul !Fathom Blue 2016 Kia Soul !Fathom Blue 2016 Ki" [ref=e54] [scrollable]
+    - button [ref=e55]
+    - text: "$9,256"
+    - img "Price drop"
+    - text: "$603"
+    - img "Mileage"
+    - text: "132,887 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $166/mo"
+    - button [ref=e57]
+    - heading [level=2]:
+      - link "Used 2016 Kia Soul !" [ref=e58]
+    - button "Good Deal" [ref=e59]
+    - text: "Ewald KIA of Oconomowoc"
+    - img "Review rating"
+    - text: "4.3\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e62]
+    - img "Listing location"
+    - text: "Oconomowoc, WI (46 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chocolate 2015 MINI Hardtop Cooper Chocolate 2015 MINI Hardtop Cooper Chocolate 2015 MINI Hardtop Co" [ref=e63] [scrollable]
+    - button [ref=e64]
+    - text: "$9,313"
+    - img "Price drop"
+    - text: "$189"
+    - img "Mileage"
+    - text: "94,642 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $168/mo"
+    - button [ref=e66]
+    - heading [level=2]:
+      - link "Used 2015 MINI Hardtop Cooper" [ref=e67]
+    - button "Good Deal" [ref=e68]
+    - text: "East Madison Toyota"
+    - img "Review rating"
+    - text: "4.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e71]
+    - img "Listing location"
+    - text: "Madison, WI (7 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Thunder Gray 2020 Hyundai Veloster 2 Thunder Gray 2020 Hyundai Veloster 2 Thunder Gray 2020 Hyundai " [ref=e72] [scrollable]
+    - button [ref=e73]
+    - text: "$14,995"
+    - img "Mileage"
+    - text: "66,836 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $270/mo"
+    - button [ref=e75]
+    - heading [level=2]:
+      - link "Used 2020 Hyundai Veloster 2" [ref=e76]
+    - button "Great Deal" [ref=e77]
+    - text: "Goben Cars West"
+    - img "Review rating"
+    - text: "4.7\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e80]
+    - img "Listing location"
+    - text: "Middleton, WI (8 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Blue 2016 Volkswagen Golf R 2.0T DSG Blue 2016 Volkswagen Golf R 2.0T DSG Blue 2016 Volkswagen Golf " [ref=e81] [scrollable]
+    - button [ref=e82]
+    - text: "$16,851"
+    - img "Mileage"
+    - text: "114,475 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $303/mo"
+    - button [ref=e84]
+    - heading [level=2]:
+      - link "Used 2016 Volkswagen Golf R 2.0T DSG" [ref=e85]
+    - button "Good Deal" [ref=e86]
+    - text: "German Auto House LLC\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e89]
+    - img "Listing location"
+    - text: "Fitchburg, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chili Red 2017 MINI Hardtop Cooper S Chili Red 2017 MINI Hardtop Cooper S Chili Red 2017 MINI Hardto" [ref=e90] [scrollable]
+    - button [ref=e91]
+    - text: "$16,999"
+    - img "Mileage"
+    - text: "79,231 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $306/mo"
+    - button [ref=e93]
+    - heading [level=2]:
+      - link "Used 2017 MINI Hardtop Cooper S" [ref=e94]
+    - button "Fair Deal" [ref=e95]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e98]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black Sapphire Metallic 2018 BMW 640 i xDrive Black Sapphire Metallic 2018 BMW 640 i xDrive Black Sa" [ref=e99] [scrollable]
+    - button [ref=e100]
+    - text: "$17,989"
+    - img "Mileage"
+    - text: "106,788 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $324/mo"
+    - button [ref=e102]
+    - heading [level=2]:
+      - link "Used 2018 BMW 640 i xDrive" [ref=e103]
+    - button "Great Deal" [ref=e104]
+    - text: "Kearns Motor Car Co."
+    - img "Review rating"
+    - text: "4.6\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e107]
+    - img "Listing location"
+    - text: "Johnson Creek, WI (32 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Deep Blue Metallic 2019 Tesla Model S Long Range Deep Blue Metallic 2019 Tesla Model S Long Range De" [ref=e108] [scrollable]
+    - button [ref=e109]
+    - text: "$19,995"
+    - img "Mileage"
+    - text: "120,931 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $360/mo"
+    - button [ref=e111]
+    - heading [level=2]:
+      - link "Used 2019 Tesla Model S Long Range" [ref=e112]
+    - button "Great Deal" [ref=e113]
+    - button "Range Score | Excellent" [ref=e116]
+    - text: "Goben Cars West"
+    - img "Review rating"
+    - text: "4.7\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e118]
+    - img "Listing location"
+    - text: "Middleton, WI (8 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Glacier White Metallic 2019 Audi S5 3.0T Prestige Glacier White Metallic 2019 Audi S5 3.0T Prestige " [ref=e119] [scrollable]
+    - button [ref=e120]
+    - text: "$22,995"
+    - img "Price drop"
+    - text: "$1K"
+    - img "Mileage"
+    - text: "111,720 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $414/mo"
+    - button [ref=e122]
+    - heading [level=2]:
+      - link "Used 2019 Audi S5 3.0T Prestige" [ref=e123]
+    - button "Great Deal" [ref=e124]
+    - text: "A to Z Autosports LLC\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e127]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Majestic Black Pearl 2023 Acura Integra A-SPEC Majestic Black Pearl 2023 Acura Integra A-SPEC Majest" [ref=e128] [scrollable]
+    - button [ref=e129]
+    - text: "$25,177"
+    - img "Price drop"
+    - text: "$100"
+    - img "Mileage"
+    - text: "22,816 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $453/mo"
+    - button [ref=e131]
+    - heading [level=2]:
+      - link "Used 2023 Acura Integra A-SPEC" [ref=e132]
+    - button "Great Deal" [ref=e133]
+    - text: "Kunes Mitsubishi of Madison"
+    - img "Review rating"
+    - text: "2.5\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e136]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Glacier White Metallic 2023 Audi A5 Sportback Premium Plus Glacier White Metallic 2023 Audi A5 Sport" [ref=e137] [scrollable]
+    - button [ref=e138]
+    - text: "$27,995"
+    - img "Mileage"
+    - text: "60,390 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $504/mo"
+    - button [ref=e140]
+    - heading [level=2]:
+      - link "Used 2023 Audi A5 Sportback Premium Plus" [ref=e141]
+    - button "Good Deal" [ref=e142]
+    - text: "Trust N Ride\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e145]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)\n\n  \n\n\n                  \n                \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n\n              \n\n\n\n\n\n\n\n\n\n\n\n              \n                \n\n                    \n\n                        New 2026 Honda Civic Hybrid Sport Touring\n\n                      $32,706"
+    - heading [level=3]:
+      - link "New 2026 Honda Civic Hybrid Sport Touring" [ref=e146]
+    - button [ref=e147]
+    - text: "New 2026 Honda Civic Hybrid Sport Touring\n\n                      $33,141"
+    - heading [level=3]:
+      - link "New 2026 Honda Civic Hybrid Sport Touring" [ref=e148]
+    - button [ref=e149]
+    - text: "New 2026 Honda Civic Hybrid Sport Touring\n\n                      $33,141"
+    - heading [level=3]:
+      - link "New 2026 Honda Civic Hybrid Sport Touring" [ref=e150]
+    - button [ref=e151]
+    - text: "New 2026 Honda Civic Hybrid Sport Touring\n\n                      $33,141"
+    - heading [level=3]:
+      - link "New 2026 Honda Civic Hybrid Sport Touring" [ref=e152]
+    - button [ref=e153]
+    - text: "New 2026 Honda Prelude BASE\n\n                      $41,946"
+    - heading [level=3]:
+      - link "New 2026 Honda Prelude BASE" [ref=e154]
+    - button [ref=e155]
+    - text: "New 2026 BMW 430 Gran Coupe i xDrive\n\n                      $56,300"
+    - heading [level=3]:
+      - link "New 2026 BMW 430 Gran Coupe i xDrive" [ref=e156]
+    - button [ref=e157]
+    - text: "New 2026 Audi A5\n\n                      $58,560"
+    - heading [level=3]:
+      - link "New 2026 Audi A5" [ref=e158]
+    - button [ref=e159]
+    - text: "New 2026 Audi A5\n\n                      $61,510"
+    - heading [level=3]:
+      - link "New 2026 Audi A5" [ref=e160]
+    - button [ref=e161]
+    - text: "New 2026 BMW i4 Gran Coupe xDrive40\n\n                      $68,070"
+    - heading [level=3]:
+      - link "New 2026 BMW i4 Gran Coupe xDrive40" [ref=e162]
+    - button [ref=e163]
+    - text: "New 2025 Audi S5 3.0T quattro Premium\n\n                      $68,535"
+    - heading [level=3]:
+      - link "New 2025 Audi S5 3.0T quattro Premium" [ref=e164]
+    - button [ref=e165]
+    - text: "New 2026 BMW i4 Gran Coupe xDrive40\n\n                      $72,290"
+    - heading [level=3]:
+      - link "New 2026 BMW i4 Gran Coupe xDrive40" [ref=e166]
+    - button [ref=e167]
+    - text: "New 2026 Audi S5 PRESTIGE\n\n                      $76,225"
+    - heading [level=3]:
+      - link "New 2026 Audi S5 PRESTIGE" [ref=e168]
+    - button [ref=e169]
+    - heading "New cars matching your search" [level=2]
+    - link "See all" [ref=e170]
+    - group "card carousel":
+      - img "Scroll carousel to left"
+      - button [ref=e171] [disabled]
+      - img "Scroll carousel to right" [ref=e173]
+      - button [ref=e174]
+      - contentinfo:
+        - button "Go to carousel pane 1" [ref=e176]
+        - button "Go to carousel pane 2" [ref=e177]
+    - group:
+      - text: "1  of  6"
+      - group "Daytona Gray Pearl Effect 2021 Audi A5 45 S line Premium Plus Daytona Gray Pearl Effect 2021 Audi A5" [ref=e178] [scrollable]
+    - button [ref=e179]
+    - text: "$28,790"
+    - img "Mileage"
+    - text: "48,477 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $518/mo"
+    - button [ref=e181]
+    - heading [level=2]:
+      - link "Used 2021 Audi A5 45 S line Premium Plus" [ref=e182]
+    - button "Good Deal" [ref=e183]
+    - button "High Demand" [ref=e186]
+    - text: "Zimbrick European\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e188]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Meteorite Gray Metallic 2025 Honda Civic Hybrid Sport Touring Meteorite Gray Metallic 2025 Honda Civ" [ref=e189] [scrollable]
+    - button [ref=e190]
+    - text: "$29,984"
+    - img "Mileage"
+    - text: "2,628 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $539/mo"
+    - button [ref=e192]
+    - heading [level=2]:
+      - link "Used 2025 Honda Civic Hybrid Sport Touring" [ref=e193]
+    - button "Great Deal" [ref=e194]
+    - button "2025 Award Finalist" [ref=e197]
+    - text: "Wilde East Towne Honda"
+    - img "Review rating"
+    - text: "4.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e199]
+    - img "Listing location"
+    - text: "Madison, WI (7 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Pearl White Multi-Coat 2019 Tesla Model S P100D Pearl White Multi-Coat 2019 Tesla Model S P100D Pear" [ref=e200] [scrollable]
+    - button [ref=e201]
+    - text: "$32,503"
+    - img "Mileage"
+    - text: "84,301 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $585/mo"
+    - button [ref=e203]
+    - heading [level=2]:
+      - link "Used 2019 Tesla Model S P100D" [ref=e204]
+    - button "Fair Deal" [ref=e205]
+    - button "Range Score | Excellent" [ref=e208]
+    - text: "Schoepp Motors West"
+    - img "Review rating"
+    - text: "4.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e210]
+    - img "Listing location"
+    - text: "Middleton, WI (8 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "British Racing Green IV Metallic 2025 MINI Hardtop Cooper S British Racing Green IV Metallic 2025 MI" [ref=e211] [scrollable]
+    - button [ref=e212]
+    - text: "$32,580"
+    - img "Mileage"
+    - text: "6,804 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $586/mo"
+    - button [ref=e214]
+    - heading [level=2]:
+      - link "Used 2025 MINI Hardtop Cooper S" [ref=e215]
+    - button "Good Deal" [ref=e216]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e219]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chronos Gray Metallic 2024 Audi A5 Sportback 45 S line quattro Premium Chronos Gray Metallic 2024 Au" [ref=e220] [scrollable]
+    - button [ref=e221]
+    - text: "$32,779"
+    - img "Price drop"
+    - text: "$216"
+    - img "Mileage"
+    - text: "42,800 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $590/mo"
+    - button [ref=e223]
+    - heading [level=2]:
+      - link "Used 2024 Audi A5 Sportback 45 S line quattro Premium" [ref=e224]
+    - button "Good Deal" [ref=e225]
+    - text: "Rosen Ford Belleville\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e228]
+    - img "Listing location"
+    - text: "Belleville, WI (18 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Mythos Black Metallic 2023 Audi A5 Sportback 45 S Line Premium Plus Mythos Black Metallic 2023 Audi " [ref=e229] [scrollable]
+    - button [ref=e230]
+    - text: "$35,464"
+    - img "Mileage"
+    - text: "31,905 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $638/mo"
+    - button [ref=e232]
+    - heading [level=2]:
+      - link "Used 2023 Audi A5 Sportback 45 S Line Premium Plus" [ref=e233]
+    - button "Good Deal" [ref=e234]
+    - text: "Ewald Chrysler Dodge Jeep Ram of Oconomowoc"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e237]
+    - img "Listing location"
+    - text: "Oconomowoc, WI (46 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Midnight Black II Metallic 2025 MINI Hardtop Cooper S Midnight Black II Metallic 2025 MINI Hardtop C" [ref=e238] [scrollable]
+    - button [ref=e239]
+    - text: "$35,630"
+    - img "Price drop"
+    - text: "$2.2K"
+    - img "Mileage"
+    - text: "1,506 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $641/mo"
+    - button [ref=e241]
+    - heading [level=2]:
+      - link "Used 2025 MINI Hardtop Cooper S" [ref=e242]
+    - button "Fair Deal" [ref=e243]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e246]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chili Red II 2025 MINI Hardtop Cooper S Chili Red II 2025 MINI Hardtop Cooper S Chili Red II 2025 MI" [ref=e247] [scrollable]
+    - button [ref=e248]
+    - text: "$35,998"
+    - img "Mileage"
+    - text: "1,763 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $647/mo"
+    - button [ref=e250]
+    - heading [level=2]:
+      - link "Used 2025 MINI Hardtop Cooper S" [ref=e251]
+    - button "Fair Deal" [ref=e252]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e255]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Pearl White Multi 2021 Tesla Model S Plaid Pearl White Multi 2021 Tesla Model S Plaid Pearl White Mu" [ref=e256] [scrollable]
+    - button [ref=e257]
+    - text: "$46,330"
+    - img "Price drop"
+    - text: "$577"
+    - img "Mileage"
+    - text: "83,342 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $833/mo"
+    - button [ref=e259]
+    - heading [level=2]:
+      - link "Used 2021 Tesla Model S Plaid" [ref=e260]
+    - button "Good Deal" [ref=e261]
+    - button "Range Score | Excellent" [ref=e264]
+    - text: "Kunes Ford of Delavan"
+    - img "Review rating"
+    - text: "4.0\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e266]
+    - img "Listing location"
+    - text: "Delavan, WI (50 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "lapiz blue metallic 2026 Volkswagen Golf R 2.0T DSG lapiz blue metallic 2026 Volkswagen Golf R 2.0T " [ref=e267] [scrollable]
+    - button [ref=e268]
+    - text: "$48,995"
+    - img "Mileage"
+    - text: "558 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $881/mo"
+    - button [ref=e270]
+    - heading [level=2]:
+      - link "Used 2026 Volkswagen Golf R 2.0T DSG" [ref=e271]
+    - button "Good Deal" [ref=e272]
+    - text: "Hesser Toyota"
+    - img "Review rating"
+    - text: "4.5\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e275]
+    - img "Listing location"
+    - text: "Janesville, WI (32 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black Sapphire Metallic 2025 BMW i4 Gran Coupe M50 Black Sapphire Metallic 2025 BMW i4 Gran Coupe M5" [ref=e276] [scrollable]
+    - button [ref=e277]
+    - text: "$55,499"
+    - img "Price drop"
+    - text: "$1.5K"
+    - img "Mileage"
+    - text: "17,854 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $998/mo"
+    - button [ref=e279]
+    - heading [level=2]:
+      - link "Certified 2025 BMW i4 Gran Coupe M50" [ref=e280]
+    - button "Good Deal" [ref=e281]
+    - button "Certified Pre-Owned" [ref=e284]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e286]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black Sapphire Metallic 2025 BMW i4 Gran Coupe M50 Black Sapphire Metallic 2025 BMW i4 Gran Coupe M5" [ref=e287] [scrollable]
+    - button [ref=e288]
+    - text: "$58,299"
+    - img "Price drop"
+    - text: "$1.7K"
+    - img "Mileage"
+    - text: "10,748 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $1,049/mo"
+    - button [ref=e290]
+    - heading [level=2]:
+      - link "Certified 2025 BMW i4 Gran Coupe M50" [ref=e291]
+    - button "Good Deal" [ref=e292]
+    - button "Certified Pre-Owned" [ref=e295]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e297]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+  - region "Filters" [ref=e298]:
+    - link "Skip to Listings" [ref=e299]
+    - banner:
+      - heading [level=3]: "Carson"
+      - text: "I found  32  cars  that match your search. Want help\n      narrowing them down?\n    \n        \n        \n          Narrow it down"
+      - button [ref=e301]
+    - heading "32 results" [level=3]
+    - text: "Clear all"
+    - generic "filters" [ref=e302]
+    - button [ref=e303]
+    - button "Save search" [ref=e304]
+    - text: "Search in your own words"
+    - textbox [ref=e306]
+    - button "Submit" [ref=e307] [disabled]
+    - heading "Location" [level=3]
+    - text: "Search within"
+    - combobox "50 miles" [ref=e308]:
+      - option "10 miles" value="10"
+      - option "20 miles" value="20"
+      - option "30 miles" value="30"
+      - option "40 miles" value="40"
+      - option "50 miles" (selected) value="50"
+      - option "75 miles" value="75"
+      - option "100 miles" value="100"
+      - option "150 miles" value="150"
+      - option "200 miles" value="200"
+      - option "250 miles" value="250"
+      - option "500 miles" value="500"
+      - option "750 miles" value="750"
+      - option "1000 miles" value="1000"
+      - option "All miles" value="9999"
+      - text: "10 miles\n              \n            \n              \n                 20 miles\n              \n            \n              \n                 30 miles\n              \n            \n              \n                 40 miles\n              \n            \n              \n                 50 miles\n              \n            \n              \n                 75 miles\n              \n            \n              \n                 100 miles\n              \n            \n              \n                 150 miles\n              \n            \n              \n                 200 miles\n              \n            \n              \n                 250 miles\n              \n            \n              \n                 500 miles\n              \n            \n              \n                 750 miles\n              \n            \n              \n                 1000 miles\n              \n            \n              \n                 All miles"
+    - text: "ZIP code"
+    - textbox "53703" [ref=e309]
+    - checkbox [ref=e310] [checked]
+    - label "Include shippable listings" [ref=e311]
+    - heading "Basics" [level=3]
+    - button "Price" [ref=e312]
+    - button "Mileage" [ref=e313]
+    - button "New/Used" [ref=e314]
+    - radio [ref=e315]
+    - label "New, used & CPO (45)" [ref=e316]
+    - radio [ref=e317]
+    - label "New & CPO (15)" [ref=e318]
+    - radio [ref=e319]
+    - label "New (13)" [ref=e320]
+    - radio [ref=e321] [checked]
+    - label "Used (32)" [ref=e322]
+    - radio [ref=e323]
+    - label "Certified Pre-Owned (2)" [ref=e324]
+    - button "Deal rating" [ref=e325]
+    - heading "Vehicle Details" [level=3]
+    - button "Year" [ref=e326]
+    - button "Make" [ref=e327]
+    - button "Model" [ref=e328] [disabled]
+    - button "Trim" [ref=e329] [disabled]
+    - heading "Style" [level=3]
+    - button "Body style" [ref=e330]
+    - checkbox [ref=e331]
+    - label "All body styles" [ref=e332]
+    - checkbox [ref=e333]
+    - label "SUV (760)" [ref=e334]
+    - checkbox [ref=e335]
+    - label "Truck (378)" [ref=e336]
+    - checkbox [ref=e337]
+    - label "Sedan (117)" [ref=e338]
+    - checkbox [ref=e339]
+    - label "Coupe (55)" [ref=e340]
+    - checkbox [ref=e341] [checked]
+    - label "Hatchback (32)" [ref=e342]
+    - checkbox [ref=e343]
+    - label "Convertible (19)" [ref=e344]
+    - checkbox [ref=e345]
+    - label "Minivan (5)" [ref=e346]
+    - checkbox [ref=e347]
+    - label "Passenger Van (3)" [ref=e348]
+    - checkbox [ref=e349]
+    - label "Wagon (2)" [ref=e350]
+    - button "Vehicle size" [ref=e351]
+    - button "Cab type" [ref=e352] [disabled]
+    - button "Door count" [ref=e353]
+    - button "Exterior color" [ref=e354]
+    - button "Interior color" [ref=e355]
+    - checkbox [ref=e356]
+    - label "All interior colors" [ref=e357]
+    - checkbox [ref=e358]
+    - label "Beige (2)" [ref=e359]
+    - checkbox [ref=e360] [checked]
+    - label "Black (32)" [ref=e361]
+    - checkbox [ref=e362]
+    - label "Brown (1)" [ref=e363]
+    - checkbox [ref=e364]
+    - label "White (2)" [ref=e365]
+    - heading "Performance" [level=3]
+    - button "Fuel type" [ref=e366]
+    - button "Transmission" [ref=e367]
+    - button "Drivetrain" [ref=e368]
+    - button "Cylinders" [ref=e369]
+    - button "EV range" [ref=e370]
+    - button "EV charge time" [ref=e371]
+    - heading "Features" [level=3]
+    - button "Convenience" [ref=e372]
+    - generic [ref=e373] [scrollable]:
+      - checkbox [ref=e374]
+      - label "All convenience features" [ref=e375]
+      - checkbox [ref=e376]
+      - label "Adaptive Cruise Control (21)" [ref=e377]
+      - checkbox [ref=e378]
+      - label "Cooled Seats (8)" [ref=e379]
+      - checkbox [ref=e380] [checked]
+      - label "Heated Seats (32)" [ref=e381]
+      - checkbox [ref=e382]
+      - label "Heated Steering Wheel (20)" [ref=e383]
+      - checkbox [ref=e384]
+      - label "Keyless Entry (32)" [ref=e385]
+      - checkbox [ref=e386]
+      - label "Keyless Start (27)" [ref=e387]
+      - checkbox [ref=e388]
+      - label "Navigation System (23)" [ref=e389]
+      - checkbox [ref=e390]
+      - label "Power Folding Mirrors (2)" [ref=e391]
+      - checkbox [ref=e392]
+      - label "Power Liftgate (18)" [ref=e393]
+      - checkbox [ref=e394]
+      - label "Remote Start (9)" [ref=e395]
+    - button "Entertainment" [ref=e396]
+    - generic [ref=e397] [scrollable]:
+      - checkbox [ref=e398]
+      - label "All entertainment features" [ref=e399]
+      - checkbox [ref=e400]
+      - label "Android Auto® (9)" [ref=e401]
+      - checkbox [ref=e402]
+      - label "Apple CarPlay® (23)" [ref=e403]
+      - checkbox [ref=e404]
+      - label "Bluetooth® (32)" [ref=e405]
+      - checkbox [ref=e406]
+      - label "CD Player (5)" [ref=e407]
+      - checkbox [ref=e408]
+      - label "DVD Player (2)" [ref=e409]
+      - checkbox [ref=e410]
+      - label "HomeLink (16)" [ref=e411]
+      - checkbox [ref=e412] [checked]
+      - label "Premium Sound System (32)" [ref=e413]
+      - checkbox [ref=e414]
+      - label "Rear Seat Entertainment (2)" [ref=e415]
+      - checkbox [ref=e416]
+      - label "Satellite Radio (13)" [ref=e417]
+      - checkbox [ref=e418]
+      - label "USB Port (28)" [ref=e419]
+      - checkbox [ref=e420]
+      - label "WiFi Hotspot (14)" [ref=e421]
+    - button "Exterior" [ref=e422]
+    - button "Safety" [ref=e423]
+    - button "Seating" [ref=e424]
+    - heading "Other" [level=3]
+    - button "Vehicle history" [ref=e425]
+    - button "Lifestyle" [ref=e426]
+    - button "Seller type" [ref=e427] [disabled]
+    - button "Awards" [ref=e428]
+    - heading "Keywords" [level=3]
+    - text: "keyword"
+    - textbox "e.g., sunroof" [ref=e429] [placeholder="e.g., sunroof"]
+    - generic "Search" [ref=e430]
+    - button [ref=e431]
+    - heading "Show only" [level=3]
+    - checkbox [ref=e432]
+    - label "Cars with photos" [ref=e433]
+- contentinfo:
+  - heading "Shop" [level=2]
+  - link "Used Cars" [ref=e434]
+  - link "New Cars" [ref=e435]
+  - link "Certified Pre-Owned" [ref=e436]
+  - link "Cars for Sale by Owner" [ref=e437]
+  - link "Find a Dealer" [ref=e438]
+  - link "Pickup Trucks Buying Guide" [ref=e439]
+  - link "Electric Cars Buying Guide" [ref=e440]
+  - link "Financing" [ref=e441]
+  - button [ref=e442]
+  - region
+  - heading "Research & News" [level=2]
+  - link "Consumer Car Reviews" [ref=e443]
+  - link "Car News & Expert Reviews" [ref=e444]
+  - link "Compare Cars" [ref=e445]
+  - link "Best Cars Rankings" [ref=e446]
+  - link "Safety & Recalls" [ref=e447]
+  - link "American-Made Index" [ref=e448]
+  - link "Video Reviews" [ref=e449]
+  - button [ref=e450]
+  - region
+  - heading "Sell" [level=2]
+  - link "Sell Your Car" [ref=e451]
+  - link "Get Instant Offer" [ref=e452]
+  - link "Free Listing on Cars.com" [ref=e453]
+  - link "Selling Guides & Tips" [ref=e454]
+  - button [ref=e455]
+  - region
+  - heading "Tools & Services" [level=2]
+  - link "Car Loan Calculators" [ref=e456]
+  - link "Car Affordability Calculator" [ref=e457]
+  - link "Ship a Car" [ref=e458]
+  - link "Car Warranty" [ref=e459]
+  - link "Car Insurance" [ref=e460]
+  - link "Car Maintenance" [ref=e461]
+  - link "Site Map" [ref=e462]
+  - button [ref=e463]
+  - region
+  - heading "Top Metro Areas" [level=2]
+  - link "Chicago, IL" [ref=e464]
+  - link "Houston, TX" [ref=e465]
+  - link "Los Angeles, CA" [ref=e466]
+  - link "Phoenix, AZ" [ref=e467]
+  - link "Atlanta, GA" [ref=e468]
+  - link "Philadelphia, PA" [ref=e469]
+  - link "New York, NY" [ref=e470]
+  - link "San Diego, CA" [ref=e471]
+  - button [ref=e472]
+  - region
+  - heading "For Dealers" [level=2]
+  - link "Explore Cars Commerce, External link" [ref=e473]: "Explore Cars Commerce"
+  - link "Log In To Your Platform, External link" [ref=e474]: "Log In To Your Platform"
+  - button [ref=e475]
+  - region
+  - text: "Our Mobile App"
+  - link "Download on the App Store" [ref=e476]
+  - link "Get it on Google Play" [ref=e477]
+  - text: "Connect With Us"
+  - link "TikTok, External link" [ref=e478]
+  - link "Facebook, External link" [ref=e479]
+  - link "Youtube, External link" [ref=e480]
+  - link "Instagram, External link" [ref=e481]
+  - link "Pinterest, External link" [ref=e482]
+  - heading "Popular Car Models" [level=2]
+  - heading "Toyota" [level=3]:
+    - link "Toyota" [ref=e483]
+  - link "Toyota RAV4" [ref=e484]
+  - link "Toyota Prius" [ref=e485]
+  - link "Toyota Tacoma" [ref=e486]
+  - link "Toyota Camry" [ref=e487]
+  - link "Toyota 4Runner" [ref=e488]
+  - heading "Honda" [level=3]:
+    - link "Honda" [ref=e489]
+  - link "Honda CR-V" [ref=e490]
+  - link "Honda Civic" [ref=e491]
+  - link "Honda Accord" [ref=e492]
+  - link "Honda Pilot" [ref=e493]
+  - link "Honda HR-V" [ref=e494]
+  - heading "Ford" [level=3]:
+    - link "Ford" [ref=e495]
+  - link "Ford Maverick" [ref=e496]
+  - link "Ford Bronco" [ref=e497]
+  - link "Ford F-150" [ref=e498]
+  - link "Ford Mustang Mach-E" [ref=e499]
+  - link "Ford Explorer" [ref=e500]
+  - heading "Jeep" [level=3]:
+    - link "Jeep" [ref=e501]
+  - link "Jeep Wrangler" [ref=e502]
+  - link "Jeep Grand Cherokee" [ref=e503]
+  - link "Jeep Wagoneer" [ref=e504]
+  - link "Jeep Grand Wagoneer" [ref=e505]
+  - link "Jeep Cherokee" [ref=e506]
+  - heading "Chevrolet" [level=3]:
+    - link "Chevrolet" [ref=e507]
+  - link "Chevrolet Corvette" [ref=e508]
+  - link "Chevrolet Silverado 1500" [ref=e509]
+  - link "Chevrolet Traverse" [ref=e510]
+  - link "Chevrolet Tahoe" [ref=e511]
+  - link "Chevrolet Colorado" [ref=e512]
+  - heading "Kia" [level=3]:
+    - link "Kia" [ref=e513]
+  - link "Kia Sportage" [ref=e514]
+  - link "Kia Sorento" [ref=e515]
+  - link "Kia Stinger" [ref=e516]
+  - link "Kia K5" [ref=e517]
+  - link "Kia EV6" [ref=e518]
+  - button [ref=e519]
+  - region
+  - link "About Cars.com" [ref=e520]
+  - link "Contact Us" [ref=e521]
+  - link "Investor Relations, External link" [ref=e522]: "Investor Relations"
+  - link "Careers" [ref=e523]
+  - link "Licensing & Rights, External link" [ref=e524]: "Licensing & Rights"
+  - link "Fraud Awareness" [ref=e525]
+  - link "Feedback" [ref=e526]
+  - link "Terms & Conditions of Use" [ref=e527]
+  - link "Privacy Notice" [ref=e528]
+  - link "California Privacy Notice" [ref=e529]
+  - link "My Privacy ChoicesCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e530]: "My Privacy Choices"
+  - link "Cookie Preferences" [ref=e531]
+  - link "Accessibility Statement" [ref=e532]
+  - link "Ad Choices" [ref=e533]
+  - text: "© 2026 Cars.com. All rights reserved."
+</result>
+
+[6] thinking: **Verifying car listings**
+
+I need to check for the cheapest options. The listing shows all 32 cars have black, heated, and premium features. I should sort them by the lowest price. The first listing is a $4,900 Chevrolet Sonic RS at Quality Cars LLC, just 4 miles away. I need to click and verify its details, making sure to check the features listed. I’ll use the reference code e36 from the current snapshot for this.
+
+[7] tool_call: repl("Opening cheapest listing details")
+<request>
+await page.locator('e36').click();
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff);
+</request>
+<result tokens_used="130" elapsed_time="2159ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Used 2013 Chevrolet Sonic RS For Sale $4,900 | Cars.com" [url=https://www.cars.com/vehicledetail/2c027067-f7cd-40cb-98a7-bcc87bbfd6a5/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - navigation "primary" [ref=e2]:
+    - link "Cars.com" [ref=e3]
+    - link "Buy" [ref=e4]
+    - button "Buy menu" [ref=e5]
+    - link "Sell" [ref=e6]
+    - button "Sell menu" [ref=e7]
+    - link "Research" [ref=e8]
+    - button "Research menu" [ref=e9]
+    - link "Finance" [ref=e10]
+    - button "Finance menu" [ref=e11]
+    - button [ref=e12]:
+      - img "Menu"
+      - text: "Account."
+- main:
+  - navigation "Breadcrumb" [ref=e13]:
+    - link "Home" [ref=e14]
+    - link "Cars for Sale" [ref=e15]
+    - link "Search Results" [ref=e16]
+    - text: "Used 2013 Chevrolet Sonic RS"
+  - button [ref=e17]
+  - group:
+    - button "White 2013 Chevrolet Sonic RS" [ref=e18]
+    - button "White 2013 Chevrolet Sonic RS" [ref=e19]
+    - button "White 2013 Chevrolet Sonic RS" [ref=e20]
+    - button "White 2013 Chevrolet Sonic RS" [ref=e21]
+    - button "White 2013 Chevrolet Sonic RS" [ref=e22]
+    - button "See gallery (13)" [ref=e23]
+  - heading "Used 2013 Chevrolet Sonic RS" [level=1]
+  - region:
+    - text: "$4,900\n        \n      \n      \n        \n  \n    $88"
+    - button [ref=e24]
+    - text: "Est. monthly payment\n  \n      \n    \n\n  \n  \n      \n        \n        \n        \n      \n      \n    \n    \n\n      \n        \n      \n    \n        \n      \n    \n      \n        \n      \n    \n     \n  \n  148,213 mi"
+    - button "Good Deal High Demand" [ref=e25]
+  - region:
+    - region:
+      - heading "This vehicle is a" [level=2]: "This vehicle is a  good deal"
+      - img "At $4,900, this vehicle is a good deal. The good deal range for this vehicle is between $4,663 and $": "$4,900\n\n\n  \n\n    \n      \n        \n  $4,663\n\n      \n      \n        \n  $5,186"
+      - generic "This vehicle is within the current average market range." [ref=e31]
+      - button [ref=e32]
+    - region:
+      - generic "Price history" [ref=e33]
+      - button [ref=e36]
+  - heading "Contact seller" [level=2]
+  - text: "(6​0​8) 5​1​9-4​2​7​6\n      \n    \n      \n         Quality Cars LLC Madison, WI (4 mi)\n        \n          \n            \n              First name"
+  - textbox [ref=e37]
+  - text: "Last name"
+  - textbox [ref=e38]
+  - text: "Email"
+  - textbox [ref=e39]
+  - text: "Phone"
+  - textbox [ref=e40]
+  - text: "Comments"
+  - textbox "I'd like to know if the Used 2013 Chevrolet Sonic RS you have listed on Cars.com for $4,900 is still" [ref=e41]
+  - text: "1289 characters remaining.\n          \n        \n      \n        Check availability"
+  - button [ref=e42]
+  - text: "By clicking here, you authorize Cars.com and its sellers/partners to contact you by text/calls which may include marketing and be by autodialer. Calls may be prerecorded. You also agree to our"
+  - link "Privacy Notice" [ref=e43]
+  - text: ". Consent is not required to purchase goods/services."
+  - region
+  - region:
+    - heading "Features & specs" [level=2]
+    - text: "VIN: 1G1JG6SB3D4146935 / Stock #: 1979\n    \n  \n    \n      \n        \n          \n      \n     \n          White exterior color\n        \n      \n        \n          \n      \n     \n          Black interior color\n        \n      \n        \n          \n      \n     \n          Gasoline fuel type\n        \n      \n        \n          \n      \n     \n          1.4L I4 16V MPFI DOHC Turbo engine\n        \n      \n    \n  \n      \n        \n      \n    \n  \n    \n      \n        \n          \n      \n     \n          25-33 mpg\n        \n      \n        \n          \n      \n     \n          Front-wheel Drive drivetrain\n        \n      \n        \n          \n      \n     \n          6-Speed Automatic transmission"
+    - link "Accidents or damage reported" [ref=e44]:
+      - text: "Accidents or damage reported"
+      - img ", opens in new window" [ref=e45]
+    - text: "See all features & specs"
+    - button [ref=e47]
+  - region:
+    - heading "Seller's notes" [level=2]
+    - text: "Visit Qualitycarsforless.com to see more pictures of this vehicle or call us at 608-598-7628 today to schedule your test drive."
+  - region:
+    - heading "Estimate payments" [level=3]
+    - text: "Ad\n      \n      \n    \n  \n     Check your credit rating: \n    \n\n  \n\n    \n    \n      \n        \n          \n        \n          \n        \n        \n          \n            \n  \n    \n  \n    \n  \n    \n  \n    \n  \n    \n  \n\n        \n          \n            \n              Your credit rating"
+    - combobox "Excellent (780 - 850)" [ref=e48]:
+      - option "Excellent (780 - 850)" (selected) value="T15"
+      - option "Good (700 - 779)" value="T14"
+      - option "Average (620 - 699)" value="T13"
+      - option "Fair (619 and below)" value="T12"
+    - text: "%\n  \n        \n          \n            \n              Interest rate"
+    - textbox "5.0" [ref=e49]
+    - text: "ZIP (optional)"
+    - textbox [ref=e50]
+    - text: "Length of loan"
+    - combobox "72 months" [ref=e51]:
+      - option "36 months" value="36"
+      - option "48 months" value="48"
+      - option "60 months" value="60"
+      - option "72 months" (selected) value="72"
+      - option "84 months" value="84"
+    - text: "$\n  \n        \n          \n            \n              Down payment (optional)"
+    - textbox "0" [ref=e52]
+    - text: "$\n  \n        \n          \n            \n              Net trade-in (Trade-in value minus amount owed)"
+    - textbox "0" [ref=e53]
+    - heading [level=2]: "$79/mo*"
+    - text: "Based on 5.0% APR*\n            \n      \n          \n        \n          \n            \n            Car price\n            $4,900\n          \n             Down payment\n            -$0\n          \n             Net trade-in value\n            -$0\n          \n             Estimated sales tax (0.0%)\n            $0\n          \n             Total loan amount\n            $4,900\n          \n             Total interest paid\n            $788\n          \n          \n        \n          \n          \n                \n             Total loan & interest paid\n            $5,688\n          \n              \n        \n      \n      \n      \n        \n      \n      \n    \n          \n          \n        \n        \n      \n    \n    \n      \n  \n    \n  *Estimated payments are calculated by Cars.com and are for informational purposes only. We've estimated your taxes based on your provided ZIP code. These estimates do not include title, registration fees, lien fees, or any other fees that may be imposed by a governmental agency in connection with the sale and financing of the vehicle. Other taxes may apply. They do not represent a financing offer or a guarantee of credit from the seller. Actual terms vary by lender."
+    - region "Payment calculator" [ref=e54]
+  - region:
+    - heading "Vehicle history report" [level=2]
+    - text: "AutoCheck by Experian\n  \n    \n      \n        \n          \n      \n    \n           Clean title\n        \n      \n        \n          \n      \n    \n           Accidents or damage reported\n        \n      \n        \n          \n      \n    \n           Multiple owners\n        \n      \n        \n          \n      \n    \n           Personal use only\n        \n      \n        \n          \n      \n    \n           No open recalls reported\n        \n      \n    \n  \n      \n        \n      \n    \n  \n  \n     \n  \n  Create a Cars.com account via the link below to receive a free AutoCheck report.\n\n\n  \n  \n    \n  \n  Get the AutoCheck Report"
+    - button [ref=e56]
+    - text: "The vehicle history information is supplied by third parties. Cars.com and the Seller are not responsible for the accuracy of such information. Cars.com provides this service and materials without representations or warranties of any kind, either expressed or implied. Please see"
+    - link "Cars.com Terms and Conditions" [ref=e57]
+    - text: "for further information."
+    - button "Show more" [ref=e58]
+  - region:
+    - heading "Seller's info" [level=2]
+    - heading "Quality Cars LLC" [level=3]
+    - generic "Not rated" [ref=e59]
+    - button [ref=e62]
+    - text: "No reviews"
+    - generic "Open Closes 6pm" [ref=e63]
+    - button [ref=e65]
+    - link "4515 Cottage Grove Rd, Madison, WI 53716" [ref=e66]
+    - link "Visit dealership website" [ref=e67]
+    - text: "(6​0​8) 5​1​9-4​2​7​6"
+    - heading "You might also like" [level=2]
+    - text: "Used 2020 Nissan Altima S FWD"
+    - heading [level=3]:
+      - link "$4,994 Used 2020 Nissan Altima S FWD" [ref=e68]
+    - button [ref=e69]
+    - img "Mileage"
+    - text: "359,316 mi\n\n        \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n      \n        \n           Used 2011 Chevrolet Silverado 1500 Work Truck"
+    - heading [level=3]:
+      - link "$4,989 Used 2011 Chevrolet Silverado 1500 Work Truck" [ref=e70]
+    - button [ref=e71]
+    - img "Mileage"
+    - text: "181,874 mi\n\n        \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n      \n        \n           Used 2007 Chevrolet Silverado 1500 LTZ Extended Cab"
+    - heading [level=3]:
+      - link "$4,449 Used 2007 Chevrolet Silverado 1500 LTZ Extended Cab" [ref=e72]
+    - button [ref=e73]
+    - img "Mileage"
+    - text: "273,563 mi\n\n        \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n      \n        \n           Used 2014 GMC Acadia SLE-2"
+    - heading [level=3]:
+      - link "$4,997 Used 2014 GMC Acadia SLE-2" [ref=e74]
+    - button [ref=e75]
+    - img "Mileage"
+    - text: "210,831 mi"
+    - heading [level=3]:
+      - link "$4,900 Used 2008 Nissan Xterra SE" [ref=e76]
+    - button [ref=e77]
+    - img "Mileage"
+    - text: "119,393 mi\n\n        \n      \n        \n        \n        \n              \n      \n    \n               No photo available\n            \n        \n          \n            \n          \n          \n        \n      \n    \n      \n        \n           Used 2007 Saturn Ion 3"
+    - heading [level=3]:
+      - link "$5,211 Used 2007 Saturn Ion 3" [ref=e78]
+    - button [ref=e79]
+    - img "Mileage"
+    - text: "60,410 mi"
+    - group "card carousel":
+      - contentinfo:
+        - button "Go to carousel pane 1" [ref=e81]
+        - button "Go to carousel pane 2" [ref=e82]
+    - link "See all recommendations" [ref=e83]
+  - region: "Ad"
+  - region:
+    - heading "Consumer reviews" [level=2]
+    - text: "72% of drivers recommend the 2013 Chevrolet Sonic\n  \n  \n    \n      \n        \n          \n             3.9 / 5\n          \n           Based on 134 reviews"
+    - img "3.9 stars out of 5"
+    - text: "Comfort \n  \n\n  \n     4.1\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Interior \n  \n\n  \n     4.1\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Performance \n  \n\n  \n     3.9\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Value \n  \n\n  \n     3.9\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Exterior \n  \n\n  \n     4.3\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Reliability \n  \n\n  \n     4.0"
+    - text: "Write a review"
+    - link [ref=e85]
+    - text: "Most recent\n  \n    \n      \n        \n          \n            \n  \n    \n       By Karin from Scranton PA\n       Used to own this car\n    \n     03/14/2025"
+    - img "2 stars out of 5"
+    - heading "My husband bought this car in September 2024." [level=3]
+    - text: "My husband bought this car in September 2024. Almost immediately, the car started having problems. Several parts needed to be replaced--fortunately, the car was under warranty. We took the car to Kentucky to visit our son and his family. The car did fine on the trip. The next day, the car refused to start in a parking lot and it needed to be towed. After we got it back it continued to have problems. I think the last straw happened a few weeks ago. My husband drove the car half a block from our house and it stopped in the middle of the street. We still owed money on the car but my husband said that he was DONE. We returned the car and it went to an auction a few days ago. We're looking for another car."
+    - button "Show full review" [ref=e86]
+    - text: "By Rhema Miller from TX\n       Used to own this car\n    \n     10/14/2024"
+    - img "3 stars out of 5"
+    - heading "I bought this car used from a personal seller." [level=3]
+    - text: "I bought this car used from a personal seller. It had 127,000 miles on it when I bought it and I thought that would be okay considering everything I read was saying this car lasts to about 200,000 miles. But within a week of owning it the AC went out. Over the next 5 months I spent over $1,200 on just replacing every part that is needed for the AC to function. In all general replacements for the car I’ve spent over $1,500 in repairs over the past 5 MONTHS. After everything was replaced and I was feeling very relieved, the car started slightly declining to accelerate and revving every single time I pressed on the gas. After a few weeks of that getting worse, I had the codes read and turns out that the entire engine was failing and needed replacement asap. All of this was happening at only 130,000 miles at this point. I realized that I’d just been feeding a corpse, so I decided to give up and get a new car. Aside from all that junk, the design of the car itself on the interior is very nice. That is honestly all that this car has going for it, though. If you’re reading this review in hopes to get some affirmation about this car being a good buy, this is your sign not to. Do not throw your money away and save yourself the time. Do not buy this car, it’s not worth it."
+    - button "Show full review" [ref=e87]
+    - text: "By Mjh. from Deforest, wi\n       Owns this car\n    \n     10/14/2023"
+    - img "5 stars out of 5"
+    - heading "2013 Chevrolet Sonic LT 1.4 eng" [level=3]
+    - text: "We bought a sonic lt with a 1.4 turbo engine, great gas mileage and no major problems. \nAs long as you keep up the maintenance the reliability is great."
+    - button "Show full review" [ref=e88]
+    - text: "By Sheila Bowman  from Coal Grove, OH\n       Owns this car\n    \n     10/11/2023"
+    - img "1 stars out of 5"
+    - heading "WORSE VEHICLE EVER!!!😡" [level=3]
+    - text: "WORSE VEHICLE I HAVE EVER OWNED!! WOULD NEVER BUY ANOTHER OR RECOMMEND ANYONE ELSE TO BUY ONE period!!\n•Only get \"\"19.3\"\" mpg!!!😡\n•Transmission \"\"Iffy\"!!😡\n•A/C stops working!!😡\nWORSE VEHICLE EVER!!😡"
+    - button "Show full review" [ref=e89]
+    - text: "By Mike T from Oklahoma City, OK\n       Used to own this car\n    \n     07/09/2023"
+    - img "3 stars out of 5"
+    - heading "Replace certain parts with upgrades, not oem" [level=3]
+    - text: "I had a 2015 sonic ltz. It has a lot of plastic parts unfortunately. There is one company that offers upgrades that will remedy most of the habitual problems that plague the sonic. Zzperformance."
+    - button "Show full review" [ref=e90]
+    - text: "By Destiny Calvillo from Fort Worth, Texas\n       Owns this car\n    \n     04/02/2023"
+    - img "2 stars out of 5"
+    - heading "Waste of money" [level=3]
+    - text: "So I bought this car just turning 16 with my own money for close to 10k. I have a Chevy Sonic LT 2014 4door sedan and I’ve only had it for a year literally and I have already spent 4k in MAINTENANCE ONLY!! Don’t even include the gas I’ve put into it or the car insurance payments I’ve done. I had to get new brake pads and get new hoses and I had an issue where it would shake like jolt foward and the check engine light came on and I had been told I needed a new TCM which costed 2k but days later the light came on AGAIN and now they’re saying I need a new engine. I barely hit 100k I’ve only put 10k on it in 1 YEAR!! Now I’m thinking about selling it with the check engine light and getting whatever I can out of it. Word of advice: DO YOUR RESEARCH ON THE HISTORY OF THE CAR!!! Many people are experiencing the same things and this isn’t good."
+    - button "Show full review" [ref=e91]
+    - text: "By Eric from Lexington, KY\n       Owns this car\n    \n     11/13/2022"
+    - img "3 stars out of 5"
+    - heading "Great car when it's not in the shop" [level=3]
+    - text: "Bought in 2016 with 60k miles on the clock. Got a good price for it ($7,500), LT model with the 1.4 turbo. I've honestly had small problems every couple of months. It's in the shop more than my GF's 2008 Prius with double the mileage (214k on prius vs 112k on my sonic). This thing is dead set on killing itself by getting rid of all of its coolant. Between multiple hose replacements to replacing the water outlet housing twice and replacing the overflow tank (it cracked at 69k miles), it has been rough. It's never left me stranded although it's because I check under the hood religiously, which thank god I decided at 80k miles to start carrying coolant and oil in the trunk just in case. Some other things I've had done:\n*replaced both front CV axles\n*replaced both rear struts\n*front pads, cleaned out rear drums (rear still shakes slightly when braking from high speed, but it's a little better)\n*transmission fluid change at 90k miles, still a little jerky at times of course it's been this way since I bought it\n*set of goodyear tires around 75k miles [walmart special, kind of sucked], then a set of general's [much better tires imo] around 100k\n*battery replacement around 90k miles\n*just replaced an O2 sensor that wasn't completely dead but dead enough to give me a CEL w/ code P0420. Replaced for $60 and no cel anymore\n*Valve cover around 90k miles\n*Spark plugs around 100k (preventative maintenance) \n\n\nPower is good, up & down-shifts are a little wonky when the trans is cold but when it's warmed up it's honestly got a good bit of power. Super smooth when flooring it (not that I do that very often). \n\nHonestly, when it's good it's really good. I love the heck out of this car. I just wish it could keep itself out of the shop. Thankfully, my work has given me a truck to commute to job sites with so I really only drive the Sonic when I need to go to the grocery store or need to run other errands."
+    - button "Show full review" [ref=e92]
+    - text: "By Leaky from missouri\n       Owns this car\n    \n     10/24/2022"
+    - img "2 stars out of 5"
+    - heading "Mr Problems" [level=3]
+    - text: "Starting at 100k miles, constant issues.  The entire coolant system has been replaced.  Water outlet twice, radiator, 4 catalytic converters, shift button fell off,  5 coolant reservoirs, water pump, flex pipe, pcv valve cover twice, 3 coil packs, spark plugs twice a year, now oil leaks, 5k went into it last year and still it isn't fully fixed.  Everything costs a lot to fix on it.  I wouldn't buy it again."
+    - button "Show full review" [ref=e93]
+    - text: "By Jeanne S from Wichita Ks \n       Owns this car\n    \n     10/20/2022"
+    - img "5 stars out of 5"
+    - heading "Love it rides great. Very comfortable." [level=3]
+    - text: "I absolutely love my 2013 Sonic it's pretty and has been very reliable. It runs great has fantastic gas mileage.  It's a perfect car for a woman or a new driver. I have had it for 5 years and only had to replace the battery."
+    - button "Show full review" [ref=e94]
+    - text: "By Brandi Gentry from Pryor, Oklahoma\n       Owns this car\n    \n     09/16/2022"
+    - img "1 stars out of 5"
+    - heading "Electronic Nightmare" [level=3]
+    - text: "The Chevrolet Sonic, all years, is the worst car ever designed in the history of the automotive industry. Here is a list of the problems with it:\n\n1. The battery can be put in backwards, and the car will still start. \n2. It can be easily tampered with. There is a control panel which allows access to fuses and wires vital to the vehicle's operation on the lower left hand-side of the steering-wheel column.\n3. Half the time, it won't start, but the auxiliary position works great!\n4. It's ugly. The extra headlights alone are enough to inspire Stephen King's next classic.\n5. It's too low to the ground.\n6. Bad on gasoline.\n7. There are un-necessary safety features.\n8. Electronic nightmare."
+    - button "Show full review" [ref=e95]
+    - text: "By amachevy from Tallahassee, FL\n       Owns this car\n    \n     05/16/2021"
+    - img "5 stars out of 5"
+    - heading "This IS the smart car." [level=3]
+    - text: "The Chevrolet Sonic is unique. Camera angles can make the little tank appear aggressive, but it is more of a wagon, I think. This car is incredibly safe. It is like driving pure clarity of mind. I highly recommend the Chevrolet Sonic for all highway and interstate travel. This car was rammed by a Honda sedan once, and the Honda was damaged beyond repair while the Chevy tank barely suffered at all. If the car defines how you are in life, though, steady is the best word for the Chevy Sonic. There is always a reason for everything we do, and the Chevy is rock solid. #lovemychevytank"
+    - button "Show full review" [ref=e96]
+    - text: "By Nate from Houston,  Texas\n       Owns this car\n    \n     05/12/2021"
+    - img "1 stars out of 5"
+    - heading "Nothing but trouble" [level=3]
+    - text: "Bought this car preowned  . About 1 year later, the problems began. Had a new battery installed,  and my odometer quit working. Now, every time it's humid outside,  my car won't start . The radio comes on by itself and sometimes the horn honks when you shift to and from park."
+    - button "Show full review" [ref=e97]
+    - group "card carousel":
+      - img "Scroll carousel to left"
+      - button [ref=e98] [disabled]
+      - img "Scroll carousel to right" [ref=e100]
+      - button [ref=e101]
+      - contentinfo
+    - text: "See all reviews"
+    - link [ref=e104]
+  - region
+  - region:
+    - text: "Cars.com Disclaimer:\n  The information on vehicles provided in this service is supplied by the seller or other third parties; Cars.com is not responsible for the accuracy of such information. Cars.com provides this service and materials without representations or warranties of any kind, either expressed or implied."
+    - link "Click here" [ref=e105]
+    - text: "for more details.\n\n    \n      \n  \n  Bluetooth® is a registered mark of Bluetooth® SIG, Inc. Android Auto™ is a trademark of Google LLC. Apple CarPlay® is a registered trademark of Apple Inc. Burmester is a registered trademark of Burmester Audiosysteme GmbH, Berlin, Germany.\n\n    \n      \n  \n  *Estimated payments are calculated by Cars.com and are for informational purposes only. We’ve estimated your taxes based on your provided ZIP code. These estimates do not include title, registration fees, lien fees, or any other fees that may be imposed by a governmental agency in connection with the sale and financing of the vehicle. Other taxes may apply. They do not represent a financing offer or a guarantee of credit from the seller. Actual terms vary by lender."
+- contentinfo:
+  - heading "Shop" [level=2]
+  - link "Used Cars" [ref=e106]
+  - link "New Cars" [ref=e107]
+  - link "Certified Pre-Owned" [ref=e108]
+  - link "Cars for Sale by Owner" [ref=e109]
+  - link "Find a Dealer" [ref=e110]
+  - link "Pickup Trucks Buying Guide" [ref=e111]
+  - link "Electric Cars Buying Guide" [ref=e112]
+  - link "Financing" [ref=e113]
+  - button [ref=e114]
+  - region
+  - heading "Research & News" [level=2]
+  - link "Consumer Car Reviews" [ref=e115]
+  - link "Car News & Expert Reviews" [ref=e116]
+  - link "Compare Cars" [ref=e117]
+  - link "Best Cars Rankings" [ref=e118]
+  - link "Safety & Recalls" [ref=e119]
+  - link "American-Made Index" [ref=e120]
+  - link "Video Reviews" [ref=e121]
+  - button [ref=e122]
+  - region
+  - heading "Sell" [level=2]
+  - link "Sell Your Car" [ref=e123]
+  - link "Get Instant Offer" [ref=e124]
+  - link "Free Listing on Cars.com" [ref=e125]
+  - link "Selling Guides & Tips" [ref=e126]
+  - button [ref=e127]
+  - region
+  - heading "Tools & Services" [level=2]
+  - link "Car Loan Calculators" [ref=e128]
+  - link "Car Affordability Calculator" [ref=e129]
+  - link "Ship a Car" [ref=e130]
+  - link "Car Warranty" [ref=e131]
+  - link "Car Insurance" [ref=e132]
+  - link "Car Maintenance" [ref=e133]
+  - link "Site Map" [ref=e134]
+  - button [ref=e135]
+  - region
+  - heading "Top Metro Areas" [level=2]
+  - link "Chicago, IL" [ref=e136]
+  - link "Houston, TX" [ref=e137]
+  - link "Los Angeles, CA" [ref=e138]
+  - link "Phoenix, AZ" [ref=e139]
+  - link "Atlanta, GA" [ref=e140]
+  - link "Philadelphia, PA" [ref=e141]
+  - link "New York, NY" [ref=e142]
+  - link "San Diego, CA" [ref=e143]
+  - button [ref=e144]
+  - region
+  - heading "For Dealers" [level=2]
+  - link "Explore Cars Commerce, External link" [ref=e145]: "Explore Cars Commerce"
+  - link "Log In To Your Platform, External link" [ref=e146]: "Log In To Your Platform"
+  - button [ref=e147]
+  - region
+  - text: "Our Mobile App"
+  - link "Download on the App Store" [ref=e148]
+  - link "Get it on Google Play" [ref=e149]
+  - text: "Connect With Us"
+  - link "TikTok, External link" [ref=e150]
+  - link "Facebook, External link" [ref=e151]
+  - link "Youtube, External link" [ref=e152]
+  - link "Instagram, External link" [ref=e153]
+  - link "Pinterest, External link" [ref=e154]
+  - heading "Popular Car Models" [level=2]
+  - heading "Toyota" [level=3]:
+    - link "Toyota" [ref=e155]
+  - link "Toyota RAV4" [ref=e156]
+  - link "Toyota Prius" [ref=e157]
+  - link "Toyota Tacoma" [ref=e158]
+  - link "Toyota Camry" [ref=e159]
+  - link "Toyota 4Runner" [ref=e160]
+  - heading "Honda" [level=3]:
+    - link "Honda" [ref=e161]
+  - link "Honda CR-V" [ref=e162]
+  - link "Honda Civic" [ref=e163]
+  - link "Honda Accord" [ref=e164]
+  - link "Honda Pilot" [ref=e165]
+  - link "Honda HR-V" [ref=e166]
+  - heading "Ford" [level=3]:
+    - link "Ford" [ref=e167]
+  - link "Ford Maverick" [ref=e168]
+  - link "Ford Bronco" [ref=e169]
+  - link "Ford F-150" [ref=e170]
+  - link "Ford Mustang Mach-E" [ref=e171]
+  - link "Ford Explorer" [ref=e172]
+  - heading "Jeep" [level=3]:
+    - link "Jeep" [ref=e173]
+  - link "Jeep Wrangler" [ref=e174]
+  - link "Jeep Grand Cherokee" [ref=e175]
+  - link "Jeep Wagoneer" [ref=e176]
+  - link "Jeep Grand Wagoneer" [ref=e177]
+  - link "Jeep Cherokee" [ref=e178]
+  - heading "Chevrolet" [level=3]:
+    - link "Chevrolet" [ref=e179]
+  - link "Chevrolet Corvette" [ref=e180]
+  - link "Chevrolet Silverado 1500" [ref=e181]
+  - link "Chevrolet Traverse" [ref=e182]
+  - link "Chevrolet Tahoe" [ref=e183]
+  - link "Chevrolet Colorado" [ref=e184]
+  - heading "Kia" [level=3]:
+    - link "Kia" [ref=e185]
+  - link "Kia Sportage" [ref=e186]
+  - link "Kia Sorento" [ref=e187]
+  - link "Kia Stinger" [ref=e188]
+  - link "Kia K5" [ref=e189]
+  - link "Kia EV6" [ref=e190]
+  - button [ref=e191]
+  - region
+  - link "About Cars.com" [ref=e192]
+  - link "Contact Us" [ref=e193]
+  - link "Investor Relations, External link" [ref=e194]: "Investor Relations"
+  - link "Careers" [ref=e195]
+  - link "Licensing & Rights, External link" [ref=e196]: "Licensing & Rights"
+  - link "Fraud Awareness" [ref=e197]
+  - link "Feedback" [ref=e198]
+  - link "Terms & Conditions of Use" [ref=e199]
+  - link "Privacy Notice" [ref=e200]
+  - link "California Privacy Notice" [ref=e201]
+  - link "My Privacy ChoicesCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e202]: "My Privacy Choices"
+  - link "Cookie Preferences" [ref=e203]
+  - link "Accessibility Statement" [ref=e204]
+  - link "Ad Choices" [ref=e205]
+  - text: "© 2026 Cars.com. All rights reserved."
+</result>
+
+[8] thinking: **Exploring features and specs**
+
+I need to check all the features and specifications, so I'm planning to click the "See all features & specs" button, which is located at e47. After I click it, I expect a modal or detailed view to pop up, showing everything I need. It's important to have that information, as it will help me understand the product better and ensure I'm not missing anything crucial. Alright, let's do this!
+
+[9] tool_call: repl("Expanding features and specs")
+<request>
+await page.locator('e47').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff);
+</request>
+<result tokens_used="91" elapsed_time="630ms">
+@@ -1 +1,0 @@
+-- link "Skip to main content" [ref=e1]
+@@ -5,8 +4,0 @@
+-    - link "Buy" [ref=e4]
+-    - button "Buy menu" [ref=e5]
+-    - link "Sell" [ref=e6]
+-    - button "Sell menu" [ref=e7]
+-    - link "Research" [ref=e8]
+-    - button "Research menu" [ref=e9]
+-    - link "Finance" [ref=e10]
+-    - button "Finance menu" [ref=e11]
+@@ -15 +6,0 @@
+-      - text: "Account."
+@@ -24,5 +14,0 @@
+-    - button "White 2013 Chevrolet Sonic RS" [ref=e18]
+-    - button "White 2013 Chevrolet Sonic RS" [ref=e19]
+-    - button "White 2013 Chevrolet Sonic RS" [ref=e20]
+-    - button "White 2013 Chevrolet Sonic RS" [ref=e21]
+-    - button "White 2013 Chevrolet Sonic RS" [ref=e22]
+@@ -70,0 +55,15 @@
++    - heading "Convenience" [level=3]
++    - text: "Heated Seats\n            \n          \n             \n              Keyless Entry"
++    - heading "Entertainment" [level=3]
++    - text: "Bluetooth®\n            \n          \n            \n              CD Player\n            \n          \n             \n              Premium Sound System\n            \n          \n             \n              Satellite Radio"
++    - heading "Exterior" [level=3]
++    - text: "Alloy Wheels"
++    - heading "Safety" [level=3]
++    - text: "Brake Assist\n            \n          \n             \n              Stability Control"
++    - heading "Seating" [level=3]
++    - text: "Leather Seats"
++    - document:
++      - banner:
++        - button [ref=e206]
++        - text: "Features & specs"
++      - contentinfo
+@@ -75 +75,3 @@
+-    - text: "Ad\n      \n      \n    \n  \n     Check your credit rating: \n    \n\n  \n\n    \n    \n      \n        \n          \n        \n          \n        \n        \n          \n            \n  \n    \n  \n    \n  \n    \n  \n    \n  \n    \n  \n\n        \n          \n            \n              Your credit rating"
++    - text: "Ad\n      \n      \n    \n  \n     Check your credit rating:"
++    - link "Click to get your FICO Score - FREE" [ref=e208]: "Click to get your FICO® Score - FREE"
++    - text: "Your credit rating"
+@@ -155 +157,0 @@
+-  - region: "Ad"
+@@ -157,0 +158,9 @@
++    - text: "Ad\n      \n      \n    \n  \n    \n      \n\n     Need financing?\n    \n    What's your credit like?"
++    - link "Good to great" [ref=e209]
++    - text: "Bad to no credit?"
++    - link "Learn more" [ref=e210]
++  - region:
++    - text: "Ad"
++    - heading "Car shopper resources" [level=2]
++    - link "Experian Get your FICO® Score - Free The first step to taking control of your credit is knowing your" [ref=e211]
++  - region:
+@@ -235 +245,3 @@
+-    - text: "for more details.\n\n    \n      \n  \n  Bluetooth® is a registered mark of Bluetooth® SIG, Inc. Android Auto™ is a trademark of Google LLC. Apple CarPlay® is a registered trademark of Apple Inc. Burmester is a registered trademark of Burmester Audiosysteme GmbH, Berlin, Germany.\n\n    \n      \n  \n  *Estimated payments are calculated by Cars.com and are for informational purposes only. We’ve estimated your taxes based on your provided ZIP code. These estimates do not include title, registration fees, lien fees, or any other fees that may be imposed by a governmental agency in connection with the sale and financing of the vehicle. Other taxes may apply. They do not represent a financing offer or a guarantee of credit from the seller. Actual terms vary by lender."
++    - text: "for more details.\n\n    \n      \n  \n  Bluetooth® is a registered mark of Bluetooth® SIG, Inc. Android Auto™ is a trademark of Google LLC. Apple CarPlay® is a registered trademark of Apple Inc. Burmester is a registered trademark of Burmester Audiosysteme GmbH, Berlin, Germany.\n\n    \n      \n  \n  *Estimated payments are calculated by Cars.com and are for informational purposes only. We’ve estimated your taxes based on your provided ZIP code. These estimates do not include title, registration fees, lien fees, or any other fees that may be imposed by a governmental agency in connection with the sale and financing of the vehicle. Other taxes may apply. They do not represent a financing offer or a guarantee of credit from the seller. Actual terms vary by lender.\n\n    \n  \n      \n        \n      \n    \nPlease rate your vehicle details experience."
++    - button "Thumbs Up" [ref=e212]
++    - button "Thumbs Down" [ref=e213]
+@@ -360,0 +372 @@
++- generic "Feedback Form" [ref=e218]
+</result>
+
+[10] thinking: **Verifying details for a snapshot**
+
+I'm thinking I might need to get a full snapshot after the expansion to verify evidence. The existing diff includes some information, but I might need the current URL as well. Also, I want to ensure that the "cheapest" sort/filter works effectively. It's possible that the current details don't mention the hatchback; it says the Sonic RS is likely a hatchback, but I need clarification on the body style. I wonder if the expanded view will show "Body style."
+
+[11] tool_call: repl("Reading expanded listing details")
+<request>
+const s5 = await snapshot(page);
+console.log(s5.tree);
+</request>
+<result tokens_used="126" elapsed_time="275ms">
+- title: "Used 2013 Chevrolet Sonic RS For Sale $4,900 | Cars.com" [url=https://www.cars.com/vehicledetail/2c027067-f7cd-40cb-98a7-bcc87bbfd6a5/]
+- banner:
+  - navigation "primary" [ref=e2]:
+    - link "Cars.com" [ref=e3]
+    - button [ref=e12]:
+      - img "Menu"
+- main:
+  - navigation "Breadcrumb" [ref=e13]:
+    - list:
+      - listitem "Home" [ref=e219]:
+        - link "Home" [ref=e14]
+      - listitem "Cars for Sale" [ref=e220]:
+        - link "Cars for Sale" [ref=e15]
+      - listitem "Search Results" [ref=e221]:
+        - link "Search Results" [ref=e16]
+      - listitem "Used 2013 Chevrolet Sonic RS" [ref=e222]
+  - button [ref=e17]
+  - iframe "Advertisement" [ref=e223]:
+    - button [ref=f34e2]
+    - iframe [ref=f34e3]:
+      - text: "Get Visible for $20/mo  for 1 year!\n              \n                Limited time offer. Use code: FRESHSTART\n              \n              \n            \n            \n          \n          \n            \n              \n              \n                \n              \n              \n            \n            \n          \n          \n            \n              \n              \n                \n              \n              \n            \n            \n          \n          \n          \n          \n            \n               Add'l terms apply"
+      - text: "Get offer"
+  - group:
+    - button "See gallery (13)" [ref=e23]
+  - heading "Used 2013 Chevrolet Sonic RS" [level=1]
+  - region:
+    - text: "$4,900\n        \n      \n      \n        \n  \n    $88"
+    - button [ref=e24]
+    - text: "Est. monthly payment\n  \n      \n    \n\n  \n  \n      \n        \n        \n        \n      \n      \n    \n    \n\n      \n        \n      \n    \n        \n      \n    \n      \n        \n      \n    \n     \n  \n  148,213 mi"
+    - button [ref=e25]:
+      - list:
+        - listitem:
+          - generic "Good Deal" [ref=e26]
+        - listitem:
+          - generic "High Demand" [ref=e29]
+  - region:
+    - region:
+      - heading "This vehicle is a" [level=2]: "This vehicle is a  good deal"
+      - img "At $4,900, this vehicle is a good deal. The good deal range for this vehicle is between $4,663 and $": "$4,900\n  \n\n    \n      \n        \n  $4,663\n\n      \n      \n        \n  $5,186"
+      - generic "This vehicle is within the current average market range." [ref=e31]
+      - button [ref=e32]
+    - region:
+      - generic "Price history" [ref=e33]
+      - button [ref=e36]
+  - heading "Contact seller" [level=2]
+  - text: "(6​0​8) 5​1​9-4​2​7​6"
+  - form:
+    - text: "Quality Cars LLC Madison, WI (4 mi)"
+    - label: "First name"
+    - textbox [ref=e37]
+    - label: "Last name"
+    - textbox [ref=e38]
+    - label: "Email"
+    - textbox [ref=e39]
+    - label: "Phone"
+    - textbox [ref=e40]
+    - label: "Comments"
+    - textbox "I'd like to know if the Used 2013 Chevrolet Sonic RS you have listed on Cars.com for $4,900 is still" [ref=e41]
+    - text: "1289 characters remaining.\n          \n        \n      \n        Check availability"
+    - button [ref=e42]
+    - text: "By clicking here, you authorize Cars.com and its sellers/partners to contact you by text/calls which may include marketing and be by autodialer. Calls may be prerecorded. You also agree to our"
+    - link "Privacy Notice" [ref=e43]
+    - text: ". Consent is not required to purchase goods/services."
+  - region
+  - region:
+    - heading "Features & specs" [level=2]
+    - text: "VIN: 1G1JG6SB3D4146935 / Stock #: 1979"
+    - list:
+      - listitem "White exterior color" [ref=e224]
+      - listitem "Black interior color" [ref=e225]
+      - listitem "Gasoline fuel type" [ref=e226]
+      - listitem "1.4L I4 16V MPFI DOHC Turbo engine" [ref=e227]
+    - list:
+      - listitem "25-33 mpg" [ref=e228]
+      - listitem "Front-wheel Drive drivetrain" [ref=e229]
+      - listitem "6-Speed Automatic transmission" [ref=e230]
+      - listitem:
+        - link "Accidents or damage reported" [ref=e44]:
+          - text: "Accidents or damage reported"
+          - img ", opens in new window" [ref=e45]
+    - text: "See all features & specs"
+    - button [ref=e47]
+    - heading "Convenience" [level=3]
+    - list:
+      - listitem "Heated Seats" [ref=e231]
+      - listitem "Keyless Entry" [ref=e232]
+    - heading "Entertainment" [level=3]
+    - list:
+      - listitem "Bluetooth®" [ref=e233]
+      - listitem "CD Player" [ref=e234]
+      - listitem "Premium Sound System" [ref=e235]
+      - listitem "Satellite Radio" [ref=e236]
+    - heading "Exterior" [level=3]
+    - list:
+      - listitem "Alloy Wheels" [ref=e237]
+    - heading "Safety" [level=3]
+    - list:
+      - listitem "Brake Assist" [ref=e238]
+      - listitem "Stability Control" [ref=e239]
+    - heading "Seating" [level=3]
+    - list:
+      - listitem "Leather Seats" [ref=e240]
+    - document:
+      - banner:
+        - button [ref=e206]
+        - text: "Features & specs"
+      - contentinfo
+  - region:
+    - heading "Seller's notes" [level=2]
+    - text: "Visit Qualitycarsforless.com to see more pictures of this vehicle or call us at 608-598-7628 today to schedule your test drive."
+  - region:
+    - heading "Estimate payments" [level=3]
+    - text: "Ad\n      \n      \n    \n  \n     Check your credit rating:"
+    - link "Click to get your FICO Score - FREE" [ref=e208]: "Click to get your FICO® Score - FREE"
+    - form:
+      - label: "Your credit rating"
+      - combobox "Excellent (780 - 850)" [ref=e48]:
+        - option "Excellent (780 - 850)" (selected) value="T15"
+        - option "Good (700 - 779)" value="T14"
+        - option "Average (620 - 699)" value="T13"
+        - option "Fair (619 and below)" value="T12"
+      - text: "%"
+      - label: "Interest rate"
+      - textbox "5.0" [ref=e49]
+      - label: "ZIP (optional)"
+      - textbox [ref=e50]
+      - label: "Length of loan"
+      - combobox "72 months" [ref=e51]:
+        - option "36 months" value="36"
+        - option "48 months" value="48"
+        - option "60 months" value="60"
+        - option "72 months" (selected) value="72"
+        - option "84 months" value="84"
+      - text: "$"
+      - label: "Down payment (optional)"
+      - textbox "0" [ref=e52]
+      - text: "$"
+      - label: "Net trade-in (Trade-in value minus amount owed)"
+      - textbox "0" [ref=e53]
+      - heading [level=2]: "$79/mo*"
+      - text: "Based on 5.0% APR*"
+      - table "Payment breakdown": "Car price\n            $4,900\n          \n             Down payment\n            -$0\n          \n             Net trade-in value\n            -$0\n          \n             Estimated sales tax (0.0%)\n            $0\n          \n             Total loan amount\n            $4,900\n          \n             Total interest paid\n            $788\n          \n          \n        \n          \n          \n                \n             Total loan & interest paid\n            $5,688"
+    - text: "*Estimated payments are calculated by Cars.com and are for informational purposes only. We've estimated your taxes based on your provided ZIP code. These estimates do not include title, registration fees, lien fees, or any other fees that may be imposed by a governmental agency in connection with the sale and financing of the vehicle. Other taxes may apply. They do not represent a financing offer or a guarantee of credit from the seller. Actual terms vary by lender."
+    - region "Payment calculator" [ref=e54]
+  - region:
+    - heading "Vehicle history report" [level=2]
+    - image "AutoCheck by Experian"
+    - list:
+      - listitem: "Clean title"
+      - listitem: "Accidents or damage reported"
+      - listitem: "Multiple owners"
+      - listitem: "Personal use only"
+      - listitem: "No open recalls reported"
+    - text: "Create a Cars.com account via the link below to receive a free AutoCheck report.\n  \n  \n    \n  \n  Get the AutoCheck Report"
+    - button [ref=e56]
+    - paragraph:
+      - text: "The vehicle history information is supplied by third parties. Cars.com and the Seller are not responsible for the accuracy of such information. Cars.com provides this service and materials without representations or warranties of any kind, either expressed or implied. Please see"
+      - link "Cars.com Terms and Conditions" [ref=e57]
+      - text: "for further information."
+      - button "Show more" [ref=e58]
+  - region:
+    - heading "Seller's info" [level=2]
+    - heading "Quality Cars LLC" [level=3]
+    - generic "Not rated" [ref=e59]
+    - button [ref=e62]
+    - text: "No reviews"
+    - generic "Open Closes 6pm" [ref=e63]
+    - button [ref=e65]
+    - link "4515 Cottage Grove Rd, Madison, WI 53716" [ref=e66]
+    - link "Visit dealership website" [ref=e67]
+    - text: "(6​0​8) 5​1​9-4​2​7​6"
+    - heading "You might also like" [level=2]
+    - image "Used 2020 Nissan Altima S FWD"
+    - heading [level=3]:
+      - link "$4,994 Used 2020 Nissan Altima S FWD" [ref=e68]
+    - button [ref=e69]
+    - img "Mileage"
+    - text: "359,316 mi"
+    - image "Used 2011 Chevrolet Silverado 1500 Work Truck"
+    - heading [level=3]:
+      - link "$4,989 Used 2011 Chevrolet Silverado 1500 Work Truck" [ref=e70]
+    - button [ref=e71]
+    - img "Mileage"
+    - text: "181,874 mi"
+    - image "Used 2007 Chevrolet Silverado 1500 LTZ Extended Cab"
+    - heading [level=3]:
+      - link "$4,449 Used 2007 Chevrolet Silverado 1500 LTZ Extended Cab" [ref=e72]
+    - button [ref=e73]
+    - img "Mileage"
+    - text: "273,563 mi"
+    - image "Used 2014 GMC Acadia SLE-2"
+    - heading [level=3]:
+      - link "$4,997 Used 2014 GMC Acadia SLE-2" [ref=e74]
+    - button [ref=e75]
+    - img "Mileage"
+    - text: "210,831 mi"
+    - heading [level=3]:
+      - link "$4,900 Used 2008 Nissan Xterra SE" [ref=e76]
+    - button [ref=e77]
+    - img "Mileage"
+    - text: "119,393 mi\n\n        \n      \n        \n        \n        \n              \n      \n    \n               No photo available"
+    - image "Used 2007 Saturn Ion 3"
+    - heading [level=3]:
+      - link "$5,211 Used 2007 Saturn Ion 3" [ref=e78]
+    - button [ref=e79]
+    - img "Mileage"
+    - text: "60,410 mi"
+    - group "card carousel":
+      - contentinfo:
+        - list:
+          - listitem "Go to carousel pane 1" [ref=e241]:
+            - button "Go to carousel pane 1" [ref=e81]
+          - listitem "Go to carousel pane 2" [ref=e242]:
+            - button "Go to carousel pane 2" [ref=e82]
+    - link "See all recommendations" [ref=e83]
+  - region:
+    - text: "Ad\n      \n      \n    \n  \n    \n      \n\n     Need financing?\n    \n    What's your credit like?"
+    - link "Good to great" [ref=e209]
+    - text: "Bad to no credit?"
+    - link "Learn more" [ref=e210]
+  - region:
+    - text: "Ad"
+    - heading "Car shopper resources" [level=2]
+    - link [ref=e211]:
+      - image "Experian"
+      - text: "Get your FICO® Score - Free\n      \n      \n      \n       The first step to taking control of your credit is knowing your FICO® Score.\n      Learn more"
+  - region:
+    - heading "Consumer reviews" [level=2]
+    - text: "72% of drivers recommend the 2013 Chevrolet Sonic\n  \n  \n    \n      \n        \n          \n             3.9 / 5\n          \n           Based on 134 reviews"
+    - img "3.9 stars out of 5"
+    - text: "Comfort \n  \n\n  \n     4.1\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Interior \n  \n\n  \n     4.1\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Performance \n  \n\n  \n     3.9\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Value \n  \n\n  \n     3.9\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Exterior \n  \n\n  \n     4.3\n  \n\n      \n      \n        \n      \n    \n      \n        \n      \n    \n  \n    \n       \n        \n  \n    Reliability \n  \n\n  \n     4.0"
+    - text: "Write a review"
+    - link [ref=e85]
+    - text: "Most recent"
+    - list:
+      - listitem:
+        - text: "By Karin from Scranton PA\n       Used to own this car\n    \n     03/14/2025"
+        - img "2 stars out of 5"
+        - heading "My husband bought this car in September 2024." [level=3]
+        - text: "My husband bought this car in September 2024. Almost immediately, the car started having problems. Several parts needed to be replaced--fortunately, the car was under warranty. We took the car to Kentucky to visit our son and his family. The car did fine on the trip. The next day, the car refused to start in a parking lot and it needed to be towed. After we got it back it continued to have problems. I think the last straw happened a few weeks ago. My husband drove the car half a block from our house and it stopped in the middle of the street. We still owed money on the car but my husband said that he was DONE. We returned the car and it went to an auction a few days ago. We're looking for another car."
+        - button "Show full review" [ref=e86]
+      - listitem:
+        - text: "By Rhema Miller from TX\n       Used to own this car\n    \n     10/14/2024"
+        - img "3 stars out of 5"
+        - heading "I bought this car used from a personal seller." [level=3]
+        - text: "I bought this car used from a personal seller. It had 127,000 miles on it when I bought it and I thought that would be okay considering everything I read was saying this car lasts to about 200,000 miles. But within a week of owning it the AC went out. Over the next 5 months I spent over $1,200 on just replacing every part that is needed for the AC to function. In all general replacements for the car I’ve spent over $1,500 in repairs over the past 5 MONTHS. After everything was replaced and I was feeling very relieved, the car started slightly declining to accelerate and revving every single time I pressed on the gas. After a few weeks of that getting worse, I had the codes read and turns out that the entire engine was failing and needed replacement asap. All of this was happening at only 130,000 miles at this point. I realized that I’d just been feeding a corpse, so I decided to give up and get a new car. Aside from all that junk, the design of the car itself on the interior is very nice. That is honestly all that this car has going for it, though. If you’re reading this review in hopes to get some affirmation about this car being a good buy, this is your sign not to. Do not throw your money away and save yourself the time. Do not buy this car, it’s not worth it."
+        - button "Show full review" [ref=e87]
+      - listitem:
+        - text: "By Mjh. from Deforest, wi\n       Owns this car\n    \n     10/14/2023"
+        - img "5 stars out of 5"
+        - heading "2013 Chevrolet Sonic LT 1.4 eng" [level=3]
+        - text: "We bought a sonic lt with a 1.4 turbo engine, great gas mileage and no major problems. \nAs long as you keep up the maintenance the reliability is great."
+        - button "Show full review" [ref=e88]
+      - listitem:
+        - text: "By Sheila Bowman  from Coal Grove, OH\n       Owns this car\n    \n     10/11/2023"
+        - img "1 stars out of 5"
+        - heading "WORSE VEHICLE EVER!!!😡" [level=3]
+        - text: "WORSE VEHICLE I HAVE EVER OWNED!! WOULD NEVER BUY ANOTHER OR RECOMMEND ANYONE ELSE TO BUY ONE period!!\n•Only get \"\"19.3\"\" mpg!!!😡\n•Transmission \"\"Iffy\"!!😡\n•A/C stops working!!😡\nWORSE VEHICLE EVER!!😡"
+        - button "Show full review" [ref=e89]
+      - listitem:
+        - text: "By Mike T from Oklahoma City, OK\n       Used to own this car\n    \n     07/09/2023"
+        - img "3 stars out of 5"
+        - heading "Replace certain parts with upgrades, not oem" [level=3]
+        - text: "I had a 2015 sonic ltz. It has a lot of plastic parts unfortunately. There is one company that offers upgrades that will remedy most of the habitual problems that plague the sonic. Zzperformance."
+        - button "Show full review" [ref=e90]
+      - listitem:
+        - text: "By Destiny Calvillo from Fort Worth, Texas\n       Owns this car\n    \n     04/02/2023"
+        - img "2 stars out of 5"
+        - heading "Waste of money" [level=3]
+        - text: "So I bought this car just turning 16 with my own money for close to 10k. I have a Chevy Sonic LT 2014 4door sedan and I’ve only had it for a year literally and I have already spent 4k in MAINTENANCE ONLY!! Don’t even include the gas I’ve put into it or the car insurance payments I’ve done. I had to get new brake pads and get new hoses and I had an issue where it would shake like jolt foward and the check engine light came on and I had been told I needed a new TCM which costed 2k but days later the light came on AGAIN and now they’re saying I need a new engine. I barely hit 100k I’ve only put 10k on it in 1 YEAR!! Now I’m thinking about selling it with the check engine light and getting whatever I can out of it. Word of advice: DO YOUR RESEARCH ON THE HISTORY OF THE CAR!!! Many people are experiencing the same things and this isn’t good."
+        - button "Show full review" [ref=e91]
+      - listitem:
+        - text: "By Eric from Lexington, KY\n       Owns this car\n    \n     11/13/2022"
+        - img "3 stars out of 5"
+        - heading "Great car when it's not in the shop" [level=3]
+        - text: "Bought in 2016 with 60k miles on the clock. Got a good price for it ($7,500), LT model with the 1.4 turbo. I've honestly had small problems every couple of months. It's in the shop more than my GF's 2008 Prius with double the mileage (214k on prius vs 112k on my sonic). This thing is dead set on killing itself by getting rid of all of its coolant. Between multiple hose replacements to replacing the water outlet housing twice and replacing the overflow tank (it cracked at 69k miles), it has been rough. It's never left me stranded although it's because I check under the hood religiously, which thank god I decided at 80k miles to start carrying coolant and oil in the trunk just in case. Some other things I've had done:\n*replaced both front CV axles\n*replaced both rear struts\n*front pads, cleaned out rear drums (rear still shakes slightly when braking from high speed, but it's a little better)\n*transmission fluid change at 90k miles, still a little jerky at times of course it's been this way since I bought it\n*set of goodyear tires around 75k miles [walmart special, kind of sucked], then a set of general's [much better tires imo] around 100k\n*battery replacement around 90k miles\n*just replaced an O2 sensor that wasn't completely dead but dead enough to give me a CEL w/ code P0420. Replaced for $60 and no cel anymore\n*Valve cover around 90k miles\n*Spark plugs around 100k (preventative maintenance) \n\n\nPower is good, up & down-shifts are a little wonky when the trans is cold but when it's warmed up it's honestly got a good bit of power. Super smooth when flooring it (not that I do that very often). \n\nHonestly, when it's good it's really good. I love the heck out of this car. I just wish it could keep itself out of the shop. Thankfully, my work has given me a truck to commute to job sites with so I really only drive the Sonic when I need to go to the grocery store or need to run other errands."
+        - button "Show full review" [ref=e92]
+      - listitem:
+        - text: "By Leaky from missouri\n       Owns this car\n    \n     10/24/2022"
+        - img "2 stars out of 5"
+        - heading "Mr Problems" [level=3]
+        - text: "Starting at 100k miles, constant issues.  The entire coolant system has been replaced.  Water outlet twice, radiator, 4 catalytic converters, shift button fell off,  5 coolant reservoirs, water pump, flex pipe, pcv valve cover twice, 3 coil packs, spark plugs twice a year, now oil leaks, 5k went into it last year and still it isn't fully fixed.  Everything costs a lot to fix on it.  I wouldn't buy it again."
+        - button "Show full review" [ref=e93]
+      - listitem:
+        - text: "By Jeanne S from Wichita Ks \n       Owns this car\n    \n     10/20/2022"
+        - img "5 stars out of 5"
+        - heading "Love it rides great. Very comfortable." [level=3]
+        - text: "I absolutely love my 2013 Sonic it's pretty and has been very reliable. It runs great has fantastic gas mileage.  It's a perfect car for a woman or a new driver. I have had it for 5 years and only had to replace the battery."
+        - button "Show full review" [ref=e94]
+      - listitem:
+        - text: "By Brandi Gentry from Pryor, Oklahoma\n       Owns this car\n    \n     09/16/2022"
+        - img "1 stars out of 5"
+        - heading "Electronic Nightmare" [level=3]
+        - text: "The Chevrolet Sonic, all years, is the worst car ever designed in the history of the automotive industry. Here is a list of the problems with it:\n\n1. The battery can be put in backwards, and the car will still start. \n2. It can be easily tampered with. There is a control panel which allows access to fuses and wires vital to the vehicle's operation on the lower left hand-side of the steering-wheel column.\n3. Half the time, it won't start, but the auxiliary position works great!\n4. It's ugly. The extra headlights alone are enough to inspire Stephen King's next classic.\n5. It's too low to the ground.\n6. Bad on gasoline.\n7. There are un-necessary safety features.\n8. Electronic nightmare."
+        - button "Show full review" [ref=e95]
+      - listitem:
+        - text: "By amachevy from Tallahassee, FL\n       Owns this car\n    \n     05/16/2021"
+        - img "5 stars out of 5"
+        - heading "This IS the smart car." [level=3]
+        - text: "The Chevrolet Sonic is unique. Camera angles can make the little tank appear aggressive, but it is more of a wagon, I think. This car is incredibly safe. It is like driving pure clarity of mind. I highly recommend the Chevrolet Sonic for all highway and interstate travel. This car was rammed by a Honda sedan once, and the Honda was damaged beyond repair while the Chevy tank barely suffered at all. If the car defines how you are in life, though, steady is the best word for the Chevy Sonic. There is always a reason for everything we do, and the Chevy is rock solid. #lovemychevytank"
+        - button "Show full review" [ref=e96]
+      - listitem:
+        - text: "By Nate from Houston,  Texas\n       Owns this car\n    \n     05/12/2021"
+        - img "1 stars out of 5"
+        - heading "Nothing but trouble" [level=3]
+        - text: "Bought this car preowned  . About 1 year later, the problems began. Had a new battery installed,  and my odometer quit working. Now, every time it's humid outside,  my car won't start . The radio comes on by itself and sometimes the horn honks when you shift to and from park."
+        - button "Show full review" [ref=e97]
+    - group "card carousel":
+      - img "Scroll carousel to left"
+      - button [ref=e98] [disabled]
+      - img "Scroll carousel to right" [ref=e100]
+      - button [ref=e101]
+      - contentinfo
+    - text: "See all reviews"
+    - link [ref=e104]
+  - region
+  - region:
+    - paragraph:
+      - text: "Cars.com Disclaimer:\n  The information on vehicles provided in this service is supplied by the seller or other third parties; Cars.com is not responsible for the accuracy of such information. Cars.com provides this service and materials without representations or warranties of any kind, either expressed or implied."
+      - link "Click here" [ref=e105]
+      - text: "for more details."
+    - text: "Bluetooth® is a registered mark of Bluetooth® SIG, Inc. Android Auto™ is a trademark of Google LLC. Apple CarPlay® is a registered trademark of Apple Inc. Burmester is a registered trademark of Burmester Audiosysteme GmbH, Berlin, Germany.\n    \n      *Estimated payments are calculated by Cars.com and are for informational purposes only. We’ve estimated your taxes based on your provided ZIP code. These estimates do not include title, registration fees, lien fees, or any other fees that may be imposed by a governmental agency in connection with the sale and financing of the vehicle. Other taxes may apply. They do not represent a financing offer or a guarantee of credit from the seller. Actual terms vary by lender.\n    \n  \n      \n        \n      \n    \nPlease rate your vehicle details experience."
+    - button "Thumbs Up" [ref=e212]
+    - button "Thumbs Down" [ref=e213]
+- contentinfo:
+  - heading "Shop" [level=2]
+  - list:
+    - listitem "Used Cars" [ref=e243]:
+      - link "Used Cars" [ref=e106]
+    - listitem "New Cars" [ref=e244]:
+      - link "New Cars" [ref=e107]
+    - listitem "Certified Pre-Owned" [ref=e245]:
+      - link "Certified Pre-Owned" [ref=e108]
+    - listitem "Cars for Sale by Owner" [ref=e246]:
+      - link "Cars for Sale by Owner" [ref=e109]
+    - listitem "Find a Dealer" [ref=e247]:
+      - link "Find a Dealer" [ref=e110]
+    - listitem "Pickup Trucks Buying Guide" [ref=e248]:
+      - link "Pickup Trucks Buying Guide" [ref=e111]
+    - listitem "Electric Cars Buying Guide" [ref=e249]:
+      - link "Electric Cars Buying Guide" [ref=e112]
+    - listitem "Financing" [ref=e250]:
+      - link "Financing" [ref=e113]
+  - button [ref=e114]
+  - region
+  - heading "Research & News" [level=2]
+  - list:
+    - listitem "Consumer Car Reviews" [ref=e251]:
+      - link "Consumer Car Reviews" [ref=e115]
+    - listitem "Car News & Expert Reviews" [ref=e252]:
+      - link "Car News & Expert Reviews" [ref=e116]
+    - listitem "Compare Cars" [ref=e253]:
+      - link "Compare Cars" [ref=e117]
+    - listitem "Best Cars Rankings" [ref=e254]:
+      - link "Best Cars Rankings" [ref=e118]
+    - listitem "Safety & Recalls" [ref=e255]:
+      - link "Safety & Recalls" [ref=e119]
+    - listitem "American-Made Index" [ref=e256]:
+      - link "American-Made Index" [ref=e120]
+    - listitem "Video Reviews" [ref=e257]:
+      - link "Video Reviews" [ref=e121]
+  - button [ref=e122]
+  - region
+  - heading "Sell" [level=2]
+  - list:
+    - listitem "Sell Your Car" [ref=e258]:
+      - link "Sell Your Car" [ref=e123]
+    - listitem "Get Instant Offer" [ref=e259]:
+      - link "Get Instant Offer" [ref=e124]
+    - listitem "Free Listing on Cars.com" [ref=e260]:
+      - link "Free Listing on Cars.com" [ref=e125]
+    - listitem "Selling Guides & Tips" [ref=e261]:
+      - link "Selling Guides & Tips" [ref=e126]
+  - button [ref=e127]
+  - region
+  - heading "Tools & Services" [level=2]
+  - list:
+    - listitem "Car Loan Calculators" [ref=e262]:
+      - link "Car Loan Calculators" [ref=e128]
+    - listitem "Car Affordability Calculator" [ref=e263]:
+      - link "Car Affordability Calculator" [ref=e129]
+    - listitem "Ship a Car" [ref=e264]:
+      - link "Ship a Car" [ref=e130]
+    - listitem "Car Warranty" [ref=e265]:
+      - link "Car Warranty" [ref=e131]
+    - listitem "Car Insurance" [ref=e266]:
+      - link "Car Insurance" [ref=e132]
+    - listitem "Car Maintenance" [ref=e267]:
+      - link "Car Maintenance" [ref=e133]
+    - listitem "Site Map" [ref=e268]:
+      - link "Site Map" [ref=e134]
+  - button [ref=e135]
+  - region
+  - heading "Top Metro Areas" [level=2]
+  - list:
+    - listitem "Chicago, IL" [ref=e269]:
+      - link "Chicago, IL" [ref=e136]
+    - listitem "Houston, TX" [ref=e270]:
+      - link "Houston, TX" [ref=e137]
+    - listitem "Los Angeles, CA" [ref=e271]:
+      - link "Los Angeles, CA" [ref=e138]
+    - listitem "Phoenix, AZ" [ref=e272]:
+      - link "Phoenix, AZ" [ref=e139]
+    - listitem "Atlanta, GA" [ref=e273]:
+      - link "Atlanta, GA" [ref=e140]
+    - listitem "Philadelphia, PA" [ref=e274]:
+      - link "Philadelphia, PA" [ref=e141]
+    - listitem "New York, NY" [ref=e275]:
+      - link "New York, NY" [ref=e142]
+    - listitem "San Diego, CA" [ref=e276]:
+      - link "San Diego, CA" [ref=e143]
+  - button [ref=e144]
+  - region
+  - heading "For Dealers" [level=2]
+  - list:
+    - listitem "Explore Cars Commerce, External link" [ref=e277]:
+      - link "Explore Cars Commerce, External link" [ref=e145]: "Explore Cars Commerce"
+    - listitem "Log In To Your Platform, External link" [ref=e278]:
+      - link "Log In To Your Platform, External link" [ref=e146]: "Log In To Your Platform"
+  - button [ref=e147]
+  - region
+  - text: "Our Mobile App"
+  - link "Download on the App Store" [ref=e148]:
+    - image "Download on the App Store"
+  - link "Get it on Google Play" [ref=e149]:
+    - image "Get it on Google Play"
+  - text: "Connect With Us"
+  - list:
+    - listitem "TikTok, External link" [ref=e279]:
+      - link "TikTok, External link" [ref=e150]
+    - listitem "Facebook, External link" [ref=e280]:
+      - link "Facebook, External link" [ref=e151]
+    - listitem "Youtube, External link" [ref=e281]:
+      - link "Youtube, External link" [ref=e152]
+    - listitem "Instagram, External link" [ref=e282]:
+      - link "Instagram, External link" [ref=e153]
+    - listitem "Pinterest, External link" [ref=e283]:
+      - link "Pinterest, External link" [ref=e154]
+  - heading "Popular Car Models" [level=2]
+  - heading "Toyota" [level=3]:
+    - link "Toyota" [ref=e155]
+  - list:
+    - listitem "Toyota RAV4" [ref=e284]:
+      - link "Toyota RAV4" [ref=e156]
+    - listitem "Toyota Prius" [ref=e285]:
+      - link "Toyota Prius" [ref=e157]
+    - listitem "Toyota Tacoma" [ref=e286]:
+      - link "Toyota Tacoma" [ref=e158]
+    - listitem "Toyota Camry" [ref=e287]:
+      - link "Toyota Camry" [ref=e159]
+    - listitem "Toyota 4Runner" [ref=e288]:
+      - link "Toyota 4Runner" [ref=e160]
+  - heading "Honda" [level=3]:
+    - link "Honda" [ref=e161]
+  - list:
+    - listitem "Honda CR-V" [ref=e289]:
+      - link "Honda CR-V" [ref=e162]
+    - listitem "Honda Civic" [ref=e290]:
+      - link "Honda Civic" [ref=e163]
+    - listitem "Honda Accord" [ref=e291]:
+      - link "Honda Accord" [ref=e164]
+    - listitem "Honda Pilot" [ref=e292]:
+      - link "Honda Pilot" [ref=e165]
+    - listitem "Honda HR-V" [ref=e293]:
+      - link "Honda HR-V" [ref=e166]
+  - heading "Ford" [level=3]:
+    - link "Ford" [ref=e167]
+  - list:
+    - listitem "Ford Maverick" [ref=e294]:
+      - link "Ford Maverick" [ref=e168]
+    - listitem "Ford Bronco" [ref=e295]:
+      - link "Ford Bronco" [ref=e169]
+    - listitem "Ford F-150" [ref=e296]:
+      - link "Ford F-150" [ref=e170]
+    - listitem "Ford Mustang Mach-E" [ref=e297]:
+      - link "Ford Mustang Mach-E" [ref=e171]
+    - listitem "Ford Explorer" [ref=e298]:
+      - link "Ford Explorer" [ref=e172]
+  - heading "Jeep" [level=3]:
+    - link "Jeep" [ref=e173]
+  - list:
+    - listitem "Jeep Wrangler" [ref=e299]:
+      - link "Jeep Wrangler" [ref=e174]
+    - listitem "Jeep Grand Cherokee" [ref=e300]:
+      - link "Jeep Grand Cherokee" [ref=e175]
+    - listitem "Jeep Wagoneer" [ref=e301]:
+      - link "Jeep Wagoneer" [ref=e176]
+    - listitem "Jeep Grand Wagoneer" [ref=e302]:
+      - link "Jeep Grand Wagoneer" [ref=e177]
+    - listitem "Jeep Cherokee" [ref=e303]:
+      - link "Jeep Cherokee" [ref=e178]
+  - heading "Chevrolet" [level=3]:
+    - link "Chevrolet" [ref=e179]
+  - list:
+    - listitem "Chevrolet Corvette" [ref=e304]:
+      - link "Chevrolet Corvette" [ref=e180]
+    - listitem "Chevrolet Silverado 1500" [ref=e305]:
+      - link "Chevrolet Silverado 1500" [ref=e181]
+    - listitem "Chevrolet Traverse" [ref=e306]:
+      - link "Chevrolet Traverse" [ref=e182]
+    - listitem "Chevrolet Tahoe" [ref=e307]:
+      - link "Chevrolet Tahoe" [ref=e183]
+    - listitem "Chevrolet Colorado" [ref=e308]:
+      - link "Chevrolet Colorado" [ref=e184]
+  - heading "Kia" [level=3]:
+    - link "Kia" [ref=e185]
+  - list:
+    - listitem "Kia Sportage" [ref=e309]:
+      - link "Kia Sportage" [ref=e186]
+    - listitem "Kia Sorento" [ref=e310]:
+      - link "Kia Sorento" [ref=e187]
+    - listitem "Kia Stinger" [ref=e311]:
+      - link "Kia Stinger" [ref=e188]
+    - listitem "Kia K5" [ref=e312]:
+      - link "Kia K5" [ref=e189]
+    - listitem "Kia EV6" [ref=e313]:
+      - link "Kia EV6" [ref=e190]
+  - button [ref=e191]
+  - region
+  - link "About Cars.com" [ref=e192]
+  - link "Contact Us" [ref=e193]
+  - link "Investor Relations, External link" [ref=e194]: "Investor Relations"
+  - link "Careers" [ref=e195]
+  - link "Licensing & Rights, External link" [ref=e196]: "Licensing & Rights"
+  - link "Fraud Awareness" [ref=e197]
+  - link "Feedback" [ref=e198]
+  - list:
+    - listitem "Terms & Conditions of Use" [ref=e314]:
+      - link "Terms & Conditions of Use" [ref=e199]
+    - listitem "Privacy Notice" [ref=e315]:
+      - link "Privacy Notice" [ref=e200]
+    - listitem "California Privacy Notice" [ref=e316]:
+      - link "California Privacy Notice" [ref=e201]
+    - listitem "My Privacy ChoicesCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e317]:
+      - link "My Privacy ChoicesCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e202]: "My Privacy Choices"
+    - listitem "Cookie Preferences" [ref=e318]:
+      - link "Cookie Preferences" [ref=e203]
+    - listitem "Accessibility Statement" [ref=e319]:
+      - link "Accessibility Statement" [ref=e204]
+    - listitem "Ad Choices" [ref=e320]:
+      - link "Ad Choices" [ref=e205]
+  - text: "© 2026 Cars.com. All rights reserved."
+- iframe "Feedback Form" [ref=e321]
+</result>
+
+[12] thinking: **Exploring search filters for listings**
+
+I need to find the cheapest listings specifically in Madison, but I see results from places like Oconomowoc. I wonder if checking "Include shippable listings" is affecting my distance filter. The user wants results strictly from Madison to stay within the 50-mile radius. If I expand the search, would it show better options? I’ll also consider using a structured API to find any hidden lower prices while verifying my current filters and search results for accuracy.
+
+**Adjusting search distance**
+
+I’m thinking about setting the search distance to 10 miles specifically for Madison. Right now, I see 21 results, but I wonder if that would change with the closer radius. I want to confirm there aren’t any listings under $4,900 since I have the search sorted by lowest price. If I include "shippable listings," it might show non-local options. I should open the filtered URL with a maximum distance set to 10 miles to ensure I’m aligned with Madison’s listings.
+
+[13] tool_call: repl("Verifying within 10 miles of Madison")
+<request>
+const url3 = 'https://www.cars.com/shopping/results/?stock_type=used&body_style_slugs[]=hatchback&interior_color_slugs[]=black&convenience_features[]=heated_seats&entertainment_features[]=premium_sound_system&maximum_distance=10&zip=53703&sort=list_price';
+await openTab(url3);
+const s6 = await snapshot(page, {interactive:true});
+console.log(s6.tree);
+</request>
+<result tokens_used="438" elapsed_time="2027ms">
+✔︎ Opened a new tab and set it active: tabs[2], page → Used Hatchbacks for Sale Near Madison, WI | Cars.com (https://www.cars.com/shopping/results/?stock_type=used&body_style_slugs[]=hatchback&interior_color_slugs[]=black&convenience_fea…)
+# note: interactive (clickable / focusable) elements only.
+- title: "Used Hatchbacks for Sale Near Madison, WI | Cars.com" [url=https://www.cars.com/shopping/results/?stock_type=used&body_style_slugs[]=hatchback&interior_color_slugs[]=black&convenience_fea…]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - navigation "primary" [ref=e2]:
+    - link "Cars.com" [ref=e3]
+    - link "Buy" [ref=e4]
+    - button "Buy menu" [ref=e5]
+    - link "Sell" [ref=e6]
+    - button "Sell menu" [ref=e7]
+    - link "Research" [ref=e8]
+    - button "Research menu" [ref=e9]
+    - link "Finance" [ref=e10]
+    - button "Finance menu" [ref=e11]
+    - button [ref=e12]:
+      - img "Menu"
+      - text: "Account."
+- main:
+  - banner:
+    - heading "Used hatchbacks for sale near Madison, WI" [level=1]
+  - region "Applied filters and sort" [ref=e13]:
+    - text: "Used"
+    - button [ref=e14]:
+      - img "Remove filter" [ref=e15]
+    - text: "Hatchback"
+    - button [ref=e16]:
+      - img "Remove filter" [ref=e17]
+    - text: "Black Interior"
+    - button [ref=e18]:
+      - img "Remove filter" [ref=e19]
+    - text: "Heated Seats"
+    - button [ref=e20]:
+      - img "Remove filter" [ref=e21]
+    - text: "Premium Sound System"
+    - button [ref=e22]:
+      - img "Remove filter" [ref=e23]
+    - combobox "Sort: Lowest price" [ref=e27]
+  - region "Listings" [ref=e30]:
+    - link "Skip to Filters" [ref=e31]
+    - group:
+      - text: "1  of  6"
+      - group "White 2013 Chevrolet Sonic RS White 2013 Chevrolet Sonic RS White 2013 Chevrolet Sonic RS White 2013" [ref=e32] [scrollable]
+    - button [ref=e33]
+    - text: "$4,900"
+    - img "Mileage"
+    - text: "148,213 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $88/mo"
+    - button [ref=e35]
+    - heading [level=2]:
+      - link "Used 2013 Chevrolet Sonic RS" [ref=e36]
+    - button "Good Deal" [ref=e37]
+    - button "High Demand" [ref=e40]
+    - text: "Quality Cars LLC\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e42]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Ice Storm Metallic 2013 Ford C-Max Energi SEL Ice Storm Metallic 2013 Ford C-Max Energi SEL Ice Stor" [ref=e43] [scrollable]
+    - button [ref=e44]
+    - text: "$7,500"
+    - img "Mileage"
+    - text: "110,763 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $135/mo"
+    - button [ref=e46]
+    - heading [level=2]:
+      - link "Used 2013 Ford C-Max Energi SEL" [ref=e47]
+    - button "Great Deal" [ref=e48]
+    - button "High Demand" [ref=e51]
+    - text: "Metro Ford of Madison"
+    - img "Review rating"
+    - text: "3.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e53]
+    - img "Listing location"
+    - text: "Madison, WI (7 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chocolate 2015 MINI Hardtop Cooper Chocolate 2015 MINI Hardtop Cooper Chocolate 2015 MINI Hardtop Co" [ref=e54] [scrollable]
+    - button [ref=e55]
+    - text: "$9,313"
+    - img "Price drop"
+    - text: "$189"
+    - img "Mileage"
+    - text: "94,642 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $168/mo"
+    - button [ref=e57]
+    - heading [level=2]:
+      - link "Used 2015 MINI Hardtop Cooper" [ref=e58]
+    - button "Good Deal" [ref=e59]
+    - text: "East Madison Toyota"
+    - img "Review rating"
+    - text: "4.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e62]
+    - img "Listing location"
+    - text: "Madison, WI (7 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Thunder Gray 2020 Hyundai Veloster 2 Thunder Gray 2020 Hyundai Veloster 2 Thunder Gray 2020 Hyundai " [ref=e63] [scrollable]
+    - button [ref=e64]
+    - text: "$14,995"
+    - img "Mileage"
+    - text: "66,836 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $270/mo"
+    - button [ref=e66]
+    - heading [level=2]:
+      - link "Used 2020 Hyundai Veloster 2" [ref=e67]
+    - button "Great Deal" [ref=e68]
+    - text: "Goben Cars West"
+    - img "Review rating"
+    - text: "4.7\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e71]
+    - img "Listing location"
+    - text: "Middleton, WI (8 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Blue 2016 Volkswagen Golf R 2.0T DSG Blue 2016 Volkswagen Golf R 2.0T DSG Blue 2016 Volkswagen Golf " [ref=e72] [scrollable]
+    - button [ref=e73]
+    - text: "$16,851"
+    - img "Mileage"
+    - text: "114,475 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $303/mo"
+    - button [ref=e75]
+    - heading [level=2]:
+      - link "Used 2016 Volkswagen Golf R 2.0T DSG" [ref=e76]
+    - button "Good Deal" [ref=e77]
+    - text: "German Auto House LLC\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e80]
+    - img "Listing location"
+    - text: "Fitchburg, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chili Red 2017 MINI Hardtop Cooper S Chili Red 2017 MINI Hardtop Cooper S Chili Red 2017 MINI Hardto" [ref=e81] [scrollable]
+    - button [ref=e82]
+    - text: "$16,999"
+    - img "Mileage"
+    - text: "79,231 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $306/mo"
+    - button [ref=e84]
+    - heading [level=2]:
+      - link "Used 2017 MINI Hardtop Cooper S" [ref=e85]
+    - button "Fair Deal" [ref=e86]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e89]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Deep Blue Metallic 2019 Tesla Model S Long Range Deep Blue Metallic 2019 Tesla Model S Long Range De" [ref=e90] [scrollable]
+    - button [ref=e91]
+    - text: "$19,995"
+    - img "Mileage"
+    - text: "120,931 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $360/mo"
+    - button [ref=e93]
+    - heading [level=2]:
+      - link "Used 2019 Tesla Model S Long Range" [ref=e94]
+    - button "Great Deal" [ref=e95]
+    - button "Range Score | Excellent" [ref=e98]
+    - text: "Goben Cars West"
+    - img "Review rating"
+    - text: "4.7\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e100]
+    - img "Listing location"
+    - text: "Middleton, WI (8 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Glacier White Metallic 2019 Audi S5 3.0T Prestige Glacier White Metallic 2019 Audi S5 3.0T Prestige " [ref=e101] [scrollable]
+    - button [ref=e102]
+    - text: "$22,995"
+    - img "Price drop"
+    - text: "$1K"
+    - img "Mileage"
+    - text: "111,720 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $414/mo"
+    - button [ref=e104]
+    - heading [level=2]:
+      - link "Used 2019 Audi S5 3.0T Prestige" [ref=e105]
+    - button "Great Deal" [ref=e106]
+    - text: "A to Z Autosports LLC\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e109]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Majestic Black Pearl 2023 Acura Integra A-SPEC Majestic Black Pearl 2023 Acura Integra A-SPEC Majest" [ref=e110] [scrollable]
+    - button [ref=e111]
+    - text: "$25,177"
+    - img "Price drop"
+    - text: "$100"
+    - img "Mileage"
+    - text: "22,816 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $453/mo"
+    - button [ref=e113]
+    - heading [level=2]:
+      - link "Used 2023 Acura Integra A-SPEC" [ref=e114]
+    - button "Great Deal" [ref=e115]
+    - text: "Kunes Mitsubishi of Madison"
+    - img "Review rating"
+    - text: "2.5\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e118]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Glacier White Metallic 2023 Audi A5 Sportback Premium Plus Glacier White Metallic 2023 Audi A5 Sport" [ref=e119] [scrollable]
+    - button [ref=e120]
+    - text: "$27,995"
+    - img "Mileage"
+    - text: "60,390 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $504/mo"
+    - button [ref=e122]
+    - heading [level=2]:
+      - link "Used 2023 Audi A5 Sportback Premium Plus" [ref=e123]
+    - button "Good Deal" [ref=e124]
+    - text: "Trust N Ride\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e127]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Daytona Gray Pearl Effect 2021 Audi A5 45 S line Premium Plus Daytona Gray Pearl Effect 2021 Audi A5" [ref=e128] [scrollable]
+    - button [ref=e129]
+    - text: "$28,790"
+    - img "Mileage"
+    - text: "48,477 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $518/mo"
+    - button [ref=e131]
+    - heading [level=2]:
+      - link "Used 2021 Audi A5 45 S line Premium Plus" [ref=e132]
+    - button "Good Deal" [ref=e133]
+    - button "High Demand" [ref=e136]
+    - text: "Zimbrick European\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e138]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Meteorite Gray Metallic 2025 Honda Civic Hybrid Sport Touring Meteorite Gray Metallic 2025 Honda Civ" [ref=e139] [scrollable]
+    - button [ref=e140]
+    - text: "$29,984"
+    - img "Mileage"
+    - text: "2,628 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $539/mo"
+    - button [ref=e142]
+    - heading [level=2]:
+      - link "Used 2025 Honda Civic Hybrid Sport Touring" [ref=e143]
+    - button "Great Deal" [ref=e144]
+    - button "2025 Award Finalist" [ref=e147]
+    - text: "Wilde East Towne Honda"
+    - img "Review rating"
+    - text: "4.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e149]
+    - img "Listing location"
+    - text: "Madison, WI (7 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Pearl White Multi-Coat 2019 Tesla Model S P100D Pearl White Multi-Coat 2019 Tesla Model S P100D Pear" [ref=e150] [scrollable]
+    - button [ref=e151]
+    - text: "$32,503"
+    - img "Mileage"
+    - text: "84,301 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $585/mo"
+    - button [ref=e153]
+    - heading [level=2]:
+      - link "Used 2019 Tesla Model S P100D" [ref=e154]
+    - button "Fair Deal" [ref=e155]
+    - button "Range Score | Excellent" [ref=e158]
+    - text: "Schoepp Motors West"
+    - img "Review rating"
+    - text: "4.8\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e160]
+    - img "Listing location"
+    - text: "Middleton, WI (8 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "British Racing Green IV Metallic 2025 MINI Hardtop Cooper S British Racing Green IV Metallic 2025 MI" [ref=e161] [scrollable]
+    - button [ref=e162]
+    - text: "$32,580"
+    - img "Mileage"
+    - text: "6,804 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $586/mo"
+    - button [ref=e164]
+    - heading [level=2]:
+      - link "Used 2025 MINI Hardtop Cooper S" [ref=e165]
+    - button "Good Deal" [ref=e166]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e169]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Midnight Black II Metallic 2025 MINI Hardtop Cooper S Midnight Black II Metallic 2025 MINI Hardtop C" [ref=e170] [scrollable]
+    - button [ref=e171]
+    - text: "$35,630"
+    - img "Price drop"
+    - text: "$2.2K"
+    - img "Mileage"
+    - text: "1,506 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $641/mo"
+    - button [ref=e173]
+    - heading [level=2]:
+      - link "Used 2025 MINI Hardtop Cooper S" [ref=e174]
+    - button "Fair Deal" [ref=e175]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e178]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chili Red II 2025 MINI Hardtop Cooper S Chili Red II 2025 MINI Hardtop Cooper S Chili Red II 2025 MI" [ref=e179] [scrollable]
+    - button [ref=e180]
+    - text: "$35,998"
+    - img "Mileage"
+    - text: "1,763 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $647/mo"
+    - button [ref=e182]
+    - heading [level=2]:
+      - link "Used 2025 MINI Hardtop Cooper S" [ref=e183]
+    - button "Fair Deal" [ref=e184]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e187]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black Sapphire Metallic 2025 BMW i4 Gran Coupe M50 Black Sapphire Metallic 2025 BMW i4 Gran Coupe M5" [ref=e188] [scrollable]
+    - button [ref=e189]
+    - text: "$55,499"
+    - img "Price drop"
+    - text: "$1.5K"
+    - img "Mileage"
+    - text: "17,854 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $998/mo"
+    - button [ref=e191]
+    - heading [level=2]:
+      - link "Certified 2025 BMW i4 Gran Coupe M50" [ref=e192]
+    - button "Good Deal" [ref=e193]
+    - button "Certified Pre-Owned" [ref=e196]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e198]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black Sapphire Metallic 2025 BMW i4 Gran Coupe M50 Black Sapphire Metallic 2025 BMW i4 Gran Coupe M5" [ref=e199] [scrollable]
+    - button [ref=e200]
+    - text: "$58,299"
+    - img "Price drop"
+    - text: "$1.7K"
+    - img "Mileage"
+    - text: "10,748 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $1,049/mo"
+    - button [ref=e202]
+    - heading [level=2]:
+      - link "Certified 2025 BMW i4 Gran Coupe M50" [ref=e203]
+    - button "Good Deal" [ref=e204]
+    - button "Certified Pre-Owned" [ref=e207]
+    - text: "BMW of Madison"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e209]
+    - img "Listing location"
+    - text: "Madison, WI (3 mi)"
+    - button [ref=e210]
+    - text: "$31,990"
+    - img "Mileage"
+    - text: "98,181 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $575/mo"
+    - button [ref=e212]
+    - heading [level=2]:
+      - link "Used 2017 Porsche Panamera 4" [ref=e213]
+    - button "Good Deal" [ref=e214]
+    - text: "Rosen Nissan of Madison\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e217]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)\n\n  \n\n\n                  \n                \n      \n        \n        \n        \n              \n      \n    \n              No photo available"
+    - button [ref=e218]
+    - text: "$40,900"
+    - img "Mileage"
+    - text: "46,669 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $736/mo"
+    - button [ref=e220]
+    - heading [level=2]:
+      - link "Used 2021 Audi S5 Premium Plus TFSI quattro Tiptronic" [ref=e221]
+    - button "Good Deal" [ref=e222]
+    - text: "Rosen Nissan of Madison\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e225]
+    - img "Listing location"
+    - text: "Madison, WI (4 mi)\n\n  \n\n\n                  \n                \n      \n        \n        \n        \n              \n      \n    \n              No photo available"
+    - heading "You've seen all 20 cars available within 10 miles" [level=2]
+    - text: "We found 12 more listings for hatchbacks within 50 miles"
+    - generic "Sorted by premium dealers first" [ref=e226]
+    - button [ref=e229]
+    - group:
+      - text: "1  of  6"
+      - group "Fathom Blue 2016 Kia Soul !Fathom Blue 2016 Kia Soul !Fathom Blue 2016 Kia Soul !Fathom Blue 2016 Ki" [ref=e230] [scrollable]
+    - button [ref=e231]
+    - text: "$9,256"
+    - img "Price drop"
+    - text: "$603"
+    - img "Mileage"
+    - text: "132,887 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $166/mo"
+    - button [ref=e233]
+    - heading [level=2]:
+      - link "Used 2016 Kia Soul !" [ref=e234]
+    - button "Good Deal" [ref=e235]
+    - text: "Ewald KIA of Oconomowoc"
+    - img "Review rating"
+    - text: "4.3\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e238]
+    - img "Listing location"
+    - text: "Oconomowoc, WI (46 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black Sapphire Metallic 2018 BMW 640 i xDrive Black Sapphire Metallic 2018 BMW 640 i xDrive Black Sa" [ref=e239] [scrollable]
+    - button [ref=e240]
+    - text: "$17,989"
+    - img "Mileage"
+    - text: "106,788 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $324/mo"
+    - button [ref=e242]
+    - heading [level=2]:
+      - link "Used 2018 BMW 640 i xDrive" [ref=e243]
+    - button "Great Deal" [ref=e244]
+    - text: "Kearns Motor Car Co."
+    - img "Review rating"
+    - text: "4.6\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e247]
+    - img "Listing location"
+    - text: "Johnson Creek, WI (32 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Chronos Gray Metallic 2024 Audi A5 Sportback 45 S line quattro Premium Chronos Gray Metallic 2024 Au" [ref=e248] [scrollable]
+    - button [ref=e249]
+    - text: "$32,779"
+    - img "Price drop"
+    - text: "$216"
+    - img "Mileage"
+    - text: "42,800 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $590/mo"
+    - button [ref=e251]
+    - heading [level=2]:
+      - link "Used 2024 Audi A5 Sportback 45 S line quattro Premium" [ref=e252]
+    - button "Good Deal" [ref=e253]
+    - text: "Rosen Ford Belleville\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e256]
+    - img "Listing location"
+    - text: "Belleville, WI (18 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Mythos Black Metallic 2023 Audi A5 Sportback 45 S Line Premium Plus Mythos Black Metallic 2023 Audi " [ref=e257] [scrollable]
+    - button [ref=e258]
+    - text: "$35,464"
+    - img "Mileage"
+    - text: "31,905 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $638/mo"
+    - button [ref=e260]
+    - heading [level=2]:
+      - link "Used 2023 Audi A5 Sportback 45 S Line Premium Plus" [ref=e261]
+    - button "Good Deal" [ref=e262]
+    - text: "Ewald Chrysler Dodge Jeep Ram of Oconomowoc"
+    - img "Review rating"
+    - text: "4.4\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e265]
+    - img "Listing location"
+    - text: "Oconomowoc, WI (46 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "lapiz blue metallic 2026 Volkswagen Golf R 2.0T DSG lapiz blue metallic 2026 Volkswagen Golf R 2.0T " [ref=e266] [scrollable]
+    - button [ref=e267]
+    - text: "$48,995"
+    - img "Mileage"
+    - text: "558 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $881/mo"
+    - button [ref=e269]
+    - heading [level=2]:
+      - link "Used 2026 Volkswagen Golf R 2.0T DSG" [ref=e270]
+    - button "Good Deal" [ref=e271]
+    - text: "Hesser Toyota"
+    - img "Review rating"
+    - text: "4.5\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e274]
+    - img "Listing location"
+    - text: "Janesville, WI (32 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Black 2021 Porsche Panamera GTS Black 2021 Porsche Panamera GTS Black 2021 Porsche Panamera GTS Blac" [ref=e275] [scrollable]
+    - button [ref=e276]
+    - text: "$73,989"
+    - img "Mileage"
+    - text: "46,223 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $1,331/mo"
+    - button [ref=e278]
+    - heading [level=2]:
+      - link "Used 2021 Porsche Panamera GTS" [ref=e279]
+    - button "Great Deal" [ref=e280]
+    - text: "Kearns Motor Car Co."
+    - img "Review rating"
+    - text: "4.6\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e283]
+    - img "Listing location"
+    - text: "Johnson Creek, WI (32 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Pearl White Multi 2021 Tesla Model S Plaid Pearl White Multi 2021 Tesla Model S Plaid Pearl White Mu" [ref=e284] [scrollable]
+    - button [ref=e285]
+    - text: "$46,330"
+    - img "Price drop"
+    - text: "$577"
+    - img "Mileage"
+    - text: "83,342 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $833/mo"
+    - button [ref=e287]
+    - heading [level=2]:
+      - link "Used 2021 Tesla Model S Plaid" [ref=e288]
+    - button "Good Deal" [ref=e289]
+    - button "Range Score | Excellent" [ref=e292]
+    - text: "Kunes Ford of Delavan"
+    - img "Review rating"
+    - text: "4.0\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e294]
+    - img "Listing location"
+    - text: "Delavan, WI (50 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "Glacier White Metallic 2021 Audi RS 7 4.0T quattro Glacier White Metallic 2021 Audi RS 7 4.0T quattr" [ref=e295] [scrollable]
+    - button [ref=e296]
+    - text: "$73,846"
+    - img "Mileage"
+    - text: "52,101 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $1,328/mo"
+    - button [ref=e298]
+    - heading [level=2]:
+      - link "Used 2021 Audi RS 7 4.0T quattro" [ref=e299]
+    - button "Good Deal" [ref=e300]
+    - text: "Kunes Ford of Delavan"
+    - img "Review rating"
+    - text: "4.0\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e303]
+    - img "Listing location"
+    - text: "Delavan, WI (50 mi)"
+    - button [ref=e304]
+    - text: "$9,776"
+    - img "Price drop"
+    - text: "$3.2K"
+    - img "Mileage"
+    - text: "97,054 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $176/mo"
+    - button [ref=e306]
+    - heading [level=2]:
+      - link "Used 2021 Chevrolet Spark 2LT" [ref=e307]
+    - button "Fair Deal" [ref=e308]
+    - text: "Rosen Ford Belleville\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e311]
+    - img "Listing location"
+    - text: "Belleville, WI (18 mi)\n\n  \n\n\n                  \n                \n      \n        \n        \n        \n              \n      \n    \n              No photo available"
+    - button [ref=e312]
+    - text: "$13,525"
+    - img "Price drop"
+    - text: "$1.4K"
+    - img "Mileage"
+    - text: "108,401 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $243/mo"
+    - button [ref=e314]
+    - heading [level=2]:
+      - link "Used 2018 Toyota Corolla iM Base" [ref=e315]
+    - button "Fair Deal" [ref=e316]
+    - text: "Rosen Ford Belleville\n\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e319]
+    - img "Listing location"
+    - text: "Belleville, WI (18 mi)\n\n  \n\n\n                  \n                \n      \n        \n        \n        \n              \n      \n    \n              No photo available"
+    - group:
+      - text: "1  of  6"
+      - group "Mythos Black Metallic 2025 Audi A5 Sportback 45 S Line Premium Mythos Black Metallic 2025 Audi A5 Sp" [ref=e320] [scrollable]
+    - button [ref=e321]
+    - text: "Not Priced"
+    - img "Mileage"
+    - text: "28,668 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $0/mo"
+    - button [ref=e323]
+    - heading [level=2]:
+      - link "Used 2025 Audi A5 Sportback 45 S Line Premium" [ref=e324]
+    - text: "Summit Automotive Ford"
+    - img "Review rating"
+    - text: "4.7\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e325]
+    - img "Listing location"
+    - text: "Beaver Dam, WI (40 mi)"
+    - group:
+      - text: "1  of  6"
+      - group "White 2025 Audi A5 Sportback 45 S Line Premium White 2025 Audi A5 Sportback 45 S Line Premium White " [ref=e326] [scrollable]
+    - button [ref=e327]
+    - text: "Not Priced"
+    - img "Mileage"
+    - text: "35,893 mi.\n\n  \n\n  \n    \n  \n    \n  Est. $0/mo"
+    - button [ref=e329]
+    - heading [level=2]:
+      - link "Used 2025 Audi A5 Sportback 45 S Line Premium" [ref=e330]
+    - text: "Summit Automotive Ford"
+    - img "Review rating"
+    - text: "4.7\n\n  \n\n  \n    \n  \n     \n  \n  Check Availability"
+    - link [ref=e331]
+    - img "Listing location"
+    - text: "Beaver Dam, WI (40 mi)\n\n  \n\n\n                  \n                \n      \n        \n        \n              \n                \n              \n            \n        \n        \n          \n            \n          \n          \n        \n      \n    \n\n              \n\n\n\n\n\n\n\n\n\n\n\n              \n                \n\n                    \n\n                        New 2026 Honda Civic Hybrid Sport Touring\n\n                      $32,706"
+    - heading [level=3]:
+      - link "New 2026 Honda Civic Hybrid Sport Touring" [ref=e332]
+    - button [ref=e333]
+    - text: "New 2026 BMW 430 Gran Coupe i xDrive\n\n                      $56,300"
+    - heading [level=3]:
+      - link "New 2026 BMW 430 Gran Coupe i xDrive" [ref=e334]
+    - button [ref=e335]
+    - text: "New 2026 Audi A5\n\n                      $58,560"
+    - heading [level=3]:
+      - link "New 2026 Audi A5" [ref=e336]
+    - button [ref=e337]
+    - text: "New 2026 Audi A5\n\n                      $61,510"
+    - heading [level=3]:
+      - link "New 2026 Audi A5" [ref=e338]
+    - button [ref=e339]
+    - text: "New 2026 BMW i4 Gran Coupe xDrive40\n\n                      $68,070"
+    - heading [level=3]:
+      - link "New 2026 BMW i4 Gran Coupe xDrive40" [ref=e340]
+    - button [ref=e341]
+    - text: "New 2025 Audi S5 3.0T quattro Premium\n\n                      $68,535"
+    - heading [level=3]:
+      - link "New 2025 Audi S5 3.0T quattro Premium" [ref=e342]
+    - button [ref=e343]
+    - text: "New 2026 BMW i4 Gran Coupe xDrive40\n\n                      $72,290"
+    - heading [level=3]:
+      - link "New 2026 BMW i4 Gran Coupe xDrive40" [ref=e344]
+    - button [ref=e345]
+    - text: "New 2026 Audi S5 PRESTIGE\n\n                      $76,225"
+    - heading [level=3]:
+      - link "New 2026 Audi S5 PRESTIGE" [ref=e346]
+    - button [ref=e347]
+    - text: "New 2026 Mercedes-Benz AMG GT 43 Base\n\n                      $116,935"
+    - heading [level=3]:
+      - link "New 2026 Mercedes-Benz AMG GT 43 Base" [ref=e348]
+    - button [ref=e349]
+    - heading "New cars matching your search" [level=2]
+    - link "See all" [ref=e350]
+    - group "card carousel":
+      - img "Scroll carousel to left"
+      - button [ref=e351] [disabled]
+      - img "Scroll carousel to right" [ref=e353]
+      - button [ref=e354]
+      - contentinfo:
+        - button "Go to carousel pane 1" [ref=e356]
+        - button "Go to carousel pane 2" [ref=e357]
+    - heading "You’ve reached the end of results" [level=2]
+    - text: "Get notified when we have cars that match by saving your search"
+    - button "Save search" [ref=e358]
+  - region "Filters" [ref=e360]:
+    - link "Skip to Listings" [ref=e361]
+    - banner:
+      - heading [level=3]: "Carson"
+      - text: "I found  20  cars  that match your search. Want help\n      narrowing them down?\n    \n        \n        \n          Narrow it down"
+      - button [ref=e363]
+    - heading "20 results" [level=3]
+    - text: "Clear all"
+    - generic "filters" [ref=e364]
+    - button [ref=e365]
+    - button "Save search" [ref=e366]
+    - text: "Search in your own words"
+    - textbox [ref=e368]
+    - button "Submit" [ref=e369] [disabled]
+    - heading "Location" [level=3]
+    - text: "Search within"
+    - combobox "10 miles" [ref=e370]:
+      - option "10 miles" (selected) value="10"
+      - option "20 miles" value="20"
+      - option "30 miles" value="30"
+      - option "40 miles" value="40"
+      - option "50 miles" value="50"
+      - option "75 miles" value="75"
+      - option "100 miles" value="100"
+      - option "150 miles" value="150"
+      - option "200 miles" value="200"
+      - option "250 miles" value="250"
+      - option "500 miles" value="500"
+      - option "750 miles" value="750"
+      - option "1000 miles" value="1000"
+      - option "All miles" value="9999"
+      - text: "10 miles\n              \n            \n              \n                 20 miles\n              \n            \n              \n                 30 miles\n              \n            \n              \n                 40 miles\n              \n            \n              \n                 50 miles\n              \n            \n              \n                 75 miles\n              \n            \n              \n                 100 miles\n              \n            \n              \n                 150 miles\n              \n            \n              \n                 200 miles\n              \n            \n              \n                 250 miles\n              \n            \n              \n                 500 miles\n              \n            \n              \n                 750 miles\n              \n            \n              \n                 1000 miles\n              \n            \n              \n                 All miles"
+    - text: "ZIP code"
+    - textbox "53703" [ref=e371]
+    - checkbox [ref=e372] [checked]
+    - label "Include shippable listings" [ref=e373]
+    - heading "Basics" [level=3]
+    - button "Price" [ref=e374]
+    - button "Mileage" [ref=e375]
+    - button "New/Used" [ref=e376]
+    - radio [ref=e377]
+    - label "New, used & CPO (29)" [ref=e378]
+    - radio [ref=e379]
+    - label "New & CPO (11)" [ref=e380]
+    - radio [ref=e381]
+    - label "New (9)" [ref=e382]
+    - radio [ref=e383] [checked]
+    - label "Used (20)" [ref=e384]
+    - radio [ref=e385]
+    - label "Certified Pre-Owned (2)" [ref=e386]
+    - button "Deal rating" [ref=e387]
+    - heading "Vehicle Details" [level=3]
+    - button "Year" [ref=e388]
+    - button "Make" [ref=e389]
+    - button "Model" [ref=e390] [disabled]
+    - button "Trim" [ref=e391] [disabled]
+    - heading "Style" [level=3]
+    - button "Body style" [ref=e392]
+    - checkbox [ref=e393]
+    - label "All body styles" [ref=e394]
+    - checkbox [ref=e395]
+    - label "SUV (323)" [ref=e396]
+    - checkbox [ref=e397]
+    - label "Truck (94)" [ref=e398]
+    - checkbox [ref=e399]
+    - label "Sedan (57)" [ref=e400]
+    - checkbox [ref=e401] [checked]
+    - label "Hatchback (20)" [ref=e402]
+    - checkbox [ref=e403]
+    - label "Coupe (17)" [ref=e404]
+    - checkbox [ref=e405]
+    - label "Convertible (8)" [ref=e406]
+    - checkbox [ref=e407]
+    - label "Wagon (2)" [ref=e408]
+    - checkbox [ref=e409]
+    - label "Passenger Van (1)" [ref=e410]
+    - button "Vehicle size" [ref=e411]
+    - button "Cab type" [ref=e412] [disabled]
+    - button "Door count" [ref=e413]
+    - button "Exterior color" [ref=e414]
+    - button "Interior color" [ref=e415]
+    - checkbox [ref=e416]
+    - label "All interior colors" [ref=e417]
+    - checkbox [ref=e418]
+    - label "Beige (2)" [ref=e419]
+    - checkbox [ref=e420] [checked]
+    - label "Black (20)" [ref=e421]
+    - checkbox [ref=e422]
+    - label "White (2)" [ref=e423]
+    - heading "Performance" [level=3]
+    - button "Fuel type" [ref=e424]
+    - button "Transmission" [ref=e425]
+    - button "Drivetrain" [ref=e426]
+    - button "Cylinders" [ref=e427]
+    - button "EV range" [ref=e428]
+    - button "EV charge time" [ref=e429]
+    - heading "Features" [level=3]
+    - button "Convenience" [ref=e430]
+    - generic [ref=e431] [scrollable]:
+      - checkbox [ref=e432]
+      - label "All convenience features" [ref=e433]
+      - checkbox [ref=e434]
+      - label "Adaptive Cruise Control (13)" [ref=e435]
+      - checkbox [ref=e436]
+      - label "Cooled Seats (3)" [ref=e437]
+      - checkbox [ref=e438] [checked]
+      - label "Heated Seats (20)" [ref=e439]
+      - checkbox [ref=e440]
+      - label "Heated Steering Wheel (10)" [ref=e441]
+      - checkbox [ref=e442]
+      - label "Keyless Entry (20)" [ref=e443]
+      - checkbox [ref=e444]
+      - label "Keyless Start (18)" [ref=e445]
+      - checkbox [ref=e446]
+      - label "Navigation System (14)" [ref=e447]
+      - checkbox [ref=e448]
+      - label "Power Folding Mirrors (2)" [ref=e449]
+      - checkbox [ref=e450]
+      - label "Power Liftgate (10)" [ref=e451]
+      - checkbox [ref=e452]
+      - label "Remote Start (5)" [ref=e453]
+    - button "Entertainment" [ref=e454]
+    - generic [ref=e455] [scrollable]:
+      - checkbox [ref=e456]
+      - label "All entertainment features" [ref=e457]
+      - checkbox [ref=e458]
+      - label "Android Auto® (8)" [ref=e459]
+      - checkbox [ref=e460]
+      - label "Apple CarPlay® (14)" [ref=e461]
+      - checkbox [ref=e462]
+      - label "Bluetooth® (20)" [ref=e463]
+      - checkbox [ref=e464]
+      - label "CD Player (4)" [ref=e465]
+      - checkbox [ref=e466]
+      - label "DVD Player (2)" [ref=e467]
+      - checkbox [ref=e468]
+      - label "HomeLink (8)" [ref=e469]
+      - checkbox [ref=e470] [checked]
+      - label "Premium Sound System (20)" [ref=e471]
+      - checkbox [ref=e472]
+      - label "Satellite Radio (9)" [ref=e473]
+      - checkbox [ref=e474]
+      - label "USB Port (17)" [ref=e475]
+      - checkbox [ref=e476]
+      - label "WiFi Hotspot (10)" [ref=e477]
+    - button "Exterior" [ref=e478]
+    - button "Safety" [ref=e479]
+    - button "Seating" [ref=e480]
+    - heading "Other" [level=3]
+    - button "Vehicle history" [ref=e481]
+    - button "Lifestyle" [ref=e482]
+    - button "Seller type" [ref=e483] [disabled]
+    - button "Awards" [ref=e484]
+    - heading "Keywords" [level=3]
+    - text: "keyword"
+    - textbox "e.g., sunroof" [ref=e485] [placeholder="e.g., sunroof"]
+    - generic "Search" [ref=e486]
+    - button [ref=e487]
+    - heading "Show only" [level=3]
+    - checkbox [ref=e488]
+    - label "Cars with photos" [ref=e489]
+- contentinfo:
+  - heading "Shop" [level=2]
+  - link "Used Cars" [ref=e490]
+  - link "New Cars" [ref=e491]
+  - link "Certified Pre-Owned" [ref=e492]
+  - link "Cars for Sale by Owner" [ref=e493]
+  - link "Find a Dealer" [ref=e494]
+  - link "Pickup Trucks Buying Guide" [ref=e495]
+  - link "Electric Cars Buying Guide" [ref=e496]
+  - link "Financing" [ref=e497]
+  - button [ref=e498]
+  - region
+  - heading "Research & News" [level=2]
+  - link "Consumer Car Reviews" [ref=e499]
+  - link "Car News & Expert Reviews" [ref=e500]
+  - link "Compare Cars" [ref=e501]
+  - link "Best Cars Rankings" [ref=e502]
+  - link "Safety & Recalls" [ref=e503]
+  - link "American-Made Index" [ref=e504]
+  - link "Video Reviews" [ref=e505]
+  - button [ref=e506]
+  - region
+  - heading "Sell" [level=2]
+  - link "Sell Your Car" [ref=e507]
+  - link "Get Instant Offer" [ref=e508]
+  - link "Free Listing on Cars.com" [ref=e509]
+  - link "Selling Guides & Tips" [ref=e510]
+  - button [ref=e511]
+  - region
+  - heading "Tools & Services" [level=2]
+  - link "Car Loan Calculators" [ref=e512]
+  - link "Car Affordability Calculator" [ref=e513]
+  - link "Ship a Car" [ref=e514]
+  - link "Car Warranty" [ref=e515]
+  - link "Car Insurance" [ref=e516]
+  - link "Car Maintenance" [ref=e517]
+  - link "Site Map" [ref=e518]
+  - button [ref=e519]
+  - region
+  - heading "Top Metro Areas" [level=2]
+  - link "Chicago, IL" [ref=e520]
+  - link "Houston, TX" [ref=e521]
+  - link "Los Angeles, CA" [ref=e522]
+  - link "Phoenix, AZ" [ref=e523]
+  - link "Atlanta, GA" [ref=e524]
+  - link "Philadelphia, PA" [ref=e525]
+  - link "New York, NY" [ref=e526]
+  - link "San Diego, CA" [ref=e527]
+  - button [ref=e528]
+  - region
+  - heading "For Dealers" [level=2]
+  - link "Explore Cars Commerce, External link" [ref=e529]: "Explore Cars Commerce"
+  - link "Log In To Your Platform, External link" [ref=e530]: "Log In To Your Platform"
+  - button [ref=e531]
+  - region
+  - text: "Our Mobile App"
+  - link "Download on the App Store" [ref=e532]
+  - link "Get it on Google Play" [ref=e533]
+  - text: "Connect With Us"
+  - link "TikTok, External link" [ref=e534]
+  - link "Facebook, External link" [ref=e535]
+  - link "Youtube, External link" [ref=e536]
+  - link "Instagram, External link" [ref=e537]
+  - link "Pinterest, External link" [ref=e538]
+  - heading "Popular Car Models" [level=2]
+  - heading "Toyota" [level=3]:
+    - link "Toyota" [ref=e539]
+  - link "Toyota RAV4" [ref=e540]
+  - link "Toyota Prius" [ref=e541]
+  - link "Toyota Tacoma" [ref=e542]
+  - link "Toyota Camry" [ref=e543]
+  - link "Toyota 4Runner" [ref=e544]
+  - heading "Honda" [level=3]:
+    - link "Honda" [ref=e545]
+  - link "Honda CR-V" [ref=e546]
+  - link "Honda Civic" [ref=e547]
+  - link "Honda Accord" [ref=e548]
+  - link "Honda Pilot" [ref=e549]
+  - link "Honda HR-V" [ref=e550]
+  - heading "Ford" [level=3]:
+    - link "Ford" [ref=e551]
+  - link "Ford Maverick" [ref=e552]
+  - link "Ford Bronco" [ref=e553]
+  - link "Ford F-150" [ref=e554]
+  - link "Ford Mustang Mach-E" [ref=e555]
+  - link "Ford Explorer" [ref=e556]
+  - heading "Jeep" [level=3]:
+    - link "Jeep" [ref=e557]
+  - link "Jeep Wrangler" [ref=e558]
+  - link "Jeep Grand Cherokee" [ref=e559]
+  - link "Jeep Wagoneer" [ref=e560]
+  - link "Jeep Grand Wagoneer" [ref=e561]
+  - link "Jeep Cherokee" [ref=e562]
+  - heading "Chevrolet" [level=3]:
+    - link "Chevrolet" [ref=e563]
+  - link "Chevrolet Corvette" [ref=e564]
+  - link "Chevrolet Silverado 1500" [ref=e565]
+  - link "Chevrolet Traverse" [ref=e566]
+  - link "Chevrolet Tahoe" [ref=e567]
+  - link "Chevrolet Colorado" [ref=e568]
+  - heading "Kia" [level=3]:
+    - link "Kia" [ref=e569]
+  - link "Kia Sportage" [ref=e570]
+  - link "Kia Sorento" [ref=e571]
+  - link "Kia Stinger" [ref=e572]
+  - link "Kia K5" [ref=e573]
+  - link "Kia EV6" [ref=e574]
+  - button [ref=e575]
+  - region
+  - link "About Cars.com" [ref=e576]
+  - link "Contact Us" [ref=e577]
+  - link "Investor Relations, External link" [ref=e578]: "Investor Relations"
+  - link "Careers" [ref=e579]
+  - link "Licensing & Rights, External link" [ref=e580]: "Licensing & Rights"
+  - link "Fraud Awareness" [ref=e581]
+  - link "Feedback" [ref=e582]
+  - link "Terms & Conditions of Use" [ref=e583]
+  - link "Privacy Notice" [ref=e584]
+  - link "California Privacy Notice" [ref=e585]
+  - link "My Privacy ChoicesCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e586]: "My Privacy Choices"
+  - link "Cookie Preferences" [ref=e587]
+  - link "Accessibility Statement" [ref=e588]
+  - link "Ad Choices" [ref=e589]
+  - text: "© 2026 Cars.com. All rights reserved."
+</result>
+
+[14] tool_call: write_todos:
+Todo list updated:
+- [completed] t1: Search Cars.com used hatchbacks near Madison and apply/inspect relevant filters
+- [completed] t2: Verify cheapest listing details: interior color, heated seats, premium sound
+- [in_progress] t3: Report listing with price, vehicle, location, link, and evidence
+
+[15] tool_call: write_todos:
+Todo list updated:
+- [completed] t3: Report listing with price, vehicle, location, link, and evidence
+
+[16] assistant: I found the cheapest match on Cars.com, assuming Madison, WI:
+
+**Used 2013 Chevrolet Sonic RS**  
+- **Price:** $4,900  
+- **Mileage:** 148,213 mi  
+- **Dealer:** Quality Cars LLC  
+- **Location:** Madison, WI, 4 mi from ZIP 53703  
+- **Interior:** Black  
+- **Features verified:** Heated Seats, Premium Sound System  
+- **Listing:** https://www.cars.com/vehicledetail/2c027067-f7cd-40cb-98a7-bcc87bbfd6a5/
+
+I verified the search was filtered to **Used**, **Hatchback**, **Black Interior**, **Heated Seats**, **Premium Sound System**, and sorted by **Lowest price** within 10 miles of Madison.

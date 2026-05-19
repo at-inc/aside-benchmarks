@@ -1,0 +1,116 @@
+{
+  "task_id": "a8b9edd598561d2de901864d5f40fe67",
+  "level": "medium",
+  "task": "Calculate the shipping cost for 4 pound package from Texas to New York.",
+  "website": "https://www.fedex.com/en-us/home.html",
+  "durationMs": 123019,
+  "outcome": "success",
+  "graderVerdict": "pass",
+  "graderReasoning": "The agent successfully used FedEx’s rate calculator, entered origin/destination based on the provided state-only inputs, set the package weight to 4 lb, and retrieved visible shipping rates. The final page clearly showed the rates, including the cheapest option: FedEx Ground at $34.99 with no pickup selected, from the auto-matched TX 79567 to NY 10007. The extracted main text confirms the pricing and service names. Although the task was underspecified and FedEx auto-selected specific ZIP matches, the agent disclosed those assumptions and provided the calculated shipping cost.",
+  "graderDurationMs": 3510,
+  "sessionId": "FOSisCz9snqnjzco",
+  "provider": "openai-codex",
+  "tabCount": 1,
+  "messageCount": 36,
+  "final_result_response": "Confirmed from the full FedEx rates text:\n\nCheapest option: **FedEx Ground, $34.99**, delivered **end of day Mon, May 18**.\n\nOther FedEx retail rates:\n- FedEx Express Saver: **$75.88**\n- FedEx 2Day: **$98.25**\n- FedEx 2Day AM: **$111.69**\n- FedEx Standard Overnight: **$175.70**\n- FedEx Priority Overnight: **$201.02**\n- FedEx First Overnight: **$241.63**\n\nThis was for a **4 lb package**, “Your Packaging,” from **TX 79567** to **NY 10007**, no pickup selected.",
+  "action_history": [
+    "Opening FedEx rate page: const p1 = await openTab('https://www.fedex.com/en-us/home.html');",
+    "Opening FedEx quote flow: await page.locator('e13').click();",
+    "Testing state-only quote inputs: await page.locator('e17').fill('Texas');",
+    "Selecting Texas as origin: await page.locator('e51').click();",
+    "Entering New York destination: await page.locator('e20').fill('New York');",
+    "Selecting New York City as destination: await page.locator('e59').click();",
+    "Entering package weight: await page.locator('e81').fill('4');",
+    "Showing FedEx rates: await page.locator('e94').click();",
+    "Checking drop-off pricing without pickup: await page.locator('e99').click();"
+  ],
+  "thoughts": [
+    "**Considering address input**",
+    "**Evaluating control needs**",
+    "**Analyzing shipping rates**",
+    "**Calculating shipping options**"
+  ],
+  "screenshots": [
+    {
+      "step": 1,
+      "filename": "0_full_screenshot.webp",
+      "title": "Opening FedEx rate page"
+    },
+    {
+      "step": 2,
+      "filename": "1_full_screenshot.webp",
+      "title": "Opening FedEx quote flow"
+    },
+    {
+      "step": 3,
+      "filename": "2_full_screenshot.webp",
+      "title": "Reading FedEx quote page"
+    },
+    {
+      "step": 4,
+      "filename": "3_full_screenshot.webp",
+      "title": "Testing state-only quote inputs"
+    },
+    {
+      "step": 5,
+      "filename": "4_full_screenshot.webp",
+      "title": "Looking for address suggestions"
+    },
+    {
+      "step": 6,
+      "filename": "5_full_screenshot.webp",
+      "title": "Selecting Texas as origin"
+    },
+    {
+      "step": 7,
+      "filename": "6_full_screenshot.webp",
+      "title": "Selecting New York as destination"
+    },
+    {
+      "step": 8,
+      "filename": "7_full_screenshot.webp",
+      "title": "Entering New York destination"
+    },
+    {
+      "step": 9,
+      "filename": "8_full_screenshot.webp",
+      "title": "Selecting New York City as destination"
+    },
+    {
+      "step": 10,
+      "filename": "9_full_screenshot.webp",
+      "title": "Reading quote form after addresses"
+    },
+    {
+      "step": 11,
+      "filename": "10_full_screenshot.webp",
+      "title": "Entering package weight"
+    },
+    {
+      "step": 12,
+      "filename": "11_full_screenshot.webp",
+      "title": "Showing FedEx rates"
+    },
+    {
+      "step": 13,
+      "filename": "12_full_screenshot.webp",
+      "title": "Waiting for rate results"
+    },
+    {
+      "step": 14,
+      "filename": "13_full_screenshot.webp",
+      "title": "Checking drop-off pricing without pickup"
+    },
+    {
+      "step": 15,
+      "filename": "14_full_screenshot.webp",
+      "title": "Waiting for updated drop-off rates"
+    }
+  ],
+  "artifacts": {
+    "messages": "messages.json",
+    "sessionMeta": "session.json",
+    "sessionDir": "session-dir",
+    "result": "result.json"
+  }
+}

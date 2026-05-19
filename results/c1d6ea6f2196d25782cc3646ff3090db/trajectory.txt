@@ -1,0 +1,2374 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>
+
+[2] user: Go to https://www.google.com/shopping?udm=28, Create a list of drip coffee makers that are on sale and within $25-60 and have a black finish.
+
+[3] assistant: I’ll search Google Shopping directly and filter/inspect results for sale prices, $25 to $60, and black finish.
+
+[4] tool_call: repl("Opening Google Shopping")
+<request>
+const p1 = await openTab('https://www.google.com/shopping?udm=28');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="301" elapsed_time="4554ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Google Shopping - Shop Online, Compare Prices & Where to Buy (https://www.google.com/shopping?udm=28)
+# note: interactive (clickable / focusable) elements only.
+- title: "Google Shopping - Shop Online, Compare Prices & Where to Buy" [url=https://www.google.com/shopping?udm=28]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [focused] [placeholder="Shop for anything"]
+    - button "Search by image" [ref=e5]
+    - button "Search" [ref=e6]
+  - button "Google apps" [ref=e7]
+  - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e8]
+  - link [ref=e9]
+  - link [ref=e10]:
+    - link "Search" [ref=e11]
+  - link [ref=e12]:
+    - link "Nearby" [ref=e13]
+  - link [ref=e14]:
+    - link "Deals" [ref=e15]
+  - link [ref=e16]:
+    - link "For you" [ref=e17]
+  - heading "Accessibility Links" [level=2]
+- main:
+  - heading "Continue shopping" [level=3]
+  - list:
+    - listitem:
+      - link "SALE" [ref=e18]
+      - link "Ray-Ban" [ref=e19]
+      - link "Up to 50% off sitewide" [ref=e20]
+    - listitem:
+      - link "DEALS" [ref=e21]
+      - link "Apple Watch Hermes" [ref=e22]
+      - link "Up to 72% off" [ref=e23]
+    - listitem:
+      - link "SALE" [ref=e24]
+      - link "Giro Sport Design" [ref=e25]
+      - link "Up to 70% off sitewide" [ref=e26]
+    - listitem:
+      - link "DEALS" [ref=e27]
+      - link "Aeron Chair" [ref=e28]
+      - link "Up to 70% off" [ref=e29]
+    - listitem:
+      - link "DEALS" [ref=e30]
+      - link "Apple Glasses" [ref=e31]
+      - link "Up to 62% off" [ref=e32]
+    - listitem:
+      - link "DEALS" [ref=e33]
+      - link "Human Scale" [ref=e34]
+      - link "Up to 60% off" [ref=e35]
+    - listitem:
+      - link "DEALS" [ref=e36]
+      - link "Alpinestars Bicycle Helmets" [ref=e37]
+      - link "Up to 57% off" [ref=e38]
+  - text: "Who do you shop for?"
+  - list:
+    - listitem:
+      - generic [ref=e39]:
+        - button "Men" [ref=e40]
+        - text: "Men"
+    - listitem:
+      - generic [ref=e41]:
+        - button "Women" [ref=e42]
+        - text: "Women"
+    - listitem:
+      - generic [ref=e43]:
+        - button "Kids" [ref=e44]
+        - text: "Kids"
+    - listitem:
+      - generic [ref=e45]:
+        - button "Baby" [ref=e46]
+        - text: "Baby"
+    - listitem:
+      - generic [ref=e47]:
+        - button "Dog" [ref=e48]
+        - text: "Dog"
+    - listitem:
+      - generic [ref=e49]:
+        - button "Cat" [ref=e50]
+        - text: "Cat"
+  - button "Next" [ref=e51] [disabled]
+  - article:
+    - heading "Helmets for downhill thrills" [level=2]
+    - button "Like" [ref=e52]
+    - button "Dislike" [ref=e53]
+    - button "Explore more Downhill full-face bike helmets" [ref=e54]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e55]:
+      - button [ref=e57]:
+        - img "40% OFF.": "40% OFF"
+        - img "Troy Lee Designs Stage Neauwave MIPS Helmet"
+        - text: "Troy Lee Designs Stage Neauwave MIPS Helmet Troy Lee Designs·"
+        - group "Current Price: $225.00. Was $375."
+    - button [ref=e58]:
+      - button [ref=e60]:
+        - img "30% OFF.": "30% OFF"
+        - img "POC MTB Helmet"
+        - text: "POC MTB Helmet POC·"
+        - group "Current Price: $231.00. Was $330."
+    - button [ref=e61]:
+      - button [ref=e63]:
+        - img "Specialized Gambit"
+        - text: "Specialized Gambit Erik's Bike, Board and Ski·"
+        - group "Current Price: $299.99."
+    - button [ref=e64]:
+      - button [ref=e66]:
+        - img "24% OFF.": "24% OFF"
+        - img "Bell Sanction 2 Helmet"
+        - text: "Bell Sanction 2 Helmet Bikeinn.com·"
+        - group "Current Price: $87.99. Was $116."
+    - button [ref=e67]:
+      - button [ref=e69]:
+        - img "20% OFF.": "20% OFF"
+        - img "Giro Coalition Spherical Helmet"
+        - text: "Giro Coalition Spherical Helmet Gambacicli US·"
+        - group "Current Price: $181.26. Was $196."
+    - button [ref=e70]:
+      - button [ref=e72]:
+        - img "Alpinestars US Men's Missile Tech Racer Helmet"
+        - text: "Alpinestars US Men's Missile Tech Racer Helmet Alpinestars·"
+        - group "Current Price: $399.95."
+    - button [ref=e73]:
+      - button [ref=e75]:
+        - img "Low price.": "LOW PRICE"
+        - img "ATB-1 Quest"
+        - text: "ATB-1 Quest Xtreme Helmets·"
+        - group "Current Price: $314.95. Usually $467."
+    - button [ref=e76]:
+      - button [ref=e78]:
+        - img "Lazer Chase Kineticore Helmet Matte Black, L"
+        - text: "Lazer Chase Kineticore Helmet Matte Black, L Backcountry.com·"
+        - group "Current Price: $199.99."
+  - article:
+    - heading "Bianchi Bikes: Ride the Legend" [level=2]
+    - button "Like" [ref=e79]
+    - button "Dislike" [ref=e80]
+    - button "Explore more Bianchi bikes" [ref=e81]: "Explore"
+    - heading "Top deals" [level=2]
+    - button [ref=e82]:
+      - button [ref=e84]:
+        - img "23% OFF.": "23% OFF"
+        - img "Bianchi - Oltre Race 105 Sky Blue 44"
+        - text: "Bianchi - Oltre Race 105 Sky Blue 44 Cicli Mattio US·"
+        - group "Current Price: $2,114.22. Was $2,751."
+    - button [ref=e85]:
+      - button [ref=e87]:
+        - img "23% OFF.": "23% OFF"
+        - img "Bianchi Nero SS"
+        - text: "Bianchi Nero SS Wheelworks·"
+        - group "Current Price: $649.99. Was $850."
+    - button [ref=e88]:
+      - button [ref=e90]:
+        - img "18% OFF.": "18% OFF"
+        - img "Bianchi Infinito XE Disc"
+        - text: "Bianchi Infinito XE Disc BikeExchange·"
+        - group "Current Price: $2,999.99. Was $3,675."
+    - button [ref=e91]:
+      - button [ref=e93]:
+        - img "27% OFF.": "27% OFF"
+        - img "Bianchi Oltre Comp 105 Di2 bike"
+        - text: "Bianchi Oltre Comp 105 Di2 bike Cicli Mattio US·"
+        - group "Current Price: $3,548.63. Was $4,905."
+    - button [ref=e94]:
+      - button [ref=e96]:
+        - img "20% OFF.": "20% OFF"
+        - img "Bianchi Via Nirone Sora"
+        - text: "Bianchi Via Nirone Sora Wheelworks·"
+        - group "Current Price: $1,199.99. Was $1,500."
+    - button [ref=e97]:
+      - button [ref=e99]:
+        - img "24% OFF.": "24% OFF"
+        - img "Bianchi: Oltre Pro Ultegra Di2"
+        - text: "Bianchi: Oltre Pro Ultegra Di2 Bike Attack·"
+        - group "Current Price: $6,000.00. Was $7,900."
+    - button [ref=e100]:
+      - button [ref=e102]:
+        - img "19% OFF.": "19% OFF"
+        - img "Bianchi Impulso Pro"
+        - text: "Bianchi Impulso Pro Cicli Mattio US·"
+        - group "Current Price: $3,346.68. Was $4,183."
+    - button [ref=e103]:
+      - button [ref=e105]:
+        - img "28% OFF.": "28% OFF"
+        - img "Bianchi Via Nirone 7 105 Disc"
+        - text: "Bianchi Via Nirone 7 105 Disc Southwest Bikes·"
+        - group "Current Price: $1,499.99. Was $2,100."
+  - article:
+    - heading "Meals, organized" [level=2]
+    - button "Like" [ref=e106]
+    - button "Dislike" [ref=e107]
+    - button "Explore more Bento boxes" [ref=e108]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e109]:
+      - button [ref=e111]:
+        - img "Bentgo Classic All-in-One Lunch Box"
+        - text: "Bentgo Classic All-in-One Lunch Box Walmart·"
+        - group "Current Price: $14.98."
+    - button [ref=e112]:
+      - button [ref=e114]:
+        - img "Bentgo Modern Lunch Box"
+        - text: "Bentgo Modern Lunch Box Target·"
+        - group "Current Price: $37.99."
+    - button [ref=e115]:
+      - button [ref=e117]:
+        - img "Takenaka Bento Box Bento Bite Dual Box"
+        - text: "Takenaka Bento Box Bento Bite Dual Box Barnes & Noble·"
+        - group "Current Price: $41.00."
+    - button [ref=e118]:
+      - button [ref=e120]:
+        - img "OmieBox Insulated Bento Lunch Box"
+        - text: "OmieBox Insulated Bento Lunch Box OmieLife·"
+        - group "Current Price: $49.95."
+    - button [ref=e121]
+  - article:
+    - heading "Bye bye blue light" [level=2]
+    - button "Like" [ref=e122]
+    - button "Dislike" [ref=e123]
+    - button "Explore more Blue-light glasses" [ref=e124]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e125]:
+      - button [ref=e127]:
+        - img "Gunnar Vertex Gaming Glasses"
+        - text: "Gunnar Vertex Gaming Glasses Gunnar Optiks·"
+        - group "Current Price: $49.99."
+    - button [ref=e128]:
+      - button [ref=e130]:
+        - img "Warby Parker Blue Light Anti-Fatigue Eyeglasses"
+        - text: "Warby Parker Blue Light Anti-Fatigue Eyeglasses Warby Parker·"
+        - group "Current Price: $95.00."
+    - button [ref=e131]:
+      - button [ref=e133]:
+        - img "Oakley Hex Jector Eyeglasses"
+        - text: "Oakley Hex Jector Eyeglasses Target Optical·"
+        - group "Current Price: $187.00."
+    - button [ref=e134]:
+      - button [ref=e136]:
+        - img "25% OFF.": "25% OFF"
+        - img "Ray-Ban Meta Skyler"
+        - text: "Ray-Ban Meta Skyler Ray-Ban·"
+        - group "Current Price: $284.25. Was $379."
+    - button [ref=e137]:
+      - button [ref=e139]:
+        - img "Tom Ford TF5634-B Blue Light Glasses Black Square Unisex"
+        - text: "Tom Ford TF5634-B Blue Light Glasses Black Square Unisex Fashion Eyewear·"
+        - group "Current Price: $430.00."
+    - button [ref=e140]:
+      - button [ref=e142]:
+        - img "Low price.": "LOW PRICE"
+        - img "Balenciaga BB0113O Eyeglasses"
+        - text: "Balenciaga BB0113O Eyeglasses opticabassol.com·"
+        - group "Current Price: $260.00. Usually $385."
+    - button [ref=e143]:
+      - button [ref=e145]:
+        - img "Cartier Signature C Eyeglasses"
+        - text: "Cartier Signature C Eyeglasses Arts of Optics·"
+        - group "Current Price: $1,245.00."
+    - button [ref=e146]:
+      - button [ref=e148]:
+        - img "Gunnar Intercept Gaming Glasses"
+        - text: "Gunnar Intercept Gaming Glasses Best Buy·"
+        - group "Current Price: $69.99."
+  - article:
+    - heading "Backpacks for your adventures with Rimowa" [level=2]
+    - button "Like" [ref=e149]
+    - button "Dislike" [ref=e150]
+    - button "Explore more Rimowa backpacks" [ref=e151]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e152]:
+      - button [ref=e154]:
+        - img "Rimowa Never Still Canvas Flap Backpack"
+        - text: "Rimowa Never Still Canvas Flap Backpack rimowa.com/us/en·"
+        - group "Current Price: $1,750.00."
+    - button [ref=e155]:
+      - button [ref=e157]:
+        - img "Rimowa Never Still Zipped Backpack"
+        - text: "Rimowa Never Still Zipped Backpack rimowa.com/us/en·"
+        - group "Current Price: $1,200.00."
+    - button [ref=e158]:
+      - button [ref=e160]:
+        - img "Rimowa Backpack"
+        - text: "Rimowa Backpack StockX·"
+        - group "Current Price: $2,871.00."
+    - button [ref=e161]:
+      - button [ref=e163]:
+        - img "Rimowa Never Still Nylon Flap Backpack"
+        - text: "Rimowa Never Still Nylon Flap Backpack rimowa.com/us/en·"
+        - group "Current Price: $1,590.00."
+    - button [ref=e164]
+  - article:
+    - heading "Newest iPhones for you" [level=2]
+    - button "Like" [ref=e165]
+    - button "Dislike" [ref=e166]
+    - button "Explore more Newest iPhones" [ref=e167]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e168]:
+      - button [ref=e170]:
+        - img "Apple iPhone 17 Pro Max"
+        - text: "Apple iPhone 17 Pro Max Apple·"
+        - group ". $49.95 per month for 24 months."
+    - button [ref=e171]:
+      - button [ref=e173]:
+        - img "Apple iPhone 17 Pro"
+        - text: "Apple iPhone 17 Pro Apple·"
+        - group ". $62.45 per month for 24 months."
+    - button [ref=e174]:
+      - button [ref=e176]:
+        - img "Apple iPhone 15 - Black - 128GB (with 24 monthly payments + plan)"
+        - text: "Apple iPhone 15 - Black - 128GB (with 24 monthly payments + plan)T-Mobile·"
+        - group ". $26.25 per month for 24 months."
+    - button [ref=e177]:
+      - button [ref=e179]:
+        - img "Apple iPhone 14 Pro Max - 128 GB - Purple (T-Mobile)"
+        - text: "Apple iPhone 14 Pro Max - 128 GB - Purple (T-Mobile)eBay·"
+        - group "Current Price: $35,000.00."
+    - button [ref=e180]
+    - generic [ref=e181] [scrollable]:
+      - list:
+        - listitem:
+          - button "Apple's NEW iPhone 17e is INSANE - Top 6 Upgrades by Max Tech on YouTube. Play on Google. 6:45" [ref=e182]
+          - button [ref=e183]:
+            - heading [level=3]: "Apple's NEW iPhone 17e is INSANE - Top 6 Upgrades"
+            - text: "Max Tech · YouTube  ·  2mo"
+        - listitem:
+          - button "iPhone 17e One Month Later - Watch Before Buying! by Mark Ellis Reviews on YouTube. Play on Google. " [ref=e184]
+          - button [ref=e185]:
+            - heading [level=3]: "iPhone 17e One Month Later - Watch Before Buying!"
+            - text: "Mark Ellis Reviews · YouTube  ·  1mo"
+        - listitem:
+          - button "I Didn't Expect the iPhone 17e to Be This Good | Top Features ... by 9to5Mac on YouTube. Play on Goo" [ref=e186]
+          - button [ref=e187]:
+            - heading [level=3]: "I Didn't Expect the iPhone 17e to Be This Good | Top Features ..."
+            - text: "9to5Mac · YouTube  ·  2mo"
+        - listitem:
+          - button "The iPhone Most People Should Actually Buy by Tausif Hussain on YouTube. Play on Google. 15:54" [ref=e188]
+          - button [ref=e189]:
+            - heading [level=3]: "The iPhone Most People Should Actually Buy"
+            - text: "Tausif Hussain · YouTube  ·  1mo"
+  - article:
+    - heading "Chelsea boots for every day" [level=2]
+    - button "Like" [ref=e190]
+    - button "Dislike" [ref=e191]
+    - button "Explore more Chelsea boots" [ref=e192]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e193]:
+      - button [ref=e195]:
+        - img "42% OFF.": "42% OFF"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e196]:
+          - img
+        - text: "Dr. Martens Embury Chelsea Boot Famous Footwear·"
+        - group "Current Price: $79.99. Was $140."
+    - button [ref=e197]:
+      - button [ref=e199]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e200]:
+          - img
+        - text: "Men's Red Wing Classic Chelsea Red Wing·"
+        - group "Current Price: $299.99."
+    - button [ref=e201]:
+      - button [ref=e203]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e204]:
+          - img
+        - text: "Boots Timberland Men's Chelsea Britton Road Timberland·"
+        - group "Current Price: $160.00."
+    - button [ref=e205]:
+      - button [ref=e207]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e208]:
+          - img
+        - text: "Allen Edmonds Men's Liverpool Chelsea Boot Allen Edmonds·"
+        - group "Current Price: $550.00."
+    - button [ref=e209]:
+      - button [ref=e211]:
+        - img "50% OFF.": "50% OFF"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e212]:
+          - img
+        - text: "Sorel Revel Rd Chelsea Waterproof Women's Boot Sorel·"
+        - group "Current Price: $70.00. Was $140."
+    - button [ref=e213]:
+      - button [ref=e215]:
+        - img "Low price.": "LOW PRICE"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e216]:
+          - img
+        - text: "Danner Men's Bull Run Chelsea Chester Boot Shop·"
+        - group "Current Price: $224.95. Usually $240."
+    - button [ref=e217]:
+      - button [ref=e219]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e220]:
+          - img
+        - text: "Prada Men's Brushed Leather Chelsea Boots Prada·"
+        - group "Current Price: $1,590.00."
+    - button [ref=e221]:
+      - button [ref=e223]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e224]:
+          - img
+        - text: "Women Dr. Martens Embury WL Boots Black DICK'S Sporting Goods·"
+        - group "Current Price: $139.99."
+  - article:
+    - heading "Cases for your phone by Rimowa" [level=2]
+    - button "Like" [ref=e225]
+    - button "Dislike" [ref=e226]
+    - button "Explore more Rimowa phone cases" [ref=e227]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e228]:
+      - button [ref=e230]:
+        - img "Rimowa Aluminum Case for iPhone 17 Pro Max"
+        - text: "Rimowa Aluminum Case for iPhone 17 Pro Max StockX·"
+        - group "Current Price: $450.00."
+    - button [ref=e231]:
+      - button [ref=e233]:
+        - img "Rimowa iPhone Xs Cell Phone Case"
+        - text: "Rimowa iPhone Xs Cell Phone Case eBay - wi-ing-plus·"
+        - group "Current Price: $83.57."
+    - button [ref=e234]:
+      - button [ref=e236]:
+        - img "RIMOWA Slate Grey iPhone 17 Pro MagSafe-compatible Case"
+        - text: "RIMOWA Slate Grey iPhone 17 Pro MagSafe-compatible Case StockX·"
+        - group "Current Price: $373.00."
+    - button [ref=e237]:
+      - button [ref=e239]:
+        - img "6% OFF.": "6% OFF"
+        - img "RIMOWA Silver Luxury Phone Case IPhone 16 Pro Max NEW"
+        - text: "RIMOWA Silver Luxury Phone Case IPhone 16 Pro Max NEW Poshmark·"
+        - group "Current Price: $145.00. Was $155."
+    - button [ref=e240]
+  - article:
+    - heading "Sidi's stylish steps" [level=2]
+    - button "Like" [ref=e241]
+    - button "Dislike" [ref=e242]
+    - button "Explore more Sidi sneakers" [ref=e243]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e244]:
+      - button [ref=e246]:
+        - img "Sidi Sport - NUCLEUS"
+        - text: "Sidi Sport - NUCLEUS Sidi Sport·"
+        - group "Current Price: $189.99."
+    - button [ref=e247]:
+      - button [ref=e249]:
+        - img "Sidi Nucleus Air Motorcycle Shoes"
+        - text: "Sidi Nucleus Air Motorcycle Shoes Sidi Sport·"
+        - group "Current Price: $189.99."
+    - button [ref=e250]:
+      - button [ref=e252]:
+        - img "Sidi Sport Fluxx Low"
+        - text: "Sidi Sport Fluxx Low Sidi Sport·"
+        - group "Current Price: $129.99."
+    - button [ref=e253]:
+      - button [ref=e255]:
+        - img "Sidi Men's T-5 Air"
+        - text: "Sidi Men's T-5 Air Sidi Sport·"
+        - group "Current Price: $249.99."
+    - button [ref=e256]
+  - article:
+    - heading "Classic home cooking" [level=2]
+    - button "Like" [ref=e257]
+    - button "Dislike" [ref=e258]
+    - button "Explore more Dutch ovens" [ref=e259]: "Explore"
+    - heading "Top deals" [level=2]
+    - button [ref=e260]:
+      - button [ref=e262]:
+        - img "42% OFF.": "42% OFF"
+        - img "Drew Barrymore Beautiful 4 Quart Enameled Cast Iron Round Dutch Oven with Petal Design Lid"
+        - text: "Drew Barrymore Beautiful 4 Quart Enameled Cast Iron Round Dutch Oven with Petal Design Lid Walmart·"
+        - group "Current Price: $34.74. Was $60."
+    - button [ref=e263]:
+      - button [ref=e265]:
+        - img "50% OFF.": "50% OFF"
+        - img "Best Choice Products 7.5 Quart Enamel Cast-Iron Dutch Oven"
+        - text: "Best Choice Products 7.5 Quart Enamel Cast-Iron Dutch Oven Target·"
+        - group "Current Price: $59.99. Was $120."
+    - button [ref=e266]:
+      - button [ref=e268]:
+        - img "36% OFF.": "36% OFF"
+        - img "Le Creuset Signature Deep Round Oven"
+        - text: "Le Creuset Signature Deep Round Oven Crate & Barrel·"
+        - group "Current Price: $289.95. Was $460."
+    - button [ref=e269]:
+      - button [ref=e271]:
+        - img "14% OFF.": "14% OFF"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e272]:
+          - img
+        - text: "Lodge Cast Iron Dutch Oven Lodge Cast Iron·"
+        - group "Current Price: $59.90. Was $70."
+    - button [ref=e273]:
+      - button [ref=e275]:
+        - img "Low price.": "LOW PRICE"
+        - img "Commercial Chef Cast Iron Dutch Oven"
+        - text: "Commercial Chef Cast Iron Dutch Oven Home Depot·"
+        - group "Current Price: $24.74. Usually $32."
+    - button [ref=e276]:
+      - button [ref=e278]:
+        - img "44% OFF.": "44% OFF"
+        - img "2.75-qt. Soup Pot in Carribean Le Creuset"
+        - text: "2.75-qt. Soup Pot in Carribean Le Creuset Williams-Sonoma·"
+        - group "Current Price: $164.95. Was $295."
+    - button [ref=e279]:
+      - button [ref=e281]:
+        - img "49% OFF.": "49% OFF"
+        - img "Misen 2026 Best 2-in-1 Dutch Oven"
+        - text: "Misen 2026 Best 2-in-1 Dutch Oven Misen·"
+        - group "Current Price: $145.00. Was $289."
+    - button [ref=e282]:
+      - button [ref=e284]:
+        - img "59% OFF.": "59% OFF"
+        - img "Staub Cast Iron Essential French Oven"
+        - text: "Staub Cast Iron Essential French Oven Wayfair·"
+        - group "Current Price: $229.99. Was $571."
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - button "94105, San Francisco, CA - From your device" [ref=e285]
+  - text: "-"
+  - button "Update location" [ref=e287]
+  - link "Help" [ref=e288]
+  - link "Send feedback" [ref=e289]
+  - link "Privacy" [ref=e290]
+  - link "Terms" [ref=e291]
+  - link "Information for Merchants" [ref=e292]
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[5] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>
+
+[6] thinking: **Searching for coffee makers**
+
+I'm focusing on fulfilling the user's request to create a list of drip coffee makers on sale priced between $25 and $60, and specifically in black finish. I'll use Google Shopping to conduct the search. This involves applying filters for sale items, price range, and color. It seems like I’ll need to either inspect the search results directly from the page or fetch the search URL for accurate details. Let's get started on this search!
+
+[7] tool_call: repl("Searching for coffee makers")
+<request>
+await page.locator('e3').fill('drip coffee maker black on sale');
+await page.locator('e6').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff);
+</request>
+<result tokens_used="199" elapsed_time="5017ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "drip coffee maker black on sale - Google Shopping" [url=https://www.google.com/search?q=drip+coffee+maker+black+on+sale&sca_esv=5c55c0604bc74172&udm=28&sxsrf=ANbL-n4sFYDcT9OEqNDZK4jaa5…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "drip coffee maker black on sale drip coffee maker black on sale"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "Nearby filter. Not selected." [ref=e22]: "Nearby"
+    - link "New filter. Not selected." [ref=e23]: "New"
+    - link "Used filter. Not selected." [ref=e24]: "Used"
+    - link "Get it today filter. Not selected." [ref=e25]: "Get it today"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Capacity" [ref=e27]
+    - link "Under 5 cup filter. Not selected." [ref=e28]: "Under 5 cup"
+    - link "5 – 7 cup filter. Not selected." [ref=e29]: "5 – 7 cup"
+    - link "7 – 10 cup filter. Not selected." [ref=e30]: "7 – 10 cup"
+    - link "10 – 12 cup filter. Not selected." [ref=e31]: "10 – 12 cup"
+    - link "Over 12 cup filter. Not selected." [ref=e32]: "Over 12 cup"
+    - button "Features" [ref=e33]
+    - link "Programmable filter. Not selected." [ref=e34]: "Programmable"
+    - link "With Thermal Carafe filter. Not selected." [ref=e35]: "With Thermal Carafe"
+    - link "With Auto Shutoff filter. Not selected." [ref=e36]: "With Auto Shutoff"
+    - link "Single Cup filter. Not selected." [ref=e37]: "Single Cup"
+    - button "See more" [ref=e38]
+    - button "Price" [ref=e39]
+    - link "Under $100 filter. Not selected." [ref=e40]: "Under $100"
+    - link "Over $100 filter. Not selected." [ref=e41]: "Over $100"
+    - textbox "Minimum price ($)" [ref=e42]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e43]
+    - text: "Max"
+    - button "Go" [ref=e44] [disabled]
+    - button "Product Rating" [ref=e45]
+    - link "Four stars and up filter. Not selected." [ref=e46]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Height" [ref=e47]
+    - link "Under 10″ high filter. Not selected." [ref=e48]: "Under 10″ high"
+    - link "10 – 12″ high filter. Not selected." [ref=e49]: "10 – 12″ high"
+    - link "12 – 14″ high filter. Not selected." [ref=e50]: "12 – 14″ high"
+    - link "14 – 16″ high filter. Not selected." [ref=e51]: "14 – 16″ high"
+    - link "Over 16″ high filter. Not selected." [ref=e52]: "Over 16″ high"
+    - button "Stores" [ref=e53]
+    - link "Walmart filter. Not selected." [ref=e54]: "Walmart"
+    - link "Target filter. Not selected." [ref=e55]: "Target"
+    - link "eBay filter. Not selected." [ref=e56]: "eBay"
+    - link "Home Depot filter. Not selected." [ref=e57]: "Home Depot"
+    - button "See more" [ref=e58]
+    - button "Width" [ref=e59]
+    - link "Under 6.5″ wide filter. Not selected." [ref=e60]: "Under 6.5″ wide"
+    - link "6.5 – 8″ wide filter. Not selected." [ref=e61]: "6.5 – 8″ wide"
+    - link "8 – 10″ wide filter. Not selected." [ref=e62]: "8 – 10″ wide"
+    - link "10 – 12″ wide filter. Not selected." [ref=e63]: "10 – 12″ wide"
+    - link "Over 12″ wide filter. Not selected." [ref=e64]: "Over 12″ wide"
+    - button "Depth" [ref=e65]
+    - link "Under 7″ deep filter. Not selected." [ref=e66]: "Under 7″ deep"
+    - link "7 – 8″ deep filter. Not selected." [ref=e67]: "7 – 8″ deep"
+    - link "8 – 10″ deep filter. Not selected." [ref=e68]: "8 – 10″ deep"
+    - link "10 – 12″ deep filter. Not selected." [ref=e69]: "10 – 12″ deep"
+    - link "Over 12″ deep filter. Not selected." [ref=e70]: "Over 12″ deep"
+    - button "Brand" [ref=e71]
+    - link "Mr. Coffee filter. Not selected." [ref=e72]: "Mr. Coffee"
+    - link "Cuisinart filter. Not selected." [ref=e73]: "Cuisinart"
+    - link "Keurig filter. Not selected." [ref=e74]: "Keurig"
+    - link "Breville filter. Not selected." [ref=e75]: "Breville"
+    - button "See more" [ref=e76]
+    - button "Free shipping" [ref=e77]
+    - link "Free shipping filter. Not selected." [ref=e78]: "Free shipping"
+    - button "Assistant Support" [ref=e79]
+    - link "Amazon Alexa filter. Not selected." [ref=e80]: "Amazon Alexa"
+    - link "Google Assistant filter. Not selected." [ref=e81]: "Google Assistant"
+- navigation "Refinement" [ref=e82]:
+  - generic [ref=e83] [scrollable]:
+    - list:
+      - button "All filters." [ref=e84]
+      - listitem [ref=e85]:
+        - link "Over 12 cup filter. Not selected." [ref=e86]: "Over 12 cup"
+      - listitem [ref=e87]:
+        - link "10 – 12 cup filter. Not selected." [ref=e88]: "10 – 12 cup"
+      - listitem [ref=e89]:
+        - link "5 – 7 cup filter. Not selected." [ref=e90]: "5 – 7 cup"
+      - listitem [ref=e91]:
+        - link "Under 5 cup filter. Not selected." [ref=e92]: "Under 5 cup"
+      - listitem [ref=e93]:
+        - link "7 – 10 cup filter. Not selected." [ref=e94]: "7 – 10 cup"
+      - listitem [ref=e95]:
+        - link "Nearby filter. Not selected." [ref=e96]: "Nearby"
+      - listitem [ref=e97]:
+        - link "Programmable filter. Not selected." [ref=e98]: "Programmable"
+      - listitem [ref=e99]:
+        - link "With Thermal Carafe filter. Not selected." [ref=e100]: "With Thermal Carafe"
+      - listitem [ref=e101]:
+        - link "With Auto Shutoff filter. Not selected." [ref=e102]: "With Auto Shutoff"
+      - listitem [ref=e103]:
+        - link "Under $100 filter. Not selected." [ref=e104]: "Under $100"
+      - listitem [ref=e105]:
+        - link "Single Cup filter. Not selected." [ref=e106]: "Single Cup"
+      - listitem [ref=e107]:
+        - link "For Commercial Use filter. Not selected." [ref=e108]: "For Commercial Use"
+      - listitem [ref=e109]:
+        - link "New filter. Not selected." [ref=e110]: "New"
+      - listitem [ref=e111]:
+        - link "Used filter. Not selected." [ref=e112]: "Used"
+      - listitem [ref=e113]:
+        - link "Get it today filter. Not selected." [ref=e114]: "Get it today"
+      - listitem [ref=e115]:
+        - link "With Grinder filter. Not selected." [ref=e116]: "With Grinder"
+      - listitem [ref=e117]:
+        - link "Pod Style filter. Not selected." [ref=e118]: "Pod Style"
+      - listitem [ref=e119]:
+        - link "Espresso Machines filter. Not selected." [ref=e120]: "Espresso Machines"
+      - listitem [ref=e121]:
+        - link "With Water Filter filter. Not selected." [ref=e122]: "With Water Filter"
+      - listitem [ref=e123]:
+        - link "12 – 14″ high filter. Not selected." [ref=e124]: "12 – 14″ high"
+      - listitem [ref=e125]:
+        - link "14 – 16″ high filter. Not selected." [ref=e126]: "14 – 16″ high"
+      - listitem [ref=e127]:
+        - link "Brew Strength Selector filter. Not selected." [ref=e128]: "Brew Strength Selector"
+      - listitem [ref=e129]:
+        - link "8 – 10″ wide filter. Not selected." [ref=e130]: "8 – 10″ wide"
+      - listitem [ref=e131]:
+        - link "Moka Pots filter. Not selected." [ref=e132]: "Moka Pots"
+      - listitem [ref=e133]:
+        - link "6.5 – 8″ wide filter. Not selected." [ref=e134]: "6.5 – 8″ wide"
+  - combobox "Sort by:Relevance" [ref=e135]
+- link "All deal categories" [ref=e136]
+- heading [level=1]: "Deals"
+- main:
+  - region "Ads" [ref=e137]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e138]
+    - generic [ref=e139] [scrollable]:
+      - link "for from AeroPress" [ref=e140]:
+        - link "for from AeroPress" [ref=e141]
+      - link [ref=e142]:
+        - link [ref=e143]
+      - heading [level=3]: "AeroPress Clear XL Coffee Press – Extra Large Coffee Maker"
+      - text: "$89.95 AeroPress"
+      - img "Rated 4.4 out of 5, (92) user reviews"
+      - text: "20 fl oz"
+      - link "for from Fellow" [ref=e144]:
+        - link "for from Fellow" [ref=e145]
+      - link [ref=e146]:
+        - link [ref=e147]
+      - heading [level=3]: "Fellow Aiden Precision Coffee Maker, Woodland, Woodland"
+      - text: "$399.95 Fellow"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "9″ wide · 11.8″ high · Woodland, Woodland · 10 cup"
+      - link "for from Shein" [ref=e148]:
+        - link "for from Shein" [ref=e149]
+      - link [ref=e150]:
+        - link [ref=e151]
+      - heading [level=3]: "Ninja Ninja 12-Cup Programmable Coffee Brewer - Factory Refurbished,"
+      - text: "$58.46 Shein Refurbished Silver · Drip · 12 cup"
+      - link "for was $33 from Temu" [ref=e152]:
+        - link "for was $33 from Temu" [ref=e153]
+      - text: "Sale"
+      - link [ref=e154]:
+        - link [ref=e155]
+      - heading [level=3]: "Coffee maker sale clearance, Coffee pot maker, Programmable Drip Coffee Maker with Touch-Screen, Pause & Serve, Electric coffee maker, Stainless"
+      - text: "$28.06$33 Temu By 5/26 Stainless Steel · Drip · 10 cup"
+      - link "for from Wayfair" [ref=e156]:
+        - link "for from Wayfair" [ref=e157]
+      - link [ref=e158]:
+        - link [ref=e159]
+      - heading [level=3]: "Hamilton Beach 12 Cup Coffee Maker Glass Carafe Black Hamilton Beach"
+      - text: "$24.95 Wayfair"
+      - img "Rated 4.2 out of 5, (1k+) user reviews"
+      - text: "8.4″ wide · 13″ high · Black · Drip · 12 cup · 10″ deep"
+      - link "for from Target" [ref=e160]:
+        - link "for from Target" [ref=e161]
+      - link [ref=e162]:
+        - link "Yerba Buena" [ref=e163]
+      - heading [level=3]: "Mr. Coffee 5 Cup Switch Coffee Maker Black: Small Drip Coffee Machine, Electric, Paper Filter, 25 oz Capacity"
+      - text: "$21.99 Target"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - text: "9.9″ wide · Black · Drip · 5 cup"
+      - link "for from Fellow" [ref=e164]:
+        - link "for from Fellow" [ref=e165]
+      - link [ref=e166]:
+        - link [ref=e167]
+      - heading [level=3]: "Fellow Aiden Precision Coffee Maker, Matte Black, Matte Black"
+      - text: "$399.95 Fellow"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "9″ wide · 11.8″ high · Black Matte · 10 cup"
+      - link "for from Temu" [ref=e168]:
+        - link "for from Temu" [ref=e169]
+      - link [ref=e170]:
+        - link [ref=e171]
+      - heading [level=3]: "Drip Coffee Machine, 14-Cup/5-Cup/K-Cup Glass Carafe, 24 Hours Programmable Coffee Brewer, Keep Warm, With Reusable Filter & Keep Hot Plate, Auto"
+      - text: "$17.97 Temu By 5/26 Stainless Steel · Drip · 14 cup"
+      - link "for from thyme natural market" [ref=e172]:
+        - link "for from thyme natural market" [ref=e173]
+      - link [ref=e174]:
+        - link [ref=e175]
+      - heading [level=3]: "Ninja 12 Cup Programmable Coffee Brewer"
+      - text: "$18.30 thyme natural market Free Silver · Drip · 12 cup"
+      - link "for was $27 from Target" [ref=e176]:
+        - link "for was $27 from Target" [ref=e177]
+      - text: "Sale"
+      - link [ref=e178]:
+        - link [ref=e179]
+      - heading [level=3]: "Hamilton Beach 12 Cup Programmable Coffee Maker Black 46290: Drip Coffee Machine, Nonstick Hot Plate, Brew Pause"
+      - text: "$19.99$27 Target"
+      - img "Rated 3.9 out of 5, (1k+) user reviews"
+      - text: "9.5″ wide · Black · Drip · 12 cup"
+      - link "for was $130 from Williams-Sonoma" [ref=e180]:
+        - link "for was $130 from Williams-Sonoma" [ref=e181]
+      - text: "Sale"
+      - link [ref=e182]:
+        - link [ref=e183]
+      - heading [level=3]: "Cuisinart Personal Brew Coffee Maker with Thermal Carafe, 10-cup"
+      - text: "$99.95$130 Williams-Sonoma"
+      - img "Rated 4.6 out of 5, (24) user reviews"
+      - text: "8″ wide · 14.5″ high · Stainless Steel · Drip · 10 cup · 11″ deep"
+      - link "for was $130 from Cuisinart" [ref=e184]:
+        - link "for was $130 from Cuisinart" [ref=e185]
+      - text: "Sale"
+      - link [ref=e186]:
+        - link [ref=e187]
+      - heading [level=3]: "Cuisinart Brew Central 12 Cup Programmable Coffee Maker"
+      - text: "$89.99$130 Cuisinart"
+      - img "Rated 4.5 out of 5, (3k+) user reviews"
+      - text: "13″ wide · 14″ high · Black · Drip · 12 cup"
+      - link "for from Fellow" [ref=e188]:
+        - link "for from Fellow" [ref=e189]
+      - link [ref=e190]:
+        - link [ref=e191]
+      - heading [level=3]: "Fellow Aiden Precision Coffee Maker, Sesame, Sesame"
+      - text: "$399.95 Fellow"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "11.7″ high · Sesame, Sesame · 8 cup"
+      - link "for from Rebel" [ref=e192]:
+        - link "for from Rebel" [ref=e193]
+      - link [ref=e194]:
+        - link [ref=e195]
+      - heading [level=3]: "Mr. Coffee 5-Cup Programmable Coffee Maker - Black (Open Box/Unused) Coffee, Tea, EspressoBlack"
+      - text: "$12.99 Rebel"
+      - img "Rated 4.4 out of 5, (1k+) user reviews"
+      - text: "Black · Drip · 5 cup"
+      - link "for from Target" [ref=e196]:
+        - link "for from Target" [ref=e197]
+      - link [ref=e198]:
+        - link "Yerba Buena" [ref=e199]
+      - heading [level=3]: "Mr. Coffee 12-Cup Switch Coffee Maker Black: Electric Drip Coffee Machine, 60 oz Capacity, Dishwasher-Safe Parts"
+      - text: "$26.99 Target"
+      - img "Rated 4.2 out of 5, (4k+) user reviews"
+      - text: "12″ wide · 14″ high · Black · Drip · 12 cup · 19″ deep"
+      - link "for was $70 from Walmart" [ref=e200]:
+        - link "for was $70 from Walmart" [ref=e201]
+      - text: "Sale"
+      - link [ref=e202]:
+        - link [ref=e203]
+      - heading [level=3]: "Hamilton Beach Premium 12-Cup Programmable Drip Coffee Maker Machine with Glass Coffee Pot, Black"
+      - text: "$54.39$70 Walmart"
+      - img "Rated 4.5 out of 5, (148) user reviews"
+      - text: "Stainless Steel · Drip · 12 cup"
+      - link "for from Temu" [ref=e204]:
+        - link "for from Temu" [ref=e205]
+      - link [ref=e206]:
+        - link [ref=e207]
+      - heading [level=3]: "10 Cup Drip Coffee Maker with Led Display Coffee maker sale clearance, Electric coffee maker, Coffee pots on sale clearance, Coffee Pot Maker with 2"
+      - text: "$22.59 Temu By 5/26 Stainless Steel · Drip · 10 cup"
+      - link "for from Target" [ref=e208]:
+        - link "for from Target" [ref=e209]
+      - link [ref=e210]:
+        - link "Yerba Buena" [ref=e211]
+      - heading [level=3]: "Mr. Coffee 5-Cup Programmable Coffee Maker Black: Drip Coffee Machine, Electric, Dishwasher-Safe, Paper Filter, 25 oz Capacity"
+      - text: "$24.99 Target"
+      - img "Rated 4.4 out of 5, (1k+) user reviews"
+      - text: "Black · Drip · 5 cup"
+  - heading "In stores nearby" [level=2]
+  - link "More" [ref=e212]
+  - button "In stores nearby" [ref=e213]
+  - generic [ref=e214] [scrollable]:
+    - list "In stores nearby":
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e215]:
+          - generic [ref=e216]:
+            - img "25% OFF.": "25% OFF"
+            - text: "Nearby, 3 mi Hamilton Beach 12 Cup Programmable Coffee Maker 46290"
+            - group "Current Price: $19.99. Was $27."
+            - text: "Target & more Free delivery on $35+90-day returns"
+            - img "Rated 3.9 out of 5. 1.3K reviews.":
+              - img "Rated 3.9 out of 5, 1.3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e217]:
+          - generic [ref=e218]:
+            - img "40% OFF.": "40% OFF"
+            - text: "Nearby, 8 mi Cuisinart 14 Cup Programmable Coffee Maker"
+            - group "Current Price: $89.99. Was $150."
+            - text: "Kohl's & more Free delivery 90-day returns"
+            - img "Rated 4.5 out of 5. 8.9K reviews.":
+              - img "Rated 4.5 out of 5, 8.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e219]:
+          - generic [ref=e220]:
+            - img "22% OFF.": "22% OFF"
+            - text: "Nearby, 3 mi Ninja 12 Cup Programmable Coffee Maker CE251"
+            - group "Current Price: $69.99. Was $90."
+            - text: "Ace Hardware & more 30-day returns"
+            - img "Rated 5.0 out of 5. 4 reviews.":
+              - img "Rated 5.0 out of 5, 4 user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e221]:
+          - generic [ref=e222]:
+            - img "55% OFF.": "55% OFF"
+            - text: "Nearby, 19 mi 12 Cup Programmable Coffee Maker Black+Decker"
+            - group "Current Price: $22.49. Was $50."
+            - text: "JCPenney & more 60-day returns"
+            - img "Rated 4.3 out of 5. 1.1K reviews.":
+              - img "Rated 4.3 out of 5, 1.1K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e223]:
+          - generic [ref=e224]:
+            - text: "Nearby, 0.6 mi Mr. Coffee 12-Cup Programmable Coffee Maker"
+            - group "Current Price: $34.99."
+            - text: "Target & more Free delivery on $35+90-day returns"
+            - img "Rated 4.3 out of 5. 749 reviews.":
+              - img "Rated 4.3 out of 5, 749 user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e225]:
+          - generic [ref=e226]:
+            - text: "Nearby, 0.6 mi Mr. Coffee 12 Cup Coffee Maker"
+            - group "Current Price: $26.99."
+            - text: "Target & more Free delivery on $35+90-day returns"
+            - img "Rated 4.2 out of 5. 4.9K reviews.":
+              - img "Rated 4.2 out of 5, 4.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e227]:
+          - generic [ref=e228]:
+            - text: "Nearby, 9 mi BLACK+DECKER 12-Cup Programmable Coffee Maker"
+            - group "Current Price: $59.99."
+            - text: "Macy's & more Free delivery by Tue 30-day returns"
+            - img "Rated 4.1 out of 5. 410 reviews.":
+              - img "Rated 4.1 out of 5, 410 user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e229]:
+          - generic [ref=e230]:
+            - img "12% OFF.": "12% OFF"
+            - text: "Nearby, 8 mi Hamilton Beach 12 Cup Coffee Maker"
+            - group "Current Price: $34.99. Was $40."
+            - text: "Kohl's & more 90-day returns"
+            - img "Rated 4.2 out of 5. 1K reviews.":
+              - img "Rated 4.2 out of 5, 1K user reviews"
+    - link "More" [ref=e231]
+  - heading "Deals on Black Coffee Black Drip Coffee Makers" [level=2]
+  - link "More" [ref=e232]
+  - button "Deals on Black Coffee Black Drip Coffee Makers" [ref=e233]
+  - generic [ref=e234] [scrollable]:
+    - list "Deals on Black Coffee Black Drip Coffee Makers":
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e235]:
+          - generic [ref=e236]:
+            - img "40% OFF.": "40% OFF"
+            - text: "Nearby, 8 mi Cuisinart 14 Cup Programmable Coffee Maker"
+            - group "Current Price: $89.99. Was $150."
+            - text: "Kohl's & more Free delivery 90-day returns"
+            - img "Rated 4.5 out of 5. 8.9K reviews.":
+              - img "Rated 4.5 out of 5, 8.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e237]:
+          - generic [ref=e238]:
+            - img "48% OFF.": "48% OFF"
+            - text: "Also nearby Mr. Coffee 5-Cup Programmable Coffee Maker"
+            - group "Current Price: $12.99. Was $25."
+            - text: "Rebel & more 7-day returns"
+            - img "Rated 4.4 out of 5. 1.6K reviews.":
+              - img "Rated 4.4 out of 5, 1.6K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e239]:
+          - generic [ref=e240]:
+            - img "55% OFF.": "55% OFF"
+            - text: "Nearby, 19 mi 12 Cup Programmable Coffee Maker Black+Decker"
+            - group "Current Price: $22.49. Was $50."
+            - text: "JCPenney & more 60-day returns"
+            - img "Rated 4.3 out of 5. 1.1K reviews.":
+              - img "Rated 4.3 out of 5, 1.1K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e241]:
+          - generic [ref=e242]:
+            - img "25% OFF.": "25% OFF"
+            - text: "Nearby, 3 mi Hamilton Beach 12 Cup Programmable Coffee Maker 46290"
+            - group "Current Price: $19.99. Was $27."
+            - text: "Target & more Free delivery on $35+90-day returns"
+            - img "Rated 3.9 out of 5. 1.3K reviews.":
+              - img "Rated 3.9 out of 5, 1.3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e243]:
+          - generic [ref=e244]:
+            - img "41% OFF.": "41% OFF"
+            - text: "Hamilton Beach Programmable Coffee Maker 46295"
+            - group "Current Price: $36.99. Was $63."
+            - text: "Walmart - Hamilton Beach Brands Inc & more Free delivery by Fri"
+            - img "Rated 4.3 out of 5. 193 reviews.":
+              - img "Rated 4.3 out of 5, 193 user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e245]:
+          - generic [ref=e246]:
+            - img "Low price.": "LOW PRICE"
+            - text: "Also nearby Mainstays 12-Cup Drip Coffee Maker"
+            - group "Current Price: $13.50. Usually $16."
+            - text: "eBay & more Free delivery"
+            - img "Rated 4.2 out of 5. 2.3K reviews.":
+              - img "Rated 4.2 out of 5, 2.3K user reviews"
+    - link "More" [ref=e247]
+  - heading "12-cup black drip coffee makers on sale" [level=2]
+  - link "More" [ref=e248]
+  - button "12-cup black drip coffee makers on sale" [ref=e249]
+  - generic [ref=e250] [scrollable]:
+    - list "12-cup black drip coffee makers on sale":
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e251]:
+          - generic [ref=e252]:
+            - img "55% OFF.": "55% OFF"
+            - text: "Nearby, 22 mi 12 Cup Programmable Coffee Maker Black+Decker"
+            - group "Current Price: $22.49. Was $50."
+            - text: "JCPenney & more 60-day returns"
+            - img "Rated 4.3 out of 5. 1.1K reviews.":
+              - img "Rated 4.3 out of 5, 1.1K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e253]:
+          - generic [ref=e254]:
+            - img "25% OFF.": "25% OFF"
+            - text: "Nearby, 20 mi Hamilton Beach 12 Cup Programmable Coffee Maker 46290"
+            - group "Current Price: $19.99. Was $27."
+            - text: "Target & more Free delivery on $35+90-day returns"
+            - img "Rated 3.9 out of 5. 1.3K reviews.":
+              - img "Rated 3.9 out of 5, 1.3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e255]:
+          - generic [ref=e256]:
+            - img "24% OFF.": "24% OFF"
+            - text: "Nearby, 9 mi Mr. Coffee 12-Cup Programmable Coffee Maker"
+            - group "Current Price: $37.99. Was $50."
+            - text: "Ace Hardware & more 30-day returns"
+            - img "Rated 4.3 out of 5. 749 reviews.":
+              - img "Rated 4.3 out of 5, 749 user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e257]:
+          - generic [ref=e258]:
+            - img "Low price.": "LOW PRICE"
+            - text: "Also nearby Mainstays 12-Cup Drip Coffee Maker"
+            - group "Current Price: $13.50. Usually $16."
+            - text: "eBay & more Free delivery"
+            - img "Rated 4.2 out of 5. 2.3K reviews.":
+              - img "Rated 4.2 out of 5, 2.3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e259]:
+          - generic [ref=e260]:
+            - img "23% OFF.": "23% OFF"
+            - text: "Also nearby BLACK+DECKER 12-Cup Programmable Coffee Maker"
+            - group "Current Price: $39.77. Was $52."
+            - text: "Kohl's & more 90-day returns"
+            - img "Rated 4.1 out of 5. 410 reviews.":
+              - img "Rated 4.1 out of 5, 410 user reviews"
+    - link "More" [ref=e261]
+  - button "Programmable black drip coffee makers on sale" [ref=e263]:
+    - heading "Programmable black drip coffee makers on sale" [level=2]
+    - button "Programmable black drip coffee makers on sale" [ref=e264]
+  - button "Black drip coffee makers with thermal carafes on sale" [ref=e266]:
+    - heading "Black drip coffee makers with thermal carafes on sale" [level=2]
+    - button "Black drip coffee makers with thermal carafes on sale" [ref=e267]
+  - heading "All products" [level=2]
+  - button [ref=e268]:
+    - generic [ref=e269]:
+      - img "40% OFF.": "40% OFF"
+      - img "Cuisinart 14 Cup Programmable Coffee Maker"
+      - text: "Nearby, 8 mi Cuisinart 14 Cup Programmable Coffee Maker"
+      - group "Current Price: $89.99. Was $150."
+      - text: "Kohl's & more Free delivery 90-day returns"
+      - img "Rated 4.5 out of 5. 8.9K reviews.":
+        - img "Rated 4.5 out of 5, 8.9K user reviews"
+  - button [ref=e270]:
+    - generic [ref=e271]:
+      - img "48% OFF.": "48% OFF"
+      - img "Mr. Coffee 5-Cup Programmable Coffee Maker"
+      - text: "Also nearby Mr. Coffee 5-Cup Programmable Coffee Maker"
+      - group "Current Price: $12.99. Was $25."
+      - text: "Rebel & more 7-day returns"
+      - img "Rated 4.4 out of 5. 1.6K reviews.":
+        - img "Rated 4.4 out of 5, 1.6K user reviews"
+  - button [ref=e272]:
+    - generic [ref=e273]:
+      - img "55% OFF.": "55% OFF"
+      - img "12 Cup Programmable Coffee Maker Black+Decker"
+      - text: "Nearby, 19 mi 12 Cup Programmable Coffee Maker Black+Decker"
+      - group "Current Price: $22.49. Was $50."
+      - text: "JCPenney & more 60-day returns"
+      - img "Rated 4.3 out of 5. 1.1K reviews.":
+        - img "Rated 4.3 out of 5, 1.1K user reviews"
+  - button [ref=e274]:
+    - generic [ref=e275]:
+      - img "25% OFF.": "25% OFF"
+      - img "Hamilton Beach 12 Cup Programmable Coffee Maker 46290"
+      - text: "Nearby, 3 mi Hamilton Beach 12 Cup Programmable Coffee Maker 46290"
+      - group "Current Price: $19.99. Was $27."
+      - text: "Target & more Free delivery on $35+90-day returns"
+      - img "Rated 3.9 out of 5. 1.3K reviews.":
+        - img "Rated 3.9 out of 5, 1.3K user reviews"
+  - button [ref=e276]:
+    - generic [ref=e277]:
+      - img "22% OFF.": "22% OFF"
+      - img "Ninja 12 Cup Programmable Coffee Maker CE251"
+      - text: "Nearby, 3 mi Ninja 12 Cup Programmable Coffee Maker CE251"
+      - group "Current Price: $69.99. Was $90."
+      - text: "Ace Hardware & more 30-day returns"
+      - img "Rated 5.0 out of 5. 4 reviews.":
+        - img "Rated 5.0 out of 5, 4 user reviews"
+  - button [ref=e278]:
+    - generic [ref=e279]:
+      - img "41% OFF.": "41% OFF"
+      - img "Hamilton Beach Programmable Coffee Maker 46295"
+      - text: "Hamilton Beach Programmable Coffee Maker 46295"
+      - group "Current Price: $36.99. Was $63."
+      - text: "Walmart - Hamilton Beach Brands Inc & more Free delivery by Fri"
+      - img "Rated 4.3 out of 5. 193 reviews.":
+        - img "Rated 4.3 out of 5, 193 user reviews"
+  - button [ref=e280]:
+    - generic [ref=e281]:
+      - img "20% OFF.": "20% OFF"
+      - img "Haden Dorchester Coffee Machine"
+      - text: "Haden Dorchester Coffee Machine"
+      - group "Current Price: $111.96. Was $140."
+      - text: "Crate & Barrel & more Free delivery 30-day returns"
+      - img "Rated 3.5 out of 5. 310 reviews.":
+        - img "Rated 3.5 out of 5, 310 user reviews"
+  - button [ref=e282]:
+    - generic [ref=e283]:
+      - img "12% OFF.": "12% OFF"
+      - img "Ninja Hot & Iced XL Coffee Maker with Rapid Cold Brew cm371"
+      - text: "Nearby, 2 mi Ninja Hot & Iced XL Coffee Maker with Rapid Cold Brew cm371"
+      - group "Current Price: $139.99. Was $160."
+      - text: "Best Buy & more Free delivery by Fri 15-day returns"
+      - img "Rated 4.6 out of 5. 444 reviews.":
+        - img "Rated 4.6 out of 5, 444 user reviews"
+  - button [ref=e284]:
+    - generic [ref=e285]:
+      - img "24% OFF.": "24% OFF"
+      - img "Mr. Coffee 12-Cup Programmable Coffee Maker"
+      - text: "Nearby, 2 mi Mr. Coffee 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $37.99. Was $50."
+      - text: "Ace Hardware & more 30-day returns"
+      - img "Rated 4.3 out of 5. 749 reviews.":
+        - img "Rated 4.3 out of 5, 749 user reviews"
+  - button [ref=e286]:
+    - generic [ref=e287]:
+      - img "20% OFF.": "20% OFF"
+      - img "Cuisinart Personal Brew Coffee Maker"
+      - text: "Nearby, 20 mi Cuisinart Personal Brew Coffee Maker"
+      - group "Current Price: $79.99. Was $100."
+      - text: "Target & more Free delivery by Tue 90-day returns"
+      - img "Rated 4.6 out of 5. 36 reviews.":
+        - img "Rated 4.6 out of 5, 36 user reviews"
+  - button [ref=e288]:
+    - generic [ref=e289]:
+      - img "23% OFF.": "23% OFF"
+      - img "BLACK+DECKER 12-Cup Programmable Coffee Maker"
+      - text: "Also nearby BLACK+DECKER 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $39.77. Was $52."
+      - text: "Kohl's & more 90-day returns"
+      - img "Rated 4.1 out of 5. 410 reviews.":
+        - img "Rated 4.1 out of 5, 410 user reviews"
+  - button [ref=e290]:
+    - generic [ref=e291]:
+      - img "Low price.": "LOW PRICE"
+      - img "Mainstays 12-Cup Drip Coffee Maker"
+      - text: "Also nearby Mainstays 12-Cup Drip Coffee Maker"
+      - group "Current Price: $13.50. Usually $16."
+      - text: "eBay & more Free delivery"
+      - img "Rated 4.2 out of 5. 2.3K reviews.":
+        - img "Rated 4.2 out of 5, 2.3K user reviews"
+  - button [ref=e292]:
+    - generic [ref=e293]:
+      - img "25% OFF.": "25% OFF"
+      - img "Premium Levella 4-Cup Coffee Maker PCM5422B"
+      - text: "Premium Levella 4-Cup Coffee Maker PCM5422B"
+      - group "Current Price: $14.99. Was $20."
+      - text: "BrandsMart USA & more 30-day returns"
+      - img "Rated 3.8 out of 5. 27 reviews.":
+        - img "Rated 3.8 out of 5, 27 user reviews"
+  - button [ref=e294]:
+    - generic [ref=e295]:
+      - img "34% OFF.": "34% OFF"
+      - img "Chefman Caffeinator Drip Programmable Coffee Maker"
+      - text: "Chefman Caffeinator Drip Programmable Coffee Maker"
+      - group "Current Price: $58.99. Was $90."
+      - text: "Walmart - LC Katy LLc & more Free delivery"
+      - img "Rated 4.3 out of 5. 920 reviews.":
+        - img "Rated 4.3 out of 5, 920 user reviews"
+  - button [ref=e296]:
+    - generic [ref=e297]:
+      - img "28% OFF.": "28% OFF"
+      - img "BLACK+DECKER 12-Cup Coffee Maker"
+      - text: "BLACK+DECKER 12-Cup Coffee Maker"
+      - group "Current Price: $24.99. Was $35."
+      - text: "Boscov's & more 90-day returns"
+      - img "Rated 4.2 out of 5. 240 reviews.":
+        - img "Rated 4.2 out of 5, 240 user reviews"
+  - button [ref=e298]:
+    - generic [ref=e299]:
+      - img "44% OFF.": "44% OFF"
+      - img "AIRMSEN - 12-Cup Drip Coffee Maker with K-Cup Combo, Single Serve & Carafe Coffee Machine - 2026 Upg"
+      - text: "AIRMSEN - 12-Cup Drip Coffee Maker with K-Cup Combo, Single Serve & Carafe Coffee Machine - 2026 Upgraded - Black"
+      - group "Current Price: $99.99. Was $180."
+      - text: "Best Buy"
+      - img "Rated 3.1 out of 5. 132 reviews.":
+        - img "Rated 3.1 out of 5, 132 user reviews"
+  - button [ref=e300]:
+    - generic [ref=e301]:
+      - img "25% OFF.": "25% OFF"
+      - img "Braun BrewSense 12-Cup Drip Coffee Maker"
+      - text: "Braun BrewSense 12-Cup Drip Coffee Maker"
+      - group "Current Price: $89.95. Was $120."
+      - text: "Braun Household & more Free delivery Free 30-day returns"
+      - img "Rated 4.4 out of 5. 445 reviews.":
+        - img "Rated 4.4 out of 5, 445 user reviews"
+  - button [ref=e302]:
+    - generic [ref=e303]:
+      - img "14% OFF.": "14% OFF"
+      - img "Beautiful Multi-Brew Coffee Maker"
+      - text: "Beautiful Multi-Brew Coffee Maker"
+      - group "Current Price: $119.00. Was $139."
+      - text: "Walmart & more Free delivery by Fri Free 90-day returns"
+      - img "Rated 3.2 out of 5. 493 reviews.":
+        - img "Rated 3.2 out of 5, 493 user reviews"
+  - button [ref=e304]:
+    - generic [ref=e305]:
+      - img "22% OFF.": "22% OFF"
+      - img "KitchenAid 12-Cup Drip Coffee Maker with Spiral Showerhead & Programmable Warming Plate"
+      - text: "KitchenAid 12-Cup Drip Coffee Maker with Spiral Showerhead & Programmable Warming Plate"
+      - group "Current Price: $139.95. Was $180."
+      - text: "Home Depot & more Free delivery 90-day returns"
+      - img "Rated 4.5 out of 5. 1.2K reviews.":
+        - img "Rated 4.5 out of 5, 1.2K user reviews"
+  - button [ref=e306]:
+    - generic [ref=e307]:
+      - img "Low price.": "LOW PRICE"
+      - img "Technivorm KBGV Select Coffee Maker Moccamaster"
+      - text: "Also nearby Technivorm KBGV Select Coffee Maker Moccamaster"
+      - group "Current Price: $359.00. Usually $369."
+      - text: "Dillard's & more Free delivery by Mon 30-day returns"
+      - img "Rated 4.5 out of 5. 3.1K reviews.":
+        - img "Rated 4.5 out of 5, 3.1K user reviews"
+  - button [ref=e308]:
+    - generic [ref=e309]:
+      - img "46% OFF.": "46% OFF"
+      - img "Mr. Coffee 5-Cup Switch Coffee Maker"
+      - text: "Mr. Coffee 5-Cup Switch Coffee Maker"
+      - group "Current Price: $26.99. Was $50."
+      - text: "BrandsMart USA & more 30-day returns"
+      - img "Rated 4.5 out of 5. 1.1K reviews.":
+        - img "Rated 4.5 out of 5, 1.1K user reviews"
+  - button [ref=e310]:
+    - generic [ref=e311]:
+      - img "24% OFF.": "24% OFF"
+      - img "Keurig K-Mini Single Serve K-Cup Pod Coffee Maker, Black, Size: 1 Count (Pack of 1)"
+      - text: "Nearby, 22 mi Keurig K-Mini Single Serve K-Cup Pod Coffee Maker, Black, Size: 1 Count (Pack of 1)"
+      - group "Current Price: $74.00. Was $98."
+      - text: "Walmart Free 90-day returns"
+      - img "Rated 3.8 out of 5. 11K reviews.":
+        - img "Rated 3.8 out of 5, 11K user reviews"
+  - button [ref=e312]:
+    - generic [ref=e313]:
+      - img "29% OFF.": "29% OFF"
+      - img "5-Cup Compact Drip Coffee Maker"
+      - text: "5-Cup Compact Drip Coffee Maker"
+      - group "Current Price: $23.99. Was $34."
+      - text: "Target & more Free delivery on $35+90-day returns"
+      - img "Rated 4.3 out of 5. 23 reviews.":
+        - img "Rated 4.3 out of 5, 23 user reviews"
+  - button [ref=e314]:
+    - generic [ref=e315]:
+      - img "22% OFF.": "22% OFF"
+      - img "Ninja 12-Cup Programmable Coffee Brewer"
+      - text: "Nearby, 9 mi Ninja 12-Cup Programmable Coffee Brewer"
+      - group "Current Price: $69.99. Was $90."
+      - text: "Best Buy & more Free delivery by Fri 15-day returns"
+      - img "Rated 4.3 out of 5. 2.3K reviews.":
+        - img "Rated 4.3 out of 5, 2.3K user reviews"
+  - button [ref=e316]:
+    - generic [ref=e317]:
+      - img "23% OFF.": "23% OFF"
+      - img "BLACK+DECKER 5-Cup Coffeemaker"
+      - text: "BLACK+DECKER 5-Cup Coffeemaker"
+      - group "Current Price: $23.70. Was $31."
+      - text: "Kohl's & more 90-day returns"
+      - img "Rated 4.2 out of 5. 1K reviews.":
+        - img "Rated 4.2 out of 5, 1K user reviews"
+  - button [ref=e318]:
+    - generic [ref=e319]:
+      - img "18% OFF.": "18% OFF"
+      - img "Haden Coffee Machine 12 Cup Programmable Drip Coffee Maker"
+      - text: "Also nearby Haden Coffee Machine 12 Cup Programmable Drip Coffee Maker"
+      - group "Current Price: $89.99. Was $110."
+      - text: "Wayfair & more Free delivery by Fri 30-day returns"
+      - img "Rated 4.3 out of 5. 640 reviews.":
+        - img "Rated 4.3 out of 5, 640 user reviews"
+  - button [ref=e320]:
+    - generic [ref=e321]:
+      - img "Low price.": "LOW PRICE"
+      - img "BLACK+DECKER 12-Cup Programmable Coffee Maker CM1110B"
+      - text: "BLACK+DECKER 12-Cup Programmable Coffee Maker CM1110B"
+      - group "Current Price: $31.99. Usually $36."
+      - text: "Walmart - ELECTRONIC WAREHOUSE OUTLET & more Free delivery"
+      - img "Rated 4.3 out of 5. 553 reviews.":
+        - img "Rated 4.3 out of 5, 553 user reviews"
+  - button [ref=e322]:
+    - generic [ref=e323]:
+      - img "16% OFF.": "16% OFF"
+      - img "FlexBrew Advanced 5-in-1 Coffee Maker"
+      - text: "Nearby, 0.6 mi FlexBrew Advanced 5-in-1 Coffee Maker"
+      - group "Current Price: $99.99. Was $120."
+      - text: "Target & more Same-day delivery $10 90-day returns"
+      - img "Rated 4.0 out of 5. 209 reviews.":
+        - img "Rated 4.0 out of 5, 209 user reviews"
+  - button [ref=e324]:
+    - generic [ref=e325]:
+      - img "15% OFF.": "15% OFF"
+      - img "Mainstays 5 Cup Coffee Maker"
+      - text: "Also nearby Mainstays 5 Cup Coffee Maker"
+      - group "Current Price: $12.75. Was $15."
+      - text: "eBay - vesopan-0 & more"
+      - img "Rated 4.1 out of 5. 222 reviews.":
+        - img "Rated 4.1 out of 5, 222 user reviews"
+  - button [ref=e326]:
+    - generic [ref=e327]:
+      - img "35% OFF.": "35% OFF"
+      - img "Cuisinart PerfecTemp Coffee Maker"
+      - text: "Cuisinart PerfecTemp Coffee Maker"
+      - group "Current Price: $89.99. Was $140."
+      - text: "Kohl's & more Free delivery 90-day returns"
+      - img "Rated 3.5 out of 5. 244 reviews.":
+        - img "Rated 3.5 out of 5, 244 user reviews"
+  - button [ref=e328]:
+    - generic [ref=e329]:
+      - img "52% OFF.": "52% OFF"
+      - img "Secpoedr 12 Cup Drip Programmable Coffee Maker, Easy Pour, Non-Drip Carafe with Removable Filter Bas"
+      - text: "Secpoedr 12 Cup Drip Programmable Coffee Maker, Easy Pour, Non-Drip Carafe with Removable Filter Basket for Kitchen, Office Black"
+      - group "Current Price: $32.99. Was $70."
+      - text: "Walmart - SECPOEDR"
+      - img "Rated 4.0 out of 5. 1 reviews.":
+        - img "Rated 4.0 out of 5, 1 user review"
+  - button [ref=e330]:
+    - generic [ref=e331]:
+      - img "30% OFF.": "30% OFF"
+      - img "AIRMSEN - 14-Cup Programmable Coffee Maker, Coffee Machine with Adjustable Brew Sizes and Auto-off -"
+      - text: "AIRMSEN - 14-Cup Programmable Coffee Maker, Coffee Machine with Adjustable Brew Sizes and Auto-off - Stainless Steel - Black"
+      - group "Current Price: $69.99. Was $100."
+      - text: "Best Buy"
+      - img "Rated 3.1 out of 5. 41 reviews.":
+        - img "Rated 3.1 out of 5, 41 user reviews"
+  - button [ref=e332]:
+    - generic [ref=e333]:
+      - img "17% OFF.": "17% OFF"
+      - img "Philips HD 7546/20 Drip Coffee Maker"
+      - text: "Philips HD 7546/20 Drip Coffee Maker"
+      - group "Current Price: $85.49. Was $103."
+      - text: "Techinn.com 30-day returns"
+      - img "Rated 4.4 out of 5. 2.5K reviews.":
+        - img "Rated 4.4 out of 5, 2.5K user reviews"
+  - button [ref=e334]:
+    - generic [ref=e335]:
+      - img "24% OFF.": "24% OFF"
+      - img "Gourmia 12 Cup Drip Coffee Maker with Thermal Carafe"
+      - text: "Gourmia 12 Cup Drip Coffee Maker with Thermal Carafe"
+      - group "Current Price: $98.50. Was $130."
+      - text: "Wayfair & more Free delivery 30-day returns"
+      - img "Rated 2.7 out of 5. 405 reviews.":
+        - img "Rated 2.7 out of 5, 405 user reviews"
+  - button [ref=e336]:
+    - generic [ref=e337]:
+      - img "41% OFF.": "41% OFF"
+      - img "Cuisinart 12 Cup Programmable Thermal Coffeemaker"
+      - text: "Cuisinart 12 Cup Programmable Thermal Coffeemaker"
+      - group "Current Price: $58.99. Was $100."
+      - text: "Walmart - A Better Deal & more Free delivery"
+      - img "Rated 3.3 out of 5. 134 reviews.":
+        - img "Rated 3.3 out of 5, 134 user reviews"
+  - button [ref=e338]:
+    - generic [ref=e339]:
+      - img "12% OFF.": "12% OFF"
+      - img "Hamilton Beach 12 Cup Coffee Maker"
+      - text: "Nearby, 8 mi Hamilton Beach 12 Cup Coffee Maker"
+      - group "Current Price: $34.99. Was $40."
+      - text: "Kohl's & more 90-day returns"
+      - img "Rated 4.2 out of 5. 1K reviews.":
+        - img "Rated 4.2 out of 5, 1K user reviews"
+  - button [ref=e340]:
+    - generic [ref=e341]:
+      - img "23% OFF.": "23% OFF"
+      - img "Ninja Single Serve Pods Grounds Specialty Coffee Maker"
+      - text: "Nearby, 0.6 mi Ninja Single Serve Pods Grounds Specialty Coffee Maker"
+      - group "Current Price: $99.99. Was $130."
+      - text: "Target & more Same-day delivery $10 90-day returns"
+      - img "Rated 4.3 out of 5. 1.9K reviews.":
+        - img "Rated 4.3 out of 5, 1.9K user reviews"
+  - button [ref=e342]:
+    - generic [ref=e343]:
+      - img "52% OFF.": "52% OFF"
+      - img "COWSAR Residential Drip Coffee Maker"
+      - text: "COWSAR Residential Drip Coffee Maker"
+      - group "Current Price: $49.99. Was $105."
+      - text: "Lowe's Free delivery by Mon Free 2-day returns"
+      - img "Rated 4.8 out of 5. 6 reviews.":
+        - img "Rated 4.8 out of 5, 6 user reviews"
+  - button [ref=e344]:
+    - generic [ref=e345]:
+      - img "49% OFF.": "49% OFF"
+      - img "TRU Automatic Pour Over Coffee Maker"
+      - text: "TRU Automatic Pour Over Coffee Maker"
+      - group "Current Price: $45.84. Was $90."
+      - text: "Walmart - Most Wanted Resellers & more Free delivery by Fri"
+      - img "Rated 4.5 out of 5. 25 reviews.":
+        - img "Rated 4.5 out of 5, 25 user reviews"
+  - button [ref=e346]:
+    - generic [ref=e347]:
+      - img "Low price.": "LOW PRICE"
+      - img "Krups Simply Brew 10-Cup Drip Coffee Maker"
+      - text: "Krups Simply Brew 10-Cup Drip Coffee Maker"
+      - group "Current Price: $49.69. Usually $54."
+      - text: "Home Depot & more Free delivery by Tue 90-day returns"
+      - img "Rated 4.4 out of 5. 125 reviews.":
+        - img "Rated 4.4 out of 5, 125 user reviews"
+  - heading "Page Navigation" [level=1]
+  - button "More results" [ref=e349]
+  - navigation
+</result>
+
+[8] thinking: **Creating a list of coffee makers**
+
+I need to create a list of drip coffee makers on sale, priced between $25 and $60, specifically in a black finish. When I say "on sale," I mean should show a discount percentage or current vs. old price, rather than just a "low price."
+
+There are several candidates, like the Hamilton Beach Programmable Coffee Maker at $36.99, the Mr. Coffee 12-Cup at $37.99, and a couple from BLACK+DECKER, but I need to confirm the colors and details.
+
+**Confirming coffee maker finishes**
+
+I need to confirm which coffee makers are actually black finishes based on their titles. Some products don't specify black, but they might still be. 
+
+For example, the Mr. Coffee 5-Cup Coffee Maker is at $26.99, and the BLACK+DECKER is $23.70 but it's slightly below my price range. The Secpoedr 12 Cup is at $32.99 and does mention black. The Cuisinart might be stainless/black, and I'm unsure about the Hamilton Beach or COWSAR. Additionally, there's the TRU Automatic Pour Over, but it may not technically be a drip coffee maker.
+
+**Filtering price range**
+
+I need to set a price range for a product sale. I'm looking at the Hamilton Beach 46290 for $19.99, but I should apply a price filter of $25 to $60 to refine my search for items. Maybe I'll focus on black items that are already on sale. To do this, I’ll use the Deals page and filter accordingly. It’s important to make sure I reference the current offers and fill in the minimum and maximum values to extract the right data.
+
+[9] tool_call: repl("Applying price range")
+<request>
+await page.locator('e42').fill('25');
+await page.locator('e43').fill('60');
+const s3a = await snapshot(page, {interactive:true});
+console.log(s3a.diff);
+</request>
+<result tokens_used="677" elapsed_time="1243ms">
+@@ -48 +48 @@
+-    - textbox "Minimum price ($)" [ref=e42]
++    - textbox "Minimum price ($)" [ref=e42]: "25"
+@@ -50 +50 @@
+-    - textbox "Maximum price ($)" [ref=e43]
++    - textbox "Maximum price ($)" [ref=e43] [focused]: "60"
+@@ -52 +52 @@
+-    - button "Go" [ref=e44] [disabled]
++    - button "Go" [ref=e44]
+</result>
+
+[10] tool_call: repl("Confirming price filter")
+<request>
+await page.locator('e44').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff);
+</request>
+<result tokens_used="56" elapsed_time="1787ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "drip coffee maker black on sale between $25 and $60 - Google Shopping" [url=https://www.google.com/search?udm=28&shopmd=1&shoprs=CAESFhIUCQAAAACE13dBEQAAAAA4nIxBGAEYBSofZHJpcCBjb2ZmZWUgbWFrZXIgYmxhY2sgb24…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "drip coffee maker black on sale between $25 and $60 drip coffee maker black on sale between $25 and $60"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "Nearby filter. Not selected." [ref=e22]: "Nearby"
+    - link "Get it tomorrow filter. Not selected." [ref=e23]: "Get it tomorrow"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Features" [ref=e27]
+    - link "With Auto Shutoff filter. Not selected." [ref=e28]: "With Auto Shutoff"
+    - link "Programmable filter. Not selected." [ref=e29]: "Programmable"
+    - link "With Thermal Carafe filter. Not selected." [ref=e30]: "With Thermal Carafe"
+    - link "Single Cup filter. Not selected." [ref=e31]: "Single Cup"
+    - button "See more" [ref=e32]
+    - button "Product Rating" [ref=e33]
+    - link "Four stars and up filter. Not selected." [ref=e34]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Stores" [ref=e35]
+    - link "Walmart filter. Not selected." [ref=e36]: "Walmart"
+    - link "Target filter. Not selected." [ref=e37]: "Target"
+    - link "Home Depot filter. Not selected." [ref=e38]: "Home Depot"
+    - link "eBay filter. Not selected." [ref=e39]: "eBay"
+    - button "See more" [ref=e40]
+    - button "Height" [ref=e41]
+    - link "Under 10″ high filter. Not selected." [ref=e42]: "Under 10″ high"
+    - link "10 – 11.5″ high filter. Not selected." [ref=e43]: "10 – 11.5″ high"
+    - link "11.5 – 13″ high filter. Not selected." [ref=e44]: "11.5 – 13″ high"
+    - link "13 – 14″ high filter. Not selected." [ref=e45]: "13 – 14″ high"
+    - link "Over 14″ high filter. Not selected." [ref=e46]: "Over 14″ high"
+    - button "Width" [ref=e47]
+    - link "Under 7″ wide filter. Not selected." [ref=e48]: "Under 7″ wide"
+    - link "7 – 8.5″ wide filter. Not selected." [ref=e49]: "7 – 8.5″ wide"
+    - link "8.5 – 10″ wide filter. Not selected." [ref=e50]: "8.5 – 10″ wide"
+    - link "10 – 12″ wide filter. Not selected." [ref=e51]: "10 – 12″ wide"
+    - link "Over 12″ wide filter. Not selected." [ref=e52]: "Over 12″ wide"
+    - button "Brand" [ref=e53]
+    - link "Mr. Coffee filter. Not selected." [ref=e54]: "Mr. Coffee"
+    - link "Keurig filter. Not selected." [ref=e55]: "Keurig"
+    - link "Cuisinart filter. Not selected." [ref=e56]: "Cuisinart"
+    - link "Breville filter. Not selected." [ref=e57]: "Breville"
+    - button "See more" [ref=e58]
+    - button "Depth" [ref=e59]
+    - link "Under 7″ deep filter. Not selected." [ref=e60]: "Under 7″ deep"
+    - link "7 – 8.4″ deep filter. Not selected." [ref=e61]: "7 – 8.4″ deep"
+    - link "8.4 – 10.5″ deep filter. Not selected." [ref=e62]: "8.4 – 10.5″ deep"
+    - link "10.5 – 12.5″ deep filter. Not selected." [ref=e63]: "10.5 – 12.5″ deep"
+    - link "Over 12.5″ deep filter. Not selected." [ref=e64]: "Over 12.5″ deep"
+    - button "Free shipping" [ref=e65]
+    - link "Free shipping filter. Not selected." [ref=e66]: "Free shipping"
+    - button "Assistant Support" [ref=e67]
+    - link "Google Assistant filter. Not selected." [ref=e68]: "Google Assistant"
+    - link "Amazon Alexa filter. Not selected." [ref=e69]: "Amazon Alexa"
+- navigation "Refinement" [ref=e70]:
+  - generic [ref=e71] [scrollable]:
+    - list:
+      - button "All filters." [ref=e72]
+      - listitem [ref=e73]:
+        - link "Remove $25 - $60 filter. Selected." [ref=e74]: "$25 - $60"
+      - listitem [ref=e75]:
+        - link "With Auto Shutoff filter. Not selected." [ref=e76]: "With Auto Shutoff"
+      - listitem [ref=e77]:
+        - link "Programmable filter. Not selected." [ref=e78]: "Programmable"
+      - listitem [ref=e79]:
+        - link "Nearby filter. Not selected." [ref=e80]: "Nearby"
+      - listitem [ref=e81]:
+        - link "With Thermal Carafe filter. Not selected." [ref=e82]: "With Thermal Carafe"
+      - listitem [ref=e83]:
+        - link "Single Cup filter. Not selected." [ref=e84]: "Single Cup"
+      - listitem [ref=e85]:
+        - link "Get it tomorrow filter. Not selected." [ref=e86]: "Get it tomorrow"
+      - listitem [ref=e87]:
+        - link "Pod Style filter. Not selected." [ref=e88]: "Pod Style"
+      - listitem [ref=e89]:
+        - link "New filter. Not selected." [ref=e90]: "New"
+      - listitem [ref=e91]:
+        - link "Used filter. Not selected." [ref=e92]: "Used"
+      - listitem [ref=e93]:
+        - link "With Grinder filter. Not selected." [ref=e94]: "With Grinder"
+      - listitem [ref=e95]:
+        - link "For Commercial Use filter. Not selected." [ref=e96]: "For Commercial Use"
+      - listitem [ref=e97]:
+        - link "With Water Filter filter. Not selected." [ref=e98]: "With Water Filter"
+      - listitem [ref=e99]:
+        - link "Moka Pots filter. Not selected." [ref=e100]: "Moka Pots"
+      - listitem [ref=e101]:
+        - link "Over 14″ high filter. Not selected." [ref=e102]: "Over 14″ high"
+      - listitem [ref=e103]:
+        - link "13 – 14″ high filter. Not selected." [ref=e104]: "13 – 14″ high"
+      - listitem [ref=e105]:
+        - link "11.5 – 13″ high filter. Not selected." [ref=e106]: "11.5 – 13″ high"
+      - listitem [ref=e107]:
+        - link "Brew Strength Selector filter. Not selected." [ref=e108]: "Brew Strength Selector"
+      - listitem [ref=e109]:
+        - link "10 – 11.5″ high filter. Not selected." [ref=e110]: "10 – 11.5″ high"
+      - listitem [ref=e111]:
+        - link "Under 10″ high filter. Not selected." [ref=e112]: "Under 10″ high"
+      - listitem [ref=e113]:
+        - link "8.5 – 10″ wide filter. Not selected." [ref=e114]: "8.5 – 10″ wide"
+      - listitem [ref=e115]:
+        - link "7 – 8.5″ wide filter. Not selected." [ref=e116]: "7 – 8.5″ wide"
+      - listitem [ref=e117]:
+        - link "Under 7″ wide filter. Not selected." [ref=e118]: "Under 7″ wide"
+      - listitem [ref=e119]:
+        - link "Over 12″ wide filter. Not selected." [ref=e120]: "Over 12″ wide"
+  - combobox "Sort by:Relevance" [ref=e121]
+- link "All deal categories" [ref=e122]
+- heading [level=1]: "Deals"
+- main:
+  - region "Ads" [ref=e123]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e124]
+    - generic [ref=e125] [scrollable]:
+      - link "for from Target" [ref=e126]:
+        - link "for from Target" [ref=e127]
+      - link [ref=e128]:
+        - link "Yerba Buena" [ref=e129]
+      - heading [level=3]: "Mr. Coffee 12-Cup Switch Coffee Maker Black: Electric Drip Coffee Machine, 60 oz Capacity, Dishwasher-Safe Parts"
+      - text: "$26.99 Target"
+      - img "Rated 4.2 out of 5, (4k+) user reviews"
+      - text: "12″ wide · 14″ high · Black · Drip · 12 cup · 19″ deep"
+      - link "for from Shein" [ref=e130]:
+        - link "for from Shein" [ref=e131]
+      - link [ref=e132]:
+        - link [ref=e133]
+      - heading [level=3]: "Ninja Ninja 12-Cup Programmable Coffee Brewer - Factory Refurbished,"
+      - text: "$58.46 Shein Refurbished Silver · Drip · 12 cup"
+      - link "for from Wayfair" [ref=e134]:
+        - link "for from Wayfair" [ref=e135]
+      - link [ref=e136]:
+        - link [ref=e137]
+      - heading [level=3]: "Stainless Steel Coffee Maker by R.W.FLAME - 14-Cup Capacity"
+      - text: "$55.99 Wayfair"
+      - img "Rated 4.6 out of 5, (40) user reviews"
+      - text: "Stainless Steel · Drip · 14 cup"
+      - link "for was $44 from Temu" [ref=e138]:
+        - link "for was $44 from Temu" [ref=e139]
+      - text: "Sale"
+      - link [ref=e140]:
+        - link [ref=e141]
+      - heading [level=3]: "14-Cup Programmable Drip Coffee Makers with Reusable Filter & Keep Hot Plate, Auto Pause Small Coffee Machines with Coffee Pot, Timer, Self-cleaning,"
+      - text: "$27.15$44 Temu By 5/26 Stainless Steel · Drip · 14 cup"
+      - link "for from Hamilton Beach" [ref=e142]:
+        - link "for from Hamilton Beach" [ref=e143]
+      - link [ref=e144]:
+        - link [ref=e145]
+      - heading [level=3]: "Easy Brew 12 Cup Switch Coffee Maker"
+      - text: "$29.99 Hamilton Beach"
+      - img "Rated 4.2 out of 5, (233) user reviews"
+      - text: "Black · Drip · 12 cup · Google Assistant, Amazon Alexa"
+      - link "for was $70 from Walmart" [ref=e146]:
+        - link "for was $70 from Walmart" [ref=e147]
+      - text: "Sale"
+      - link [ref=e148]:
+        - link [ref=e149]
+      - heading [level=3]: "Hamilton Beach Premium 12-Cup Programmable Drip Coffee Maker Machine with Glass Coffee Pot, Black"
+      - text: "$54.39$70 Walmart"
+      - img "Rated 4.5 out of 5, (148) user reviews"
+      - text: "Stainless Steel · Drip · 12 cup"
+      - link "for from WebstaurantStore.com" [ref=e150]:
+        - link "for from WebstaurantStore.com" [ref=e151]
+      - link [ref=e152]:
+        - link [ref=e153]
+      - heading [level=3]: "Hamilton Beach HDC311 Black Commercial Hospitality Single-Serve Coffee Maker - 120V, 1050W"
+      - text: "$56.99 WebstaurantStore.com"
+      - img "Rated 4.8 out of 5, (6) user reviews"
+      - text: "6.5″ wide · 13.3″ high · Black · Drip · 10.5″ deep"
+      - link "for from Target" [ref=e154]:
+        - link "for from Target" [ref=e155]
+      - link [ref=e156]:
+        - link "Yerba Buena" [ref=e157]
+      - heading [level=3]: "Mr. Coffee 12-Cup Programmable Coffee Maker Black"
+      - text: "$34.99 Target"
+      - img "Rated 4.3 out of 5, (749) user reviews"
+      - text: "Black · Drip · 12 cup"
+      - link "for from Rebel" [ref=e158]:
+        - link "for from Rebel" [ref=e159]
+      - link [ref=e160]:
+        - link [ref=e161]
+      - heading [level=3]: "Cuisinart 12-Cup Programmable Coffeemaker, Stainless Steel Black (Open Box/Unused) Coffee, Tea, EspressoBlack"
+      - text: "$35.99 Rebel"
+      - img "Rated 4.4 out of 5, (2k+) user reviews"
+      - text: "Stainless Steel · Drip · 12 cup"
+      - link "for from Target" [ref=e162]:
+        - link "for from Target" [ref=e163]
+      - link [ref=e164]:
+        - link [ref=e165]
+      - heading [level=3]: "Hamilton Beach The Scoop Single-Serve Coffee Maker 47621: White, 14 oz Capacity, Uses Pods & Ground Coffee, Dishwasher-Safe"
+      - text: "$39.99 Target"
+      - img "Rated 3.9 out of 5, (378) user reviews"
+      - text: "10.8″ wide · 12.6″ high · White · 10.4″ deep"
+      - link "for was $33 from Temu" [ref=e166]:
+        - link "for was $33 from Temu" [ref=e167]
+      - text: "Sale"
+      - link [ref=e168]:
+        - link [ref=e169]
+      - heading [level=3]: "Coffee maker sale clearance, Coffee pot maker, Programmable Drip Coffee Maker with Touch-Screen, Pause & Serve, Electric coffee maker, Stainless"
+      - text: "$28.06$33 Temu By 5/26 Black · Drip"
+      - link "for was $120 from Cuisinart" [ref=e170]:
+        - link "for was $120 from Cuisinart" [ref=e171]
+      - text: "Sale"
+      - link [ref=e172]:
+        - link [ref=e173]
+      - heading [level=3]: "Cuisinart 14-Cup PerfecTemp 14-Cup Coffee Maker with Over Ice"
+      - text: "$59.95$120 Cuisinart"
+      - img "Rated 3.5 out of 5, (244) user reviews"
+      - text: "8.1″ wide · Black Stainless · Drip · 14 cup"
+      - link "for from Wayfair" [ref=e174]:
+        - link "for from Wayfair" [ref=e175]
+      - link [ref=e176]:
+        - link [ref=e177]
+      - heading [level=3]: "Hamilton Beach BrewStation Dispensing Coffee Maker Hamilton Beach"
+      - text: "$56.99 Wayfair"
+      - img "Rated 4.3 out of 5, (808) user reviews"
+      - text: "2″ wide · 11″ high · Stainless / Black · Drip · 12 cup · 10″ deep"
+      - link "for from Temu" [ref=e178]:
+        - link "for from Temu" [ref=e179]
+      - link [ref=e180]:
+        - link [ref=e181]
+      - heading [level=3]: "Hamilton Beach FlexBrew Advanced 5-in-1 Programmable 12 Cup Drip and Single Serve Hot & Iced Coffee Maker with Movable 60 oz. Water Reservoir, Use"
+      - text: "$54.51 Temu Used 7.3″ high · Green · Drip"
+      - link "for was $63 from Walmart" [ref=e182]:
+        - link "for was $63 from Walmart" [ref=e183]
+      - text: "Sale"
+      - link [ref=e184]:
+        - link [ref=e185]
+      - heading [level=3]: "Hamilton Beach 14-Cup Programmable Drip Coffee Maker Machine with Glass Coffee Pot, Black"
+      - text: "$36.99$63 Walmart"
+      - img "Rated 4.3 out of 5, (193) user reviews"
+      - text: "Black · Drip · 14 cup"
+      - link "for was $60 from Target" [ref=e186]:
+        - link "for was $60 from Target" [ref=e187]
+      - text: "Sale"
+      - link [ref=e188]:
+        - link "Yerba Buena" [ref=e189]
+      - heading [level=3]: "Hamilton Beach 12Cup Programmable Hot & Iced Coffee Maker 49620: Electric Drip Machine, 950W, Dishwasher-Safe Parts"
+      - text: "$44.99$60 Target"
+      - img "Rated 2.5 out of 5, (49) user reviews"
+      - text: "Drip · 12 cup"
+      - link "for from Vapelords" [ref=e190]:
+        - link "for from Vapelords" [ref=e191]
+      - link [ref=e192]:
+        - link [ref=e193]
+      - heading [level=3]: "Ninja 12-Cup Programmable Coffee Brewer, 2 Brew Styles, Adjustable Warm Plate, 60oz Water Reservoir, Delay Brew, Black/Stainless Steel"
+      - text: "$54.00 Vapelords Free Silver · Drip · 12 cup"
+      - link "for from Hamilton Beach" [ref=e194]:
+        - link "for from Hamilton Beach" [ref=e195]
+      - link [ref=e196]:
+        - link [ref=e197]
+      - heading [level=3]: "Programmable Coffee Maker"
+      - text: "$27.99 Hamilton Beach By 5/19 Drip · 12 cup"
+      - link "for from Temu" [ref=e198]:
+        - link "for from Temu" [ref=e199]
+      - link [ref=e200]:
+        - link [ref=e201]
+      - heading [level=3]: "Coffee maker sale clearance, Coffee pots, 10-Cup Programmable Drip Coffee Maker with Touch-Screen, Pause & Serve, Coffee pots on sale clearance,"
+      - text: "$37.98 Temu"
+      - img "Rated 3.8 out of 5, (31) user reviews"
+      - link "for from Target" [ref=e202]:
+        - link "for from Target" [ref=e203]
+      - link [ref=e204]:
+        - link [ref=e205]
+      - heading [level=3]: "Hamilton Beach 5c Coffee Maker 46111: 5 Cup Drip Coffee Maker, Black, Electric, Dishwasher-Safe, Basket Filter, 700W"
+      - text: "$39.95 Target"
+      - img "Rated 4.1 out of 5, (303) user reviews"
+      - text: "9.4″ wide · Black · Drip · 5 cup"
+      - link "for from Wayfair" [ref=e206]:
+        - link "for from Wayfair" [ref=e207]
+      - link [ref=e208]:
+        - link [ref=e209]
+      - heading [level=3]: "Single Serve 5-Cup Pod Coffee Maker With 30Oz. Reservoir Kismile"
+      - text: "$49.99 Wayfair Free Black · Drip"
+      - link "for from Hamilton Beach" [ref=e210]:
+        - link "for from Hamilton Beach" [ref=e211]
+      - link [ref=e212]:
+        - link [ref=e213]
+      - heading [level=3]: "Black Stainless Coffee Maker"
+      - text: "$45.99 Hamilton Beach"
+      - img "Rated 4.2 out of 5, (96) user reviews"
+      - text: "9.5″ wide · 12.9″ high · Black · Drip · 12 cup · 11.4″ deep"
+      - link "for from Temu" [ref=e214]:
+        - link "for from Temu" [ref=e215]
+      - link [ref=e216]:
+        - link [ref=e217]
+      - heading [level=3]: "Coffee maker sale clearance, Coffee pot maker, 12 cup coffee maker sale clearance, Programmable 12-Cup Coffee Maker with Dual Brew ( Regular/Strong"
+      - text: "$33.25 Temu Free Stainless Steel · Drip · 12 cup"
+      - link "for from Walmart" [ref=e218]:
+        - link "for from Walmart" [ref=e219]
+      - link [ref=e220]:
+        - link [ref=e221]
+      - heading [level=3]: "8-cup Programmable Coffee Maker with Thermal Carafe, Touch Screen Timer, Auto Shut off & Pause-Serve Feature, Strong Brew Option, Stainless Steel &"
+      - text: "$59.99 Walmart"
+      - img "Rated 4.3 out of 5, (344) user reviews"
+      - text: "Stainless Steel · Drip · 8 cup"
+      - link "for from Temu" [ref=e222]:
+        - link "for from Temu" [ref=e223]
+      - link [ref=e224]:
+        - link [ref=e225]
+      - heading [level=3]: "VEVOR Programmable Coffee Maker 12 Cup Programmable Drip Coffee Maker for Home"
+      - text: "$28.06 Temu"
+      - img "Rated 4.3 out of 5, (15) user reviews"
+      - text: "12″ wide · 14″ high · Stainless Steel · Drip · 12 cup · 8″ deep"
+      - link "for from Hamilton Beach" [ref=e226]:
+        - link "for from Hamilton Beach" [ref=e227]
+      - link [ref=e228]:
+        - link [ref=e229]
+      - heading [level=3]: "12 Cup Programmable Coffee Maker with 3 Settings"
+      - text: "$34.99 Hamilton Beach By 5/19 Drip · 12 cup"
+      - link "for was $44 from Temu" [ref=e230]:
+        - link "for was $44 from Temu" [ref=e231]
+      - text: "Sale"
+      - link [ref=e232]:
+        - link [ref=e233]
+      - heading [level=3]: "5 Cup Drip Coffee Maker with Dry Boil Protection, Anti-Drip Function 0.75L Water Tank, Coffee Pot for Home/ Office/ Kitchen, Black"
+      - text: "$27.15$44 Temu By 5/26 Black · Drip · 5 cup"
+      - link "for from Target" [ref=e234]:
+        - link "for from Target" [ref=e235]
+      - link [ref=e236]:
+        - link "San Leandro" [ref=e237]
+      - heading [level=3]: "Bodum 12 Cup Programmable Coffee Maker Stainless Steel"
+      - text: "$39.99 Target"
+      - img "Rated 3.5 out of 5, (76) user reviews"
+      - text: "Stainless Steel · Drip · 12 cup"
+      - link "for from Quill" [ref=e238]:
+        - link "for from Quill" [ref=e239]
+      - link [ref=e240]:
+        - link [ref=e241]
+      - heading [level=3]: "Krups Simply Brew 5-Cups Automatic Drip Coffee Maker, Stainless Steel (KM202855) | Quill"
+      - text: "$35.00 Quill"
+      - img "Rated 4.3 out of 5, (128) user reviews"
+      - text: "Stainless Steel · Cold Brew · 5 cup"
+      - link "for from Select Brands" [ref=e242]:
+        - link "for from Select Brands" [ref=e243]
+      - link [ref=e244]:
+        - link [ref=e245]
+      - heading [level=3]: "Toastmaster 12-Cup Programmable Coffee Maker"
+      - text: "$59.99 Select Brands"
+      - img "Rated 3.8 out of 5, (17) user reviews"
+      - text: "Drip · 12 cup"
+      - link "for from Wayfair" [ref=e246]:
+        - link "for from Wayfair" [ref=e247]
+      - link [ref=e248]:
+        - link [ref=e249]
+      - heading [level=3]: "Programmable Coffee Maker 12 Cup | Strong & Iced Brew Drip Coffee Machine | Black Stainless Steel for Home Office J-XIN Trading Co., Limited"
+      - text: "$39.99 Wayfair Free Black · Drip · 12 cup"
+      - link "for from KaTom Restaurant Supply" [ref=e250]:
+        - link "for from KaTom Restaurant Supply" [ref=e251]
+      - link [ref=e252]:
+        - link [ref=e253]
+      - heading [level=3]: "Hamilton Beach 1 Cup Pod Coffee Maker - Drip, Black/Stainless Steel, 120v, HDC200S"
+      - text: "$28.03 KaTom Restaurant Supply"
+      - img "Rated 4.5 out of 5, (17) user reviews"
+      - text: "5.5″ wide · 8.5″ high · Black / Silver · Drip · 10.2″ deep"
+      - link "for from Temu" [ref=e254]:
+        - link "for from Temu" [ref=e255]
+      - link [ref=e256]:
+        - link [ref=e257]
+      - heading [level=3]: "Coffee maker sale clearance, Percolator coffee pot, Drip Coffee Maker By Spraying Method, 1.2 L Capacity, 600W Power, Electric coffee percolator, BPA"
+      - text: "$33.61 Temu Free Electric"
+      - link "for from Temu" [ref=e258]:
+        - link "for from Temu" [ref=e259]
+      - link [ref=e260]:
+        - link [ref=e261]
+      - heading [level=3]: "12-Cup Programmable Coffee Maker, Coffee maker sale clearance, 12 cup coffee maker, Coffee pots on sale clearance electric, Featuring Iced Coffee"
+      - text: "$33.25 Temu Free Black · Drip · 12 cup"
+      - link "for from Temu" [ref=e262]:
+        - link "for from Temu" [ref=e263]
+      - link [ref=e264]:
+        - link [ref=e265]
+      - heading [level=3]: "14-Cup Programmable Drip Coffee Makers with Reusable Filter & Keep Hot Plate, Auto Pause Small Coffee Machines with Coffee Pot, Timer, Self-cleaning,"
+      - text: "$46.98 Temu Free Stainless Steel · Drip · 14 cup"
+      - link "for from Staples" [ref=e266]:
+        - link "for from Staples" [ref=e267]
+      - link [ref=e268]:
+        - link [ref=e269]
+      - heading [level=3]: "Krups Simply Brew 5-Cups Automatic Drip Coffee Maker, Stainless Steel (KM202855)"
+      - text: "$48.79 Staples"
+      - img "Rated 4.3 out of 5, (128) user reviews"
+      - text: "Stainless Steel · Cold Brew · 5 cup"
+      - link "for was $59 from Walmart" [ref=e270]:
+        - link "for was $59 from Walmart" [ref=e271]
+      - text: "Sale"
+      - link [ref=e272]:
+        - link [ref=e273]
+      - heading [level=3]: "Krups Simply Brew 10-Cup Drip Coffee Maker | Stainless Steel, Size: 10 cups/ 50 fluid ounces, Silver"
+      - text: "$49.26$59 Walmart"
+      - img "Rated 4.4 out of 5, (125) user reviews"
+      - text: "8.3″ wide · Stainless Steel · Drip · 10 cup"
+      - link "for from Wayfair" [ref=e274]:
+        - link "for from Wayfair" [ref=e275]
+      - link [ref=e276]:
+        - link "Free 3-day" [ref=e277]
+      - heading [level=3]: "Nostalgia Classic Retro 10 Cup Coffee Maker Nostalgia Color/Finish: Black"
+      - text: "$59.99 Wayfair"
+      - img "Rated 4.6 out of 5, (34) user reviews"
+      - text: "Black · Drip · 10 cup"
+      - link "for from Best Buy" [ref=e278]:
+        - link "for from Best Buy" [ref=e279]
+      - link [ref=e280]:
+        - link "Mission District" [ref=e281]
+      - heading [level=3]: "bella PRO - 12-Cup Programmable Coffee Maker - Stainless Steel"
+      - text: "$29.99 Best Buy"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - text: "Stainless Steel · Drip · 12 cup"
+      - link "for from GEVI" [ref=e282]:
+        - link "for from GEVI" [ref=e283]
+      - link [ref=e284]:
+        - link [ref=e285]
+      - heading [level=3]: "GEVI Fast Brewing Drip Coffee Maker"
+      - text: "$59.99 GEVI By 6/1 Drip"
+  - heading "Browse products" [level=2]
+  - button [ref=e286]:
+    - generic [ref=e287]:
+      - img "50% OFF.": "50% OFF"
+      - button "An interactive autorotating 180 image showing the item from different angles" [ref=e288]:
+        - img
+      - text: "Nearby, 2 mi Bella Pro 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $29.99. Was $60."
+      - text: "Best Buy & more Free delivery on $35+15-day returns"
+      - img "Rated 4.5 out of 5. 1.8K reviews.":
+        - img "Rated 4.5 out of 5, 1.8K user reviews"
+  - button [ref=e289]:
+    - generic [ref=e290]:
+      - img "24% OFF.": "24% OFF"
+      - img "Mr. Coffee 12-Cup Programmable Coffee Maker"
+      - text: "Nearby, 2 mi Mr. Coffee 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $37.99. Was $50."
+      - text: "Ace Hardware & more 30-day returns"
+      - img "Rated 4.3 out of 5. 749 reviews.":
+        - img "Rated 4.3 out of 5, 749 user reviews"
+  - button [ref=e291]:
+    - generic [ref=e292]:
+      - img "48% OFF.": "48% OFF"
+      - img "Beautiful 14-Cup Programmable Drip Coffee Maker"
+      - text: "Beautiful 14-Cup Programmable Drip Coffee Maker"
+      - group "Current Price: $35.99. Was $70."
+      - text: "eBay & more Free 30-day returns"
+      - img "Rated 3.8 out of 5. 7K reviews.":
+        - img "Rated 3.8 out of 5, 7K user reviews"
+  - button [ref=e293]:
+    - generic [ref=e294]:
+      - img "Low price.": "LOW PRICE"
+      - img "BLACK+DECKER 12-Cup Programmable Coffee Maker CM1110B"
+      - text: "BLACK+DECKER 12-Cup Programmable Coffee Maker CM1110B"
+      - group "Current Price: $31.99. Usually $36."
+      - text: "Walmart - ELECTRONIC WAREHOUSE OUTLET & more Free delivery"
+      - img "Rated 4.3 out of 5. 553 reviews.":
+        - img "Rated 4.3 out of 5, 553 user reviews"
+  - button [ref=e295]:
+    - generic [ref=e296]:
+      - img "12% OFF.": "12% OFF"
+      - img "Hamilton Beach 12 Cup Coffee Maker"
+      - text: "Nearby, 8 mi Hamilton Beach 12 Cup Coffee Maker"
+      - group "Current Price: $34.99. Was $40."
+      - text: "Kohl's & more 90-day returns"
+      - img "Rated 4.2 out of 5. 1K reviews.":
+        - img "Rated 4.2 out of 5, 1K user reviews"
+  - button [ref=e297]:
+    - generic [ref=e298]:
+      - img "Low price.": "LOW PRICE"
+      - img "HADEN Starbeck Drip Coffee Maker 75129"
+      - text: "HADEN Starbeck Drip Coffee Maker 75129"
+      - group "Current Price: $42.50. Usually $57."
+      - text: "Home Depot & more Free delivery 90-day returns"
+      - img "Rated 3.7 out of 5. 14 reviews.":
+        - img "Rated 3.7 out of 5, 14 user reviews"
+  - button [ref=e299]:
+    - generic [ref=e300]:
+      - img "Low price.": "LOW PRICE"
+      - img "BLACK+DECKER 12-Cup Programmable Coffee Maker"
+      - text: "Also nearby BLACK+DECKER 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $29.00. Usually $32."
+      - text: "eBay & more Free delivery"
+      - img "Rated 4.2 out of 5. 917 reviews.":
+        - img "Rated 4.2 out of 5, 917 user reviews"
+  - button [ref=e301]:
+    - generic [ref=e302]:
+      - img "32% OFF.": "32% OFF"
+      - img "Bold Brew 12 Cup Programmable Coffee Maker"
+      - text: "Bold Brew 12 Cup Programmable Coffee Maker"
+      - group "Current Price: $32.99. Was $49."
+      - text: "Walmart - Hamilton Beach Brands Inc & more"
+      - img "Rated 4.2 out of 5. 216 reviews.":
+        - img "Rated 4.2 out of 5, 216 user reviews"
+  - button [ref=e303]:
+    - generic [ref=e304]:
+      - img "40% OFF.": "40% OFF"
+      - img "Commercial Chef 12 Cup Digital/ Programmable Coffee Maker CHCM12B"
+      - text: "Commercial Chef 12 Cup Digital/ Programmable Coffee Maker CHCM12B"
+      - group "Current Price: $35.99. Was $60."
+      - text: "JCPenney & more 60-day returns"
+      - img "Rated 3.8 out of 5. 5 reviews.":
+        - img "Rated 3.8 out of 5, 5 user reviews"
+  - button [ref=e305]:
+    - generic [ref=e306]:
+      - img "Low price.": "LOW PRICE"
+      - img "Hamilton Beach 5 Cup Compact Coffee Maker with Programmable Clock"
+      - text: "Hamilton Beach 5 Cup Compact Coffee Maker with Programmable Clock"
+      - group "Current Price: $29.99. Usually $38."
+      - text: "Best Buy & more 15-day returns"
+      - img "Rated 4.1 out of 5. 303 reviews.":
+        - img "Rated 4.1 out of 5, 303 user reviews"
+  - button [ref=e307]:
+    - generic [ref=e308]:
+      - img "Low price.": "LOW PRICE"
+      - img "Better Chef 12-Cup Programmable Coffee Maker"
+      - text: "Better Chef 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $35.00. Usually $37."
+      - text: "Home Depot & more Free delivery 90-day returns"
+      - img "Rated 3.8 out of 5. 4 reviews.":
+        - img "Rated 3.8 out of 5, 4 user reviews"
+  - button [ref=e309]:
+    - generic [ref=e310]:
+      - img "10% OFF.": "10% OFF"
+      - img "Mueller 12-Cup Drip Coffee Maker"
+      - text: "Mueller 12-Cup Drip Coffee Maker"
+      - group "Current Price: $26.97. Was $30."
+      - text: "Walmart - Commerce Planet & more"
+      - img "Rated 4.8 out of 5. 17 reviews.":
+        - img "Rated 4.8 out of 5, 17 user reviews"
+  - button [ref=e311]:
+    - generic [ref=e312]:
+      - img "26% OFF.": "26% OFF"
+      - img "Mr. Coffee 12 Cup Coffee Maker"
+      - text: "Also nearby Mr. Coffee 12 Cup Coffee Maker"
+      - group "Current Price: $25.10. Was $34."
+      - text: "MROSupreme.com & more 30-day returns"
+      - img "Rated 4.2 out of 5. 4.9K reviews.":
+        - img "Rated 4.2 out of 5, 4.9K user reviews"
+  - button [ref=e313]:
+    - generic [ref=e314]:
+      - img "40% OFF.": "40% OFF"
+      - img "BLACK+DECKER 4-in-1 5-Cup Coffee Maker Black"
+      - text: "BLACK+DECKER 4-in-1 5-Cup Coffee Maker Black"
+      - group "Current Price: $35.99. Was $60."
+      - text: "JCPenney & more 60-day returns"
+      - img "Rated 3.8 out of 5. 379 reviews.":
+        - img "Rated 3.8 out of 5, 379 user reviews"
+  - button [ref=e315]:
+    - generic [ref=e316]:
+      - img "15% OFF.": "15% OFF"
+      - img "Farberware 9 Cup High Temperature Drip Coffee Maker"
+      - text: "Farberware 9 Cup High Temperature Drip Coffee Maker"
+      - group "Current Price: $38.00. Was $45."
+      - text: "Walmart & more Free delivery Free 90-day returns"
+      - img "Rated 4.2 out of 5. 79 reviews.":
+        - img "Rated 4.2 out of 5, 79 user reviews"
+  - button [ref=e317]:
+    - generic [ref=e318]:
+      - img "34% OFF.": "34% OFF"
+      - img "Mainstays 12-Cup Programmable Coffee Maker"
+      - text: "Mainstays 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $32.32. Was $50."
+      - text: "eBay & more Free delivery"
+      - img "Rated 4.1 out of 5. 1.3K reviews.":
+        - img "Rated 4.1 out of 5, 1.3K user reviews"
+  - button [ref=e319]:
+    - generic [ref=e320]:
+      - img "24% OFF.": "24% OFF"
+      - img "Hamilton Beach 12 Cup Programmable Coffee Maker"
+      - text: "Hamilton Beach 12 Cup Programmable Coffee Maker"
+      - group "Current Price: $34.49. Was $45."
+      - text: "Instacart & more"
+      - img "Rated 4.4 out of 5. 749 reviews.":
+        - img "Rated 4.4 out of 5, 749 user reviews"
+  - button [ref=e321]:
+    - generic [ref=e322]:
+      - img "53% OFF.": "53% OFF"
+      - img "Gevi 4 Cup Automatic Drip Coffee Maker"
+      - text: "Gevi 4 Cup Automatic Drip Coffee Maker"
+      - group "Current Price: $25.89. Was $56."
+      - text: "Walmart - Gevi Household"
+  - button [ref=e323]:
+    - generic [ref=e324]:
+      - img "7% OFF.": "7% OFF"
+      - img "12 Cup Programmable Coffee Maker Black+Decker"
+      - text: "12 Cup Programmable Coffee Maker Black+Decker"
+      - group "Current Price: $33.93. Was $37."
+      - text: "Bigbigmart.com & more Free delivery 14-day returns"
+      - img "Rated 4.3 out of 5. 1.1K reviews.":
+        - img "Rated 4.3 out of 5, 1.1K user reviews"
+  - button [ref=e325]:
+    - generic [ref=e326]:
+      - img "13% OFF.": "13% OFF"
+      - img "Auseo 5-Cup Drip Coffee Maker"
+      - text: "Auseo 5-Cup Drip Coffee Maker"
+      - group "Current Price: $25.99. Was $30."
+      - text: "Walmart - Auseo"
+      - img "Rated 3.7 out of 5. 89 reviews.":
+        - img "Rated 3.7 out of 5, 89 user reviews"
+  - button [ref=e327]:
+    - generic [ref=e328]:
+      - img "14% OFF.": "14% OFF"
+      - img "BLACK+DECKER 5-Cup Coffeemaker"
+      - text: "BLACK+DECKER 5-Cup Coffeemaker"
+      - group "Current Price: $29.99. Was $35."
+      - text: "Boscov's & more 90-day returns"
+      - img "Rated 4.2 out of 5. 1K reviews.":
+        - img "Rated 4.2 out of 5, 1K user reviews"
+  - button [ref=e329]:
+    - generic [ref=e330]:
+      - img "Low price.": "LOW PRICE"
+      - img "Black & Decker 5-Cup Coffee Maker"
+      - text: "Black & Decker 5-Cup Coffee Maker"
+      - group "Current Price: $46.60. Usually $50."
+      - text: "eBay & more Free delivery"
+      - img "Rated 4.7 out of 5. 91 reviews.":
+        - img "Rated 4.7 out of 5, 91 user reviews"
+  - button [ref=e331]:
+    - generic [ref=e332]:
+      - img "Low price.": "LOW PRICE"
+      - img "Brentwood TS-111BK Single Serve Coffee Maker with Mug"
+      - text: "Brentwood TS-111BK Single Serve Coffee Maker with Mug"
+      - group "Current Price: $29.00. Usually $55."
+      - text: "Bed Bath & Beyond & more Free delivery on $50+30-day returns"
+      - img "Rated 4.0 out of 5. 53 reviews.":
+        - img "Rated 4.0 out of 5, 53 user reviews"
+  - button [ref=e333]:
+    - generic [ref=e334]:
+      - img "10% OFF.": "10% OFF"
+      - img "KitchenTrend 12-Cup Programmable Coffee Maker"
+      - text: "KitchenTrend 12-Cup Programmable Coffee Maker"
+      - group "Current Price: $44.54. Was $49."
+      - text: "Walmart & more Free delivery Free 90-day returns"
+      - img "Rated 3.1 out of 5. 7 reviews.":
+        - img "Rated 3.1 out of 5, 7 user reviews"
+  - button [ref=e335]:
+    - generic [ref=e336]:
+      - img "18% OFF.": "18% OFF"
+      - img "Better Chef 4 Cup Coffee Maker"
+      - text: "Better Chef 4 Cup Coffee Maker"
+      - group "Current Price: $44.98. Was $55."
+      - text: "Best Buy & more"
+      - img "Rated 3.6 out of 5. 16 reviews.":
+        - img "Rated 3.6 out of 5, 16 user reviews"
+  - button [ref=e337]:
+    - generic [ref=e338]:
+      - img "8% OFF.": "8% OFF"
+      - img "BLACK+DECKER 12 Cup Programmable Coffee Maker"
+      - text: "BLACK+DECKER 12 Cup Programmable Coffee Maker"
+      - group "Current Price: $32.19. Was $35."
+      - text: "Bigbigmart.com & more Free delivery 14-day returns"
+      - img "Rated 4.3 out of 5. 809 reviews.":
+        - img "Rated 4.3 out of 5, 809 user reviews"
+  - button [ref=e339]:
+    - generic [ref=e340]:
+      - img "Low price.": "LOW PRICE"
+      - img "Brentwood 12 Cup Digital Coffee Maker"
+      - text: "Brentwood 12 Cup Digital Coffee Maker"
+      - group "Current Price: $39.99. Usually $44."
+      - text: "michaels.com & more Free delivery on $50+Free 60-day returns"
+      - img "Rated 3.9 out of 5. 38 reviews.":
+        - img "Rated 3.9 out of 5, 38 user reviews"
+  - button [ref=e341]:
+    - generic [ref=e342]:
+      - img "6% OFF.": "6% OFF"
+      - img "Mainstays Single Serve Coffee Maker"
+      - text: "Mainstays Single Serve Coffee Maker"
+      - group "Current Price: $32.04. Was $34."
+      - text: "eBay - zone-year & more Free delivery 30-day returns"
+      - img "Rated 3.8 out of 5. 412 reviews.":
+        - img "Rated 3.8 out of 5, 412 user reviews"
+  - button [ref=e343]:
+    - generic [ref=e344]:
+      - img "17% OFF.": "17% OFF"
+      - img "Starfrit 12-Cup Drip Coffee Maker Machine"
+      - text: "Starfrit 12-Cup Drip Coffee Maker Machine"
+      - group "Current Price: $40.71. Was $49."
+      - text: "Bigeasymart.com & more Free delivery 14-day returns"
+      - img "Rated 4.7 out of 5. 314 reviews.":
+        - img "Rated 4.7 out of 5, 314 user reviews"
+  - button [ref=e345]:
+    - generic [ref=e346]:
+      - img "13% OFF.": "13% OFF"
+      - img "Mr. Coffee 5-Cup Switch Coffee Maker"
+      - text: "Mr. Coffee 5-Cup Switch Coffee Maker"
+      - group "Current Price: $33.41. Was $38."
+      - text: "Shell Lumber and Hardware & more 30-day returns"
+      - img "Rated 4.5 out of 5. 1.1K reviews.":
+        - img "Rated 4.5 out of 5, 1.1K user reviews"
+  - button [ref=e347]:
+    - generic [ref=e348]:
+      - img "Low price.": "LOW PRICE"
+      - button "An interactive autorotating 3D image showing the item from different angles. Use Alt or Option + rig" [ref=e349]:
+        - img
+      - text: "Brentwood 10 Cup Digital Coffee Maker"
+      - group "Current Price: $32.25. Usually $38."
+      - text: "Arbor & more 30-day returns"
+      - img "Rated 3.9 out of 5. 38 reviews.":
+        - img "Rated 3.9 out of 5, 38 user reviews"
+  - button [ref=e350]:
+    - generic [ref=e351]:
+      - img "5% OFF.": "5% OFF"
+      - img "Mr. Coffee 12-Cup Coffee Maker"
+      - text: "Mr. Coffee 12-Cup Coffee Maker"
+      - group "Current Price: $37.99. Was $40."
+      - text: "Bigbigmart.com & more Free delivery 14-day returns"
+      - img "Rated 3.8 out of 5. 430 reviews.":
+        - img "Rated 3.8 out of 5, 430 user reviews"
+  - button [ref=e352]:
+    - generic [ref=e353]:
+      - img "42% OFF.": "42% OFF"
+      - img "Magefesa Kenia Aluminum Stovetop Espresso Maker"
+      - text: "Magefesa Kenia Aluminum Stovetop Espresso Maker"
+      - group "Current Price: $31.49. Was $55."
+      - text: "JCPenney & more 60-day returns"
+      - img "Rated 4.1 out of 5. 34 reviews.":
+        - img "Rated 4.1 out of 5, 34 user reviews"
+  - button [ref=e354]:
+    - generic [ref=e355]:
+      - img "Low price.": "LOW PRICE"
+      - img "Takeya Cold Brew Coffee Maker"
+      - text: "Takeya Cold Brew Coffee Maker"
+      - group "Current Price: $29.99. Usually $35."
+      - text: "eBay - missmich. & more Free delivery 30-day returns"
+      - img "Rated 4.6 out of 5. 318 reviews.":
+        - img "Rated 4.6 out of 5, 318 user reviews"
+  - button [ref=e356]:
+    - generic [ref=e357]:
+      - img "5% OFF.": "5% OFF"
+      - img "Mr. Coffee 5-Cup Programmable Coffee Maker"
+      - text: "Mr. Coffee 5-Cup Programmable Coffee Maker"
+      - group "Current Price: $51.28. Was $54."
+      - text: "Bigbigmart.com & more Free delivery 14-day returns"
+      - img "Rated 4.7 out of 5. 816 reviews.":
+        - img "Rated 4.7 out of 5, 816 user reviews"
+  - button [ref=e358]:
+    - generic [ref=e359]:
+      - img "15% OFF.": "15% OFF"
+      - img "Mainstays 5-Cup Coffee Maker"
+      - text: "Mainstays 5-Cup Coffee Maker"
+      - group "Current Price: $27.20. Was $32."
+      - text: "eBay - appleoftheeyeonline & more Free delivery Free 30-day returns"
+      - img "Rated 4.1 out of 5. 5.7K reviews.":
+        - img "Rated 4.1 out of 5, 5.7K user reviews"
+  - navigation
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - button "94105, San Francisco, CA - From your device" [ref=e360]
+  - text: "-"
+  - button "Update location" [ref=e362]
+  - link "Help" [ref=e363]
+  - link "Send feedback" [ref=e364]
+  - link "Privacy" [ref=e365]
+  - link "Terms" [ref=e366]
+</result>
+
+[11] thinking: **Creating a product list**
+
+I believe we have sufficient info in the snapshot, but I need to create a list. It seems like we should focus on strict black finishes since the query title includes "black," yet many entries omit the color. I want to identify entries explicitly mentioning "black" either in the title or details. For a robust list, I'll include only these entries and consider needing to list current price, previous price, retailer, and optionally the rating. I should clarify that user requested drip coffee makers, meaning I can include those with the "Drip" attribute as well.
+
+**Creating a product list**
+
+I decided to treat "on sale" as a visible percent-off or "Sale" label alongside the previous price. I’ll include only items priced between $25 and $60, specifically those with "Black" in the title or product details, which sounds good! I should scrape the DOM text, and since I'm not using webfetch or websearch, citations might not be necessary. 
+
+Including product links could be helpful, even if the user didn't specifically ask for them. I can extract URLs from the DOM anchors for product links, but it might take a while to gather them. A final list can be created without external citations.
+
+**Listing eligible products**
+
+I need to ground my answers in the evidence from the snapshot, ensuring I present the details clearly in the final list. I'm wondering if I should use the "More results" option, but it seems like there are already plenty of items. I should focus on listing all explicitly eligible black items in the current snapshot. 
+
+For example, there's the Hamilton Beach Premium 12-Cup Programmable Drip Coffee Maker at $54.39, which was originally $70. Also, there's a sale item from Temu for $28.06—though it's a bit generic, it does mention "Black" in the details. This could potentially be included in the list!
+
+**Analyzing coffee maker details**
+
+I’m looking at the Mr. Coffee 12-Cup Programmable Coffee Maker, which is currently priced at $37.99, down from $50. It seems like the product is likely black, although the color might not be entirely visible in the ads. The title does indicate "Mr.," so I'm confirming that’s the brand name. I’m curious how reliable this coffee maker is and if the price drop signals a good deal.
+
+**Evaluating coffee makers**
+
+I'm checking out various coffee makers. The 12-Cup Programmable Coffee Maker is listed at $34.99 at Target with no sale currently. I’m wondering if I should exclude it since the product's color isn't explicitly listed. The Hamilton Beach option is also $34.99, down from $40, but it's not explicitly black—so I might exclude it unless I find more details. Another BLACK+DECKER model is at $31.99, but I’m debating including it since "LOW PRICE" doesn’t indicate a sale.
+
+**Exploring data collection methods**
+
+I’m considering using page.evaluate, but I wonder if it's really needed unless there's an exact selector. Instead, I might rely on a snapshot as the primary data source. For the list, perhaps the DOM is accessible, and I could use JavaScript to extract the current document text, though that could create a huge output. It's probably better to stick with the snapshot text. I could also explore product details by interacting with an ambiguous candidate product, like "Mr. Coffee 12-Cup Programmable," but I'm not sure if that's necessary. Gathering links could also be an option, but I'm thinking it's not required.
+
+**Considering coffee makers**
+
+I'm looking at coffee makers priced between $25 and $60, which I find through Google Shopping. The page displays a filter showing "$25 - $60." I should mention specific models based on this filter. 
+
+Here are some candidates: 
+
+1. Hamilton Beach Premium 12-Cup Coffee Maker at Walmart for $54.39 (originally $70), rated 4.5.
+2. A programmable coffee maker on sale at Temu for $28.06 (was $33), also in Black.
+3. Cuisinart 14-Cup Coffee Maker listed at $59.95 (was $120), with a rating of 3.
+
+**Reviewing coffee maker options**
+
+I'm looking at coffee makers. One option is the Hamilton Beach 14-Cup Coffee Maker for $36.99 at Walmart (down from $63) with a rating of 4.3. 
+
+There’s also a smaller 5-Cup model at Temu for $27.15 (originally $44), and a BLACK+DECKER 5-Cup Coffee Maker at JCPenney for $35.99 (was $60). This one doesn’t explicitly say "Drip," so I might exclude it to avoid confusion.
+
+Lastly, there’s a Hamilton Beach Easy Brew model for $29.99, but since there’s no sale, I’ll leave that out too.
+
+[12] assistant: I filtered Google Shopping to $25-$60 and looked for sale listings that explicitly show a black or black-stainless finish.
+
+| Drip coffee maker | Store | Sale price | Was | Finish shown |
+|---|---:|---:|---:|---|
+| Hamilton Beach Premium 12-Cup Programmable Drip Coffee Maker with Glass Coffee Pot | Walmart | $54.39 | $70 | Black |
+| Hamilton Beach 14-Cup Programmable Drip Coffee Maker with Glass Coffee Pot | Walmart | $36.99 | $63 | Black |
+| Cuisinart 14-Cup PerfecTemp Coffee Maker with Over Ice | Cuisinart | $59.95 | $120 | Black Stainless |
+| 5-Cup Drip Coffee Maker with Dry Boil Protection | Temu | $27.15 | $44 | Black |
+| Programmable Drip Coffee Maker with Touch-Screen, Pause & Serve | Temu | $28.06 | $33 | Black |
+
+I excluded items under $25 and items that did not clearly show a black finish or a sale/was price.
+
+[13] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>

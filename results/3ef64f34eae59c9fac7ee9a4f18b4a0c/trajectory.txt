@@ -1,0 +1,1097 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="youtube" path="/Users/vista/.aside/u/0/agents/main/skills/youtube/SKILL.md">
+# YouTube
+
+Use the `youtube` global in the REPL tool. It uses direct YouTube HTTP endpoints and returns compact JSON; you do not need to inspect YouTube DOM.
+
+## Quick Reference
+
+```js
+const search = await youtube.search('OpenAI DevDay 2025', { limit: 5 });
+const videoId = search[0].videoId;
+
+const [metadata, transcript, comments] = await Promise.all([
+  youtube.getMetadata(videoId),
+  youtube.getTranscript(videoId),
+  youtube.getComments(videoId, { limit: 20 }),
+]);
+```
+
+## Methods
+
+### `youtube.search(query: string, opts?: YouTubeSearchOptions): Promise<YouTubeVideoSummary[]>`
+
+Search YouTube videos.
+
+- `query` — search query.
+- `opts.limit` — max video results. Defaults to `10`.
+- `opts.lang` — YouTube UI language. Defaults to `'en'`.
+- `opts.region` — YouTube region. Defaults to `'US'`.
+
+### `youtube.getMetadata(videoIdOrUrl: string, opts?: YouTubeMetadataOptions): Promise<YouTubeVideoMetadata>`
+
+Fetch compact video metadata such as title, channel, thumbnail, duration, view count, description, publish date, and live status.
+
+Accepts normal watch URLs, Shorts URLs, live URLs, embed URLs, `youtu.be` URLs, or raw video IDs.
+
+### `youtube.listTranscriptLanguages(videoIdOrUrl: string): Promise<YouTubeTranscriptLanguage[]>`
+
+List caption tracks available for a video.
+
+### `youtube.getTranscript(videoIdOrUrl: string, opts?: { lang?: string; includeTimestamp?: boolean }): Promise<string>`
+
+Fetch transcript text. Omit `lang` to use YouTube's default caption track for that video. Pass a language code such as `'en'` or `'ko'` when you need a specific track. By default, it returns sentence-like plain text. Pass `includeTimestamp: true` to return one line per transcript segment formatted like `[00:00 - 00:04] text`.
+
+### `youtube.getComments(videoIdOrUrl: string, opts?: YouTubeCommentsOptions): Promise<YouTubeCommentsResponse>`
+
+Fetch top-level comments.
+
+- `opts.limit` — max comments. Defaults to `20`.
+- `opts.continuation` — pass the previous response's `continuation` for the next page.
+- `opts.lang` — YouTube UI language. Defaults to `'en'`.
+- `opts.region` — YouTube region. Defaults to `'US'`.
+
+## Types
+
+```ts
+interface YouTubeVideoSummary {
+  /** YouTube video ID, e.g. "hS1YqcewH0c". */
+  videoId: string;
+  /** Canonical watch URL, e.g. "https://www.youtube.com/watch?v=hS1YqcewH0c". */
+  url: string;
+  /** Video title. */
+  title: string;
+  /** Channel display name when YouTube returns it. */
+  channelName?: string;
+  /** Largest thumbnail URL for UI previews. */
+  thumbnailUrl?: string;
+}
+
+interface YouTubeVideoMetadata extends YouTubeVideoSummary {
+  /** Video length in seconds when available. */
+  durationSeconds?: number;
+  /** Numeric view count when available. */
+  viewCount?: number;
+  /** Full video description when available. */
+  description?: string;
+  /** Publish date in YouTube's YYYY-MM-DD format, e.g. "2025-10-06". */
+  publishDate?: string;
+  /** True for live videos or completed livestreams marked as live content. */
+  isLiveContent?: boolean;
+}
+
+interface YouTubeCommentsResponse {
+  /** Source video ID. */
+  videoId: string;
+  comments: Array<{
+    /** Direct comment URL when YouTube returns a comment ID. */
+    url?: string;
+    /** Comment author's display name. */
+    authorName: string;
+    /** Author channel URL, e.g. "https://www.youtube.com/@OpenAI". */
+    authorUrl?: string;
+    /** Plain comment text. */
+    text: string;
+    /** YouTube's relative timestamp text, e.g. "2 months ago". */
+    publishedAtText?: string;
+    /** YouTube's displayed like count text, e.g. "1.2K". */
+    likeCountText?: string;
+    /** YouTube's displayed reply count text, e.g. "12 replies". */
+    replyCountText?: string;
+  }>;
+  /** True when a continuation token is available. */
+  hasMore: boolean;
+  /** Pass this to `opts.continuation` to fetch the next page. */
+  continuation?: string;
+}
+```
+</skill>
+</system_message>
+
+[2] user: Go to https://www.youtube.com/, Find and open an animal learning course on YouTube Kids for my 6-year-old without login in. As a parent born in 1992, I would prefer not to enable search.
+
+[3] assistant: I’ll use the Google accounts guidance briefly because YouTube is a Google app, then I’ll navigate and keep search disabled if YouTube Kids asks.
+
+[4] tool_call: read_file(path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md", limit=120)
+<result tokens_used="212">
+---
+name: google-accounts
+description: IMPORTANT- Read this skill before interacting any Google apps!
+icon: https://static.asidehq.com/apps/builtin-skills/google-accounts.svg
+autoInject:
+  keywords: ["google", "구글", "グーグル", "谷歌"]
+---
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</result>
+
+[5] thinking: **Exploring YouTube Kids access**
+
+I'm considering whether I need to use Google Accounts based on the user's mention of accessing without a login. It's possible that logging in might not be necessary, but I think I need to verify that. I should check YouTube Kids to see if it requires a parent sign-in, so I plan to open youtube.com and take a snapshot for more clarity. Let's find out what I need!
+
+[6] tool_call: repl("Opening YouTube")
+<request>
+const ytPage1 = await openTab('https://www.youtube.com/');
+const ytSnap1 = await snapshot(ytPage1, { interactive: true });
+console.log(ytSnap1.tree);
+</request>
+<result tokens_used="122" elapsed_time="3089ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → YouTube (https://www.youtube.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "YouTube" [url=https://www.youtube.com/]
+- banner:
+  - button "Guide" [ref=e1]
+  - link "YouTube Premium Home" [ref=e2]
+  - button "Skip navigation" [ref=e3]
+  - search:
+    - combobox "Search" [ref=e4] [placeholder="Search"]
+    - button "Search" [ref=e5]
+  - button "Search with your voice" [ref=e6]
+  - tooltip "tooltip"
+  - button "Create" [ref=e7]
+  - button "Notifications" [ref=e8]
+  - tooltip "tooltip"
+  - button "Account menu" [ref=e9]:
+    - generic "Avatar image" [ref=e10]
+- navigation:
+  - generic [ref=e11] [scrollable]:
+    - link "Home" [ref=e12]:
+      - link "Home" [ref=e13]
+    - link "Shorts" [ref=e14]:
+      - link "Shorts" [ref=e15]
+    - link "Subscriptions" [ref=e16]:
+      - link "Subscriptions" [ref=e17]
+    - link "리플레이LEEPLAY" [ref=e18]:
+      - link "리플레이LEEPLAY" [ref=e19]
+    - link "김강토" [ref=e20]:
+      - link "김강토" [ref=e21]
+    - link "FORMULA 1. Live streaming." [ref=e22]:
+      - link "FORMULA 1" [ref=e23]
+    - link "ITSub잇섭. New content available." [ref=e24]:
+      - link "ITSub잇섭" [ref=e25]
+    - link "호두아카이브. New content available." [ref=e26]:
+      - link "호두아카이브" [ref=e27]
+    - link "wineking. New content available." [ref=e28]:
+      - link "wineking" [ref=e29]
+    - link "CuriousHagi 궁금하기. New content available." [ref=e30]:
+      - link "CuriousHagi 궁금하기" [ref=e31]
+    - button "Show more" [ref=e32]:
+      - link "Show more" [ref=e33]:
+        - link "Show more" [ref=e34]
+    - link "You" [ref=e35]:
+      - link "You" [ref=e36]
+    - link "Your channel" [ref=e37]:
+      - link "Your channel" [ref=e38]
+    - link "History" [ref=e39]:
+      - link "History" [ref=e40]
+    - link "Playlists" [ref=e41]:
+      - link "Playlists" [ref=e42]
+    - link "Watch later" [ref=e43]:
+      - link "Watch later" [ref=e44]
+    - link "Liked videos" [ref=e45]:
+      - link "Liked videos" [ref=e46]
+    - link "Your videos" [ref=e47]:
+      - link "Your videos" [ref=e48]
+    - link "Downloads" [ref=e49]:
+      - link "Downloads" [ref=e50]
+    - button "Show more" [ref=e51]:
+      - link "Show more" [ref=e52]:
+        - link "Show more" [ref=e53]
+    - heading [level=3]: "Explore"
+    - link "Shopping" [ref=e54]:
+      - link "Shopping" [ref=e55]
+    - link "Music" [ref=e56]:
+      - link "Music" [ref=e57]
+    - link "Movies & TV" [ref=e58]:
+      - link "Movies & TV" [ref=e59]
+    - button "Show more" [ref=e60]:
+      - link "Show more" [ref=e61]:
+        - link "Show more" [ref=e62]
+    - heading [level=3]: "More from YouTube"
+    - link "YouTube TV" [ref=e63]:
+      - link "YouTube TV" [ref=e64]
+    - link "YouTube Music" [ref=e65]:
+      - link "YouTube Music" [ref=e66]
+    - link "YouTube Kids" [ref=e67]:
+      - link "YouTube Kids" [ref=e68]
+    - link "Report history" [ref=e69]:
+      - link "Report history" [ref=e70]
+    - link "About" [ref=e71]
+    - link "Press" [ref=e72]
+    - link "Copyright" [ref=e73]
+    - link "Contact us" [ref=e74]
+    - link "Creators" [ref=e75]
+    - link "Advertise" [ref=e76]
+    - link "Developers" [ref=e77]
+    - link "Terms" [ref=e78]
+    - link "Privacy" [ref=e79]
+    - link "Policy & Safety" [ref=e80]
+    - link "How YouTube works" [ref=e81]
+    - link "Test new features" [ref=e82]
+    - link "NFL Sunday Ticket" [ref=e83]
+    - text: "© 2026 Google LLC"
+- main:
+  - tablist:
+    - tab "All" [ref=e84] [selected]
+    - tab "Music" [ref=e85]
+    - tab "Playlists" [ref=e86]
+    - tab "Superhero movies" [ref=e87]
+    - tab "Gaming" [ref=e88]
+    - tab "Mixes" [ref=e89]
+    - tab "Formula 1" [ref=e90]
+    - tab "Live" [ref=e91]
+    - tab "Coffee" [ref=e92]
+    - tab "Ambient Music" [ref=e93]
+    - tab "Classical Music" [ref=e94]
+    - tab "Science" [ref=e95]
+    - tab "Rapping" [ref=e96]
+    - tab "Cooking shows" [ref=e97]
+    - tab "Guitar" [ref=e98]
+    - tab "Recently uploaded" [ref=e99]
+    - tab "Watched" [ref=e100]
+    - tab "New to you" [ref=e101]
+  - generic [ref=e102]:
+    - button "Go to channel 리플레이LEEPLAY" [ref=e103]
+    - heading "[Playlist] 여름에 향수 대신 뿌리는 플레이리스트 (Sunni Colón Playlist) 1 hour, 4 minutes" [level=3]:
+      - link "[Playlist] 여름에 향수 대신 뿌리는 플레이리스트 (Sunni Colón Playlist) 1 hour, 4 minutes" [ref=e104]: "[Playlist] 여름에 향수 대신 뿌리는 플레이리스트 (Sunni Colón Playlist)"
+    - group:
+      - link "리플레이LEEPLAY" [ref=e105]
+      - text: "86K 1y ago"
+    - button "More actions" [ref=e106]
+  - generic [ref=e107]:
+    - button "Tap to watch live, FORMULA 1 channel" [ref=e108]: "LIVE"
+    - heading "F1 Drivers React! | Ollie & Esteban On Unforgettable F1 Moments And Their Own Memories! 34 minutes" [level=3]:
+      - link "F1 Drivers React! | Ollie & Esteban On Unforgettable F1 Moments And Their Own Memories! 34 minutes" [ref=e109]: "F1 Drivers React! | Ollie & Esteban On Unforgettable F1 Moments And Their Own Memories!"
+    - group:
+      - link "FORMULA 1" [ref=e110]
+      - text: "9.9K 1h ago"
+    - button "More actions" [ref=e111]
+  - generic [ref=e112]:
+    - button "Go to channel 어퍼컷Tube" [ref=e113]
+    - heading "(회원전용) 지리는 액션 4K화질로 보시죠 44 minutes" [level=3]:
+      - link "(회원전용) 지리는 액션 4K화질로 보시죠 44 minutes" [ref=e114]: "(회원전용) 지리는 액션 4K화질로 보시죠"
+    - group:
+      - link "어퍼컷Tube" [ref=e115]
+      - text: "11mo ago"
+    - group: "YouTube featured Members only"
+    - button "More actions" [ref=e116]
+  - generic [ref=e117]:
+    - button "Go to channel 카페인" [ref=e118]
+    - heading "WEC 하이퍼카 생김새 티어리스트 10 minutes, 36 seconds" [level=3]:
+      - link "WEC 하이퍼카 생김새 티어리스트 10 minutes, 36 seconds" [ref=e119]: "WEC 하이퍼카 생김새 티어리스트"
+    - group:
+      - link "카페인" [ref=e120]
+      - text: "14K 10h ago"
+    - button "More actions" [ref=e121]
+  - generic [ref=e122]:
+    - button "Go to channel Apple TV" [ref=e123]
+    - heading "Severance — Music To Refine To feat. ODESZA | Apple TV 8 hours" [level=3]:
+      - link "Severance — Music To Refine To feat. ODESZA | Apple TV 8 hours" [ref=e124]: "Severance — Music To Refine To feat. ODESZA | Apple TV"
+    - group:
+      - link "Apple TV" [ref=e125]
+      - text: "3.3M 1y ago"
+    - button "More actions" [ref=e126]
+  - generic [ref=e127]:
+    - button "Go to channel 웩튜브 WECTUBE" [ref=e128]
+    - heading "WEC 스파 6시 레이스 프리뷰 | 푸조 역사적 첫 폴, 제네시스 전망 4 minutes, 37 seconds" [level=3]:
+      - link "WEC 스파 6시 레이스 프리뷰 | 푸조 역사적 첫 폴, 제네시스 전망 4 minutes, 37 seconds" [ref=e129]: "WEC 스파 6시 레이스 프리뷰 | 푸조 역사적 첫 폴, 제네시스 전망"
+    - group:
+      - link "웩튜브 WECTUBE" [ref=e130]
+      - text: "2K 4d ago"
+    - button "More actions" [ref=e131]
+  - generic [ref=e132]:
+    - button "Go to channel 비디오머그 - VIDEOMUG" [ref=e133]
+    - heading "샘 올트먼과 일론 머스크는 왜 소송까지 갔나 / 오그랲 / 비디오머그 14 minutes, 45 seconds" [level=3]:
+      - link "샘 올트먼과 일론 머스크는 왜 소송까지 갔나 / 오그랲 / 비디오머그 14 minutes, 45 seconds" [ref=e134]: "샘 올트먼과 일론 머스크는 왜 소송까지 갔나 / 오그랲 / 비디오머그"
+    - group:
+      - link "비디오머그 - VIDEOMUG" [ref=e135]
+      - text: "27K 6h ago"
+    - button "More actions" [ref=e136]
+  - generic [ref=e137]:
+    - heading "My Mix" [level=3]:
+      - link "My Mix" [ref=e138]
+    - group: "That Boy Franco, Grant Steller, She & Him, and more"
+    - button "More actions" [ref=e139]
+  - generic [ref=e140]:
+    - button "Go to channel safe place" [ref=e141]
+    - heading "lock in and get things done, man. :) 1 hour, 10 minutes" [level=3]:
+      - link "lock in and get things done, man. :) 1 hour, 10 minutes" [ref=e142]: "lock in and get things done, man. :)"
+    - group:
+      - link "safe place" [ref=e143]
+      - text: "272K 2mo ago"
+    - button "More actions" [ref=e144]
+  - generic [ref=e145]:
+    - button "Go to channel 알뷰" [ref=e146]
+    - heading "애플 울트라 - 이건 전혀 예상 못했습니다 2 minutes, 40 seconds" [level=3]:
+      - link "애플 울트라 - 이건 전혀 예상 못했습니다 2 minutes, 40 seconds" [ref=e147]: "애플 울트라 - 이건 전혀 예상 못했습니다"
+    - group:
+      - link "알뷰" [ref=e148]
+      - text: "39K 8d ago"
+    - button "More actions" [ref=e149]
+  - generic [ref=e150]:
+    - button "Go to channel Fr4nklyODD" [ref=e151]
+    - heading "Frenchie Confronts Homelander || THE BOYS: Season 5 Episode 7 2 minutes, 48 seconds" [level=3]:
+      - link "Frenchie Confronts Homelander || THE BOYS: Season 5 Episode 7 2 minutes, 48 seconds" [ref=e152]: "Frenchie Confronts Homelander || THE BOYS: Season 5 Episode 7"
+    - group:
+      - link "Fr4nklyODD" [ref=e153]
+      - text: "227K 8h ago"
+    - button "More actions" [ref=e154]
+  - generic [ref=e155]:
+    - button "Go to channel 육식맨 YOOXICMAN" [ref=e156]
+    - heading "마라의 고향을 찾아서 : 이 국물은 관우장비도 못 먹습니다. 삼국지 촉나라 수도의 \"진짜 마라\" (with 캡틴따거) 1 hour, 3 minutes" [level=3]:
+      - link "마라의 고향을 찾아서 : 이 국물은 관우장비도 못 먹습니다. 삼국지 촉나라 수도의 \"진짜 마라\" (with 캡틴따거) 1 hour, 3 minutes" [ref=e157]: "마라의 고향을 찾아서 : 이 국물은 관우장비도 못 먹습니다. 삼국지 촉나라 수도의 \"진짜 마라\" (with 캡틴따거)"
+    - group:
+      - link "육식맨 YOOXICMAN" [ref=e158]
+      - text: "739K 2d ago"
+    - button "More actions" [ref=e159]
+  - heading [level=2]: "Shorts"
+  - button "Shorts - More actions" [ref=e160]
+  - generic [ref=e161]:
+    - heading "모터스포츠 역사상 가장 슬픈 팀라디오..." [level=3]:
+      - link "모터스포츠 역사상 가장 슬픈 팀라디오..." [ref=e162]
+    - text: "635K views"
+    - button "More actions" [ref=e163]
+  - generic [ref=e164]:
+    - heading "스타성이 너무 뛰어났던 빅나티" [level=3]:
+      - link "스타성이 너무 뛰어났던 빅나티" [ref=e165]
+    - text: "83K views"
+    - button "More actions" [ref=e166]
+  - generic [ref=e167]:
+    - heading "이거 맞나요..? 👀 #macbook #apple #design #shorts" [level=3]:
+      - link "이거 맞나요..? 👀 #macbook #apple #design #shorts" [ref=e168]
+    - text: "144K views"
+    - button "More actions" [ref=e169]
+  - generic [ref=e170]:
+    - heading "911 GTS 산다면 가급적 쿠페를 사세요." [level=3]:
+      - link "911 GTS 산다면 가급적 쿠페를 사세요." [ref=e171]
+    - text: "129K views"
+    - button "More actions" [ref=e172]
+  - generic [ref=e173]:
+    - heading "‘나락감지센서 고장난 듯 한‘ 양상국 근황" [level=3]:
+      - link "‘나락감지센서 고장난 듯 한‘ 양상국 근황" [ref=e174]
+    - text: "907K views"
+    - button "More actions" [ref=e175]
+  - generic [ref=e176]:
+    - heading "마블도 이건 물개 박수쳤을 거야" [level=3]:
+      - link "마블도 이건 물개 박수쳤을 거야" [ref=e177]
+    - text: "380K views"
+    - button "More actions" [ref=e178]
+  - generic [ref=e179]:
+    - button "Go to channel 야채상회 Vege Market" [ref=e180]
+    - heading "[Playlist] 사랑과 재즈 사이에는 2 hours, 24 minutes" [level=3]:
+      - link "[Playlist] 사랑과 재즈 사이에는 2 hours, 24 minutes" [ref=e181]: "[Playlist] 사랑과 재즈 사이에는"
+    - group:
+      - link "야채상회 Vege Market" [ref=e182]
+      - text: "435K 9mo ago"
+    - button "More actions" [ref=e183]
+  - generic [ref=e184]:
+    - heading "Mix - KIKI x H 3 F - Everybody [Live Session]" [level=3]:
+      - link "Mix - KIKI x H 3 F - Everybody [Live Session]" [ref=e185]
+    - group: "H 3 F, KIKI, Durand Jones & The Indications, and more"
+    - button "More actions" [ref=e186]
+  - generic [ref=e187]:
+    - button "Go to channel viene" [ref=e188]
+    - heading "Jazz & Soulful House Mix Vol.5 | VIENE 59 minutes" [level=3]:
+      - link "Jazz & Soulful House Mix Vol.5 | VIENE 59 minutes" [ref=e189]: "Jazz & Soulful House Mix Vol.5 | VIENE"
+    - group:
+      - link "viene" [ref=e190]
+      - text: "549K 11mo ago"
+    - button "More actions" [ref=e191]
+  - generic [ref=e192]:
+    - button "Go to channel 무비띵크_Movie Think" [ref=e193]
+    - heading "와.. 결국 유출됐습니다.. ≪어벤져스: 둠스데이≫ 전체 스토리 유출 총정리 15 minutes" [level=3]:
+      - link "와.. 결국 유출됐습니다.. ≪어벤져스: 둠스데이≫ 전체 스토리 유출 총정리 15 minutes" [ref=e194]: "와.. 결국 유출됐습니다.. ≪어벤져스: 둠스데이≫ 전체 스토리 유출 총정리"
+    - group:
+      - link "무비띵크_Movie Think" [ref=e195]
+      - text: "295K 12h ago"
+    - button "More actions" [ref=e196]
+  - heading [level=2]: "Shorts"
+  - button "Shorts - More actions" [ref=e197]
+  - generic [ref=e198]:
+    - heading "맥북을 선택한 단순한 이유" [level=3]:
+      - link "맥북을 선택한 단순한 이유" [ref=e199]
+    - text: "496K views"
+    - button "More actions" [ref=e200]
+  - generic [ref=e201]:
+    - heading "쌈디 등장에 당황한 이센스" [level=3]:
+      - link "쌈디 등장에 당황한 이센스" [ref=e202]
+    - text: "376K views"
+    - button "More actions" [ref=e203]
+  - generic [ref=e204]:
+    - heading "디스전에 대한 스윙스의 생각" [level=3]:
+      - link "디스전에 대한 스윙스의 생각" [ref=e205]
+    - text: "21K views"
+    - button "More actions" [ref=e206]
+  - generic [ref=e207]:
+    - heading "3스타 밍글스 소믈리에들이 가면 벌어지는일🤣" [level=3]:
+      - link "3스타 밍글스 소믈리에들이 가면 벌어지는일🤣" [ref=e208]
+    - text: "18K views"
+    - button "More actions" [ref=e209]
+  - generic [ref=e210]:
+    - heading "이게 바로 디지털 네이티브" [level=3]:
+      - link "이게 바로 디지털 네이티브" [ref=e211]
+    - text: "232K views"
+    - button "More actions" [ref=e212]
+  - generic [ref=e213]:
+    - heading "돈으로 JMS 패버린 넷플릭스 ㄷㄷ" [level=3]:
+      - link "돈으로 JMS 패버린 넷플릭스 ㄷㄷ" [ref=e214]
+    - text: "3.4M views"
+    - button "More actions" [ref=e215]
+  - generic [ref=e216]:
+    - button "Go to channel 김밀란" [ref=e217]
+    - heading "한국인들만 모르는 S티어 최고급 특수부위가 있다면 믿으시겠습니까? 8 minutes, 16 seconds" [level=3]:
+      - link "한국인들만 모르는 S티어 최고급 특수부위가 있다면 믿으시겠습니까? 8 minutes, 16 seconds" [ref=e218]: "한국인들만 모르는 S티어 최고급 특수부위가 있다면 믿으시겠습니까?"
+    - group:
+      - link "김밀란" [ref=e219]
+      - text: "2.2K 4h ago"
+    - button "More actions" [ref=e220]
+  - generic [ref=e221]:
+    - button "Go to channel Kid Milli" [ref=e222]
+    - heading "Kid Milli - SAVAGE RMX (feat. k4ton, toni rei) (Official Video) 4 minutes, 17 seconds" [level=3]:
+      - link "Kid Milli - SAVAGE RMX (feat. k4ton, toni rei) (Official Video) 4 minutes, 17 seconds" [ref=e223]: "Kid Milli - SAVAGE RMX (feat. k4ton, toni rei) (Official Video)"
+    - group:
+      - link "Kid Milli" [ref=e224]
+      - text: "208K 1mo ago"
+    - button "More actions" [ref=e225]
+  - generic [ref=e226]:
+    - button "Go to channel deep archive" [ref=e227]
+    - heading "accelerate your output. [deep work music] // archive 29 2 hours, 3 minutes" [level=3]:
+      - link "accelerate your output. [deep work music] // archive 29 2 hours, 3 minutes" [ref=e228]: "accelerate your output. [deep work music] // archive 29"
+    - group:
+      - link "deep archive" [ref=e229]
+      - text: "34K 2w ago"
+    - button "More actions" [ref=e230]
+  - generic [ref=e231]:
+    - button "Go to channel 노마드 코더 Nomad Coders" [ref=e232]
+    - heading "I deleted Claude Code last week. 5 minutes, 32 seconds" [level=3]:
+      - link "I deleted Claude Code last week. 5 minutes, 32 seconds" [ref=e233]: "I deleted Claude Code last week."
+    - group:
+      - link "노마드 코더 Nomad Coders" [ref=e234]
+      - text: "191K 6d ago"
+    - button "More actions" [ref=e235]
+</result>
+
+[7] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+<skill name="youtube" path="/Users/vista/.aside/u/0/agents/main/skills/youtube/SKILL.md">
+# YouTube
+
+Use the `youtube` global in the REPL tool. It uses direct YouTube HTTP endpoints and returns compact JSON; you do not need to inspect YouTube DOM.
+
+## Quick Reference
+
+```js
+const search = await youtube.search('OpenAI DevDay 2025', { limit: 5 });
+const videoId = search[0].videoId;
+
+const [metadata, transcript, comments] = await Promise.all([
+  youtube.getMetadata(videoId),
+  youtube.getTranscript(videoId),
+  youtube.getComments(videoId, { limit: 20 }),
+]);
+```
+
+## Methods
+
+### `youtube.search(query: string, opts?: YouTubeSearchOptions): Promise<YouTubeVideoSummary[]>`
+
+Search YouTube videos.
+
+- `query` — search query.
+- `opts.limit` — max video results. Defaults to `10`.
+- `opts.lang` — YouTube UI language. Defaults to `'en'`.
+- `opts.region` — YouTube region. Defaults to `'US'`.
+
+### `youtube.getMetadata(videoIdOrUrl: string, opts?: YouTubeMetadataOptions): Promise<YouTubeVideoMetadata>`
+
+Fetch compact video metadata such as title, channel, thumbnail, duration, view count, description, publish date, and live status.
+
+Accepts normal watch URLs, Shorts URLs, live URLs, embed URLs, `youtu.be` URLs, or raw video IDs.
+
+### `youtube.listTranscriptLanguages(videoIdOrUrl: string): Promise<YouTubeTranscriptLanguage[]>`
+
+List caption tracks available for a video.
+
+### `youtube.getTranscript(videoIdOrUrl: string, opts?: { lang?: string; includeTimestamp?: boolean }): Promise<string>`
+
+Fetch transcript text. Omit `lang` to use YouTube's default caption track for that video. Pass a language code such as `'en'` or `'ko'` when you need a specific track. By default, it returns sentence-like plain text. Pass `includeTimestamp: true` to return one line per transcript segment formatted like `[00:00 - 00:04] text`.
+
+### `youtube.getComments(videoIdOrUrl: string, opts?: YouTubeCommentsOptions): Promise<YouTubeCommentsResponse>`
+
+Fetch top-level comments.
+
+- `opts.limit` — max comments. Defaults to `20`.
+- `opts.continuation` — pass the previous response's `continuation` for the next page.
+- `opts.lang` — YouTube UI language. Defaults to `'en'`.
+- `opts.region` — YouTube region. Defaults to `'US'`.
+
+## Types
+
+```ts
+interface YouTubeVideoSummary {
+  /** YouTube video ID, e.g. "hS1YqcewH0c". */
+  videoId: string;
+  /** Canonical watch URL, e.g. "https://www.youtube.com/watch?v=hS1YqcewH0c". */
+  url: string;
+  /** Video title. */
+  title: string;
+  /** Channel display name when YouTube returns it. */
+  channelName?: string;
+  /** Largest thumbnail URL for UI previews. */
+  thumbnailUrl?: string;
+}
+
+interface YouTubeVideoMetadata extends YouTubeVideoSummary {
+  /** Video length in seconds when available. */
+  durationSeconds?: number;
+  /** Numeric view count when available. */
+  viewCount?: number;
+  /** Full video description when available. */
+  description?: string;
+  /** Publish date in YouTube's YYYY-MM-DD format, e.g. "2025-10-06". */
+  publishDate?: string;
+  /** True for live videos or completed livestreams marked as live content. */
+  isLiveContent?: boolean;
+}
+
+interface YouTubeCommentsResponse {
+  /** Source video ID. */
+  videoId: string;
+  comments: Array<{
+    /** Direct comment URL when YouTube returns a comment ID. */
+    url?: string;
+    /** Comment author's display name. */
+    authorName: string;
+    /** Author channel URL, e.g. "https://www.youtube.com/@OpenAI". */
+    authorUrl?: string;
+    /** Plain comment text. */
+    text: string;
+    /** YouTube's relative timestamp text, e.g. "2 months ago". */
+    publishedAtText?: string;
+    /** YouTube's displayed like count text, e.g. "1.2K". */
+    likeCountText?: string;
+    /** YouTube's displayed reply count text, e.g. "12 replies". */
+    replyCountText?: string;
+  }>;
+  /** True when a continuation token is available. */
+  hasMore: boolean;
+  /** Pass this to `opts.continuation` to fetch the next page. */
+  continuation?: string;
+}
+```
+</skill>
+</system_message>
+
+[8] tool_call: repl("Opening YouTube Kids from YouTube")
+<request>
+await ytPage1.locator('e67').click();
+const ytSnap2 = await snapshot(page, { interactive: true });
+console.log(ytSnap2.diff);
+</request>
+<result tokens_used="318" elapsed_time="901ms">
+No changes detected
+
+[system] popup opened: YouTube Kids (https://www.youtubekids.com/)
+         to use, explicitly access it via `tabs[1]` or switch it with `page = tabs[1];`
+</result>
+
+[9] tool_call: repl("Inspecting YouTube Kids")
+<request>
+page = tabs[1];
+const kidsSnap1 = await snapshot(page, { interactive: true });
+console.log(kidsSnap1.tree);
+</request>
+<result tokens_used="57" elapsed_time="81ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Recommended - YouTube Kids" [url=https://www.youtubekids.com/]
+- navigation "Homepage" [ref=e1]:
+  - button "Privacy" [ref=e2]
+  - button "Watch it again" [ref=e3]
+  - button "Recommended category, selected" [ref=e5]: "Recommended"
+  - button "Shows category" [ref=e6]
+  - button "Music category" [ref=e7]
+  - button "Learning category" [ref=e8]
+  - button "Explore category" [ref=e9]
+  - tablist:
+    - tab "Parental control" [ref=e10]
+- main:
+  - link "Video Bluey at Macy's 2025 🎈💙 | Macy's Thanksgiving Day Parade Highlights! 🗽 | Bluey 1 minute, 38" [ref=e11]: "1:38 Bluey at Macy's 2025 🎈💙 | Macy's Thanksgiving Day Parade Highlights! 🗽 | Bluey"
+  - button "More" [ref=e12]
+  - link "Video Ollie Makes a New Friend | Swapped | Netflix Family 4 minutes" [ref=e13]: "4:00 Ollie Makes a New Friend | Swapped | Netflix Family"
+  - button "More" [ref=e14]
+  - link "Video Sesame Street: This is the Way We Go to School Song with Ms. Rachel and Elmo 2 minutes, 11 sec" [ref=e15]: "2:11 Sesame Street: This is the Way We Go to School Song with Ms. Rachel and Elmo"
+  - button "More" [ref=e16]
+  - link "Video Wheels On The Bus! Classic Singalong | CoComelon | Songs and Cartoons | Best Videos for Babies" [ref=e17]: "1:25:57 Wheels On The Bus! Classic Singalong | CoComelon | Songs and Cartoons | Best Videos for Babies"
+  - button "More" [ref=e18]
+  - link "Video Learn Excavator, Loader, Crane Truck | Construction Trucks | Nursery Rhymes & Kids Songs | Yes" [ref=e19]: "1:02:31 Learn Excavator, Loader, Crane Truck | Construction Trucks | Nursery Rhymes & Kids Songs | Yes! Neo"
+  - button "More" [ref=e20]
+  - link "Video Animal Learning for Toddlers with Ms Rachel - 3 Full Episodes - Learn Animal Sounds - Best Vid" [ref=e21]: "2:31:28 Animal Learning for Toddlers with Ms Rachel - 3 Full Episodes - Learn Animal Sounds - Best Videos"
+  - button "More" [ref=e22]
+  - link "Video Veggie Dance + More Fun and Educational Kids Song | 2 Hour Gracie’s Corner Compilation 2 hours" [ref=e23]: "2:00:23 Veggie Dance + More Fun and Educational Kids Song | 2 Hour Gracie’s Corner Compilation"
+  - button "More" [ref=e24]
+  - link "Video Let's Play With Toys! 60 Minutes Of Toy Time 🧸🧡 | Bingo - Official Channel 58 minutes, 28 se" [ref=e25]: "58:28 Let's Play With Toys! 60 Minutes Of Toy Time 🧸🧡 ﻿| Bingo - Official Channel"
+  - button "More" [ref=e26]
+  - link "Video 🔴 LIVE: That's One Smart Octopus! 🐙💙 | 6 hours of Playtime | Bluey's Bestest Friends Offici" [ref=e27]: "5:59:55🔴 LIVE: That's One Smart Octopus! 🐙💙 | 6 hours of Playtime | Bluey's Bestest Friends Official"
+  - button "More" [ref=e28]
+  - link "Video Counting Bees with Ms. Rachel 🐝 Ms. Rachel | Netflix Jr 1 minute" [ref=e29]: "1:00 Counting Bees with Ms. Rachel 🐝 Ms. Rachel | Netflix Jr"
+  - button "More" [ref=e30]
+  - link "Video Teletubbies: 3 HOURS of Teletubbies | Season 15 | Videos for Kids 3 hours, 5 minutes, 6 second" [ref=e31]: "3:05:06 Teletubbies: 3 HOURS of Teletubbies | Season 15 | Videos for Kids"
+  - button "More" [ref=e32]
+  - link "Video Marvel's Spidey and his Amazing Friends Season 1 Full Episodes Compilation 🕸️ | 2 Hours | @di" [ref=e33]: "2:27:26 Marvel's Spidey and his Amazing Friends Season 1 Full Episodes Compilation 🕸️ | 2 Hours | @disneyjr​"
+  - button "More" [ref=e34]
+  - link "Video 2 HOURS of Bluey & Bingo Adventures 🧡 | Funny Moments and More! | Bingo - Official Channel 1 " [ref=e35]: "1:49:32 2 HOURS of Bluey & Bingo Adventures 🧡 | Funny Moments and More! | Bingo - Official Channel"
+  - button "More" [ref=e36]
+  - link "Video Hop Little Bunnies Hop Hop Hop + More Ms Rachel Nursery Rhymes & Kids Songs 1 hour, 30 minutes" [ref=e37]: "1:30:21 Hop Little Bunnies Hop Hop Hop + More Ms Rachel Nursery Rhymes & Kids Songs"
+  - button "More" [ref=e38]
+  - link "Video ALL Mickey Mouse Clubhouse Season 1 Full Episodes | Compilation | @disneyjr 10 hours, 24 minut" [ref=e39]: "10:24:53 ALL Mickey Mouse Clubhouse Season 1 Full Episodes | Compilation | @disneyjr"
+  - button "More" [ref=e40]
+  - link "Video Learn To Talk for Toddlers - First Words - Speech For 2 Year Old - Speech Delay Learning - Apr" [ref=e41]: "59:20 Learn To Talk for Toddlers -  First Words - Speech For 2 Year Old - Speech Delay Learning - Apraxia"
+  - button "More" [ref=e42]
+  - link "Video Good Morning Song + More Fun Songs for Kids | Gracie’s Corner 2-Hour Compilation 1 hour, 54 mi" [ref=e43]: "1:54:45 Good Morning Song + More Fun Songs for Kids | Gracie’s Corner 2-Hour Compilation"
+  - button "More" [ref=e44]
+  - link "Video Bluey 18 FULL Episodes Compilation! Onesies, Omelette & More! 💙 | @disneyjr 2 hours, 12 minut" [ref=e45]: "2:12:19 Bluey 18 FULL Episodes Compilation! Onesies, Omelette & More! 💙 | @disneyjr"
+  - button "More" [ref=e46]
+  - link "Video Baby Learning With Ms Rachel - First Words, Songs and Nursery Rhymes for Babies - Toddler Vide" [ref=e47]: "1:00:21 Baby Learning With Ms Rachel - First Words, Songs and Nursery Rhymes for Babies - Toddler Videos"
+  - button "More" [ref=e48]
+  - link "Video 🔴 LIVE: Hiding Under The House! 🏡💙 | Being A Sneaky Spy For 6 Hours | Bluey's Bestest Frien" [ref=e49]: "5:59:57🔴 LIVE: Hiding Under The House! 🏡💙 | Being A Sneaky Spy For 6 Hours | Bluey's Bestest Friends"
+  - button "More" [ref=e50]
+  - link "Video Marvel's Spidey and his Amazing Friends Season 2 Best Moments | 2 Hour Compilation | @disneyjr" [ref=e51]: "1:56:32 Marvel's Spidey and his Amazing Friends Season 2 Best Moments | 2 Hour Compilation | @disneyjr"
+  - button "More" [ref=e52]
+  - link "Video 💙 Who's the Best Daddy? MY DAD! Happy Father's Day! 🎉 | +Compilation | Baby Shark Official 1" [ref=e53]: "1:35:28💙 Who's the Best Daddy? MY DAD! Happy Father's Day! 🎉 | +Compilation | Baby Shark Official"
+  - button "More" [ref=e54]
+  - link "Video PAW Patrol's All Paws on Deck! w/ Rubble, Rex, Tracker, Al, & Wildcat! | 90 Minutes | Rubble &" [ref=e55]: "1:36:55 PAW Patrol's All Paws on Deck! w/ Rubble, Rex, Tracker, Al, & Wildcat! | 90 Minutes | Rubble & Crew"
+  - button "More" [ref=e56]
+  - link "Video Mickey Mouse Mixed-Up Adventures Season 1 FULL Episodes Compilation! 🐭🏡 | 14 Hours | @disney" [ref=e57]: "14:31:03 Mickey Mouse Mixed-Up Adventures Season 1 FULL Episodes Compilation! 🐭🏡 | 14 Hours | @disneyjr"
+  - button "More" [ref=e58]
+  - link "Video PAW Patrol Marshall's Most Daring Rescues! 🚒 3 Hours | Nick Jr. 2 hours, 59 minutes, 9 second" [ref=e59]: "2:59:09 PAW Patrol Marshall's Most Daring Rescues! 🚒 3 Hours | Nick Jr."
+  - button "More" [ref=e60]
+  - link "Video Baby Shark Cooks for the Starving Dinosaur! | +Compilation | Baby Shark Story | Baby Shark Off" [ref=e61]: "2:03:31 Baby Shark Cooks for the Starving Dinosaur! | +Compilation | Baby Shark Story | Baby Shark Official"
+  - button "More" [ref=e62]
+  - link "Video PAW Patrol's Chase & Ryder Have Action-Packed Adventures! #2 | 3 Hour Compilation | Nick Jr. 3" [ref=e63]: "3:00:11 PAW Patrol's Chase & Ryder Have Action-Packed Adventures! #2 | 3 Hour Compilation | Nick Jr."
+  - button "More" [ref=e64]
+  - link "Video Mickey Mouse Clubhouse Best Goofy Full Episodes! 🤪 | Compilation | @disneyjr 2 hours, 17 seco" [ref=e65]: "2:00:17 Mickey Mouse Clubhouse Best Goofy Full Episodes! 🤪 | Compilation | @disneyjr"
+  - button "More" [ref=e66]
+  - link "Video Dora & Boots Rescue Animals! 🐱 30 Minutes | Dora the Explorer 31 minutes, 51 seconds" [ref=e67]: "31:51 Dora & Boots Rescue Animals! 🐱 30 Minutes | Dora the Explorer"
+  - button "More" [ref=e68]
+  - link "Video 2 HOURS of Amazing Bluey Playtime 💙 | Games with Friends | Bluey 2 hours, 1 minute, 43 second" [ref=e69]: "2:01:43 2 HOURS of Amazing Bluey Playtime 💙 | Games with Friends | Bluey"
+  - button "More" [ref=e70]
+  - link "Video Twin Babies Share A Pacifier 🍼 KYOOT 54 seconds" [ref=e71]: "0:54 Twin Babies Share A Pacifier 🍼  KYOOT"
+  - button "More" [ref=e72]
+  - link "Video PAW Patrol Rescue Wheels Adventures! #7 w/ Chase 🚗 2 Hours | Nick Jr. 1 hour, 59 minutes, 18 " [ref=e73]: "1:59:18 PAW Patrol Rescue Wheels Adventures! #7 w/ Chase 🚗 2 Hours | Nick Jr."
+  - button "More" [ref=e74]
+  - link "Video 🔴LIVE: Joyful Playtime with the Heelers 💙 | Discover Fun Adventures with Bluey | Bluey 1 hou" [ref=e75]: "1:24:40🔴LIVE: Joyful Playtime with the Heelers 💙 | Discover Fun Adventures with Bluey | Bluey"
+  - button "More" [ref=e76]
+  - link "Video Learning Videos for Toddlers | Animal Sounds, Farm Animals, Learn Colors, Numbers, Words | Spe" [ref=e77]: "3:00:47 Learning Videos for Toddlers | Animal Sounds, Farm Animals, Learn Colors, Numbers, Words | Speech"
+  - button "More" [ref=e78]
+  - link "Video PAW Patrol Best CHASE Moments! 💙🐾 | 4 Hour Compilation | Nick Jr. 4 hours, 1 minute, 35 seco" [ref=e79]: "4:01:35 PAW Patrol Best CHASE Moments! 💙🐾 | 4 Hour Compilation | Nick Jr."
+  - button "More" [ref=e80]
+  - link "Video Hamster Escapes the Creative Maze for Pets in real life 🐹 in Hamster Stories Part 2 1 hour, 2" [ref=e81]: "1:02:49 Hamster Escapes the Creative Maze for Pets in real life 🐹 in Hamster Stories Part 2"
+  - button "More" [ref=e82]
+  - link "Video 120 MINUTES of Underwater Adventures w/ Blue and Josh 🪸🐙 | Blue's Clues & You! 1 hour, 59 mi" [ref=e83]: "1:59:55 120 MINUTES of Underwater Adventures w/ Blue and Josh 🪸🐙 | Blue's Clues & You!"
+  - button "More" [ref=e84]
+  - link "Video Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Todd" [ref=e85]: "1:25:44 Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Toddlers"
+  - button "More" [ref=e86]
+  - link "Video 🔴 [KATURI1] Katuri S1 Full Episodes | Katuri Official Channel | LIVE NOW! 2 hours, 16 minutes" [ref=e87]: "2:16:37🔴 [KATURI1] Katuri S1 Full Episodes | Katuri Official Channel | LIVE NOW!"
+  - button "More" [ref=e88]
+  - link "Video 2 hours Baby Shark Dance Loop | Baby Shark Non-Stop | Baby Shark Dance Non Stop | +Compilation" [ref=e89]: "2:00:52 2 hours Baby Shark Dance Loop | Baby Shark Non-Stop | Baby Shark Dance Non Stop | +Compilation"
+  - button "More" [ref=e90]
+  - link "Video Sing the Phonics Song with Ms. Rachel & Friends! 🎵 Ms. Rachel | Netflix Jr 52 seconds" [ref=e91]: "0:52 Sing the Phonics Song with Ms. Rachel & Friends! 🎵 Ms. Rachel | Netflix Jr"
+  - button "More" [ref=e92]
+  - link "Video School Morning Routine and Night Routine with Ryan! 15 minutes, 12 seconds" [ref=e93]: "15:12 School Morning Routine and Night Routine with Ryan!"
+  - button "More" [ref=e94]
+  - link "Video Ryder’s Lost! 🐾 Chase & the Pup Team to the Rescue | PAW Patrol Official | Compilation 2 hour" [ref=e95]: "2:16:57 Ryder’s Lost! 🐾 Chase & the Pup Team to the Rescue | PAW Patrol Official | Compilation"
+  - button "More" [ref=e96]
+  - link "Video Mickey Mouse Clubhouse Best Donald Duck Full Episodes! 🦆| Compilation | @disneyjr 2 hours, 16" [ref=e97]: "2:00:16 Mickey Mouse Clubhouse Best Donald Duck Full Episodes! 🦆| Compilation | @disneyjr"
+  - button "More" [ref=e98]
+  - link "Video [TOP100] Best of Best 2025 🎉｜Pop It, Jingle Play & More Fun!｜Nursery Rhymes｜Hogi Pinkfong 4 h" [ref=e99]: "4:44:10[TOP100] Best of Best 2025 🎉｜Pop It, Jingle Play & More Fun!｜Nursery Rhymes｜Hogi Pinkfong"
+  - button "More" [ref=e100]
+  - link "Video Our Thailand Adventure Took a Turn for the WORST 42 minutes, 2 seconds" [ref=e101]: "42:02 Our Thailand Adventure Took a Turn for the WORST"
+  - button "More" [ref=e102]
+  - link "Video Wheels On The Bus + More Nursery Rhymes & Kids Songs - Educational Videos for Kids & Toddlers " [ref=e103]: "1:00:20 Wheels On The Bus + More Nursery Rhymes & Kids Songs - Educational Videos for Kids & Toddlers"
+  - button "More" [ref=e104]
+  - link "Video Non-Stop MekBots! 90 Minutes of Team MekBots Animal Rescue FULL EPISODES! 1 hour, 32 minutes, " [ref=e105]: "1:32:04 Non-Stop MekBots! 90 Minutes of Team MekBots Animal Rescue FULL EPISODES!"
+  - button "More" [ref=e106]
+  - link "Video \"Flamingo FRENZY!\" Dance Game 🦩🌴 Red Light, Green Light Brain Break | Danny Go! Songs for Ki" [ref=e107]: "5:24\"Flamingo FRENZY!\" Dance Game 🦩🌴 Red Light, Green Light Brain Break | Danny Go! Songs for Kids"
+  - button "More" [ref=e108]
+  - link "Video PAW Patrol Bug Rescues & Adventures! 🐝 2 Hours | Nick Jr. 2 hours, 6 minutes, 25 seconds" [ref=e109]: "2:06:25 PAW Patrol Bug Rescues & Adventures! 🐝 2 Hours | Nick Jr."
+  - button "More" [ref=e110]
+  - link "Video Lava, Sharks, Race Cars + more! 🚘🔥🦈 | 1-Hour Dance Party Compilation | Danny Go! Songs for " [ref=e111]: "55:27 Lava, Sharks, Race Cars + more! 🚘🔥🦈 | 1-Hour Dance Party Compilation | Danny Go! Songs for Kids"
+  - button "More" [ref=e112]
+  - link "Video Trrr-Ra-Ta-Ta with Hippo, Loko & Monkey! | Mega Compilation | D Billions Kids Songs 1 hour, 35" [ref=e113]: "1:00:35 Trrr-Ra-Ta-Ta with Hippo, Loko & Monkey! | Mega Compilation | D Billions Kids Songs"
+  - button "More" [ref=e114]
+  - link "Video Chase and the PAW Patrol Pups Get Called to the Lookout Tower! #21 | 3 Hours | Nick Jr. 3 hour" [ref=e115]: "3:02:18 Chase and the PAW Patrol Pups Get Called to the Lookout Tower! #21 | 3 Hours | Nick Jr."
+  - button "More" [ref=e116]
+  - link "Video Nastya teaches how to make the right decisions 36 minutes, 20 seconds" [ref=e117]: "36:20 Nastya teaches how to make the right decisions"
+  - button "More" [ref=e118]
+  - link "Video FREEZE! Catch the Thief | Thief Shark More and More | Christmas Special | Pinkfong Baby Shark " [ref=e119]: "1:42:58 FREEZE! Catch the Thief | Thief Shark More and More | Christmas Special | Pinkfong Baby Shark"
+  - button "More" [ref=e120]
+  - link "Video Learn with Ms Rachel - Friendship & Social Skills - Videos for Kids - Colors, Letters & Counti" [ref=e121]: "1:01:17 Learn with Ms Rachel - Friendship & Social Skills - Videos for Kids - Colors, Letters & Counting"
+  - button "More" [ref=e122]
+  - link "Video 🚜All about Tractors 🚜 Learn How Tractors Work with Handyman Hal 3 hours, 10 minutes, 36 seco" [ref=e123]: "3:10:36🚜All about Tractors 🚜 Learn How Tractors Work with Handyman Hal"
+  - button "More" [ref=e124]
+  - link "Video Baby Learning with Ms Rachel - Baby Songs, Speech, Sign Language for Babies - Baby Videos 1 ho" [ref=e125]: "1:00:02 Baby Learning with Ms Rachel - Baby Songs, Speech, Sign Language for Babies - Baby Videos"
+  - button "More" [ref=e126]
+  - link "Video Surprised Baby Shark 17 seconds" [ref=e127]: "0:17 Surprised Baby Shark"
+  - button "More" [ref=e128]
+  - link "Video Tom's PENCIL Frustration 😡 | The Fixies 4 hours, 31 minutes, 37 seconds" [ref=e129]: "4:31:37 Tom's PENCIL Frustration 😡 | The Fixies"
+  - button "More" [ref=e130]
+</result>
+
+[10] tool_call: repl("Opening Learning category")
+<request>
+await page.locator('e8').click();
+const kidsSnap2 = await snapshot(page, { interactive: true });
+console.log(kidsSnap2.diff);
+</request>
+<result tokens_used="243" elapsed_time="1696ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Learning - YouTube Kids" [url=https://www.youtubekids.com/]
+- navigation "Homepage" [ref=e1]:
+  - button "Privacy" [ref=e2]
+  - tab "Watch it again" [ref=e131]
+  - button "Recommended category" [ref=e132]
+  - button "Shows category" [ref=e6]
+  - button "Music category" [ref=e7]
+  - button "Learning category, selected" [ref=e133]: "Learning"
+  - button "Explore category" [ref=e9]
+  - tablist:
+    - tab "Parental control" [ref=e10]
+- main:
+  - link "Video Sing the Phonics Song with Ms. Rachel & Friends! 🎵 Ms. Rachel | Netflix Jr 52 seconds" [ref=e134] [focused]: "0:52 Sing the Phonics Song with Ms. Rachel & Friends! 🎵 Ms. Rachel | Netflix Jr"
+  - button "More" [ref=e12]
+  - link "Video Preschool Videos - Toddler Learning Videos - Circle Time, Phonics, Colors, Numbers - Dinosaur " [ref=e135]: "1:19:35 Preschool Videos - Toddler Learning Videos -  Circle Time, Phonics, Colors, Numbers - Dinosaur Class"
+  - button "More" [ref=e14]
+  - link "Video First Grade Math Extravaganza! 🧮 | Counting for Kids | @Numberblocks 1 hour, 16 minutes, 42 s" [ref=e136]: "1:16:42 First Grade Math Extravaganza! 🧮 | Counting for Kids | @Numberblocks"
+  - button "More" [ref=e16]
+  - link "Video ChuChu TV Numbers Song - NEW Short Version - Number Rhymes For Children 4 minutes, 12 seconds" [ref=e137]: "4:12 ChuChu TV Numbers Song - NEW Short Version - Number Rhymes For Children"
+  - button "More" [ref=e18]
+  - link "Video 🚒 Rescue Vehicles with Ms Moni | Fire Truck, Police Car, Ambulance | Kids Learning Videos 33 " [ref=e138]: "33:28🚒 Rescue Vehicles with Ms Moni | Fire Truck, Police Car, Ambulance | Kids Learning Videos"
+  - button "More" [ref=e20]
+  - link "Video Fun with Dinosaurs | Handyman Hal Dinosaur Videos 1 hour, 38 minutes, 26 seconds" [ref=e139]: "1:38:26 Fun with Dinosaurs | Handyman Hal Dinosaur Videos"
+  - button "More" [ref=e22]
+  - link "Video Lawn Care Toys and Tractors for Kids with Handyman Hal 48 minutes, 49 seconds" [ref=e140]: "48:49 Lawn Care Toys and Tractors for Kids with Handyman Hal"
+  - button "More" [ref=e24]
+  - link "Video Apples and Bananas + More Educational Kids Songs | Gracie’s Corner Compilation 29 minutes, 59 " [ref=e141]: "29:59 Apples and Bananas + More Educational Kids Songs | Gracie’s Corner Compilation"
+  - button "More" [ref=e26]
+  - link "Video How to keep bread from molding science experiment DIY!!! 10 minutes, 43 seconds" [ref=e142]: "10:43 How to keep bread from molding science experiment DIY!!!"
+  - button "More" [ref=e28]
+  - link "Video Blippi Learns At The Fire Station Tour | Learn about Firefighters for Kids | Blippi Videos 44 " [ref=e143]: "44:52 Blippi Learns At The Fire Station Tour | Learn about Firefighters for Kids | Blippi Videos"
+  - button "More" [ref=e30]
+  - link "Video Baby's First Words & Gestures | Waving, Clapping, Nodding | Sensory Learning | Nursery Rhymes " [ref=e144]: "1:18:40 Baby's First Words & Gestures | Waving, Clapping, Nodding | Sensory Learning | Nursery Rhymes 🍎"
+  - button "More" [ref=e32]
+  - link "Video 🌈 🌈￼THERE WAS AN OLD LADY WHO SWALLOWED A RAINBOW! 🌈- Reading is | Kids Book Read Aloud 3 m" [ref=e145]: "3:12🌈 🌈￼THERE WAS AN OLD LADY WHO SWALLOWED A RAINBOW! 🌈- Reading is | Kids Book Read Aloud"
+  - button "More" [ref=e34]
+  - link "Video Learn Shapes | Circle Time Lesson | Toddler & Preschool Learning Video 18 minutes, 16 seconds" [ref=e146]: "18:16 Learn Shapes | Circle Time Lesson | Toddler & Preschool Learning Video"
+  - button "More" [ref=e36]
+  - link "Video Deadliest Botfly Infestation | Are Bot Flies Harmful to Humans? | Human Botfly Facts | Dr. Bin" [ref=e147]: "6:00 Deadliest Botfly Infestation | Are Bot Flies Harmful to Humans? | Human Botfly Facts | Dr. Binocs"
+  - button "More" [ref=e38]
+  - link "Video Learn Skip Counting with Dump Trucks and Monster Trucks 15 minutes, 23 seconds" [ref=e148]: "15:23 Learn Skip Counting with Dump Trucks and Monster Trucks"
+  - button "More" [ref=e40]
+  - link "Video A Cup of Happy Capybara Bubble Tea | Capybara read aloud | Bubble Tea read aloud 10 minutes, 1" [ref=e149]: "10:19 A Cup of Happy Capybara Bubble Tea | Capybara read aloud | Bubble Tea read aloud"
+  - button "More" [ref=e42]
+  - link "Video abc song | abc train | learn alphabets | nursery rhymes and baby songs | kids tv 1 hour, 39 se" [ref=e150]: "1:00:39 abc song | abc train | learn alphabets | nursery rhymes and baby songs | kids tv"
+  - button "More" [ref=e44]
+  - link "Video All The Countries of the World! | KLT Geography 1 hour, 12 minutes, 51 seconds" [ref=e151]: "1:12:51 All The Countries of the World! | KLT Geography"
+  - button "More" [ref=e46]
+  - link "Video GROW UP DAVID | INTERPRETATION READING OF KIDS BOOKS | DAVID SHANNON 11 minutes, 1 second" [ref=e152]: "11:01 GROW UP DAVID | INTERPRETATION READING OF KIDS BOOKS | DAVID SHANNON"
+  - button "More" [ref=e48]
+  - link "Video Learning Collection by Brain Candy TV |Vol 1| Learn English, Numbers, Colors and More 1 hour, " [ref=e153]: "1:00:29 Learning Collection by Brain Candy TV |Vol 1| Learn English, Numbers, Colors and More"
+  - button "More" [ref=e50]
+  - link "Video 🍉 Can You Guess the fruit by Emoji 🍓 8 minutes, 45 seconds" [ref=e154]: "8:45🍉 Can You Guess the fruit by Emoji 🍓"
+  - button "More" [ref=e52]
+  - link "Video How Stitches Work? | Stitches Healing Stages | Sutures and Its Types | The Dr. Binocs Show 6 m" [ref=e155]: "6:12 How Stitches Work? | Stitches Healing Stages | Sutures and Its Types | The Dr. Binocs Show"
+  - button "More" [ref=e54]
+  - link "Video Meal Time! 🍝😋 HOUSEHOLD CHORES for Kids 🏠 | Lingokids Activities 1 minute, 34 seconds" [ref=e156]: "1:34 Meal Time! 🍝😋 HOUSEHOLD CHORES for Kids 🏠 | Lingokids Activities"
+  - button "More" [ref=e56]
+  - link "Video Space Station Adventures l Earth to Luna 55 minutes, 41 seconds" [ref=e157]: "55:41 Space Station Adventures l Earth to Luna"
+  - button "More" [ref=e58]
+  - link "Video Engineers vs GIANT Egg Drop 17 minutes" [ref=e158]: "17:00 Engineers vs GIANT Egg Drop"
+  - button "More" [ref=e60]
+  - link "Video Triangular Orange UFO Seen In New York | 114 Unexplained Alien and UFO Sightings 2 hours, 36 m" [ref=e159]: "2:36:06 Triangular Orange UFO Seen In New York | 114 Unexplained Alien and UFO Sightings"
+  - button "More" [ref=e62]
+  - link "Video Top 10 Fastest Animals | Earth Rangers 1 minute, 25 seconds" [ref=e160]: "1:25 Top 10 Fastest Animals | Earth Rangers"
+  - button "More" [ref=e64]
+  - link "Video Brown Bear, What do you see | Animated |Sing a Story#singalong#readaloud #bedtimestories #kids" [ref=e161]: "7:57 Brown Bear, What do you see | Animated |Sing a Story#singalong#readaloud #bedtimestories  #kidssong"
+  - button "More" [ref=e66]
+  - link "Video Seven Continents Song 2 minutes, 3 seconds" [ref=e162]: "2:03 Seven Continents Song"
+  - button "More" [ref=e68]
+  - link "Video AMAZING Science Secrets! 🧪 Maddie's Do You Know 🔎 FULL EPISODE COMPILATION 53 minutes, 19 se" [ref=e163]: "53:19 AMAZING Science Secrets! 🧪 Maddie's Do You Know 🔎 FULL EPISODE COMPILATION"
+  - button "More" [ref=e70]
+  - link "Video 🦁 Roar Like a Lion with Anika Roars + More! | ABCmouse Reading for Kids 📚 20 Minutes 20 minu" [ref=e164]: "20:45🦁 Roar Like a Lion with Anika Roars + More! | ABCmouse Reading for Kids 📚 20 Minutes"
+  - button "More" [ref=e72]
+  - link "Video Kindness is King 2 minutes, 40 seconds" [ref=e165]: "2:40 Kindness is King"
+  - button "More" [ref=e74]
+  - link "Video FEELINGS, FITS & FRIENDS 😊🤗 Emotional Story for Kids | Lingokids Podcast 7 minutes, 2 second" [ref=e166]: "7:02 FEELINGS, FITS & FRIENDS 😊🤗 Emotional Story for Kids | Lingokids Podcast"
+  - button "More" [ref=e76]
+  - link "Video Moe Explores Microscopes | Science for Kids | #stem #stemeducation 3 minutes, 3 seconds" [ref=e167]: "3:03 Moe Explores Microscopes | Science for Kids | #stem #stemeducation"
+  - button "More" [ref=e78]
+  - link "Video How long does it take a forest to grow? 7 minutes, 7 seconds" [ref=e168]: "7:07 How long does it take a forest to grow?"
+  - button "More" [ref=e80]
+  - link "Video Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Todd" [ref=e169]: "1:25:44 Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Toddlers"
+  - button "More" [ref=e82]
+</result>
+
+[11] tool_call: repl("Opening animal learning video")
+<request>
+await page.locator('e169').click();
+const kidsSnap3 = await snapshot(page, { interactive: true });
+console.log(kidsSnap3.diff);
+</request>
+<result tokens_used="511" elapsed_time="1539ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Toddlers - YouTube Kids" [url=https://www.youtubekids.com/]
+- navigation "Navigation" [ref=e170]:
+  - button "Back button on Watch page" [ref=e171]
+  - tab "Watch it again" [ref=e131]
+  - button "Recommended category" [ref=e132]
+  - button "Shows category" [ref=e6]
+  - button "Music category" [ref=e7]
+  - button "Learning category" [ref=e172]
+  - button "Explore category" [ref=e9]
+  - tablist:
+    - tab "Parental control" [ref=e10]
+- main:
+  - group "YouTube Kids Video Player":
+    - complementary:
+      - generic "Hi friends." [ref=e173]
+    - button "More" [ref=e174]
+    - timer "1 second"
+    - slider "Slider seek" [ref=e175]
+    - button "Pause" [ref=e176]
+    - button "Next" [ref=e177]
+    - button "Mute" [ref=e178]
+    - button "Autoplay is off" [ref=e179]
+    - switch "Subtitles/closed captions" [ref=e180] [checked]
+    - button "Subtitles/closed captions settings" [ref=e181]
+    - button "Enter full screen" [ref=e182]
+  - link "Ms Rachel - Toddler Learning Videos" [ref=e183]
+  - heading "Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Toddlers" [level=1]
+  - link "Ms Rachel - Toddler Learning Videos" [ref=e184]
+  - button "Subscribe" [ref=e185]
+  - generic [ref=e186] [scrollable]:
+    - link "Video Baby Learning With Ms Rachel - First Words, Songs and Nursery Rhymes for Babies - Toddler Vide" [ref=e187]: "1:00:21 Baby Learning With Ms Rachel - First Words, Songs and Nursery Rhymes for Babies - Toddler Videos"
+    - button "More" [ref=e188]
+    - link "Video Blippi & Ms Rachel Learn Vehicles - Wheels on the Bus - Videos for Kids - Tractor, Car, Truck " [ref=e189]: "30:07 Blippi & Ms Rachel Learn Vehicles - Wheels on the Bus - Videos for Kids - Tractor, Car, Truck + More"
+    - button "More" [ref=e190]
+    - link "Video Learn To Talk with Ms Rachel - Learning at an Outdoor Playground - Toddler Videos - Toddler Sh" [ref=e191]: "1:01:05 Learn To Talk with Ms Rachel - Learning at an Outdoor Playground - Toddler Videos - Toddler Shows"
+    - button "More" [ref=e192]
+    - link "Video Mickey and Donald Have a Farm 🚜 | S4 E1 | Full Episode | Mickey Mouse Clubhouse | @disneyjr 3" [ref=e193]: "30:02 Mickey and Donald Have a Farm 🚜 | S4 E1 | Full Episode | Mickey Mouse Clubhouse | @disneyjr"
+    - button "More" [ref=e194]
+    - link "Video Bluey Full Episode Collection! - The BEST of Season 1 ☺️ 🌟 | Bluey 38 minutes, 34 seconds" [ref=e195]: "38:34 Bluey Full Episode Collection! - The BEST of Season 1 ☺️ 🌟 | Bluey"
+    - button "More" [ref=e196]
+    - link "Video Learn with Ms Rachel - Phonics Song - Learn to Read - Preschool Learning - Kids Songs & Videos" [ref=e197]: "36:32 Learn with Ms Rachel - Phonics Song - Learn to Read - Preschool Learning - Kids Songs & Videos"
+    - button "More" [ref=e198]
+    - link "Video Play Pretend Farm Animals with Ms. Rachel! 🐮🐷 Ms. Rachel | Netflix Jr 3 minutes, 47 seconds" [ref=e199]: "3:47 Play Pretend Farm Animals with Ms. Rachel! 🐮🐷 Ms. Rachel | Netflix Jr"
+    - button "More" [ref=e200]
+    - link "Video Top 20 Songs! | Best Toddler Songs & Fan Favorite Hits! | Super Simple Songs 20th Anniversary " [ref=e201]: "52:38 Top 20 Songs! | Best Toddler Songs & Fan Favorite Hits! | Super Simple Songs 20th Anniversary 🎉"
+    - button "More" [ref=e202]
+    - link "Video Peppa Pig Learns How To Make Pancakes! 🐷🥞 | @PeppaPigOfficial 36 minutes" [ref=e203]: "36:00 Peppa Pig Learns How To Make Pancakes! 🐷🥞 | @PeppaPigOfficial"
+    - button "More" [ref=e204]
+    - link "Video Learn Colors, Fruits and Vegetables with Ms Rachel | Toddler Learning Video | Speech | Educati" [ref=e205]: "1:00:15 Learn Colors, Fruits and Vegetables with Ms Rachel | Toddler Learning Video | Speech | Educational"
+    - button "More" [ref=e206]
+    - link "Video Mickey Mouse Clubhouse Best Goofy Full Episodes! 🤪 | Compilation | @disneyjr 2 hours, 17 seco" [ref=e207]: "2:00:17 Mickey Mouse Clubhouse Best Goofy Full Episodes! 🤪 | Compilation | @disneyjr"
+    - button "More" [ref=e208]
+    - link "Video Nursery Rhymes for Kids | Songs Compilation - Itsy Bitsy Spider + More Children Songs 52 minut" [ref=e209]: "52:28 Nursery Rhymes for Kids | Songs Compilation - Itsy Bitsy Spider + More Children Songs"
+    - button "More" [ref=e210]
+    - link "Video Sesame Street: Songs with Ms. Rachel and Elmo! 8 minutes, 54 seconds" [ref=e211]: "8:54 Sesame Street: Songs with Ms. Rachel and Elmo!"
+    - button "More" [ref=e212]
+    - link "Video Baby Learning with Ms Rachel - Baby Songs, Speech, Sign Language for Babies - Baby Videos 1 ho" [ref=e213]: "1:00:02 Baby Learning with Ms Rachel - Baby Songs, Speech, Sign Language for Babies - Baby Videos"
+    - button "More" [ref=e214]
+    - link "Video Blippi Visits an Indoor Playground | Learning Videos For Kids | Education Show For Toddlers 14" [ref=e215]: "14:50 Blippi Visits an Indoor Playground | Learning Videos For Kids | Education Show For Toddlers"
+    - button "More" [ref=e216]
+    - link "Video Mickey Mouse Clubhouse \"Pluto's Ball\" Full Episode | S1 E12 | @disneyjr 24 minutes, 2 seconds" [ref=e217]: "24:02 Mickey Mouse Clubhouse \"Pluto's Ball\" Full Episode | S1 E12 | @disneyjr"
+    - button "More" [ref=e218]
+    - link "Video Learn To Talk with Ms Rachel - Help Take Care of Dolls - Speech, Baby Sign - Doll turn into ba" [ref=e219]: "47:57 Learn To Talk with Ms Rachel - Help Take Care of Dolls - Speech, Baby Sign - Doll turn into baby"
+    - button "More" [ref=e220]
+    - link "Video Learn with Ms Rachel - Friendship & Social Skills - Videos for Kids - Colors, Letters & Counti" [ref=e221]: "1:01:17 Learn with Ms Rachel - Friendship & Social Skills - Videos for Kids - Colors, Letters & Counting"
+    - button "More" [ref=e222]
+    - link "Video Counting is Fun with Elmo! | 1 HOUR Sesame Street Songs 1 hour, 1 minute, 22 seconds" [ref=e223]: "1:01:22 Counting is Fun with Elmo! | 1 HOUR Sesame Street Songs"
+    - button "More" [ref=e224]
+    - link "Video Brush Your Teeth Song with Ms Rachel and Elmo - Timer - Kids Songs and Nursery Rhymes 1 hour, " [ref=e225]: "1:00:01 Brush Your Teeth Song with Ms Rachel and Elmo - Timer - Kids Songs and Nursery Rhymes"
+    - button "More" [ref=e226]
+</result>
+
+[12] thinking: **Verifying login requirements**
+
+I’m considering whether the task is done since the user mentioned "without login in." I need to verify if they're signed in. The snapshot shows a subscribe button, but YouTube Kids might show things differently. It didn’t prompt for login, and it seems to have loaded without one.
+
+Oh, but the user brought up a birth year which I didn't use. They might be expecting setup options, and there's no search button visible, which is good. I’ll check if the video is playing in full screen.
+
+**Summarizing video details**
+
+I think I’m ready to finalize my thoughts. I opened the video in YouTube Kids, and I noticed that the search function wasn’t enabled, which is important to mention. I’ll need to refer to the video title too since I can't cite any sources without a web fetch or search. I should rely on the findings from the snapshot as evidence. This seems good for wrapping things up!
+
+[13] assistant: Done. I opened **“Toddler Learning with Ms Rachel - Learn Zoo Animals - Kids Songs - Educational Videos for Toddlers”** in **YouTube Kids**.
+
+I did not log in or enable search. Search is not showing on the YouTube Kids page.
+
+[14] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="youtube" path="/Users/vista/.aside/u/0/agents/main/skills/youtube/SKILL.md">
+# YouTube
+
+Use the `youtube` global in the REPL tool. It uses direct YouTube HTTP endpoints and returns compact JSON; you do not need to inspect YouTube DOM.
+
+## Quick Reference
+
+```js
+const search = await youtube.search('OpenAI DevDay 2025', { limit: 5 });
+const videoId = search[0].videoId;
+
+const [metadata, transcript, comments] = await Promise.all([
+  youtube.getMetadata(videoId),
+  youtube.getTranscript(videoId),
+  youtube.getComments(videoId, { limit: 20 }),
+]);
+```
+
+## Methods
+
+### `youtube.search(query: string, opts?: YouTubeSearchOptions): Promise<YouTubeVideoSummary[]>`
+
+Search YouTube videos.
+
+- `query` — search query.
+- `opts.limit` — max video results. Defaults to `10`.
+- `opts.lang` — YouTube UI language. Defaults to `'en'`.
+- `opts.region` — YouTube region. Defaults to `'US'`.
+
+### `youtube.getMetadata(videoIdOrUrl: string, opts?: YouTubeMetadataOptions): Promise<YouTubeVideoMetadata>`
+
+Fetch compact video metadata such as title, channel, thumbnail, duration, view count, description, publish date, and live status.
+
+Accepts normal watch URLs, Shorts URLs, live URLs, embed URLs, `youtu.be` URLs, or raw video IDs.
+
+### `youtube.listTranscriptLanguages(videoIdOrUrl: string): Promise<YouTubeTranscriptLanguage[]>`
+
+List caption tracks available for a video.
+
+### `youtube.getTranscript(videoIdOrUrl: string, opts?: { lang?: string; includeTimestamp?: boolean }): Promise<string>`
+
+Fetch transcript text. Omit `lang` to use YouTube's default caption track for that video. Pass a language code such as `'en'` or `'ko'` when you need a specific track. By default, it returns sentence-like plain text. Pass `includeTimestamp: true` to return one line per transcript segment formatted like `[00:00 - 00:04] text`.
+
+### `youtube.getComments(videoIdOrUrl: string, opts?: YouTubeCommentsOptions): Promise<YouTubeCommentsResponse>`
+
+Fetch top-level comments.
+
+- `opts.limit` — max comments. Defaults to `20`.
+- `opts.continuation` — pass the previous response's `continuation` for the next page.
+- `opts.lang` — YouTube UI language. Defaults to `'en'`.
+- `opts.region` — YouTube region. Defaults to `'US'`.
+
+## Types
+
+```ts
+interface YouTubeVideoSummary {
+  /** YouTube video ID, e.g. "hS1YqcewH0c". */
+  videoId: string;
+  /** Canonical watch URL, e.g. "https://www.youtube.com/watch?v=hS1YqcewH0c". */
+  url: string;
+  /** Video title. */
+  title: string;
+  /** Channel display name when YouTube returns it. */
+  channelName?: string;
+  /** Largest thumbnail URL for UI previews. */
+  thumbnailUrl?: string;
+}
+
+interface YouTubeVideoMetadata extends YouTubeVideoSummary {
+  /** Video length in seconds when available. */
+  durationSeconds?: number;
+  /** Numeric view count when available. */
+  viewCount?: number;
+  /** Full video description when available. */
+  description?: string;
+  /** Publish date in YouTube's YYYY-MM-DD format, e.g. "2025-10-06". */
+  publishDate?: string;
+  /** True for live videos or completed livestreams marked as live content. */
+  isLiveContent?: boolean;
+}
+
+interface YouTubeCommentsResponse {
+  /** Source video ID. */
+  videoId: string;
+  comments: Array<{
+    /** Direct comment URL when YouTube returns a comment ID. */
+    url?: string;
+    /** Comment author's display name. */
+    authorName: string;
+    /** Author channel URL, e.g. "https://www.youtube.com/@OpenAI". */
+    authorUrl?: string;
+    /** Plain comment text. */
+    text: string;
+    /** YouTube's relative timestamp text, e.g. "2 months ago". */
+    publishedAtText?: string;
+    /** YouTube's displayed like count text, e.g. "1.2K". */
+    likeCountText?: string;
+    /** YouTube's displayed reply count text, e.g. "12 replies". */
+    replyCountText?: string;
+  }>;
+  /** True when a continuation token is available. */
+  hasMore: boolean;
+  /** Pass this to `opts.continuation` to fetch the next page. */
+  continuation?: string;
+}
+```
+</skill>
+</system_message>

@@ -1,0 +1,1255 @@
+[1] user: Go to https://www.flightaware.com/, Compare available plans for the AeroAPI on Flightaware.
+
+[2] thinking: **Navigating AeroAPI plans**
+
+I need to find out about the available plans for AeroAPI on Flightaware. I should check the website directly and consider using a browser snapshot as my primary tool. If I opt for a web search or fetch, I'll need to cite my sources. It seems like I don’t need to cite when using a browser snapshot. I'll navigate Flightaware and locate the details about AeroAPI plans. Let's get started!
+
+[3] tool_call: repl("Opening FlightAware")
+<request>
+const p1 = await openTab('https://www.flightaware.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="139" elapsed_time="4791ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → FlightAware - Flight Tracker / Flight Status (https://www.flightaware.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "FlightAware - Flight Tracker / Flight Status" [url=https://www.flightaware.com/]
+- banner:
+  - link "FlightAware logo" [ref=e1]
+  - navigation:
+    - generic "Products" [ref=e3]
+    - generic "Industries" [ref=e5]
+    - generic "ADS-B" [ref=e7]
+    - generic "Flight Tracking" [ref=e9]
+  - navigation
+  - link "Sign In" [ref=e12]
+  - link "Join for free" [ref=e13]
+- main:
+  - text: "hero background"
+  - link "Photo by Talon6" [ref=e14]
+  - heading "is Central to Aviation" [level=1]: "FlightAware  is Central to Aviation"
+  - region:
+    - textbox [ref=e15]
+    - text: "Search for  tail"
+  - region "Map" [ref=e16]
+  - link "© OpenStreetMap" [ref=e17]
+  - heading "Connect our global flight map to your digital platforms." [level=2]
+  - link "Optimize your experience" [ref=e18]
+  - heading "Innovative products powered by best-in-class data." [level=2]
+  - heading "Elevate your business with AI-assisted technology from FlightAware Foresight." [level=3]
+  - link "Learn more about FlightAware Foresight" [ref=e19]
+  - text: "Elevate your business with AI-assisted technology from FlightAware Foresight."
+  - heading "Delivering data to developers on demand." [level=2]
+  - link "Integrate AeroAPI into your platform" [ref=e20]
+  - heading "Unlock real-time global flight tracking and ADS-B flight data." [level=2]
+  - link "Discover more about FlightAware Firehose" [ref=e21]
+  - link "See all products" [ref=e22]
+  - heading "Secure, private fleet tracking." [level=2]
+  - heading "Keep track of every aircraft in your private fleet—including helicopters—with customized monitoring " [level=3]: "Keep track of every aircraft in your private fleet—including helicopters—with customized monitoring packages tailored to operations of any size."
+  - heading [level=4]:
+    - link "Compare tiers" [ref=e23]
+  - heading "Watch the world take flight." [level=2]
+  - heading "Explore dynamic photos of aircraft taken and shared by the FlightAware community." [level=3]
+  - generic "Airbus A320 (EC-MQE)Cessna Caravan (N558EX)Gulfstream Aerospace Gulfstream G650 (N312AT)Warbirds Pip" [ref=e24] [scrollable]
+  - heading [level=4]:
+    - link "See all photos" [ref=e25]
+  - heading "Worldwide tracking, in your hands." [level=2]
+  - text: "Download the FlightAware app to stay up to date on the go.apps-qr-code"
+  - switch "iOS Android" [ref=e26] [checked]
+  - text: "ios-center"
+  - heading "Customize your tracking." [level=2]
+  - text: "Create your free FlightAware account and unlock real-time tracking, custom alerts, and more."
+  - link "Sign up" [ref=e27]
+- contentinfo:
+  - text: "FlightAware logo"
+  - navigation:
+    - heading "About" [level=6]
+    - link "About FlightAware" [ref=e28]
+    - link "Newsroom" [ref=e29]
+    - link "Advertise With Us" [ref=e30]
+    - link "Careers" [ref=e31]
+    - link "Webinars" [ref=e32]
+    - link "Blog" [ref=e33]
+    - link "Engineering Blog" [ref=e34]
+    - link "Store" [ref=e35]
+  - navigation:
+    - heading "Community" [level=6]
+    - link "Squawks" [ref=e36]
+    - link "Discussion" [ref=e37]
+    - link "Photos" [ref=e38]
+    - link "ADS-B Statistics" [ref=e39]
+  - navigation:
+    - heading "Tracking" [level=6]
+    - link "Flight Finder" [ref=e40]
+    - link "IFR Route Analyzer" [ref=e41]
+  - navigation:
+    - heading "Products" [level=6]
+    - link "AeroAPI" [ref=e42]
+    - link "FlightAware Firehose" [ref=e43]
+    - link "FlightAware Foresight" [ref=e44]
+    - link "Reports" [ref=e45]
+    - link "Integrated Maps" [ref=e46]
+    - link "FlightAware Aviator" [ref=e47]
+    - link "FlightAware Global" [ref=e48]
+    - link "FlightAware FBO Toolbox" [ref=e49]
+    - link "FlightAware TV℠" [ref=e50]
+    - link "GlobalBeacon" [ref=e51]
+    - link "ADS-B Receivers" [ref=e52]
+  - navigation:
+    - heading "Customer Service" [level=6]
+    - link "FAQs" [ref=e53]
+    - link "Contact Us" [ref=e54]
+  - link "Get our mobile apps" [ref=e55]
+  - navigation:
+    - link "Facebook" [ref=e56]
+    - link "Instagram" [ref=e57]
+    - link "LinkedIn" [ref=e58]
+    - link "X" [ref=e59]
+  - navigation:
+    - text: "© 2026 FlightAware/"
+    - link "Privacy" [ref=e60]
+    - text: "/"
+    - link "Terms of Use" [ref=e61]
+    - text: "/"
+    - link "Do Not Sell/Share My Personal Information" [ref=e62]
+</result>
+
+[4] tool_call: repl("Opening AeroAPI page")
+<request>
+await page.locator('e42').click();
+const s2 = await snapshot(page);
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="69" elapsed_time="6651ms">
+- title: "AeroAPI | Flight status & tracking data API | FlightAware" [url=https://www.flightaware.com/commercial/aeroapi/]
+- banner:
+  - link "FlightAware logo" [ref=e1]:
+    - image "FlightAware logo"
+  - navigation:
+    - list:
+      - listitem:
+        - generic "Products" [ref=e3]
+      - listitem:
+        - generic "Industries" [ref=e5]
+      - listitem:
+        - generic "ADS-B" [ref=e7]
+      - listitem:
+        - generic "Flight Tracking" [ref=e9]
+  - navigation:
+    - list:
+      - listitem
+  - link "Sign In" [ref=e12]
+  - link "Join for free" [ref=e13]
+- heading [level=1]: "AeroAPI®"
+- heading "Data as you want it, when you want it." [level=2]
+- text: "AeroAPI® is a simple and cost-effective query-based API that delivers data on demand from millions of flight status inputs. With over 60 distinct endpoints, you can customize your data delivery to meet your needs."
+- link "View pricing tiers" [ref=e14]
+- link "Explore developer documentation" [ref=e15]
+- heading "Flight information. On demand. On your budget." [level=1]
+- text: "With our usage-based pricing model, you can access accurate and precise aviation data, current and historical. Request data as needed for full control over total cost. Tap into millions of flight status inputs to track everything from ETAs to last position, full track, flight status, ground speed and altitude. You can even set up alerts to be notified of the information you need in real time."
+- heading "Features" [level=3]
+- heading "Why AeroAPI?" [level=4]
+- text: "Easy to integrate Modern REST-based API that is compatible with all programming languages.Access to historical data With data stretching back to 2011, post-flight analysis has never been easier.Comprehensive online documentation Robust developer documentation and sample code, including an interactive portal to quickly test and evaluate all 60+ endpoints.Customized approach Flexible and scalable to your specific needs, we only deliver (and you only pay for) the data you request.Flight alerting Real-time alerting on the flight events that mean the most to you, including departure, arrival, cancels, flight hold detections, and custom configuration for notification of impending departure/arrival."
+- link [ref=e16]
+- text: "FLIGHTAWARE FORESIGHT Use AeroAPI to access FlightAware's Foresight predictive technology.Foresight harnesses robust historical and real-time aviation data, weather data, and advanced ML to deliver powerful, predictive insights that optimize operations and anticipate risk across nearly every flight on the planet."
+- link "Learn more" [ref=e17]
+- link "Set an alert, get an alert." [ref=e18]
+- text: "In addition to requesting data when you need it, you can also request to be notified when a specific event occurs. Need to know when a flight arrives? When it takes off? If it’s diverted? You can even ask AeroAPI to alert you when a flight has entered or left a holding pattern."
+- link "View pricing tiers" [ref=e19]
+- link "Historical data" [ref=e20]
+- text: "Seamless integration of historical flight data from January 1, 2011 onward along with current and predictive flight data, all from a single API. Flexible access by flight identifier, tail number, airport, or airline operator of interest makes data gathering for post operational analysis quick and efficient. Analyze a problematic airport or a weather event. Identify historical trends on how an aircraft, flight, or airport performs over time. Study flight activity prior to an incident. In addition to actual flight times and status, get actual track flown for any flight - including all positions along with speed and altitude."
+- link "View pricing tiers" [ref=e21]
+- region:
+  - heading "Find the right tier for your needs" [level=1]
+  - text: "Choose the appropriate tier based on your use case and data needs, taking note of limitations on usage and storage restrictions."
+  - heading "Personal" [level=3]
+  - link "Get started" [ref=e22]
+  - text: "Storage and distribution of derivative works for  personal  or  academic  purposes only."
+  - list:
+    - listitem "Current flight status and tracks" [ref=e23]
+  - heading "Standard" [level=3]
+  - link "Get started" [ref=e24]
+  - text: "Storage and distribution of derivative works for  business  or  business-to-consumer  purposes. Everything in Personal tier plus:"
+  - list:
+    - listitem "Historical data access" [ref=e25]
+    - listitem "Flight Alerting" [ref=e26]
+    - listitem "Email support" [ref=e27]
+  - heading "Premium" [level=3]
+  - link "Get started" [ref=e28]
+  - text: "Storage and distribution of derivative works for  business, business-to-consumer commercial purposes, and all  Business-to-Business commercial  purposes. Everything in Standard tier plus:"
+  - list:
+    - listitem "Advanced data sets, including Aireon spaced-based ADS-B" [ref=e29]
+    - listitem "Foresight Predictions" [ref=e30]
+    - listitem "Enterprise grade services with both email and phone support" [ref=e31]
+- region:
+  - table:
+    - text: "Personal Standard Premium Included APIs"
+    - paragraph:
+      - link "Alerts" [ref=e32]
+    - text: "Not included in Personal Included in Standard Included in Premium FlightAware Foresight*Not included in Personal Not included in Standard Included in Premium Aireon Space-Based ADS-B*Not included in Personal Not included in Standard Included in Premium Historical Flight Data Not included in Personal Included in Standard Included in Premium"
+    - paragraph:
+      - link "Static maps and imagery" [ref=e33]
+    - text: "Included in Personal Included in Standard Included in Premium* Contact us to enable this feature. Some restrictions for use apply.Pricing Details"
+    - paragraph:
+      - text: "Pricing ("
+      - link "View Per-Query Fees" [ref=e34]
+      - text: ")"
+    - text: "Per-query usage fees (up to $5 free per month, or $10 free per month for"
+    - link "ADS-B feeders" [ref=e35]
+    - text: ")Standard  includes:Per-query usage fees (subject to monthly minimum)Premium  includes:Per-query usage fees (subject to monthly minimum)Monthly minimum fee Personal  includes:No minimum Standard  includes:$100/month Premium  includes:$1,000/month Result set rate limit Personal  includes:10 result sets/minute Standard  includes:5 result sets/second Premium  includes:100 result sets/second History Results set rate limit Not included in Personal Standard  includes:500,000 result sets/month Premium  includes:500,000 result sets/month"
+    - paragraph:
+      - text: "Volume Discounting ("
+      - link "View Discounting Details" [ref=e36]
+      - text: ")"
+    - text: "Not included in Personal Included in Standard Included in Premium Authorized Users Overview Personal  includes:Storage and distribution of derivative works for personal or academic purposes only.Standard  includes:Storage and distribution of derivative works for business or business-to-consumer purposes.Premium  includes:Storage and distribution of derivative works for business, business-to-consumer commercial purposes, and all Business-to-Business commercial purposes.Internal Use for Business Not included in Personal Included in Standard Included in Premium Commercialization for Business to Consumer (B2C)Not included in Personal Included in Standard Included in Premium Commercialization for Business to Business (B2B)Not included in Personal Not included in Standard Included in Premium Internal Use for Personal Included in Personal Included in Standard Included in Premium Academic Included in Personal Included in Standard Included in Premium General Up-time guarantee Not included in Personal Not included in Standard Premium  includes:99.5%E-mail Support Not included in Personal Included in Standard Included in Premium Phone Support Not included in Personal Not included in Standard Included in Premium Invoicing Available Not included in Personal Not included in Standard Included in Premium"
+- heading "Trusted Globally by Leading Organizations" [level=2]
+- image "Viasat Logo"
+- image "Thales Logo"
+- region:
+  - heading "Query fees breakdown" [level=2]
+  - heading "A single query can return multiple results, depending on the call type and input. Pricing is based o" [level=3]: "A single query can return multiple results, depending on the call type and input. Pricing is based on result sets, with one set equaling 15 records. Prices may change."
+  - link "Compare tiers" [ref=e37]
+  - tablist:
+    - tab "Flights" [ref=e38] [selected]
+    - tab "Foresight" [ref=e39]
+    - tab "Airports" [ref=e40]
+    - tab "Operators" [ref=e41]
+    - tab "Alerts" [ref=e42]
+    - tab "History" [ref=e43]
+    - tab "Miscellaneous" [ref=e44]
+    - tab "Account" [ref=e45]
+  - tabpanel "Flights":
+    - table: "Function Pricing GET /flights/search Search for flights$0.050/result set GET /flights/search/positions Search for flight positions$0.050/result set GET /flights/search/count Get count of flights matching search parameters$0.020/result set GET /flights/search/advanced Search for flights using advanced syntax$0.050/result set GET /flights/{ident}Get information for a flight$0.005/result set GET /flights/{ident}/canonical Get the canonical ident of a flight$0.001/result set POST /flights/{ident}/intents Submit a Flight Intent$0.000/result set GET /flights/{id}/position Get flight's current position$0.010/result set GET /flights/{id}/track Get flight's track$0.012/result set GET /flights/{id}/route Get flight's filed route$0.010/result set GET /flights/{id}/map Get an image of a flight's track on a map$0.030/result set"
+  - text: "Note: The max_pages input parameter can be used to limit/control how many result sets will be returned, with one page being equivalent to one result set."
+- region:
+  - heading "Volume Discounting" [level=2]
+  - heading "All Premium and Standard tier accounts are eligible for volume discounting. The first $1000 of usage" [level=3]: "All Premium and Standard tier accounts are eligible for volume discounting. The first $1000 of usage per month is always billed at list price, followed by each incremental level of usage being discounted at a more generous level. For monthly usage above $64,000 the discount is set at 94% off, which will enable you to continue to grow your applications and take full advantage of new features with minimal variance in total monthly cost."
+  - link "Compare tiers" [ref=e46]
+  - tablist
+  - tabpanel:
+    - table: "Pricing Discount$0 - $1,000 / month No Discount$1,000 - $2,000 30% Discount$2,000 - $4,000 51% Discount$4,000 - $8,000 65% Discount$8,000 - $16,000 76% Discount$16,000 - $32,000 83% Discount$32,000 - $64,000 88% Discount Above $64,000 94% Discount"
+  - text: "Please contact FlightAware for more information regarding additional discounting available with 3 or 4 year term commitments."
+- heading "code snippets" [level=2]
+- text: "Query Flight Data on Demand with AeroAPI AeroAPI is a RESTful API that lets developers query live and historical flight data. From flight positions to predictive ETAs powered by FlightAware Foresight, it delivers the data you need to build aviation-ready applications.Comprehensive data  Retrieve flight positions, historical tracks, airport activity, and predictive ETAs.Flexible queries  Search flights by tail number, origin/destination, aircraft type, altitude, or groundspeed.Industry leading predictions  Access the same data powering over half the airline ETAs in the US.Truly global coverage  Combining ~41k FlightAware ADSB receivers with Aireon spaced-based ADSB sourced data"
+- tablist:
+  - tab "PYTHON" [ref=e47] [selected]
+  - tab "JAVA" [ref=e48]
+  - tab "PHP" [ref=e49]
+  - tab "C#" [ref=e50]
+- tabpanel "PYTHON": "import  requests\n\n apiKey = input(\"API Key: \")\napiUrl = \"https://aeroapi.flightaware.com/aeroapi/\"\n\nairport = 'KSFO'\npayload = {'max_pages': 2}\nauth_header = {'x-apikey':apiKey}\n\nresponse = requests.get(apiUrl + f\"airports/{airport}/flights\",\n   params=payload, headers=auth_header)\n\nif  response.status_code == 200:\n   print(response.json())\nelse:\n   print(\"Error executing request\")"
+- link "Data Delivery Options" [ref=e51]
+- text: "FlightAware offers two powerful APIs for integrating real-time aviation data into your custom application - meeting virtually any business need. Firehose delivers real-time streaming data, while AeroAPI offers on-demand access to the same aviation intelligence, plus comprehensive historical data access."
+- link "Learn more" [ref=e52]
+- link "Support" [ref=e53]
+- link "Go to discussion forum" [ref=e54]
+- link "Documentation" [ref=e55]
+- link "View documentation" [ref=e56]
+- heading [level=3]: "Get in touch about AeroAPI"
+- form:
+  - label: "First name*"
+  - textbox "First name*" [ref=e57]
+  - label: "Last name*"
+  - textbox "Last name*" [ref=e58]
+  - label: "Occupation*"
+  - combobox "Occupation*" [ref=e59]:
+    - option "Please Select" (selected)
+    - option "Airline or Aircraft Operator"
+    - option "Airport Operator"
+    - option "Aircraft/Engine Manufacturer"
+    - option "Aviation Supplier/Service Provider"
+    - option "Administrative/Clerical"
+    - option "Other"
+  - label: "Company name*"
+  - textbox "Company name*" [ref=e60]
+  - label: "Email*"
+  - textbox "Email*" [ref=e61]
+  - label: "Phone number"
+  - textbox "Phone number" [ref=e62]
+  - label: "Tell us a little bit about your data needs"
+  - textbox "Tell us a little bit about your data needs" [ref=e63]
+  - text: "FlightAware needs the contact information you provide to us to contact you about our products and services. You may unsubscribe from these communications at any time. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, please review our Privacy Policy."
+  - iframe "reCAPTCHA" [ref=e64]:
+    - text: "protected by  reCAPTCHA"
+  - button "Submit" [ref=e65]
+- heading "Questions & Answers" [level=1]
+- generic "Is global flight data available?" [ref=e67]
+- generic "How do I know how much using AeroAPI will cost me?" [ref=e69]
+- generic "How can I view my AeroAPI billing status?" [ref=e71]
+- generic "Are there any new features?" [ref=e73]
+- link "See all FAQs" [ref=e74]
+- contentinfo:
+  - image "FlightAware logo"
+  - navigation:
+    - heading "About" [level=6]
+    - list:
+      - listitem "About FlightAware" [ref=e75]:
+        - link "About FlightAware" [ref=e76]
+      - listitem "Newsroom" [ref=e77]:
+        - link "Newsroom" [ref=e78]
+      - listitem "Advertise With Us" [ref=e79]:
+        - link "Advertise With Us" [ref=e80]
+      - listitem "Careers" [ref=e81]:
+        - link "Careers" [ref=e82]
+      - listitem "Webinars" [ref=e83]:
+        - link "Webinars" [ref=e84]
+      - listitem "Blog" [ref=e85]:
+        - link "Blog" [ref=e86]
+      - listitem "Engineering Blog" [ref=e87]:
+        - link "Engineering Blog" [ref=e88]
+      - listitem "Store" [ref=e89]:
+        - link "Store" [ref=e90]
+  - navigation:
+    - heading "Community" [level=6]
+    - list:
+      - listitem "Squawks" [ref=e91]:
+        - link "Squawks" [ref=e92]
+      - listitem "Discussion" [ref=e93]:
+        - link "Discussion" [ref=e94]
+      - listitem "Photos" [ref=e95]:
+        - link "Photos" [ref=e96]
+      - listitem "ADS-B Statistics" [ref=e97]:
+        - link "ADS-B Statistics" [ref=e98]
+  - navigation:
+    - heading "Tracking" [level=6]
+    - list:
+      - listitem "Flight Finder" [ref=e99]:
+        - link "Flight Finder" [ref=e100]
+      - listitem "IFR Route Analyzer" [ref=e101]:
+        - link "IFR Route Analyzer" [ref=e102]
+  - navigation:
+    - heading "Products" [level=6]
+    - list:
+      - listitem "AeroAPI" [ref=e103]:
+        - link "AeroAPI" [ref=e104]
+      - listitem "FlightAware Firehose" [ref=e105]:
+        - link "FlightAware Firehose" [ref=e106]
+      - listitem "FlightAware Foresight" [ref=e107]:
+        - link "FlightAware Foresight" [ref=e108]
+      - listitem "Reports" [ref=e109]:
+        - link "Reports" [ref=e110]
+      - listitem "Integrated Maps" [ref=e111]:
+        - link "Integrated Maps" [ref=e112]
+      - listitem "FlightAware Aviator" [ref=e113]:
+        - link "FlightAware Aviator" [ref=e114]
+      - listitem "FlightAware Global" [ref=e115]:
+        - link "FlightAware Global" [ref=e116]
+      - listitem "FlightAware FBO Toolbox" [ref=e117]:
+        - link "FlightAware FBO Toolbox" [ref=e118]
+      - listitem "FlightAware TV℠" [ref=e119]:
+        - link "FlightAware TV℠" [ref=e120]
+      - listitem "GlobalBeacon" [ref=e121]:
+        - link "GlobalBeacon" [ref=e122]
+      - listitem "ADS-B Receivers" [ref=e123]:
+        - link "ADS-B Receivers" [ref=e124]
+  - navigation:
+    - heading "Customer Service" [level=6]
+    - list:
+      - listitem "FAQs" [ref=e125]:
+        - link "FAQs" [ref=e126]
+      - listitem "Contact Us" [ref=e127]:
+        - link "Contact Us" [ref=e128]
+  - link "Get our mobile apps" [ref=e129]
+  - navigation:
+    - list:
+      - listitem "Facebook" [ref=e130]:
+        - link "Facebook" [ref=e131]
+      - listitem "Instagram" [ref=e132]:
+        - link "Instagram" [ref=e133]
+      - listitem "LinkedIn" [ref=e134]:
+        - link "LinkedIn" [ref=e135]
+      - listitem "X" [ref=e136]:
+        - link "X" [ref=e137]
+  - navigation:
+    - list:
+      - listitem "© 2026 FlightAware" [ref=e138]
+      - listitem "/Privacy" [ref=e139]:
+        - text: "/"
+        - link "Privacy" [ref=e140]
+      - listitem "/Terms of Use" [ref=e141]:
+        - text: "/"
+        - link "Terms of Use" [ref=e142]
+      - listitem "/Do Not Sell/Share My Personal Information" [ref=e143]:
+        - text: "/"
+        - link "Do Not Sell/Share My Personal Information" [ref=e144]
+- iframe:
+  - button "Get a new challenge" [ref=f14e1]
+  - button "Get an audio challenge" [ref=f14e2]
+  - button "Get a visual challenge" [ref=f14e3]
+  - button "Help" [ref=f14e4]
+  - button "Verify" [ref=f14e5]
+</result>
+
+[5] thinking: **Considering data structure**
+
+I think the snapshot provides quite a bit of information, but it might be clearer with a better table structure. I should also consider using webfetch for citations and data to give it more credibility. It’s important to include sources inline for proper referencing. Let’s fetch the page in markdown format to make sure everything is organized and easy to read.
+
+[6] tool_call: webfetch(url="https://www.flightaware.com/commercial/aeroapi/", format="markdown", timeout=30)
+<result tokens_used="73">
+[Output too large (66.8KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_Tv6Xy4ug2ANW8yf3/tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt]
+
+Preview (first 4.0KB):
+<webfetch-citation source_id="fetch_call_kodfZX0oGRcE9xfHGRfRzGab|fc_08cc73367c2b8f47016a044372c8848199858a734187711953#1"></webfetch-citation>
+
+AeroAPI | Flight status & tracking data API | FlightAware
+
+# AeroAPI®
+
+## Data as you want it, when you want it.
+
+AeroAPI® is a simple and cost-effective query-based API that delivers data on demand from millions of flight status inputs. With over 60 distinct endpoints, you can customize your data delivery to meet your needs.
+
+[View pricing tiers](#pricing-cards)[Explore developer documentation](https://www.flightaware.com/aeroapi/portal/documentation)
+
+![](/content-assets/images/commercial/aeroapi/hero.jpg)
+
+# Flight information. On demand. On your budget.
+
+With our usage-based pricing model, you can access accurate and precise aviation data, current and historical. Request data as needed for full control over total cost. Tap into millions of flight status inputs to track everything from ETAs to last position, full track, flight status, ground speed and altitude. You can even set up alerts to be notified of the information you need in real time.
+
+### Features
+
+#### Why AeroAPI?
+
+Easy to integrate
+
+Modern REST-based API that is compatible with all programming languages.
+
+Access to historical data
+
+With data stretching back to 2011, post-flight analysis has never been easier.
+
+Comprehensive online documentation
+
+Robust developer documentation and sample code, including an interactive portal to quickly test and evaluate all 60+ endpoints.
+
+Customized approach
+
+Flexible and scalable to your specific needs, we only deliver (and you only pay for) the data you request.
+
+Flight alerting
+
+Real-time alerting on the flight events that mean the most to you, including departure, arrival, cancels, flight hold detections, and custom configuration for notification of impending departure/arrival.
+
+[![](/_next/image/?url=%2Fcontent-assets%2Fimages%2Fshared%2Fforesight.png&w=750&q=75)](https://www.flightaware.com/commercial/foresight/)
+
+FLIGHTAWARE FORESIGHT
+
+Use AeroAPI to access FlightAware's Foresight predictive technology.
+
+Foresight harnesses robust historical and real-time aviation data, weather data, and advanced ML to deliver powerful, predictive insights that optimize operations and anticipate risk across nearly every flight on the planet.
+
+[
+
+Learn more
+
+](https://www.flightaware.com/commercial/foresight/)
+
+![](/content-assets/images/commercial/aeroapi/benefit-card-1.webp)
+
+Set an alert, get an alert.
+
+In addition to requesting data when you need it, you can also request to be notified when a specific event occurs. Need to know when a flight arrives? When it takes off? If it’s diverted? You can even ask AeroAPI to alert you when a flight has entered or left a holding pattern.
+
+[
+
+View pricing tiers
+
+](#pricing-cards)
+
+![](/content-assets/images/commercial/aeroapi/benefit-card-2.webp)
+
+Historical data
+
+Seamless integration of historical flight data from January 1, 2011 onward along with current and predictive flight data, all from a single API. Flexible access by flight identifier, tail number, airport, or airline operator of interest makes data gathering for post operational analysis quick and efficient. Analyze a problematic airport or a weather event. Identify historical trends on how an aircraft, flight, or airport performs over time. Study flight activity prior to an incident. In addition to actual flight times and status, get actual track flown for any flight - including all positions along with speed and altitude.
+
+[
+
+View pricing tiers
+
+](#pricing-cards)
+
+# Find the right tier for your needs
+
+Choose the appropriate tier based on your use case and data needs, taking note of limitations on usage and storage restrictions.
+
+### Personal
+
+[Get started](https://www.flightaware.com/aeroapi/signup/personal)
+
+Storage and distribution of derivative works for **personal** or **academic** purposes only.
+
+-   Current flight status and tracks
+
+### Standard
+
+[Get started](https://www.flightaware.com/aeroapi/signup/standard)
+
+...
+</result>
+
+[7] tool_call: bash(title="Locating pricing section", command="grep -n -E \"### Personal|### Standard|### Premium|Included APIs|Pricing Details|Authorized Users|Up-time|Monthly minimum|Result set rate limit|History Results|Volume Discounting\" tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt | head -80")
+<result tokens_used="104">
+85:### Personal
+93:### Standard
+103:### Premium
+119:Included APIs
+163:Pricing Details
+173:Monthly minimum fee
+181:Result set rate limit
+189:History Results set rate limit
+197:Volume Discounting  
+206:Authorized Users
+258:Up-time guarantee
+292:Included APIs
+316:Pricing Details
+322:Monthly minimum fee
+326:Result set rate limit
+330:History Results set rate limit
+334:Volume Discounting  
+339:Authorized Users
+367:Up-time guarantee
+383:Included APIs
+407:Pricing Details
+413:Monthly minimum fee
+417:Result set rate limit
+421:History Results set rate limit
+425:Volume Discounting  
+430:Authorized Users
+458:Up-time guarantee
+474:Included APIs
+498:Pricing Details
+504:Monthly minimum fee
+508:Result set rate limit
+512:History Results set rate limit
+516:Volume Discounting  
+521:Authorized Users
+549:Up-time guarantee
+1379:## Volume Discounting
+</result>
+
+[8] tool_call: read_file(path="tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt", offset=80, limit=210)
+<result tokens_used="44">
+# Find the right tier for your needs
+
+Choose the appropriate tier based on your use case and data needs, taking note of limitations on usage and storage restrictions.
+
+### Personal
+
+[Get started](https://www.flightaware.com/aeroapi/signup/personal)
+
+Storage and distribution of derivative works for **personal** or **academic** purposes only.
+
+-   Current flight status and tracks
+
+### Standard
+
+[Get started](https://www.flightaware.com/aeroapi/signup/standard)
+
+Storage and distribution of derivative works for **business** or **business-to-consumer** purposes. Everything in Personal tier plus:
+
+-   Historical data access
+-   Flight Alerting
+-   Email support
+
+### Premium
+
+[Get started](https://www.flightaware.com/aeroapi/signup/premium)
+
+Storage and distribution of derivative works for **business, business-to-consumer commercial purposes,** and all Business-to-Business commercial purposes. Everything in Standard tier plus:
+
+-   Advanced data sets, including Aireon spaced-based ADS-B
+-   Foresight Predictions
+-   Enterprise grade services with both email and phone support
+
+Personal
+
+Standard
+
+Premium
+
+Included APIs
+
+[Alerts](https://www.flightaware.com/aeroapi/portal/documentation)
+
+Not included in Personal
+
+Included in Standard
+
+Included in Premium
+
+FlightAware Foresight\*
+
+Not included in Personal
+
+Not included in Standard
+
+Included in Premium
+
+Aireon Space-Based ADS-B\*
+
+Not included in Personal
+
+Not included in Standard
+
+Included in Premium
+
+Historical Flight Data
+
+Not included in Personal
+
+Included in Standard
+
+Included in Premium
+
+[Static maps and imagery](https://www.flightaware.com/aeroapi/portal/documentation#get-/flights/-id-/map)
+
+Included in Personal
+
+Included in Standard
+
+Included in Premium
+
+\* Contact us to enable this feature. Some restrictions for use apply.
+
+Pricing Details
+
+Pricing ([View Per-Query Fees](#pricing-table))
+
+Per-query usage fees (up to $5 free per month, or $10 free per month for [ADS-B feeders](https://www.flightaware.com/adsb/))
+
+Standard includes:Per-query usage fees (subject to monthly minimum)
+
+Premium includes:Per-query usage fees (subject to monthly minimum)
+
+Monthly minimum fee
+
+Personal includes:No minimum
+
+Standard includes:$100/month
+
+Premium includes:$1,000/month
+
+Result set rate limit
+
+Personal includes:10 result sets/minute
+
+Standard includes:5 result sets/second
+
+Premium includes:100 result sets/second
+
+History Results set rate limit
+
+Not included in Personal
+
+Standard includes:500,000 result sets/month
+
+Premium includes:500,000 result sets/month
+
+Volume Discounting  
+([View Discounting Details](#volume-discounting-table))
+
+Not included in Personal
+
+Included in Standard
+
+Included in Premium
+
+Authorized Users
+
+Overview
+
+Personal includes:Storage and distribution of derivative works for personal or academic purposes only.
+
+Standard includes:Storage and distribution of derivative works for business or business-to-consumer purposes.
+
+Premium includes:Storage and distribution of derivative works for business, business-to-consumer commercial purposes, and all Business-to-Business commercial purposes.
+
+Internal Use for Business
+
+Not included in Personal
+
+Included in Standard
+
+Included in Premium
+
+Commercialization for Business to Consumer (B2C)
+
+Not included in Personal
+
+Included in Standard
+
+Included in Premium
+
+Commercialization for Business to Business (B2B)
+
+Not included in Personal
+
+Not included in Standard
+
+Included in Premium
+
+Internal Use for Personal
+
+Included in Personal
+
+Included in Standard
+
+Included in Premium
+
+Academic
+
+Included in Personal
+
+Included in Standard
+
+Included in Premium
+
+General
+
+Up-time guarantee
+
+Not included in Personal
+
+Not included in Standard
+
+Premium includes:99.5%
+
+E-mail Support
+
+Not included in Personal
+
+Included in Standard
+
+Included in Premium
+
+Phone Support
+
+Not included in Personal
+
+Not included in Standard
+
+Included in Premium
+
+Invoicing Available
+
+Not included in Personal
+
+Not included in Standard
+
+Included in Premium
+
+
+[1475 more lines in file. Use offset=290 to continue.]
+</result>
+
+[9] thinking: **Considering plan comparison and fees**
+
+I’m wondering if the user wants too much detail about per-query fees when comparing available plans. I should focus on pricing, mention it’s based on per-query usage fees and minimums, and use official pages for citations. I might fetch relevant documents to use as sources and ensure any pricing tables are clear. I’ll note that exact fees vary by endpoint and consider outlining volume discounts and categories for better context.
+
+[10] tool_call: read_file(path="tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt", offset=1375, limit=40)
+<result tokens_used="173">
+$0.000/result set
+
+Note: The max\_pages input parameter can be used to limit/control how many result sets will be returned, with one page being equivalent to one result set.
+
+## Volume Discounting
+
+### All Premium and Standard tier accounts are eligible for volume discounting. The first $1000 of usage per month is always billed at list price, followed by each incremental level of usage being discounted at a more generous level. For monthly usage above $64,000 the discount is set at 94% off, which will enable you to continue to grow your applications and take full advantage of new features with minimal variance in total monthly cost.
+
+[Compare tiers](#compare-tiers)
+
+Pricing
+
+Discount
+
+$0 - $1,000 / month
+
+No Discount
+
+$0 - $1,000 / month
+
+No Discount
+
+$1,000 - $2,000
+
+30% Discount
+
+$1,000 - $2,000
+
+30% Discount
+
+$2,000 - $4,000
+
+51% Discount
+
+$2,000 - $4,000
+
+51% Discount
+
+$4,000 - $8,000
+
+
+[350 more lines in file. Use offset=1415 to continue.]
+</result>
+
+[11] tool_call: read_file(path="tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt", offset=1415, limit=80)
+<result tokens_used="45">
+65% Discount
+
+$4,000 - $8,000
+
+65% Discount
+
+$8,000 - $16,000
+
+76% Discount
+
+$8,000 - $16,000
+
+76% Discount
+
+$16,000 - $32,000
+
+83% Discount
+
+$16,000 - $32,000
+
+83% Discount
+
+$32,000 - $64,000
+
+88% Discount
+
+$32,000 - $64,000
+
+88% Discount
+
+Above $64,000
+
+94% Discount
+
+Above $64,000
+
+94% Discount
+
+Please contact FlightAware for more information regarding additional discounting available with 3 or 4 year term commitments.
+
+## code snippets
+
+Query Flight Data on Demand with AeroAPI
+
+AeroAPI is a RESTful API that lets developers query live and historical flight data. From flight positions to predictive ETAs powered by FlightAware Foresight, it delivers the data you need to build aviation-ready applications.
+
+Comprehensive data
+
+Retrieve flight positions, historical tracks, airport activity, and predictive ETAs.
+
+Flexible queries
+
+Search flights by tail number, origin/destination, aircraft type, altitude, or groundspeed.
+
+Industry leading predictions
+
+Access the same data powering over half the airline ETAs in the US.
+
+Truly global coverage
+
+Combining ~41k FlightAware ADSB receivers with Aireon spaced-based ADSB sourced data
+
+PYTHONJAVAPHPC#
+
+`import requests apiKey = input("API Key: ") apiUrl = "https://aeroapi.flightaware.com/aeroapi/" airport = 'KSFO' payload = {'max_pages': 2} auth_header = {'x-apikey':apiKey} response = requests.get(apiUrl + f"airports/{airport}/flights",    params=payload, headers=auth_header) if response.status_code == 200:    print(response.json()) else:    print("Error executing request")`
+
+`String YOUR_API_KEY = "API_KEY_HERE"; String apiUrl = "https://aeroapi.flightaware.com/aeroapi/"; String airport = "KSFO"; HttpClient client = HttpClient.newHttpClient(); HttpRequest request = HttpRequest.newBuilder()    .uri(URI.create(apiUrl + "airports/" + airport + "/flights"))    .headers("x-apikey", YOUR_API_KEY)    .build(); HttpResponse<String> response = client.send(request, BodyHandlers.ofString()); if (response.statusCode() == 200) {    System.out.println("responseBody: " + response.body()); }`
+
+`<?php $apiKey = "YOUR_API_KEY"; $fxmlUrl = "https://aeroapi.flightaware.com/aeroapi/"; $ident = 'SWA45'; $queryParams = array(    'max_pages' => 2 ); $url = $fxmlUrl . 'flights/' . $ident . '?' . http_build_query($queryParams); $ch = curl_init($url); curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-apikey: ' . $apiKey)); curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); if ($result = curl_exec($ch)) {    curl_close($ch);    echo $result; } ?>`
+
+`using System; using System.Collections.Generic; using System.Linq; using System.Net.Http; using System.Net.Http.Headers; using System.Text.Json; using System.Text.Json.Serialization; using System.Threading.Tasks; namespace AeroApi4Sample {    public class FlightsResult    {       public List<Flight> Flights { get; set; }    }    public class Flight    {       public string Ident { get; set; }       [JsonPropertyName("fa_flight_id")]       public string FaFlightId { get; set; }       [JsonPropertyName("scheduled_out")]       public DateTime ScheduledOut { get; set; }       [JsonPropertyName("actual_out")]       public DateTime? ActualOut { get; set; }    }    public class Program    {       static void Main( string[] args )       {          Console.Write( "API Key: " );          var strApiKey = Console.ReadLine();          Console.Write( "Ident to look up (e.g., UAL47): " );          var strIdentToLookUp = Console.ReadLine();          var flights = GetFlights( strApiKey, strIdentToLookUp ).Result;          if( flights == null )          {             return;          }          var nextFlightToDepart = flights.Where(             f => f.ActualOut == null             ).OrderBy( f => f.ScheduledOut ).First();          Console.WriteLine(             string.Format(                "Next departure of {0} is {1} at {2}",                strIdentToLookUp,                nextFlightToDepart.FaFlightId,                nextFlightToDepart.ScheduledOut                )             );       }       private static async Task<List<Flight>> GetFlights( string strApiKey, string strIdent )       {          using( var client = new HttpClient() )          {             client.DefaultRequestHeaders.Accept.Clear();             client.DefaultRequestHeaders.Accept.Add(                new MediaTypeWithQualityHeaderValue( "application/json" )                );             client.DefaultRequestHeaders.Add(                "x-apikey",                strApiKey                );             FlightsResult flightResult = null;             var response = await client.GetAsync(                "https://aeroapi.flightaware.com/aeroapi/flights/" + strIdent                );             var contentStream = await response.Content.ReadAsStreamAsync();             if( response.IsSuccessStatusCode )             {                flightResult = await JsonSerializer.DeserializeAsync<FlightsResult>(                   contentStream,                   new JsonSerializerOptions                   {                      PropertyNameCaseInsensitive = true                   }                   );             }             else             {                Console.Error.WriteLine( "API call failed: " + response );                return null;             }             return flightResult.Flights;          }       }    } }`
+
+![](/content-assets/images/commercial/aeroapi/benefit-card-3.webp)
+
+Data Delivery Options
+
+FlightAware offers two powerful APIs for integrating real-time aviation data into your custom application - meeting virtually any business need. Firehose delivers real-time streaming data, while AeroAPI offers on-demand access to the same aviation intelligence, plus comprehensive historical data access.
+
+[
+
+
+[270 more lines in file. Use offset=1495 to continue.]
+</result>
+
+[12] tool_call: bash(title="Finding per-query fee examples", command="grep -n \"GET /flights\" tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt | head -15 && grep -n \"GET /alerts\\|POST /alerts\" tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt | head -15 && grep -n \"GET /history\" tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt | head -15")
+<result tokens_used="228">
+581:GET /flights/search
+587:GET /flights/search
+593:GET /flights/search/positions
+599:GET /flights/search/positions
+605:GET /flights/search/count
+611:GET /flights/search/count
+617:GET /flights/search/advanced
+623:GET /flights/search/advanced
+629:GET /flights/{ident}
+635:GET /flights/{ident}
+641:GET /flights/{ident}/canonical
+647:GET /flights/{ident}/canonical
+665:GET /flights/{id}/position
+671:GET /flights/{id}/position
+677:GET /flights/{id}/track
+1077:GET /alerts
+1083:GET /alerts
+1089:POST /alerts
+1095:POST /alerts
+1101:GET /alerts/{id}
+1107:GET /alerts/{id}
+1137:GET /alerts/endpoint
+1143:GET /alerts/endpoint
+1177:GET /history/flights/{ident}
+1183:GET /history/flights/{ident}
+1189:GET /history/flights/{id}/track
+1195:GET /history/flights/{id}/track
+1201:GET /history/flights/{id}/map
+1207:GET /history/flights/{id}/map
+1213:GET /history/flights/{id}/route
+1219:GET /history/flights/{id}/route
+1225:GET /history/airports/{id}/flights/arrivals
+1231:GET /history/airports/{id}/flights/arrivals
+1237:GET /history/airports/{id}/flights/departures
+1243:GET /history/airports/{id}/flights/departures
+1249:GET /history/airports/{id}/flights/to/{dest\_id}
+1255:GET /history/airports/{id}/flights/to/{dest\_id}
+1261:GET /history/aircraft/{registration}/last\_flight
+</result>
+
+[13] tool_call: read_file(path="tmp/webfetch-result-VFfqqKJX5GK8u6N3.txt", offset=560, limit=155)
+<result tokens_used="44">
+Invoicing Available
+
+Yes
+
+## Trusted Globally by Leading Organizations
+
+![Viasat Logo](/content-assets/images/commercial/viasat_logo.png)![Thales Logo](/content-assets/images/commercial/thales_logo.png)
+
+## Query fees breakdown
+
+### A single query can return multiple results, depending on the call type and input. Pricing is based on result sets, with one set equaling 15 records. Prices may change.
+
+[Compare tiers](#compare-tiers)
+
+FlightsForesightAirportsOperatorsAlertsHistoryMiscellaneousAccount
+
+Function
+
+Pricing
+
+GET /flights/search
+
+Search for flights
+
+$0.050/result set
+
+GET /flights/search
+
+Search for flights
+
+$0.050/result set
+
+GET /flights/search/positions
+
+Search for flight positions
+
+$0.050/result set
+
+GET /flights/search/positions
+
+Search for flight positions
+
+$0.050/result set
+
+GET /flights/search/count
+
+Get count of flights matching search parameters
+
+$0.020/result set
+
+GET /flights/search/count
+
+Get count of flights matching search parameters
+
+$0.020/result set
+
+GET /flights/search/advanced
+
+Search for flights using advanced syntax
+
+$0.050/result set
+
+GET /flights/search/advanced
+
+Search for flights using advanced syntax
+
+$0.050/result set
+
+GET /flights/{ident}
+
+Get information for a flight
+
+$0.005/result set
+
+GET /flights/{ident}
+
+Get information for a flight
+
+$0.005/result set
+
+GET /flights/{ident}/canonical
+
+Get the canonical ident of a flight
+
+$0.001/result set
+
+GET /flights/{ident}/canonical
+
+Get the canonical ident of a flight
+
+$0.001/result set
+
+POST /flights/{ident}/intents
+
+Submit a Flight Intent
+
+$0.000/result set
+
+POST /flights/{ident}/intents
+
+Submit a Flight Intent
+
+$0.000/result set
+
+GET /flights/{id}/position
+
+Get flight's current position
+
+$0.010/result set
+
+GET /flights/{id}/position
+
+Get flight's current position
+
+$0.010/result set
+
+GET /flights/{id}/track
+
+Get flight's track
+
+$0.012/result set
+
+GET /flights/{id}/track
+
+Get flight's track
+
+$0.012/result set
+
+GET /flights/{id}/route
+
+Get flight's filed route
+
+$0.010/result set
+
+GET /flights/{id}/route
+
+Get flight's filed route
+
+$0.010/result set
+
+GET /flights/{id}/map
+
+Get an image of a flight's track on a map
+
+$0.030/result set
+
+GET /flights/{id}/map
+
+Get an image of a flight's track on a map
+
+$0.030/result set
+
+Function
+
+
+[1050 more lines in file. Use offset=715 to continue.]
+</result>
+
+[14] thinking: **Examining plan details**
+
+I need to create a compact comparison of available plans and verify the "Get started" links. I'll check if "available plans" is on the Signup page, possibly with monthly payment options. The plan activation table might reveal more info, including pay-as-you-go choices. I think I could also explore whether the signup requires a login. Gathering information seems crucial, as I want to make a comparison table and ensure to support each factual claim with citations.
+
+**Structuring citation information**
+
+I need to ensure the citations in the table are concise, yet sufficient. A good approach might be to place the citation tag immediately after each supported claim. While I can use markdown tables for citations, they can get a bit clunky. Perhaps one citation before the table might support the entire table. I should include the source ID from the webfetch output to maintain accuracy. I’ll also consider citing in the introductory text for clarity. Let's get these details crafted!
+
+[15] assistant: I found three AeroAPI plans on FlightAware: Personal, Standard, and Premium. FlightAware says tiers should be chosen based on “use case and data needs,” including usage and storage limits. <citation refs="fetch_call_kodfZX0oGRcE9xfHGRfRzGab|fc_08cc73367c2b8f47016a044372c8848199858a734187711953#1">“Choose the appropriate tier based on your use case and data needs, taking note of limitations on usage and storage restrictions.”</citation>
+
+| Plan | Best for | Includes | Pricing / limits |
+|---|---|---|---|
+| **Personal** | Personal or academic use only | Current flight status and tracks, static maps/imagery | Per-query fees, up to **$5 free/month** or **$10 free/month for ADS-B feeders**; **no monthly minimum**; **10 result sets/minute** |
+| **Standard** | Business internal use or B2C use | Everything in Personal, plus **historical data**, **flight alerting**, **email support** | Per-query fees with **$100/month minimum**; **5 result sets/second**; historical limit **500,000 result sets/month**; volume discounts |
+| **Premium** | B2B commercial use, higher-volume or enterprise needs | Everything in Standard, plus **Aireon space-based ADS-B**, **FlightAware Foresight predictions**, phone support, invoicing, 99.5% uptime guarantee | Per-query fees with **$1,000/month minimum**; **100 result sets/second**; historical limit **500,000 result sets/month**; volume discounts |
+
+Key differences: Standard is the first plan with historical data and alerts; Premium is required for Foresight, Aireon space-based ADS-B, B2B commercialization, phone support, invoicing, and uptime guarantee. <citation refs="fetch_call_kodfZX0oGRcE9xfHGRfRzGab|fc_08cc73367c2b8f47016a044372c8848199858a734187711953#1">“FlightAware Foresight… Included in Premium”; “Aireon Space-Based ADS-B… Included in Premium”; “Historical Flight Data… Included in Standard… Included in Premium”; “Commercialization for Business to Business (B2B)… Included in Premium.”</citation>
+
+Pricing is usage-based per result set, and FlightAware notes that one result set equals 15 records. Standard and Premium are eligible for volume discounts, while Personal is not. <citation refs="fetch_call_kodfZX0oGRcE9xfHGRfRzGab|fc_08cc73367c2b8f47016a044372c8848199858a734187711953#1">“Pricing is based on result sets, with one set equaling 15 records”; “All Premium and Standard tier accounts are eligible for volume discounting.”</citation>
+
+[16] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-gmail" path="/Users/vista/.aside/u/0/agents/main/skills/google-gmail/SKILL.md">
+# Gmail
+
+Use the `gmail` global in the REPL tool. It uses direct HTTP against Gmail's internal sync API — no tab navigation needed.
+
+IMPORTANT: User may use multiple Google accounts (e.g. work email / personal email). ALWAYS CALL `await googleAccounts.print()` to print all logged-in google accounts and identify the correct `uid` before using Gmail.
+
+- Every `gmail` method takes `uid` (the `/u/{uid}/` index) as its first argument.
+  - Use browser history search and memory search to get hint about the account to use.
+- If intended search results are empty, consider trying a different `uid`. Use `Promise.all` for searching multiple accounts.
+- NOTE THAT threadId is different between accounts even if it refers to the same thread.
+
+## Quick Reference
+
+```js
+const uid = 1; // uid from Google Accounts list
+
+// Inbox and Search
+const inbox = await gmail.getInbox(uid); // shorthand for search(uid, 'in:inbox')
+const searchResults = await gmail.search(uid, 'from:alice@example.com subject:"meeting"');
+// → { results: GmailSearchResult[], hasMore, total, nextOffset }
+
+// Read thread (body is markdown by default)
+const thread1 = await gmail.getThread(uid, 'thread-f:123456');
+// → { threadId, subject, messages: GmailThreadMessage[] }
+
+// Compose (opens tab with pre-filled fields, returns Playwright Page)
+const cp1 = await gmail.openComposer(uid, { to: 'bob@example.com', subject: 'Hi', bodyHtml: '<b>Hello</b>' });
+
+// Reply (opens inline reply in thread detail page, returns Playwright Page)
+const rp1 = await gmail.openReplyComposer(uid, { threadId: 'thread-f:123456', bodyHtml: '<p>Thanks</p>' });
+
+// Download attachment
+await gmail.downloadAttachment(uid, attachment.url, 'report.pdf');
+```
+
+## Methods
+
+### `gmail.search(uid: number, query: string, opts?: { offset?: number }): Promise<GmailSearchResponse>`
+
+Search threads via Gmail search operators (`from:`, `to:`, `subject:`, `label:`, `before:`, `after:`, `is:`, `has:attachment`, etc.).
+
+- `uid` — Google account index (`/u/{uid}/`).
+- `query` — Gmail search query string.
+- `opts.offset` — Pagination offset (default `0`). Use `nextOffset` from previous response.
+
+Results are paginated, concise and already token-efficient; It's safe to call `console.log` to see all results.
+Call `gmail.getThread` to fetch the full thread.
+
+### `gmail.getInbox(uid: number, offset = 0): Promise<GmailSearchResponse>`
+
+Shorthand for `gmail.search(uid, 'in:inbox', { offset })`.
+
+### `gmail.getThread(uid: number, threadId: string, opts?: { bodyFormat?: 'raw' | 'markdown' }): Promise<GmailThread>`
+
+Fetch full thread with all messages, including body and attachments.
+
+- `opts.bodyFormat` — `'markdown'` (default): body converted to compact markdown. safe to read. (`'raw'`: original HTML)
+- Links in markdown body is indexed like `[Some Link][3]` then `[3]: https://example.com` at the bottom. use RegEx to capture the URL according to the index.
+
+### `gmail.openComposer(uid: number, opts: { to?: string, cc?: string, bcc?: string, subject?: string, bodyHtml?: string }): Promise<Page>`
+
+Open a Gmail compose tab with pre-filled fields. Returns the Playwright Page object for further interaction.
+
+- `uid` — Google account index.
+- `opts.to`, `opts.cc`, `opts.bcc` — Recipients.
+- `opts.subject` — Subject line.
+- `opts.bodyHtml` — HTML body to inject into the compose draft.
+
+### `gmail.openReplyComposer(uid: number, opts: { threadId: string, mode?: 'reply' | 'replyAll', bodyHtml?: string }): Promise<Page>`
+
+Open an inline reply composer within a thread detail page.
+
+- `uid` — Google account index.
+- `opts.threadId` — Thread to reply to.
+- `opts.mode` — `'reply'` (default) or `'replyAll'` (recommended for multi-party threads).
+
+### `gmail.openThreadDetailsPage(uid: number, threadId: string): Promise<Page>`
+
+Open the Gmail thread detail page in a new tab.
+
+### `gmail.downloadAttachment(uid: number, url: string, destPath: string): Promise<string>`
+
+Download an attachment to the dest path (relative path to the session directory). Returns the resolved file path.
+
+## Types
+
+```ts
+type Participant = { name: string; email: string; };
+
+interface GmailSearchResult {
+  threadId: string; // e.g. 'thread-f:123456'
+  subject: string;
+  snippet: string; // small preview text of the thread
+  timestamp: Date;
+  participants: Participant[];
+  isUnread: boolean;
+}
+
+interface GmailSearchResponse {
+  results: GmailSearchResult[];
+  hasMore: boolean;
+  total: number;
+  nextOffset: number;
+}
+
+
+interface GmailThread {
+  threadId: string;
+  subject: string;
+  messages: GmailThreadMessage[];
+  raw?: string; // raw JSON when heuristic parsing has low confidence
+}
+
+interface GmailThreadMessage {
+  messageId: string;      // e.g. 'msg-f:123456'
+  from: Participant;
+  to: Participant[];
+  cc: Participant[];
+  subject: string;
+  snippet: string;
+  timestamp: Date;
+  labels: string[];
+  body: string;           // HTML (raw) or markdown, depending on bodyFormat
+  attachments: Array<{
+    filename: string;
+    mimeType: string;
+    size: number;
+    url: string; // needs auth — don't download directly, use gmail.downloadAttachment()
+    inline: boolean; // true for inline images
+  }>;
+}
+```
+
+## Compose / Reply Interaction
+
+After `openComposer` or `openReplyComposer`, interact with the returned `Page`:
+
+```js
+// Send
+await page.locator('[data-tooltip*="Send"]').click();
+
+// Attach file
+await page.locator('input[type=file][name=Filedata]').setInputFiles('/path/to/file');
+
+// Discard draft
+await page.locator('[data-tooltip*="Discard"]').click();
+```
+</skill>
+</system_message>

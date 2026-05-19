@@ -1,0 +1,96 @@
+{
+  "task_id": "43a1ca251f11c6b0bdd0379766cc49e6",
+  "level": "medium",
+  "task": "Find a neurosurgeon who is over 50 years old and has an appointment available tomorrow.",
+  "website": "https://www.healthgrades.com/",
+  "durationMs": 249918,
+  "outcome": "success",
+  "graderVerdict": "pass",
+  "graderReasoning": "The agent used Healthgrades filters for specialty Neurosurgery, availability Tomorrow, and age groups 51–60 / 61–70 / Over 70. The final filtered results page explicitly showed these filters checked in the dialog and showed 16 matching results. Dr. Deven Khosla, MD appeared in those filtered results, so by the site's explicit result-state he satisfies the requested constraints (over 50 and appointment available tomorrow). Exact age/time were not shown on the card, but the website-enforced filters are sufficient evidence under the judging rules.",
+  "graderDurationMs": 4838,
+  "sessionId": "RyOPrPImPCN8yIJb",
+  "provider": "openai-codex",
+  "tabCount": 1,
+  "messageCount": 28,
+  "final_result_response": "I found one on Healthgrades near Beverly Hills, CA:\n\n**Dr. Deven Khosla, MD**  \n- **Specialty:** Neurosurgery  \n- **Matches filters:** appointment availability **Tomorrow** and age **over 50** via Healthgrades age filters: 51-60, 61-70, Over 70  \n- **Rating:** 4.7/5 from 32 ratings  \n- **Telehealth:** Offers Telehealth  \n- **Address:** 2811 Wilshire Blvd Ste 930, Santa Monica, CA 90403  \n- **Distance:** 5.2 miles away\n\nNote: Healthgrades showed him in the filtered results, but the result card did not show the exact age or appointment time.",
+  "action_history": [
+    "Opening Healthgrades: const p_hg1 = await openTab('https://www.healthgrades.com/');",
+    "Searching Healthgrades for neurosurgeons: await page.locator('e10').fill('Neurosurgery');",
+    "Searching Healthgrades for neurosurgeons: await page.locator('e13').click();",
+    "Opening filters: await page.locator('e6').click();",
+    "Applying appointment and age filters: await page.locator('e393').click();",
+    "Applying appointment and age filters: await page.locator('e783').click();",
+    "Applying appointment and age filters: await page.locator('e785').click();",
+    "Applying appointment and age filters: await page.locator('e787').click();",
+    "Applying selected filters: await page.locator('e848').click();",
+    "Opening a matching doctor profile: await page.locator('e921').click();",
+    "Verifying active filters: await page.locator('e6').click();"
+  ],
+  "thoughts": [
+    "**Considering location for health search**",
+    "**Searching for neurosurgery options**",
+    "**Checking appointment availability**",
+    "**Considering filter options**",
+    "**Investigating first attempt failure**",
+    "**Checking output and visibility issues**",
+    "**Applying filters correctly**"
+  ],
+  "screenshots": [
+    {
+      "step": 1,
+      "filename": "0_full_screenshot.webp",
+      "title": "Opening Healthgrades"
+    },
+    {
+      "step": 2,
+      "filename": "1_full_screenshot.webp",
+      "title": "Searching Healthgrades for neurosurgeons"
+    },
+    {
+      "step": 3,
+      "filename": "2_full_screenshot.webp",
+      "title": "Opening filters"
+    },
+    {
+      "step": 4,
+      "filename": "3_full_screenshot.webp",
+      "title": "Applying appointment and age filters"
+    },
+    {
+      "step": 5,
+      "filename": "4_full_screenshot.webp",
+      "title": "Checking filter dialog after failed click"
+    },
+    {
+      "step": 6,
+      "filename": "5_full_screenshot.webp",
+      "title": "Forcing filter checkbox selections"
+    },
+    {
+      "step": 7,
+      "filename": "6_full_screenshot.webp",
+      "title": "Applying selected filters"
+    },
+    {
+      "step": 8,
+      "filename": "7_full_screenshot.webp",
+      "title": "Opening a matching doctor profile"
+    },
+    {
+      "step": 9,
+      "filename": "8_full_screenshot.webp",
+      "title": "Checking verification tab"
+    },
+    {
+      "step": 11,
+      "filename": "9_full_screenshot.webp",
+      "title": "Returning to search results"
+    }
+  ],
+  "artifacts": {
+    "messages": "messages.json",
+    "sessionMeta": "session.json",
+    "sessionDir": "session-dir",
+    "result": "result.json"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "task_id": "367d843c640637745e8fafa741cca13b",
+  "level": "hard",
+  "task": "Find a condo for rent in Houston, TX, with a monthly rent of no more than 30% of an income of $8000. The condo should have a minimum area of 600 square feet, and the move-in date is the 1st of next month.",
+  "website": "https://www.apartments.com/",
+  "durationMs": 251079,
+  "outcome": "success",
+  "graderVerdict": "pass",
+  "graderReasoning": "The agent successfully used Apartments.com to search Houston condo rentals and applied the key constraints: price under $2,400 (30% of $8,000), minimum 600 sq ft, and move-in date June 1, 2026. Evidence shows the filtered results URL included `sfmin=600&mid=20260601`, and the page displayed `Move In Jun 1` with `All Filters 4`. The agent then opened a listing detail page for `16111 Aspenglenn Dr Unit 609` where the page showed: rent `$925`, `681 sq ft`, and `Home Type Condominium`. Although the detail page said `Available Now` and also listed `Property Available on 12/19/25`, the search results page explicitly enforced the June 1, 2026 move-in filter and still included this listing, which is sufficient under the judging guidance. Therefore the user was given a valid condo matching the requested constraints.",
+  "graderDurationMs": 9284,
+  "sessionId": "OMQDoHSzqMPHA6KJ",
+  "provider": "openai-codex",
+  "tabCount": 2,
+  "messageCount": 53,
+  "final_result_response": "I found a match on Apartments.com:\n\n**16111 Aspenglenn Dr Unit 609, Houston, TX 77084**  \nhttps://www.apartments.com/16111-aspenglenn-dr-houston-tx-unit-609/5tw5hzm/\n\n- **Rent:** $925/month, under the $2,400 max\n- **Income rule:** $8,000 x 30% = **$2,400**\n- **Home type:** Condominium\n- **Size:** 681 sq ft, over 600 sq ft\n- **Availability:** Available Now, so it should work for a **June 1, 2026** move-in\n- **Beds/Baths:** 1 bed, 1 bath\n- **Notes:** Gated condo community, pool, carport, washer/dryer hookup, water/sewer/trash included per listing description.",
+  "action_history": [
+    "Opening Apartments.com: const p1 = await openTab('https://www.apartments.com/');",
+    "Searching for Houston condo rentals: await page.locator('e201').fill('condo for rent in Houston, TX under $2400 at least 600 square feet move in June 1, 2026');",
+    "Searching for Houston condo rentals: await page.keyboard.press('Enter');",
+    "Opening filters: await page.locator('e24').click();",
+    "Setting minimum square footage: await page.locator('e661').click();",
+    "Choosing 600 square feet minimum: await page.locator('e683').click();",
+    "Removing maximum square footage: await page.locator('e662').click();",
+    "Choosing no maximum square footage: await page.locator('e981').click();",
+    "Opening move-in date filter: await page.locator('e623').click();",
+    "Entering move-in date: await page.locator('e624').fill('06/01/2026');",
+    "Entering move-in date: await page.keyboard.press('Enter');",
+    "Selecting June 1, 2026: await page.locator('.datepicker-days td[date-actual=\"Mon Jun 01 2026 00:00:00 GMT-0700 (Pacific Daylight Time)\"]').click();",
+    "Opening a matching listing: await page.locator('e584').click();",
+    "Opening first matching condo detail: await page.locator('e2170').click();",
+    "Checking another listing detail: const detail2 = await openTab('https://www.apartments.com/16111-aspenglenn-dr-houston-tx-unit-609/5tw5hzm/');"
+  ],
+  "thoughts": [
+    "**Searching for condos in Houston**",
+    "**Considering search options**",
+    "**Adjusting search filters**",
+    "**Clarifying area requirements**",
+    "**Adjusting parameters for area**",
+    "**Adjusting rental filters**",
+    "**Considering the calendar task**",
+    "**Considering datepicker options**",
+    "**Evaluating calendar accessibility**",
+    "**Inspecting date picker elements**",
+    "**Looking into tool issues**",
+    "**Gathering results with JS**",
+    "**Verifying home type**",
+    "**Evaluating snapshot usage**",
+    "**Confirming condo details**"
+  ],
+  "screenshots": [
+    {
+      "step": 2,
+      "filename": "0_full_screenshot.webp",
+      "title": "Opening Apartments.com"
+    },
+    {
+      "step": 3,
+      "filename": "1_full_screenshot.webp",
+      "title": "Reading search controls"
+    },
+    {
+      "step": 4,
+      "filename": "2_full_screenshot.webp",
+      "title": "Searching for Houston condo rentals"
+    },
+    {
+      "step": 5,
+      "filename": "3_full_screenshot.webp",
+      "title": "Waiting for search results"
+    },
+    {
+      "step": 6,
+      "filename": "4_full_screenshot.webp",
+      "title": "Opening filters"
+    },
+    {
+      "step": 7,
+      "filename": "5_full_screenshot.webp",
+      "title": "Setting minimum square footage"
+    },
+    {
+      "step": 8,
+      "filename": "6_full_screenshot.webp",
+      "title": "Choosing 600 square feet minimum"
+    },
+    {
+      "step": 9,
+      "filename": "7_full_screenshot.webp",
+      "title": "Removing maximum square footage"
+    },
+    {
+      "step": 10,
+      "filename": "8_full_screenshot.webp",
+      "title": "Choosing no maximum square footage"
+    },
+    {
+      "step": 11,
+      "filename": "9_full_screenshot.webp",
+      "title": "Opening move-in date filter"
+    },
+    {
+      "step": 12,
+      "filename": "10_full_screenshot.webp",
+      "title": "Entering move-in date"
+    },
+    {
+      "step": 16,
+      "filename": "11_full_screenshot.webp",
+      "title": "Selecting June 1, 2026"
+    },
+    {
+      "step": 17,
+      "filename": "12_full_screenshot.webp",
+      "title": "Opening a matching listing"
+    },
+    {
+      "step": 19,
+      "filename": "13_full_screenshot.webp",
+      "title": "Opening first matching condo detail"
+    },
+    {
+      "step": 20,
+      "filename": "14_full_screenshot.webp",
+      "title": "Returning to filtered results"
+    }
+  ],
+  "artifacts": {
+    "messages": "messages.json",
+    "sessionMeta": "session.json",
+    "sessionDir": "session-dir",
+    "result": "result.json"
+  }
+}

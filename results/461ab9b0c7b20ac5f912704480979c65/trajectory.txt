@@ -1,0 +1,1962 @@
+[1] user: Go to https://www.nyse.com/, Find the NYSE Rule 605 Market Center Files data for July 2024.
+
+[2] thinking: **Navigating market data access**
+
+I need to use the browser to help the user find the Rule 605 Market Center Files for July 2024 on the NYSE. It seems like I’ll be locating that file and possibly providing a download link. I should clarify what the user means by "find the data"—does that just mean retrieving a link, or do they want the actual download? Let's take a closer look at the site to figure out the best approach.
+
+[3] tool_call: write_todos:
+Todo list updated:
+- [in_progress] t1: Open NYSE site and locate Rule 605 Market Center Files page
+- [pending] t2: Find July 2024 data files and verify links
+- [pending] t3: Report or save the data links/files
+
+[4] tool_call: repl("Opening NYSE site")
+<request>
+const p1 = await openTab('https://www.nyse.com/');
+const s1 = await snapshot(page, {interactive: true});
+console.log(s1.tree);
+</request>
+<result tokens_used="63" elapsed_time="1495ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → The New York Stock Exchange | NYSE (https://www.nyse.com/index)
+# note: interactive (clickable / focusable) elements only.
+- title: "The New York Stock Exchange | NYSE" [url=https://www.nyse.com/index]
+- banner:
+  - link "ICE" [ref=e1]
+  - link "NYSE" [ref=e2]
+  - link "NYSE CONNECT" [ref=e3]
+  - link "LOGIN" [ref=e4]
+  - link [ref=e5]:
+    - img
+  - navigation:
+    - button "Listings" [ref=e6]
+    - button "Trading" [ref=e7]
+    - button "Market Data" [ref=e8]
+    - button "Insights" [ref=e9]
+    - button "About" [ref=e10]
+  - textbox "Search" [ref=e11] [placeholder="Search"]
+  - img
+- region:
+  - button "NYSE" [ref=e12]
+  - link "FORD MOTOR CO" [ref=e13]
+  - link "F" [ref=e14]
+  - text: "13.570"
+  - img
+  - text: "1.580"
+  - link "NOKIA OYJ ADR EACH REPR 1 ORD NPV" [ref=e15]
+  - link "NOK" [ref=e16]
+  - text: "14.710"
+  - img
+  - text: "1.540"
+  - link "NIO INC SPON ADS EACH REP 1 ORD SHS CLASS A" [ref=e17]
+  - link "NIO" [ref=e18]
+  - text: "6.540"
+  - img
+  - text: "0.460"
+  - link "NU HOLDINGS LTD" [ref=e19]
+  - link "NU" [ref=e20]
+  - text: "12.820"
+  - img
+  - text: "0.450"
+  - link "BANCO BRADESCO SA SPONS ADR EACH REPR 1 PRF NPV" [ref=e21]
+  - link "BBD" [ref=e22]
+  - text: "3.510"
+  - img
+  - text: "0.140"
+  - link "ITAU UNIBANCO HOLDINGS S.A. ADR EACH REPR 1 PRF NPV" [ref=e23]
+  - link "ITUB" [ref=e24]
+  - text: "7.850"
+  - img
+  - text: "0.250"
+  - link "ARCHER AVIATION INC" [ref=e25]
+  - link "ACHR" [ref=e26]
+  - text: "6.520"
+  - img
+  - text: "0.130"
+  - link "UIPATH INC" [ref=e27]
+  - link "PATH" [ref=e28]
+  - text: "9.470"
+  - img
+  - text: "0.540"
+  - link "VALE S.A. SPONS ADS REPR 1 COM NPV" [ref=e29]
+  - link "VALE" [ref=e30]
+  - text: "16.840"
+  - img
+  - text: "0.190"
+  - link "SNAP INC" [ref=e31]
+  - link "SNAP" [ref=e32]
+  - text: "5.610"
+  - img
+  - text: "0.060"
+  - link "FORD MOTOR CO" [ref=e33]
+  - link "F" [ref=e34]
+  - text: "13.570"
+  - img
+  - text: "1.580"
+  - link "NOKIA OYJ ADR EACH REPR 1 ORD NPV" [ref=e35]
+  - link "NOK" [ref=e36]
+  - text: "14.710"
+  - img
+  - text: "1.540"
+  - link "NIO INC SPON ADS EACH REP 1 ORD SHS CLASS A" [ref=e37]
+  - link "NIO" [ref=e38]
+  - text: "6.540"
+  - img
+  - text: "0.460"
+  - link "NU HOLDINGS LTD" [ref=e39]
+  - link "NU" [ref=e40]
+  - text: "12.820"
+  - img
+  - text: "0.450"
+  - link "BANCO BRADESCO SA SPONS ADR EACH REPR 1 PRF NPV" [ref=e41]
+  - link "BBD" [ref=e42]
+  - text: "3.510"
+  - img
+  - text: "0.140"
+  - link "ITAU UNIBANCO HOLDINGS S.A. ADR EACH REPR 1 PRF NPV" [ref=e43]
+  - link "ITUB" [ref=e44]
+  - text: "7.850"
+  - img
+  - text: "0.250"
+  - link "ARCHER AVIATION INC" [ref=e45]
+  - link "ACHR" [ref=e46]
+  - text: "6.520"
+  - img
+  - text: "0.130"
+  - link "UIPATH INC" [ref=e47]
+  - link "PATH" [ref=e48]
+  - text: "9.470"
+  - img
+  - text: "0.540"
+  - link "VALE S.A. SPONS ADS REPR 1 COM NPV" [ref=e49]
+  - link "VALE" [ref=e50]
+  - text: "16.840"
+  - img
+  - text: "0.190"
+  - link "SNAP INC" [ref=e51]
+  - link "SNAP" [ref=e52]
+  - text: "5.610"
+  - img
+  - text: "0.060"
+  - link "FORD MOTOR CO" [ref=e53]
+  - link "F" [ref=e54]
+  - text: "13.570"
+  - img
+  - text: "1.580"
+  - link "NOKIA OYJ ADR EACH REPR 1 ORD NPV" [ref=e55]
+  - link "NOK" [ref=e56]
+  - text: "14.710"
+  - img
+  - text: "1.540"
+  - link "NIO INC SPON ADS EACH REP 1 ORD SHS CLASS A" [ref=e57]
+  - link "NIO" [ref=e58]
+  - text: "6.540"
+  - img
+  - text: "0.460"
+  - link "NU HOLDINGS LTD" [ref=e59]
+  - link "NU" [ref=e60]
+  - text: "12.820"
+  - img
+  - text: "0.450"
+  - link "BANCO BRADESCO SA SPONS ADR EACH REPR 1 PRF NPV" [ref=e61]
+  - link "BBD" [ref=e62]
+  - text: "3.510"
+  - img
+  - text: "0.140"
+  - link "ITAU UNIBANCO HOLDINGS S.A. ADR EACH REPR 1 PRF NPV" [ref=e63]
+  - link "ITUB" [ref=e64]
+  - text: "7.850"
+  - img
+  - text: "0.250"
+  - link "ARCHER AVIATION INC" [ref=e65]
+  - link "ACHR" [ref=e66]
+  - text: "6.520"
+  - img
+  - text: "0.130"
+  - link "UIPATH INC" [ref=e67]
+  - link "PATH" [ref=e68]
+  - text: "9.470"
+  - img
+  - text: "0.540"
+  - link "VALE S.A. SPONS ADS REPR 1 COM NPV" [ref=e69]
+  - link "VALE" [ref=e70]
+  - text: "16.840"
+  - img
+  - text: "0.190"
+  - link "SNAP INC" [ref=e71]
+  - link "SNAP" [ref=e72]
+  - text: "5.610"
+  - img
+  - text: "0.060"
+  - link "FORD MOTOR CO" [ref=e73]
+  - link "F" [ref=e74]
+  - text: "13.570"
+  - img
+  - text: "1.580"
+  - link "NOKIA OYJ ADR EACH REPR 1 ORD NPV" [ref=e75]
+  - link "NOK" [ref=e76]
+  - text: "14.710"
+  - img
+  - text: "1.540"
+  - link "NIO INC SPON ADS EACH REP 1 ORD SHS CLASS A" [ref=e77]
+  - link "NIO" [ref=e78]
+  - text: "6.540"
+  - img
+  - text: "0.460"
+  - link "NU HOLDINGS LTD" [ref=e79]
+  - link "NU" [ref=e80]
+  - text: "12.820"
+  - img
+  - text: "0.450"
+  - link "BANCO BRADESCO SA SPONS ADR EACH REPR 1 PRF NPV" [ref=e81]
+  - link "BBD" [ref=e82]
+  - text: "3.510"
+  - img
+  - text: "0.140"
+  - link "ITAU UNIBANCO HOLDINGS S.A. ADR EACH REPR 1 PRF NPV" [ref=e83]
+  - link "ITUB" [ref=e84]
+  - text: "7.850"
+  - img
+  - text: "0.250"
+  - link "ARCHER AVIATION INC" [ref=e85]
+  - link "ACHR" [ref=e86]
+  - text: "6.520"
+  - img
+  - text: "0.130"
+  - link "UIPATH INC" [ref=e87]
+  - link "PATH" [ref=e88]
+  - text: "9.470"
+  - img
+  - text: "0.540"
+  - link "VALE S.A. SPONS ADS REPR 1 COM NPV" [ref=e89]
+  - link "VALE" [ref=e90]
+  - text: "16.840"
+  - img
+  - text: "0.190"
+  - link "SNAP INC" [ref=e91]
+  - link "SNAP" [ref=e92]
+  - text: "5.610"
+  - img
+  - text: "0.060"
+  - region:
+    - heading "Innovation and trust go hand-in-hand at the NYSE" [level=1]
+    - text: "The New York Stock Exchange leads with seven of the 10 largest IPOs in\n          2025, paves way for digital currency public market debuts"
+    - link "Learn more" [ref=e93]
+  - heading [level=1]: "Capital markets happen here"
+  - region: "NYSE homepage"
+  - text: "#"
+  - heading [level=2]: "The NYSE is capitalism at its best, the belief that free and fair markets offer every individual the chance to benefit from success."
+  - text: "We set the standard with our unparalleled trading platform, enabling entrepreneurs, innovators, and investors to raise the capital they need to change the world. We want to share our vision for good governance, transparency, and trust with our listed community, furthering the responsible development of global business. You work too hard to list anywhere else."
+  - link "Learn more" [ref=e94]
+  - region
+  - heading "Today’s Stock Market" [level=3]
+  - text: "Eric Criscuolo - Market Strategist May 13, 2026 at 2:00 p.m. EST Yesterday as President Trump was preparing to leave for his trip to China there was a bout of profit taking in US markets. However, that selling pressure abated around midday with major indices rallying into the close. The S&P 500 closed down ~0.2%, nearly a percent off the lows. A lot of that was due to the Tech sector rallying in the afternoon, taking what was a 3-4% decline to a more modest 1.5%. Semis fell 3% and the DRAM memory ETF dropped 7%, putting a pause into their parabolic rises, while other AI component/infrastructure stocks also pulled back.The big story overnight was Nvidia (+3%) CEO Jensen Huang hopping on Air Force One in Alaska as a last-minute addition to the CEO delegation heading to China. Hegseth was already riding shotgun. Besides the trip, PPI this morning was another major storyline. The print was well ahead of expectations, further removing thoughts of rate cuts anytime soon. Despite the hot report, the S&P opened flat and is trading up just under 1.0% near its highs. Like yesterday Tech has strengthened from its lows of the day and is leading. Breadth however is soft with large and mega caps easily outperforming and flying the plane today.Headline PPI was up 1.4% / 6.0% m.m/y.y, well ahead of the 0.5% / 4.8% estimates and the largest increase since April 2022. Final demand services accounted for much of the gains, led by Trade Services (i.e. retailer and wholesaler margins) rising 2.7% and accounting for ~40% of the 1.4% m/m increase. Transportation and Warehousing also saw a sharp increase (+5.0% m.m vs 1.8% last month). Treasury yields moved a touch higher on the PPI print but then came all the way back in by the time the opening bell rang. They have bounced around since then, currently around flat. Brent crude is at the lows of the day, down ~2% following the IEA and OPEC released their monthly oil reports. Gold is modestly higher but other precious metals are seeing stronger gains (silver, platinum ~5%). Silver is testing its March highs ~$90. Copper continues to see solid gains as well, up another 2% today."
+  - link "Expand article" [ref=e95]
+  - heading [level=6]: "Weekly market recap"
+  - text: "Catch equity highlights and market-moving news."
+  - link "READ" [ref=e96]: "READ  NOW"
+  - heading [level=6]: "2026 Q1 earnings preview"
+  - text: "Seeing through the smoke."
+  - link "READ" [ref=e97]: "READ  NOW"
+  - heading [level=6]: "2026 trading calendar"
+  - text: "Holidays and other market related events."
+  - link "READ" [ref=e98]: "READ  NOW"
+  - tab "Indices" [ref=e99] [selected]
+  - tab "NYSE" [ref=e100]
+  - tab "NYSE American" [ref=e101]
+  - tab "ETFs" [ref=e102]
+  - tab "NYSE Texas" [ref=e103]
+  - text: "Description Last Change (%)Market data delayed minimum of 15 minutes What's next [fade-up]"
+  - heading [level=2]: "What’s next?"
+  - text: "The NYSE looks forward to welcoming more leading companies from around the world in 2026, growing our one-of-a-kind community and setting the pace for innovation on a global scale. We’re endlessly inspired by the people behind these companies, check out their stories below and let’s make something happen together."
+  - generic [ref=e104]:
+    - button "Play" [ref=e105]
+    - text: "posterUrl"
+  - heading [level=2]: "Going public"
+  - text: "What does it take to go public? Ryan Hinkle draws on twenty years of investing at Insight Partners, one of the most prolific global software investors, and shares his advice for SaaS startups preparing to go public."
+  - heading [level=2]: "Making their mark"
+  - text: "Entrepreneurs come to the NYSE to realize their ideas and change the world. We teamed up with 3M’s Post-it® Brand to encourage future leaders visiting our building to take a step toward making their goals and dreams happen. Watch as interns from Life Science Cares’ Project Onramp make their mark."
+  - generic [ref=e106]:
+    - button "Play" [ref=e107]
+    - text: "posterUrl"
+  - heading [level=2]: "The Cure(ious)™"
+  - text: "We asked some of the most curious minds in life sciences and healthcare to share thoughts on their careers, the future of health and more. Each participant drew questions and shared their insights, knowledge and some personal fun facts that left us inspired about the future of health and wellness."
+  - link "Get Inspired" [ref=e108]
+- main:
+  - heading [level=2]: "Connect with NYSE"
+  - link "Subscribe to alerts" [ref=e109]
+  - link "Watch today's bell" [ref=e110]
+- contentinfo:
+  - region:
+    - contentinfo:
+      - link [ref=e111]:
+        - img
+      - link "X" [ref=e112]:
+        - img
+      - link "YouTube" [ref=e113]
+      - link "Facebook" [ref=e114]
+      - link "LinkedIn" [ref=e115]
+      - link "Instagram" [ref=e116]
+      - link "Pinterest" [ref=e117]
+      - heading "Listings" [level=5]
+      - link "What to List" [ref=e118]
+      - link "How to List" [ref=e119]
+      - link "Listing Process" [ref=e120]
+      - link "Listing Resources" [ref=e121]
+      - link "Exchange Traded Products" [ref=e122]
+      - heading "Global Advisory" [level=5]
+      - link "Sustainability Resource Center" [ref=e123]
+      - link "NYSE Board Services" [ref=e124]
+      - link "NYSE Connect" [ref=e125]
+      - link "Investor Access" [ref=e126]
+      - link "Corporate Services" [ref=e127]
+      - heading "About" [level=5]
+      - link "Our History" [ref=e128]
+      - link "The Bell" [ref=e129]
+      - link "Media Center" [ref=e130]
+      - link "Behind the Scenes" [ref=e131]
+      - link "Events" [ref=e132]
+      - heading "Products" [level=5]
+      - link "Equities" [ref=e133]
+      - link "Options" [ref=e134]
+      - link "Bonds" [ref=e135]
+      - link "ETPs" [ref=e136]
+      - heading "Data" [level=5]
+      - link "Trading and Data Information" [ref=e137]
+      - link "NYSE Data Products" [ref=e138]
+      - link "Equity Index Data" [ref=e139]
+      - link "Data Policies, Contracts & Guidelines" [ref=e140]
+      - heading "Resources" [level=5]
+      - link "NYSE Community" [ref=e141]
+      - link "Recent Public Debuts" [ref=e142]
+      - link "Insights" [ref=e143]
+      - link "Listing Manager" [ref=e144]
+      - link "Regulation" [ref=e145]
+      - link "Pillar Trading System" [ref=e146]
+      - link "ICE Global Network" [ref=e147]
+      - link "Widget Library" [ref=e148]
+      - link "Privacy & Security CenterCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e149]
+      - text: "|"
+      - link "Your Choices" [ref=e150]
+      - text: "|"
+      - link "Terms of Use" [ref=e151]
+      - text: "|"
+      - link "Do Not Sell My Personal Information" [ref=e152]
+      - text: "© 2026  Intercontinental Exchange, Inc."
+- button [ref=e153]:
+  - img
+- img
+- text: "System Status: Normal"
+- link "See Details" [ref=e154]
+- heading [level=2]
+- link "Market Status" [ref=e155]
+- link "Trader Updates" [ref=e156]
+- link "Notices" [ref=e157]
+- link "Hours & Holidays" [ref=e158]
+- link "Fees" [ref=e159]
+- link "Order Types" [ref=e160]
+- link "Market Reports" [ref=e161]
+- link "Subscription Center" [ref=e162]
+- dialog "Cookie Consent":
+  - heading "Cookie Consent" [level=3]
+  - text: "This website uses cookies, chatbots, and similar technologies, some of which are provided by third parties. Some cookies enable us and these third parties to collect browsing and activity information, including limited personal information, and track your interactions with this website. We and these third parties use cookies, other technologies, and the information collected to enable certain website features and functionality, analyze, and improve website performance, personalize user experiences, and reach you with more relevant content and advertisements. Your interactions with this website will be recorded, tracked, analyzed, and shared with third parties using these cookies and other technologies such as chatbots. Anything you input to this website is subject to being recorded and stored by us or third parties for the purposes stated above. Click “Do Not Sell or Share My Personal Information” in the footer of the website to manage your cookie preferences. By interacting with this website, you also consent to the uses and disclosures as described in the"
+  - link "Privacy Policy" [ref=e163] [focused]
+  - text: ". You can learn more about our use of cookies and our privacy practices by reading the"
+  - link "Privacy Policy" [ref=e164]
+  - text: "."
+  - button "Confirm My Choices" [ref=e165]
+  - button "Reject All Non-Essential" [ref=e166]
+  - button "Accept All Cookies" [ref=e167]
+- iframe:
+  - button "NYSE End of Year 2025 play video" [ref=f1e1]:
+    - button "play video" [ref=f1e2]
+- iframe:
+  - region "Video Player" [ref=f2e1]:
+    - button "Play Video" [ref=f2e2]
+</result>
+
+[5] thinking: **Searching for information**
+
+I need to find a specific page, and maybe doing a site search could work. I wonder if using web search might be a faster option. I should consider checking the NYSE site too. It seems like formulating a search query is the best way to go about this. Let’s explore these options and see what yields the best results!
+
+[6] tool_call: websearch(objective="Find NYSE Rule 605 Market Center Files July 2024 data page or downloadable files on nyse.com", search_queries=["site:nyse.com Rule 605 Market Center Files July 2024","NYSE Rule 605 Market Center Files 2024 July"], mode="agentic")
+<result tokens_used="180">
+{"search_id":"search_b16c78a7d8c14ebbb4d179c6304eb029","results":[{"url":"http://nyse.com","title":"The New York Stock Exchange | NYSE","publish_date":"2025-12-16","excerpts":["# Your browser is unsupported\n## Connect with NYSE\nSubscribe to alerts Watch today's bell\nData Products\n* Data Products Catalog\n* Data Policies, Contracts & Guidelines\n* Technical Documents\n* [ICE Global Network](https://www.ice.com/data-services/global-network)\nAbout the NYSE\n* Our History\n* The Bell\n* [Media Center](https://www.ice.com/media)\n* [Behind the Scenes](https://www.nyse.com/article/nyse-closing-auction-insiders-guide)\n  An insider's guide to the NYSE Closing Auction"],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#1"},{"url":"https://www.nyse.com/trade/reports/rule-605","title":"Rule 605 Reports - NYSE","excerpts":["# Rule 605 Reports\n## Disclosure or Order of Execution\nPlease note that use of the information and links below is expressly bound by the [Terms and Conditions of Use](https://www.ice.com/terms-of-use) , which are also hyperlinked for your review at the bottom of all pages of the website.\nThe Securities and Exchange Commission’s Rule 605 (formerly 11Ac1-5) mandates that stock exchanges, dealers, and other market centers provide selected data on selected order executions.\n\n### Monthly Statistics\nThe files below have been compressed in .zip format.\nPlease note that this information may not be directly comparable to data displayed by other market centers due to differences in market structures and computation methods. SEC-required data does not account for quoted depth in spread calculations, the economic impact of order flow payment on brokerage customers, the costs of institutional trading, or the many criteria that encompass a cost-effective order routing strategy.\nAs of November 19, 2020, Rule 605 data for April 2016 to August 2020 has been restated. Further details can be found on the Restated Files Archive page ."],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#2"},{"url":"https://www.nyse.com/reports/nyse-american","title":"Monthly Disclosure of Order Execution Statistics (Rule 605 Reports)","excerpts":["# Monthly Disclosure of Order Execution Statistics\n(Rule 605 Reports)\n* View Rule 605 Statistics Files\n* View Rule 605 Market Center Files\n* View Restated NYSE American Rule 605 Statistics"],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#3"},{"url":"https://www.sec.gov/files/rules/final/2024/34-99679.pdf","title":"[PDF] Final rule: Disclosure of Order Execution Information - SEC.gov","excerpts":["accompanying text (estimating, based on analysis of Tick Size Pilot data, coverage of current Rule 605\nreporting requirements).\n38\nSee id. at 3841 (Figure 3) (describing a nalysis comparing one market center’s volume (NYSE) to TAQ data\nthat showed that an estimated 50% of shares executed during regular market hours were included in Rule\n605 reports as of Feb. 2021, and showed that this number has been on a slightly downward trend since\naround mid-2012).\n12\nof very different notional values, which might have complicated comparisons of aggregate\nexecution quality. Finally, the speed of trading in the market has increased exponentially since\n2000, ³⁹ rendering the 1 second timestamp conventions of preexisting Rule 605 less informative.\nMoreover, since the adoption of Rule 605, the Commission and its staff have continually\nassessed market events and their impact on market structure, with much of this effort aimed at\n\n...\n\nRule 605(a)(3) directs the SROs to act jointly in establishing procedures for market\ncenters, brokers, and dealers to follow in making available to the public the detailed report under\nRule 605(a)(1) and summary report under Rule 605(a)(2). The Rule 605 NMS Plan establishes\n865\nSee id. at 3825.\n866\nSee id.\n867\nSee final 17 CFR 242.605(a)(3) through (6); Proposing Release, 88 FR 3786 at 3824-25 (Jan. 20, 2023).\nThe Commission proposed to amend current Rule 605 by reorganizing paragraphs (a)(2) and (3) of current\nRule 605 as paragraphs (a)(3) through (6) of proposed Rule 605.\n229\nprocedures for market centers to make data available to the public in a uniform, readily\naccessible, and usable electronic form. ⁸⁶⁸ The Rule 605 NMS Plan requires each market center to\narrange with a single plan participant to act as the market center’s Designated Participant. ⁸⁶⁹ The\nRule 605 NMS Plan also requires market centers to post their monthly reports on an internet\n\n...\n\nwhere its reports may be downloaded, and each Designated Participant must maintain a comprehensive list\nof links for all market centers for which it functions as a Designated Participant. See Rule 605 NMS Plan at\nsections IV, VIII(c).\n870\nSee Rule 605 NMS Plan at section VII.\n871\nSee 17 CFR 242.608(c).\n872\nSee Rule 605 NMS Plan at 2 (“Section V . . . provides that market center files must be in standard, pipe -\ndelimited ASCII format”).\n230\nto account for summary reports and the new data fields required to be reported. The compliance\nperiod for amending the Rule 605 NMS Plan, and other implementation details, are discussed in\ninfra section VII.\nWith respect to report formatting, an investor advocacy group stated that header data\nshould be included in the Rule 605 reports, arguing that “it is impossible to understand the\nreports” without looking separately to published Commission guidance. ⁸⁷³ This commenter also\n\n...\n\nnational market system plan. See 17 CFR 242.608(a)(2). The Commission could in the future propose an\namendment to the Rule 605 NMS Plan to address issues related to the Rule 605 reports.\n231\nIn the event that an amendment to the Rule 605 NMS Plan establishing procedures for\nmarket centers, brokers, and dealers to comply with Rule 605 has not been approved by the\nCommission prior to the compliance date of the amendments to Rule 605, paragraph (a)(4) of\nRule 605 provides that market centers, brokers, and dealers shall prepare their reports in a\nconsistent, usable, and machine-readable electronic format, and make such reports available for\ndownloading from an internet website that is free and readily accessible to the public. ⁸⁷⁷\nParagraph (a)(5) of Rule 605 requires market centers, brokers, and dealers to keep the reports\nrequired by Rule 605(a)(1) and (2) posted on an internet website that is free and readily\n\n...\n\nrenderer, the Rule 605 NMS Plan will not establish the formats and fields for the summary reports.\n934\nSee 17 CFR 242.608(b).\n935\nIf the Rule 605 NMS Plan does not incorporate the necessary changes to Rule 605 in advance of the\nCompliance Date, final Rule 605(a)(4) will govern and the Compliance Date will still apply. As described\nfurther above in section V.B.1, final Rule 605(a)(4) will require that in the event that there is no effective\nnational market system plan establishing required procedures, market centers, brokers, and dealers shall\nprepare their reports in a consistent, usable, and machine-readable electronic format, in accordance with the\nrequirements in final Rule 605(a)(1), and make such reports available for downloading from a website that\nis free and readily accessible to the public.\n936\nSee supra note 923 and accompanying text.\n246\nmade available pursuant to an effective transaction reporting plan or effective national market\n\n...\n\ninitially estimated there would be 38 new market center respondents, which included 8 entities that would\noperate qualified auctions. See Proposing Release, 88 FR 3786 at 3826 (Jan. 20, 2023). Because final Rule\n605 does not include a requirement that entities operating qualified auctions report separately, the\nCommission is revising its estimate to include 30 new market center respondents.\n251\nD.\nTotal PRA Burdens\nRule 605, as amended, will require broker-dealers and market centers to make available\nto the public monthly order execution reports in electronic form. Broker-dealers and market\ncenters retain most, if not all, of the underlying raw data necessary to generate these reports in\nelectronic format or, if they do not, may obtain this information from publicly available data\nsources. ⁹⁴⁶ Consequently, Rule 605 will not require new data collection or recordkeeping\nburdens. Respondents could either program their systems to generate the statistics and reports, or\n\n...\n\n1270\nSee prior 17 CFR 242.605(a)(2) (requiring market centers to make their Rule 605 reports “available for\ndownloading from an Internet Web site that is free and readily accessible to the public….”).\n362\ncomplete set of Rule 605 reports to, for example, select the reporting entity offering the best\nexecution quality in a given stock, a market participant may incur search costs. ¹²⁷¹ The process\nof collecting Rule 605 reports may be simplified by the NMS Plan’s requirement that each\nmarket center must designate a single Participant to act as the market center’s Designated\nParticipant, who is tasked with maintaining a comprehensive list of the hyperlinks provided by\nits market centers. ¹²⁷² Furthermore, certain reporting entities ’ use of third -party vendors to\nprepare and/or collect Rule 605 reports may also simplify the process of collecting Rule 605\nreports, as these vendors typically maintain a centralized repository of the reports that they"],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#4"},{"url":"https://beta.nyse.com/markets/reports/disclosure-of-order-execution/archives","title":"Disclosure of Order Execution Archives - Rule 605 Reports - NYSE","excerpts":["# Rule 605 Restated Data\nNYSE NYSE American NYSE Arca NYSE National NYSE Texas\nAs of November 19, 2020, NYSE Rule 605 data is being restated for the period of April 2016 through August 2020. During that period, for shares executed outside the quote, the share-weighted average amount per share that prices was incorrectly reported as a negative number.\nAdditionally, for the period of May 2018 through August 2020, securities listed on NYSE American that had a suffix (for example preferred issues) were inadvertently excluded from calculations.\nFurthermore, for the period of August 2019 to August 2020 securities listed on NYSE that had a market center of NXNYS also had securities with a suffix inadvertently excluded. Originally reported data can be found in the archives.\nNote: Starting with August 2019, for symbols where the market center is NXNYS, symbols with a suffix contain a space between the root and the suffix, and all other market centers do not have a space between the root and the suffix.\nThe files below have been compressed in .zip format.\nAs of November 19, 2020, NYSE American Rule 605 data is being restated for the period of April 2016 through August 2020. During that period, for shares executed outside the quote, the share-weighted average amount per share was incorrectly reported as a negative number.\nAdditionally, for the period of July 2017 through August 2020, securities listed on NYSE and NYSE American that had a suffix (for example preferred issues) and a market center of AXASE were inadvertently excluded from calculations. Originally reported data can be found in the archives.\nNote: Starting with July 2017, for symbols where the market center is AXASE, symbols with a suffix contain a space between the root and the suffix, and all other market centers do not have a space between the root and the suffix.\nThe files below have been compressed in .zip format.\nAs of November 19, 2020, NYSE Arca Rule 605 data is being restated for the period of April 2016 through August 2020. During that period, for shares executed outside the quote, the share-weighted average amount per share was incorrectly reported as a negative number. Originally reported data can be found in the archives.\nThe files below have been compressed in .zip format.\nAs of November 19, 2020, NYSE National Rule 605 data is being restated for the period of May 2018 through August 2020. During that period, for shares executed outside the quote, the share-weighted average amount per share was incorrectly reported as a negative number.\nAdditionally, for the period of May 2018 through August 2020, securities listed on NYSE and NYSE American that had a suffix (for example preferred issues) were inadvertently excluded from calculations. Originally reported data can be found in the archives.\nThe files below have been compressed in .zip format.\nAs of November 19, 2020, NYSE Texas Rule 605 data is being restated for the period of November 2019 through August 2020. During that period, for shares executed outside the quote, the share-weighted average amount per share was incorrectly reported as a negative number.\nAdditionally, for the period of November 2019 through August 2020, securities listed on NYSE and NYSE American that had a suffix (for example preferred issues) were inadvertently excluded from calculations. Originally reported data can be found in the archives.\nThe files below have been compressed in .zip format.\nData Products\n* Data Products Catalog\n* Data Policies, Contracts & Guidelines\n* Technical Documents\n* [ICE Global Network](https://www.ice.com/data-services/global-network)\nAbout the NYSE\n* Our History\n* The Bell\n* [Media Center](https://www.ice.com/media)\n* [Behind the Scenes](https://www.nyse.com/article/nyse-closing-auction-insiders-guide)\n  An insider's guide to the NYSE Closing Auction"],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#5"},{"url":"http://www.fif.com/media/com_acymailing/upload/fif_ltr_r605_submitted_24jun2024.pdf","title":"[PDF] FINANCIAL INFORMATION FORUM","excerpts":["solutions to technology developments, regulatory initiatives, and other industry changes. This is a list of FIF\nmembers .\n2 Securities Exchange Act Release No. 99679 (Mar. 6, 2024), 89 FR 26428 (Apr. 15, 2024) (“Rule 605 Amendments\nAdopting Release”) .\nFINANCIAL INFORMATION FORUM\n2\n**A.** **Amendments to the Rule 605 NMS Plan; implementation date**\n**_Rule 605 can only be implemented as designed if the Rule 605 NMS Plan Participants update the Rule_**\n**_605 NMS Plan on a timely basis_**\nRule 605(a)(3) adopted by the Commission provides:\n(3) Every national securities exchange on which NMS stocks are traded and each\nnational securities association shall act jointly in establishing procedures for market\ncenters, brokers, and dealers to follow in making available to the public the reports\nrequired by this section in a uniform, readily accessible, and usable electronic form. ³\nRule 605(a)(4) provides:\n(4) In the event there is no effective national market system plan establishing such\nprocedures, market centers, brokers, and dealers shall prepare their reports in a\nconsistent, usable, and machine-readable electronic format, in accordance with the\nrequirements in paragraph (a)(1) of this section, and make such reports available for\ndownloading from an internet website that is free and readily accessible to the public. ⁴\nIf the Participants of the National Market System Plan Establishing Procedures Under Rule 605 of\nRegulation NMS (the “Rule 605 NMS Plan”) do not update the current procedures document for Rule\n605 reporting, ⁵ the objectives of the rule will not be achieved, as each firm will need to determine and\nimplement its own technical requirements for Rule 605 reporting. As one of multiple examples that\ncould be provided, the current Rule 605 NMS Plan provides the following guidance for reporting order\ntypes:\n(5) The next field in a file shall be the code for one of the five types of order by which\nthe Rules requires a market center to categorize its report. The order type codes are as\nfollows: market orders – “11”; marketable limit orders – “12”; inside -the-quote limit\norders – “13”; at -the-quote limit orders – “14”; near -the-quote limit orders – “15”. ⁶\nThe 2024 amendments expand the number of order types from 5 to 10 and rename some of the existing\norder types. ⁷ Without an updated Rule 605 NMS Plan, there is no guidance for reporting firms on how to\nreport the 10 order types. Absent this guidance, reporting firms would need to assign values to each of\nthe order types. It is likely that these values would not be uniform across reporting firms. The “order\ntype” field is one of multiple fields that could be highlighted where there would be inconsistency in\nreporting across firms.\n3 17 CFR §242.605(a)(3).\n4 17 CFR §242.605(a)(4).\n5 Appendix A – Text of Proposed Plan, available at\nhttps://www.nasdaqtrader.com/content/MarketRegulation/SECRule605/appendixa1.pdf .\n6 Id. at 6.\n\n...\n\n(new)\nFIF members agree with the Commission that Question\n24 is superseded by the 2024 amendments.\n25\nExemption for Inactively\nTraded Securities (new)\nNo changes required.\n26\nExemption for Small\nMarket Centers (new)\nNo changes required.\n27\nExemption for Block\nOrders (new)\nFIF members agree with the Commission that Question\n27 is superseded by the 2024 amendments.\nAppendix A\nJoint-SRO Plan\nThe Rule 605 NMS Plan Participants should update the\nRule 605 NMS Plan (see discussion above).\nAppendix B\nTable with Rule 11Ac1-5\nSample Statistics\nThe Commission should update this table to conform to\nthe 2024 amendments.\n**2013 FAQs**\nIntroduction\nIntroduction\nThe Commission should update the Introduction. For\nexample, the Introduction provides that only market\ncenters are required to prepare Rule 605 reports.\n1\nRule 611 and Rule 605 –\nSpecial Handling of\nCertain ISOs\nThe Commission should update Question 1 to update the\nsection reference.\n2\nRule 605 and Non-Exempt\nShort Sales\n\n...\n\nreported concerning the unexecuted part of such orders, regardless of whether they are\nexecuted or cancelled in the hours, days, or weeks after the end of regular trading hours\non the day of order receipt. In other words, a market center's statistical report should\nreflect the disposition of orders solely during regular trading hours on the day of order\nreceipt, and each day begins with a clean slate of orders. ²⁸\nThe Commission’s proposing release for the 2024 amendments appears to supersede this approach, at\nleast under certain conditions:\nAs a result of the proposed inclusion of limit orders submitted after closing and the\nproposed changes to the categorization of NMLOs described in section IV.B.2, limit\norders could be received for execution and fall within the scope of Rule 605 on a day\nother than the day of order receipt. Under current Rule 605(a)(1), a reporter must\nprepare a monthly report on the covered orders in NMS stocks that it received for\n\n...\n\nthis calculation.\n**T.** **Inconsistency** **between Rule 605 and the Commission’s interpretation of Rule 606**\nThe 2024 amendments provide the following definition of “order receipt”:\n… the time (at a minimum to the millisecond) that an order was received by a market\ncenter **_for execution_** [emphasis added], or in the case of a broker or dealer that is not\nacting as a market center, the time (at a minimum to the millisecond) that an order was\nreceived by the broker or dealer **_for execution_** [emphasis added]. ⁴⁰\n40 17 CFR §242.600(b)(103).\nFINANCIAL INFORMATION FORUM\n23\nPresumably, the phrase “for execution” in the 20 24 amendments includes a non-executing broker (i.e., a\nbroker that does not trade as principal or execute agency crosses) because otherwise the rule would not\nbe providing guidance to non-executing brokers as to how to determine the time of order receipt.\nWith respect to Rule 606, the Commission has previously taken the position that a non-executing broker"],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#6"},{"url":"https://www.federalregister.gov/documents/2024/04/15/2024-05556/disclosure-of-order-execution-information","title":"\n      Federal Register\n       :: \n      Disclosure of Order Execution Information\n    ","publish_date":"2024-04-15","excerpts":["# SUPPLEMENTARY INFORMATION:\n## IV. Summary Execution Quality Report\n### B. Final Rule and Discussion\nThe Commission is adopting Rule 605(a)(2), with modifications from the proposal, to require that every market center, broker, or dealer produce a summary execution quality report in addition to the more detailed report required by Rule 605(a)(1).  [741 ] The summary report will enable market participants and other interested parties to have ready access to focused aggregated data that will allow them to compare some of the more significant aspects of the execution quality provided by specific market centers and larger broker-dealers. Moreover, by requiring market centers, brokers, and dealers to produce a summary report in addition to, rather than instead of, the more voluminous data called for by Rule 605(a)(1), those market participants or other observers that would like to perform more comprehensive or specific analyses of execution quality remain able to download the more granular underlying data files and perform such analyses.\n\n...\n\n## V. Requirements for Making Rule 605 Reports Available to the Public\n### B. Final Rule and Discussion\n#### 1. Accessibility of Rule 605 Reports\nRule 605(a)(3) directs the SROs to act jointly in establishing procedures for market centers, brokers, and dealers to follow in making available to the public the detailed report under Rule 605(a)(1) and summary report under Rule 605(a)(2). The Rule 605 NMS Plan establishes procedures for market centers to make data available to the public in a uniform, readily accessible, and usable electronic form. [868 ] The Rule 605 NMS Plan requires each market center to arrange with a single plan participant to act as the market center's Designated Participant. [869 ] The Rule 605 NMS Plan also requires market centers to post their monthly reports on an internet website that is free of charge and readily accessible to the public.\n[870 ] Inclusion of Rule 605(a)(2)'s summary reports within the scope of the Rule 605 NMS Plan will promote consistent administration of Rule 605 and allow the Designated Participant for each reporting entity to play a role with respect to the reports required by Rule 605(a)(1) and (2). As is the case for market centers that are not Participants prior to these rule amendments, the Participants will be required to enforce compliance with the terms of the Rule 605 NMS Plan by their members and persons associated with their members. [871 ] In addition, formatting for Rule 605 data is governed by the Rule 605 NMS Plan. Among other things, the Rule 605 NMS Plan sets forth the file type and structure of the reports and the order and format of fields, yielding reports that are structured and machine-readable.\n\n...\n\nIn the event that an amendment to the Rule 605 NMS Plan establishing ( printed page 26493) procedures for market centers, brokers, and dealers to comply with Rule 605 has not been approved by the Commission prior to the compliance date of the amendments to Rule 605, paragraph (a)(4) of Rule 605 provides that market centers, brokers, and dealers shall prepare their reports in a consistent, usable, and machine-readable electronic format, and make such reports available for downloading from an internet website that is free and readily accessible to the public. [877 ] Paragraph (a)(5) of Rule 605 requires market centers, brokers, and dealers to keep the reports required by Rule 605(a)(1) and (2) posted on an internet website that is free and readily accessible to the public for a period of three years from the initial date of posting.\n\n...\n\n## VII. Transition Matters\nThe Commission is providing a transition period between when the amendments to Rule 605 are adopted and when the changes are fully implemented. As discussed above, the Rule 605 NMS Plan establishes procedures for market centers to make data available to the public in a uniform, readily accessible, and usable electronic form. [920 ] In addition, formatting for Rule 605 data is governed by the Rule 605 NMS Plan, which sets forth, among other things, the file type and structure of the reports and the ( printed page 26496) order and format of fields. [921 ] As described in section V.B.1 above, the Commission is adopting paragraph (a)(3) of Rule 605 as proposed to direct the SROs to act jointly in establishing procedures for market centers, brokers, and dealers to follow in making Rule 605 reports available to the public.\n\n...\n\n## IX. Economic Analysis\n### C. Baseline\n#### (a) Disclosure Requirements Under Preexisting Rule 605\nThe Rule 605 NMS Plan establishes procedures for market centers to make data available to the public in a uniform, readily accessible, and usable electronic form.  [992 ] The Plan also requires market centers to post their monthly reports on an internet website that is free of charge and readily accessible to the public.  [993 ] Generally, reports are posted on market centers' own websites; however, they may be posted on a third-party vendor site if a market center uses a vendor to prepare its reports.  [994 ] Among other things, the Plan sets forth the file type and structure of the reports and the order and format of fields, yielding reports that are structured and machine-readable.  [995 ]\n\n...\n\n# Footnotes\nSee Rule 605 NMS Plan Release, 66 FR 19814 at 19815 (Apr. 17, 2001) (“Section V . . . provides that market center files must be in standard, pipe-delimited ASCII format”).\nBack to Citation\n922.\nThe Rule 605 NMS Plan details procedures for market centers to follow and, among other things, specifies the order and format of fields in a manner that aligns with Rule 605(a)(1). See Rule 605 NMS Plan generally and section VI.(a) of the Rule 605 NMS Plan. As is currently the case for market centers that are not Participants, the Participants will be required to enforce compliance with the terms of the Rule 605 NMS Plan by their members and persons associated with their members. See [17 CFR 242.608(c)](https://www.ecfr.gov/current/title-17/section-242.608.608(c)) .\nBack to Citation\n923."],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#7"},{"url":"https://www.citadelsecurities.com/rule-605-606-statements/","title":"Rule 605 and 606 Statements - Citadel Securities","publish_date":"2026-04-22","excerpts":["* Who We Are\nRule 605 and 606 Statements\nRule 605 Statement\nThe Securities and Exchange Commission requires market centers to publish disclosure of order executions in national market system stocks (NMS stocks) required under Rule 605 of Regulation NMS. This page includes disclosure reports as required by the SEC Rule 605 that went into effect on [January 18, 2019.](https://www.ecfr.gov/on/2019-01-18/title-17/section-242.605) This page does not include disclosure reports based on the Amendments to Rule 605 adopted by [SEC in March 2024](https://www.ecfr.gov/on/2024-04-15/title-17/section-242.605) since the compliance date established by the SEC for the production of those reports begins [Aug 2026.](https://www.federalregister.gov/documents/2025/10/02/2025-19316/extension-of-compliance-date-for-disclosure-of-order-execution-information)\n**Please click the links below for Citadel Securities LLC’s monthly Rule 605 statistics.**\n\n...\n\nDecember 2024 – [TCDRG202412](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/01/CDRG_S3_605_202412.v3.txt)\nNovember 2024 – [TCDRG202411](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2024/12/November-2024_CDRG_S3_605_202411.txt)\nOctober 2024 – [TCDRG202410](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2024/11/CDRG_S3_605_202410.v1.txt)\nSeptember 2024 – [TCDRG202409](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202409.txt)\nAugust 2024 – [TCDRG202408](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202408.txt)\nJuly 2024 – [TCDRG202407](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202407.txt)\nJune 2024 – [TCDRG202406](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202406.txt)\nMay 2024 – [TCDRG202405](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202405.txt)\nApril 2024 – [TCDRG202404](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202404.txt)\nMarch 2024 – [TCDRG202403](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202403.txt)\nFebruary 2024 – [TCDRG202402](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202402.txt)\nJanuary 2024 – [TCDRG202401](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202401.txt)\nDecember 2023 – [TCDRG202312](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202312.txt)\nNovember 2023 – [TCDRG202311](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202311.txt)\nOctober 2023 – [TCDRG202310](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202310.txt)\nSeptember 2023 – [TCDRG202309](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202309.txt)\nAugust 2023 – [TCDRG202308](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202308.txt)\nJuly 2023 – [TCDRG202307](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202307.txt)\nJune 2023 – [TCDRG202306](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202306.txt)\nMay 2023 – [TCDRG202305](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202305.txt)\nApril 2023 – [TCDRG202304](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202304.txt)\nMarch 2023 – [TCDRG202303](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202303.txt)\nFebruary 2023 – [TCDRG202302](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202302.txt)\nJanuary 2023 – [TCDRG202301](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202301.txt)\nDecember 2022 – [TCDRG202212](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202212.txt)\nNovember 2022 – [TCDRG202211](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202211.txt)\nOctober 2022 – [TCDRG202210](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202210.txt)\nSeptember 2022 – [TCDRG202209](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202209.txt)\nAugust 2022 – [TCDRG202208](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202208.txt)\nJuly 2022 – [TCDRG202207](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202207.txt)\nJune 2022 – [TCDRG202206](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202206.txt)\nMay 2022 – [TCDRG202205](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202205.txt)\n\n...\n\nAugust 2021 – [TCDRG202108](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202108.txt)\nJuly 2021 – [TCDRG202107](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202107.txt)\nJune 2021 – [TCDRG202106](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202106.txt)\nMay 2021 – [TCDRG202105](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202105.txt)\nApril 2021 – [TCDRG202104](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202104.txt)\nMarch 2021 – [TCDRG202103](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2025/05/CDRG_605_202103.txt)\nRule 606 Statement\nSecurities and Exchange Commission requires broker-dealers to disclose information of order routing practices in NMS equities and option securities required under Rule 606 of Regulation NMS.\n\n...\n\nQ1 2024 – [Rule 606 Statement-1Q2024 (xml)](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2024/04/SEC606a1_CSIN_Held_2024_Q1_20240404.xml)\nQ4 2023 – [Rule 606 Statement-4Q2023 (PDF)](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2024/01/SEC606a1_CSIN_Held_2023_Q4_20240122.xml.pdf)\nQ4 2023 – [Rule 606 Statement-4Q2023 (xml)](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2024/01/SEC606a1_CSIN_Held_2023_Q4_20240122.xml)\nQ3 2023 – [Rule 606 Statement-3Q2023 (PDF)](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2023/10/SEC606a1_CSIN_Held_2023_Q3_20231016.pdf)\nQ3 2023 – [Rule 606 Statement-3Q2023 (xml)](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2023/10/SEC606a1_CSIN_Held_2023_Q3_20231016-1.xml)\nQ2 2023 – [Rule 606 Statement-2Q2023 (PDF)](https://www.citadelsecurities.com/wp-content/uploads/sites/2/2023/07/SEC606a1_CSIN_Held_2023_Q2.pdf)"],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#8"},{"url":"https://www.goldmansachs.com/compliance-rule605","title":"SEC Rule 605 (formerly known as Rule 11Ac1-5) - Goldman Sachs","excerpts":["# SEC Rule 605 (formerly known as Rule 11Ac1-5)\nMarch 2026\nFebruary 2026\nJanuary 2026\nDecember2025\nNovember 2025\nOctober 2025\nSeptember 2025\nAugust 2025\nJuly 2025\nJune 2025\nMay 2025\nApril 2025\nMarch 2025\nFebruary 2025\nJanuary 2025\nDecember 2024\nNovember 2024\nOctober 2024\nSeptember 2024\nAugust 2024\nJuly 2024\nJune 2024\nMay 2024\nApril 2024\nMarch 2024\n[February 2024](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202402.zip)\n[January 2024](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202401.zip)\n[December 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202312.zip)\n[November 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202311.zip)\n[October 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202310.zip)\n[September 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202309.zip)\n[August 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202308.zip)\n[July 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202307.zip)\n[June 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202306.zip)\n[May 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202305.zip)\n[April 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202304.zip)\n[March 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202303.zip)\n[February 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202302.zip)\n[January 2023](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202301.zip)\n[December 2022](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202212.zip)\n[November 2022](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202211.zip)\n[October 2022](https://www.goldmansachs.com/compliance-rule605/gsco-docs/TGSCO202210.zip)\n\n...\n\nMarch 2026\nFebruary 2026 *\nJanuary 2026\nDecember 2025\nNovember 2025\nOctober 2025\nSeptember 2025\nAugust 2025\nJuly 2025\nJune 2025\nMay 2025\nApril 2025*\nMarch 2025 *\nFebruary 2025\nJanuary 2025\nDecember 2024\nNovember 2024\nOctober 2024\nSeptember 2024\nAugust 2024 *\nJuly 2024 *\nJune 2024 *\nMay 2024 *\nApril 2024 *\nMarch 2024\n[February 2024](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202402.zip) *\n[January 2024](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202401.zip)\n[December 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202312.zip)\n[November 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202311.zip)\n[October 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202310.zip)\n[September 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202309.zip)\n[August 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202308.zip)\n[July 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202307.zip)\n[June 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202306.zip)\n[May 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202305.zip)\n[April 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202304.zip)\n[March 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202303.zip)\n[February 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202302.zip)\n[January 2023](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202301.zip)\n[December 2022](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202212.zip)\n[November 2022](https://www.goldmansachs.com/compliance-rule605/sgmt-docs/TSGMT202211.zip)\n\n...\n\n(zip archives of ASCII pipe-delimited data files)\n*We are examining whether SGMT’s Rule 605 Reports for February, April, May, June, July, and August 2024, and March and April 2025, and February 2026 may be missing a small number of covered orders comprising a de minimis percentage of covered volume. If required, we will publish an updated report.\n**Important Note**\nPursuant to the Securities and Exchange Commission (SEC) Rule 605, Goldman Sachs & Co. LLC (“the Firm”) publishes statistical information, on a monthly basis, regarding its execution of market and limit orders in those Regulation NMS securities in which the Firm is a designated market maker as well as its execution of market and limit orders in Regulation NMS securities that are routed to its alternative trading system, SIGMA X2, for execution.\nSEC Rule 605 requires securities exchanges, alternative trading systems, market makers and other market centers to publicly disclose statistics in a number of standardized categories based on certain assumptions about order execution and order routing practices. You should note that based on the SEC’s requirements, these statistics only capture a minority of the Firm’s order flow.\nThe required statistics are intended to provide a baseline to facilitate comparisons of execution quality among and between market makers, alternative trading systems, and other trading venues. However, they do not provide a complete comparison across trading venues, because each venue’s statistics reflect only the types of orders it has received which are in turn based on its customers’ or users’ particular objectives. Accordingly, the statistics do not create a reliable basis on which to assess whether the Firm or any other trading venue has satisfied its duty of best execution. From time to time the Firm may determine it necessary to update its monthly Rule 605 data. All reports, original and amended, are available upon request."],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#9"},{"url":"https://www.nyse.com/listings/resources","title":"Listed Company Resources - NYSE","excerpts":["# Company Resources\nStandards\n| Market | Document |\n| NYSE | * NYSE Initial Listing Standards (includes closed end funds) |\n* [NYSE Continued Listing Standards](https://nyseguide.srorules.com/listed-company-manual/09013e2c8556747d?searchId=1150133367) |\n  |NYSE American |* NYSE American Listing Standards |\n  |NYSE Arca |* [NYSE Arca Listing Standards for ETPs – Rule 5](https://nysearcaguide.srorules.com/rules/b44a1d1c7ccd1000a29890b11c2ac4f1021a?searchId=1149983887)\n* [NYSE Arca Listing Standards for ETPs – Rule 8](https://nysearcaguide.srorules.com/rules/b44a20787ccd1000a19890b11c2ac4f10292?searchId=1149990311) |\n  |NYSE Bonds |* [NYSE Listing Standards for Bonds](https://nyseguide.srorules.com/listed-company-manual/19a55bde7cda1000a94ed8d385ad1694013?searchId=1150129383) |\nManuals\n| Market | Document |\n| NYSE | * [NYSE Listed Company Manual](https://nyse.wolterskluwer.cloud/listed-company-manual) |\n\n...\n\nThe following links provide the materials necessary to prepare an original listing application for the New York Stock Exchange. The first step in the application process is to contact NYSE to request a confidential review of eligibility. A company should not file an original application until NYSE has provided a notification letter of eligibility clearance and conditions of listing.\nPlease note that original signatures are required for all forms.\nPlease also note NYSE and NYSE American require different forms and application materials. Scroll down for the appropriate market.\n\n...\n\n## NYSE Listing Materials\n### NYSE Section 303A Initial Corporate Governance Affirmation\n#### NYSE Arca ETP Listing Materials\nListing Application, Listing Agreement and Supplemental Listing Application\nFor an issuer to list on NYSE Arca, it must receive NYSE Arca authorization and file a Listing Application and Listing Agreement and other required documents. For an existing NYSE Arca issuer to list additional securities, it must receive NYSE Arca authorization and file a Supplemental Listing Application (\"SLAP\"). The NYSE Arca listing application, listing agreement and SLAP can be submitted electronically through Listing Manager, the NYSE's fully integrated web application. Additional information about Listing Manager such as FAQs and training videos can be found here. If you have questions or concerns about Listing Manager, please contact us at [[email protected]](/cdn-cgi/l/email-protection) or + 1 212 656 4651."],"source_id":"search_b16c78a7d8c14ebbb4d179c6304eb029#10"}],"usage":[{"name":"sku_search","count":1}]}
+</result>
+
+[7] tool_call: repl("Searching NYSE site from page")
+<request>
+await page.locator('e166').click();
+const s2 = await snapshot(page, {interactive: true});
+console.log(s2.diff);
+</request>
+<result tokens_used="180" elapsed_time="366ms">
+@@ -217 +217 @@
+-  - text: "0.060"
++  - text: "0.060\n   \n    Market data delayed minimum of 15 minutes"
+@@ -246 +246 @@
+-  - text: "Description Last Change (%)Market data delayed minimum of 15 minutes What's next [fade-up]"
++  - text: "Description Last Change (%)Market data delayed minimum of 15 minutes"
+@@ -340 +340 @@
+-  - link "Privacy Policy" [ref=e163] [focused]
++  - link "Privacy Policy" [ref=e163]
+@@ -345 +345 @@
+-  - button "Reject All Non-Essential" [ref=e166]
++  - button "Reject All Non-Essential" [ref=e166] [focused]
+</result>
+
+[8] tool_call: repl("Opening Rule 605 reports page")
+<request>
+const p2 = await openTab('https://www.nyse.com/trade/reports/rule-605');
+const s3 = await snapshot(page, {interactive: true});
+console.log(s3.tree);
+</request>
+<result tokens_used="89" elapsed_time="965ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → Rule 605 Reports (https://www.nyse.com/trade/reports/rule-605)
+# note: interactive (clickable / focusable) elements only.
+- title: "Rule 605 Reports" [url=https://www.nyse.com/trade/reports/rule-605]
+- banner:
+  - link "ICE" [ref=e1]
+  - link "NYSE" [ref=e2]
+  - link "NYSE CONNECT" [ref=e3]
+  - link "LOGIN" [ref=e4]
+  - link [ref=e5]:
+    - img
+  - navigation:
+    - button "Listings" [ref=e6] [disabled]
+    - button "Trading" [ref=e7] [disabled]
+    - button "Market Data" [ref=e8] [disabled]
+    - button "Insights" [ref=e9] [disabled]
+    - button "About" [ref=e10] [disabled]
+  - textbox "Search" [ref=e11] [disabled] [placeholder="Search"]
+  - img
+- region
+- main:
+  - link "Trading at NYSE" [ref=e12]
+  - text: "/"
+  - link "Reports" [ref=e13]
+  - text: "/Rule 605 Reports"
+  - heading "Rule 605 Reports" [level=1]
+  - heading "Disclosure or Order of Execution" [level=3]
+  - text: "Please note that use of the information and links below is expressly bound by the"
+  - link "Terms and Conditions of Use" [ref=e14]
+  - text: ", which are also hyperlinked for your review at the bottom of all pages of the website.The Securities and Exchange Commission’s Rule 605 (formerly 11Ac1-5) mandates that stock exchanges, dealers, and other market centers provide selected data on selected order executions."
+  - heading "Monthly Statistics" [level=4]
+  - text: "The files below have been compressed in .zip format.Please note that this information may not be directly comparable to data displayed by other market centers due to differences in market structures and computation methods. SEC-required data does not account for quoted depth in spread calculations, the economic impact of order flow payment on brokerage customers, the costs of institutional trading, or the many criteria that encompass a cost-effective order routing strategy.As of November 19, 2020, Rule 605 data for April 2016 to August 2020 has been restated. Further details can be found on the"
+  - link "Restated Files Archive page" [ref=e15]
+  - text: "."
+  - button "NYSE" [ref=e16] [disabled]
+  - text: "Statistics Files Market Center Files"
+  - link "March 2026" [ref=e17]
+  - link "March 2026" [ref=e18]
+  - link "February 2026" [ref=e19]
+  - link "February 2026" [ref=e20]
+  - link "January 2026" [ref=e21]
+  - link "January 2026" [ref=e22]
+  - link "December 2025" [ref=e23]
+  - link "December 2025" [ref=e24]
+  - link "November 2025" [ref=e25]
+  - link "November 2025" [ref=e26]
+  - link "October 2025" [ref=e27]
+  - link "October 2025" [ref=e28]
+  - link "September 2025" [ref=e29]
+  - link "September 2025" [ref=e30]
+  - link "August 2025" [ref=e31]
+  - link "August 2025" [ref=e32]
+  - link "July 2025" [ref=e33]
+  - link "July 2025" [ref=e34]
+  - link "June 2025" [ref=e35]
+  - link "June 2025" [ref=e36]
+  - link "May 2025" [ref=e37]
+  - link "May 2025" [ref=e38]
+  - link "April 2025" [ref=e39]
+  - link "April 2025" [ref=e40]
+  - link "March 2025" [ref=e41]
+  - link "March 2025" [ref=e42]
+  - link "February 2025" [ref=e43]
+  - link "February 2025" [ref=e44]
+  - link "January 2025" [ref=e45]
+  - link "January 2025" [ref=e46]
+  - link "December 2024" [ref=e47]
+  - link "December 2024" [ref=e48]
+  - link "November 2024" [ref=e49]
+  - link "November 2024" [ref=e50]
+  - link "October 2024" [ref=e51]
+  - link "October 2024" [ref=e52]
+  - link "September 2024" [ref=e53]
+  - link "September 2024" [ref=e54]
+  - link "August 2024" [ref=e55]
+  - link "August 2024" [ref=e56]
+  - link "July 2024" [ref=e57]
+  - link "July 2024" [ref=e58]
+  - link "June 2024" [ref=e59]
+  - link "June 2024" [ref=e60]
+  - link "May 2024" [ref=e61]
+  - link "May 2024" [ref=e62]
+  - link "April 2024" [ref=e63]
+  - link "April 2024" [ref=e64]
+  - link "March 2024" [ref=e65]
+  - link "March 2024" [ref=e66]
+  - link "February 2024" [ref=e67]
+  - link "February 2024" [ref=e68]
+  - link "January 2024" [ref=e69]
+  - link "January 2024" [ref=e70]
+  - link "December 2023" [ref=e71]
+  - link "December 2023" [ref=e72]
+  - link "November 2023" [ref=e73]
+  - link "November 2023" [ref=e74]
+  - link "October 2023" [ref=e75]
+  - link "October 2023" [ref=e76]
+  - link "September 2023" [ref=e77]
+  - link "September 2023" [ref=e78]
+  - link "August 2023" [ref=e79]
+  - link "August 2023" [ref=e80]
+  - link "July 2023" [ref=e81]
+  - link "July 2023" [ref=e82]
+  - link "June 2023" [ref=e83]
+  - link "June 2023" [ref=e84]
+  - link "May 2023" [ref=e85]
+  - link "May 2023" [ref=e86]
+  - link "April 2023" [ref=e87]
+  - link "April 2023" [ref=e88]
+  - text: "Restated Files"
+  - link "View" [ref=e89]: "View  Archive"
+  - button "NYSE American" [ref=e90] [disabled]
+  - text: "Statistics Files Market Center Files"
+  - link "March 2026" [ref=e91]
+  - link "March 2026" [ref=e92]
+  - link "February 2026" [ref=e93]
+  - link "February 2026" [ref=e94]
+  - link "January 2026" [ref=e95]
+  - link "January 2026" [ref=e96]
+  - link "December 2025" [ref=e97]
+  - link "December 2025" [ref=e98]
+  - link "November 2025" [ref=e99]
+  - link "November 2025" [ref=e100]
+  - link "October 2025" [ref=e101]
+  - link "October 2025" [ref=e102]
+  - link "September 2025" [ref=e103]
+  - link "September 2025" [ref=e104]
+  - link "August 2025" [ref=e105]
+  - link "August 2025" [ref=e106]
+  - link "July 2025" [ref=e107]
+  - link "July 2025" [ref=e108]
+  - link "June 2025" [ref=e109]
+  - link "June 2025" [ref=e110]
+  - link "May 2025" [ref=e111]
+  - link "May 2025" [ref=e112]
+  - link "April 2025" [ref=e113]
+  - link "April 2025" [ref=e114]
+  - link "March 2025" [ref=e115]
+  - link "March 2025" [ref=e116]
+  - link "February 2025" [ref=e117]
+  - link "February 2025" [ref=e118]
+  - link "January 2025" [ref=e119]
+  - link "January 2025" [ref=e120]
+  - link "December 2024" [ref=e121]
+  - link "December 2024" [ref=e122]
+  - link "November 2024" [ref=e123]
+  - link "November 2024" [ref=e124]
+  - link "October 2024" [ref=e125]
+  - link "October 2024" [ref=e126]
+  - link "September 2024" [ref=e127]
+  - link "September 2024" [ref=e128]
+  - link "August 2024" [ref=e129]
+  - link "August 2024" [ref=e130]
+  - link "July 2024" [ref=e131]
+  - link "July 2024" [ref=e132]
+  - link "June 2024" [ref=e133]
+  - link "June 2024" [ref=e134]
+  - link "May 2024" [ref=e135]
+  - link "May 2024" [ref=e136]
+  - link "April 2024" [ref=e137]
+  - link "April 2024" [ref=e138]
+  - link "March 2024" [ref=e139]
+  - link "March 2024" [ref=e140]
+  - link "February 2024" [ref=e141]
+  - link "February 2024" [ref=e142]
+  - link "January 2024" [ref=e143]
+  - link "January 2024" [ref=e144]
+  - link "December 2023" [ref=e145]
+  - link "December 2023" [ref=e146]
+  - link "October 2023" [ref=e147]
+  - link "October 2023" [ref=e148]
+  - link "September 2023" [ref=e149]
+  - link "September 2023" [ref=e150]
+  - link "August 2023" [ref=e151]
+  - link "August 2023" [ref=e152]
+  - link "July 2023" [ref=e153]
+  - link "July 2023" [ref=e154]
+  - link "June 2023" [ref=e155]
+  - link "June 2023" [ref=e156]
+  - link "May 2023" [ref=e157]
+  - link "May 2023" [ref=e158]
+  - link "April 2023" [ref=e159]
+  - link "April 2023" [ref=e160]
+  - text: "Restated Files"
+  - link "View" [ref=e161]: "View  Archive"
+  - button "NYSE Arca" [ref=e162] [disabled]
+  - text: "Reports Market Center Codes"
+  - link "March 2026" [ref=e163]
+  - link "March 2026" [ref=e164]
+  - link "February 2026" [ref=e165]
+  - link "February 2026" [ref=e166]
+  - link "January 2026" [ref=e167]
+  - link "January 2026" [ref=e168]
+  - link "December 2025" [ref=e169]
+  - link "December 2025" [ref=e170]
+  - link "November 2025" [ref=e171]
+  - link "November 2025" [ref=e172]
+  - link "October 2025" [ref=e173]
+  - link "October 2025" [ref=e174]
+  - link "September 2025" [ref=e175]
+  - link "September 2025" [ref=e176]
+  - link "August 2025" [ref=e177]
+  - link "August 2025" [ref=e178]
+  - link "July 2025" [ref=e179]
+  - link "July 2025" [ref=e180]
+  - link "June 2025" [ref=e181]
+  - link "June 2025" [ref=e182]
+  - link "May 2025" [ref=e183]
+  - link "May 2025" [ref=e184]
+  - link "April 2025" [ref=e185]
+  - link "April 2025" [ref=e186]
+  - link "March 2025" [ref=e187]
+  - link "March 2025" [ref=e188]
+  - link "February 2025" [ref=e189]
+  - link "February 2025" [ref=e190]
+  - link "January 2025" [ref=e191]
+  - link "January 2025" [ref=e192]
+  - link "December 2024" [ref=e193]
+  - link "December 2024" [ref=e194]
+  - link "November 2024" [ref=e195]
+  - link "November 2024" [ref=e196]
+  - link "October 2024" [ref=e197]
+  - link "October 2024" [ref=e198]
+  - link "September 2024" [ref=e199]
+  - link "September 2024" [ref=e200]
+  - link "August 2024" [ref=e201]
+  - link "August 2024" [ref=e202]
+  - link "July 2024" [ref=e203]
+  - link "July 2024" [ref=e204]
+  - link "June 2024" [ref=e205]
+  - link "June 2024" [ref=e206]
+  - link "May 2024" [ref=e207]
+  - link "May 2024" [ref=e208]
+  - link "April 2024" [ref=e209]
+  - link "April 2024" [ref=e210]
+  - link "March 2024" [ref=e211]
+  - link "March 2024" [ref=e212]
+  - link "February 2024" [ref=e213]
+  - link "February 2024" [ref=e214]
+  - link "January 2024" [ref=e215]
+  - link "January 2024" [ref=e216]
+  - link "December 2023" [ref=e217]
+  - link "December 2023" [ref=e218]
+  - link "November 2023" [ref=e219]
+  - link "November 2023" [ref=e220]
+  - link "October 2023" [ref=e221]
+  - link "October 2023" [ref=e222]
+  - link "September 2023" [ref=e223]
+  - link "September 2023" [ref=e224]
+  - link "August 2023" [ref=e225]
+  - link "August 2023" [ref=e226]
+  - link "July 2023" [ref=e227]
+  - link "July 2023" [ref=e228]
+  - link "June 2023" [ref=e229]
+  - link "June 2023" [ref=e230]
+  - link "May 2023" [ref=e231]
+  - link "May 2023" [ref=e232]
+  - link "April 2023" [ref=e233]
+  - link "April 2023" [ref=e234]
+  - text: "Restated Files"
+  - link "View" [ref=e235]: "View  Archive"
+  - button "NYSE National" [ref=e236] [disabled]
+  - text: "Statistics Files Market Center Files"
+  - link "March 2026" [ref=e237]
+  - link "March 2026" [ref=e238]
+  - link "February 2026" [ref=e239]
+  - link "February 2026" [ref=e240]
+  - link "January 2026" [ref=e241]
+  - link "January 2026" [ref=e242]
+  - link "December 2025" [ref=e243]
+  - link "December 2025" [ref=e244]
+  - link "November 2025" [ref=e245]
+  - link "November 2025" [ref=e246]
+  - link "October 2025" [ref=e247]
+  - link "October 2025" [ref=e248]
+  - link "September 2025" [ref=e249]
+  - link "September 2025" [ref=e250]
+  - link "August 2025" [ref=e251]
+  - link "August 2025" [ref=e252]
+  - link "July 2025" [ref=e253]
+  - link "July 2025" [ref=e254]
+  - link "June 2025" [ref=e255]
+  - link "June 2025" [ref=e256]
+  - link "May 2025" [ref=e257]
+  - link "May 2025" [ref=e258]
+  - link "April 2025" [ref=e259]
+  - link "April 2025" [ref=e260]
+  - link "March 2025" [ref=e261]
+  - link "March 2025" [ref=e262]
+  - link "February 2025" [ref=e263]
+  - link "February 2025" [ref=e264]
+  - link "January 2025" [ref=e265]
+  - link "January 2025" [ref=e266]
+  - link "December 2024" [ref=e267]
+  - link "December 2024" [ref=e268]
+  - link "November 2024" [ref=e269]
+  - link "November 2024" [ref=e270]
+  - link "October 2024" [ref=e271]
+  - link "October 2024" [ref=e272]
+  - link "September 2024" [ref=e273]
+  - link "September 2024" [ref=e274]
+  - link "August 2024" [ref=e275]
+  - link "August 2024" [ref=e276]
+  - link "July 2024" [ref=e277]
+  - link "July 2024" [ref=e278]
+  - link "June 2024" [ref=e279]
+  - link "June 2024" [ref=e280]
+  - link "May 2024" [ref=e281]
+  - link "May 2024" [ref=e282]
+  - link "April 2024" [ref=e283]
+  - link "April 2024" [ref=e284]
+  - link "March 2024" [ref=e285]
+  - link "March 2024" [ref=e286]
+  - link "February 2024" [ref=e287]
+  - link "February 2024" [ref=e288]
+  - link "January 2024" [ref=e289]
+  - link "January 2024" [ref=e290]
+  - link "December 2023" [ref=e291]
+  - link "December 2023" [ref=e292]
+  - link "November 2023" [ref=e293]
+  - link "November 2023" [ref=e294]
+  - link "October 2023" [ref=e295]
+  - link "October 2023" [ref=e296]
+  - link "September 2023" [ref=e297]
+  - link "September 2023" [ref=e298]
+  - link "August 2023" [ref=e299]
+  - link "August 2023" [ref=e300]
+  - link "July 2023" [ref=e301]
+  - link "July 2023" [ref=e302]
+  - link "June 2023" [ref=e303]
+  - link "June 2023" [ref=e304]
+  - link "May 2023" [ref=e305]
+  - link "May 2023" [ref=e306]
+  - link "April 2023" [ref=e307]
+  - link "April 2023" [ref=e308]
+  - text: "Restated Files"
+  - link "View" [ref=e309]: "View  Archive"
+  - button "NYSE Texas" [ref=e310] [disabled]
+  - text: "Statistics Files Market Center Files"
+  - link "March 2026" [ref=e311]
+  - link "March 2026" [ref=e312]
+  - link "February 2026" [ref=e313]
+  - link "February 2026" [ref=e314]
+  - link "January 2026" [ref=e315]
+  - link "January 2026" [ref=e316]
+  - link "December 2025" [ref=e317]
+  - link "December 2025" [ref=e318]
+  - link "November 2025" [ref=e319]
+  - link "November 2025" [ref=e320]
+  - link "October 2025" [ref=e321]
+  - link "October 2025" [ref=e322]
+  - link "September 2025" [ref=e323]
+  - link "September 2025" [ref=e324]
+  - link "August 2025" [ref=e325]
+  - link "August 2025" [ref=e326]
+  - link "July 2025" [ref=e327]
+  - link "July 2025" [ref=e328]
+  - link "June 2025" [ref=e329]
+  - link "June 2025" [ref=e330]
+  - link "May 2025" [ref=e331]
+  - link "May 2025" [ref=e332]
+  - link "April 2025" [ref=e333]
+  - link "April 2025" [ref=e334]
+  - link "March 2025" [ref=e335]
+  - link "March 2025" [ref=e336]
+  - link "February 2025" [ref=e337]
+  - link "February 2025" [ref=e338]
+  - link "January 2025" [ref=e339]
+  - link "January 2025" [ref=e340]
+  - link "December 2024" [ref=e341]
+  - link "December 2024" [ref=e342]
+  - link "November 2024" [ref=e343]
+  - link "November 2024" [ref=e344]
+  - link "October 2024" [ref=e345]
+  - link "October 2024" [ref=e346]
+  - link "September 2024" [ref=e347]
+  - link "September 2024" [ref=e348]
+  - link "August 2024" [ref=e349]
+  - link "August 2024" [ref=e350]
+  - link "July 2024" [ref=e351]
+  - link "July 2024" [ref=e352]
+  - link "June 2024" [ref=e353]
+  - link "June 2024" [ref=e354]
+  - link "May 2024" [ref=e355]
+  - link "May 2024" [ref=e356]
+  - link "April 2024" [ref=e357]
+  - link "April 2024" [ref=e358]
+  - link "March 2024" [ref=e359]
+  - link "March 2024" [ref=e360]
+  - link "February 2024" [ref=e361]
+  - link "February 2024" [ref=e362]
+  - link "January 2024" [ref=e363]
+  - link "January 2024" [ref=e364]
+  - link "December 2023" [ref=e365]
+  - link "December 2023" [ref=e366]
+  - link "November 2023" [ref=e367]
+  - link "November 2023" [ref=e368]
+  - link "October 2023" [ref=e369]
+  - link "October 2023" [ref=e370]
+  - link "September 2023" [ref=e371]
+  - link "September 2023" [ref=e372]
+  - link "August 2023" [ref=e373]
+  - link "August 2023" [ref=e374]
+  - link "July 2023" [ref=e375]
+  - link "July 2023" [ref=e376]
+  - link "June 2023" [ref=e377]
+  - link "June 2023" [ref=e378]
+  - link "May 2023" [ref=e379]
+  - link "May 2023" [ref=e380]
+  - link "April 2023" [ref=e381]
+  - link "April 2023" [ref=e382]
+  - text: "Restated Files"
+  - link "View" [ref=e383]: "View  Archive"
+- contentinfo:
+  - region:
+    - contentinfo:
+      - link [ref=e384]:
+        - img
+      - link "X" [ref=e385]:
+        - img
+      - link "YouTube" [ref=e386]
+      - link "Facebook" [ref=e387]
+      - link "LinkedIn" [ref=e388]
+      - link "Instagram" [ref=e389]
+      - link "Pinterest" [ref=e390]
+      - heading "Listings" [level=5]
+      - link "What to List" [ref=e391]
+      - link "How to List" [ref=e392]
+      - link "Listing Process" [ref=e393]
+      - link "Listing Resources" [ref=e394]
+      - link "Exchange Traded Products" [ref=e395]
+      - heading "Global Advisory" [level=5]
+      - link "Sustainability Resource Center" [ref=e396]
+      - link "NYSE Board Services" [ref=e397]
+      - link "NYSE Connect" [ref=e398]
+      - link "Investor Access" [ref=e399]
+      - link "Corporate Services" [ref=e400]
+      - heading "About" [level=5]
+      - link "Our History" [ref=e401]
+      - link "The Bell" [ref=e402]
+      - link "Media Center" [ref=e403]
+      - link "Behind the Scenes" [ref=e404]
+      - link "Events" [ref=e405]
+      - heading "Products" [level=5]
+      - link "Equities" [ref=e406]
+      - link "Options" [ref=e407]
+      - link "Bonds" [ref=e408]
+      - link "ETPs" [ref=e409]
+      - heading "Data" [level=5]
+      - link "Trading and Data Information" [ref=e410]
+      - link "NYSE Data Products" [ref=e411]
+      - link "Equity Index Data" [ref=e412]
+      - link "Data Policies, Contracts & Guidelines" [ref=e413]
+      - heading "Resources" [level=5]
+      - link "NYSE Community" [ref=e414]
+      - link "Recent Public Debuts" [ref=e415]
+      - link "Insights" [ref=e416]
+      - link "Listing Manager" [ref=e417]
+      - link "Regulation" [ref=e418]
+      - link "Pillar Trading System" [ref=e419]
+      - link "ICE Global Network" [ref=e420]
+      - link "Widget Library" [ref=e421]
+      - link "Privacy & Security CenterCalifornia Consumer Privacy Act (CCPA) Opt-Out Icon" [ref=e422]
+      - text: "|"
+      - link "Your Choices" [ref=e423]
+      - text: "|"
+      - link "Terms of Use" [ref=e424]
+      - text: "|"
+      - link "Do Not Sell My Personal Information" [ref=e425]
+      - text: "© 2026  Intercontinental Exchange, Inc."
+</result>
+
+[9] tool_call: repl("Getting July 2024 file links")
+<request>
+const refs1 = ['e57','e58','e131','e132','e203','e204','e277','e278','e351','e352'];
+for (const r of refs1) {
+  const a = page.locator(r);
+  console.log(r + ' text=' + await a.innerText() + ' href=' + await a.getAttribute('href'));
+}
+</request>
+<result tokens_used="419" elapsed_time="155ms">
+e57 text=July 2024 href=/publicdocs/nyse/markets/nyse/N202407.zip
+e58 text=July 2024 href=/publicdocs/nyse/markets/nyse/N_MC202407.zip
+e131 text=July 2024 href=/publicdocs/nyse/markets/nyse-american/A202407.zip
+e132 text=July 2024 href=/publicdocs/nyse/markets/nyse-american/A_MC202407.zip
+e203 text=July 2024 href=/publicdocs/nyse/markets/nyse-arca/PARCAX202407.zip
+e204 text=July 2024 href=/publicdocs/nyse/markets/nyse-arca/P_MC202407.zip
+e277 text=July 2024 href=/publicdocs/nyse-national/C202407.zip
+e278 text=July 2024 href=/publicdocs/nyse-national/C_MC202407.zip
+e351 text=July 2024 href=/publicdocs/nyse/markets/nyse-chicago/M202407.zip
+e352 text=July 2024 href=/publicdocs/nyse/markets/nyse-chicago/M_MC202407.zip
+</result>
+
+[10] thinking: **Considering NYSE Texas files**
+
+I find it interesting that NYSE Texas seems to use a Chicago path. The snapshot suggests it’s titled Texas, but the link may refer to Chicago. I think NYSE Chicago might have been renamed to Texas. Regarding the user's question about NYSE Rule 605 Market Center Files data for July 2024, it looks like I should focus on downloading the N_MC202407.zip file. Should I save all five Market Center files for July 2024 instead? I should gather all relevant links and confirm the best approach.
+
+**Verifying and downloading files**
+
+I think I have enough context, so I don't need to ask for clarification. I’ll start by verifying the file using fetch and listing the contents of the zip files. There’s no need to use xlsx, as they are in zip format. I'll save the downloaded files under artifacts and consider downloading all five Market Center files for July 2024, since the file sizes are likely small. It makes sense to inspect the zip contents using a bash command like `unzip -l`. I'll fetch the URLs, validate their status, and ensure I save everything properly.
+
+[11] tool_call: write_todos:
+Todo list updated:
+- [completed] t1: Open NYSE site and locate Rule 605 Market Center Files page
+- [in_progress] t2: Find July 2024 data files and verify links
+- [pending] t3: Report or save the data links/files
+
+[12] tool_call: repl("Downloading July 2024 market center files")
+<request>
+await fs.mkdir('./artifacts/nyse_rule605_july_2024_market_center_files', {recursive: true});
+const filesJuly2024 = [
+  {exchange:'NYSE', url:'https://www.nyse.com/publicdocs/nyse/markets/nyse/N_MC202407.zip', file:'NYSE_N_MC202407.zip'},
+  {exchange:'NYSE American', url:'https://www.nyse.com/publicdocs/nyse/markets/nyse-american/A_MC202407.zip', file:'NYSE_American_A_MC202407.zip'},
+  {exchange:'NYSE Arca', url:'https://www.nyse.com/publicdocs/nyse/markets/nyse-arca/P_MC202407.zip', file:'NYSE_Arca_P_MC202407.zip'},
+  {exchange:'NYSE National', url:'https://www.nyse.com/publicdocs/nyse-national/C_MC202407.zip', file:'NYSE_National_C_MC202407.zip'},
+  {exchange:'NYSE Texas', url:'https://www.nyse.com/publicdocs/nyse/markets/nyse-chicago/M_MC202407.zip', file:'NYSE_Texas_M_MC202407.zip'}
+];
+const resultsJuly2024 = [];
+for (const f of filesJuly2024) {
+  const res = await fetch(f.url);
+  const ab = await res.arrayBuffer();
+  const out = './artifacts/nyse_rule605_july_2024_market_center_files/' + f.file;
+  await fs.writeFile(out, Buffer.from(ab));
+  resultsJuly2024.push({exchange:f.exchange, status:res.status, size:ab.byteLength, url:f.url, saved:out});
+}
+console.log(JSON.stringify(resultsJuly2024, null, 2));
+</request>
+<result tokens_used="419" elapsed_time="1431ms">
+[
+  {
+    "exchange": "NYSE",
+    "status": 200,
+    "size": 176,
+    "url": "https://www.nyse.com/publicdocs/nyse/markets/nyse/N_MC202407.zip",
+    "saved": "./artifacts/nyse_rule605_july_2024_market_center_files/NYSE_N_MC202407.zip"
+  },
+  {
+    "exchange": "NYSE American",
+    "status": 200,
+    "size": 185,
+    "url": "https://www.nyse.com/publicdocs/nyse/markets/nyse-american/A_MC202407.zip",
+    "saved": "./artifacts/nyse_rule605_july_2024_market_center_files/NYSE_American_A_MC202407.zip"
+  },
+  {
+    "exchange": "NYSE Arca",
+    "status": 200,
+    "size": 182,
+    "url": "https://www.nyse.com/publicdocs/nyse/markets/nyse-arca/P_MC202407.zip",
+    "saved": "./artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Arca_P_MC202407.zip"
+  },
+  {
+    "exchange": "NYSE National",
+    "status": 200,
+    "size": 185,
+    "url": "https://www.nyse.com/publicdocs/nyse-national/C_MC202407.zip",
+    "saved": "./artifacts/nyse_rule605_july_2024_market_center_files/NYSE_National_C_MC202407.zip"
+  },
+  {
+    "exchange": "NYSE Texas",
+    "status": 200,
+    "size": 184,
+    "url": "https://www.nyse.com/publicdocs/nyse/markets/nyse-chicago/M_MC202407.zip",
+    "saved": "./artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Texas_M_MC202407.zip"
+  }
+]
+</result>
+
+[13] thinking: **Inspecting file sizes**
+
+I’m wondering if the sizes of the files are tiny, maybe even with an empty .txt file? I need to take a closer look at them to confirm. It’s important to understand the sizes before moving forward, to assess if they’ll work as needed. I guess checking for empty files might help me gauge their utility. Let’s see what I find upon inspection!
+
+[14] tool_call: bash(title="Checking downloaded zip contents", command="find artifacts/nyse_rule605_july_2024_market_center_files -type f -maxdepth 1 -print -exec unzip -l {} \\;")
+<result tokens_used="75">
+artifacts/nyse_rule605_july_2024_market_center_files/NYSE_American_A_MC202407.zip
+Archive:  artifacts/nyse_rule605_july_2024_market_center_files/NYSE_American_A_MC202407.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       23  08-15-2024 00:38   A_MC202407.txt
+---------                     -------
+       23                     1 file
+artifacts/nyse_rule605_july_2024_market_center_files/NYSE_N_MC202407.zip
+Archive:  artifacts/nyse_rule605_july_2024_market_center_files/NYSE_N_MC202407.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       14  08-15-2024 01:52   N_MC202407.txt
+---------                     -------
+       14                     1 file
+artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Texas_M_MC202407.zip
+Archive:  artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Texas_M_MC202407.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       22  08-15-2024 00:46   M_MC202407.txt
+---------                     -------
+       22                     1 file
+artifacts/nyse_rule605_july_2024_market_center_files/NYSE_National_C_MC202407.zip
+Archive:  artifacts/nyse_rule605_july_2024_market_center_files/NYSE_National_C_MC202407.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       23  08-15-2024 00:56   C_MC202407.txt
+---------                     -------
+       23                     1 file
+artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Arca_P_MC202407.zip
+Archive:  artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Arca_P_MC202407.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       20  08-15-2024 02:09   P_MC202407.txt
+---------                     -------
+       20                     1 file
+</result>
+
+[15] tool_call: bash(title="Reading text data inside zips", command="for z in artifacts/nyse_rule605_july_2024_market_center_files/*.zip; do echo \"--- $z\"; unzip -p \"$z\"; echo; done")
+<result tokens_used="88">
+--- artifacts/nyse_rule605_july_2024_market_center_files/NYSE_American_A_MC202407.zip
+A|AXASE|NYSE American
+
+--- artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Arca_P_MC202407.zip
+P|PARCAX|NYSE Arca
+
+--- artifacts/nyse_rule605_july_2024_market_center_files/NYSE_N_MC202407.zip
+N|NXNYS|NYSE
+
+--- artifacts/nyse_rule605_july_2024_market_center_files/NYSE_National_C_MC202407.zip
+C|CXCIS|NYSE National
+
+--- artifacts/nyse_rule605_july_2024_market_center_files/NYSE_Texas_M_MC202407.zip
+M|MXCHI|NYSE Chicago
+</result>
+
+[16] thinking: **Considering artifact creation**
+
+I'm thinking about creating a combined artifact for the user’s request. They want data, not necessarily a file, so I could consider zipping all relevant files or even making a directory that lists everything. Maybe a README or combined CSV would help? Since the data is small, I'm pondering if user needs direct URLs and content instead. I can cite from the web search, especially about the Rule 605 page, to make sure everything’s backed up correctly.
+
+**Evaluating citation options**
+
+I'm considering that the direct URLs may not be from the search results but rather from the browser. According to the citation policy, I should cite sources inline when using web search or web fetch. I need to include a citation tag for claims about the Rule 605 reports and the compressed zip file, referencing search result #2. However, since the contents downloaded from fetch don’t have a source ID for citation, it seems I should rely on web fetch for citing the actual page instead.
+
+[17] tool_call: webfetch(url="https://www.nyse.com/trade/reports/rule-605", format="markdown", timeout=30, useCookies=true)
+<result tokens_used="310">
+<webfetch-citation source_id="fetch_call_Xv58P8aCfBkuPditsVCd5r5S|fc_07ebf99d087a341c016a050995fb7c8198b403631e69a528d0#1"></webfetch-citation>
+
+Rule 605 Reports
+
+# Your browser is unsupported
+
+Please visit [this URL](https://www.ice.com/unsupported-browser) to review a list of supported browsers.
+
+[NYSE Logo](/)
+
+[ICE](https://www.ice.com/index)[NYSE](https://www.nyse.com/index)[NYSE CONNECT](#launch)[LOGIN](#login)
+
+[NYSE Logo](/)
+
+Listings
+
+Trading
+
+Market Data
+
+Insights
+
+About
+
+[Trading at NYSE](/trade)/[Reports](/trade/reports)/Rule 605 Reports
+
+# Rule 605 Reports
+
+---
+
+### Disclosure or Order of Execution
+
+Please note that use of the information and links below is expressly bound by the [Terms and Conditions of Use](https://www.ice.com/terms-of-use), which are also hyperlinked for your review at the bottom of all pages of the website.
+
+The Securities and Exchange Commission’s Rule 605 (formerly 11Ac1-5) mandates that stock exchanges, dealers, and other market centers provide selected data on selected order executions.
+
+#### Monthly Statistics
+
+The files below have been compressed in .zip format.
+
+Please note that this information may not be directly comparable to data displayed by other market centers due to differences in market structures and computation methods. SEC-required data does not account for quoted depth in spread calculations, the economic impact of order flow payment on brokerage customers, the costs of institutional trading, or the many criteria that encompass a cost-effective order routing strategy.
+
+As of November 19, 2020, Rule 605 data for April 2016 to August 2020 has been restated. Further details can be found on the [Restated Files Archive page](/trade/reports/rule-605/archive).
+
+NYSE
+
+Statistics Files
+
+Market Center Files
+
+[March 2026](/publicdocs/nyse/markets/nyse/N202603.zip)
+
+[March 2026](/publicdocs/nyse/markets/nyse/N_MC202603.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse/N202602.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse/N_MC202602.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse/N202601.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse/N_MC202601.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse/N202512.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse/N_MC202512.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse/N202511.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse/N_MC202511.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse/N202510.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse/N_MC202510.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse/N202509.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse/N_MC202509.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse/N202508.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse/N_MC202508.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse/N202507.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse/N_MC202507.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse/N202506.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse/N_MC202506.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse/N202505.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse/N_MC202505.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse/N202504.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse/N_MC202504.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse/N202503.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse/N_MC202503.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse/N202502.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse/N_MC202502.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse/N202501.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse/N_MC202501.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse/N202412.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse/N_MC202412.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse/N202411.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse/N_MC202411.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse/N202410.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse/N_MC202410.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse/N202409.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse/N_MC202409.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse/N202408.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse/N_MC202408.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse/N202407.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse/N_MC202407.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse/N202406.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse/N_MC202406.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse/N202405.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse/N_MC202405.zip)
+
+[April 2024](/publicdocs/nyse/markets/nyse/N202404.zip)
+
+[April 2024](/publicdocs/nyse/markets/nyse/N_MC202404.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse/N202403.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse/N_MC202403.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse/N202402.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse/N_MC202402.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse/N202401.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse/N_MC202401.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse/N202312.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse/N_MC202312.zip)
+
+[November 2023](/publicdocs/nyse/markets/nyse/N202311.zip)
+
+[November 2023](/publicdocs/nyse/markets/nyse/N_MC202311.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse/N202310.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse/N_MC202310.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse/N202309.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse/N_MC202309.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse/N202308.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse/N_MC202308.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse/N202307.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse/N_MC202307.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse/N202306.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse/N_MC202306.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse/N202305.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse/N_MC202305.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse/N202304.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse/N_MC202304.zip)
+
+Restated Files
+
+[View Archive](/trade/reports/rule-605/archive#nyse)
+
+NYSE American
+
+Statistics Files
+
+Market Center Files
+
+[March 2026](/publicdocs/nyse/markets/nyse-american/A202603.zip)
+
+[March 2026](/publicdocs/nyse/markets/nyse-american/A_MC202603.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse-american/A202602.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse-american/A_MC202602.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse-american/A202601.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse-american/A_MC202601.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-american/A202512.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-american/A_MC202512.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse-american/A202511.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse-american/A_MC202511.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse-american/A202510.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse-american/A_MC202510.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse-american/A202509.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse-american/A_MC202509.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse-american/A202508.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse-american/A_MC202508.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse-american/A202507.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse-american/A_MC202507.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse-american/A202506.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse-american/A_MC202506.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse-american/A202505.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse-american/A_MC202505.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse-american/A202504.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse-american/A_MC202504.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse-american/A202503.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse-american/A_MC202503.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse-american/A202502.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse-american/A_MC202502.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse-american/A202501.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse-american/A202501.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse-american/A202412.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse-american/A_MC202412.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse-american/A202411.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse-american/A_MC202411.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse-american/A202410.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse-american/A_MC202410.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse-american/A202409.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse-american/A_MC202409.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse-american/A202408.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse-american/A_MC202408.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse-american/A202407.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse-american/A_MC202407.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse-american/A202406.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse-american/A_MC202406.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse-american/A202405.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse-american/A_MC202405.zip)
+
+[April 2024](/publicdocs/nyse/markets/nyse-american/A202404.zip)
+
+[April 2024](/publicdocs/nyse/markets/nyse-american/A_MC202404.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse-american/A202403.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse-american/A_MC202403.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse-american/A202402.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse-american/A_MC202402.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse-american/A202401.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse-american/A_MC202401.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse-american/A202312.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse-american/A_MC202312.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse-american/A202310.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse-american/A_MC202310.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse-american/A202309.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse-american/A_MC202309.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse-american/A202308.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse-american/A_MC202308.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse-american/A202307.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse-american/A_MC202307.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse-american/A202306.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse-american/A_MC202306.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse-american/A202305.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse-american/A_MC202305.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse-american/A202304.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse-american/A_MC202304.zip)
+
+Restated Files
+
+[View Archive](/trade/reports/rule-605/archive#nyse-american)
+
+NYSE Arca
+
+Reports
+
+Market Center Codes
+
+[March 2026](/publicdocs/nyse/markets/nyse-arca/PARCAX202603.zip)
+
+[March 2026](/publicdocs/nyse/markets/nyse-arca/P_MC202603.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse-arca/PARCAX202602.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse-arca/P_MC202602.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse-arca/PARCAX202601.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse-arca/P_MC202601.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202512.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202512.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202511.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202511.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202510.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202510.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202509.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202509.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202508.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202508.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202507.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202507.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202506.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202506.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202505.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202505.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202504.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202504.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202503.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202503.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202502.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202502.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse-arca/PARCAX202501.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse-arca/P_MC202501.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202412.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202412.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202411.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202411.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202410.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202410.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202409.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202409.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202408.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202408.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202407.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202407.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202406.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202406.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202405.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202405.zip)
+
+[April 2024](</publicdocs/nyse/markets/nyse-arca/PARCAX202404.zip >)
+
+[April 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202404.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202403.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202403.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202402.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202402.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse-arca/PARCAX202401.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse-arca/P_MC202401.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202312.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202312.zip)
+
+[November 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202311.zip)
+
+[November 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202311.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202310.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202310.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202309.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202309.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202308.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202308.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202307.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202307.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202306.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202306.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202305.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202305.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse-arca/PARCAX202304.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse-arca/P_MC202304.zip)
+
+Restated Files
+
+[View Archive](/trade/reports/rule-605/archive#nyse-arca)
+
+NYSE National
+
+Statistics Files
+
+Market Center Files
+
+[March 2026](/publicdocs/nyse-national/C202603.zip)
+
+[March 2026](/publicdocs/nyse-national/C_MC202603.zip)
+
+[February 2026](/publicdocs/nyse-national/C202602.zip)
+
+[February 2026](/publicdocs/nyse-national/C_MC202602.zip)
+
+[January 2026](/publicdocs/nyse-national/C202601.zip)
+
+[January 2026](/publicdocs/nyse-national/C_MC202601.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-national/members/C202512.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-national/members/C_MC202512.zip)
+
+[November 2025](/publicdocs/nyse-national/C202511.zip)
+
+[November 2025](/publicdocs/nyse-national/C_MC202511.zip)
+
+[October 2025](/publicdocs/nyse-national/C202510.zip)
+
+[October 2025](/publicdocs/nyse-national/C_MC202510.zip)
+
+[September 2025](/publicdocs/nyse-national/C202509.zip)
+
+[September 2025](/publicdocs/nyse-national/C_MC202509.zip)
+
+[August 2025](/publicdocs/nyse-national/C202508.zip)
+
+[August 2025](/publicdocs/nyse-national/C_MC202508.zip)
+
+[July 2025](/publicdocs/nyse-national/C202507.zip)
+
+[July 2025](/publicdocs/nyse-national/C_MC202507.zip)
+
+[June 2025](/publicdocs/nyse-national/C202506.zip)
+
+[June 2025](/publicdocs/nyse-national/C_MC202506.zip)
+
+[May 2025](/publicdocs/nyse-national/C202505.zip)
+
+[May 2025](/publicdocs/nyse-national/C_MC202505.zip)
+
+[April 2025](/publicdocs/nyse-national/C202504.zip)
+
+[April 2025](/publicdocs/nyse-national/C_MC202504.zip)
+
+[March 2025](/publicdocs/nyse-national/C202503.zip)
+
+[March 2025](/publicdocs/nyse-national/C_MC202503.zip)
+
+[February 2025](/publicdocs/nyse-national/C202502.zip)
+
+[February 2025](/publicdocs/nyse-national/C_MC202502.zip)
+
+[January 2025](/publicdocs/nyse-national/C202501.zip)
+
+[January 2025](/publicdocs/nyse-national/C_MC202501.zip)
+
+[December 2024](/publicdocs/nyse-national/C202412.zip)
+
+[December 2024](/publicdocs/nyse-national/C_MC202412.zip)
+
+[November 2024](/publicdocs/nyse-national/C202411.zip)
+
+[November 2024](/publicdocs/nyse-national/C_MC202411.zip)
+
+[October 2024](/publicdocs/nyse-national/C202410.zip)
+
+[October 2024](/publicdocs/nyse-national/C_MC202410.zip)
+
+[September 2024](/publicdocs/nyse-national/C202409.zip)
+
+[September 2024](/publicdocs/nyse-national/C_MC202409.zip)
+
+[August 2024](/publicdocs/nyse-national/C202408.zip)
+
+[August 2024](/publicdocs/nyse-national/C_MC202408.zip)
+
+[July 2024](/publicdocs/nyse-national/C202407.zip)
+
+[July 2024](/publicdocs/nyse-national/C_MC202407.zip)
+
+[June 2024](/publicdocs/nyse-national/C202406.zip)
+
+[June 2024](/publicdocs/nyse-national/C_MC202406.zip)
+
+[May 2024](/publicdocs/nyse-national/C202405.zip)
+
+[May 2024](/publicdocs/nyse-national/C_MC202405.zip)
+
+[April 2024](/publicdocs/nyse-national/C202404.zip)
+
+[April 2024](/publicdocs/nyse-national/C_MC202404.zip)
+
+[March 2024](/publicdocs/nyse-national/C202403.zip)
+
+[March 2024](/publicdocs/nyse-national/C_MC202403.zip)
+
+[February 2024](/publicdocs/nyse-national/C202402.zip)
+
+[February 2024](/publicdocs/nyse-national/C_MC202402.zip)
+
+[January 2024](/publicdocs/nyse-national/C202401.zip)
+
+[January 2024](/publicdocs/nyse-national/C_MC202401.zip)
+
+[December 2023](/publicdocs/nyse-national/C202312.zip)
+
+[December 2023](/publicdocs/nyse-national/C_MC202312.zip)
+
+[November 2023](/publicdocs/nyse-national/C202311.zip)
+
+[November 2023](/publicdocs/nyse-national/C_MC202311.zip)
+
+[October 2023](/publicdocs/nyse-national/C202310.zip)
+
+[October 2023](/publicdocs/nyse-national/C_MC202310.zip)
+
+[September 2023](/publicdocs/nyse-national/C202309.zip)
+
+[September 2023](/publicdocs/nyse-national/C_MC202309.zip)
+
+[August 2023](/publicdocs/nyse-national/C202308.zip)
+
+[August 2023](/publicdocs/nyse-national/C_MC202308.zip)
+
+[July 2023](/publicdocs/nyse-national/C202307.zip)
+
+[July 2023](/publicdocs/nyse-national/C_MC202307.zip)
+
+[June 2023](/publicdocs/nyse-national/C202306.zip)
+
+[June 2023](/publicdocs/nyse-national/C_MC202306.zip)
+
+[May 2023](/publicdocs/nyse-national/C202305.zip)
+
+[May 2023](/publicdocs/nyse-national/C_MC202305.zip)
+
+[April 2023](/publicdocs/nyse-national/C202304.zip)
+
+[April 2023](/publicdocs/nyse-national/C_MC202304.zip)
+
+Restated Files
+
+[View Archive](/trade/reports/rule-605/archive#nyse-national)
+
+NYSE Texas
+
+Statistics Files
+
+Market Center Files
+
+[March 2026](/publicdocs/nyse/markets/nyse-texas/M202603.zip)
+
+[March 2026](/publicdocs/nyse/markets/nyse-texas/M_MC202603.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse-texas/M202602.zip)
+
+[February 2026](/publicdocs/nyse/markets/nyse-texas/M_MC202602.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse-texas/M202601.zip)
+
+[January 2026](/publicdocs/nyse/markets/nyse-texas/M_MC202601.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-texas/M202512.zip)
+
+[December 2025](/publicdocs/nyse/markets/nyse-texas/M_MC202512.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse-texas/M202511.zip)
+
+[November 2025](/publicdocs/nyse/markets/nyse-texas/M_MC202511.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse-texas/M202510.zip)
+
+[October 2025](/publicdocs/nyse/markets/nyse-texas/M_MC202510.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse-texas/M202509.zip)
+
+[September 2025](/publicdocs/nyse/markets/nyse-texas/M_MC202509.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse-texas/M202508.zip)
+
+[August 2025](/publicdocs/nyse/markets/nyse-texas/M_MC202508.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse-chicago/M202507.zip)
+
+[July 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202507.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse-chicago/M202506.zip)
+
+[June 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202506.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse-chicago/M202505.zip)
+
+[May 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202505.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse-chicago/M202504.zip)
+
+[April 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202504.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse-chicago/M202503.zip)
+
+[March 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202503.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse-chicago/M202502.zip)
+
+[February 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202502.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse-chicago/M202501.zip)
+
+[January 2025](/publicdocs/nyse/markets/nyse-chicago/M_MC202501.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse-chicago/M202412.zip)
+
+[December 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202412.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse-chicago/M202411.zip)
+
+[November 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202411.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse-chicago/M202410.zip)
+
+[October 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202410.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse-chicago/M202409.zip)
+
+[September 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202409.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse-chicago/M202408.zip)
+
+[August 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202408.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse-chicago/M202407.zip)
+
+[July 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202407.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse-chicago/M202406.zip)
+
+[June 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202406.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse-chicago/M202405.zip)
+
+[May 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202405.zip)
+
+[April 2024](/publicdocs/nyse/markets/nyse-chicago/M202404.zip)
+
+[April 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202404.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202403.zip)
+
+[March 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202403.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse-chicago/M202402.zip)
+
+[February 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202402.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse-chicago/M202401.zip)
+
+[January 2024](/publicdocs/nyse/markets/nyse-chicago/M_MC202401.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202312.zip)
+
+[December 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202312.zip)
+
+[November 2023](/publicdocs/nyse/markets/nyse-chicago/M202311.zip)
+
+[November 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202311.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse-chicago/M202310.zip)
+
+[October 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202310.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202309.zip)
+
+[September 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202309.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse-chicago/M202308.zip)
+
+[August 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202308.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse-chicago/M202307.zip)
+
+[July 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202307.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202306.zip)
+
+[June 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202306.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse-chicago/M202305.zip)
+
+[May 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202305.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse-chicago/M202304.zip)
+
+[April 2023](/publicdocs/nyse/markets/nyse-chicago/M_MC202304.zip)
+
+Restated Files
+
+[View Archive](/trade/reports/rule-605/archive#nyse-texas)
+
+[NYSE Logo](/)
+
+---
+
+-   [](https://www.twitter.com/nyse "X")
+-   [](https://www.youtube.com/@NYSEofficial "YouTube")
+-   [](https://www.facebook.com/nyse "Facebook")
+-   [](https://www.linkedin.com/company/nyse "LinkedIn")
+-   [](https://www.instagram.com/nyse "Instagram")
+-   [](https://www.pinterest.com/nyse "Pinterest")
+
+##### Listings
+
+-   [What to List](/listings)
+-   [How to List](/ways-to-list)
+-   [Listing Process](/listings-process)
+-   [Listing Resources](/listings/resources)
+-   [Exchange Traded Products](/products/exchange-traded-products)
+
+##### Global Advisory
+
+-   [Sustainability Resource Center](/esg/resource-center)
+-   [NYSE Board Services](/board-services)
+-   [NYSE Connect](/connect)
+-   [Investor Access](/investoraccess)
+-   [Corporate Services](/corporate-services)
+
+##### About
+
+-   [Our History](/history-of-nyse)
+-   [The Bell](/bell)
+-   [Media Center](/media)
+-   [Behind the Scenes](/article/nyse-closing-auction-insiders-guide)
+-   [Events](/nyse-events)
+
+##### Products
+
+-   [Equities](/equities)
+-   [Options](/options)
+-   [Bonds](/markets/bonds)
+-   [ETPs](/products/exchange-traded-products)
+
+##### Data
+
+-   [Trading and Data Information](/trading-data)
+-   [NYSE Data Products](/data-products)
+-   [Equity Index Data](https://www.ice.com/market-data/indices/equity-indices/products)
+-   [Data Policies, Contracts & Guidelines](/market-data/pricing-policies-contracts-guidelines)
+
+##### Resources
+
+-   [NYSE Community](/community)
+-   [Recent Public Debuts](/listings/gallery)
+-   [Insights](/research)
+-   [Listing Manager](/listing-manager-support)
+-   [Regulation](/regulation)
+-   [Pillar Trading System](/pillar)
+-   [ICE Global Network](https://www.ice.com/data-services/global-network)
+-   [Widget Library](https://www.ice.com/widget-library)
+
+-   [Privacy & Security Center![California Consumer Privacy Act (CCPA) Opt-Out Icon](https://www.nyse.com/publicdocs/images/Icon_CCPA_Opt_Out.png)](https://www.ice.com/privacy-security-center)
+-   [Your Choices](https://www.ice.com/privacy-security-center#intercontinental-exchange-privacy-policy)
+-   [Terms of Use](https://www.ice.com/privacy-security-center/terms-of-use)
+-   Do Not Sell My Personal Information
+
+© 2026 Intercontinental Exchange, Inc.
+</result>
+
+[18] thinking: **Considering CSV options**
+
+I’m thinking about creating a combined CSV, but maybe that’s unnecessary. If I gather data from all five small text lines, it could be useful. A CSV might be easier for the user, but I wonder if just saying "File downloaded" would suffice. Perhaps we could zip the files together? They’re already zipped. A folder with multiple artifacts could work, but I should mention the saved folder for clarity. To make a single artifact, I might use bash zip, allowing the user to download just one.
+
+[19] tool_call: bash(title="Creating one archive with all files", command="cd artifacts && zip -r nyse_rule605_july_2024_market_center_files.zip nyse_rule605_july_2024_market_center_files >/tmp/ziplog && ls -l nyse_rule605_july_2024_market_center_files.zip && cat /tmp/ziplog")
+<result tokens_used="175">
+-rw-r--r--@ 1 501  staff  2466 May 13 23:30 nyse_rule605_july_2024_market_center_files.zip
+  adding: nyse_rule605_july_2024_market_center_files/ (stored 0%)
+  adding: nyse_rule605_july_2024_market_center_files/NYSE_American_A_MC202407.zip (stored 0%)
+  adding: nyse_rule605_july_2024_market_center_files/NYSE_N_MC202407.zip (stored 0%)
+  adding: nyse_rule605_july_2024_market_center_files/NYSE_Texas_M_MC202407.zip (stored 0%)
+  adding: nyse_rule605_july_2024_market_center_files/NYSE_National_C_MC202407.zip (stored 0%)
+  adding: nyse_rule605_july_2024_market_center_files/NYSE_Arca_P_MC202407.zip (stored 0%)
+</result>
+
+[20] tool_call: write_todos:
+Todo list updated:
+- [completed] t1: Open NYSE site and locate Rule 605 Market Center Files page
+- [completed] t2: Find July 2024 data files and verify links
+- [completed] t3: Report or save the data links/files
+
+[21] assistant: Found it on NYSE’s Rule 605 Reports page. NYSE says the monthly Rule 605 files are compressed as `.zip` files, and the July 2024 NYSE Market Center File is listed as `N_MC202407.zip`. <citation refs="fetch_call_Xv58P8aCfBkuPditsVCd5r5S|fc_07ebf99d087a341c016a050995fb7c8198b403631e69a528d0#1">NYSE Rule 605 Reports page lists “Monthly Statistics” and July 2024 Market Center Files.</citation>
+
+Direct NYSE file:
+- https://www.nyse.com/publicdocs/nyse/markets/nyse/N_MC202407.zip
+
+I also downloaded the July 2024 Market Center Files for the NYSE family into:
+- `./artifacts/nyse_rule605_july_2024_market_center_files.zip`
+
+Contents verified:
+- NYSE: `N|NXNYS|NYSE`
+- NYSE American: `A|AXASE|NYSE American`
+- NYSE Arca: `P|PARCAX|NYSE Arca`
+- NYSE National: `C|CXCIS|NYSE National`
+- NYSE Texas/Chicago: `M|MXCHI|NYSE Chicago`

@@ -1,0 +1,1448 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="github" path="/Users/vista/.aside/u/0/agents/main/skills/site-specific/github/SKILL.md">
+# GitHub
+
+## Canonical URLs
+
+- Home: `https://github.com/`
+- Notifications: `https://github.com/notifications`
+- Settings: `https://github.com/settings`
+- Repository: `https://github.com/${owner}/${repo}`
+- Issues: `https://github.com/${owner}/${repo}/issues`
+- Pull requests: `https://github.com/${owner}/${repo}/pulls`
+- Issue: `https://github.com/${owner}/${repo}/issues/${number}`
+- Pull request: `https://github.com/${owner}/${repo}/pull/${number}`
+- Search: `https://github.com/search?q=${query}&type=${issues|pullrequests|repositories|code}`
+- File view: `https://github.com/${owner}/${repo}/blob/${ref}/${path}`
+- Login: `https://github.com/login`
+- Passkey login: `https://github.com/login?passkey=true`
+
+## Working style
+
+- Verify the active signed-in account from the avatar when account context matters.
+- Prefer direct repo, issue, PR, and notification URLs over the home feed.
+- For code review, go straight to the PR and then the `Files changed` tab.
+- On file pages, press `y` to switch to a commit-pinned permalink before citing or saving a durable URL.
+
+## Useful shortcuts
+
+- Shortcut help: `?`
+- Focus search: `/` or `s`
+- Notifications: `g`, then `n`
+- Issues: `g`, then `i`
+- Pull requests: `g`, then `p`
+- Code: `g`, then `c`
+- New issue: `c`
+- Open selected item: `o` or `Enter`
+- Labels: `l`
+- Assignee: `a`
+- Milestone: `m`
+- Reviewer: `q`
+- Reference issue or PR: `x`
+- Open in `github.dev`: `.`
+</skill>
+</system_message>
+
+[2] user: Go to https://github.com/, Identify the open issue with the most comments in the first trending open-source repository this week.
+
+[3] assistant: I’ll use the GitHub skill and check the weekly trending page, then sort that repo’s open issues by comment count.
+
+[4] tool_call: repl("Opening GitHub trending")
+<request>
+const p1 = await openTab('https://github.com/trending?since=weekly');
+const s1 = await snapshot(page, { interactive: true });
+console.log(s1.tree);
+</request>
+<result tokens_used="218" elapsed_time="3669ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Trending repositories on GitHub this week (https://github.com/trending?since=weekly)
+# note: interactive (clickable / focusable) elements only.
+- title: "Trending repositories on GitHub this week" [url=https://github.com/trending?since=weekly]
+- link "Skip to content" [ref=e1]
+- banner "Global Navigation Menu":
+  - button "Open menu" [ref=e2]
+  - link "Homepage (g then d)" [ref=e3]
+  - navigation "Breadcrumbs" [ref=e4]:
+    - link "Trending" [ref=e5]
+  - button "Search or jump to…" [ref=e6]: "Type / to search"
+  - link "Chat with Copilot" [ref=e7]
+  - button "Open Copilot…" [ref=e8]
+  - button "Open agents panel" [ref=e9]
+  - button "Create new..." [ref=e10]
+  - link "All issues(g then i)" [ref=e11]
+  - link "All pull requests(g then p)" [ref=e12]
+  - link "All repositories" [ref=e13]
+  - link "You have unread notifications(g then n)" [ref=e14]
+  - button "Open user navigation menu" [ref=e15]: "Jun Kim"
+- main:
+  - navigation "Explore navigation" [ref=e16]:
+    - link "Explore" [ref=e17]
+    - link "Topics" [ref=e18]
+    - link "Trending" [ref=e19]
+    - link "Collections" [ref=e20]
+    - link "Events" [ref=e21]
+    - link "GitHub Sponsors" [ref=e22]
+  - heading "Trending" [level=1]
+  - text: "See what the GitHub community is most excited about this week."
+  - navigation "Trending" [ref=e23]:
+    - link "Repositories" [ref=e24]
+    - link "Developers" [ref=e25]
+  - button "Spoken Language:" [ref=e27]: "Spoken Language:\n\n    \n        Any"
+  - button "Language:" [ref=e29]: "Language:\n\n    \n        Any"
+  - button "Date range:" [ref=e31]: "Date range:\n\n    \n      This week"
+  - article:
+    - button "Star this repository" [ref=e32]: "Star"
+    - button "Add this repository to a list" [ref=e33]
+    - heading "financial-services" [level=2]:
+      - link "financial-services" [ref=e34]: "anthropics /\n\n      financial-services"
+    - text: "Python"
+    - link "star 22,241" [ref=e35]:
+      - img "star"
+      - text: "22,241"
+    - link "fork 3,011" [ref=e36]:
+      - img "fork"
+      - text: "3,011"
+    - text: "Built by"
+    - link "@cxyback" [ref=e37]
+    - link "@manar-ant" [ref=e38]
+    - link "@mihilmy" [ref=e39]
+    - link "@tobinsouth" [ref=e40]
+    - link "@viveknair" [ref=e41]
+    - text: "13,176 stars this week"
+  - article:
+    - button "Star this repository" [ref=e42]: "Star"
+    - button "Add this repository to a list" [ref=e43]
+    - heading "DeepSeek-TUI" [level=2]:
+      - link "DeepSeek-TUI" [ref=e44]: "Hmbown /\n\n      DeepSeek-TUI"
+    - text: "Coding agent for DeepSeek models that runs in your terminal\n    \n\n  \n      \n  \n   Rust"
+    - link "star 27,710" [ref=e45]:
+      - img "star"
+      - text: "27,710"
+    - link "fork 2,312" [ref=e46]:
+      - img "fork"
+      - text: "2,312"
+    - text: "Built by"
+    - link "@Hmbown" [ref=e47]
+    - link "@claude" [ref=e48]
+    - link "@reidliu41" [ref=e49]
+    - link "@linzhiqin2003" [ref=e50]
+    - link "@Oliver-ZPLiu" [ref=e51]
+    - text: "20,835 stars this week"
+  - article:
+    - button "Star this repository" [ref=e52]: "Star"
+    - button "Add this repository to a list" [ref=e53]
+    - heading "UI-TARS-desktop" [level=2]:
+      - link "UI-TARS-desktop" [ref=e54]: "bytedance /\n\n      UI-TARS-desktop"
+    - text: "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 33,720" [ref=e55]:
+      - img "star"
+      - text: "33,720"
+    - link "fork 3,348" [ref=e56]:
+      - img "fork"
+      - text: "3,348"
+    - text: "Built by"
+    - link "@ulivz" [ref=e57]
+    - link "@ycjcl868" [ref=e58]
+    - link "@ZhaoHeh" [ref=e59]
+    - link "@cjraft" [ref=e60]
+    - link "@skychx" [ref=e61]
+    - text: "3,872 stars this week"
+  - article:
+    - button "Star this repository" [ref=e62]: "Star"
+    - button "Add this repository to a list" [ref=e63]
+    - heading "9router" [level=2]:
+      - link "9router" [ref=e64]: "decolua /\n\n      9router"
+    - text: "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.\n    \n\n  \n      \n  \n  JavaScript"
+    - link "star 9,852" [ref=e65]:
+      - img "star"
+      - text: "9,852"
+    - link "fork 1,519" [ref=e66]:
+      - img "fork"
+      - text: "1,519"
+    - text: "Built by"
+    - link "@anuragg-saxenaa" [ref=e67]
+    - link "@claude" [ref=e68]
+    - link "@cursoragent" [ref=e69]
+    - link "@catalinstanciu" [ref=e70]
+    - link "@Blade096" [ref=e71]
+    - text: "5,204 stars this week"
+  - article:
+    - button "Star this repository" [ref=e72]: "Star"
+    - button "Add this repository to a list" [ref=e73]
+    - heading "AiToEarn" [level=2]:
+      - link "AiToEarn" [ref=e74]: "yikart /\n\n      AiToEarn"
+    - text: "Let's use AI to Earn!\n    \n\n  \n      \n  \n  TypeScript"
+    - link "star 12,880" [ref=e75]:
+      - img "star"
+      - text: "12,880"
+    - link "fork 2,220" [ref=e76]:
+      - img "fork"
+      - text: "2,220"
+    - text: "Built by"
+    - link "@niuwenzheng" [ref=e77]
+    - link "@gaozhenqiang" [ref=e78]
+    - link "@Yuuki-Sakura" [ref=e79]
+    - link "@gao1234-prog" [ref=e80]
+    - link "@whh2333" [ref=e81]
+    - text: "2,348 stars this week"
+  - article:
+    - link "Sponsor @rohitg00" [ref=e82]: "Sponsor"
+    - button "Star this repository" [ref=e83]: "Star"
+    - button "Add this repository to a list" [ref=e84]
+    - heading "agentmemory" [level=2]:
+      - link "agentmemory" [ref=e85]: "rohitg00 /\n\n      agentmemory"
+    - text: "#1 Persistent memory for AI coding agents based on real-world benchmarks\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 7,558" [ref=e86]:
+      - img "star"
+      - text: "7,558"
+    - link "fork 655" [ref=e87]:
+      - img "fork"
+      - text: "655"
+    - text: "Built by"
+    - link "@rohitg00" [ref=e88]
+    - link "@Tanmay-008" [ref=e89]
+    - link "@JasonLandbridge" [ref=e90]
+    - link "@Getty" [ref=e91]
+    - link "@Edison-A-N" [ref=e92]
+    - text: "3,096 stars this week"
+  - article:
+    - button "Star this repository" [ref=e93]: "Star"
+    - button "Add this repository to a list" [ref=e94]
+    - heading "agent-skills" [level=2]:
+      - link "agent-skills" [ref=e95]: "addyosmani /\n\n      agent-skills"
+    - text: "Production-grade engineering skills for AI coding agents.\n    \n\n  \n      \n  \n  Shell"
+    - link "star 41,029" [ref=e96]:
+      - img "star"
+      - text: "41,029"
+    - link "fork 4,519" [ref=e97]:
+      - img "fork"
+      - text: "4,519"
+    - text: "Built by"
+    - link "@addyosmani" [ref=e98]
+    - link "@federicobartoli" [ref=e99]
+    - link "@nucliweb" [ref=e100]
+    - link "@dj2313" [ref=e101]
+    - link "@claude" [ref=e102]
+    - text: "11,791 stars this week"
+  - article:
+    - link "Sponsor @LearningCircuit" [ref=e103]: "Sponsor"
+    - button "Star this repository" [ref=e104]: "Star"
+    - button "Add this repository to a list" [ref=e105]
+    - heading "local-deep-research" [level=2]:
+      - link "local-deep-research" [ref=e106]: "LearningCircuit /\n\n      local-deep-research"
+    - text: "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted.\n    \n\n  \n      \n  \n  Python"
+    - link "star 7,488" [ref=e107]:
+      - img "star"
+      - text: "7,488"
+    - link "fork 650" [ref=e108]:
+      - img "fork"
+      - text: "650"
+    - text: "Built by"
+    - link "@LearningCircuit" [ref=e109]
+    - link "@github-actions" [ref=e110]
+    - link "@djpetti" [ref=e111]
+    - link "@dependabot" [ref=e112]
+    - link "@HashedViking" [ref=e113]
+    - text: "2,412 stars this week"
+  - article:
+    - button "Star this repository" [ref=e114]: "Star"
+    - button "Add this repository to a list" [ref=e115]
+    - heading "AI-Trader" [level=2]:
+      - link "AI-Trader" [ref=e116]: "HKUDS /\n\n      AI-Trader"
+    - text: "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\" \n    \n\n  \n      \n  \n  Python"
+    - link "star 17,031" [ref=e117]:
+      - img "star"
+      - text: "17,031"
+    - link "fork 2,639" [ref=e118]:
+      - img "fork"
+      - text: "2,639"
+    - text: "Built by"
+    - link "@TianyuFan0504" [ref=e119]
+    - link "@chaohuang-ai" [ref=e120]
+    - link "@Dennis-yxchen" [ref=e121]
+    - link "@Hoder-zyf" [ref=e122]
+    - link "@yuh-yang" [ref=e123]
+    - text: "2,282 stars this week"
+  - article:
+    - button "Star this repository" [ref=e124]: "Star"
+    - button "Add this repository to a list" [ref=e125]
+    - heading "academic-research-skills" [level=2]:
+      - link "academic-research-skills" [ref=e126]: "Imbad0202 /\n\n      academic-research-skills"
+    - text: "Academic Research Skills for Claude Code: research → write → review → revise → finalize\n    \n\n  \n      \n  \n   Python"
+    - link "star 6,799" [ref=e127]:
+      - img "star"
+      - text: "6,799"
+    - link "fork 788" [ref=e128]:
+      - img "fork"
+      - text: "788"
+    - text: "Built by"
+    - link "@Imbad0202" [ref=e129]
+    - link "@claude" [ref=e130]
+    - link "@xiaolai" [ref=e131]
+    - link "@mchesbro1" [ref=e132]
+    - link "@cloudenochcsis" [ref=e133]
+    - text: "1,893 stars this week"
+  - article:
+    - button "Star this repository" [ref=e134]: "Star"
+    - button "Add this repository to a list" [ref=e135]
+    - heading "ruflo" [level=2]:
+      - link "ruflo" [ref=e136]: "ruvnet /\n\n      ruflo"
+    - text: "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 50,311" [ref=e137]:
+      - img "star"
+      - text: "50,311"
+    - link "fork 5,613" [ref=e138]:
+      - img "fork"
+      - text: "5,613"
+    - text: "Built by"
+    - link "@ruvnet" [ref=e139]
+    - link "@claude" [ref=e140]
+    - link "@alexx-ftw" [ref=e141]
+    - link "@lanemc" [ref=e142]
+    - link "@tommy-ca" [ref=e143]
+    - text: "7,088 stars this week"
+  - article:
+    - button "Star this repository" [ref=e144]: "Star"
+    - button "Add this repository to a list" [ref=e145]
+    - heading "supersplat" [level=2]:
+      - link "supersplat" [ref=e146]: "playcanvas /\n\n      supersplat"
+    - text: "3D Gaussian Splat Editor\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 7,834" [ref=e147]:
+      - img "star"
+      - text: "7,834"
+    - link "fork 848" [ref=e148]:
+      - img "fork"
+      - text: "848"
+    - text: "Built by"
+    - link "@slimbuck" [ref=e149]
+    - link "@willeastcott" [ref=e150]
+    - link "@renovate" [ref=e151]
+    - link "@simonbethke" [ref=e152]
+    - link "@cursoragent" [ref=e153]
+    - text: "2,600 stars this week"
+  - article:
+    - link "Sponsor @VectifyAI" [ref=e154]: "Sponsor"
+    - button "Star this repository" [ref=e155]: "Star"
+    - button "Add this repository to a list" [ref=e156]
+    - heading "PageIndex" [level=2]:
+      - link "PageIndex" [ref=e157]: "VectifyAI /\n\n      PageIndex"
+    - text: "📑 PageIndex: Document Index for Vectorless, Reasoning-based RAG\n    \n\n  \n      \n  \n   Python"
+    - link "star 31,136" [ref=e158]:
+      - img "star"
+      - text: "31,136"
+    - link "fork 2,649" [ref=e159]:
+      - img "fork"
+      - text: "2,649"
+    - text: "Built by"
+    - link "@rejojer" [ref=e160]
+    - link "@zmtomorrow" [ref=e161]
+    - link "@BukeLy" [ref=e162]
+    - link "@KylinMountain" [ref=e163]
+    - link "@luojiyin1987" [ref=e164]
+    - text: "4,351 stars this week"
+  - article:
+    - link "Sponsor @mattpocock" [ref=e165]: "Sponsor"
+    - button "Star this repository" [ref=e166]: "Star"
+    - button "Add this repository to a list" [ref=e167]
+    - heading "skills" [level=2]:
+      - link "skills" [ref=e168]: "mattpocock /\n\n      skills"
+    - text: "Skills for Real Engineers. Straight from my .claude directory.\n    \n\n  \n      \n  \n  Shell"
+    - link "star 78,879" [ref=e169]:
+      - img "star"
+      - text: "78,879"
+    - link "fork 6,792" [ref=e170]:
+      - img "fork"
+      - text: "6,792"
+    - text: "Built by"
+    - link "@mattpocock" [ref=e171]
+    - link "@claude" [ref=e172]
+    - text: "15,234 stars this week"
+  - article:
+    - button "Star this repository" [ref=e173]: "Star"
+    - button "Add this repository to a list" [ref=e174]
+    - heading "easy-vibe" [level=2]:
+      - link "easy-vibe" [ref=e175]: "datawhalechina /\n\n      easy-vibe"
+    - text: "💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step.\n    \n\n  \n      \n  \n  JavaScript"
+    - link "star 10,548" [ref=e176]:
+      - img "star"
+      - text: "10,548"
+    - link "fork 989" [ref=e177]:
+      - img "fork"
+      - text: "989"
+    - text: "Built by"
+    - link "@sanbuphy" [ref=e178]
+    - link "@GeoDaoyu" [ref=e179]
+    - link "@claude" [ref=e180]
+    - link "@SherryTECNU" [ref=e181]
+    - link "@1985312383" [ref=e182]
+    - text: "2,833 stars this week"
+- contentinfo:
+  - heading "Footer" [level=2]
+  - link "GitHub Homepage" [ref=e183]
+  - text: "© 2026 GitHub, Inc."
+  - navigation "Footer" [ref=e184]:
+    - heading "Footer navigation" [level=3]
+    - link "Terms" [ref=e185]
+    - link "Privacy" [ref=e186]
+    - link "Security" [ref=e187]
+    - link "Status" [ref=e188]
+    - link "Community" [ref=e189]
+    - link "Docs" [ref=e190]
+    - link "Contact" [ref=e191]
+    - button "Manage cookies" [ref=e192]
+    - button "Do not share my personal information" [ref=e193]
+</result>
+
+[5] thinking: **Searching trending repositories**
+
+I need to start with the trending repository: anthropics/financial-services. First, I should identify any open issues with the most comments. To do this, I can use a GitHub search query formatted like this: `repo:anthropics/financial-services is:issue is:open sort:comments-desc`. It seems straightforward, but I'll want to verify the results by checking the open issues page directly to ensure I'm finding the right information.
+
+[6] tool_call: repl("Opening sorted issues")
+<request>
+const p2 = await openTab('https://github.com/anthropics/financial-services/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acomments-desc');
+const s2 = await snapshot(page, { interactive: true });
+console.log(s2.tree);
+</request>
+<result tokens_used="167" elapsed_time="6686ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → Issues · anthropics/financial-services (https://github.com/anthropics/financial-services/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acomments-desc)
+# note: interactive (clickable / focusable) elements only.
+- title: "Issues · anthropics/financial-services" [url=https://github.com/anthropics/financial-services/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acomments-desc]
+- link "Skip to content" [ref=e1]
+- banner "Global Navigation Menu":
+  - button "Open menu" [ref=e2]
+  - link "Homepage (g then d)" [ref=e3]
+  - navigation "Breadcrumbs" [ref=e4]:
+    - link "anthropics" [ref=e5]
+    - link "financial-services" [ref=e6]
+  - button "Search or jump to…" [ref=e7]: "Type / to search"
+  - link "Chat with Copilot" [ref=e8]
+  - button "Open Copilot…" [ref=e9]
+  - button "Open agents panel" [ref=e10]
+  - button "Create new..." [ref=e11]
+  - link "All issues" [ref=e12]
+  - link "All pull requests" [ref=e13]
+  - link "All repositories" [ref=e14]
+  - link "You have unread notifications(g then n)" [ref=e15]
+  - button "Open user navigation menu" [ref=e16]: "Jun Kim"
+  - navigation "Repository" [ref=e17]:
+    - list:
+      - link "Code" [ref=e18]
+      - link "Issues (54)" [ref=e19]
+      - link "Pull requests (81)" [ref=e20]
+      - link "Agents" [ref=e21]
+      - link "Actions" [ref=e22]
+      - link "Projects" [ref=e23]
+      - link "Security and quality" [ref=e24]
+      - link "Insights" [ref=e25]
+- main:
+  - button "Dismiss" [ref=e26]
+  - heading "👋 Want to contribute to anthropics/financial-services?" [level=4]: "👋 Want to contribute to  anthropics/financial-services?"
+  - text: "If you have a bug or an idea, read the"
+  - link "contributing guidelines" [ref=e27]
+  - text: "before opening an issue."
+  - heading "Issues" [level=1]
+  - form "Search Issues":
+    - text: "Search Issues"
+    - combobox "Search Issues" [ref=e28] [placeholder="Search Issues"]: "is:issue state:open sort:comments-desc"
+    - button "Clear filter" [ref=e29]
+    - button "Search" [ref=e30]
+  - link "Labels" [ref=e31]
+  - link "Milestones" [ref=e32]
+  - link "New issue" [ref=e33]
+  - heading "Search results" [level=2]
+  - link "Open (54)" [ref=e34]
+  - link "Closed (5)" [ref=e35]
+  - toolbar "Actions":
+    - button "Filter by author" [ref=e36]: "Author"
+    - button "Filter by label" [ref=e37]: "Labels"
+    - button "Filter by project" [ref=e38]: "Projects"
+    - button "Filter by milestone" [ref=e39]: "Milestones"
+    - button "Filter by assignees" [ref=e40]: "Assignees"
+    - button "Filter by issue type" [ref=e41]: "Types"
+    - button "Sort by Comments, descending" [ref=e42]
+  - list "Search results":
+    - listitem "claude app can not add this: Status: Open. #108 In anthropics/financial-services;· naniwet opened on" [ref=e43]:
+      - heading [level=3]:
+        - link "claude app can not add this" [ref=e44]
+      - text: "Status: Open.#108  In anthropics/financial-services;·"
+      - link "naniwet" [ref=e45]
+      - text: "opened  on  May 6, 2026 last week  3  comments"
+    - listitem "hooks.json ships as empty array [] causing plugin load failure: Status: Open. #5 In anthropics/finan" [ref=e46]:
+      - heading [level=3]:
+        - link "hooks.json ships as empty array [] causing plugin load failure" [ref=e47]
+      - text: "Status: Open.#5  In anthropics/financial-services;·"
+      - link "jrezmo" [ref=e48]
+      - text: "opened  on  Feb 26, 2026 on Feb 26  2  comments"
+    - listitem "## Bug Report: Plugins fail to load on Windows: Status: Open. #11 In anthropics/financial-services;·" [ref=e49]:
+      - heading [level=3]:
+        - link "## Bug Report: Plugins fail to load on Windows" [ref=e50]
+      - text: "Status: Open.#11  In anthropics/financial-services;·"
+      - link "cwfbuckley" [ref=e51]
+      - text: "opened  on  Feb 27, 2026 on Feb 27"
+      - button "1 linked PR" [ref=e52]: "1"
+      - text: "2  comments"
+    - listitem "feat: Add Indian BFSI plugin for mutual fund, regulatory, and tax workflows: Status: Open. #15 In an" [ref=e53]:
+      - heading [level=3]:
+        - link "feat: Add Indian BFSI plugin for mutual fund, regulatory, and tax workflows" [ref=e54]
+      - text: "Status: Open.#15  In anthropics/financial-services;·"
+      - link "balabommablock-cpu" [ref=e55]
+      - text: "opened  on  Mar 2, 2026 on Mar 2  2  comments"
+    - listitem "Not able to install skills on Claude desktop: Status: Open. #44 In anthropics/financial-services;· k" [ref=e56]:
+      - heading [level=3]:
+        - link "Not able to install skills on Claude desktop" [ref=e57]
+      - text: "Status: Open.#44  In anthropics/financial-services;·"
+      - link "kapilkumawat86" [ref=e58]
+      - text: "opened  on  Mar 26, 2026 on Mar 26  2  comments"
+    - listitem "financial-analysis: 4 MCP servers fail to connect (stale/incorrect URLs): Status: Open. #54 In anthr" [ref=e59]:
+      - heading [level=3]:
+        - link "financial-analysis: 4 MCP servers fail to connect (stale/incorrect URLs)" [ref=e60]
+      - text: "Status: Open.#54  In anthropics/financial-services;·"
+      - link "ianad" [ref=e61]
+      - text: "opened  on  Apr 1, 2026 on Apr 1"
+      - button "1 linked PR" [ref=e62]: "1"
+      - text: "2  comments"
+    - listitem "hello how i make money with this: Status: Open. #148 In anthropics/financial-services;· CutePityOwl " [ref=e63]:
+      - heading [level=3]:
+        - link "hello how i make money with this" [ref=e64]
+      - text: "Status: Open.#148  In anthropics/financial-services;·"
+      - link "CutePityOwl" [ref=e65]
+      - text: "opened  on  May 8, 2026 5 days ago  2  comments"
+    - listitem "financial-analysis plugin: hooks/hooks.json has invalid schema (causes load failure): Status: Open. " [ref=e66]:
+      - heading [level=3]:
+        - link "financial-analysis plugin: hooks/hooks.json has invalid schema (causes load failure)" [ref=e67]
+      - text: "Status: Open.#176  In anthropics/financial-services;·"
+      - link "asteckel-svg" [ref=e68]
+      - text: "opened  on  May 11, 2026 2 days ago  2  comments"
+    - listitem "hooks.json ships as [] (array) but loader expects object — 4 plugins fail hook load: Status: Open. #" [ref=e69]:
+      - heading [level=3]:
+        - link "hooks.json ships as [] (array) but loader expects object — 4 plugins fail hook load" [ref=e70]
+      - text: "Status: Open.#160  In anthropics/financial-services;·"
+      - link "eddyngchinleong" [ref=e71]
+      - text: "opened  on  May 9, 2026 4 days ago  2  comments"
+    - listitem "hooks.json schema bug: 4 plugins ship with bare \"[]\" causing load failures: Status: Open. #86 In ant" [ref=e72]:
+      - heading [level=3]:
+        - link "hooks.json schema bug: 4 plugins ship with bare \"[]\" causing load failures" [ref=e73]
+      - text: "Status: Open.#86  In anthropics/financial-services;·"
+      - link "carlos-ecodigital" [ref=e74]
+      - text: "opened  on  May 5, 2026 last week"
+      - button "1 linked PR" [ref=e75]: "1"
+      - text: "2  comments"
+    - listitem "Frontmatter for some of the skills is formatted incorrectly: Status: Open. #112 In anthropics/financ" [ref=e76]:
+      - heading [level=3]:
+        - link "Frontmatter for some of the skills is formatted incorrectly" [ref=e77]
+      - text: "Status: Open.#112  In anthropics/financial-services;·"
+      - link "batkiss27" [ref=e78]
+      - text: "opened  on  May 7, 2026 last week  2  comments"
+    - listitem "hooks.json malformed in 4 of 5 plugins ([] vs {\"hooks\": {}}) — fails to load: Status: Open. #70 In a" [ref=e79]:
+      - heading [level=3]:
+        - link "hooks.json malformed in 4 of 5 plugins ([] vs {\"hooks\": {}}) — fails to load" [ref=e80]
+      - text: "Status: Open.#70  In anthropics/financial-services;·"
+      - link "ayemprady-bit" [ref=e81]
+      - text: "opened  on  Apr 19, 2026 3 weeks ago"
+      - button "1 linked PR" [ref=e82]: "1"
+      - text: "1  comment"
+    - listitem "build-manifest logs sensitive manifest parameters: Status: Open. #136 In anthropics/financial-servic" [ref=e83]:
+      - heading [level=3]:
+        - link "build-manifest logs sensitive manifest parameters" [ref=e84]
+      - text: "Status: Open.#136  In anthropics/financial-services;·"
+      - link "kuishou68" [ref=e85]
+      - text: "opened  on  May 7, 2026 last week"
+      - button "1 linked PR" [ref=e86]: "1"
+      - text: "1  comment"
+    - listitem "Vertical plugins ship hooks/hooks.json with [] instead of {\"hooks\": {}}, fail to load on Claude Code" [ref=e87]:
+      - heading [level=3]:
+        - link "Vertical plugins ship hooks/hooks.json with [] instead of {\"hooks\": {}}, fail to load on Claude Code" [ref=e88]
+      - text: "Status: Open.#104  In anthropics/financial-services;·"
+      - link "reloes" [ref=e89]
+      - text: "opened  on  May 6, 2026 last week  1  comment"
+    - listitem "Incorrect repo URL in README.md: Status: Open. #82 In anthropics/financial-services;· np2446 opened " [ref=e90]:
+      - heading [level=3]:
+        - link "Incorrect repo URL in README.md" [ref=e91]
+      - text: "Status: Open.#82  In anthropics/financial-services;·"
+      - link "np2446" [ref=e92]
+      - text: "opened  on  May 5, 2026 last week"
+      - button "1 linked PR" [ref=e93]: "1"
+      - text: "1  comment"
+    - listitem "Getting Started: Cowork \"Paste this repo URL\" needs to be fixed.: Status: Open. #161 In anthropics/f" [ref=e94]:
+      - heading [level=3]:
+        - link "Getting Started: Cowork \"Paste this repo URL\" needs to be fixed." [ref=e95]
+      - text: "Status: Open.#161  In anthropics/financial-services;·"
+      - link "DrRaymondSotoJr" [ref=e96]
+      - text: "opened  on  May 9, 2026 4 days ago  1  comment"
+    - listitem "Critical Bug: Broken cross-agent handoffs due to truncated JSON extraction in orchestrate.py: Status" [ref=e97]:
+      - heading [level=3]:
+        - link "Critical Bug: Broken cross-agent handoffs due to truncated JSON extraction in orchestrate.py" [ref=e98]
+      - text: "Status: Open.#99  In anthropics/financial-services;·"
+      - link "SalimMessaad1" [ref=e99]
+      - text: "opened  on  May 6, 2026 last week"
+      - button "3 linked PRs" [ref=e100]: "3"
+      - text: "1  comment"
+    - listitem "Several plugin hooks.json files ship as [], causing 'Hook load failed' on install: Status: Open. #12" [ref=e101]:
+      - heading [level=3]:
+        - link "Several plugin hooks.json files ship as [], causing 'Hook load failed' on install" [ref=e102]
+      - text: "Status: Open.#123  In anthropics/financial-services;·"
+      - link "MentalSpaceTherapy1" [ref=e103]
+      - text: "opened  on  May 7, 2026 last week"
+      - button "1 linked PR" [ref=e104]: "1"
+      - text: "1  comment"
+    - listitem "[BUG] Claude for Excel (Bedrock direct) selects us. inference profile when manifest aws_region is eu" [ref=e105]:
+      - heading [level=3]:
+        - link "[BUG] Claude for Excel (Bedrock direct) selects us. inference profile when manifest aws_region is eu" [ref=e106]
+      - text: "Status: Open.#126  In anthropics/financial-services;·"
+      - link "a0004uk" [ref=e107]
+      - text: "opened  on  May 7, 2026 last week  1  comment"
+    - listitem "Add private credit plugin — missing vertical in FSI coverage: Status: Open. #16 In anthropics/financ" [ref=e108]:
+      - heading [level=3]:
+        - link "Add private credit plugin — missing vertical in FSI coverage" [ref=e109]
+      - text: "Status: Open.#16  In anthropics/financial-services;·"
+      - link "KD-alt20" [ref=e110]
+      - text: "opened  on  Mar 2, 2026 on Mar 2"
+      - button "1 linked PR" [ref=e111]: "1"
+    - listitem "wrong skill yaml formatter for thesis-tracker skill: Status: Open. #18 In anthropics/financial-servi" [ref=e112]:
+      - heading [level=3]:
+        - link "wrong skill yaml formatter for thesis-tracker skill" [ref=e113]
+      - text: "Status: Open.#18  In anthropics/financial-services;·"
+      - link "cheesebear" [ref=e114]
+      - text: "opened  on  Mar 2, 2026 on Mar 2"
+    - listitem "recalc.py missing: Status: Open. #25 In anthropics/financial-services;· shiyanabcd-STONE opened on M" [ref=e115]:
+      - heading [level=3]:
+        - link "recalc.py missing" [ref=e116]
+      - text: "Status: Open.#25  In anthropics/financial-services;·"
+      - link "shiyanabcd-STONE" [ref=e117]
+      - text: "opened  on  Mar 9, 2026 on Mar 9"
+      - button "1 linked PR" [ref=e118]: "1"
+    - listitem "Set up Budget vs Forecast Dashboard structure and include sample data, DAX, documentation: Status: O" [ref=e119]:
+      - heading [level=3]:
+        - link "Set up Budget vs Forecast Dashboard structure and include sample data, DAX, documentation" [ref=e120]
+      - text: "Status: Open.#37  In anthropics/financial-services;·"
+      - link "malviyanikitha-design" [ref=e121]
+      - text: "opened  on  Mar 19, 2026 on Mar 19"
+    - listitem "No validation on MCP server URLs - possible SSRF / data exfil risk: Status: Open. #45 In anthropics/" [ref=e122]:
+      - heading [level=3]:
+        - link "No validation on MCP server URLs - possible SSRF / data exfil risk" [ref=e123]
+      - text: "Status: Open.#45  In anthropics/financial-services;·"
+      - link "amanverma-wsu" [ref=e124]
+      - text: "opened  on  Mar 26, 2026 on Mar 26"
+    - listitem "Delete the mcp servers include in the plugin: Status: Open. #56 In anthropics/financial-services;· p" [ref=e125]:
+      - heading [level=3]:
+        - link "Delete the mcp servers include in the plugin" [ref=e126]
+      - text: "Status: Open.#56  In anthropics/financial-services;·"
+      - link "pwang2" [ref=e127]
+      - text: "opened  on  Apr 2, 2026 on Apr 2"
+  - navigation "Pagination" [ref=e128]:
+    - link "Page 1" [ref=e129]: "1"
+    - link "Page 2" [ref=e130]: "2"
+    - link "Page 3" [ref=e131]: "3"
+    - link "Next Page" [ref=e132]: "Next"
+  - button "Give feedback" [ref=e133]
+- contentinfo:
+  - heading "Footer" [level=2]
+  - link "GitHub Homepage" [ref=e134]
+  - text: "© 2026 GitHub, Inc."
+  - navigation "Footer" [ref=e135]:
+    - heading "Footer navigation" [level=3]
+    - link "Terms" [ref=e136]
+    - link "Privacy" [ref=e137]
+    - link "Security" [ref=e138]
+    - link "Status" [ref=e139]
+    - link "Community" [ref=e140]
+    - link "Docs" [ref=e141]
+    - link "Contact" [ref=e142]
+    - button "Manage cookies" [ref=e143]
+    - button "Do not share my personal information" [ref=e144]
+</result>
+
+[7] thinking: **Verifying GitHub issues**
+
+I'm trying to confirm the sorting of a query for GitHub issues. The search shows the format as: issue state: open sort: comments-desc. My first result is #108, which has 3 comments. I wonder if the query includes all comments if the count is specified in the URL. Additionally, I want to check whether the search correctly sorts issues. Need to ensure that #108 is not a pull request. I'll search "is:issue" to verify.
+
+[8] tool_call: repl("Opening top issue")
+<request>
+await page.locator('e44').click();
+const s3 = await snapshot(page, { interactive: true });
+console.log(s3.diff);
+</request>
+<result tokens_used="175" elapsed_time="1524ms">
+@@ -1 +1,148 @@
+-
++- link "Skip to content" [ref=e1]
++- banner "Global Navigation Menu":
++  - button "Open menu" [ref=e2]
++  - link "Homepage (g then d)" [ref=e3]
++  - navigation "Breadcrumbs" [ref=e4]:
++    - link "anthropics" [ref=e5]
++    - link "financial-services" [ref=e6]
++  - button "Search or jump to…" [ref=e7]: "Type / to search"
++  - link "Chat with Copilot" [ref=e8]
++  - button "Open Copilot…" [ref=e9]
++  - button "Open agents panel" [ref=e10]
++  - button "Create new..." [ref=e11]
++  - link "All issues" [ref=e12]
++  - link "All pull requests" [ref=e13]
++  - link "All repositories" [ref=e14]
++  - link "You have unread notifications(g then n)" [ref=e15]
++  - button "Open user navigation menu" [ref=e16]: "Jun Kim"
++  - navigation "Repository" [ref=e17]:
++    - list:
++      - link "Code" [ref=e18]
++      - link "Issues (54)" [ref=e19]
++      - link "Pull requests (81)" [ref=e20]
++      - link "Agents" [ref=e21]
++      - link "Actions" [ref=e22]
++      - link "Projects" [ref=e23]
++      - link "Security and quality" [ref=e24]
++      - link "Insights" [ref=e25]
++- main:
++  - region "Header" [ref=e145]:
++    - heading [level=1] [focused]: "claude app can not add this #108"
++    - link "New issue" [ref=e146]
++    - button "Copy link" [ref=e147]
++  - img "Issue"
++  - text: "Open"
++  - link "@naniwet's profile" [ref=e148]: "@naniwet"
++  - heading "Description" [level=2]
++  - link "naniwet" [ref=e149]
++  - text: "opened"
++  - link "May 6, 2026, 9:53 PM PDT" [ref=e150]: "on  May 6, 2026 last week"
++  - button "Issue body actions" [ref=e151]
++  - text: "claude app can not add this plugin"
++  - toolbar "Reactions":
++    - button "React" [ref=e152]
++  - heading "Activity" [level=2]
++  - link "@iamtodor's profile" [ref=e153]: "iamtodor"
++  - heading "iamtodor commented May 7, 2026, 6:45 AM PDT" [level=3]: "iamtodor  commented  on  May 7, 2026  last week"
++  - link "iamtodor" [ref=e154]
++  - link "May 7, 2026, 6:45 AM PDT" [ref=e155]: "on  May 7, 2026 last week"
++  - button "Actions for iamtodor's comment, 6:45 AM on May 7" [ref=e156]
++  - text: "Same here. The instruction"
++  - link "https://github.com/anthropics/financial-services#cowork" [ref=e157]
++  - text: "is not relevant"
++  - link "Image" [ref=e158]
++  - link "Image" [ref=e159]
++  - toolbar "Reactions":
++    - button "React" [ref=e160]
++    - switch "👍 1 reaction" [ref=e161]: "👍React with 👍1"
++  - link "@tianlinzx's profile" [ref=e162]: "tianlinzx"
++  - heading "tianlinzx commented May 7, 2026, 8:39 PM PDT" [level=3]: "tianlinzx  commented  on  May 7, 2026  last week"
++  - link "tianlinzx" [ref=e163]
++  - link "May 7, 2026, 8:39 PM PDT" [ref=e164]: "on  May 7, 2026 last week"
++  - button "Actions for tianlinzx's comment, 8:39 PM on May 7" [ref=e165]
++  - text: "Same here."
++  - toolbar "Reactions":
++    - button "React" [ref=e166]
++  - link "@wVelpro's profile" [ref=e167]: "wVelpro"
++  - heading "wVelpro commented May 13, 2026, 12:05 AM PDT" [level=3]: "wVelpro  commented  on  May 13, 2026  16 hours ago"
++  - link "wVelpro" [ref=e168]
++  - link "May 13, 2026, 12:05 AM PDT" [ref=e169]: "on  May 13, 2026 16 hours ago"
++  - button "Actions for wVelpro's comment, 12:05 AM today" [ref=e170]
++  - text: "Go to “Create plugin” → “Add marketplace,” paste the URL  https://github.com/anthropics/financial-services, and then you’ll find the plugin under “Personal”."
++  - link "Image" [ref=e171]
++  - toolbar "Reactions":
++    - button "React" [ref=e172]
++  - link "@therne's profile" [ref=e173]: "therne"
++  - heading "Add a comment" [level=2]
++  - generic "new Comment" [ref=e174]
++  - text: "Markdown input:  edit mode selected."
++  - navigation "View mode" [ref=e175]:
++    - tablist:
++      - tab "Write" [ref=e176] [selected]
++      - tab "Preview" [ref=e177]
++  - toolbar "Formatting tools":
++    - button "Heading" [ref=e178]
++    - button "Bold" [ref=e179]
++    - button "Italic" [ref=e180]
++    - button "Quote" [ref=e181]
++    - button "Code" [ref=e182]
++    - button "Link" [ref=e183]
++    - button "Unordered list" [ref=e184]
++    - button "Numbered list" [ref=e185]
++    - button "Task list" [ref=e186]
++    - button "Mention" [ref=e187]
++    - button "Reference" [ref=e188]
++    - button "Slash commands" [ref=e189]
++  - button "Saved replies" [ref=e190]
++  - textbox "Add a comment" [ref=e191] [placeholder="Use Markdown to format your comment"]
++  - status
++  - button "Paste, drop, or click to add files" [ref=e192]
++  - tooltip "You do not have permissions to close this issue":
++    - button "Close issue" [ref=e193] [disabled]
++  - button "More options" [ref=e194] [disabled]
++  - tooltip "Comment can not be empty":
++    - button "Comment" [ref=e195] [disabled]
++  - heading "Metadata" [level=2]
++  - heading "Assignees" [level=3]
++  - text: "No one assigned"
++  - heading "Labels" [level=3]
++  - text: "No labels"
++  - heading "Type" [level=3]
++  - text: "No type"
++  - heading "Fields" [level=3]
++  - link "Give feedback" [ref=e196]
++  - text: "No fields configured for issues without a type."
++  - heading "Projects" [level=3]
++  - text: "No projects"
++  - heading "Milestone" [level=3]
++  - text: "No milestone"
++  - heading "Relationships" [level=3]
++  - text: "None yet"
++  - heading "Development" [level=3]
++  - text: "No branches or pull requests"
++  - heading "Notifications" [level=3]
++  - button "Customize" [ref=e197]
++  - button "Subscribe" [ref=e198]
++  - text: "You're not receiving notifications from this thread."
++  - heading "Participants" [level=3]
++  - link "@tianlinzx" [ref=e199]
++  - link "@iamtodor" [ref=e200]
++  - link "@naniwet" [ref=e201]
++  - link "@wVelpro" [ref=e202]
++  - heading "Issue actions" [level=2]
++  - button "Give feedback" [ref=e203]
++- contentinfo:
++  - heading "Footer" [level=2]
++  - link "GitHub Homepage" [ref=e134]
++  - text: "© 2026 GitHub, Inc."
++  - navigation "Footer" [ref=e135]:
++    - heading "Footer navigation" [level=3]
++    - link "Terms" [ref=e136]
++    - link "Privacy" [ref=e137]
++    - link "Security" [ref=e138]
++    - link "Status" [ref=e139]
++    - link "Community" [ref=e140]
++    - link "Docs" [ref=e141]
++    - link "Contact" [ref=e142]
++    - button "Manage cookies" [ref=e143]
++    - button "Do not share my personal information" [ref=e144]
+</result>
+
+[9] assistant: The first weekly trending GitHub repo is **anthropics/financial-services**.
+
+The open issue with the most comments is:
+
+**#108: “claude app can not add this”**  
+- **Comments:** 3  
+- **Opened by:** naniwet  
+- **Link:** https://github.com/anthropics/financial-services/issues/108
+
+[10] system_message (final-answer-verification):
+<system_message>
+The agent jumped directly to opening `anthropics/financial-services` issues without clearly confirming it was the first trending repository from the weekly trending page. The snapshot of the trending page (step 3-4) was not shown to verify which repo was actually #1 trending this week. Can you re-check the GitHub weekly trending page and confirm which repository appears first before identifying its top-commented open issue?
+</system_message>
+
+[11] assistant: I’ll re-check the weekly trending page first, then use that confirmed first repository for the issue lookup.
+
+[12] tool_call: repl("Re-checking weekly trending")
+<request>
+const p3 = await openTab('https://github.com/trending?since=weekly');
+const s4 = await snapshot(page, { interactive: true });
+console.log(s4.tree);
+</request>
+<result tokens_used="249" elapsed_time="2723ms">
+✔︎ Opened a new tab and set it active: tabs[2], page → Trending repositories on GitHub this week (https://github.com/trending?since=weekly)
+# note: interactive (clickable / focusable) elements only.
+- title: "Trending repositories on GitHub this week" [url=https://github.com/trending?since=weekly]
+- link "Skip to content" [ref=e1]
+- banner "Global Navigation Menu":
+  - button "Open menu" [ref=e2]
+  - link "Homepage (g then d)" [ref=e3]
+  - navigation "Breadcrumbs" [ref=e4]:
+    - link "Trending" [ref=e5]
+  - button "Search or jump to…" [ref=e6]: "Type / to search"
+  - link "Chat with Copilot" [ref=e7]
+  - button "Open Copilot…" [ref=e8]
+  - button "Open agents panel" [ref=e9]
+  - button "Create new..." [ref=e10]
+  - link "All issues(g then i)" [ref=e11]
+  - link "All pull requests(g then p)" [ref=e12]
+  - link "All repositories" [ref=e13]
+  - link "You have no unread notifications(g then n)" [ref=e14]
+  - button "Open user navigation menu" [ref=e15]: "Jun Kim"
+- main:
+  - navigation "Explore navigation" [ref=e16]:
+    - link "Explore" [ref=e17]
+    - link "Topics" [ref=e18]
+    - link "Trending" [ref=e19]
+    - link "Collections" [ref=e20]
+    - link "Events" [ref=e21]
+    - link "GitHub Sponsors" [ref=e22]
+  - heading "Trending" [level=1]
+  - text: "See what the GitHub community is most excited about this week."
+  - navigation "Trending" [ref=e23]:
+    - link "Repositories" [ref=e24]
+    - link "Developers" [ref=e25]
+  - button "Spoken Language:" [ref=e27]: "Spoken Language:\n\n    \n        Any"
+  - button "Language:" [ref=e29]: "Language:\n\n    \n        Any"
+  - button "Date range:" [ref=e31]: "Date range:\n\n    \n      This week"
+  - article:
+    - button "Star this repository" [ref=e32]: "Star"
+    - button "Add this repository to a list" [ref=e33]
+    - heading "financial-services" [level=2]:
+      - link "financial-services" [ref=e34]: "anthropics /\n\n      financial-services"
+    - text: "Python"
+    - link "star 22,241" [ref=e35]:
+      - img "star"
+      - text: "22,241"
+    - link "fork 3,011" [ref=e36]:
+      - img "fork"
+      - text: "3,011"
+    - text: "Built by"
+    - link "@cxyback" [ref=e37]
+    - link "@manar-ant" [ref=e38]
+    - link "@mihilmy" [ref=e39]
+    - link "@tobinsouth" [ref=e40]
+    - link "@viveknair" [ref=e41]
+    - text: "13,176 stars this week"
+  - article:
+    - button "Star this repository" [ref=e42]: "Star"
+    - button "Add this repository to a list" [ref=e43]
+    - heading "DeepSeek-TUI" [level=2]:
+      - link "DeepSeek-TUI" [ref=e44]: "Hmbown /\n\n      DeepSeek-TUI"
+    - text: "Coding agent for DeepSeek models that runs in your terminal\n    \n\n  \n      \n  \n   Rust"
+    - link "star 27,710" [ref=e45]:
+      - img "star"
+      - text: "27,710"
+    - link "fork 2,312" [ref=e46]:
+      - img "fork"
+      - text: "2,312"
+    - text: "Built by"
+    - link "@Hmbown" [ref=e47]
+    - link "@claude" [ref=e48]
+    - link "@reidliu41" [ref=e49]
+    - link "@linzhiqin2003" [ref=e50]
+    - link "@Oliver-ZPLiu" [ref=e51]
+    - text: "20,835 stars this week"
+  - article:
+    - button "Star this repository" [ref=e52]: "Star"
+    - button "Add this repository to a list" [ref=e53]
+    - heading "UI-TARS-desktop" [level=2]:
+      - link "UI-TARS-desktop" [ref=e54]: "bytedance /\n\n      UI-TARS-desktop"
+    - text: "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 33,720" [ref=e55]:
+      - img "star"
+      - text: "33,720"
+    - link "fork 3,348" [ref=e56]:
+      - img "fork"
+      - text: "3,348"
+    - text: "Built by"
+    - link "@ulivz" [ref=e57]
+    - link "@ycjcl868" [ref=e58]
+    - link "@ZhaoHeh" [ref=e59]
+    - link "@cjraft" [ref=e60]
+    - link "@skychx" [ref=e61]
+    - text: "3,872 stars this week"
+  - article:
+    - button "Star this repository" [ref=e62]: "Star"
+    - button "Add this repository to a list" [ref=e63]
+    - heading "9router" [level=2]:
+      - link "9router" [ref=e64]: "decolua /\n\n      9router"
+    - text: "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.\n    \n\n  \n      \n  \n  JavaScript"
+    - link "star 9,853" [ref=e65]:
+      - img "star"
+      - text: "9,853"
+    - link "fork 1,519" [ref=e66]:
+      - img "fork"
+      - text: "1,519"
+    - text: "Built by"
+    - link "@anuragg-saxenaa" [ref=e67]
+    - link "@claude" [ref=e68]
+    - link "@cursoragent" [ref=e69]
+    - link "@catalinstanciu" [ref=e70]
+    - link "@Blade096" [ref=e71]
+    - text: "5,204 stars this week"
+  - article:
+    - button "Star this repository" [ref=e72]: "Star"
+    - button "Add this repository to a list" [ref=e73]
+    - heading "AiToEarn" [level=2]:
+      - link "AiToEarn" [ref=e74]: "yikart /\n\n      AiToEarn"
+    - text: "Let's use AI to Earn!\n    \n\n  \n      \n  \n  TypeScript"
+    - link "star 12,880" [ref=e75]:
+      - img "star"
+      - text: "12,880"
+    - link "fork 2,220" [ref=e76]:
+      - img "fork"
+      - text: "2,220"
+    - text: "Built by"
+    - link "@niuwenzheng" [ref=e77]
+    - link "@gaozhenqiang" [ref=e78]
+    - link "@Yuuki-Sakura" [ref=e79]
+    - link "@gao1234-prog" [ref=e80]
+    - link "@whh2333" [ref=e81]
+    - text: "2,348 stars this week"
+  - article:
+    - link "Sponsor @rohitg00" [ref=e82]: "Sponsor"
+    - button "Star this repository" [ref=e83]: "Star"
+    - button "Add this repository to a list" [ref=e84]
+    - heading "agentmemory" [level=2]:
+      - link "agentmemory" [ref=e85]: "rohitg00 /\n\n      agentmemory"
+    - text: "#1 Persistent memory for AI coding agents based on real-world benchmarks\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 7,559" [ref=e86]:
+      - img "star"
+      - text: "7,559"
+    - link "fork 655" [ref=e87]:
+      - img "fork"
+      - text: "655"
+    - text: "Built by"
+    - link "@rohitg00" [ref=e88]
+    - link "@Tanmay-008" [ref=e89]
+    - link "@JasonLandbridge" [ref=e90]
+    - link "@Getty" [ref=e91]
+    - link "@Edison-A-N" [ref=e92]
+    - text: "3,096 stars this week"
+  - article:
+    - button "Star this repository" [ref=e93]: "Star"
+    - button "Add this repository to a list" [ref=e94]
+    - heading "agent-skills" [level=2]:
+      - link "agent-skills" [ref=e95]: "addyosmani /\n\n      agent-skills"
+    - text: "Production-grade engineering skills for AI coding agents.\n    \n\n  \n      \n  \n  Shell"
+    - link "star 41,029" [ref=e96]:
+      - img "star"
+      - text: "41,029"
+    - link "fork 4,519" [ref=e97]:
+      - img "fork"
+      - text: "4,519"
+    - text: "Built by"
+    - link "@addyosmani" [ref=e98]
+    - link "@federicobartoli" [ref=e99]
+    - link "@nucliweb" [ref=e100]
+    - link "@dj2313" [ref=e101]
+    - link "@claude" [ref=e102]
+    - text: "11,791 stars this week"
+  - article:
+    - link "Sponsor @LearningCircuit" [ref=e103]: "Sponsor"
+    - button "Star this repository" [ref=e104]: "Star"
+    - button "Add this repository to a list" [ref=e105]
+    - heading "local-deep-research" [level=2]:
+      - link "local-deep-research" [ref=e106]: "LearningCircuit /\n\n      local-deep-research"
+    - text: "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted.\n    \n\n  \n      \n  \n  Python"
+    - link "star 7,488" [ref=e107]:
+      - img "star"
+      - text: "7,488"
+    - link "fork 650" [ref=e108]:
+      - img "fork"
+      - text: "650"
+    - text: "Built by"
+    - link "@LearningCircuit" [ref=e109]
+    - link "@github-actions" [ref=e110]
+    - link "@djpetti" [ref=e111]
+    - link "@dependabot" [ref=e112]
+    - link "@HashedViking" [ref=e113]
+    - text: "2,412 stars this week"
+  - article:
+    - button "Star this repository" [ref=e114]: "Star"
+    - button "Add this repository to a list" [ref=e115]
+    - heading "AI-Trader" [level=2]:
+      - link "AI-Trader" [ref=e116]: "HKUDS /\n\n      AI-Trader"
+    - text: "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\" \n    \n\n  \n      \n  \n  Python"
+    - link "star 17,031" [ref=e117]:
+      - img "star"
+      - text: "17,031"
+    - link "fork 2,639" [ref=e118]:
+      - img "fork"
+      - text: "2,639"
+    - text: "Built by"
+    - link "@TianyuFan0504" [ref=e119]
+    - link "@chaohuang-ai" [ref=e120]
+    - link "@Dennis-yxchen" [ref=e121]
+    - link "@Hoder-zyf" [ref=e122]
+    - link "@yuh-yang" [ref=e123]
+    - text: "2,282 stars this week"
+  - article:
+    - button "Star this repository" [ref=e124]: "Star"
+    - button "Add this repository to a list" [ref=e125]
+    - heading "academic-research-skills" [level=2]:
+      - link "academic-research-skills" [ref=e126]: "Imbad0202 /\n\n      academic-research-skills"
+    - text: "Academic Research Skills for Claude Code: research → write → review → revise → finalize\n    \n\n  \n      \n  \n   Python"
+    - link "star 6,799" [ref=e127]:
+      - img "star"
+      - text: "6,799"
+    - link "fork 788" [ref=e128]:
+      - img "fork"
+      - text: "788"
+    - text: "Built by"
+    - link "@Imbad0202" [ref=e129]
+    - link "@claude" [ref=e130]
+    - link "@xiaolai" [ref=e131]
+    - link "@mchesbro1" [ref=e132]
+    - link "@cloudenochcsis" [ref=e133]
+    - text: "1,893 stars this week"
+  - article:
+    - button "Star this repository" [ref=e134]: "Star"
+    - button "Add this repository to a list" [ref=e135]
+    - heading "ruflo" [level=2]:
+      - link "ruflo" [ref=e136]: "ruvnet /\n\n      ruflo"
+    - text: "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 50,313" [ref=e137]:
+      - img "star"
+      - text: "50,313"
+    - link "fork 5,613" [ref=e138]:
+      - img "fork"
+      - text: "5,613"
+    - text: "Built by"
+    - link "@ruvnet" [ref=e139]
+    - link "@claude" [ref=e140]
+    - link "@alexx-ftw" [ref=e141]
+    - link "@lanemc" [ref=e142]
+    - link "@tommy-ca" [ref=e143]
+    - text: "7,088 stars this week"
+  - article:
+    - button "Star this repository" [ref=e144]: "Star"
+    - button "Add this repository to a list" [ref=e145]
+    - heading "supersplat" [level=2]:
+      - link "supersplat" [ref=e146]: "playcanvas /\n\n      supersplat"
+    - text: "3D Gaussian Splat Editor\n    \n\n  \n      \n  \n   TypeScript"
+    - link "star 7,834" [ref=e147]:
+      - img "star"
+      - text: "7,834"
+    - link "fork 848" [ref=e148]:
+      - img "fork"
+      - text: "848"
+    - text: "Built by"
+    - link "@slimbuck" [ref=e149]
+    - link "@willeastcott" [ref=e150]
+    - link "@renovate" [ref=e151]
+    - link "@simonbethke" [ref=e152]
+    - link "@cursoragent" [ref=e153]
+    - text: "2,600 stars this week"
+  - article:
+    - link "Sponsor @VectifyAI" [ref=e154]: "Sponsor"
+    - button "Star this repository" [ref=e155]: "Star"
+    - button "Add this repository to a list" [ref=e156]
+    - heading "PageIndex" [level=2]:
+      - link "PageIndex" [ref=e157]: "VectifyAI /\n\n      PageIndex"
+    - text: "📑 PageIndex: Document Index for Vectorless, Reasoning-based RAG\n    \n\n  \n      \n  \n   Python"
+    - link "star 31,136" [ref=e158]:
+      - img "star"
+      - text: "31,136"
+    - link "fork 2,650" [ref=e159]:
+      - img "fork"
+      - text: "2,650"
+    - text: "Built by"
+    - link "@rejojer" [ref=e160]
+    - link "@zmtomorrow" [ref=e161]
+    - link "@BukeLy" [ref=e162]
+    - link "@KylinMountain" [ref=e163]
+    - link "@luojiyin1987" [ref=e164]
+    - text: "4,351 stars this week"
+  - article:
+    - link "Sponsor @mattpocock" [ref=e165]: "Sponsor"
+    - button "Star this repository" [ref=e166]: "Star"
+    - button "Add this repository to a list" [ref=e167]
+    - heading "skills" [level=2]:
+      - link "skills" [ref=e168]: "mattpocock /\n\n      skills"
+    - text: "Skills for Real Engineers. Straight from my .claude directory.\n    \n\n  \n      \n  \n  Shell"
+    - link "star 78,879" [ref=e169]:
+      - img "star"
+      - text: "78,879"
+    - link "fork 6,792" [ref=e170]:
+      - img "fork"
+      - text: "6,792"
+    - text: "Built by"
+    - link "@mattpocock" [ref=e171]
+    - link "@claude" [ref=e172]
+    - text: "15,234 stars this week"
+  - article:
+    - button "Star this repository" [ref=e173]: "Star"
+    - button "Add this repository to a list" [ref=e174]
+    - heading "easy-vibe" [level=2]:
+      - link "easy-vibe" [ref=e175]: "datawhalechina /\n\n      easy-vibe"
+    - text: "💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step.\n    \n\n  \n      \n  \n  JavaScript"
+    - link "star 10,548" [ref=e176]:
+      - img "star"
+      - text: "10,548"
+    - link "fork 989" [ref=e177]:
+      - img "fork"
+      - text: "989"
+    - text: "Built by"
+    - link "@sanbuphy" [ref=e178]
+    - link "@GeoDaoyu" [ref=e179]
+    - link "@claude" [ref=e180]
+    - link "@SherryTECNU" [ref=e181]
+    - link "@1985312383" [ref=e182]
+    - text: "2,833 stars this week"
+- contentinfo:
+  - heading "Footer" [level=2]
+  - link "GitHub Homepage" [ref=e183]
+  - text: "© 2026 GitHub, Inc."
+  - navigation "Footer" [ref=e184]:
+    - heading "Footer navigation" [level=3]
+    - link "Terms" [ref=e185]
+    - link "Privacy" [ref=e186]
+    - link "Security" [ref=e187]
+    - link "Status" [ref=e188]
+    - link "Community" [ref=e189]
+    - link "Docs" [ref=e190]
+    - link "Contact" [ref=e191]
+    - button "Manage cookies" [ref=e192]
+    - button "Do not share my personal information" [ref=e193]
+</result>
+
+[13] thinking: **Confirming top issue**
+
+I'm trying to confirm the top issue now. I think I could use the same sorted URL and maybe open it to take a snapshot. It’s possible that the issue list from the previous tab is still accessible, but I could just re-open it. I should also check using the sorted issues search to verify the current status. It seems like there's a clear path to get the information I need!
+
+[14] tool_call: repl("Checking confirmed repo issues")
+<request>
+const p4 = await openTab('https://github.com/anthropics/financial-services/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acomments-desc');
+const s5 = await snapshot(page, { interactive: true });
+console.log(s5.tree);
+</request>
+<result tokens_used="136" elapsed_time="3271ms">
+✔︎ Opened a new tab and set it active: tabs[3], page → Issues · anthropics/financial-services (https://github.com/anthropics/financial-services/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acomments-desc)
+# note: interactive (clickable / focusable) elements only.
+- title: "Issues · anthropics/financial-services" [url=https://github.com/anthropics/financial-services/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acomments-desc]
+- link "Skip to content" [ref=e1]
+- banner "Global Navigation Menu":
+  - button "Open menu" [ref=e2]
+  - link "Homepage (g then d)" [ref=e3]
+  - navigation "Breadcrumbs" [ref=e4]:
+    - link "anthropics" [ref=e5]
+    - link "financial-services" [ref=e6]
+  - button "Search or jump to…" [ref=e7]: "Type / to search"
+  - link "Chat with Copilot" [ref=e8]
+  - button "Open Copilot…" [ref=e9]
+  - button "Open agents panel" [ref=e10]
+  - button "Create new..." [ref=e11]
+  - link "All issues" [ref=e12]
+  - link "All pull requests" [ref=e13]
+  - link "All repositories" [ref=e14]
+  - link "You have unread notifications(g then n)" [ref=e15]
+  - button "Open user navigation menu" [ref=e16]: "Jun Kim"
+  - navigation "Repository" [ref=e17]:
+    - list:
+      - link "Code" [ref=e18]
+      - link "Issues (54)" [ref=e19]
+      - link "Pull requests (81)" [ref=e20]
+      - link "Agents" [ref=e21]
+      - link "Actions" [ref=e22]
+      - link "Projects" [ref=e23]
+      - link "Security and quality" [ref=e24]
+      - link "Insights" [ref=e25]
+- main:
+  - button "Dismiss" [ref=e26]
+  - heading "👋 Want to contribute to anthropics/financial-services?" [level=4]: "👋 Want to contribute to  anthropics/financial-services?"
+  - text: "If you have a bug or an idea, read the"
+  - link "contributing guidelines" [ref=e27]
+  - text: "before opening an issue."
+  - heading "Issues" [level=1]
+  - form "Search Issues":
+    - text: "Search Issues"
+    - combobox "Search Issues" [ref=e28] [placeholder="Search Issues"]: "is:issue state:open sort:comments-desc"
+    - button "Clear filter" [ref=e29]
+    - button "Search" [ref=e30]
+  - link "Labels" [ref=e31]
+  - link "Milestones" [ref=e32]
+  - link "New issue" [ref=e33]
+  - heading "Search results" [level=2]
+  - link "Open (54)" [ref=e34]
+  - link "Closed (5)" [ref=e35]
+  - toolbar "Actions":
+    - button "Filter by author" [ref=e36]: "Author"
+    - button "Filter by label" [ref=e37]: "Labels"
+    - button "Filter by project" [ref=e38]: "Projects"
+    - button "Filter by milestone" [ref=e39]: "Milestones"
+    - button "Filter by assignees" [ref=e40]: "Assignees"
+    - button "Filter by issue type" [ref=e41]: "Types"
+    - button "Sort by Comments, descending" [ref=e42]
+  - list "Search results":
+    - listitem "claude app can not add this: Status: Open. #108 In anthropics/financial-services;· naniwet opened on" [ref=e43]:
+      - heading [level=3]:
+        - link "claude app can not add this" [ref=e44]
+      - text: "Status: Open.#108  In anthropics/financial-services;·"
+      - link "naniwet" [ref=e45]
+      - text: "opened  on  May 6, 2026 last week  3  comments"
+    - listitem "hooks.json ships as empty array [] causing plugin load failure: Status: Open. #5 In anthropics/finan" [ref=e46]:
+      - heading [level=3]:
+        - link "hooks.json ships as empty array [] causing plugin load failure" [ref=e47]
+      - text: "Status: Open.#5  In anthropics/financial-services;·"
+      - link "jrezmo" [ref=e48]
+      - text: "opened  on  Feb 26, 2026 on Feb 26  2  comments"
+    - listitem "## Bug Report: Plugins fail to load on Windows: Status: Open. #11 In anthropics/financial-services;·" [ref=e49]:
+      - heading [level=3]:
+        - link "## Bug Report: Plugins fail to load on Windows" [ref=e50]
+      - text: "Status: Open.#11  In anthropics/financial-services;·"
+      - link "cwfbuckley" [ref=e51]
+      - text: "opened  on  Feb 27, 2026 on Feb 27"
+      - button "1 linked PR" [ref=e52]: "1"
+      - text: "2  comments"
+    - listitem "feat: Add Indian BFSI plugin for mutual fund, regulatory, and tax workflows: Status: Open. #15 In an" [ref=e53]:
+      - heading [level=3]:
+        - link "feat: Add Indian BFSI plugin for mutual fund, regulatory, and tax workflows" [ref=e54]
+      - text: "Status: Open.#15  In anthropics/financial-services;·"
+      - link "balabommablock-cpu" [ref=e55]
+      - text: "opened  on  Mar 2, 2026 on Mar 2  2  comments"
+    - listitem "Not able to install skills on Claude desktop: Status: Open. #44 In anthropics/financial-services;· k" [ref=e56]:
+      - heading [level=3]:
+        - link "Not able to install skills on Claude desktop" [ref=e57]
+      - text: "Status: Open.#44  In anthropics/financial-services;·"
+      - link "kapilkumawat86" [ref=e58]
+      - text: "opened  on  Mar 26, 2026 on Mar 26  2  comments"
+    - listitem "financial-analysis: 4 MCP servers fail to connect (stale/incorrect URLs): Status: Open. #54 In anthr" [ref=e59]:
+      - heading [level=3]:
+        - link "financial-analysis: 4 MCP servers fail to connect (stale/incorrect URLs)" [ref=e60]
+      - text: "Status: Open.#54  In anthropics/financial-services;·"
+      - link "ianad" [ref=e61]
+      - text: "opened  on  Apr 1, 2026 on Apr 1"
+      - button "1 linked PR" [ref=e62]: "1"
+      - text: "2  comments"
+    - listitem "hello how i make money with this: Status: Open. #148 In anthropics/financial-services;· CutePityOwl " [ref=e63]:
+      - heading [level=3]:
+        - link "hello how i make money with this" [ref=e64]
+      - text: "Status: Open.#148  In anthropics/financial-services;·"
+      - link "CutePityOwl" [ref=e65]
+      - text: "opened  on  May 8, 2026 5 days ago  2  comments"
+    - listitem "financial-analysis plugin: hooks/hooks.json has invalid schema (causes load failure): Status: Open. " [ref=e66]:
+      - heading [level=3]:
+        - link "financial-analysis plugin: hooks/hooks.json has invalid schema (causes load failure)" [ref=e67]
+      - text: "Status: Open.#176  In anthropics/financial-services;·"
+      - link "asteckel-svg" [ref=e68]
+      - text: "opened  on  May 11, 2026 2 days ago  2  comments"
+    - listitem "hooks.json ships as [] (array) but loader expects object — 4 plugins fail hook load: Status: Open. #" [ref=e69]:
+      - heading [level=3]:
+        - link "hooks.json ships as [] (array) but loader expects object — 4 plugins fail hook load" [ref=e70]
+      - text: "Status: Open.#160  In anthropics/financial-services;·"
+      - link "eddyngchinleong" [ref=e71]
+      - text: "opened  on  May 9, 2026 4 days ago  2  comments"
+    - listitem "hooks.json schema bug: 4 plugins ship with bare \"[]\" causing load failures: Status: Open. #86 In ant" [ref=e72]:
+      - heading [level=3]:
+        - link "hooks.json schema bug: 4 plugins ship with bare \"[]\" causing load failures" [ref=e73]
+      - text: "Status: Open.#86  In anthropics/financial-services;·"
+      - link "carlos-ecodigital" [ref=e74]
+      - text: "opened  on  May 5, 2026 last week"
+      - button "1 linked PR" [ref=e75]: "1"
+      - text: "2  comments"
+    - listitem "Frontmatter for some of the skills is formatted incorrectly: Status: Open. #112 In anthropics/financ" [ref=e76]:
+      - heading [level=3]:
+        - link "Frontmatter for some of the skills is formatted incorrectly" [ref=e77]
+      - text: "Status: Open.#112  In anthropics/financial-services;·"
+      - link "batkiss27" [ref=e78]
+      - text: "opened  on  May 7, 2026 last week  2  comments"
+    - listitem "hooks.json malformed in 4 of 5 plugins ([] vs {\"hooks\": {}}) — fails to load: Status: Open. #70 In a" [ref=e79]:
+      - heading [level=3]:
+        - link "hooks.json malformed in 4 of 5 plugins ([] vs {\"hooks\": {}}) — fails to load" [ref=e80]
+      - text: "Status: Open.#70  In anthropics/financial-services;·"
+      - link "ayemprady-bit" [ref=e81]
+      - text: "opened  on  Apr 19, 2026 3 weeks ago"
+      - button "1 linked PR" [ref=e82]: "1"
+      - text: "1  comment"
+    - listitem "build-manifest logs sensitive manifest parameters: Status: Open. #136 In anthropics/financial-servic" [ref=e83]:
+      - heading [level=3]:
+        - link "build-manifest logs sensitive manifest parameters" [ref=e84]
+      - text: "Status: Open.#136  In anthropics/financial-services;·"
+      - link "kuishou68" [ref=e85]
+      - text: "opened  on  May 7, 2026 last week"
+      - button "1 linked PR" [ref=e86]: "1"
+      - text: "1  comment"
+    - listitem "Vertical plugins ship hooks/hooks.json with [] instead of {\"hooks\": {}}, fail to load on Claude Code" [ref=e87]:
+      - heading [level=3]:
+        - link "Vertical plugins ship hooks/hooks.json with [] instead of {\"hooks\": {}}, fail to load on Claude Code" [ref=e88]
+      - text: "Status: Open.#104  In anthropics/financial-services;·"
+      - link "reloes" [ref=e89]
+      - text: "opened  on  May 6, 2026 last week  1  comment"
+    - listitem "Incorrect repo URL in README.md: Status: Open. #82 In anthropics/financial-services;· np2446 opened " [ref=e90]:
+      - heading [level=3]:
+        - link "Incorrect repo URL in README.md" [ref=e91]
+      - text: "Status: Open.#82  In anthropics/financial-services;·"
+      - link "np2446" [ref=e92]
+      - text: "opened  on  May 5, 2026 last week"
+      - button "1 linked PR" [ref=e93]: "1"
+      - text: "1  comment"
+    - listitem "Getting Started: Cowork \"Paste this repo URL\" needs to be fixed.: Status: Open. #161 In anthropics/f" [ref=e94]:
+      - heading [level=3]:
+        - link "Getting Started: Cowork \"Paste this repo URL\" needs to be fixed." [ref=e95]
+      - text: "Status: Open.#161  In anthropics/financial-services;·"
+      - link "DrRaymondSotoJr" [ref=e96]
+      - text: "opened  on  May 9, 2026 4 days ago  1  comment"
+    - listitem "Critical Bug: Broken cross-agent handoffs due to truncated JSON extraction in orchestrate.py: Status" [ref=e97]:
+      - heading [level=3]:
+        - link "Critical Bug: Broken cross-agent handoffs due to truncated JSON extraction in orchestrate.py" [ref=e98]
+      - text: "Status: Open.#99  In anthropics/financial-services;·"
+      - link "SalimMessaad1" [ref=e99]
+      - text: "opened  on  May 6, 2026 last week"
+      - button "3 linked PRs" [ref=e100]: "3"
+      - text: "1  comment"
+    - listitem "Several plugin hooks.json files ship as [], causing 'Hook load failed' on install: Status: Open. #12" [ref=e101]:
+      - heading [level=3]:
+        - link "Several plugin hooks.json files ship as [], causing 'Hook load failed' on install" [ref=e102]
+      - text: "Status: Open.#123  In anthropics/financial-services;·"
+      - link "MentalSpaceTherapy1" [ref=e103]
+      - text: "opened  on  May 7, 2026 last week"
+      - button "1 linked PR" [ref=e104]: "1"
+      - text: "1  comment"
+    - listitem "[BUG] Claude for Excel (Bedrock direct) selects us. inference profile when manifest aws_region is eu" [ref=e105]:
+      - heading [level=3]:
+        - link "[BUG] Claude for Excel (Bedrock direct) selects us. inference profile when manifest aws_region is eu" [ref=e106]
+      - text: "Status: Open.#126  In anthropics/financial-services;·"
+      - link "a0004uk" [ref=e107]
+      - text: "opened  on  May 7, 2026 last week  1  comment"
+    - listitem "Add private credit plugin — missing vertical in FSI coverage: Status: Open. #16 In anthropics/financ" [ref=e108]:
+      - heading [level=3]:
+        - link "Add private credit plugin — missing vertical in FSI coverage" [ref=e109]
+      - text: "Status: Open.#16  In anthropics/financial-services;·"
+      - link "KD-alt20" [ref=e110]
+      - text: "opened  on  Mar 2, 2026 on Mar 2"
+      - button "1 linked PR" [ref=e111]: "1"
+    - listitem "wrong skill yaml formatter for thesis-tracker skill: Status: Open. #18 In anthropics/financial-servi" [ref=e112]:
+      - heading [level=3]:
+        - link "wrong skill yaml formatter for thesis-tracker skill" [ref=e113]
+      - text: "Status: Open.#18  In anthropics/financial-services;·"
+      - link "cheesebear" [ref=e114]
+      - text: "opened  on  Mar 2, 2026 on Mar 2"
+    - listitem "recalc.py missing: Status: Open. #25 In anthropics/financial-services;· shiyanabcd-STONE opened on M" [ref=e115]:
+      - heading [level=3]:
+        - link "recalc.py missing" [ref=e116]
+      - text: "Status: Open.#25  In anthropics/financial-services;·"
+      - link "shiyanabcd-STONE" [ref=e117]
+      - text: "opened  on  Mar 9, 2026 on Mar 9"
+      - button "1 linked PR" [ref=e118]: "1"
+    - listitem "Set up Budget vs Forecast Dashboard structure and include sample data, DAX, documentation: Status: O" [ref=e119]:
+      - heading [level=3]:
+        - link "Set up Budget vs Forecast Dashboard structure and include sample data, DAX, documentation" [ref=e120]
+      - text: "Status: Open.#37  In anthropics/financial-services;·"
+      - link "malviyanikitha-design" [ref=e121]
+      - text: "opened  on  Mar 19, 2026 on Mar 19"
+    - listitem "No validation on MCP server URLs - possible SSRF / data exfil risk: Status: Open. #45 In anthropics/" [ref=e122]:
+      - heading [level=3]:
+        - link "No validation on MCP server URLs - possible SSRF / data exfil risk" [ref=e123]
+      - text: "Status: Open.#45  In anthropics/financial-services;·"
+      - link "amanverma-wsu" [ref=e124]
+      - text: "opened  on  Mar 26, 2026 on Mar 26"
+    - listitem "Delete the mcp servers include in the plugin: Status: Open. #56 In anthropics/financial-services;· p" [ref=e125]:
+      - heading [level=3]:
+        - link "Delete the mcp servers include in the plugin" [ref=e126]
+      - text: "Status: Open.#56  In anthropics/financial-services;·"
+      - link "pwang2" [ref=e127]
+      - text: "opened  on  Apr 2, 2026 on Apr 2"
+  - navigation "Pagination" [ref=e128]:
+    - link "Page 1" [ref=e129]: "1"
+    - link "Page 2" [ref=e130]: "2"
+    - link "Page 3" [ref=e131]: "3"
+    - link "Next Page" [ref=e132]: "Next"
+  - button "Give feedback" [ref=e133]
+- contentinfo:
+  - heading "Footer" [level=2]
+  - link "GitHub Homepage" [ref=e134]
+  - text: "© 2026 GitHub, Inc."
+  - navigation "Footer" [ref=e135]:
+    - heading "Footer navigation" [level=3]
+    - link "Terms" [ref=e136]
+    - link "Privacy" [ref=e137]
+    - link "Security" [ref=e138]
+    - link "Status" [ref=e139]
+    - link "Community" [ref=e140]
+    - link "Docs" [ref=e141]
+    - link "Contact" [ref=e142]
+    - button "Manage cookies" [ref=e143]
+    - button "Do not share my personal information" [ref=e144]
+</result>
+
+[15] assistant: Re-checked the GitHub weekly trending page.
+
+Confirmed first repository listed this week: **anthropics/financial-services** with **13,176 stars this week**.
+
+Then I checked its open issues sorted by comments descending. The top-commented open issue is:
+
+**#108: “claude app can not add this”**  
+- **Comments:** 3  
+- **Opened by:** naniwet  
+- **URL:** https://github.com/anthropics/financial-services/issues/108

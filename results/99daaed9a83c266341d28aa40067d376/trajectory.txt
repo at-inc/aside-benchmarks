@@ -1,0 +1,1644 @@
+[1] user: Go to https://boardgamegeek.com/, Find the most popular board game on the 'The Hotness' list that has a rating above 7.5 and is suitable for 2 players.
+
+[2] thinking: **Finding popular board games**
+
+I need to browse for answers on popular board games. I’m looking for games rated above 7.5 on BoardGameGeek’s Hotness list that are suitable for two players. I'll start by checking the order of the Hotness list, evaluating each game for its rating and player count. I could potentially use the BGG API for easier data access. It seems the current Hotness list is what I really need to focus on, so let's gather that information effectively!
+
+[3] tool_call: repl("Opening BoardGameGeek")
+<request>
+const p1 = await openTab('https://boardgamegeek.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="260" elapsed_time="1825ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → BoardGameGeek | Gaming Unplugged Since 2000 (https://boardgamegeek.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "BoardGameGeek | Gaming Unplugged Since 2000" [url=https://boardgamegeek.com/]
+- banner:
+  - navigation:
+    - button "Toggle Sidebar" [ref=e1]
+    - link "boardgame geek" [ref=e2]
+    - button "More Geek Sites" [ref=e3]
+    - button "Browse" [ref=e4]
+    - button "Forums" [ref=e5]
+    - button "GeekLists" [ref=e6]
+    - button "Shopping" [ref=e7]
+    - button "Community" [ref=e8]
+    - button "Help" [ref=e9]
+    - link "Sign In" [ref=e10]
+    - link "Join (it's free)!" [ref=e11]
+    - text: "Search"
+    - combobox "Search" [ref=e12] [placeholder="Search"]
+    - button "Search" [ref=e13]
+- main:
+  - link [ref=e14]
+  - link [ref=e15]
+  - iframe "Advertisement" [ref=e16]:
+    - link [ref=f9e1]
+    - button [ref=f9e3]
+  - navigation:
+    - link "Explore" [ref=e17]
+    - link "Dashboard" [ref=e18]
+  - banner:
+    - heading "Featured Stories" [level=2]
+    - link "[BGG STORE] - May Store Update - Huge wave of restocked promos! Primary Thumbnail" [ref=e19]
+    - heading [level=3]:
+      - link "[BGG STORE] - May Store Update - Huge wave of restocked promos!" [ref=e20]
+    - text: "by"
+    - link "LindyBurger" [ref=e21]
+    - link "News" [ref=e22]
+    - text: "20th Annual Golden Geek Winners for 2025! Secondary Thumbnail"
+    - heading [level=3]:
+      - link "20th Annual Golden Geek Winners for 2025!" [ref=e23]
+    - text: "by"
+    - link "Aldie" [ref=e24]
+    - link "News" [ref=e25]
+    - text: "He Loved Being at the Table w/Justin Bell Secondary Thumbnail"
+    - heading [level=3]:
+      - link "He Loved Being at the Table w/Justin Bell" [ref=e26]
+    - text: "by"
+    - link "Justin Bell" [ref=e27]
+    - link "BoardGameGeek Blog" [ref=e28]
+    - text: "BGG Artist Series #11 Live on Kickstarter! Secondary Thumbnail"
+    - heading [level=3]:
+      - link "BGG Artist Series #11 Live on Kickstarter!" [ref=e29]
+    - text: "by"
+    - link "chaddyboy_2000" [ref=e30]
+    - link "News" [ref=e31]
+    - text: "ORBIT - GameNight! Secondary Thumbnail"
+    - heading [level=3]:
+      - link "ORBIT - GameNight!" [ref=e32]
+    - text: "by"
+    - link "heccubus" [ref=e33]
+  - region:
+    - banner:
+      - heading "The Hotness See All" [level=2]:
+        - text: "The Hotness"
+        - link "See All" [ref=e34]
+      - text: "Top 50 trending games today"
+    - generic [ref=e35] [scrollable]:
+      - text: "Terraria: The Board Game Artwork"
+      - heading "Terraria: The Board Game" [level=3]:
+        - link "Terraria: The Board Game" [ref=e36]: "1  Terraria: The Board Game"
+      - text: "Dig, fight, explore and build in this co-op adventure for 1-4 intrepid Terrarians! The Lord of the Rings: Fate of the Fellowship Artwork"
+      - heading "The Lord of the Rings: Fate of the Fellowship" [level=3]:
+        - link "The Lord of the Rings: Fate of the Fellowship" [ref=e37]: "2  The Lord of the Rings: Fate of the Fellowship"
+      - text: "As members of The Fellowship, embark on a journey to save—or doom—Middle-earth. Lands of Evershade Artwork"
+      - heading "Lands of Evershade" [level=3]:
+        - link "Lands of Evershade" [ref=e38]: "3  Lands of Evershade"
+      - text: "Hybrid RPG/board game combines storytelling, tactical combat, and dice-based system. Rolling Deep Artwork"
+      - heading "Rolling Deep" [level=3]:
+        - link "Rolling Deep" [ref=e39]: "4  Rolling Deep"
+      - text: "Journey to the Center of the Earth in this Balatro-inspired roguelike dice game. Feya's Swamp Artwork"
+      - heading "Feya's Swamp" [level=3]:
+        - link "Feya's Swamp" [ref=e40]: "5  Feya's Swamp"
+      - text: "Rise as the most prosperous clan in this magical swamp. Toy Battle Artwork"
+      - heading "Toy Battle" [level=3]:
+        - link "Toy Battle" [ref=e41]: "6  Toy Battle"
+      - text: "Send forth an army of toys to conquer territories. Vantage Artwork"
+      - heading "Vantage" [level=3]:
+        - link "Vantage" [ref=e42]: "7  Vantage"
+      - text: "Explore an entire planet's open world from a first-person perspective. Habitats Artwork"
+      - heading "Habitats" [level=3]:
+        - link "Habitats" [ref=e43]: "8  Habitats"
+      - text: "Build a wildlife park - but be sure to give your animals the terrain they need! Eternal Decks Artwork"
+      - heading "Eternal Decks" [level=3]:
+        - link "Eternal Decks" [ref=e44]: "9  Eternal Decks"
+      - text: "Can you solve each stage before your deck runs out? Hot Streak Artwork"
+      - heading "Hot Streak" [level=3]:
+        - link "Hot Streak" [ref=e45]: "10  Hot Streak"
+      - text: "Which mascot will cross the finish line first? Who will be DQ'd? The Secret Valley Artwork"
+      - heading "The Secret Valley" [level=3]:
+        - link "The Secret Valley" [ref=e46]: "11  The Secret Valley"
+      - text: "Migrate to new territories in search of the mysterious Secret Valley. Magical Athlete Artwork"
+      - heading "Magical Athlete" [level=3]:
+        - link "Magical Athlete" [ref=e47]: "12  Magical Athlete"
+      - text: "Pit a cast of crazy characters against each other in a madcap race to the finish. Terraforming Mars Artwork"
+      - heading "Terraforming Mars" [level=3]:
+        - link "Terraforming Mars" [ref=e48]: "13  Terraforming Mars"
+      - text: "Compete with rival CEOs to make Mars habitable and build your corporate empire. The Legacy Of Mars Artwork"
+      - heading "The Legacy Of Mars" [level=3]:
+        - link "The Legacy Of Mars" [ref=e49]: "14  The Legacy Of Mars"
+      - text: "Discover new planets to terraform, and new ways to do it! Compania Artwork"
+      - heading "Compania" [level=3]:
+        - link "Compania" [ref=e50]: "15  Compania"
+      - text: "Grow your fledgling company to become the richest in the world of Factoria. SETI: Search for Extraterrestrial Intelligence Artwork"
+      - heading "SETI: Search for Extraterrestrial Intelligence" [level=3]:
+        - link "SETI: Search for Extraterrestrial Intelligence" [ref=e51]: "16  SETI: Search for Extraterrestrial Intelligence"
+      - text: "Search for signs of alien life by launching probes and analyzing distant signals. The Old King's Crown Artwork"
+      - heading "The Old King's Crown" [level=3]:
+        - link "The Old King's Crown" [ref=e52]: "17  The Old King's Crown"
+      - text: "Out-manoeuvre your rivals as you vie for control of an ancient, crumbling kingdom. Nippon: Zaibatsu Artwork"
+      - heading "Nippon: Zaibatsu" [level=3]:
+        - link "Nippon: Zaibatsu" [ref=e53]: "18  Nippon: Zaibatsu"
+      - text: "Control conglomerates of companies driving Japan’s economy. Galactic Cruise Artwork"
+      - heading "Galactic Cruise" [level=3]:
+        - link "Galactic Cruise" [ref=e54]: "19  Galactic Cruise"
+      - text: "Build and launch ships to send guests on luxurious space vacations. Moon Colony Bloodbath Artwork"
+      - heading "Moon Colony Bloodbath" [level=3]:
+        - link "Moon Colony Bloodbath" [ref=e55]: "20  Moon Colony Bloodbath"
+      - text: "Whatever can go wrong will go wrong. Players compete to keep their colonists alive. World Order Artwork"
+      - heading "World Order" [level=3]:
+        - link "World Order" [ref=e56]: "21  World Order"
+      - text: "Simulate the modern global political system in this area-control game. Spirit Island Artwork"
+      - heading "Spirit Island" [level=3]:
+        - link "Spirit Island" [ref=e57]: "22  Spirit Island"
+      - text: "Island Spirits join forces using elemental powers to defend their home from invaders. Spooky Tower Artwork"
+      - heading "Spooky Tower" [level=3]:
+        - link "Spooky Tower" [ref=e58]: "23  Spooky Tower"
+      - text: "Ghost hunters race to protect the town. Ark Nova Artwork"
+      - heading "Ark Nova" [level=3]:
+        - link "Ark Nova" [ref=e59]: "24  Ark Nova"
+      - text: "Plan and build a modern, scientifically managed zoo to support conservation projects. Star Trek: Captain's Chair Artwork"
+      - heading "Star Trek: Captain's Chair" [level=3]:
+        - link "Star Trek: Captain's Chair" [ref=e60]: "25  Star Trek: Captain's Chair"
+      - text: "Step into the shoes of an iconic Star Trek captain and explore the galaxy! Dungeons of the Oak Dell Artwork"
+      - heading "Dungeons of the Oak Dell" [level=3]:
+        - link "Dungeons of the Oak Dell" [ref=e61]: "26  Dungeons of the Oak Dell"
+      - text: "Innovative fighting system, letting you immerse in every hit you deal to a monster! Medici Artwork"
+      - heading "Medici" [level=3]:
+        - link "Medici" [ref=e62]: "27  Medici"
+      - text: "Rival merchant families seek profitable markets in 15th century Florence. Speakeasy Artwork"
+      - heading "Speakeasy" [level=3]:
+        - link "Speakeasy" [ref=e63]: "28  Speakeasy"
+      - text: "Earn money running a Manhattan speakeasy business during Prohibition. Heat: Pedal to the Metal Artwork"
+      - heading "Heat: Pedal to the Metal" [level=3]:
+        - link "Heat: Pedal to the Metal" [ref=e64]: "29  Heat: Pedal to the Metal"
+      - text: "Push your car to the limit in the pursuit of victory, but don’t overheat! Arcs Artwork"
+      - heading "Arcs" [level=3]:
+        - link "Arcs" [ref=e65]: "30  Arcs"
+      - text: "Rule the galaxy with your court, fleet, and cities. Wroth Artwork"
+      - heading "Wroth" [level=3]:
+        - link "Wroth" [ref=e66]: "31  Wroth"
+      - text: "Factions vie for control over the island of Wroth. Harmonies Artwork"
+      - heading "Harmonies" [level=3]:
+        - link "Harmonies" [ref=e67]: "32  Harmonies"
+      - text: "Create your own landscape and habitats to welcome animals. Brass: Birmingham Artwork"
+      - heading "Brass: Birmingham" [level=3]:
+        - link "Brass: Birmingham" [ref=e68]: "33  Brass: Birmingham"
+      - text: "Build networks, grow industries, and navigate the world of the Industrial Revolution. Dune: Imperium – Uprising Artwork"
+      - heading "Dune: Imperium – Uprising" [level=3]:
+        - link "Dune: Imperium – Uprising" [ref=e69]: "34  Dune: Imperium – Uprising"
+      - text: "Deploy agents, build your deck, and engage in strategic battles to control Arrakis. Nemesis: Retaliation Artwork"
+      - heading "Nemesis: Retaliation" [level=3]:
+        - link "Nemesis: Retaliation" [ref=e70]: "35  Nemesis: Retaliation"
+      - text: "Highly trained marines enter an alien nest with strict orders and advanced tools. Root Artwork"
+      - heading "Root" [level=3]:
+        - link "Root" [ref=e71]: "36  Root"
+      - text: "Decide the fate of the woodland as asymmetric factions fight for contrasting goals. Lost Ruins of Arnak Artwork"
+      - heading "Lost Ruins of Arnak" [level=3]:
+        - link "Lost Ruins of Arnak" [ref=e72]: "37  Lost Ruins of Arnak"
+      - text: "Explore an island to find resources and discover the lost ruins of Arnak. Obsession Artwork"
+      - heading "Obsession" [level=3]:
+        - link "Obsession" [ref=e73]: "38  Obsession"
+      - text: "Renovate an estate, manage servants, and pursue romance in Victorian England. Wingspan Artwork"
+      - heading "Wingspan" [level=3]:
+        - link "Wingspan" [ref=e74]: "39  Wingspan"
+      - text: "Attract a beautiful and diverse collection of birds to your wildlife preserve. The Elder Scrolls: Betrayal of the Second Era Artwork"
+      - heading "The Elder Scrolls: Betrayal of the Second Era" [level=3]:
+        - link "The Elder Scrolls: Betrayal of the Second Era" [ref=e75]: "40  The Elder Scrolls: Betrayal of the Second Era"
+      - text: "Upgrade your character and gear up to explore the many regions of Tamriel. Endeavor: Deep Sea Artwork"
+      - heading "Endeavor: Deep Sea" [level=3]:
+        - link "Endeavor: Deep Sea" [ref=e76]: "41  Endeavor: Deep Sea"
+      - text: "Lead your research institute to explore ocean depths and publish your findings! Unstoppable Artwork"
+      - heading "Unstoppable" [level=3]:
+        - link "Unstoppable" [ref=e77]: "42  Unstoppable"
+      - text: "Gather your allies and sharpen your skills, for the darkest days are yet to come. Slay the Spire: The Board Game Artwork"
+      - heading "Slay the Spire: The Board Game" [level=3]:
+        - link "Slay the Spire: The Board Game" [ref=e78]: "43  Slay the Spire: The Board Game"
+      - text: "Craft a unique deck, discover powerful relics, and Slay the Spire together! Bomb Busters Artwork"
+      - heading "Bomb Busters" [level=3]:
+        - link "Bomb Busters" [ref=e79]: "44  Bomb Busters"
+      - text: "Players defuse bombs by deducing and cutting unseen wires of different values. Tag Team Artwork"
+      - heading "Tag Team" [level=3]:
+        - link "Tag Team" [ref=e80]: "45  Tag Team"
+      - text: "Classic arcade fighting two-on-two action. Shackleton Base: A Journey to the Moon Artwork"
+      - heading "Shackleton Base: A Journey to the Moon" [level=3]:
+        - link "Shackleton Base: A Journey to the Moon" [ref=e81]: "46  Shackleton Base: A Journey to the Moon"
+      - text: "Lead your space agency to expand your presence on the Moon. Zombicide: Dead Men Tales Artwork"
+      - heading "Zombicide: Dead Men Tales" [level=3]:
+        - link "Zombicide: Dead Men Tales" [ref=e82]: "47  Zombicide: Dead Men Tales"
+      - text: "Fantasy Zombicide is back with a swashbuckling twist! Arkham Horror: The Card Game Artwork"
+      - heading "Arkham Horror: The Card Game" [level=3]:
+        - link "Arkham Horror: The Card Game" [ref=e83]: "48  Arkham Horror: The Card Game"
+      - text: "Investigate the horrors of Arkham while courting cosmic doom. Wondrous Creatures Artwork"
+      - heading "Wondrous Creatures" [level=3]:
+        - link "Wondrous Creatures" [ref=e84]: "49  Wondrous Creatures"
+      - text: "Build the best reserve in the world for 100+ fantastic creatures! Dune: Imperium Artwork"
+      - heading "Dune: Imperium" [level=3]:
+        - link "Dune: Imperium" [ref=e85]: "50  Dune: Imperium"
+      - text: "Influence, intrigue, and combat in the universe of Dune."
+    - navigation
+  - region:
+    - banner:
+      - heading "Crowdfunding Countdown See All" [level=2]:
+        - text: "Crowdfunding Countdown"
+        - link "See All" [ref=e86]
+      - text: "Projects ending soon"
+    - generic [ref=e87] [scrollable]:
+      - text: "Pack & Paddle Artwork  Promoted"
+      - progressbar
+      - heading "Pack & Paddle" [level=3]:
+        - link "Pack & Paddle" [ref=e88]
+      - text: "Ends May 28 1214 Backers  Collect supplies and organize your campsite for the perfect getaway under the stars."
+      - link "Visit Project" [ref=e89]
+      - text: "Zombicide: Dead Men Tales Artwork"
+      - progressbar
+      - heading "Zombicide: Dead Men Tales" [level=3]:
+        - link "Zombicide: Dead Men Tales" [ref=e90]
+      - text: "Ends in 1 hour 9307 Backers  Fantasy Zombicide is back with a swashbuckling twist!"
+      - link "Visit Project" [ref=e91]
+      - text: "Stubborn Sheep Artwork"
+      - progressbar
+      - heading "Stubborn Sheep" [level=3]:
+        - link "Stubborn Sheep" [ref=e92]
+        - text: ", + 2 more"
+      - text: "Ends in 13 hours 381 Backers  Spring has arrived in the Scottish Highlands, and it’s shearing season!"
+      - link "Visit Project" [ref=e93]
+      - text: "Quatermain: Perilous Journeys Artwork"
+      - progressbar
+      - heading "Quatermain: Perilous Journeys" [level=3]:
+        - link "Quatermain: Perilous Journeys" [ref=e94]
+      - text: "Ends in 14 hours 57 Backers  More excitement in deepest, darkest Africa."
+      - link "Visit Project" [ref=e95]
+      - text: "Circlora Artwork"
+      - progressbar
+      - heading "Circlora" [level=3]:
+        - link "Circlora" [ref=e96]
+      - text: "Ends in 14 hours 361 Backers  Stop the humans' advance and heal the wounded dragon."
+      - link "Visit Project" [ref=e97]
+      - text: "Pocket Puffins: Lost in Space Artwork"
+      - progressbar
+      - heading "Pocket Puffins: Lost in Space" [level=3]:
+        - link "Pocket Puffins: Lost in Space" [ref=e98]
+      - text: "Ends in 14 hours 919 Backers  Command space puffins to create patterns and connect tethers before time runs out."
+      - link "Visit Project" [ref=e99]
+      - text: "Mega Empires: The Far East – North Artwork"
+      - progressbar
+      - heading "Mega Empires: The Far East – North" [level=3]:
+        - link "Mega Empires: The Far East – North" [ref=e100]
+        - text: ", + 1 more"
+      - text: "Ends in 21 hours 745 Backers  Lead one of the Chinese dynasties, the Mongol Empire, or Japan."
+      - link "Visit Project" [ref=e101]
+      - text: "River Valley Jewelcraft Artwork"
+      - progressbar
+      - heading "River Valley Jewelcraft" [level=3]:
+        - link "River Valley Jewelcraft" [ref=e102]
+        - text: ", + 2 more"
+      - text: "Ends May 14 6003 Backers  Gather gems from the mines of River Valley to craft exquisite jewelry."
+      - link "Visit Project" [ref=e103]
+      - text: "Restart Artwork"
+      - progressbar
+      - heading "Restart" [level=3]:
+        - link "Restart" [ref=e104]
+        - text: ", + 3 more"
+      - text: "Ends May 15 790 Backers  Travel back in time and change the course of events to save your future."
+      - link "Visit Project" [ref=e105]
+      - text: "Schlock!: B-Movie Magnate Artwork"
+      - progressbar
+      - heading "Schlock!: B-Movie Magnate" [level=3]:
+        - link "Schlock!: B-Movie Magnate" [ref=e106]
+      - text: "Ends May 15 471 Backers  Create B-movies in the golden age of Hollywood."
+      - link "Visit Project" [ref=e107]
+      - text: "Sole Survivor Artwork"
+      - progressbar
+      - heading "Sole Survivor" [level=3]:
+        - link "Sole Survivor" [ref=e108]
+      - text: "Ends May 16 364 Backers  An alien-infested spaceship solo survival challenge."
+      - link "Visit Project" [ref=e109]
+      - text: "Burnout Artwork"
+      - progressbar
+      - heading "Burnout" [level=3]:
+        - link "Burnout" [ref=e110]
+      - text: "Ends May 19 1185 Backers  A chaotic strategic party game where modern work culture meets mental health."
+      - link "Visit Project" [ref=e111]
+      - text: "The Ties That Bind Us Artwork"
+      - progressbar
+      - heading "The Ties That Bind Us" [level=3]:
+        - link "The Ties That Bind Us" [ref=e112]
+      - text: "Ends May 20 114 Backers  An electronic horror themed boardgame with no moving parts.  Just LEDs and sound!"
+      - link "Visit Project" [ref=e113]
+      - text: "Nothing But Net Artwork"
+      - progressbar
+      - heading "Nothing But Net" [level=3]:
+        - link "Nothing But Net" [ref=e114]
+      - text: "Ends May 20 338 Backers  Hit the court and outplay your opponent in a fast-paced race to 21 points."
+      - link "Visit Project" [ref=e115]
+      - text: "Ronin's Revenge Artwork"
+      - progressbar
+      - heading "Ronin's Revenge" [level=3]:
+        - link "Ronin's Revenge" [ref=e116]
+      - text: "Ends May 20 1480 Backers  A true Souls-Like experience on your table"
+      - link "Visit Project" [ref=e117]
+      - text: "Battle Box: Age of Sail Artwork"
+      - progressbar
+      - heading "Battle Box: Age of Sail" [level=3]:
+        - link "Battle Box: Age of Sail" [ref=e118]
+      - text: "Ends May 21 647 Backers  A pocket wargame to recreate exciting sea battles in the age of sail."
+      - link "Visit Project" [ref=e119]
+      - text: "All True Believers Artwork"
+      - progressbar
+      - heading "All True Believers" [level=3]:
+        - link "All True Believers" [ref=e120]
+      - text: "Ends May 21 869 Backers  Cult members weed out the defectors as they attempt to reach tax-exemption"
+      - link "Visit Project" [ref=e121]
+      - text: "Reactor Rescue Artwork"
+      - progressbar
+      - heading "Reactor Rescue" [level=3]:
+        - link "Reactor Rescue" [ref=e122]
+      - text: "Ends May 21 1617 Backers  Build real circuits to repair your ship and race to save a failing city."
+      - link "Visit Project" [ref=e123]
+      - text: "Тайная долина Artwork"
+      - progressbar
+      - heading "Тайная долина" [level=3]:
+        - link "Тайная долина" [ref=e124]
+        - text: ", + 1 more"
+      - text: "Ends May 23 632 Backers  Migrate to new territories in search of the mysterious Secret Valley."
+      - link "Visit Project" [ref=e125]
+      - text: "Sudden Conflict Artwork"
+      - progressbar
+      - heading "Sudden Conflict" [level=3]:
+        - link "Sudden Conflict" [ref=e126]
+      - text: "Ends May 24 175 Backers  An aggressive, tactical miniatures skirmish game."
+      - link "Visit Project" [ref=e127]
+      - text: "Elementary Evolution Artwork"
+      - progressbar
+      - heading "Elementary Evolution" [level=3]:
+        - link "Elementary Evolution" [ref=e128]
+      - text: "Ends May 28 155 Backers  Summon elementals and evolve them to their ultimate forms."
+      - link "Visit Project" [ref=e129]
+      - text: "Kōhaku: The Big Pond Artwork"
+      - progressbar
+      - heading "Kōhaku: The Big Pond" [level=3]:
+        - link "Kōhaku: The Big Pond" [ref=e130]
+      - text: "Ends May 28 337 Backers  Fill your pond with new fish and decorative features."
+      - link "Visit Project" [ref=e131]
+      - text: "Fuse: Build Your Heat Artwork"
+      - progressbar
+      - heading "Fuse: Build Your Heat" [level=3]:
+        - link "Fuse: Build Your Heat" [ref=e132]
+      - text: "Ends May 28 82 Backers  Couples explore connection, intimacy, and passion through escalating cards, dice, and"
+      - link "Visit Project" [ref=e133]
+      - text: "The Fable of Mabel on the Witch's Table Artwork"
+      - progressbar
+      - heading "The Fable of Mabel on the Witch's Table" [level=3]:
+        - link "The Fable of Mabel on the Witch's Table" [ref=e134]
+      - text: "Ends May 28 68 Backers  A two-player tug of war to herd the cat and knock the witch's trinkets off the table."
+      - link "Visit Project" [ref=e135]
+      - text: "ESP: Experiment in Supersensory Perspicacity Artwork"
+      - progressbar
+      - heading "ESP: Experiment in Supersensory Perspicacity" [level=3]:
+        - link "ESP: Experiment in Supersensory Perspicacity" [ref=e136]
+      - text: "Ends May 28 86 Backers  Test your third-eye with a trick-taking game."
+      - link "Visit Project" [ref=e137]
+      - text: "Jason and the Argonauts Artwork"
+      - progressbar
+      - heading "Jason and the Argonauts" [level=3]:
+        - link "Jason and the Argonauts" [ref=e138]
+      - text: "Ends May 28 2198 Backers  Embark on a solo voyage as Jason to lead the Argonauts and claim the Golden Fleece."
+      - link "Visit Project" [ref=e139]
+      - text: "Red Panda Surprise Artwork"
+      - progressbar
+      - heading "Red Panda Surprise" [level=3]:
+        - link "Red Panda Surprise" [ref=e140]
+      - text: "Ends May 28 190 Backers  Red Pandas try to scare each other but are too cute."
+      - link "Visit Project" [ref=e141]
+      - text: "Cryptid Creek: Build a Legend Artwork"
+      - progressbar
+      - heading "Cryptid Creek: Build a Legend" [level=3]:
+        - link "Cryptid Creek: Build a Legend" [ref=e142]
+      - text: "Ends May 28 61 Backers  Compete to create convincing cryptids to boost tourism, but push too far and all lose"
+      - link "Visit Project" [ref=e143]
+      - text: "Blöder Hund Artwork"
+      - progressbar
+      - heading "Blöder Hund" [level=3]:
+        - link "Blöder Hund" [ref=e144]
+      - text: "Ends May 28 98 Backers  A crafty trick‑taking card game featuring dachshunds."
+      - link "Visit Project" [ref=e145]
+      - text: "Pirates Dragons Treasure: 2nd Edition Artwork"
+      - progressbar
+      - heading "Pirates Dragons Treasure: 2nd Edition" [level=3]:
+        - link "Pirates Dragons Treasure: 2nd Edition" [ref=e146]
+      - text: "Ends May 28 144 Backers  A shipbuilding card game for dragon slayers in the Age of Piracy."
+      - link "Visit Project" [ref=e147]
+      - text: "Reavers of Midgard: Gods and Prophets Artwork"
+      - progressbar
+      - heading "Reavers of Midgard: Gods and Prophets" [level=3]:
+        - link "Reavers of Midgard: Gods and Prophets" [ref=e148]
+      - text: "Ends May 29 801 Backers  Takes all the greatness of Reavers of Midgard, and makes it even better!"
+      - link "Visit Project" [ref=e149]
+      - text: "The Legacy Of Mars Artwork"
+      - progressbar
+      - heading "The Legacy Of Mars" [level=3]:
+        - link "The Legacy Of Mars" [ref=e150]
+      - text: "Ends May 29 4512 Backers  Discover new planets to terraform, and new ways to do it!"
+      - link "Visit Project" [ref=e151]
+      - text: "Race to Mars: Lunar Edition Artwork"
+      - progressbar
+      - heading "Race to Mars: Lunar Edition" [level=3]:
+        - link "Race to Mars: Lunar Edition" [ref=e152]
+      - text: "Ends May 31 328 Backers  Race to put the first human being on Mars."
+      - link "Visit Project" [ref=e153]
+      - text: "Syncanite Foundation: Crimson Protocol Artwork"
+      - progressbar
+      - heading "Syncanite Foundation: Crimson Protocol" [level=3]:
+        - link "Syncanite Foundation: Crimson Protocol" [ref=e154]
+      - text: "Ends May 31 289 Backers  Leverage the hidden strings of power – master the Crimson Protocol"
+      - link "Visit Project" [ref=e155]
+      - text: "VANEA: Guardians of the Eldertree Artwork"
+      - progressbar
+      - heading "VANEA: Guardians of the Eldertree" [level=3]:
+        - link "VANEA: Guardians of the Eldertree" [ref=e156]
+      - text: "Ends Jun 1 302 Backers  Explore the mystical and fairytale world of VANEA."
+      - link "Visit Project" [ref=e157]
+      - text: "Pasteles Artwork"
+      - progressbar
+      - heading "Pasteles" [level=3]:
+        - link "Pasteles" [ref=e158]
+      - text: "Ends Jun 2 1401 Backers  A cozy solo game about recipes, customers, and keeping a pastry shop alive."
+      - link "Visit Project" [ref=e159]
+      - text: "Bronze Island Artwork"
+      - progressbar
+      - heading "Bronze Island" [level=3]:
+        - link "Bronze Island" [ref=e160]
+      - text: "Ends Jun 2 68 Backers  Bronze age civilization struggle for survival and dominance."
+      - link "Visit Project" [ref=e161]
+      - text: "Battlesticks Artwork"
+      - progressbar
+      - heading "Battlesticks" [level=3]:
+        - link "Battlesticks" [ref=e162]
+      - text: "Ends Jun 2 1043 Backers  A party game where collecting and battling ridiculous sticks is your path to victory!"
+      - link "Visit Project" [ref=e163]
+      - text: "Beast: Ashfall Artwork"
+      - progressbar
+      - heading "Beast: Ashfall" [level=3]:
+        - link "Beast: Ashfall" [ref=e164]
+      - text: "Ends Jun 3 1819 Backers  Hidden paths and boats reshape the hunt."
+      - link "Visit Project" [ref=e165]
+      - text: "Shinobi Spy & Supply Artwork"
+      - progressbar
+      - heading "Shinobi Spy & Supply" [level=3]:
+        - link "Shinobi Spy & Supply" [ref=e166]
+      - text: "Ends Jun 3 147 Backers  Run the best Ninja gear shop in fantasy Sengoku Period Japan."
+      - link "Visit Project" [ref=e167]
+      - text: "Hotshots Artwork"
+      - progressbar
+      - heading "Hotshots" [level=3]:
+        - link "Hotshots" [ref=e168]
+      - text: "Ends Jun 4 957 Backers  Fight fires in a team as you race to save the forest from a raging inferno."
+      - link "Visit Project" [ref=e169]
+      - text: "Barzone Artwork"
+      - progressbar
+      - heading "Barzone" [level=3]:
+        - link "Barzone" [ref=e170]
+      - text: "Ends Jun 4 122 Backers  Start your bartender journey, managing resources to complete cocktails."
+      - link "Visit Project" [ref=e171]
+      - text: "Iron Protocol: Exodus Artwork"
+      - progressbar
+      - heading "Iron Protocol: Exodus" [level=3]:
+        - link "Iron Protocol: Exodus" [ref=e172]
+      - text: "Ends Jun 4 304 Backers  Deploy your mech into ruined suburbs, battle enemy machines, and find survivors."
+      - link "Visit Project" [ref=e173]
+      - text: "Jure Grando: The First Vampire Artwork"
+      - progressbar
+      - heading "Jure Grando: The First Vampire" [level=3]:
+        - link "Jure Grando: The First Vampire" [ref=e174]
+      - text: "Ends Jun 5 137 Backers  You cannot stop the legend. You can only survive it."
+      - link "Visit Project" [ref=e175]
+      - text: "Sally Face: Strange Nightmares Artwork"
+      - progressbar
+      - heading "Sally Face: Strange Nightmares" [level=3]:
+        - link "Sally Face: Strange Nightmares" [ref=e176]
+      - text: "Ends Jun 5 707 Backers  Enter Addison Apartments, a peaceful home to ghosts, cultists, corruption, & more"
+      - link "Visit Project" [ref=e177]
+      - text: "Flockers Artwork"
+      - progressbar
+      - heading "Flockers" [level=3]:
+        - link "Flockers" [ref=e178]
+      - text: "Ends Jun 5 586 Backers  Fly your flock of snow geese southward in this tactical card game."
+      - link "Visit Project" [ref=e179]
+      - text: "Game Changer: Home Edition Artwork"
+      - progressbar
+      - heading "Game Changer: Home Edition" [level=3]:
+        - link "Game Changer: Home Edition" [ref=e180]
+      - text: "Ends Jun 5 24421 Backers  Three party games in one box!"
+      - link "Visit Project" [ref=e181]
+      - text: "Rubber Ducky Rampage! Artwork"
+      - progressbar
+      - heading "Rubber Ducky Rampage!" [level=3]:
+        - link "Rubber Ducky Rampage!" [ref=e182]
+      - text: "Ends Jun 5 111 Backers  Rubber duckies battle for supremacy in a bathtub!"
+      - link "Visit Project" [ref=e183]
+      - text: "One Card Wonders Artwork"
+      - progressbar
+      - heading "One Card Wonders" [level=3]:
+        - link "One Card Wonders" [ref=e184]
+      - text: "Ends Jun 7 69 Backers  A wide variety of uniquely compact games all collected into one wonderful set!"
+      - link "Visit Project" [ref=e185]
+      - text: "Dreadquarters Artwork"
+      - progressbar
+      - heading "Dreadquarters" [level=3]:
+        - link "Dreadquarters" [ref=e186]
+      - text: "Ends Jun 12 238 Backers  Build a shared villain lair and survive relentless waves of invading heroes."
+      - link "Visit Project" [ref=e187]
+      - text: "Murder Hobo Tavern Brawl! Artwork"
+      - progressbar
+      - heading "Murder Hobo Tavern Brawl!" [level=3]:
+        - link "Murder Hobo Tavern Brawl!" [ref=e188]
+      - text: "Ends Jun 12 59 Backers  A chaotic fantasy battle card game with attack combos and twists."
+      - link "Visit Project" [ref=e189]
+      - text: "The Caster Chronicles 2026 Reboot Artwork"
+      - progressbar
+      - heading "The Caster Chronicles 2026 Reboot" [level=3]:
+        - link "The Caster Chronicles 2026 Reboot" [ref=e190]
+      - text: "Ends Jun 21 128 Backers  Players become Witches and battle using magic in a twisted pocket dimension."
+      - link "Visit Project" [ref=e191]
+    - navigation
+</result>
+
+[4] thinking: **Finding suitable players**
+
+I need to identify the highest-rated games with a score above 7.5 that are suitable for 2 players. I have an ordered list but will need actual data from the BGG API, particularly the XML API for stats and polls. I’ll use specific selectors to fetch the necessary IDs and statistics. When considering "suitable for 2 players," I'll weigh both minimum and maximum player counts against community recommendations to ensure it truly fits the criteria.
+
+**Verifying game statistics**
+
+I need to confirm the player count stats on the BGG game page, specifically looking for games rated above 7.5. The hottest game, Terraria, supports 1-4 players, but the rating may not reflect its true quality since it could be pre-release. If its rating is above 7.5 and it's suitable for 2 players, then Terraria might be a contender. I need to fetch XML data for the hot list and consider citation requirements for my final output. Formal citations may not be necessary for browser snapshots.
+
+[5] tool_call: repl("Fetching Hotness data")
+<request>
+const resHot1 = await fetch('https://boardgamegeek.com/xmlapi2/hot?type=boardgame');
+console.log(resHot1.status + ' ' + resHot1.headers.get('content-type'));
+const textHot1 = await resHot1.text();
+console.log(textHot1.slice(0,1000));
+</request>
+<result tokens_used="551" elapsed_time="189ms">
+401 text/plain
+Unauthorized. See https://boardgamegeek.com/using_the_xml_api
+</result>
+
+[6] tool_call: repl("Opening top Hotness game")
+<request>
+await page.locator('e36').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff);
+</request>
+<result tokens_used="190" elapsed_time="1187ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Terraria: The Board Game | Board Game | BoardGameGeek" [url=https://boardgamegeek.com/boardgame/391286/terraria-the-board-game]
+- banner:
+  - navigation:
+    - button "Skip Navigation" [ref=e1]
+    - link "Accessibility Feedback" [ref=e2]
+    - button "Toggle Sidebar" [ref=e3]
+    - link "boardgame geek" [ref=e4]
+    - button "More Geek Sites" [ref=e5]
+    - button "Browse" [ref=e6]
+    - button "Forums" [ref=e7]
+    - button "GeekLists" [ref=e8]
+    - button "Shopping" [ref=e9]
+    - button "Community" [ref=e10]
+    - button "Help" [ref=e11]
+    - button "Sign In" [ref=e12]
+    - link "Join (it's free)!" [ref=e13]
+    - text: "Search Site"
+    - textbox "Search Site" [ref=e14] [placeholder="Search"]
+    - button "Search" [ref=e15]
+- main:
+  - link [ref=e16]
+  - button "Skip Sidebar" [ref=e17]
+  - text: "The Hotness"
+  - button "Change hotness display style " [ref=e18]
+  - button "Games" [ref=e19]
+  - link "Terraria: The Board Game game Terraria: The Board Game Published 2026 −" [ref=e20]
+  - link "The Lord of the Rings: Fate of the Fellowship game The Lord of the Rings: Fate… Published 2025 " [ref=e21]
+  - link "Lands of Evershade game Lands of Evershade Published 2026 −" [ref=e22]
+  - link "Rolling Deep game Rolling Deep Published 2027 " [ref=e23]
+  - link "Feya's Swamp game Feya's Swamp Published 2025 " [ref=e24]
+  - link "Toy Battle game Toy Battle Published 2025 " [ref=e25]
+  - link "Vantage game Vantage Published 2025 " [ref=e26]
+  - link "Habitats game Habitats Published 2016 " [ref=e27]
+  - link "Eternal Decks game Eternal Decks Published 2025 " [ref=e28]
+  - link "Hot Streak game Hot Streak Published 2025 " [ref=e29]
+  - link "The Secret Valley game The Secret Valley Published 2021 " [ref=e30]
+  - link "Magical Athlete game Magical Athlete Published 2025 " [ref=e31]
+  - link "Terraforming Mars game Terraforming Mars Published 2016 " [ref=e32]
+  - link "The Legacy Of Mars game The Legacy Of Mars Published 2027" [ref=e33]
+  - link "Compania game Compania Published 2025 " [ref=e34]
+  - link [ref=e35]
+  - link "Terraria: The Board Game Cover Artwork" [ref=e36]
+  - text: "Rank: 			 				 					 						Overall"
+  - link "9,100" [ref=e37]
+  - link "7.4" [ref=e38]
+  - heading [level=1]:
+    - link "Terraria: The Board Game" [ref=e39]
+    - text: "(2026)"
+  - text: "Dig, fight, explore and build in this co-op adventure for 1-4 intrepid Terrarians!"
+  - button "Edit Description" [ref=e40]: ""
+  - link "243 Rating" [ref=e41]: "243 									Rating s"
+  - text: "&"
+  - link "122 Comment" [ref=e42]: "122 									Comment s"
+  - text: "·"
+  - link "GeekBuddy Analysis" [ref=e43]
+  - heading "Game Information" [level=2]
+  - heading "Number of Players" [level=3]
+  - text: "1–4   					Players"
+  - button "Community:" [ref=e44]: "Community: 							 							 								1–4 							 							 								— 								Best: 3"
+  - heading "Play Time" [level=3]
+  - text: "120–180   Min 					 				 				 					  						Playing Time"
+  - heading "Suggested Age" [level=3]
+  - text: "Age: 					 						–– 					 					 				 				 					 						(Not provided by publisher)"
+  - button "Community:" [ref=e45]: "Community: 10+"
+  - heading "Complexity" [level=3]
+  - text: "Weight: 					 					 						 							3.67 						 						/ 5  Complexity Rating"
+  - button "'Complexity' Rating" [ref=e46]: "'Complexity' Rating  Results"
+  - link " Learn more about complexity ratings" [ref=e47]
+  - heading "Game Credits" [level=3]
+  - heading [level=4]: "Alternate Names:"
+  - link "Terraria: Настільна гра" [ref=e48]
+  - link "+ 1 more" [ref=e49]
+  - heading [level=4]: "Designer:"
+  - link "Chris Kingsnorth" [ref=e50]
+  - heading [level=4]: "Artist:"
+  - link "George Doutsiopoulos" [ref=e51]
+  - heading [level=4]: "Publisher:"
+  - link "Paper Fort Games" [ref=e52]
+  - text: ","
+  - link "Re-Logic" [ref=e53]
+  - link "+ 2" [ref=e54]: "+ 2  more"
+  - link "See Full Credits" [ref=e55]
+  - text: "My rating"
+  - slider [ref=e56]:
+    - text: "( )"
+    - generic "" [ref=e57]
+    - text: "( )"
+    - generic "" [ref=e58]
+    - text: "( )"
+    - generic "" [ref=e59]
+    - text: "( )"
+    - generic "" [ref=e60]
+    - text: "( )"
+    - generic "" [ref=e61]
+    - text: "( )"
+    - generic "" [ref=e62]
+    - text: "( )"
+    - generic "" [ref=e63]
+    - text: "( )"
+    - generic "" [ref=e64]
+    - text: "( )"
+    - generic "" [ref=e65]
+    - text: "( )"
+    - generic "" [ref=e66]
+  - link "Buy" [ref=e67]: " Buy  a Copy"
+  - link "Sleeve" [ref=e68]: "Sleeve  It"
+  - button "Add To" [ref=e69]: " 			Add To 			 Collection"
+  - button "Log Play" [ref=e70]
+  - button "become a fan" [ref=e71]: ""
+  - link "428" [ref=e72]
+  - group:
+    - button "Subscribe" [ref=e73]
+    - button "Subscribe Options" [ref=e74]
+  - button "Settings" [ref=e75]: " Settings"
+  - button "Share" [ref=e76]: " Share"
+  - link " RSS Feed" [ref=e77]
+  - link "Edit" [ref=e78]
+  - link [ref=e79]
+  - navigation:
+    - tablist:
+      - tab "Overview" [ref=e80]
+      - tab "Ratings" [ref=e81]
+      - tab "Forums" [ref=e82]
+      - tab "Images" [ref=e83]
+      - tab "Videos" [ref=e84]
+      - tab "Files" [ref=e85]
+      - tab "Stats" [ref=e86]
+      - tab "Versions" [ref=e87]
+      - tab "Expansions" [ref=e88]
+      - tab "My Games" [ref=e89]
+      - tab "Shopping" [ref=e90]
+      - button "More" [ref=e91]
+  - link "The Expanse of the Board (Gnarly Carley Gaming)" [ref=e92]
+  - link "Box Cover (Updated Q1 2024)" [ref=e93]
+  - link "Building a Structure Underground (Gnarly Carley Gaming)" [ref=e94]
+  - link "Prototype from games expo" [ref=e95]
+  - link "Terraria pre-production samples" [ref=e96]
+  - link "Dice and the Underworld (Gnarly Carley Gaming)" [ref=e97]
+  - link "Round Tracker (Gnarly Carley Gaming)" [ref=e98]
+  - link "Gold Pledge - finally arrived! Still in shrink, 5.5kg" [ref=e99]
+  - link "Terraria: The Board Game at SPIEL 2024, Essen." [ref=e100]
+  - link "Monster Guide (Gnarly Carley Gaming)" [ref=e101]
+  - link "Backup Plan (Gnarly Carley Gaming)" [ref=e102]
+  - link "Get Wrecked! Level 5 Loot Card (Gnarly Carley Gaming)" [ref=e103]
+  - link "Starting Cards (Gnarly Carley Gaming)" [ref=e104]
+  - link "The Depths of Terraria (Gnarly Carley Gaming)" [ref=e105]
+  - link "Forest Biome (Gnarly Carley Gaming)" [ref=e106]
+  - link "Starting Items (Gnarly Carley Gaming)" [ref=e107]
+  - link "Terraria Character Card (Gnarly Carley Gaming)" [ref=e108]
+  - link "62" [ref=e109]: "62 			 				 Images"
+  - heading "Description" [level=3]
+  - link "Edit" [ref=e110]: " Edit"
+  - heading "Classification" [level=3]
+  - link " Edit" [ref=e111]
+  - link [ref=e112]
+  - heading "Type" [level=4]
+  - text: "Uncategorized"
+  - button " View poll and results" [ref=e113]
+  - link [ref=e114]
+  - heading "Category" [level=4]
+  - link "Adventure" [ref=e115]
+  - link "City Building" [ref=e116]
+  - link "Exploration" [ref=e117]
+  - link "Fighting" [ref=e118]
+  - link "Territory Building" [ref=e119]
+  - link "Video Game Theme" [ref=e120]
+  - link [ref=e121]
+  - heading "Mechanism" [level=4]
+  - link "Action Points" [ref=e122]
+  - link "Cooperative Game" [ref=e123]
+  - link "Deck, Bag, and Pool Building" [ref=e124]
+  - link "Dice Rolling" [ref=e125]
+  - link "Grid Movement" [ref=e126]
+  - link "+ 4" [ref=e127]: "+ 4  more"
+  - link [ref=e128]
+  - heading "Family" [level=4]
+  - link "Crowdfunding: Kickstarter" [ref=e129]
+  - link "Theme: Mining" [ref=e130]
+  - article: "Terraria: The Board Game  is a co-operative adventure game for 1-4 players. Whether you’re a novice Terrarian or a long-time fan, you can now experience Re-Logic’s magnum opus on your tabletop, solo or with friends. With simple deckbuilding at its heart and a flexible action point system, choose your own playstyle and create memorable moments as you dig, fight, explore and build in a thrilling sandbox world!\n\n\n     Explore ever-changing biomes, creating a unique world every time you play\n      Dig to mine ores and gems as you spelunk below the surface\n      Fight enemies to collect loot and obtain new cards\n      Complete objective chains and trigger epic boss showdowns\n      Build a base to unlock new crafting opportunities and NPC bonuses\n      Craft powerful new accessories, tools and weapons\n      Upgrade your character with tougher armor sets and useful buffs\n\n\n Be vigilant; time marches on and the world is dangerous. To win, complete your chosen objectives before the threat level gets too high.\n\nTerraria: The Board Game  feels like  Terraria, distilling the fun of the digital gameplay loop while adding the satisfying tactility and in-person excitement of modern tabletop games. So, whether you’ve played the videogame or not, clear your table, invite your friends and bring the fun of Terraria to game night!"
+  - link "+ More" [ref=e131]
+  - heading "Official Links" [level=3]
+  - text: ""
+  - link "Propose Official Link" [ref=e132]
+  - heading "Additional Suggestions" [level=3]
+  - text: "Language Dependence"
+  - link " Learn more about language dependence" [ref=e133]
+  - text: "Moderate in-game text - needs crib sheet or paste ups"
+  - button " View poll and results" [ref=e134]
+  - heading "Community Stats" [level=3]:
+    - link "Community Stats" [ref=e135]
+  - text: "Own:"
+  - link "805" [ref=e136]
+  - text: "Wishlist:"
+  - link "606" [ref=e137]
+  - text: "For Trade:"
+  - link " Find For Trade Matches" [ref=e138]
+  - link "8" [ref=e139]
+  - text: "Want In Trade:"
+  - link " Find Want in Trade Matches" [ref=e140]
+  - link "34" [ref=e141]
+  - text: "Has Parts:"
+  - link "0" [ref=e142]
+  - text: "Wants Parts:"
+  - link "2" [ref=e143]
+  - link "See All Stats" [ref=e144]
+  - text: "BGG Item ID: 391286"
+  - link [ref=e145]
+  - heading "Shopping" [level=2]:
+    - link "Shopping" [ref=e146]
+  - text: "We may earn a commission when you buy through these links."
+  - banner:
+    - text: "Terraria: The Board Game Cover Artwork"
+    - heading "Terraria: The Board Game" [level=3]
+    - text: "Dig, fight, explore and build in this co-op adventure for 1-4 intrepid Terrarians! 					  					 						 							Released: 2026"
+  - region:
+    - heading "Stores" [level=3]:
+      - link "Stores" [ref=e147]
+    - text: "eBay logo"
+    - heading "eBay" [level=2]: "eBay 			 				(2 listings)"
+    - link "from $48.00" [ref=e148]
+  - region:
+    - heading "GeekMarket" [level=3]:
+      - link "GeekMarket" [ref=e149]
+    - text: "Terraria: The Board Game cover"
+    - heading [level=2]: "Terraria: The Board Game (English edition) (2026)"
+    - text: "Romania flag   					 					 New 					 1 month ago"
+    - link "€165.00" [ref=e150]
+    - text: "Terraria: The Board Game cover"
+    - heading [level=2]: "Terraria: The Board Game (English edition) (2026)"
+    - text: "Italy flag   					 					 New 					 1 month ago"
+    - link "€208.33" [ref=e151]
+    - text: "Terraria: The Board Game cover"
+    - heading [level=2]: "Terraria: The Board Game (English edition) (2026)"
+    - text: "The Netherlands flag   					 					 New 					 1 month ago"
+    - link "€149.00" [ref=e152]
+    - text: "Terraria: The Board Game cover"
+    - heading [level=2]: "Terraria: The Board Game (English edition) (2026)"
+    - text: "France flag   					 					 Like New 					 1 month ago"
+    - link "€120.00" [ref=e153]
+    - text: "Terraria: The Board Game cover"
+    - heading [level=2]: "Terraria: The Board Game (English edition) (2026)"
+    - text: "United States flag   					 					 New 					 1 month ago"
+    - link "$200.00" [ref=e154]
+    - navigation:
+      - link "See All (7)" [ref=e155]
+      - link "Sell a Copy" [ref=e156]
+      - link "GeekMarket Price History" [ref=e157]
+  - region:
+    - heading "Expansions" [level=3]:
+      - link "Expansions" [ref=e158]
+    - text: "No listings found."
+  - region:
+    - heading "Accessories" [level=3]:
+      - link "Accessories" [ref=e159]
+    - text: "No listings found."
+  - text: "Advertisement"
+  - link [ref=e160]
+  - region:
+    - heading "Looking for Card Sleeves?" [level=2]
+    - text: "We have the sizes you need across the various brands gamers prefer."
+    - button "What best matches your copy?" [ref=e161]
+    - button "Find Sleeves" [ref=e162]
+  - heading "Videos" [level=2]:
+    - link "Videos" [ref=e163]
+  - link "Add" [ref=e164]: " Add"
+  - heading "Hot Review" [level=3]
+  - heading "We Could Not Finish Terraria: The Board Game" [level=3]:
+    - link "We Could Not Finish Terraria: The Board Game" [ref=e165]
+  - link "review" [ref=e166]: "Gallery:  review"
+  - link "NoPunIncluded" [ref=e167]: "submitted by: 	NoPunIncluded"
+  - text: "·"
+  - link "5 days ago" [ref=e168]
+  - text: "· 			 				 				English"
+  - link " 141  17" [ref=e169]
+  - heading "Hot \"How To Play\"" [level=3]
+  - heading "Terraria: The Board Game Play Through | The Brothers Murph" [level=3]:
+    - link "Terraria: The Board Game Play Through | The Brothers Murph" [ref=e170]
+  - link "instructional" [ref=e171]: "Gallery:  instructional"
+  - link "TheBrothersMurph" [ref=e172]: "submitted by: 	TheBrothersMurph"
+  - text: "·"
+  - link "9 months ago" [ref=e173]
+  - text: "· 			 				 				English"
+  - link " 3  0" [ref=e174]
+  - heading "Latest Video" [level=3]
+  - heading "Terraria - the Board Game Kickstarter" [level=3]:
+    - link "Terraria - the Board Game Kickstarter" [ref=e175]
+  - link "review" [ref=e176]: "Gallery:  review"
+  - link "BoardgameswithDavid" [ref=e177]: "submitted by: 	BoardgameswithDavid"
+  - text: "·"
+  - link "24 days ago" [ref=e178]
+  - text: "· 			 				 				English"
+  - link " 0  0" [ref=e179]
+  - link "See All (17)" [ref=e180]
+  - link [ref=e181]
+  - heading "In-Depth Reviews" [level=2]
+  - button "Add" [ref=e182]: " Add"
+  - heading "Hot Reviews" [level=3]
+  - link " 141  17" [ref=e183]
+  - link "We Could Not Finish Terraria: The Board Game" [ref=e184]: " 					We Could Not Finish Terraria: The Board Game"
+  - link "NoPunIncluded" [ref=e185]
+  - text: "(175 					 reviews) 				·"
+  - link "5 days ago" [ref=e186]
+  - text: "· 					English"
+  - link " 17  0" [ref=e187]
+  - link "Digging Into Terraria The Board Game" [ref=e188]: " 					Digging Into Terraria The Board Game"
+  - link "gnarlycarleygaming" [ref=e189]
+  - text: "(22 					 reviews) 				·"
+  - link "2 years ago" [ref=e190]
+  - text: "· 					English"
+  - heading "Recent Reviews" [level=3]
+  - link " 0  0" [ref=e191]
+  - link "Terraria - the Board Game Kickstarter" [ref=e192]: " 					Terraria - the Board Game Kickstarter"
+  - link "BoardgameswithDavid" [ref=e193]
+  - text: "(8 					 reviews) 				·"
+  - link "24 days ago" [ref=e194]
+  - text: "· 					English"
+  - link " 10  1" [ref=e195]
+  - link "Terraria: Fun by a million pieces" [ref=e196]
+  - link "jamos05" [ref=e197]
+  - text: "(1 					 review) 				·"
+  - link "25 days ago" [ref=e198]
+  - link " 0  0" [ref=e199]
+  - link "Новая Terraria - теперь можно играть на столе - настольная игра Terraria…" [ref=e200]: " 					Новая Terraria - теперь можно играть на столе - настольная игра Terraria…"
+  - link "Geek_Media" [ref=e201]
+  - text: "(480 					 reviews) 				·"
+  - link "1 month ago" [ref=e202]
+  - text: "· 					Russian"
+  - link " 4  0" [ref=e203]
+  - link "Shockingly Similar to the Videogame, Boulders of Fun!" [ref=e204]
+  - link "Dodecahedron12" [ref=e205]
+  - text: "(1 					 review) 				·"
+  - link "2 months ago" [ref=e206]
+  - link " 6  1" [ref=e207]
+  - link "Solo Play First Impressions" [ref=e208]
+  - link "Silvershadow737" [ref=e209]
+  - text: "(1 					 review) 				·"
+  - link "2 months ago" [ref=e210]
+  - link "All Text Reviews (7)" [ref=e211]
+  - link "All Video Reviews (7)" [ref=e212]
+  - heading "Fans Also Like" [level=2]
+  - link "Grimcoven 2611 477" [ref=e213]
+  - link "Ascendancy 5628 360" [ref=e214]
+  - link "Dragon Eclipse 1627 704" [ref=e215]
+  - link "Stonesaga 7335 424" [ref=e216]
+  - link "Children of Morta: The Board Game 8766 130" [ref=e217]
+  - link "Valheim: The Board Game 4868 282" [ref=e218]
+  - link "See All (28)" [ref=e219]
+  - heading "Forums" [level=2]:
+    - link "Forums" [ref=e220]
+  - button "Go to Forum" [ref=e221]
+  - button "Search Forums" [ref=e222]
+  - link "New Post" [ref=e223]: " New Post"
+  - heading "Hot Threads" [level=3]
+  - link "10 thumbs & 1 replies" [ref=e224]: " 					10 				 				 					 					1"
+  - heading "Terraria: Fun by a million pieces" [level=3]:
+    - link "Terraria: Fun by a million pieces" [ref=e225]
+  - link "Reviews" [ref=e226]
+  - link "jamos05" [ref=e227]
+  - text: "·"
+  - link "25 days ago" [ref=e228]
+  - link "11 thumbs & 4 replies" [ref=e229]: " 					11 				 				 					 					4"
+  - heading "Terraria Review - Great concept, couple of potential issues" [level=3]:
+    - link "Terraria Review - Great concept, couple of potential issues" [ref=e230]
+  - link "Reviews" [ref=e231]
+  - link "Tiderion" [ref=e232]
+  - text: "·"
+  - link "2 months ago" [ref=e233]
+  - heading "Recent Threads" [level=3]
+  - link "0 thumbs & 4 replies" [ref=e234]: " 					0 				 				 					 					4"
+  - heading "Making the game smaller" [level=3]:
+    - link "Making the game smaller" [ref=e235]
+  - link "General" [ref=e236]
+  - link "MaxShadow09" [ref=e237]
+  - text: "·"
+  - link "19 hours ago" [ref=e238]
+  - link "3 thumbs & 8 replies" [ref=e239]: " 					3 				 				 					 					8"
+  - heading "Is this game fun!?" [level=3]:
+    - link "Is this game fun!?" [ref=e240]
+  - link "General" [ref=e241]
+  - link "bassman211" [ref=e242]
+  - text: "·"
+  - link "2 days ago" [ref=e243]
+  - link "4 thumbs & 3 replies" [ref=e244]: " 					4 				 				 					 					3"
+  - heading "3D Printed Card Box Organizer" [level=3]:
+    - link "3D Printed Card Box Organizer" [ref=e245]
+  - link "General" [ref=e246]
+  - link "CaseGames" [ref=e247]
+  - text: "·"
+  - link "3 days ago" [ref=e248]
+  - link "2 thumbs & 2 replies" [ref=e249]: " 					2 				 				 					 					2"
+  - heading "Randomer Objectives" [level=3]:
+    - link "Randomer Objectives" [ref=e250]
+  - link "Variants" [ref=e251]
+  - link "fbranham" [ref=e252]
+  - text: "·"
+  - link "5 days ago" [ref=e253]
+  - link "0 thumbs & 7 replies" [ref=e254]: " 					0 				 				 					 					7"
+  - heading "Play Time" [level=3]:
+    - link "Play Time" [ref=e255]
+  - link "General" [ref=e256]
+  - link "Sukotto85" [ref=e257]
+  - text: "·"
+  - link "13 days ago" [ref=e258]
+  - link "See All (182)" [ref=e259]
+  - link [ref=e260]
+  - heading "Files" [level=2]:
+    - link "Files" [ref=e261]
+  - link "Upload" [ref=e262]: " Upload"
+  - heading "Top Files" [level=3]
+  - link "14 thumbs & 15 comments" [ref=e263]: " 					14 				 				 					 					15"
+  - link "pdf" [ref=e264]
+  - heading "Terraria: The Board Game KS Edition Rulebook (English)" [level=3]:
+    - link "Terraria: The Board Game KS Edition Rulebook (English)" [ref=e265]
+  - text: "Version 1.2.1 of the game's KS Edition rulebook. Updated with small clarifications. © 2026 Paper…"
+  - link "TabletopApprentice" [ref=e266]
+  - text: "·"
+  - link "2 months ago" [ref=e267]: "2 months ago 			 				· 				English"
+  - link "13 thumbs & 2 comments" [ref=e268]: " 					13 				 				 					 					2"
+  - link "pdf" [ref=e269]
+  - heading "Terraria: The Board Game KS Edition FAQs, Card Clarifications and Errata" [level=3]:
+    - link "Terraria: The Board Game KS Edition FAQs, Card Clarifications and Errata" [ref=e270]
+  - text: "Updated 10/04/2026"
+  - link "TabletopApprentice" [ref=e271]
+  - text: "·"
+  - link "2 months ago" [ref=e272]: "2 months ago 			 				· 				English"
+  - heading "Recent Files" [level=3]
+  - link "thumbs & 0 comments" [ref=e273]: " 					0 				 				 					 					0"
+  - link "pdf" [ref=e274]
+  - heading "Terraria Kurzspielanleitung" [level=3]:
+    - link "Terraria Kurzspielanleitung" [ref=e275]
+  - text: "Deutsche Kurzspielanleitung für Terraria: The Board Game"
+  - link "Tantum32" [ref=e276]
+  - text: "·"
+  - link "11 days ago" [ref=e277]: "11 days ago 			 				· 				German"
+  - link "5 thumbs & 0 comments" [ref=e278]: " 					5 				 				 					 					0"
+  - link "pdf" [ref=e279]
+  - heading "Terraria tabletop components list (checklist)" [level=3]:
+    - link "Terraria tabletop components list (checklist)" [ref=e280]
+  - text: "A checklist for when you want to thoroughly confirm that you have every component for…"
+  - link "amitter" [ref=e281]
+  - text: "·"
+  - link "2 months ago" [ref=e282]: "2 months ago 			 				· 				English"
+  - link "See All (6)" [ref=e283]
+  - heading "Community Wiki" [level=3]:
+    - link "Community Wiki" [ref=e284]
+  - link "Edit" [ref=e285]: " Edit"
+  - text: "This page does not exist. You can edit this page to create it."
+  - heading "More of This Game" [level=2]
+  - link "Expansions" [ref=e286]: "2 							  							Expansions"
+  - link "Versions" [ref=e287]: "3 							  							Versions"
+  - link "Accessories" [ref=e288]: "0 							  							Accessories"
+  - link "Contains" [ref=e289]: "0 							  							Contains"
+  - link "Contained in" [ref=e290]: "0 							  							Contained in"
+  - link "Reimplemented By" [ref=e291]: "0 							  							Reimplemented By"
+  - link "Reimplements" [ref=e292]: "0 							  							Reimplements"
+  - link "Video Game Adaptations" [ref=e293]: "1 							  							Video Game Adaptations"
+  - link "Integrates With" [ref=e294]: "0 							  							Integrates With"
+  - link "Community Tags" [ref=e295]
+  - heading "News & Links" [level=2]
+  - link "Web Links" [ref=e296]: "1 							  							Web Links"
+  - link "BGG News" [ref=e297]: "0 							  							BGG News"
+  - link "BGG Blog Posts" [ref=e298]: "10 							  							BGG Blog Posts"
+  - link "Podcasts" [ref=e299]: "2 							  							Podcasts"
+  - heading "GeekLists with This Board Game" [level=2]
+  - link "The Effect of the 2025 US Tariffs on Individual… Innsbruck · 1 year ago  173  98" [ref=e300]
+  - link "Список українських локалізацій / List of… dan_polyuha · 5 years ago  160  1.1K" [ref=e301]
+  - link "Solo titles on crowdfunding platforms Zerbique · 3 years ago  155  2.3K" [ref=e302]
+  - link "Solitaire Games On Your Table -- March 2026 olivvybee · 3 months ago  134  865" [ref=e303]
+  - link "See All (36)" [ref=e304]
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - link "Board Game Geek" [ref=e305]
+  - heading "Company" [level=2]
+  - link "About" [ref=e306]
+  - link "Contact" [ref=e307]
+  - link "Advertise" [ref=e308]
+  - link "Support BGG" [ref=e309]
+  - heading "Policies" [level=2]
+  - link "Community Guidelines" [ref=e310]
+  - link "Privacy" [ref=e311]
+  - link "Terms" [ref=e312]
+  - button "Manage Cookies" [ref=e313]
+  - heading "Connect" [level=2]
+  - link "Facebook" [ref=e314]
+  - link "Bluesky" [ref=e315]
+  - link "Instagram" [ref=e316]
+  - link "Youtube" [ref=e317]
+  - link "Twitch" [ref=e318]
+  - link "Discord" [ref=e319]
+  - link "Download the BGG App on the App Store" [ref=e320]
+  - link "Download the BGG App on the Google Play Store" [ref=e321]
+  - text: "Geekdo, BoardGameGeek, the Geekdo logo, and the BoardGameGeek logo are 		trademarks of BoardGameGeek, LLC."
+</result>
+
+[7] tool_call: repl("Checking second Hotness game")
+<request>
+await page.locator('e21').click();
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff);
+</request>
+<result tokens_used="295" elapsed_time="969ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "The Lord of the Rings: Fate of the Fellowship | Board Game | BoardGameGeek" [url=https://boardgamegeek.com/boardgame/436217/the-lord-of-the-rings-fate-of-the-fellowship]
+- banner:
+  - navigation:
+    - button "Skip Navigation" [ref=e1]
+    - link "Accessibility Feedback" [ref=e2]
+    - button "Toggle Sidebar" [ref=e3]
+    - link "boardgame geek" [ref=e4]
+    - button "More Geek Sites" [ref=e5]
+    - button "Browse" [ref=e6]
+    - button "Forums" [ref=e7]
+    - button "GeekLists" [ref=e8]
+    - button "Shopping" [ref=e9]
+    - button "Community" [ref=e10]
+    - button "Help" [ref=e11]
+    - button "Sign In" [ref=e12]
+    - link "Join (it's free)!" [ref=e13]
+    - text: "Search Site"
+    - textbox "Search Site" [ref=e14] [placeholder="Search"]
+    - button "Search" [ref=e15]
+- main:
+  - link [ref=e16]
+  - button "Skip Sidebar" [ref=e17]
+  - text: "The Hotness"
+  - button "Change hotness display style " [ref=e18]
+  - button "Games" [ref=e19]
+  - link "Terraria: The Board Game game Terraria: The Board Game Published 2026 −" [ref=e20]
+  - link "The Lord of the Rings: Fate of the Fellowship game The Lord of the Rings: Fate… Published 2025 " [ref=e21]
+  - link "Lands of Evershade game Lands of Evershade Published 2026 −" [ref=e22]
+  - link "Rolling Deep game Rolling Deep Published 2027 " [ref=e23]
+  - link "Feya's Swamp game Feya's Swamp Published 2025 " [ref=e24]
+  - link "Toy Battle game Toy Battle Published 2025 " [ref=e25]
+  - link "Vantage game Vantage Published 2025 " [ref=e26]
+  - link "Habitats game Habitats Published 2016 " [ref=e27]
+  - link "Eternal Decks game Eternal Decks Published 2025 " [ref=e28]
+  - link "Hot Streak game Hot Streak Published 2025 " [ref=e29]
+  - link "The Secret Valley game The Secret Valley Published 2021 " [ref=e30]
+  - link "Magical Athlete game Magical Athlete Published 2025 " [ref=e31]
+  - link "Terraforming Mars game Terraforming Mars Published 2016 " [ref=e32]
+  - link "The Legacy Of Mars game The Legacy Of Mars Published 2027" [ref=e33]
+  - link "Compania game Compania Published 2025 " [ref=e34]
+  - link [ref=e35]
+  - link "The Lord of the Rings: Fate of the Fellowship Cover Artwork" [ref=e36]
+  - text: " Reimplements:"
+  - link "Pandemic" [ref=e37]
+  - text: "Rank: 			 				 					 						Overall"
+  - link "90" [ref=e38]
+  - text: "Thematic"
+  - link "22" [ref=e39]
+  - link "8.3" [ref=e40]
+  - heading [level=1]:
+    - link "The Lord of the Rings: Fate of the Fellowship" [ref=e41]
+    - text: "(2025)"
+  - text: "As members of The Fellowship, embark on a journey to save—or doom—Middle-earth."
+  - button "Edit Description" [ref=e42]: ""
+  - link "8.8K Rating" [ref=e43]: "8.8K 									Rating s"
+  - text: "&"
+  - link "1.4K Comment" [ref=e44]: "1.4K 									Comment s"
+  - text: "·"
+  - link "GeekBuddy Analysis" [ref=e45]
+  - heading "Game Information" [level=2]
+  - heading "Number of Players" [level=3]
+  - text: "1–5   					Players"
+  - button "Community:" [ref=e46]: "Community: 							 							 								1–4 							 							 								— 								Best: 3"
+  - heading "Play Time" [level=3]
+  - text: "60–150   Min 					 				 				 					  						Playing Time"
+  - heading "Suggested Age" [level=3]
+  - text: "Age: 					 					 						14+"
+  - button "Community:" [ref=e47]: "Community: 12+"
+  - heading "Complexity" [level=3]
+  - text: "Weight: 					 					 						 							3.09 						 						/ 5  Complexity Rating"
+  - button "'Complexity' Rating" [ref=e48]: "'Complexity' Rating  Results"
+  - link " Learn more about complexity ratings" [ref=e49]
+  - heading "Game Credits" [level=3]
+  - heading [level=4]: "Alternate Names:"
+  - link "A Gyűrűk Ura: A Szövetség útja" [ref=e50]
+  - link "+ 14 more" [ref=e51]
+  - heading [level=4]: "Designer:"
+  - link "Matt Leacock" [ref=e52]
+  - heading [level=4]: "Artist:"
+  - link "Jared Blando" [ref=e53]
+  - text: ","
+  - link "Cory Godbey" [ref=e54]
+  - heading [level=4]: "Publisher:"
+  - link "Z-Man Games" [ref=e55]
+  - link "+ 9" [ref=e56]: "+ 9  more"
+  - link "See Full Credits" [ref=e57]
+  - text: "My rating"
+  - slider [ref=e58]:
+    - text: "( )"
+    - generic "" [ref=e59]
+    - text: "( )"
+    - generic "" [ref=e60]
+    - text: "( )"
+    - generic "" [ref=e61]
+    - text: "( )"
+    - generic "" [ref=e62]
+    - text: "( )"
+    - generic "" [ref=e63]
+    - text: "( )"
+    - generic "" [ref=e64]
+    - text: "( )"
+    - generic "" [ref=e65]
+    - text: "( )"
+    - generic "" [ref=e66]
+    - text: "( )"
+    - generic "" [ref=e67]
+    - text: "( )"
+    - generic "" [ref=e68]
+  - link "Buy" [ref=e69]: " Buy  a Copy"
+  - link "Sleeve" [ref=e70]: "Sleeve  It"
+  - button "Add To" [ref=e71]: " 			Add To 			 Collection"
+  - button "Log Play" [ref=e72]
+  - button "become a fan" [ref=e73]: ""
+  - link "3K" [ref=e74]
+  - group:
+    - button "Subscribe" [ref=e75]
+    - button "Subscribe Options" [ref=e76]
+  - button "Settings" [ref=e77]: " Settings"
+  - button "Share" [ref=e78]: " Share"
+  - link " RSS Feed" [ref=e79]
+  - link "Edit" [ref=e80]
+  - link [ref=e81]
+  - navigation:
+    - tablist:
+      - tab "Overview" [ref=e82]
+      - tab "Ratings" [ref=e83]
+      - tab "Forums" [ref=e84]
+      - tab "Images" [ref=e85]
+      - tab "Videos" [ref=e86]
+      - tab "Files" [ref=e87]
+      - tab "Stats" [ref=e88]
+      - tab "Versions" [ref=e89]
+      - tab "Expansions" [ref=e90]
+      - tab "My Games" [ref=e91]
+      - tab "Shopping" [ref=e92]
+      - button "More" [ref=e93]
+  - link "In Focus" [ref=e94]: "In Focus              Overview Video - Sponsored"
+  - link "Watch it Played" [ref=e95]: "Watch it Played              Instructional Video"
+  - link "Game Night" [ref=e96]: "Game Night              Playthrough Video"
+  - link "Lord of the Rings: Fate of the Fellowship, English edition, box back" [ref=e97]
+  - link "Ukrainian edition, 2025 Geekach, Board" [ref=e98]
+  - link "Did anyone else notice the drawing mistake?The string is on the wrong side of his arm...it is physic" [ref=e99]
+  - link "Dice tower Barad-dûr is taller than I expected!" [ref=e100]
+  - link "Fate of the Fellowship - Box Cover + Dice Tower" [ref=e101]
+  - link "The Lord of the Rings: Fate of the Fellowship, Z-Man Games, 2025 — front cover (image provided by th" [ref=e102]
+  - link "Fits nicely back in the box! Galadriel: “In this box there is earth from my orchard, and a Barad-dûr" [ref=e103]
+  - link "My first victory on the heroic difficulty level. It was the turn before the final turn. One enemy tr" [ref=e104]
+  - link "2up introductory game Win!" [ref=e105]
+  - link "Spanish Edition Components" [ref=e106]
+  - link "Fantastic endgame situation. Legolas led all four hobbits into Mordor with a couple of troopers from" [ref=e107]
+  - link "The map looks a bit crowded at first but you get used to it." [ref=e108]
+  - link "With the gaze of Sauron focused solely on Ithilien, with the free people's army massed at the Black " [ref=e109]
+  - link "Fate of the Fellowship | Instagram: @board.game.omakase" [ref=e110]
+  - link "Game state at the end game." [ref=e111]
+  - link "One does not simply walk into Mordor..." [ref=e112]
+  - link "They are looking for you, Frodo" [ref=e113]
+  - link "600" [ref=e114]: "600 			 				 Images"
+  - heading "Description" [level=3]
+  - link "Edit" [ref=e115]: " Edit"
+  - heading "Classification" [level=3]
+  - link " Edit" [ref=e116]
+  - link [ref=e117]
+  - heading "Type" [level=4]
+  - link "Thematic" [ref=e118]
+  - button " View poll and results" [ref=e119]
+  - link [ref=e120]
+  - heading "Category" [level=4]
+  - link "Fantasy" [ref=e121]
+  - link "Novel-based" [ref=e122]
+  - link [ref=e123]
+  - heading "Mechanism" [level=4]
+  - link "Action Points" [ref=e124]
+  - link "Cooperative Game" [ref=e125]
+  - link "Dice Rolling" [ref=e126]
+  - link "Hand Management" [ref=e127]
+  - link "Set Collection" [ref=e128]
+  - link "+ 3" [ref=e129]: "+ 3  more"
+  - link [ref=e130]
+  - heading "Family" [level=4]
+  - link "Authors: J.R.R. Tolkien" [ref=e131]
+  - link "Components: Meeples" [ref=e132]
+  - link "Components: Dice Cup / Dice Tower / Dice Tray" [ref=e133]
+  - link "Components: Dice with Icons" [ref=e134]
+  - link "Components: Map (Continental / National scale)" [ref=e135]
+  - link "Digital Implementations: Board Game Arena" [ref=e136]
+  - link "+ 4" [ref=e137]: "+ 4  more"
+  - link [ref=e138]
+  - heading "Reimplements" [level=4]
+  - link "Pandemic" [ref=e139]
+  - article: "As members of The Fellowship and the allies who rise to aid them, you must embark on a journey that may either save or doom Middle-earth. Navigate a world beset by shadow, where every choice forges a new path. The threads of destiny weave together, and the fate of The Free Peoples lies in your valor, friendship, and resolve. Will the One Ring be cast into the fire, or will the bearer be lost to despair?\n\nThe  Lord of the Rings: Fate of the Fellowship  is a co-operative game in which each player controls two characters, lending their unique abilities to protect Frodo, battle enemies in pivotal locations, and evade the menacing Nazgûl and Sauron's searching Eye.\n\nEach playthrough presents new challenges with 24 different objectives, 14 events, and 13 playable characters. The game is won if the group destroys the One Ring before Frodo loses all hope.\n\nA solo adventure is included.\n\n—description from the publisher"
+  - heading "Awards & Honors" [level=3]
+  - link "2025 Golden Geek Medium Game of the Year Winner" [ref=e140]
+  - link "2025 Golden Geek Medium Game of the Year Nominee" [ref=e141]
+  - link "2025 Golden Geek Best Thematic Board Game Winner" [ref=e142]
+  - link "2025 Golden Geek Best Thematic Board Game Nominee" [ref=e143]
+  - link "2025 Golden Geek Best Solo Board Game Nominee" [ref=e144]
+  - link "2025 Golden Geek Best Cooperative Game Winner" [ref=e145]
+  - link "2025 Golden Geek Best Cooperative Game Nominee" [ref=e146]
+  - link "2025 Golden Geek Best Board Game Artwork & Presentation Nominee" [ref=e147]
+  - link "+ More" [ref=e148]
+  - heading "Official Links" [level=3]
+  - text: ""
+  - link "The Lord of the Rings: Fate of the Fellowship Official Site" [ref=e149]
+  - link "(www.zmangames.com)" [ref=e150]
+  - link "Propose a different link" [ref=e151]
+  - heading "Additional Suggestions" [level=3]
+  - text: "Language Dependence"
+  - link " Learn more about language dependence" [ref=e152]
+  - text: "Moderate in-game text - needs crib sheet or paste ups"
+  - button " View poll and results" [ref=e153]
+  - heading "Community Stats" [level=3]:
+    - link "Community Stats" [ref=e154]
+  - text: "Own:"
+  - link "18K" [ref=e155]
+  - text: "Wishlist:"
+  - link "9.4K" [ref=e156]
+  - text: "For Trade:"
+  - link " Find For Trade Matches" [ref=e157]
+  - link "60" [ref=e158]
+  - text: "Want In Trade:"
+  - link " Find Want in Trade Matches" [ref=e159]
+  - link "941" [ref=e160]
+  - text: "Has Parts:"
+  - link "10" [ref=e161]
+  - text: "Wants Parts:"
+  - link "6" [ref=e162]
+  - link "See All Stats" [ref=e163]
+  - text: "BGG Item ID: 436217"
+  - link [ref=e164]
+  - heading "Shopping" [level=2]:
+    - link "Shopping" [ref=e165]
+  - text: "We may earn a commission when you buy through these links."
+  - banner:
+    - text: "The Lord of the Rings: Fate of the Fellowship Cover Artwork"
+    - heading "The Lord of the Rings: Fate of the Fellowship" [level=3]
+    - text: "As members of The Fellowship, embark on a journey to save—or doom—Middle-earth. 					  					 						 							Released: 2025 						 						 							 Loading..."
+  - region:
+    - heading "Stores" [level=3]:
+      - link "Stores" [ref=e166]
+    - text: "eBay logo"
+    - heading "eBay" [level=2]: "eBay 			 				(21 listings)"
+    - link "from $78.91" [ref=e167]
+  - region:
+    - heading "GeekMarket" [level=3]:
+      - link "GeekMarket" [ref=e168]
+    - text: "The Lord of the Rings: Fate of the Fellowship cover"
+    - heading [level=2]: "The Lord of the Rings: Fate of the Fellowship (English edition) (2025)"
+    - text: "United States flag   					 					 New 					 19 days ago"
+    - link "$175.00" [ref=e169]
+    - text: "The Lord of the Rings: Fate of the Fellowship cover"
+    - heading [level=2]: "The Lord of the Rings: Fate of the Fellowship (English edition) (2025)"
+    - text: "United Kingdom flag   					 					 Like New 					 25 days ago"
+    - link "£60.00" [ref=e170]
+    - text: "The Lord of the Rings: Fate of the Fellowship cover"
+    - heading [level=2]: "The Lord of the Rings: Fate of the Fellowship (English edition) (2025)"
+    - text: "Bulgaria flag   					 					 New 					 25 days ago"
+    - link "€89.00" [ref=e171]
+    - text: "The Lord of the Rings: Fate of the Fellowship cover"
+    - heading [level=2]: "The Lord of the Rings: Fate of the Fellowship (English edition) (2025)"
+    - text: "Belgium flag   					 					 New 					 1 month ago"
+    - link "€66.00" [ref=e172]
+    - text: "The Lord of the Rings: Fate of the Fellowship cover"
+    - heading [level=2]: "The Lord of the Rings: Fate of the Fellowship (English edition) (2025)"
+    - text: "The Netherlands flag   					 					 New 					 1 month ago"
+    - link "€60.00" [ref=e173]
+    - navigation:
+      - link "See All (14)" [ref=e174]
+      - link "Sell a Copy" [ref=e175]
+      - link "GeekMarket Price History" [ref=e176]
+  - region:
+    - heading "Expansions" [level=3]:
+      - link "Expansions" [ref=e177]
+    - text: "No listings found."
+  - region:
+    - heading "Accessories" [level=3]:
+      - link "Accessories" [ref=e178]
+    - text: "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Nazgûl Token Set cover"
+    - heading "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Nazgûl Token Set" [level=2]:
+      - link "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Nazgûl Token Set" [ref=e179]
+    - text: "Molten Mesh Gaming"
+    - link "$19.00" [ref=e180]
+    - text: "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Organizer cover"
+    - heading "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Organizer" [level=2]:
+      - link "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Organizer" [ref=e181]
+    - text: "Molten Mesh Gaming"
+    - link "$29.00" [ref=e182]
+    - text: "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Player Character Dashboard cover"
+    - heading "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Player Character Dashboard" [level=2]:
+      - link "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Player Character Dashboard" [ref=e183]
+    - text: "Molten Mesh Gaming"
+    - link "$29.00" [ref=e184]
+    - text: "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Solo Player Dashboard cover"
+    - heading "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Solo Player Dashboard" [level=2]:
+      - link "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Solo Player Dashboard" [ref=e185]
+    - text: "Molten Mesh Gaming"
+    - link "$29.00" [ref=e186]
+    - text: "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Token Set cover"
+    - heading "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Token Set" [level=2]:
+      - link "The Lord of the Rings: Fate of the Fellowship – Molten Mesh Gaming Token Set" [ref=e187]
+    - text: "Molten Mesh Gaming"
+    - link "$49.00" [ref=e188]
+    - navigation:
+      - link "See All (5)" [ref=e189]
+  - text: "Advertisement"
+  - link [ref=e190]
+  - region:
+    - heading "Looking for Card Sleeves?" [level=2]
+    - text: "We have the sizes you need across the various brands gamers prefer."
+    - button "Find Sleeves" [ref=e191]
+  - heading "Videos" [level=2]:
+    - link "Videos" [ref=e192]
+  - link "Add" [ref=e193]: " Add"
+  - heading "Hot Review" [level=3]
+  - heading "The Discriminating Gamer: Lord of the Rings: Fate of the Fellowship" [level=3]:
+    - link "The Discriminating Gamer: Lord of the Rings: Fate of the Fellowship" [ref=e194]
+  - link "review" [ref=e195]: "Gallery:  review"
+  - link "discriminatingGamer" [ref=e196]: "submitted by: 	discriminatingGamer"
+  - text: "·"
+  - link "9 months ago" [ref=e197]
+  - text: "· 			 				 				English"
+  - link " 75  6" [ref=e198]
+  - heading "Hot \"How To Play\"" [level=3]
+  - heading "The Lord Of The Rings: Fate Of The Fellowship - How To Play" [level=3]:
+    - link "The Lord Of The Rings: Fate Of The Fellowship - How To Play" [ref=e199]
+  - link "instructional" [ref=e200]: "Gallery:  instructional"
+  - link "Watch It Played" [ref=e201]: "submitted by: 	Watch It Played"
+  - text: "·"
+  - link "1 year ago" [ref=e202]
+  - text: "· 			 				 				English"
+  - link " 256  19" [ref=e203]
+  - heading "Latest Video" [level=3]
+  - heading "Fate of the fellowship in about 3 minutes" [level=3]:
+    - link "Fate of the fellowship in about 3 minutes" [ref=e204]
+  - link "review" [ref=e205]: "Gallery:  review"
+  - link "J_3MBG" [ref=e206]: "submitted by: 	J_3MBG"
+  - text: "·"
+  - link "5 days ago" [ref=e207]
+  - text: "· 			 				 				English"
+  - link " 6  1" [ref=e208]
+  - link "See All (228)" [ref=e209]
+  - link [ref=e210]
+  - heading "In-Depth Reviews" [level=2]
+  - button "Add" [ref=e211]: " Add"
+  - heading "Hot Reviews" [level=3]
+  - link " 54  20" [ref=e212]
+  - link "\"Pandemic\" veteran AND \"Lord of the Rings\" fanboy - are we happy?" [ref=e213]
+  - link "Schmergel" [ref=e214]
+  - text: "(57 					 reviews) 				·"
+  - link "1 month ago" [ref=e215]
+  - link " 19  21" [ref=e216]
+  - link "Thematic, but underwhelming aside from theme" [ref=e217]
+  - link "SiarX" [ref=e218]
+  - text: "(194 					 reviews) 				·"
+  - link "1 month ago" [ref=e219]
+  - heading "Recent Reviews" [level=3]
+  - link " 11  4" [ref=e220]
+  - link "Hot! Hot! Hot! or Not?" [ref=e221]
+  - link "BoardGaymesJames" [ref=e222]
+  - text: "(112 					 reviews) 				·"
+  - link "12 hours ago" [ref=e223]
+  - link " 20  0" [ref=e224]
+  - link "A Journey to the Alternate Worlds of Middle-earth (2-player review)" [ref=e225]
+  - link "schmeeples" [ref=e226]
+  - text: "(3 					 reviews) 				·"
+  - link "2 days ago" [ref=e227]
+  - link " 8  1" [ref=e228]
+  - link "Fate of the fellowship in about 3 minutes" [ref=e229]: " 					Fate of the fellowship in about 3 minutes"
+  - link "J_3MBG" [ref=e230]
+  - text: "(535 					 reviews) 				·"
+  - link "5 days ago" [ref=e231]
+  - text: "· 					English"
+  - link " 2  0" [ref=e232]
+  - link "Review | The Lord of the Rings: Fate of the Fellowship | Ένα Meeple Την…" [ref=e233]: " 					Review | The Lord of the Rings: Fate of the Fellowship | Ένα Meeple Την…"
+  - link "Smootbill" [ref=e234]
+  - text: "(43 					 reviews) 				·"
+  - link "24 days ago" [ref=e235]
+  - text: "· 					Greek"
+  - link " 2  0" [ref=e236]
+  - link "Fate of the Fellowship" [ref=e237]: " 					Fate of the Fellowship"
+  - link "BoardgameswithDavid" [ref=e238]
+  - text: "(8 					 reviews) 				·"
+  - link "1 month ago" [ref=e239]
+  - text: "· 					English"
+  - link "All Text Reviews (32)" [ref=e240]
+  - link "All Video Reviews (64)" [ref=e241]
+  - heading "Fans Also Like" [level=2]
+  - link "Slay the Spire: The Board Game 17 3231" [ref=e242]
+  - link "The Lord of the Rings: Duel for Middle-earth 19 3051" [ref=e243]
+  - link "Gloomhaven: Jaws of the Lion 12 4431" [ref=e244]
+  - link "Spirit Island 11 8712" [ref=e245]
+  - link "Twilight Inscription 785 541" [ref=e246]
+  - link "Dune: Imperium 6 7038" [ref=e247]
+  - link "See All (28)" [ref=e248]
+  - heading "Forums" [level=2]:
+    - link "Forums" [ref=e249]
+  - button "Go to Forum" [ref=e250]
+  - button "Search Forums" [ref=e251]
+  - link "New Post" [ref=e252]: " New Post"
+  - heading "Hot Threads" [level=3]
+  - link "141 thumbs & 137 replies" [ref=e253]: " 					141 				 				 					 					137"
+  - heading "3D Upgrade Set for The Lord of the Rings: Fate of the Fellowship" [level=3]:
+    - link "3D Upgrade Set for The Lord of the Rings: Fate of the Fellowship" [ref=e254]
+  - link "1" [ref=e255]
+  - link "2" [ref=e256]
+  - text: "…"
+  - link "5" [ref=e257]
+  - link "6" [ref=e258]
+  - link "General" [ref=e259]
+  - link "reo77" [ref=e260]
+  - text: "·"
+  - link "1 month ago" [ref=e261]
+  - link "58 thumbs & 8 replies" [ref=e262]: " 					58 				 				 					 					8"
+  - heading "Top 100, congratulations!" [level=3]:
+    - link "Top 100, congratulations!" [ref=e263]
+  - link "General" [ref=e264]
+  - link "StrangeSamurai" [ref=e265]
+  - text: "·"
+  - link "15 days ago" [ref=e266]
+  - heading "Recent Threads" [level=3]
+  - link "0 thumbs & 4 replies" [ref=e267]: " 					0 				 				 					 					4"
+  - heading "Used Copy Missing Haven Token" [level=3]:
+    - link "Used Copy Missing Haven Token" [ref=e268]
+  - link "General" [ref=e269]
+  - link "PsiNorm" [ref=e270]
+  - text: "·"
+  - link "9 hours ago" [ref=e271]
+  - link "1 thumbs & 3 replies" [ref=e272]: " 					1 				 				 					 					3"
+  - heading "Movements" [level=3]:
+    - link "Movements" [ref=e273]
+  - link "Rules" [ref=e274]
+  - link "JiiJiiKoo" [ref=e275]
+  - text: "·"
+  - link "10 hours ago" [ref=e276]
+  - link "11 thumbs & 4 replies" [ref=e277]: " 					11 				 				 					 					4"
+  - heading "Hot! Hot! Hot! or Not?" [level=3]:
+    - link "Hot! Hot! Hot! or Not?" [ref=e278]
+  - link "Reviews" [ref=e279]
+  - link "BoardGaymesJames" [ref=e280]
+  - text: "·"
+  - link "12 hours ago" [ref=e281]
+  - link "0 thumbs & 4 replies" [ref=e282]: " 					0 				 				 					 					4"
+  - heading "Question about timing: Event cards and Character abilities during the Shadow turn" [level=3]:
+    - link "Question about timing: Event cards and Character abilities during the Shadow turn" [ref=e283]
+  - link "Rules" [ref=e284]
+  - link "DegustoDados" [ref=e285]
+  - text: "·"
+  - link "15 hours ago" [ref=e286]
+  - link "2 thumbs & 1 replies" [ref=e287]: " 					2 				 				 					 					1"
+  - heading "Challenge Sauron" [level=3]:
+    - link "Challenge Sauron" [ref=e288]
+  - link "Rules" [ref=e289]
+  - link "g_chahowskoi" [ref=e290]
+  - text: "·"
+  - link "1 day ago" [ref=e291]
+  - link "See All (1,018)" [ref=e292]
+  - link [ref=e293]
+  - heading "Files" [level=2]:
+    - link "Files" [ref=e294]
+  - link "Upload" [ref=e295]: " Upload"
+  - heading "Top Files" [level=3]
+  - link "107 thumbs & 29 comments" [ref=e296]: " 					107 				 				 					 					29"
+  - link "pdf" [ref=e297]
+  - heading "The Lord of the Rings: Fate of the Fellowship Rule Book English Version" [level=3]:
+    - link "The Lord of the Rings: Fate of the Fellowship Rule Book English Version" [ref=e298]
+  - text: "The Lord of the Rings: Fate of the Fellowship Rule Book in English"
+  - link "ZManGames" [ref=e299]
+  - text: "·"
+  - link "1 year ago" [ref=e300]: "1 year ago 			 				· 				English"
+  - link "96 thumbs & 59 comments" [ref=e301]: " 					96 				 				 					 					59"
+  - link "pdf" [ref=e302]
+  - heading "Fate of the Fellowship - One Sheet To Rule Them All" [level=3]:
+    - link "Fate of the Fellowship - One Sheet To Rule Them All" [ref=e303]
+  - text: "Most of the rules on one double-sided A4 (including Character Abilities) v1.6 Small corrections Faramir…"
+  - link "Jan Tuijp" [ref=e304]
+  - text: "·"
+  - link "9 months ago" [ref=e305]: "9 months ago 			 				· 				English"
+  - heading "Recent Files" [level=3]
+  - link "4 thumbs & 0 comments" [ref=e306]: " 					4 				 				 					 					0"
+  - link "stl" [ref=e307]
+  - heading "Treebeard Meeple" [level=3]:
+    - link "Treebeard Meeple" [ref=e308]
+  - text: "The model is easy to print. To achieve a wood-meeple-like feel, it’s best to set…"
+  - link "Fankman" [ref=e309]
+  - text: "·"
+  - link "13 days ago" [ref=e310]: "13 days ago 			 				· 				English"
+  - link "9 thumbs & 0 comments" [ref=e311]: " 					9 				 				 					 					0"
+  - link "stl" [ref=e312]
+  - heading "Nazgul Meeple" [level=3]:
+    - link "Nazgul Meeple" [ref=e313]
+  - text: "The model is easy to print. To achieve a wood-meeple-like feel, it’s best to set…"
+  - link "Fankman" [ref=e314]
+  - text: "·"
+  - link "16 days ago" [ref=e315]: "16 days ago 			 				· 				English"
+  - link "See All (54)" [ref=e316]
+  - heading "Community Wiki" [level=3]:
+    - link "Community Wiki" [ref=e317]
+  - link "Edit" [ref=e318]: " Edit"
+  - text: "Contents\n\n 72 Player Cards, 50 Shadow Cards, 24 Objective Cards, 10 Reference Cards, 13 Character Cards, 13 Character Figures, 9 Nazgul Miniatures, 3 Battle Dice, 7 Search Dice, 48* Shadow Troops, 10 Gondor Troops, 9 Elven Troops, 8 Rohirrim Troops, 8 Dwarven Troops, 1 Eye of Sauron, 1 Solo Token, 1 Threat Rate Marker, 1 Hope Marker, 6 Haven and Shadow Stronghold Tokens, 36 Symbol Tokens, 1 Game Board, 1 Dice Tower\n\n* While 48 Shadow Troops are the appropriate number to play the game, many copies of the game ship with an extra and have 49.  Only use 48 in the game, and keep the 49th simply as a spare."
+  - link [ref=e319]
+  - link [ref=e320]
+  - heading "Microbadge" [level=2]
+  - link "Microbadge: LotR: Fate of the Fellowship fan" [ref=e321]
+  - text: "- LotR: Fate of the Fellowship fan"
+  - heading "More of This Game" [level=2]
+  - link "Expansions" [ref=e322]: "0 							  							Expansions"
+  - link "Versions" [ref=e323]: "16 							  							Versions"
+  - link "Accessories" [ref=e324]: "11 							  							Accessories"
+  - link "Contains" [ref=e325]: "0 							  							Contains"
+  - link "Contained in" [ref=e326]: "0 							  							Contained in"
+  - link "Reimplemented By" [ref=e327]: "0 							  							Reimplemented By"
+  - link "Reimplements" [ref=e328]: "1 							  							Reimplements"
+  - link "Video Game Adaptations" [ref=e329]: "0 							  							Video Game Adaptations"
+  - link "Integrates With" [ref=e330]: "0 							  							Integrates With"
+  - link "Community Tags" [ref=e331]
+  - heading "News & Links" [level=2]
+  - link "Web Links" [ref=e332]: "7 							  							Web Links"
+  - link "BGG News" [ref=e333]: "4 							  							BGG News"
+  - link "BGG Blog Posts" [ref=e334]: "158 							  							BGG Blog Posts"
+  - link "Podcasts" [ref=e335]: "10 							  							Podcasts"
+  - heading "GeekLists with This Board Game" [level=2]
+  - link "Rahdo Runs Through... Games! rahdo · 14 years ago  3.4K  2.6K" [ref=e336]
+  - link "3D Prints for Board Games RobhJ · 11 years ago  2K  4.9K" [ref=e337]
+  - link "The Exhaustive List of Board Games You Can Play… Tryken · 14 years ago  1.5K  2.2K" [ref=e338]
+  - link "2025 People's Choice Top Solo Games (1-300) kerskine · 6 months ago  947  300" [ref=e339]
+  - link "See All (502)" [ref=e340]
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - link "Board Game Geek" [ref=e341]
+  - heading "Company" [level=2]
+  - link "About" [ref=e342]
+  - link "Contact" [ref=e343]
+  - link "Advertise" [ref=e344]
+  - link "Support BGG" [ref=e345]
+  - heading "Policies" [level=2]
+  - link "Community Guidelines" [ref=e346]
+  - link "Privacy" [ref=e347]
+  - link "Terms" [ref=e348]
+  - button "Manage Cookies" [ref=e349]
+  - heading "Connect" [level=2]
+  - link "Facebook" [ref=e350]
+  - link "Bluesky" [ref=e351]
+  - link "Instagram" [ref=e352]
+  - link "Youtube" [ref=e353]
+  - link "Twitch" [ref=e354]
+  - link "Discord" [ref=e355]
+  - link "Download the BGG App on the App Store" [ref=e356]
+  - link "Download the BGG App on the Google Play Store" [ref=e357]
+  - text: "Geekdo, BoardGameGeek, the Geekdo logo, and the BoardGameGeek logo are 		trademarks of BoardGameGeek, LLC."
+</result>
+
+[8] assistant: The best match is **The Lord of the Rings: Fate of the Fellowship**.
+
+- **Hotness rank:** #2
+- **BGG rating:** **8.3**, above 7.5
+- **Players:** **1 to 5**, so it supports 2 players
+- I skipped #1, **Terraria: The Board Game**, because its rating was **7.4**, below the cutoff.

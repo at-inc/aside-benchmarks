@@ -1,0 +1,2217 @@
+[1] user: Go to https://www.flightaware.com/, Find discussions of the community and open one with the most replies on Flightaware.
+
+[2] thinking: **Searching for flight discussions**
+
+I need to use a browser to go to FlightAware and find the discussions community. My goal is to open one of the threads with the most replies, which is likely on their forums. Navigating directly there could be tricky, so I might consider doing a web search to simplify the process. Either way, I’ll start by opening a new tab to get things rolling!
+
+[3] tool_call: repl("Opening FlightAware")
+<request>
+const p1 = await openTab('https://www.flightaware.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="126" elapsed_time="2859ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → FlightAware - Flight Tracker / Flight Status (https://www.flightaware.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "FlightAware - Flight Tracker / Flight Status" [url=https://www.flightaware.com/]
+- banner:
+  - link "FlightAware logo" [ref=e1]
+  - navigation:
+    - generic "Products" [ref=e3]
+    - generic "Industries" [ref=e5]
+    - generic "ADS-B" [ref=e7]
+    - generic "Flight Tracking" [ref=e9]
+  - navigation
+  - link "Sign In" [ref=e12]
+  - link "Join for free" [ref=e13]
+- main:
+  - text: "hero background"
+  - link "Photo by Talon6" [ref=e14]
+  - heading "is Central to Aviation" [level=1]: "FlightAware  is Central to Aviation"
+  - region:
+    - textbox [ref=e15]
+    - text: "Search for  flight"
+  - region "Map" [ref=e16]
+  - link "© OpenStreetMap" [ref=e17]
+  - heading "Connect our global flight map to your digital platforms." [level=2]
+  - link "Optimize your experience" [ref=e18]
+  - heading "Innovative products powered by best-in-class data." [level=2]
+  - heading "Elevate your business with AI-assisted technology from FlightAware Foresight." [level=3]
+  - link "Learn more about FlightAware Foresight" [ref=e19]
+  - text: "Elevate your business with AI-assisted technology from FlightAware Foresight."
+  - heading "Delivering data to developers on demand." [level=2]
+  - link "Integrate AeroAPI into your platform" [ref=e20]
+  - heading "Unlock real-time global flight tracking and ADS-B flight data." [level=2]
+  - link "Discover more about FlightAware Firehose" [ref=e21]
+  - link "See all products" [ref=e22]
+  - heading "Secure, private fleet tracking." [level=2]
+  - heading "Keep track of every aircraft in your private fleet—including helicopters—with customized monitoring " [level=3]: "Keep track of every aircraft in your private fleet—including helicopters—with customized monitoring packages tailored to operations of any size."
+  - heading [level=4]:
+    - link "Compare tiers" [ref=e23]
+  - heading "Watch the world take flight." [level=2]
+  - heading "Explore dynamic photos of aircraft taken and shared by the FlightAware community." [level=3]
+  - generic "Airbus A320 (EC-MQE)Cessna Caravan (N558EX)Gulfstream Aerospace Gulfstream G650 (N312AT)Warbirds Pip" [ref=e24] [scrollable]
+  - heading [level=4]:
+    - link "See all photos" [ref=e25]
+  - heading "Worldwide tracking, in your hands." [level=2]
+  - text: "Download the FlightAware app to stay up to date on the go.apps-qr-code"
+  - switch "iOS Android" [ref=e26] [checked]
+  - text: "ios-center"
+  - heading "Customize your tracking." [level=2]
+  - text: "Create your free FlightAware account and unlock real-time tracking, custom alerts, and more."
+  - link "Sign up" [ref=e27]
+- contentinfo:
+  - text: "FlightAware logo"
+  - navigation:
+    - heading "About" [level=6]
+    - link "About FlightAware" [ref=e28]
+    - link "Newsroom" [ref=e29]
+    - link "Advertise With Us" [ref=e30]
+    - link "Careers" [ref=e31]
+    - link "Webinars" [ref=e32]
+    - link "Blog" [ref=e33]
+    - link "Engineering Blog" [ref=e34]
+    - link "Store" [ref=e35]
+  - navigation:
+    - heading "Community" [level=6]
+    - link "Squawks" [ref=e36]
+    - link "Discussion" [ref=e37]
+    - link "Photos" [ref=e38]
+    - link "ADS-B Statistics" [ref=e39]
+  - navigation:
+    - heading "Tracking" [level=6]
+    - link "Flight Finder" [ref=e40]
+    - link "IFR Route Analyzer" [ref=e41]
+  - navigation:
+    - heading "Products" [level=6]
+    - link "AeroAPI" [ref=e42]
+    - link "FlightAware Firehose" [ref=e43]
+    - link "FlightAware Foresight" [ref=e44]
+    - link "Reports" [ref=e45]
+    - link "Integrated Maps" [ref=e46]
+    - link "FlightAware Aviator" [ref=e47]
+    - link "FlightAware Global" [ref=e48]
+    - link "FlightAware FBO Toolbox" [ref=e49]
+    - link "FlightAware TV℠" [ref=e50]
+    - link "GlobalBeacon" [ref=e51]
+    - link "ADS-B Receivers" [ref=e52]
+  - navigation:
+    - heading "Customer Service" [level=6]
+    - link "FAQs" [ref=e53]
+    - link "Contact Us" [ref=e54]
+  - link "Get our mobile apps" [ref=e55]
+  - navigation:
+    - link "Facebook" [ref=e56]
+    - link "Instagram" [ref=e57]
+    - link "LinkedIn" [ref=e58]
+    - link "X" [ref=e59]
+  - navigation:
+    - text: "© 2026 FlightAware/"
+    - link "Privacy" [ref=e60]
+    - text: "/"
+    - link "Terms of Use" [ref=e61]
+    - text: "/"
+    - link "Cookie Settings" [ref=e62]
+</result>
+
+[4] tool_call: repl("Opening community discussion")
+<request>
+await page.locator('e37').click();
+const s2 = await snapshot(page);
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="75" elapsed_time="1094ms">
+- title: "FlightAware Discussions" [url=https://discussions.flightaware.com/]
+- link "FlightAware" [ref=e1]:
+  - image "FlightAware"
+- region:
+  - link "Skip to main content" [ref=e2]
+  - banner:
+    - link "FlightAware Discussions" [ref=e3]
+    - navigation:
+      - button "Log In" [ref=e4]
+      - list:
+        - listitem "Search" [ref=e5]:
+          - button "Search" [ref=e6]
+        - listitem "Navigation menu" [ref=e7]:
+          - button "Navigation menu" [ref=e8]
+  - main:
+    - heading "All categories" [level=1]
+    - region:
+      - list:
+        - listitem:
+          - generic "categories" [ref=e10]
+      - list:
+        - listitem "Categories" [ref=e11]:
+          - link "Categories" [ref=e12]
+        - listitem "Latest" [ref=e13]:
+          - link "Latest" [ref=e14]
+        - listitem "Top" [ref=e15]:
+          - link "Top" [ref=e16]
+    - table:
+      - heading "Category" [level=2]
+      - text: "Topics"
+      - heading [level=3]:
+        - link "FlightAware" [ref=e17]
+      - link "Official FlightAware Announcements and Notifications" [ref=e18]: "Announcements"
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e19]: "General"
+      - link "Community for AeroAPI and Firehose (FlightAware APIs) Developers" [ref=e20]: "AeroAPI"
+      - link "Post your observations and ideas here; interact with FlightAware developers and other users." [ref=e21]: "Feature Requests and Ideas"
+      - link "Discussion for members of the mobile app beta community" [ref=e22]: "Beta Mobile Apps"
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e23]: "ADS-B Flight Tracking"
+      - text: "33 / month"
+      - heading [level=3]:
+        - link "Aviation" [ref=e24]
+      - link "Distribution and discussion of aviation and aircraft headlines and news." [ref=e25]: "Aviation News"
+      - link "Pilots of GA aircraft" [ref=e26]: "General Aviation"
+      - link "Airline (Part 121) Customers and Discussions" [ref=e27]: "Airlines"
+      - link "Part 91 and 135 Private Aircraft Users and Operators" [ref=e28]: "Charter, Fractional, and Private"
+      - link "Notable or interesting aircraft or airport activity" [ref=e29]: "Notable Activity"
+      - text: "2 / month"
+    - heading "Latest" [level=2]
+    - link "WhiteKnight77's profile" [ref=e30]
+    - link "Welcome to the new and improved Discourse!" [ref=e31]
+    - link "Official FlightAware Announcements and Notifications" [ref=e32]: "Announcements"
+    - link "55 replies, jump to first post" [ref=e33]: "55"
+    - link "Created: Aug 15, 2017 6:17 pm Latest: May 2, 2026 11:50 am" [ref=e34]: "11d"
+    - link "abcd567's profile" [ref=e35]
+    - link "AI As A Developer" [ref=e36]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e37]: "ADS-B Flight Tracking"
+    - link "0 replies, jump to first post" [ref=e38]: "0"
+    - link "Created: May 13, 2026 3:21 pm" [ref=e39]: "27m"
+    - link "cammello's profile" [ref=e40]
+    - link "Dump1090-gg vs dump1090-fa?" [ref=e41]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e42]: "ADS-B Flight Tracking"
+    - link "0 replies, jump to first post" [ref=e43]: "0"
+    - link "Created: May 13, 2026 2:54 pm" [ref=e44]: "1h"
+    - link "LawrenceHill's profile" [ref=e45]
+    - link "Unable to locate package piaware" [ref=e46]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e47]: "ADS-B Flight Tracking"
+    - link "2 replies, jump to first post" [ref=e48]: "2"
+    - link "Created: May 13, 2026 12:34 pm Latest: May 13, 2026 1:38 pm" [ref=e49]: "2h"
+    - link "wcostrino's profile" [ref=e50]
+    - link "Bug in the interactive mode of dump1090-fa" [ref=e51]
+    - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e52]: "General"
+    - link "2 replies, jump to first post" [ref=e53]: "2"
+    - link "Created: May 12, 2026 10:32 am Latest: May 13, 2026 12:56 pm" [ref=e54]: "3h"
+    - link "More" [ref=e55]
+    - dialog "User card"
+  - region
+</result>
+
+[5] thinking: **Investigating discussion topics**
+
+I need to find the discussion with the most replies on Flightaware, so I'll look through their community site. To identify the topic with the highest replies, I can explore the Discourse Top tab or sort the discussions by replies. I could try using the Discourse API, but I'm unsure if that's allowed. It might also be necessary to check out the `/latest?order=posts` endpoint to see if I can find what I'm looking for. Let's dive into this!
+
+[6] tool_call: repl("Checking Top discussions")
+<request>
+await page.locator('e16').click();
+const s3 = await snapshot(page);
+console.log(s3.diff || s3.tree);
+</request>
+<result tokens_used="277" elapsed_time="1661ms">
+- title: "Top topics - FlightAware Discussions" [url=https://discussions.flightaware.com/]
+- link "FlightAware" [ref=e1]:
+  - image "FlightAware"
+- region:
+  - link "Skip to main content" [ref=e2]
+  - banner:
+    - link "FlightAware Discussions" [ref=e3]
+    - navigation:
+      - button "Log In" [ref=e4]
+      - list:
+        - listitem "Search" [ref=e5]:
+          - button "Search" [ref=e6]
+        - listitem "Navigation menu" [ref=e7]:
+          - button "Navigation menu" [ref=e8]
+  - main:
+    - heading "All top topics" [level=1]
+    - region:
+      - list:
+        - listitem:
+          - generic "categories" [ref=e57]
+      - list:
+        - listitem "Categories" [ref=e58]:
+          - link "Categories" [ref=e59]
+        - listitem "Latest" [ref=e60]:
+          - link "Latest" [ref=e61]
+        - listitem "Top" [ref=e62]:
+          - link "Top" [ref=e63]
+    - generic [ref=e65]:
+      - heading [level=2]: "Year May 13, 2025 – May 13, 2026"
+    - table "All top topics":
+      - text: "Topic list, column headers with buttons are sortable.\n  \n    \n      \n\n      \n        Topic\n      \n\n  \n\n\n    \n\n      \n         Posters"
+      - button "Replies" [ref=e67]
+      - button "Views" [ref=e69]
+      - button "Activity" [ref=e71]
+      - heading "Stream1090" [level=2]:
+        - link "Stream1090" [ref=e72]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e73]: "ADS-B Flight Tracking"
+      - link "mgrone's profile" [ref=e74]
+      - link "suffolk3000's profile" [ref=e75]
+      - link "cnuwer's profile" [ref=e76]
+      - link "JRG1956's profile" [ref=e77]
+      - link "jimMerk2's profile" [ref=e78]
+      - link "653 replies, jump to first post" [ref=e79]: "653"
+      - text: "24.4k"
+      - link "Mar 18" [ref=e80]
+      - heading "Piaware installation certificate is expired, TLS error and no connection to FA" [level=2]:
+        - link "Piaware installation certificate is expired, TLS error and no connection to FA" [ref=e81]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e82]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e83]
+      - link "grandamp's profile" [ref=e84]
+      - link "adnoid's profile" [ref=e85]
+      - link "Srmcnamara09's profile" [ref=e86]
+      - link "MercuryStorm1's profile" [ref=e87]
+      - link "48 replies, jump to first post" [ref=e88]: "48"
+      - text: "918"
+      - link "Dec 2025" [ref=e89]
+      - heading "2025 College Football Charter Flights" [level=2]:
+        - link "2025 College Football Charter Flights" [ref=e90]
+      - link "Notable or interesting aircraft or airport activity" [ref=e91]: "Notable Activity"
+      - link "sctvi's profile" [ref=e92]
+      - link "mistaks1's profile" [ref=e93]
+      - link "cparrott73's profile" [ref=e94]
+      - link "JEB1120's profile" [ref=e95]
+      - link "LighteningLou's profile" [ref=e96]
+      - link "82 replies, jump to first post" [ref=e97]: "82"
+      - text: "6.2k"
+      - link "Jan 18" [ref=e98]
+      - heading "Install Piaware on Debian 13 Trixie" [level=2]:
+        - link "Install Piaware on Debian 13 Trixie" [ref=e99]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e100]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e101]
+      - link "tomvdhorst's profile" [ref=e102]
+      - link "etkal's profile" [ref=e103]
+      - link "AISAirspotterDE's profile" [ref=e104]
+      - link "runahue's profile" [ref=e105]
+      - link "34 replies, jump to first post" [ref=e106]: "34"
+      - text: "6.9k"
+      - link "11d" [ref=e107]
+      - heading "Radar scope view for your ADSB data" [level=2]:
+        - link "Radar scope view for your ADSB data" [ref=e108]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e109]: "ADS-B Flight Tracking"
+      - link "tritium's profile" [ref=e110]
+      - link "abcd567's profile" [ref=e111]
+      - link "jafrank's profile" [ref=e112]
+      - link "jepolch's profile" [ref=e113]
+      - link "jimMerk2's profile" [ref=e114]
+      - link "50 replies, jump to first post" [ref=e115]: "50"
+      - text: "2.0k"
+      - link "Oct 2025" [ref=e116]
+      - heading "Raspberry Pi OS Trixie Released" [level=2]:
+        - link "Raspberry Pi OS Trixie Released" [ref=e117]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e118]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e119]
+      - link "TonyLeverett's profile" [ref=e120]
+      - link "jimMerk2's profile" [ref=e121]
+      - link "MartyMcFly30k's profile" [ref=e122]
+      - link "garnoopy's profile" [ref=e123]
+      - link "19 replies, jump to first post" [ref=e124]: "19"
+      - text: "2.4k"
+      - link "Oct 2025" [ref=e125]
+      - heading "Install Piaware on Trixie" [level=2]:
+        - link "Install Piaware on Trixie" [ref=e126]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e127]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e128]
+      - link "JRG1956's profile" [ref=e129]
+      - link "butterfly2's profile" [ref=e130]
+      - link "k5map1's profile" [ref=e131]
+      - link "jimMerk2's profile" [ref=e132]
+      - link "21 replies, jump to first post" [ref=e133]: "21"
+      - text: "2.9k"
+      - link "15d" [ref=e134]
+      - heading "Success, newbie install 978 UAT only for $80" [level=2]:
+        - link "Success, newbie install 978 UAT only for $80" [ref=e135]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e136]: "ADS-B Flight Tracking"
+      - link "charosenz's profile" [ref=e137]
+      - link "abcd567's profile" [ref=e138]
+      - link "foxhunter's profile" [ref=e139]
+      - link "MC130E's profile" [ref=e140]
+      - link "geckoVN's profile" [ref=e141]
+      - link "23 replies, jump to first post" [ref=e142]: "23"
+      - text: "588"
+      - link "May 2025" [ref=e143]
+      - heading "What’s the current most popular DIY antenna and some discussion" [level=2]:
+        - link "What’s the current most popular DIY antenna and some discussion" [ref=e144]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e145]: "ADS-B Flight Tracking"
+      - link "Ve7kilohertz's profile" [ref=e146]
+      - link "LawrenceHill's profile" [ref=e147]
+      - link "geckoVN's profile" [ref=e148]
+      - link "charosenz's profile" [ref=e149]
+      - link "MC130E's profile" [ref=e150]
+      - link "29 replies, jump to first post" [ref=e151]: "29"
+      - text: "1.1k"
+      - link "Jun 2025" [ref=e152]
+      - heading "Site improvements" [level=2]:
+        - link "Site improvements" [ref=e153]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e154]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e155]
+      - link "fhmiii's profile" [ref=e156]
+      - link "abcd567's profile" [ref=e157]
+      - link "mgrone's profile" [ref=e158]
+      - link "jimMerk2's profile" [ref=e159]
+      - link "11 replies, jump to first post" [ref=e160]: "11"
+      - text: "135"
+      - link "Feb 25" [ref=e161]
+      - heading "Install Airband Receiver on Raspberry Pi" [level=2]:
+        - link "Install Airband Receiver on Raspberry Pi" [ref=e162]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e163]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e164]
+      - link "jimMerk2's profile" [ref=e165]
+      - link "tomvdhorst's profile" [ref=e166]
+      - link "MC130E's profile" [ref=e167]
+      - link "47 replies, jump to first post" [ref=e168]: "47"
+      - text: "611"
+      - link "17d" [ref=e169]
+      - heading "Setting up from scratch with Trixie?" [level=2]:
+        - link "Setting up from scratch with Trixie?" [ref=e170]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e171]: "ADS-B Flight Tracking"
+      - link "GlynH's profile" [ref=e172]
+      - link "wiedehopf's profile" [ref=e173]
+      - link "JRG1956's profile" [ref=e174]
+      - link "jimMerk2's profile" [ref=e175]
+      - link "abcd567's profile" [ref=e176]
+      - link "19 replies, jump to first post" [ref=e177]: "19"
+      - text: "2.2k"
+      - link "Feb 11" [ref=e178]
+      - heading "Antenna Placement" [level=2]:
+        - link "Antenna Placement" [ref=e179]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e180]: "ADS-B Flight Tracking"
+      - link "dosmond's profile" [ref=e181]
+      - link "jepolch's profile" [ref=e182]
+      - link "CraigWoodThomas's profile" [ref=e183]
+      - link "geckoVN's profile" [ref=e184]
+      - link "SweetPea11's profile" [ref=e185]
+      - link "30 replies, jump to first post" [ref=e186]: "30"
+      - text: "785"
+      - link "Oct 2025" [ref=e187]
+      - heading "Piaware installation from FA website reverts to version 9.0.1" [level=2]:
+        - link "Piaware installation from FA website reverts to version 9.0.1" [ref=e188]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e189]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e190]
+      - link "wiedehopf's profile" [ref=e191]
+      - link "obj's profile" [ref=e192]
+      - link "biekerc's profile" [ref=e193]
+      - link "abcd567's profile" [ref=e194]
+      - link "35 replies, jump to first post" [ref=e195]: "35"
+      - text: "961"
+      - link "Nov 2025" [ref=e196]
+      - heading "More Messages with Beamforming" [level=2]:
+        - link "More Messages with Beamforming" [ref=e197]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e198]: "ADS-B Flight Tracking"
+      - link "kburtes42's profile" [ref=e199]
+      - link "geckoVN's profile" [ref=e200]
+      - link "jimMerk2's profile" [ref=e201]
+      - link "obj's profile" [ref=e202]
+      - link "mgrone's profile" [ref=e203]
+      - link "113 replies, jump to first post" [ref=e204]: "113"
+      - text: "1.5k"
+      - link "Mar 9" [ref=e205]
+      - heading "ADSB Trident" [level=2]:
+        - link "ADSB Trident" [ref=e206]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e207]: "ADS-B Flight Tracking"
+      - link "evangelyul's profile" [ref=e208]
+      - link "Kabe's profile" [ref=e209]
+      - link "abcd567's profile" [ref=e210]
+      - link "44 replies, jump to first post" [ref=e211]: "44"
+      - text: "495"
+      - link "15d" [ref=e212]
+      - heading "Cheapest possible SDR for receiving ADS-B" [level=2]:
+        - link "Cheapest possible SDR for receiving ADS-B" [ref=e213]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e214]: "ADS-B Flight Tracking"
+      - link "KovyJ's profile" [ref=e215]
+      - link "Dxista's profile" [ref=e216]
+      - link "geckoVN's profile" [ref=e217]
+      - link "abcd567's profile" [ref=e218]
+      - link "SweetPea11's profile" [ref=e219]
+      - link "48 replies, jump to first post" [ref=e220]: "48"
+      - text: "1.1k"
+      - link "Aug 2025" [ref=e221]
+      - heading "PiWare 10, how to update on Debian 6.12" [level=2]:
+        - link "PiWare 10, how to update on Debian 6.12" [ref=e222]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e223]: "ADS-B Flight Tracking"
+      - link "voyteke's profile" [ref=e224]
+      - link "abcd567's profile" [ref=e225]
+      - link "AK4FD's profile" [ref=e226]
+      - link "geckoVN's profile" [ref=e227]
+      - link "erick2640's profile" [ref=e228]
+      - link "22 replies, jump to first post" [ref=e229]: "22"
+      - text: "1.2k"
+      - link "Jun 2025" [ref=e230]
+      - heading "New Pi 5 receiver, need to tweak the airspy settings" [level=2]:
+        - link "New Pi 5 receiver, need to tweak the airspy settings" [ref=e231]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e232]: "ADS-B Flight Tracking"
+      - link "keithma's profile" [ref=e233]
+      - link "abcd567's profile" [ref=e234]
+      - link "biekerc's profile" [ref=e235]
+      - link "wiedehopf's profile" [ref=e236]
+      - link "caius's profile" [ref=e237]
+      - link "27 replies, jump to first post" [ref=e238]: "27"
+      - text: "758"
+      - link "Apr 12" [ref=e239]
+      - heading "No more flights showing after installing FR24" [level=2]:
+        - link "No more flights showing after installing FR24" [ref=e240]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e241]: "ADS-B Flight Tracking"
+      - link "Tanukik's profile" [ref=e242]
+      - link "abcd567's profile" [ref=e243]
+      - link "wiedehopf's profile" [ref=e244]
+      - link "biekerc's profile" [ref=e245]
+      - link "foxhunter's profile" [ref=e246]
+      - link "39 replies, jump to first post" [ref=e247]: "39"
+      - text: "663"
+      - link "Jun 2025" [ref=e248]
+      - heading "Official trixie release" [level=2]:
+        - link "Official trixie release" [ref=e249]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e250]: "General"
+      - link "JimMusson's profile" [ref=e251]
+      - link "JRG1956's profile" [ref=e252]
+      - link "abcd567's profile" [ref=e253]
+      - link "kd6ftr's profile" [ref=e254]
+      - link "12 replies, jump to first post" [ref=e255]: "12"
+      - text: "1.1k"
+      - link "Mar 18" [ref=e256]
+      - heading "Wifi Not Working on 10.1?" [level=2]:
+        - link "Wifi Not Working on 10.1?" [ref=e257]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e258]: "ADS-B Flight Tracking"
+      - link "mwshell's profile" [ref=e259]
+      - link "semmett's profile" [ref=e260]
+      - link "jvarian's profile" [ref=e261]
+      - link "NickWan's profile" [ref=e262]
+      - link "abcd567's profile" [ref=e263]
+      - link "35 replies, jump to first post" [ref=e264]: "35"
+      - text: "998"
+      - link "Aug 2025" [ref=e265]
+      - heading "Swabs for cleaning connectors" [level=2]:
+        - link "Swabs for cleaning connectors" [ref=e266]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e267]: "ADS-B Flight Tracking"
+      - link "ExCalbr's profile" [ref=e268]
+      - link "victorbravo77's profile" [ref=e269]
+      - link "geckoVN's profile" [ref=e270]
+      - link "CraigWoodThomas's profile" [ref=e271]
+      - link "jimMerk2's profile" [ref=e272]
+      - link "55 replies, jump to first post" [ref=e273]: "55"
+      - text: "830"
+      - link "Jun 2025" [ref=e274]
+      - heading "Debian Bullseye with Raspberry Pi Desktop on a PC" [level=2]:
+        - link "Debian Bullseye with Raspberry Pi Desktop on a PC" [ref=e275]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e276]: "ADS-B Flight Tracking"
+      - link "SweetPea11's profile" [ref=e277]
+      - link "tomvdhorst's profile" [ref=e278]
+      - link "jimMerk2's profile" [ref=e279]
+      - link "geckoVN's profile" [ref=e280]
+      - link "foxhunter's profile" [ref=e281]
+      - link "27 replies, jump to first post" [ref=e282]: "27"
+      - text: "714"
+      - link "Aug 2025" [ref=e283]
+      - heading "Raspberry Pi 3B+ Upgrade to Pi 4 - Complete - Better Stats?" [level=2]:
+        - link "Raspberry Pi 3B+ Upgrade to Pi 4 - Complete - Better Stats?" [ref=e284]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e285]: "ADS-B Flight Tracking"
+      - link "MikeKilo9's profile" [ref=e286]
+      - link "peatrick's profile" [ref=e287]
+      - link "wiedehopf's profile" [ref=e288]
+      - link "mgrone's profile" [ref=e289]
+      - link "abcd567's profile" [ref=e290]
+      - link "26 replies, jump to first post" [ref=e291]: "26"
+      - text: "870"
+      - link "Jan 27" [ref=e292]
+      - heading "Installation of pfclient_5.3.2_arm64.deb an Piaware 10.2 SD card image fails (pi5)" [level=2]:
+        - link "Installation of pfclient_5.3.2_arm64.deb an Piaware 10.2 SD card image fails (pi5)" [ref=e293]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e294]: "ADS-B Flight Tracking"
+      - link "Tomcraft1980's profile" [ref=e295]
+      - link "biekerc's profile" [ref=e296]
+      - link "wiedehopf's profile" [ref=e297]
+      - link "abcd567's profile" [ref=e298]
+      - link "39 replies, jump to first post" [ref=e299]: "39"
+      - text: "441"
+      - link "Sep 2025" [ref=e300]
+      - heading "Repository No Longer Signed" [level=2]:
+        - link "Repository No Longer Signed" [ref=e301]
+      - link "FlightAware" [ref=e302]
+      - link "LongSuttonFA's profile" [ref=e303]
+      - link "jonhawkes2030's profile" [ref=e304]
+      - link "LawrenceHill's profile" [ref=e305]
+      - link "jepolch's profile" [ref=e306]
+      - link "Zzznorch's profile" [ref=e307]
+      - link "9 replies, jump to first post" [ref=e308]: "9"
+      - text: "800"
+      - link "Oct 2025" [ref=e309]
+      - heading "Can you see/save data without having to write code?…. [YES, see results below]" [level=2]:
+        - link "Can you see/save data without having to write code?…. [YES, see results below]" [ref=e310]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e311]: "ADS-B Flight Tracking"
+      - link "charosenz's profile" [ref=e312]
+      - link "jimMerk2's profile" [ref=e313]
+      - link "jafrank's profile" [ref=e314]
+      - link "foxhunter's profile" [ref=e315]
+      - link "wiedehopf's profile" [ref=e316]
+      - link "34 replies, jump to first post" [ref=e317]: "34"
+      - text: "686"
+      - link "30d" [ref=e318]
+      - heading "SDR Cabling into Inside" [level=2]:
+        - link "SDR Cabling into Inside" [ref=e319]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e320]: "ADS-B Flight Tracking"
+      - link "Hilis1942's profile" [ref=e321]
+      - link "jimMerk2's profile" [ref=e322]
+      - link "mgrone's profile" [ref=e323]
+      - link "abcd567's profile" [ref=e324]
+      - link "victorbravo77's profile" [ref=e325]
+      - link "64 replies, jump to first post" [ref=e326]: "64"
+      - text: "436"
+      - link "Feb 13" [ref=e327]
+      - heading "Need antenna suggestions - amazon.com" [level=2]:
+        - link "Need antenna suggestions - amazon.com" [ref=e328]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e329]: "ADS-B Flight Tracking"
+      - link "mylinuxguy's profile" [ref=e330]
+      - link "jimMerk2's profile" [ref=e331]
+      - link "CraigWoodThomas's profile" [ref=e332]
+      - link "biekerc's profile" [ref=e333]
+      - link "jlmtx83's profile" [ref=e334]
+      - link "20 replies, jump to first post" [ref=e335]: "20"
+      - text: "627"
+      - link "Feb 22" [ref=e336]
+      - heading "Getting RTL-SDR working, can’t find piaware-config file" [level=2]:
+        - link "Getting RTL-SDR working, can’t find piaware-config file" [ref=e337]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e338]: "ADS-B Flight Tracking"
+      - link "Ve7kilohertz's profile" [ref=e339]
+      - link "MC130E's profile" [ref=e340]
+      - link "wiedehopf's profile" [ref=e341]
+      - link "abcd567's profile" [ref=e342]
+      - link "SweetPea11's profile" [ref=e343]
+      - link "22 replies, jump to first post" [ref=e344]: "22"
+      - text: "421"
+      - link "May 2025" [ref=e345]
+      - heading "Piaware 10.2 Static Wired Address Issue" [level=2]:
+        - link "Piaware 10.2 Static Wired Address Issue" [ref=e346]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e347]: "General"
+      - link "ipilot11's profile" [ref=e348]
+      - link "tomvdhorst's profile" [ref=e349]
+      - link "NickWan's profile" [ref=e350]
+      - link "abcd567's profile" [ref=e351]
+      - link "TonyLeverett's profile" [ref=e352]
+      - link "12 replies, jump to first post" [ref=e353]: "12"
+      - text: "577"
+      - link "Jul 2025" [ref=e354]
+      - heading "Getting Started for a Newbie" [level=2]:
+        - link "Getting Started for a Newbie" [ref=e355]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e356]: "ADS-B Flight Tracking"
+      - link "PeteWFlight's profile" [ref=e357]
+      - link "geckoVN's profile" [ref=e358]
+      - link "CraigWoodThomas's profile" [ref=e359]
+      - link "tomvdhorst's profile" [ref=e360]
+      - link "wiedehopf's profile" [ref=e361]
+      - link "9 replies, jump to first post" [ref=e362]: "9"
+      - text: "362"
+      - link "Jun 2025" [ref=e363]
+      - heading "Access micro SD card files" [level=2]:
+        - link "Access micro SD card files" [ref=e364]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e365]: "ADS-B Flight Tracking"
+      - link "jimMerk2's profile" [ref=e366]
+      - link "abcd567's profile" [ref=e367]
+      - link "foxhunter's profile" [ref=e368]
+      - link "13 replies, jump to first post" [ref=e369]: "13"
+      - text: "532"
+      - link "Jun 2025" [ref=e370]
+      - heading "Check-in feeders delayed" [level=2]:
+        - link "Check-in feeders delayed" [ref=e371]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e372]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e373]
+      - link "jimMerk2's profile" [ref=e374]
+      - link "Dewey3's profile" [ref=e375]
+      - link "geckoVN's profile" [ref=e376]
+      - link "CraigWoodThomas's profile" [ref=e377]
+      - link "26 replies, jump to first post" [ref=e378]: "26"
+      - text: "666"
+      - link "Sep 2025" [ref=e379]
+      - heading "RTL-SDR FIR filters" [level=2]:
+        - link "RTL-SDR FIR filters" [ref=e380]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e381]: "ADS-B Flight Tracking"
+      - link "jimMerk2's profile" [ref=e382]
+      - link "Dxista's profile" [ref=e383]
+      - link "obj's profile" [ref=e384]
+      - link "mgrone's profile" [ref=e385]
+      - link "22 replies, jump to first post" [ref=e386]: "22"
+      - text: "355"
+      - link "Feb 9" [ref=e387]
+      - heading "Error in Lat and Lon" [level=2]:
+        - link "Error in Lat and Lon" [ref=e388]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e389]: "ADS-B Flight Tracking"
+      - link "DelCha's profile" [ref=e390]
+      - link "MC130E's profile" [ref=e391]
+      - link "wiedehopf's profile" [ref=e392]
+      - link "TonyLeverett's profile" [ref=e393]
+      - link "jimMerk2's profile" [ref=e394]
+      - link "33 replies, jump to first post" [ref=e395]: "33"
+      - text: "423"
+      - link "Jul 2025" [ref=e396]
+      - heading "Piaware 10 update broke my setup" [level=2]:
+        - link "Piaware 10 update broke my setup" [ref=e397]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e398]: "ADS-B Flight Tracking"
+      - link "HelicopterGuy's profile" [ref=e399]
+      - link "phodge's profile" [ref=e400]
+      - link "abcd567's profile" [ref=e401]
+      - link "geckoVN's profile" [ref=e402]
+      - link "tomvdhorst's profile" [ref=e403]
+      - link "11 replies, jump to first post" [ref=e404]: "11"
+      - text: "539"
+      - link "Jun 2025" [ref=e405]
+      - heading "Successful Install of piaware 11.0~dev and dump1090-fa 11.0~dev on RPi OS Trixie" [level=2]:
+        - link "Successful Install of piaware 11.0~dev and dump1090-fa 11.0~dev on RPi OS Trixie" [ref=e406]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e407]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e408]
+      - link "byraspi's profile" [ref=e409]
+      - link "caius's profile" [ref=e410]
+      - link "jprochazka's profile" [ref=e411]
+      - link "obj's profile" [ref=e412]
+      - link "34 replies, jump to first post" [ref=e413]: "34"
+      - text: "458"
+      - link "Apr 7" [ref=e414]
+      - heading "Config utility - how to access it?" [level=2]:
+        - link "Config utility - how to access it?" [ref=e415]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e416]: "ADS-B Flight Tracking"
+      - link "charosenz's profile" [ref=e417]
+      - link "jonhawkes2030's profile" [ref=e418]
+      - link "foxhunter's profile" [ref=e419]
+      - link "geckoVN's profile" [ref=e420]
+      - link "abcd567's profile" [ref=e421]
+      - link "14 replies, jump to first post" [ref=e422]: "14"
+      - text: "493"
+      - link "May 2025" [ref=e423]
+      - heading "Bad Performance with PoE Splitter" [level=2]:
+        - link "Bad Performance with PoE Splitter" [ref=e424]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e425]: "ADS-B Flight Tracking"
+      - link "GTIFreak's profile" [ref=e426]
+      - link "LawrenceHill's profile" [ref=e427]
+      - link "geckoVN's profile" [ref=e428]
+      - link "CraigWoodThomas's profile" [ref=e429]
+      - link "JRG1956's profile" [ref=e430]
+      - link "25 replies, jump to first post" [ref=e431]: "25"
+      - text: "539"
+      - link "Aug 2025" [ref=e432]
+      - heading "FA 1090 Bandpass is only way Uputronics Filtered Preamp works…?" [level=2]:
+        - link "FA 1090 Bandpass is only way Uputronics Filtered Preamp works…?" [ref=e433]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e434]: "ADS-B Flight Tracking"
+      - link "pp6000v2's profile" [ref=e435]
+      - link "tomvdhorst's profile" [ref=e436]
+      - link "wiedehopf's profile" [ref=e437]
+      - link "LawrenceHill's profile" [ref=e438]
+      - link "abcd567's profile" [ref=e439]
+      - link "11 replies, jump to first post" [ref=e440]: "11"
+      - text: "463"
+      - link "Aug 2025" [ref=e441]
+      - heading "Antenna corrosion problem" [level=2]:
+        - link "Antenna corrosion problem" [ref=e442]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e443]: "ADS-B Flight Tracking"
+      - link "LA7DFA's profile" [ref=e444]
+      - link "wiedehopf's profile" [ref=e445]
+      - link "LawrenceHill's profile" [ref=e446]
+      - link "TonyLeverett's profile" [ref=e447]
+      - link "tomvdhorst's profile" [ref=e448]
+      - link "13 replies, jump to first post" [ref=e449]: "13"
+      - text: "374"
+      - link "Sep 2025" [ref=e450]
+      - heading "satellite_antenna PiLNK Closed Beta — Who’s In?" [level=2]:
+        - link "satellite_antenna PiLNK Closed Beta — Who’s In?" [ref=e451]:
+          - image "satellite_antenna"
+          - text: "PiLNK Closed Beta — Who’s In?"
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e452]: "ADS-B Flight Tracking"
+      - link "jumpinkiwi's profile" [ref=e453]
+      - link "flyN69P's profile" [ref=e454]
+      - link "jimMerk2's profile" [ref=e455]
+      - link "davewill2010's profile" [ref=e456]
+      - link "suffolk3000's profile" [ref=e457]
+      - link "29 replies, jump to first post" [ref=e458]: "29"
+      - text: "434"
+      - link "3d" [ref=e459]
+      - heading "Accidentally lost 16 years of feeder history, can it be recovered?" [level=2]:
+        - link "Accidentally lost 16 years of feeder history, can it be recovered?" [ref=e460]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e461]: "ADS-B Flight Tracking"
+      - link "FerventGeek's profile" [ref=e462]
+      - link "abcd567's profile" [ref=e463]
+      - link "tomvdhorst's profile" [ref=e464]
+      - link "geckoVN's profile" [ref=e465]
+      - link "obj's profile" [ref=e466]
+      - link "15 replies, jump to first post" [ref=e467]: "15"
+      - text: "454"
+      - link "Mar 20" [ref=e468]
+      - heading "Link to claim is not working" [level=2]:
+        - link "Link to claim is not working" [ref=e469]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e470]: "ADS-B Flight Tracking"
+      - link "YMaster31's profile" [ref=e471]
+      - link "whitloy's profile" [ref=e472]
+      - link "tomvdhorst's profile" [ref=e473]
+      - link "geckoVN's profile" [ref=e474]
+      - link "SweetPea11's profile" [ref=e475]
+      - link "10 replies, jump to first post" [ref=e476]: "10"
+      - text: "457"
+      - link "Dec 2025" [ref=e477]
+      - heading "Second Piaware in same location almost doubled aircraft" [level=2]:
+        - link "Second Piaware in same location almost doubled aircraft" [ref=e478]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e479]: "ADS-B Flight Tracking"
+      - link "eugenemccabe's profile" [ref=e480]
+      - link "kmm0000's profile" [ref=e481]
+      - link "jafrank's profile" [ref=e482]
+      - link "wiedehopf's profile" [ref=e483]
+      - link "12 replies, jump to first post" [ref=e484]: "12"
+      - text: "389"
+      - link "Sep 2025" [ref=e485]
+      - heading "Hardware advice on setup" [level=2]:
+        - link "Hardware advice on setup" [ref=e486]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e487]: "ADS-B Flight Tracking"
+      - link "LordTHaywood's profile" [ref=e488]
+      - link "geckoVN's profile" [ref=e489]
+      - link "tomvdhorst's profile" [ref=e490]
+      - link "abcd567's profile" [ref=e491]
+      - link "jimMerk2's profile" [ref=e492]
+      - link "11 replies, jump to first post" [ref=e493]: "11"
+      - text: "392"
+      - link "Aug 2025" [ref=e494]
+      - heading "Large reduction of data received when using filter" [level=2]:
+        - link "Large reduction of data received when using filter" [ref=e495]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e496]: "ADS-B Flight Tracking"
+      - link "fettle's profile" [ref=e497]
+      - link "wiedehopf's profile" [ref=e498]
+      - link "geckoVN's profile" [ref=e499]
+      - link "abcd567's profile" [ref=e500]
+      - link "Dxista's profile" [ref=e501]
+      - link "37 replies, jump to first post" [ref=e502]: "37"
+      - text: "345"
+      - link "Jan 28" [ref=e503]
+      - heading "Cheap way to increase signal" [level=2]:
+        - link "Cheap way to increase signal" [ref=e504]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e505]: "ADS-B Flight Tracking"
+      - link "rickined1's profile" [ref=e506]
+      - link "abcd567's profile" [ref=e507]
+      - link "fhmiii's profile" [ref=e508]
+      - link "jimMerk2's profile" [ref=e509]
+      - link "geckoVN's profile" [ref=e510]
+      - link "19 replies, jump to first post" [ref=e511]: "19"
+      - text: "367"
+      - link "Feb 17" [ref=e512]
+    - contentinfo
+    - dialog "User card"
+  - region
+</result>
+
+[7] tool_call: repl("Inspecting top discussion filters")
+<request>
+const s4 = await snapshot(page,{interactive:true});
+console.log(s4.tree);
+</request>
+<result tokens_used="144" elapsed_time="255ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Top topics - FlightAware Discussions" [url=https://discussions.flightaware.com/]
+- link "FlightAware" [ref=e1]
+- region:
+  - link "Skip to main content" [ref=e2]
+  - banner:
+    - link "FlightAware Discussions" [ref=e3]
+    - navigation:
+      - button "Log In" [ref=e4]
+      - button "Search" [ref=e6]
+      - button "Navigation menu" [ref=e8]
+  - main:
+    - heading "All top topics" [level=1]
+    - region:
+      - generic "categories" [ref=e57]
+      - link "Categories" [ref=e59]
+      - link "Latest" [ref=e61]
+      - link "Top" [ref=e63]
+    - generic [ref=e65]:
+      - heading [level=2]: "Year May 13, 2025 – May 13, 2026"
+    - text: "Topic list, column headers with buttons are sortable.\n  \n    \n      \n\n      \n        Topic\n      \n\n  \n\n\n    \n\n      \n         Posters"
+    - button "Replies" [ref=e67]
+    - button "Views" [ref=e69]
+    - button "Activity" [ref=e71]
+    - heading "Stream1090" [level=2]:
+      - link "Stream1090" [ref=e72]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e73]: "ADS-B Flight Tracking"
+    - link "mgrone's profile" [ref=e74]
+    - link "suffolk3000's profile" [ref=e75]
+    - link "cnuwer's profile" [ref=e76]
+    - link "JRG1956's profile" [ref=e77]
+    - link "jimMerk2's profile" [ref=e78]
+    - link "653 replies, jump to first post" [ref=e79]: "653"
+    - text: "24.4k"
+    - link "Mar 18" [ref=e80]
+    - heading "Piaware installation certificate is expired, TLS error and no connection to FA" [level=2]:
+      - link "Piaware installation certificate is expired, TLS error and no connection to FA" [ref=e81]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e82]: "ADS-B Flight Tracking"
+    - link "tomvdhorst's profile" [ref=e83]
+    - link "grandamp's profile" [ref=e84]
+    - link "adnoid's profile" [ref=e85]
+    - link "Srmcnamara09's profile" [ref=e86]
+    - link "MercuryStorm1's profile" [ref=e87]
+    - link "48 replies, jump to first post" [ref=e88]: "48"
+    - text: "918"
+    - link "Dec 2025" [ref=e89]
+    - heading "2025 College Football Charter Flights" [level=2]:
+      - link "2025 College Football Charter Flights" [ref=e90]
+    - link "Notable or interesting aircraft or airport activity" [ref=e91]: "Notable Activity"
+    - link "sctvi's profile" [ref=e92]
+    - link "mistaks1's profile" [ref=e93]
+    - link "cparrott73's profile" [ref=e94]
+    - link "JEB1120's profile" [ref=e95]
+    - link "LighteningLou's profile" [ref=e96]
+    - link "82 replies, jump to first post" [ref=e97]: "82"
+    - text: "6.2k"
+    - link "Jan 18" [ref=e98]
+    - heading "Install Piaware on Debian 13 Trixie" [level=2]:
+      - link "Install Piaware on Debian 13 Trixie" [ref=e99]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e100]: "ADS-B Flight Tracking"
+    - link "abcd567's profile" [ref=e101]
+    - link "tomvdhorst's profile" [ref=e102]
+    - link "etkal's profile" [ref=e103]
+    - link "AISAirspotterDE's profile" [ref=e104]
+    - link "runahue's profile" [ref=e105]
+    - link "34 replies, jump to first post" [ref=e106]: "34"
+    - text: "6.9k"
+    - link "11d" [ref=e107]
+    - heading "Radar scope view for your ADSB data" [level=2]:
+      - link "Radar scope view for your ADSB data" [ref=e108]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e109]: "ADS-B Flight Tracking"
+    - link "tritium's profile" [ref=e110]
+    - link "abcd567's profile" [ref=e111]
+    - link "jafrank's profile" [ref=e112]
+    - link "jepolch's profile" [ref=e113]
+    - link "jimMerk2's profile" [ref=e114]
+    - link "50 replies, jump to first post" [ref=e115]: "50"
+    - text: "2.0k"
+    - link "Oct 2025" [ref=e116]
+    - heading "Raspberry Pi OS Trixie Released" [level=2]:
+      - link "Raspberry Pi OS Trixie Released" [ref=e117]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e118]: "ADS-B Flight Tracking"
+    - link "abcd567's profile" [ref=e119]
+    - link "TonyLeverett's profile" [ref=e120]
+    - link "jimMerk2's profile" [ref=e121]
+    - link "MartyMcFly30k's profile" [ref=e122]
+    - link "garnoopy's profile" [ref=e123]
+    - link "19 replies, jump to first post" [ref=e124]: "19"
+    - text: "2.4k"
+    - link "Oct 2025" [ref=e125]
+    - heading "Install Piaware on Trixie" [level=2]:
+      - link "Install Piaware on Trixie" [ref=e126]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e127]: "ADS-B Flight Tracking"
+    - link "abcd567's profile" [ref=e128]
+    - link "JRG1956's profile" [ref=e129]
+    - link "butterfly2's profile" [ref=e130]
+    - link "k5map1's profile" [ref=e131]
+    - link "jimMerk2's profile" [ref=e132]
+    - link "21 replies, jump to first post" [ref=e133]: "21"
+    - text: "2.9k"
+    - link "15d" [ref=e134]
+    - heading "Success, newbie install 978 UAT only for $80" [level=2]:
+      - link "Success, newbie install 978 UAT only for $80" [ref=e135]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e136]: "ADS-B Flight Tracking"
+    - link "charosenz's profile" [ref=e137]
+    - link "abcd567's profile" [ref=e138]
+    - link "foxhunter's profile" [ref=e139]
+    - link "MC130E's profile" [ref=e140]
+    - link "geckoVN's profile" [ref=e141]
+    - link "23 replies, jump to first post" [ref=e142]: "23"
+    - text: "588"
+    - link "May 2025" [ref=e143]
+    - heading "What’s the current most popular DIY antenna and some discussion" [level=2]:
+      - link "What’s the current most popular DIY antenna and some discussion" [ref=e144]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e145]: "ADS-B Flight Tracking"
+    - link "Ve7kilohertz's profile" [ref=e146]
+    - link "LawrenceHill's profile" [ref=e147]
+    - link "geckoVN's profile" [ref=e148]
+    - link "charosenz's profile" [ref=e149]
+    - link "MC130E's profile" [ref=e150]
+    - link "29 replies, jump to first post" [ref=e151]: "29"
+    - text: "1.1k"
+    - link "Jun 2025" [ref=e152]
+    - heading "Site improvements" [level=2]:
+      - link "Site improvements" [ref=e153]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e154]: "ADS-B Flight Tracking"
+    - link "tomvdhorst's profile" [ref=e155]
+    - link "fhmiii's profile" [ref=e156]
+    - link "abcd567's profile" [ref=e157]
+    - link "mgrone's profile" [ref=e158]
+    - link "jimMerk2's profile" [ref=e159]
+    - link "11 replies, jump to first post" [ref=e160]: "11"
+    - text: "135"
+    - link "Feb 25" [ref=e161]
+    - heading "Install Airband Receiver on Raspberry Pi" [level=2]:
+      - link "Install Airband Receiver on Raspberry Pi" [ref=e162]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e163]: "ADS-B Flight Tracking"
+    - link "abcd567's profile" [ref=e164]
+    - link "jimMerk2's profile" [ref=e165]
+    - link "tomvdhorst's profile" [ref=e166]
+    - link "MC130E's profile" [ref=e167]
+    - link "47 replies, jump to first post" [ref=e168]: "47"
+    - text: "611"
+    - link "17d" [ref=e169]
+    - heading "Setting up from scratch with Trixie?" [level=2]:
+      - link "Setting up from scratch with Trixie?" [ref=e170]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e171]: "ADS-B Flight Tracking"
+    - link "GlynH's profile" [ref=e172]
+    - link "wiedehopf's profile" [ref=e173]
+    - link "JRG1956's profile" [ref=e174]
+    - link "jimMerk2's profile" [ref=e175]
+    - link "abcd567's profile" [ref=e176]
+    - link "19 replies, jump to first post" [ref=e177]: "19"
+    - text: "2.2k"
+    - link "Feb 11" [ref=e178]
+    - heading "Antenna Placement" [level=2]:
+      - link "Antenna Placement" [ref=e179]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e180]: "ADS-B Flight Tracking"
+    - link "dosmond's profile" [ref=e181]
+    - link "jepolch's profile" [ref=e182]
+    - link "CraigWoodThomas's profile" [ref=e183]
+    - link "geckoVN's profile" [ref=e184]
+    - link "SweetPea11's profile" [ref=e185]
+    - link "30 replies, jump to first post" [ref=e186]: "30"
+    - text: "785"
+    - link "Oct 2025" [ref=e187]
+    - heading "Piaware installation from FA website reverts to version 9.0.1" [level=2]:
+      - link "Piaware installation from FA website reverts to version 9.0.1" [ref=e188]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e189]: "ADS-B Flight Tracking"
+    - link "tomvdhorst's profile" [ref=e190]
+    - link "wiedehopf's profile" [ref=e191]
+    - link "obj's profile" [ref=e192]
+    - link "biekerc's profile" [ref=e193]
+    - link "abcd567's profile" [ref=e194]
+    - link "35 replies, jump to first post" [ref=e195]: "35"
+    - text: "961"
+    - link "Nov 2025" [ref=e196]
+    - heading "More Messages with Beamforming" [level=2]:
+      - link "More Messages with Beamforming" [ref=e197]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e198]: "ADS-B Flight Tracking"
+    - link "kburtes42's profile" [ref=e199]
+    - link "geckoVN's profile" [ref=e200]
+    - link "jimMerk2's profile" [ref=e201]
+    - link "obj's profile" [ref=e202]
+    - link "mgrone's profile" [ref=e203]
+    - link "113 replies, jump to first post" [ref=e204]: "113"
+    - text: "1.5k"
+    - link "Mar 9" [ref=e205]
+    - heading "ADSB Trident" [level=2]:
+      - link "ADSB Trident" [ref=e206]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e207]: "ADS-B Flight Tracking"
+    - link "evangelyul's profile" [ref=e208]
+    - link "Kabe's profile" [ref=e209]
+    - link "abcd567's profile" [ref=e210]
+    - link "44 replies, jump to first post" [ref=e211]: "44"
+    - text: "495"
+    - link "15d" [ref=e212]
+    - heading "Cheapest possible SDR for receiving ADS-B" [level=2]:
+      - link "Cheapest possible SDR for receiving ADS-B" [ref=e213]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e214]: "ADS-B Flight Tracking"
+    - link "KovyJ's profile" [ref=e215]
+    - link "Dxista's profile" [ref=e216]
+    - link "geckoVN's profile" [ref=e217]
+    - link "abcd567's profile" [ref=e218]
+    - link "SweetPea11's profile" [ref=e219]
+    - link "48 replies, jump to first post" [ref=e220]: "48"
+    - text: "1.1k"
+    - link "Aug 2025" [ref=e221]
+    - heading "PiWare 10, how to update on Debian 6.12" [level=2]:
+      - link "PiWare 10, how to update on Debian 6.12" [ref=e222]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e223]: "ADS-B Flight Tracking"
+    - link "voyteke's profile" [ref=e224]
+    - link "abcd567's profile" [ref=e225]
+    - link "AK4FD's profile" [ref=e226]
+    - link "geckoVN's profile" [ref=e227]
+    - link "erick2640's profile" [ref=e228]
+    - link "22 replies, jump to first post" [ref=e229]: "22"
+    - text: "1.2k"
+    - link "Jun 2025" [ref=e230]
+    - heading "New Pi 5 receiver, need to tweak the airspy settings" [level=2]:
+      - link "New Pi 5 receiver, need to tweak the airspy settings" [ref=e231]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e232]: "ADS-B Flight Tracking"
+    - link "keithma's profile" [ref=e233]
+    - link "abcd567's profile" [ref=e234]
+    - link "biekerc's profile" [ref=e235]
+    - link "wiedehopf's profile" [ref=e236]
+    - link "caius's profile" [ref=e237]
+    - link "27 replies, jump to first post" [ref=e238]: "27"
+    - text: "758"
+    - link "Apr 12" [ref=e239]
+    - heading "No more flights showing after installing FR24" [level=2]:
+      - link "No more flights showing after installing FR24" [ref=e240]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e241]: "ADS-B Flight Tracking"
+    - link "Tanukik's profile" [ref=e242]
+    - link "abcd567's profile" [ref=e243]
+    - link "wiedehopf's profile" [ref=e244]
+    - link "biekerc's profile" [ref=e245]
+    - link "foxhunter's profile" [ref=e246]
+    - link "39 replies, jump to first post" [ref=e247]: "39"
+    - text: "663"
+    - link "Jun 2025" [ref=e248]
+    - heading "Official trixie release" [level=2]:
+      - link "Official trixie release" [ref=e249]
+    - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e250]: "General"
+    - link "JimMusson's profile" [ref=e251]
+    - link "JRG1956's profile" [ref=e252]
+    - link "abcd567's profile" [ref=e253]
+    - link "kd6ftr's profile" [ref=e254]
+    - link "12 replies, jump to first post" [ref=e255]: "12"
+    - text: "1.1k"
+    - link "Mar 18" [ref=e256]
+    - heading "Wifi Not Working on 10.1?" [level=2]:
+      - link "Wifi Not Working on 10.1?" [ref=e257]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e258]: "ADS-B Flight Tracking"
+    - link "mwshell's profile" [ref=e259]
+    - link "semmett's profile" [ref=e260]
+    - link "jvarian's profile" [ref=e261]
+    - link "NickWan's profile" [ref=e262]
+    - link "abcd567's profile" [ref=e263]
+    - link "35 replies, jump to first post" [ref=e264]: "35"
+    - text: "998"
+    - link "Aug 2025" [ref=e265]
+    - heading "Swabs for cleaning connectors" [level=2]:
+      - link "Swabs for cleaning connectors" [ref=e266]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e267]: "ADS-B Flight Tracking"
+    - link "ExCalbr's profile" [ref=e268]
+    - link "victorbravo77's profile" [ref=e269]
+    - link "geckoVN's profile" [ref=e270]
+    - link "CraigWoodThomas's profile" [ref=e271]
+    - link "jimMerk2's profile" [ref=e272]
+    - link "55 replies, jump to first post" [ref=e273]: "55"
+    - text: "830"
+    - link "Jun 2025" [ref=e274]
+    - heading "Debian Bullseye with Raspberry Pi Desktop on a PC" [level=2]:
+      - link "Debian Bullseye with Raspberry Pi Desktop on a PC" [ref=e275]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e276]: "ADS-B Flight Tracking"
+    - link "SweetPea11's profile" [ref=e277]
+    - link "tomvdhorst's profile" [ref=e278]
+    - link "jimMerk2's profile" [ref=e279]
+    - link "geckoVN's profile" [ref=e280]
+    - link "foxhunter's profile" [ref=e281]
+    - link "27 replies, jump to first post" [ref=e282]: "27"
+    - text: "714"
+    - link "Aug 2025" [ref=e283]
+    - heading "Raspberry Pi 3B+ Upgrade to Pi 4 - Complete - Better Stats?" [level=2]:
+      - link "Raspberry Pi 3B+ Upgrade to Pi 4 - Complete - Better Stats?" [ref=e284]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e285]: "ADS-B Flight Tracking"
+    - link "MikeKilo9's profile" [ref=e286]
+    - link "peatrick's profile" [ref=e287]
+    - link "wiedehopf's profile" [ref=e288]
+    - link "mgrone's profile" [ref=e289]
+    - link "abcd567's profile" [ref=e290]
+    - link "26 replies, jump to first post" [ref=e291]: "26"
+    - text: "870"
+    - link "Jan 27" [ref=e292]
+    - heading "Installation of pfclient_5.3.2_arm64.deb an Piaware 10.2 SD card image fails (pi5)" [level=2]:
+      - link "Installation of pfclient_5.3.2_arm64.deb an Piaware 10.2 SD card image fails (pi5)" [ref=e293]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e294]: "ADS-B Flight Tracking"
+    - link "Tomcraft1980's profile" [ref=e295]
+    - link "biekerc's profile" [ref=e296]
+    - link "wiedehopf's profile" [ref=e297]
+    - link "abcd567's profile" [ref=e298]
+    - link "39 replies, jump to first post" [ref=e299]: "39"
+    - text: "441"
+    - link "Sep 2025" [ref=e300]
+    - heading "Repository No Longer Signed" [level=2]:
+      - link "Repository No Longer Signed" [ref=e301]
+    - link "FlightAware" [ref=e302]
+    - link "LongSuttonFA's profile" [ref=e303]
+    - link "jonhawkes2030's profile" [ref=e304]
+    - link "LawrenceHill's profile" [ref=e305]
+    - link "jepolch's profile" [ref=e306]
+    - link "Zzznorch's profile" [ref=e307]
+    - link "9 replies, jump to first post" [ref=e308]: "9"
+    - text: "800"
+    - link "Oct 2025" [ref=e309]
+    - heading "Can you see/save data without having to write code?…. [YES, see results below]" [level=2]:
+      - link "Can you see/save data without having to write code?…. [YES, see results below]" [ref=e310]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e311]: "ADS-B Flight Tracking"
+    - link "charosenz's profile" [ref=e312]
+    - link "jimMerk2's profile" [ref=e313]
+    - link "jafrank's profile" [ref=e314]
+    - link "foxhunter's profile" [ref=e315]
+    - link "wiedehopf's profile" [ref=e316]
+    - link "34 replies, jump to first post" [ref=e317]: "34"
+    - text: "686"
+    - link "30d" [ref=e318]
+    - heading "SDR Cabling into Inside" [level=2]:
+      - link "SDR Cabling into Inside" [ref=e319]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e320]: "ADS-B Flight Tracking"
+    - link "Hilis1942's profile" [ref=e321]
+    - link "jimMerk2's profile" [ref=e322]
+    - link "mgrone's profile" [ref=e323]
+    - link "abcd567's profile" [ref=e324]
+    - link "victorbravo77's profile" [ref=e325]
+    - link "64 replies, jump to first post" [ref=e326]: "64"
+    - text: "436"
+    - link "Feb 13" [ref=e327]
+    - heading "Need antenna suggestions - amazon.com" [level=2]:
+      - link "Need antenna suggestions - amazon.com" [ref=e328]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e329]: "ADS-B Flight Tracking"
+    - link "mylinuxguy's profile" [ref=e330]
+    - link "jimMerk2's profile" [ref=e331]
+    - link "CraigWoodThomas's profile" [ref=e332]
+    - link "biekerc's profile" [ref=e333]
+    - link "jlmtx83's profile" [ref=e334]
+    - link "20 replies, jump to first post" [ref=e335]: "20"
+    - text: "627"
+    - link "Feb 22" [ref=e336]
+    - heading "Getting RTL-SDR working, can’t find piaware-config file" [level=2]:
+      - link "Getting RTL-SDR working, can’t find piaware-config file" [ref=e337]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e338]: "ADS-B Flight Tracking"
+    - link "Ve7kilohertz's profile" [ref=e339]
+    - link "MC130E's profile" [ref=e340]
+    - link "wiedehopf's profile" [ref=e341]
+    - link "abcd567's profile" [ref=e342]
+    - link "SweetPea11's profile" [ref=e343]
+    - link "22 replies, jump to first post" [ref=e344]: "22"
+    - text: "421"
+    - link "May 2025" [ref=e345]
+    - heading "Piaware 10.2 Static Wired Address Issue" [level=2]:
+      - link "Piaware 10.2 Static Wired Address Issue" [ref=e346]
+    - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e347]: "General"
+    - link "ipilot11's profile" [ref=e348]
+    - link "tomvdhorst's profile" [ref=e349]
+    - link "NickWan's profile" [ref=e350]
+    - link "abcd567's profile" [ref=e351]
+    - link "TonyLeverett's profile" [ref=e352]
+    - link "12 replies, jump to first post" [ref=e353]: "12"
+    - text: "577"
+    - link "Jul 2025" [ref=e354]
+    - heading "Getting Started for a Newbie" [level=2]:
+      - link "Getting Started for a Newbie" [ref=e355]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e356]: "ADS-B Flight Tracking"
+    - link "PeteWFlight's profile" [ref=e357]
+    - link "geckoVN's profile" [ref=e358]
+    - link "CraigWoodThomas's profile" [ref=e359]
+    - link "tomvdhorst's profile" [ref=e360]
+    - link "wiedehopf's profile" [ref=e361]
+    - link "9 replies, jump to first post" [ref=e362]: "9"
+    - text: "362"
+    - link "Jun 2025" [ref=e363]
+    - heading "Access micro SD card files" [level=2]:
+      - link "Access micro SD card files" [ref=e364]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e365]: "ADS-B Flight Tracking"
+    - link "jimMerk2's profile" [ref=e366]
+    - link "abcd567's profile" [ref=e367]
+    - link "foxhunter's profile" [ref=e368]
+    - link "13 replies, jump to first post" [ref=e369]: "13"
+    - text: "532"
+    - link "Jun 2025" [ref=e370]
+    - heading "Check-in feeders delayed" [level=2]:
+      - link "Check-in feeders delayed" [ref=e371]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e372]: "ADS-B Flight Tracking"
+    - link "tomvdhorst's profile" [ref=e373]
+    - link "jimMerk2's profile" [ref=e374]
+    - link "Dewey3's profile" [ref=e375]
+    - link "geckoVN's profile" [ref=e376]
+    - link "CraigWoodThomas's profile" [ref=e377]
+    - link "26 replies, jump to first post" [ref=e378]: "26"
+    - text: "666"
+    - link "Sep 2025" [ref=e379]
+    - heading "RTL-SDR FIR filters" [level=2]:
+      - link "RTL-SDR FIR filters" [ref=e380]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e381]: "ADS-B Flight Tracking"
+    - link "jimMerk2's profile" [ref=e382]
+    - link "Dxista's profile" [ref=e383]
+    - link "obj's profile" [ref=e384]
+    - link "mgrone's profile" [ref=e385]
+    - link "22 replies, jump to first post" [ref=e386]: "22"
+    - text: "355"
+    - link "Feb 9" [ref=e387]
+    - heading "Error in Lat and Lon" [level=2]:
+      - link "Error in Lat and Lon" [ref=e388]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e389]: "ADS-B Flight Tracking"
+    - link "DelCha's profile" [ref=e390]
+    - link "MC130E's profile" [ref=e391]
+    - link "wiedehopf's profile" [ref=e392]
+    - link "TonyLeverett's profile" [ref=e393]
+    - link "jimMerk2's profile" [ref=e394]
+    - link "33 replies, jump to first post" [ref=e395]: "33"
+    - text: "423"
+    - link "Jul 2025" [ref=e396]
+    - heading "Piaware 10 update broke my setup" [level=2]:
+      - link "Piaware 10 update broke my setup" [ref=e397]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e398]: "ADS-B Flight Tracking"
+    - link "HelicopterGuy's profile" [ref=e399]
+    - link "phodge's profile" [ref=e400]
+    - link "abcd567's profile" [ref=e401]
+    - link "geckoVN's profile" [ref=e402]
+    - link "tomvdhorst's profile" [ref=e403]
+    - link "11 replies, jump to first post" [ref=e404]: "11"
+    - text: "539"
+    - link "Jun 2025" [ref=e405]
+    - heading "Successful Install of piaware 11.0~dev and dump1090-fa 11.0~dev on RPi OS Trixie" [level=2]:
+      - link "Successful Install of piaware 11.0~dev and dump1090-fa 11.0~dev on RPi OS Trixie" [ref=e406]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e407]: "ADS-B Flight Tracking"
+    - link "abcd567's profile" [ref=e408]
+    - link "byraspi's profile" [ref=e409]
+    - link "caius's profile" [ref=e410]
+    - link "jprochazka's profile" [ref=e411]
+    - link "obj's profile" [ref=e412]
+    - link "34 replies, jump to first post" [ref=e413]: "34"
+    - text: "458"
+    - link "Apr 7" [ref=e414]
+    - heading "Config utility - how to access it?" [level=2]:
+      - link "Config utility - how to access it?" [ref=e415]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e416]: "ADS-B Flight Tracking"
+    - link "charosenz's profile" [ref=e417]
+    - link "jonhawkes2030's profile" [ref=e418]
+    - link "foxhunter's profile" [ref=e419]
+    - link "geckoVN's profile" [ref=e420]
+    - link "abcd567's profile" [ref=e421]
+    - link "14 replies, jump to first post" [ref=e422]: "14"
+    - text: "493"
+    - link "May 2025" [ref=e423]
+    - heading "Bad Performance with PoE Splitter" [level=2]:
+      - link "Bad Performance with PoE Splitter" [ref=e424]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e425]: "ADS-B Flight Tracking"
+    - link "GTIFreak's profile" [ref=e426]
+    - link "LawrenceHill's profile" [ref=e427]
+    - link "geckoVN's profile" [ref=e428]
+    - link "CraigWoodThomas's profile" [ref=e429]
+    - link "JRG1956's profile" [ref=e430]
+    - link "25 replies, jump to first post" [ref=e431]: "25"
+    - text: "539"
+    - link "Aug 2025" [ref=e432]
+    - heading "FA 1090 Bandpass is only way Uputronics Filtered Preamp works…?" [level=2]:
+      - link "FA 1090 Bandpass is only way Uputronics Filtered Preamp works…?" [ref=e433]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e434]: "ADS-B Flight Tracking"
+    - link "pp6000v2's profile" [ref=e435]
+    - link "tomvdhorst's profile" [ref=e436]
+    - link "wiedehopf's profile" [ref=e437]
+    - link "LawrenceHill's profile" [ref=e438]
+    - link "abcd567's profile" [ref=e439]
+    - link "11 replies, jump to first post" [ref=e440]: "11"
+    - text: "463"
+    - link "Aug 2025" [ref=e441]
+    - heading "Antenna corrosion problem" [level=2]:
+      - link "Antenna corrosion problem" [ref=e442]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e443]: "ADS-B Flight Tracking"
+    - link "LA7DFA's profile" [ref=e444]
+    - link "wiedehopf's profile" [ref=e445]
+    - link "LawrenceHill's profile" [ref=e446]
+    - link "TonyLeverett's profile" [ref=e447]
+    - link "tomvdhorst's profile" [ref=e448]
+    - link "13 replies, jump to first post" [ref=e449]: "13"
+    - text: "374"
+    - link "Sep 2025" [ref=e450]
+    - heading "satellite_antenna PiLNK Closed Beta — Who’s In?" [level=2]:
+      - link "satellite_antenna PiLNK Closed Beta — Who’s In?" [ref=e451]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e452]: "ADS-B Flight Tracking"
+    - link "jumpinkiwi's profile" [ref=e453]
+    - link "flyN69P's profile" [ref=e454]
+    - link "jimMerk2's profile" [ref=e455]
+    - link "davewill2010's profile" [ref=e456]
+    - link "suffolk3000's profile" [ref=e457]
+    - link "29 replies, jump to first post" [ref=e458]: "29"
+    - text: "434"
+    - link "3d" [ref=e459]
+    - heading "Accidentally lost 16 years of feeder history, can it be recovered?" [level=2]:
+      - link "Accidentally lost 16 years of feeder history, can it be recovered?" [ref=e460]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e461]: "ADS-B Flight Tracking"
+    - link "FerventGeek's profile" [ref=e462]
+    - link "abcd567's profile" [ref=e463]
+    - link "tomvdhorst's profile" [ref=e464]
+    - link "geckoVN's profile" [ref=e465]
+    - link "obj's profile" [ref=e466]
+    - link "15 replies, jump to first post" [ref=e467]: "15"
+    - text: "454"
+    - link "Mar 20" [ref=e468]
+    - heading "Link to claim is not working" [level=2]:
+      - link "Link to claim is not working" [ref=e469]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e470]: "ADS-B Flight Tracking"
+    - link "YMaster31's profile" [ref=e471]
+    - link "whitloy's profile" [ref=e472]
+    - link "tomvdhorst's profile" [ref=e473]
+    - link "geckoVN's profile" [ref=e474]
+    - link "SweetPea11's profile" [ref=e475]
+    - link "10 replies, jump to first post" [ref=e476]: "10"
+    - text: "457"
+    - link "Dec 2025" [ref=e477]
+    - heading "Second Piaware in same location almost doubled aircraft" [level=2]:
+      - link "Second Piaware in same location almost doubled aircraft" [ref=e478]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e479]: "ADS-B Flight Tracking"
+    - link "eugenemccabe's profile" [ref=e480]
+    - link "kmm0000's profile" [ref=e481]
+    - link "jafrank's profile" [ref=e482]
+    - link "wiedehopf's profile" [ref=e483]
+    - link "12 replies, jump to first post" [ref=e484]: "12"
+    - text: "389"
+    - link "Sep 2025" [ref=e485]
+    - heading "Hardware advice on setup" [level=2]:
+      - link "Hardware advice on setup" [ref=e486]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e487]: "ADS-B Flight Tracking"
+    - link "LordTHaywood's profile" [ref=e488]
+    - link "geckoVN's profile" [ref=e489]
+    - link "tomvdhorst's profile" [ref=e490]
+    - link "abcd567's profile" [ref=e491]
+    - link "jimMerk2's profile" [ref=e492]
+    - link "11 replies, jump to first post" [ref=e493]: "11"
+    - text: "392"
+    - link "Aug 2025" [ref=e494]
+    - heading "Large reduction of data received when using filter" [level=2]:
+      - link "Large reduction of data received when using filter" [ref=e495]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e496]: "ADS-B Flight Tracking"
+    - link "fettle's profile" [ref=e497]
+    - link "wiedehopf's profile" [ref=e498]
+    - link "geckoVN's profile" [ref=e499]
+    - link "abcd567's profile" [ref=e500]
+    - link "Dxista's profile" [ref=e501]
+    - link "37 replies, jump to first post" [ref=e502]: "37"
+    - text: "345"
+    - link "Jan 28" [ref=e503]
+    - heading "Cheap way to increase signal" [level=2]:
+      - link "Cheap way to increase signal" [ref=e504]
+    - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e505]: "ADS-B Flight Tracking"
+    - link "rickined1's profile" [ref=e506]
+    - link "abcd567's profile" [ref=e507]
+    - link "fhmiii's profile" [ref=e508]
+    - link "jimMerk2's profile" [ref=e509]
+    - link "geckoVN's profile" [ref=e510]
+    - link "19 replies, jump to first post" [ref=e511]: "19"
+    - text: "367"
+    - link "Feb 17" [ref=e512]
+    - contentinfo
+    - dialog "User card"
+  - region
+</result>
+
+[8] tool_call: repl("Sorting by replies")
+<request>
+await page.locator('e67').click();
+const s5 = await snapshot(page);
+console.log(s5.diff || s5.tree);
+</request>
+<result tokens_used="69" elapsed_time="1308ms">
+- title: "Top topics - FlightAware Discussions" [url=https://discussions.flightaware.com/]
+- link "FlightAware" [ref=e1]:
+  - image "FlightAware"
+- region:
+  - link "Skip to main content" [ref=e2]
+  - banner:
+    - link "FlightAware Discussions" [ref=e3]
+    - navigation:
+      - button "Log In" [ref=e4]
+      - list:
+        - listitem "Search" [ref=e5]:
+          - button "Search" [ref=e6]
+        - listitem "Navigation menu" [ref=e7]:
+          - button "Navigation menu" [ref=e8]
+  - main:
+    - heading "All top topics" [level=1]
+    - region:
+      - list:
+        - listitem:
+          - generic "categories" [ref=e57]
+      - list:
+        - listitem "Categories" [ref=e513]:
+          - link "Categories" [ref=e514]
+        - listitem "Latest" [ref=e515]:
+          - link "Latest" [ref=e516]
+        - listitem "Top" [ref=e517]:
+          - link "Top" [ref=e518]
+    - generic [ref=e65]:
+      - heading [level=2]: "Year May 13, 2025 – May 13, 2026"
+    - table "All top topics":
+      - text: "Topic list, column headers with buttons are sortable.\n  \n    \n      \n\n      \n        Topic\n      \n\n  \n\n\n    \n\n      \n         Posters"
+      - button "Replies" [ref=e520]
+      - button "Views" [ref=e522]
+      - button "Activity" [ref=e524]
+      - heading "Stream1090" [level=2]:
+        - link "Stream1090" [ref=e525]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e526]: "ADS-B Flight Tracking"
+      - link "mgrone's profile" [ref=e527]
+      - link "suffolk3000's profile" [ref=e528]
+      - link "cnuwer's profile" [ref=e529]
+      - link "JRG1956's profile" [ref=e530]
+      - link "jimMerk2's profile" [ref=e531]
+      - link "653 replies, jump to first post" [ref=e532]: "653"
+      - text: "24.4k"
+      - link "Mar 18" [ref=e533]
+      - heading "More Messages with Beamforming" [level=2]:
+        - link "More Messages with Beamforming" [ref=e534]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e535]: "ADS-B Flight Tracking"
+      - link "kburtes42's profile" [ref=e536]
+      - link "geckoVN's profile" [ref=e537]
+      - link "jimMerk2's profile" [ref=e538]
+      - link "obj's profile" [ref=e539]
+      - link "mgrone's profile" [ref=e540]
+      - link "113 replies, jump to first post" [ref=e541]: "113"
+      - text: "1.5k"
+      - link "Mar 9" [ref=e542]
+      - heading "2025 College Football Charter Flights" [level=2]:
+        - link "2025 College Football Charter Flights" [ref=e543]
+      - link "Notable or interesting aircraft or airport activity" [ref=e544]: "Notable Activity"
+      - link "sctvi's profile" [ref=e545]
+      - link "mistaks1's profile" [ref=e546]
+      - link "cparrott73's profile" [ref=e547]
+      - link "JEB1120's profile" [ref=e548]
+      - link "LighteningLou's profile" [ref=e549]
+      - link "82 replies, jump to first post" [ref=e550]: "82"
+      - text: "6.2k"
+      - link "Jan 18" [ref=e551]
+      - heading "SDR Cabling into Inside" [level=2]:
+        - link "SDR Cabling into Inside" [ref=e552]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e553]: "ADS-B Flight Tracking"
+      - link "Hilis1942's profile" [ref=e554]
+      - link "jimMerk2's profile" [ref=e555]
+      - link "mgrone's profile" [ref=e556]
+      - link "abcd567's profile" [ref=e557]
+      - link "victorbravo77's profile" [ref=e558]
+      - link "64 replies, jump to first post" [ref=e559]: "64"
+      - text: "436"
+      - link "Feb 13" [ref=e560]
+      - heading "Swabs for cleaning connectors" [level=2]:
+        - link "Swabs for cleaning connectors" [ref=e561]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e562]: "ADS-B Flight Tracking"
+      - link "ExCalbr's profile" [ref=e563]
+      - link "victorbravo77's profile" [ref=e564]
+      - link "geckoVN's profile" [ref=e565]
+      - link "CraigWoodThomas's profile" [ref=e566]
+      - link "jimMerk2's profile" [ref=e567]
+      - link "55 replies, jump to first post" [ref=e568]: "55"
+      - text: "830"
+      - link "Jun 2025" [ref=e569]
+      - heading "Radar scope view for your ADSB data" [level=2]:
+        - link "Radar scope view for your ADSB data" [ref=e570]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e571]: "ADS-B Flight Tracking"
+      - link "tritium's profile" [ref=e572]
+      - link "abcd567's profile" [ref=e573]
+      - link "jafrank's profile" [ref=e574]
+      - link "jepolch's profile" [ref=e575]
+      - link "jimMerk2's profile" [ref=e576]
+      - link "50 replies, jump to first post" [ref=e577]: "50"
+      - text: "2.0k"
+      - link "Oct 2025" [ref=e578]
+      - heading "Piaware installation certificate is expired, TLS error and no connection to FA" [level=2]:
+        - link "Piaware installation certificate is expired, TLS error and no connection to FA" [ref=e579]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e580]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e581]
+      - link "grandamp's profile" [ref=e582]
+      - link "adnoid's profile" [ref=e583]
+      - link "Srmcnamara09's profile" [ref=e584]
+      - link "MercuryStorm1's profile" [ref=e585]
+      - link "48 replies, jump to first post" [ref=e586]: "48"
+      - text: "918"
+      - link "Dec 2025" [ref=e587]
+      - heading "Cheapest possible SDR for receiving ADS-B" [level=2]:
+        - link "Cheapest possible SDR for receiving ADS-B" [ref=e588]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e589]: "ADS-B Flight Tracking"
+      - link "KovyJ's profile" [ref=e590]
+      - link "Dxista's profile" [ref=e591]
+      - link "geckoVN's profile" [ref=e592]
+      - link "abcd567's profile" [ref=e593]
+      - link "SweetPea11's profile" [ref=e594]
+      - link "48 replies, jump to first post" [ref=e595]: "48"
+      - text: "1.1k"
+      - link "Aug 2025" [ref=e596]
+      - heading "Install Airband Receiver on Raspberry Pi" [level=2]:
+        - link "Install Airband Receiver on Raspberry Pi" [ref=e597]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e598]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e599]
+      - link "jimMerk2's profile" [ref=e600]
+      - link "tomvdhorst's profile" [ref=e601]
+      - link "MC130E's profile" [ref=e602]
+      - link "47 replies, jump to first post" [ref=e603]: "47"
+      - text: "611"
+      - link "17d" [ref=e604]
+      - heading "ADSB Trident" [level=2]:
+        - link "ADSB Trident" [ref=e605]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e606]: "ADS-B Flight Tracking"
+      - link "evangelyul's profile" [ref=e607]
+      - link "Kabe's profile" [ref=e608]
+      - link "abcd567's profile" [ref=e609]
+      - link "44 replies, jump to first post" [ref=e610]: "44"
+      - text: "495"
+      - link "15d" [ref=e611]
+      - heading "No more flights showing after installing FR24" [level=2]:
+        - link "No more flights showing after installing FR24" [ref=e612]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e613]: "ADS-B Flight Tracking"
+      - link "Tanukik's profile" [ref=e614]
+      - link "abcd567's profile" [ref=e615]
+      - link "wiedehopf's profile" [ref=e616]
+      - link "biekerc's profile" [ref=e617]
+      - link "foxhunter's profile" [ref=e618]
+      - link "39 replies, jump to first post" [ref=e619]: "39"
+      - text: "663"
+      - link "Jun 2025" [ref=e620]
+      - heading "Installation of pfclient_5.3.2_arm64.deb an Piaware 10.2 SD card image fails (pi5)" [level=2]:
+        - link "Installation of pfclient_5.3.2_arm64.deb an Piaware 10.2 SD card image fails (pi5)" [ref=e621]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e622]: "ADS-B Flight Tracking"
+      - link "Tomcraft1980's profile" [ref=e623]
+      - link "biekerc's profile" [ref=e624]
+      - link "wiedehopf's profile" [ref=e625]
+      - link "abcd567's profile" [ref=e626]
+      - link "39 replies, jump to first post" [ref=e627]: "39"
+      - text: "441"
+      - link "Sep 2025" [ref=e628]
+      - heading "Large reduction of data received when using filter" [level=2]:
+        - link "Large reduction of data received when using filter" [ref=e629]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e630]: "ADS-B Flight Tracking"
+      - link "fettle's profile" [ref=e631]
+      - link "wiedehopf's profile" [ref=e632]
+      - link "geckoVN's profile" [ref=e633]
+      - link "abcd567's profile" [ref=e634]
+      - link "Dxista's profile" [ref=e635]
+      - link "37 replies, jump to first post" [ref=e636]: "37"
+      - text: "345"
+      - link "Jan 28" [ref=e637]
+      - heading "Piaware installation from FA website reverts to version 9.0.1" [level=2]:
+        - link "Piaware installation from FA website reverts to version 9.0.1" [ref=e638]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e639]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e640]
+      - link "wiedehopf's profile" [ref=e641]
+      - link "obj's profile" [ref=e642]
+      - link "biekerc's profile" [ref=e643]
+      - link "abcd567's profile" [ref=e644]
+      - link "35 replies, jump to first post" [ref=e645]: "35"
+      - text: "961"
+      - link "Nov 2025" [ref=e646]
+      - heading "Wifi Not Working on 10.1?" [level=2]:
+        - link "Wifi Not Working on 10.1?" [ref=e647]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e648]: "ADS-B Flight Tracking"
+      - link "mwshell's profile" [ref=e649]
+      - link "semmett's profile" [ref=e650]
+      - link "jvarian's profile" [ref=e651]
+      - link "NickWan's profile" [ref=e652]
+      - link "abcd567's profile" [ref=e653]
+      - link "35 replies, jump to first post" [ref=e654]: "35"
+      - text: "998"
+      - link "Aug 2025" [ref=e655]
+      - heading "Install Piaware on Debian 13 Trixie" [level=2]:
+        - link "Install Piaware on Debian 13 Trixie" [ref=e656]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e657]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e658]
+      - link "tomvdhorst's profile" [ref=e659]
+      - link "etkal's profile" [ref=e660]
+      - link "AISAirspotterDE's profile" [ref=e661]
+      - link "runahue's profile" [ref=e662]
+      - link "34 replies, jump to first post" [ref=e663]: "34"
+      - text: "6.9k"
+      - link "11d" [ref=e664]
+      - heading "Can you see/save data without having to write code?…. [YES, see results below]" [level=2]:
+        - link "Can you see/save data without having to write code?…. [YES, see results below]" [ref=e665]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e666]: "ADS-B Flight Tracking"
+      - link "charosenz's profile" [ref=e667]
+      - link "jimMerk2's profile" [ref=e668]
+      - link "jafrank's profile" [ref=e669]
+      - link "foxhunter's profile" [ref=e670]
+      - link "wiedehopf's profile" [ref=e671]
+      - link "34 replies, jump to first post" [ref=e672]: "34"
+      - text: "686"
+      - link "30d" [ref=e673]
+      - heading "Successful Install of piaware 11.0~dev and dump1090-fa 11.0~dev on RPi OS Trixie" [level=2]:
+        - link "Successful Install of piaware 11.0~dev and dump1090-fa 11.0~dev on RPi OS Trixie" [ref=e674]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e675]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e676]
+      - link "byraspi's profile" [ref=e677]
+      - link "caius's profile" [ref=e678]
+      - link "jprochazka's profile" [ref=e679]
+      - link "obj's profile" [ref=e680]
+      - link "34 replies, jump to first post" [ref=e681]: "34"
+      - text: "458"
+      - link "Apr 7" [ref=e682]
+      - heading "Error in Lat and Lon" [level=2]:
+        - link "Error in Lat and Lon" [ref=e683]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e684]: "ADS-B Flight Tracking"
+      - link "DelCha's profile" [ref=e685]
+      - link "MC130E's profile" [ref=e686]
+      - link "wiedehopf's profile" [ref=e687]
+      - link "TonyLeverett's profile" [ref=e688]
+      - link "jimMerk2's profile" [ref=e689]
+      - link "33 replies, jump to first post" [ref=e690]: "33"
+      - text: "423"
+      - link "Jul 2025" [ref=e691]
+      - heading "Re-creating fresh piaware image" [level=2]:
+        - link "Re-creating fresh piaware image" [ref=e692]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e693]: "ADS-B Flight Tracking"
+      - link "kzisme's profile" [ref=e694]
+      - link "eaglemark's profile" [ref=e695]
+      - link "tomvdhorst's profile" [ref=e696]
+      - link "abcd567's profile" [ref=e697]
+      - link "33 replies, jump to first post" [ref=e698]: "33"
+      - text: "279"
+      - link "21h" [ref=e699]
+      - heading "Antenna Placement" [level=2]:
+        - link "Antenna Placement" [ref=e700]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e701]: "ADS-B Flight Tracking"
+      - link "dosmond's profile" [ref=e702]
+      - link "jepolch's profile" [ref=e703]
+      - link "CraigWoodThomas's profile" [ref=e704]
+      - link "geckoVN's profile" [ref=e705]
+      - link "SweetPea11's profile" [ref=e706]
+      - link "30 replies, jump to first post" [ref=e707]: "30"
+      - text: "785"
+      - link "Oct 2025" [ref=e708]
+      - heading "What’s the current most popular DIY antenna and some discussion" [level=2]:
+        - link "What’s the current most popular DIY antenna and some discussion" [ref=e709]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e710]: "ADS-B Flight Tracking"
+      - link "Ve7kilohertz's profile" [ref=e711]
+      - link "LawrenceHill's profile" [ref=e712]
+      - link "geckoVN's profile" [ref=e713]
+      - link "charosenz's profile" [ref=e714]
+      - link "MC130E's profile" [ref=e715]
+      - link "29 replies, jump to first post" [ref=e716]: "29"
+      - text: "1.1k"
+      - link "Jun 2025" [ref=e717]
+      - heading "satellite_antenna PiLNK Closed Beta — Who’s In?" [level=2]:
+        - link "satellite_antenna PiLNK Closed Beta — Who’s In?" [ref=e718]:
+          - image "satellite_antenna"
+          - text: "PiLNK Closed Beta — Who’s In?"
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e719]: "ADS-B Flight Tracking"
+      - link "jumpinkiwi's profile" [ref=e720]
+      - link "flyN69P's profile" [ref=e721]
+      - link "jimMerk2's profile" [ref=e722]
+      - link "davewill2010's profile" [ref=e723]
+      - link "suffolk3000's profile" [ref=e724]
+      - link "29 replies, jump to first post" [ref=e725]: "29"
+      - text: "434"
+      - link "3d" [ref=e726]
+      - heading "How do we fix the mlat issue?" [level=2]:
+        - link "How do we fix the mlat issue?" [ref=e727]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e728]: "ADS-B Flight Tracking"
+      - link "nattrackA's profile" [ref=e729]
+      - link "jimMerk2's profile" [ref=e730]
+      - link "CraigWoodThomas's profile" [ref=e731]
+      - link "28 replies, jump to first post" [ref=e732]: "28"
+      - text: "125"
+      - link "13d" [ref=e733]
+      - heading "New Pi 5 receiver, need to tweak the airspy settings" [level=2]:
+        - link "New Pi 5 receiver, need to tweak the airspy settings" [ref=e734]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e735]: "ADS-B Flight Tracking"
+      - link "keithma's profile" [ref=e736]
+      - link "abcd567's profile" [ref=e737]
+      - link "biekerc's profile" [ref=e738]
+      - link "wiedehopf's profile" [ref=e739]
+      - link "caius's profile" [ref=e740]
+      - link "27 replies, jump to first post" [ref=e741]: "27"
+      - text: "758"
+      - link "Apr 12" [ref=e742]
+      - heading "Debian Bullseye with Raspberry Pi Desktop on a PC" [level=2]:
+        - link "Debian Bullseye with Raspberry Pi Desktop on a PC" [ref=e743]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e744]: "ADS-B Flight Tracking"
+      - link "SweetPea11's profile" [ref=e745]
+      - link "tomvdhorst's profile" [ref=e746]
+      - link "jimMerk2's profile" [ref=e747]
+      - link "geckoVN's profile" [ref=e748]
+      - link "foxhunter's profile" [ref=e749]
+      - link "27 replies, jump to first post" [ref=e750]: "27"
+      - text: "714"
+      - link "Aug 2025" [ref=e751]
+      - heading "Raspberry Pi 3B+ Upgrade to Pi 4 - Complete - Better Stats?" [level=2]:
+        - link "Raspberry Pi 3B+ Upgrade to Pi 4 - Complete - Better Stats?" [ref=e752]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e753]: "ADS-B Flight Tracking"
+      - link "MikeKilo9's profile" [ref=e754]
+      - link "peatrick's profile" [ref=e755]
+      - link "wiedehopf's profile" [ref=e756]
+      - link "mgrone's profile" [ref=e757]
+      - link "abcd567's profile" [ref=e758]
+      - link "26 replies, jump to first post" [ref=e759]: "26"
+      - text: "870"
+      - link "Jan 27" [ref=e760]
+      - heading "Check-in feeders delayed" [level=2]:
+        - link "Check-in feeders delayed" [ref=e761]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e762]: "ADS-B Flight Tracking"
+      - link "tomvdhorst's profile" [ref=e763]
+      - link "jimMerk2's profile" [ref=e764]
+      - link "Dewey3's profile" [ref=e765]
+      - link "geckoVN's profile" [ref=e766]
+      - link "CraigWoodThomas's profile" [ref=e767]
+      - link "26 replies, jump to first post" [ref=e768]: "26"
+      - text: "666"
+      - link "Sep 2025" [ref=e769]
+      - heading "Bad Performance with PoE Splitter" [level=2]:
+        - link "Bad Performance with PoE Splitter" [ref=e770]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e771]: "ADS-B Flight Tracking"
+      - link "GTIFreak's profile" [ref=e772]
+      - link "LawrenceHill's profile" [ref=e773]
+      - link "geckoVN's profile" [ref=e774]
+      - link "CraigWoodThomas's profile" [ref=e775]
+      - link "JRG1956's profile" [ref=e776]
+      - link "25 replies, jump to first post" [ref=e777]: "25"
+      - text: "539"
+      - link "Aug 2025" [ref=e778]
+      - heading "Success, newbie install 978 UAT only for $80" [level=2]:
+        - link "Success, newbie install 978 UAT only for $80" [ref=e779]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e780]: "ADS-B Flight Tracking"
+      - link "charosenz's profile" [ref=e781]
+      - link "abcd567's profile" [ref=e782]
+      - link "foxhunter's profile" [ref=e783]
+      - link "MC130E's profile" [ref=e784]
+      - link "geckoVN's profile" [ref=e785]
+      - link "23 replies, jump to first post" [ref=e786]: "23"
+      - text: "588"
+      - link "May 2025" [ref=e787]
+      - heading "Houston ? We have a problem!" [level=2]:
+        - link "Houston ? We have a problem!" [ref=e788]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e789]: "ADS-B Flight Tracking"
+      - link "davewill2010's profile" [ref=e790]
+      - link "abcd567's profile" [ref=e791]
+      - link "wiedehopf's profile" [ref=e792]
+      - link "dirkhh's profile" [ref=e793]
+      - link "tomvdhorst's profile" [ref=e794]
+      - link "23 replies, jump to first post" [ref=e795]: "23"
+      - text: "254"
+      - link "22d" [ref=e796]
+      - heading "Need help to feed FR4 from newly receive FlightAware flight feeder" [level=2]:
+        - link "Need help to feed FR4 from newly receive FlightAware flight feeder" [ref=e797]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e798]: "ADS-B Flight Tracking"
+      - link "Th3doberman's profile" [ref=e799]
+      - link "obj's profile" [ref=e800]
+      - link "SweetPea11's profile" [ref=e801]
+      - link "abcd567's profile" [ref=e802]
+      - link "wiedehopf's profile" [ref=e803]
+      - link "23 replies, jump to first post" [ref=e804]: "23"
+      - text: "149"
+      - link "16d" [ref=e805]
+      - heading "PiWare 10, how to update on Debian 6.12" [level=2]:
+        - link "PiWare 10, how to update on Debian 6.12" [ref=e806]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e807]: "ADS-B Flight Tracking"
+      - link "voyteke's profile" [ref=e808]
+      - link "abcd567's profile" [ref=e809]
+      - link "AK4FD's profile" [ref=e810]
+      - link "geckoVN's profile" [ref=e811]
+      - link "erick2640's profile" [ref=e812]
+      - link "22 replies, jump to first post" [ref=e813]: "22"
+      - text: "1.2k"
+      - link "Jun 2025" [ref=e814]
+      - heading "Getting RTL-SDR working, can’t find piaware-config file" [level=2]:
+        - link "Getting RTL-SDR working, can’t find piaware-config file" [ref=e815]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e816]: "ADS-B Flight Tracking"
+      - link "Ve7kilohertz's profile" [ref=e817]
+      - link "MC130E's profile" [ref=e818]
+      - link "wiedehopf's profile" [ref=e819]
+      - link "abcd567's profile" [ref=e820]
+      - link "SweetPea11's profile" [ref=e821]
+      - link "22 replies, jump to first post" [ref=e822]: "22"
+      - text: "421"
+      - link "May 2025" [ref=e823]
+      - heading "RTL-SDR FIR filters" [level=2]:
+        - link "RTL-SDR FIR filters" [ref=e824]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e825]: "ADS-B Flight Tracking"
+      - link "jimMerk2's profile" [ref=e826]
+      - link "Dxista's profile" [ref=e827]
+      - link "obj's profile" [ref=e828]
+      - link "mgrone's profile" [ref=e829]
+      - link "22 replies, jump to first post" [ref=e830]: "22"
+      - text: "355"
+      - link "Feb 9" [ref=e831]
+      - heading "Install Piaware on Trixie" [level=2]:
+        - link "Install Piaware on Trixie" [ref=e832]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e833]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e834]
+      - link "JRG1956's profile" [ref=e835]
+      - link "butterfly2's profile" [ref=e836]
+      - link "k5map1's profile" [ref=e837]
+      - link "jimMerk2's profile" [ref=e838]
+      - link "21 replies, jump to first post" [ref=e839]: "21"
+      - text: "2.9k"
+      - link "15d" [ref=e840]
+      - heading "Need antenna suggestions - amazon.com" [level=2]:
+        - link "Need antenna suggestions - amazon.com" [ref=e841]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e842]: "ADS-B Flight Tracking"
+      - link "mylinuxguy's profile" [ref=e843]
+      - link "jimMerk2's profile" [ref=e844]
+      - link "CraigWoodThomas's profile" [ref=e845]
+      - link "biekerc's profile" [ref=e846]
+      - link "jlmtx83's profile" [ref=e847]
+      - link "20 replies, jump to first post" [ref=e848]: "20"
+      - text: "627"
+      - link "Feb 22" [ref=e849]
+      - heading "Unknown Reduction on 1090" [level=2]:
+        - link "Unknown Reduction on 1090" [ref=e850]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e851]: "ADS-B Flight Tracking"
+      - link "dosmond's profile" [ref=e852]
+      - link "wiedehopf's profile" [ref=e853]
+      - link "CraigWoodThomas's profile" [ref=e854]
+      - link "geckoVN's profile" [ref=e855]
+      - link "tomvdhorst's profile" [ref=e856]
+      - link "20 replies, jump to first post" [ref=e857]: "20"
+      - text: "366"
+      - link "Nov 2025" [ref=e858]
+      - heading "Reoccurring power outage" [level=2]:
+        - link "Reoccurring power outage" [ref=e859]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e860]: "ADS-B Flight Tracking"
+      - link "charosenz's profile" [ref=e861]
+      - link "MC130E's profile" [ref=e862]
+      - link "geckoVN's profile" [ref=e863]
+      - link "jimMerk2's profile" [ref=e864]
+      - link "abcd567's profile" [ref=e865]
+      - link "20 replies, jump to first post" [ref=e866]: "20"
+      - text: "187"
+      - link "Nov 2025" [ref=e867]
+      - heading "Raspberry Pi OS Trixie Released" [level=2]:
+        - link "Raspberry Pi OS Trixie Released" [ref=e868]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e869]: "ADS-B Flight Tracking"
+      - link "abcd567's profile" [ref=e870]
+      - link "TonyLeverett's profile" [ref=e871]
+      - link "jimMerk2's profile" [ref=e872]
+      - link "MartyMcFly30k's profile" [ref=e873]
+      - link "garnoopy's profile" [ref=e874]
+      - link "19 replies, jump to first post" [ref=e875]: "19"
+      - text: "2.4k"
+      - link "Oct 2025" [ref=e876]
+      - heading "Setting up from scratch with Trixie?" [level=2]:
+        - link "Setting up from scratch with Trixie?" [ref=e877]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e878]: "ADS-B Flight Tracking"
+      - link "GlynH's profile" [ref=e879]
+      - link "wiedehopf's profile" [ref=e880]
+      - link "JRG1956's profile" [ref=e881]
+      - link "jimMerk2's profile" [ref=e882]
+      - link "abcd567's profile" [ref=e883]
+      - link "19 replies, jump to first post" [ref=e884]: "19"
+      - text: "2.2k"
+      - link "Feb 11" [ref=e885]
+      - heading "Cheap way to increase signal" [level=2]:
+        - link "Cheap way to increase signal" [ref=e886]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e887]: "ADS-B Flight Tracking"
+      - link "rickined1's profile" [ref=e888]
+      - link "abcd567's profile" [ref=e889]
+      - link "fhmiii's profile" [ref=e890]
+      - link "jimMerk2's profile" [ref=e891]
+      - link "geckoVN's profile" [ref=e892]
+      - link "19 replies, jump to first post" [ref=e893]: "19"
+      - text: "367"
+      - link "Feb 17" [ref=e894]
+      - heading "Stats … Again" [level=2]:
+        - link "Stats … Again" [ref=e895]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e896]: "General"
+      - link "arfadaily's profile" [ref=e897]
+      - link "ExCalbr's profile" [ref=e898]
+      - link "LawrenceHill's profile" [ref=e899]
+      - link "CraigWoodThomas's profile" [ref=e900]
+      - link "oblivian's profile" [ref=e901]
+      - link "19 replies, jump to first post" [ref=e902]: "19"
+      - text: "333"
+      - link "Aug 2025" [ref=e903]
+      - heading "Old but Newbie can I improve things?" [level=2]:
+        - link "Old but Newbie can I improve things?" [ref=e904]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e905]: "General"
+      - link "uktricky's profile" [ref=e906]
+      - link "ExCalbr's profile" [ref=e907]
+      - link "wiedehopf's profile" [ref=e908]
+      - link "tomvdhorst's profile" [ref=e909]
+      - link "CraigWoodThomas's profile" [ref=e910]
+      - link "19 replies, jump to first post" [ref=e911]: "19"
+      - text: "344"
+      - link "Jun 2025" [ref=e912]
+      - heading "Statistic woes" [level=2]:
+        - link "Statistic woes" [ref=e913]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e914]: "General"
+      - link "arfadaily's profile" [ref=e915]
+      - link "CraigWoodThomas's profile" [ref=e916]
+      - link "ExCalbr's profile" [ref=e917]
+      - link "tomvdhorst's profile" [ref=e918]
+      - link "obj's profile" [ref=e919]
+      - link "19 replies, jump to first post" [ref=e920]: "19"
+      - text: "134"
+      - link "Mar 25" [ref=e921]
+      - heading "Antennas and outside mounting" [level=2]:
+        - link "Antennas and outside mounting" [ref=e922]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e923]: "General"
+      - link "N251EA's profile" [ref=e924]
+      - link "CraigWoodThomas's profile" [ref=e925]
+      - link "LawrenceHill's profile" [ref=e926]
+      - link "TonyLeverett's profile" [ref=e927]
+      - link "LA7DFA's profile" [ref=e928]
+      - link "18 replies, jump to first post" [ref=e929]: "18"
+      - text: "336"
+      - link "Oct 2025" [ref=e930]
+      - heading "Unable to see Piaware UI" [level=2]:
+        - link "Unable to see Piaware UI" [ref=e931]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e932]: "ADS-B Flight Tracking"
+      - link "nattrackA's profile" [ref=e933]
+      - link "wiedehopf's profile" [ref=e934]
+      - link "abcd567's profile" [ref=e935]
+      - link "17 replies, jump to first post" [ref=e936]: "17"
+      - text: "293"
+      - link "Nov 2025" [ref=e937]
+      - heading "Swapping Pi 4 B" [level=2]:
+        - link "Swapping Pi 4 B" [ref=e938]
+      - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e939]: "General"
+      - link "dosmond's profile" [ref=e940]
+      - link "tomvdhorst's profile" [ref=e941]
+      - link "LawrenceHill's profile" [ref=e942]
+      - link "TonyLeverett's profile" [ref=e943]
+      - link "jimMerk2's profile" [ref=e944]
+      - link "17 replies, jump to first post" [ref=e945]: "17"
+      - text: "351"
+      - link "Oct 2025" [ref=e946]
+      - heading "Airport visit gain setting" [level=2]:
+        - link "Airport visit gain setting" [ref=e947]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e948]: "ADS-B Flight Tracking"
+      - link "send2gl's profile" [ref=e949]
+      - link "MC130E's profile" [ref=e950]
+      - link "tomvdhorst's profile" [ref=e951]
+      - link "wiedehopf's profile" [ref=e952]
+      - link "abcd567's profile" [ref=e953]
+      - link "17 replies, jump to first post" [ref=e954]: "17"
+      - text: "332"
+      - link "Aug 2025" [ref=e955]
+      - heading "How to disable upgrade notification in profile" [level=2]:
+        - link "How to disable upgrade notification in profile" [ref=e956]
+      - link "Using FlightAware with ADS-B feeders, software, hardware, and more. PiAware, FlightFeeders, dump1090" [ref=e957]: "ADS-B Flight Tracking"
+      - link "foxhunter's profile" [ref=e958]
+      - link "CraigWoodThomas's profile" [ref=e959]
+      - link "MC130E's profile" [ref=e960]
+      - link "tomvdhorst's profile" [ref=e961]
+      - link "wiedehopf's profile" [ref=e962]
+      - link "17 replies, jump to first post" [ref=e963]: "17"
+      - text: "355"
+      - link "May 2025" [ref=e964]
+    - contentinfo
+    - dialog "User card"
+  - region
+</result>
+
+[9] thinking: **Exploring forum discussions**
+
+I’m sorting the current year in descending order, but the prompt about finding community discussions on FlightAware is a bit ambiguous. It mentions “most replies,” which might refer to either the current top discussions or all-time records. I need to be thorough. I’ll explore potential URLs to check the top topics, such as /top?period=all or /top/all, and log the URL appropriately. It feels like I need to clarify my approach here!
+
+[10] tool_call: repl("Checking current URL")
+<request>
+console.log(page.url());
+</request>
+<result tokens_used="139" elapsed_time="13ms">
+https://discussions.flightaware.com/
+</result>
+
+[11] tool_call: repl("Querying discussion API")
+<request>
+const r1 = await fetch('https://discussions.flightaware.com/latest.json?order=posts');
+console.log(r1.status + ' ' + r1.url + ' ' + r1.headers.get('content-type'));
+const j1 = await r1.json();
+console.log(JSON.stringify(j1.topic_list?.topics?.slice(0,5).map(t=>({title:t.title, posts_count:t.posts_count, reply_count:t.reply_count, slug:t.slug, id:t.id})), null, 2));
+</request>
+<result tokens_used="340" elapsed_time="423ms">
+200 https://discussions.flightaware.com/latest.json?order=posts application/json; charset=utf-8
+[
+  {
+    "title": "The Banter Thread",
+    "posts_count": 5519,
+    "reply_count": 3,
+    "slug": "the-banter-thread",
+    "id": 4412
+  },
+  {
+    "title": "HOWTO: Airspy mini and Airspy R2: Piaware / dump1090-fa configuration",
+    "posts_count": 4579,
+    "reply_count": 3525,
+    "slug": "howto-airspy-mini-and-airspy-r2-piaware-dump1090-fa-configuration",
+    "id": 44343
+  },
+  {
+    "title": "ADS-B Receiver Project Setup Scripts",
+    "posts_count": 1873,
+    "reply_count": 144,
+    "slug": "ads-b-receiver-project-setup-scripts",
+    "id": 17807
+  },
+  {
+    "title": "Nascar Airplanes",
+    "posts_count": 1745,
+    "reply_count": 30,
+    "slug": "nascar-airplanes",
+    "id": 3810
+  },
+  {
+    "title": "Tar1090 -- improved webinterface for dump1090-fa and readsb",
+    "posts_count": 1628,
+    "reply_count": 1045,
+    "slug": "tar1090-improved-webinterface-for-dump1090-fa-and-readsb",
+    "id": 52888
+  }
+]
+</result>
+
+[12] thinking: **Exploring reply count discrepancies**
+
+I'm noticing an interesting difference in reply counts. It makes me wonder if this is due to a migration in the Discourse platform. With a posts count of 5,519 but only 3 replies, could it be related to smaller actions? The UI may display replies as posts count minus one. I think I need to confirm this with a topic check, specifically Stream1090, to clarify the situation further.
+
+[13] tool_call: repl("Checking reply counts in API")
+<request>
+const r2 = await fetch('https://discussions.flightaware.com/search/query.json?term=Stream1090');
+const j2 = await r2.json();
+console.log(JSON.stringify(j2.topics?.slice(0,3).map(t=>({title:t.title, posts_count:t.posts_count, reply_count:t.reply_count,id:t.id,slug:t.slug})), null, 2));
+</request>
+<result tokens_used="186" elapsed_time="577ms">
+[
+  {
+    "title": "Stream1090",
+    "posts_count": 654,
+    "reply_count": 561,
+    "id": 99603,
+    "slug": "stream1090"
+  },
+  {
+    "title": "More Messages with Beamforming",
+    "posts_count": 114,
+    "reply_count": 84,
+    "id": 100048,
+    "slug": "more-messages-with-beamforming"
+  },
+  {
+    "title": "RTL-SDR FIR filters",
+    "posts_count": 23,
+    "reply_count": 14,
+    "id": 100041,
+    "slug": "rtl-sdr-fir-filters"
+  }
+]
+</result>
+
+[14] tool_call: repl("Opening the discussion with most replies")
+<request>
+await openTab('https://discussions.flightaware.com/t/the-banter-thread/4412');
+const s6 = await snapshot(page);
+console.log(s6.tree);
+</request>
+<result tokens_used="188" elapsed_time="1060ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → The Banter Thread - FlightAware / General - FlightAware Discussions (https://discussions.flightaware.com/t/the-banter-thread/4412)
+- title: "The Banter Thread - FlightAware / General - FlightAware Discussions" [url=https://discussions.flightaware.com/t/the-banter-thread/4412]
+- link "FlightAware" [ref=e1]:
+  - image "FlightAware"
+- region:
+  - link "Skip to last reply" [ref=e2]
+  - link "Skip to top" [ref=e3]
+  - link "Skip to main content" [ref=e4]
+  - banner:
+    - link "FlightAware Discussions" [ref=e5]
+    - navigation:
+      - button "Log In" [ref=e6]
+      - list:
+        - listitem "Search" [ref=e7]:
+          - button "Search" [ref=e8]
+        - listitem "Navigation menu" [ref=e9]:
+          - button "Navigation menu" [ref=e10]
+  - main:
+    - heading "The Banter Thread" [level=1]:
+      - link "The Banter Thread" [ref=e11]
+    - link "FlightAware" [ref=e12]
+    - link "General FlightAware discussions, usage tips, questions, bugs, and more." [ref=e13]: "General"
+    - link "Jump to the first post" [ref=e14]: "Dec 2007"
+    - text: "1 / 5519\n      \n        \n           Dec 2007"
+    - link "Jun 2018" [ref=e17]
+    - region:
+      - heading "post by mduell on Dec 26, 2007" [level=2]
+      - article "post by mduell on Dec 26, 2007" [ref=e18]:
+        - link "mduell's profile" [ref=e19]
+        - link "mduell's profile" [ref=e20]: "mduell"
+        - text: "FlightAware Staff"
+        - link "Dec 26, 2007 5:40 pm" [ref=e21]: "Dec 2007"
+        - text: "Just wanted to start a thread to consolidate all the off-topic banter that the regulars enjoy so much.\nPost away, flame away, keep it legal and it will remain unmoderated. Enter at your own risk."
+        - region:
+          - navigation:
+            - button "1 person liked this post." [ref=e22]: "1"
+            - button "like this post" [ref=e23]
+            - button "copy a link to this post to clipboard" [ref=e24]
+          - list
+        - region
+        - region:
+          - button "2.3M views" [ref=e25]
+          - button "21 links" [ref=e26]
+          - button "147 users" [ref=e27]
+          - link "lieberma's profile" [ref=e28]
+          - link "will744's profile" [ref=e29]
+          - link "JHEM's profile" [ref=e30]
+          - link "flyboy97222's profile" [ref=e31]
+          - link "damiross's profile" [ref=e32]
+          - text: "read \n        \n           868\n           min"
+          - button "Show this topic top replies: the most interesting posts as determined by the community" [ref=e33]: "Top replies"
+      - heading "post by FlyNYC on Dec 26, 2007" [level=2]
+      - article "post by FlyNYC on Dec 26, 2007" [ref=e34]:
+        - link "FlyNYC's profile" [ref=e35]
+        - link "FlyNYC's profile" [ref=e36]: "FlyNYC"
+        - link "Dec 26, 2007 7:32 pm" [ref=e37]: "Dec 2007"
+        - text: "Ohhhh goody goody goody!!!  Where’s James with that popcorn eating icon!!!"
+        - region:
+          - navigation:
+            - button "like this post" [ref=e38]
+            - button "copy a link to this post to clipboard" [ref=e39]
+          - list
+        - region
+      - heading "post by lieberma on Dec 26, 2007" [level=2]
+      - article "post by lieberma on Dec 26, 2007" [ref=e40]:
+        - link "lieberma's profile" [ref=e41]
+        - link "lieberma's profile" [ref=e42]: "lieberma"
+        - link "Dec 26, 2007 7:50 pm" [ref=e43]: "Dec 2007"
+        - complementary: "trafly:\n\nOhhhh goody goody goody!!!  Where’s James with that popcorn eating icon!!!"
+        - text: "Who owned that dead horsey???  Don’t forget him! or her! or it???"
+        - region:
+          - navigation:
+            - button "like this post" [ref=e44]
+            - button "copy a link to this post to clipboard" [ref=e45]
+          - list
+        - region
+      - heading "post by robbreid on Dec 27, 2007" [level=2]
+      - article "post by robbreid on Dec 27, 2007" [ref=e46]:
+        - link "robbreid's profile" [ref=e47]
+        - link "robbreid's profile" [ref=e48]: "robbreid"
+        - link "Dec 27, 2007 2:52 pm" [ref=e49]: "Dec 2007"
+        - paragraph:
+          - link "Still Waiting" [ref=e50]
+          - link "http://i246.photobucket.com/albums/gg98/kimextreme/barby22.gif link clicked 31 times" [ref=e51]: "http://i246.photobucket.com/albums/gg98/kimextreme/barby22.gif 31"
+        - region:
+          - navigation:
+            - button "like this post" [ref=e52]
+            - button "copy a link to this post to clipboard" [ref=e53]
+          - list
+        - region
+      - heading "post by damiross on Dec 27, 2007" [level=2]
+      - article "post by damiross on Dec 27, 2007" [ref=e54]:
+        - link "damiross's profile" [ref=e55]
+        - link "damiross's profile" [ref=e56]: "damiross"
+        - link "Dec 27, 2007 2:59 pm" [ref=e57]: "Dec 2007"
+        - text: "Heavens to Betsy!  There’s off-topic banter here in this here forum?  Glory be! I ain’t heard nothing like that, child!"
+        - region:
+          - navigation:
+            - button "like this post" [ref=e58]
+            - button "copy a link to this post to clipboard" [ref=e59]
+          - list
+        - region
+      - heading "post by wazzu90 on Dec 27, 2007" [level=2]
+      - article "post by wazzu90 on Dec 27, 2007" [ref=e60]:
+        - link "wazzu90's profile" [ref=e61]
+        - link "wazzu90's profile" [ref=e62]: "wazzu90"
+        - link "Dec 27, 2007 8:38 pm" [ref=e63]: "Dec 2007"
+        - complementary:
+          - text: "robbreid:"
+          - paragraph:
+            - link "Still Waiting" [ref=e64]
+            - link "http://i246.photobucket.com/albums/gg98/kimextreme/barby22.gif" [ref=e65]
+        - paragraph:
+          - text: "Yeah yeah we all know Alex Trebek is from Canada.  Blah blah blah."
+          - link "http://www.youtube.com/watch?v=0OOI8zw3X5s link clicked 3 times" [ref=e66]: "http://www.youtube.com/watch?v=0OOI8zw3X5s 3"
+        - region:
+          - navigation:
+            - button "like this post" [ref=e67]
+            - button "copy a link to this post to clipboard" [ref=e68]
+          - list
+        - region
+      - heading "post by robbreid on Dec 27, 2007" [level=2]
+      - article "post by robbreid on Dec 27, 2007" [ref=e69]:
+        - link "robbreid's profile" [ref=e70]
+        - link "robbreid's profile" [ref=e71]: "robbreid"
+        - link "Dec 27, 2007 9:21 pm" [ref=e72]: "Dec 2007"
+        - paragraph:
+          - link "Click Here link clicked 9 times" [ref=e73]: "Click Here  9"
+          - text: "and this one just for fun"
+          - link "Click Here. link clicked 25 times" [ref=e74]: "Click Here. 25"
+          - text: "(2nd one very funny)."
+        - region:
+          - navigation:
+            - button "like this post" [ref=e75]
+            - button "copy a link to this post to clipboard" [ref=e76]
+          - list
+        - region
+      - heading "post by wazzu90 on Dec 27, 2007" [level=2]
+      - heading "post by wazzu90 on Dec 28, 2007" [level=2]
+      - heading "post by NeedleNose on Dec 28, 2007" [level=2]
+      - heading "post by cfijames on Dec 28, 2007" [level=2]
+      - heading "post by NeedleNose on Dec 28, 2007" [level=2]
+      - heading "post by IanNic64 on Dec 28, 2007" [level=2]
+      - heading "post by lancasterperch on Dec 28, 2007" [level=2]
+      - heading "post by JHEM on Dec 28, 2007" [level=2]
+      - heading "post by robbreid on Dec 28, 2007" [level=2]
+      - heading "post by azav8r on Dec 28, 2007" [level=2]
+      - heading "post by azav8r on Dec 28, 2007" [level=2]
+      - heading "post by mkiogima on Dec 28, 2007" [level=2]
+      - heading "post by JHEM on Dec 28, 2007" [level=2]
+      - heading "Load more posts below" [level=2]
+    - dialog "User card"
+  - region
+</result>
+
+[15] assistant: Opened: **“The Banter Thread”** on FlightAware Discussions. It has **5,519 posts**, the highest I found.

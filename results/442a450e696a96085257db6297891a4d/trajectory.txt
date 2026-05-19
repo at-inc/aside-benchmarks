@@ -1,0 +1,996 @@
+[1] user: Go to https://www.chase.com/, Using a calculator to determine how much I can have in my 401(k) account at retirement, if I work from age 22 to 65, with an annual rate of return of 3%, annual employee contributions of $8,000, and annual employer contributions of $8,000.
+
+[2] thinking: **Interacting with calculator**
+
+I need to interact with the retirement calculator on chase.com. The user wants to determine the amount in their 401(k) at retirement based on specific inputs. I could calculate this myself, but since the user requested accessing the calculator on the site, that’s the plan! I’ll need to browse to find the Chase retirement calculator. Alright, let’s open it and see what we can figure out together!
+
+[3] tool_call: repl("Opening Chase website")
+<request>
+const p1 = await openTab('https://www.chase.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="123" elapsed_time="2279ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Credit Card, Mortgage, Banking, Auto | Chase Online | Chase.com (https://www.chase.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Credit Card, Mortgage, Banking, Auto | Chase Online | Chase.com" [url=https://www.chase.com/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - navigation "Customer Type" [ref=e2]:
+    - link "Personal current product" [ref=e3]
+    - link "Business" [ref=e4]
+    - link "Commercial" [ref=e5]
+  - navigation "Customer service" [ref=e6]:
+    - menubar:
+      - menuitem "Schedule a meeting" [ref=e7]
+      - menuitem "Customer service" [ref=e8]
+      - menuitem "Español" [ref=e9]
+      - menuitem "Search" [ref=e10]
+  - link "Chase logo, links to Chase home" [ref=e11]
+  - navigation:
+    - menubar:
+      - menuitem "Checking" [ref=e12]
+      - menuitem "Savings & CDs" [ref=e13]
+      - menuitem "Credit cards" [ref=e14]
+      - menuitem "Home loans" [ref=e15]
+      - menuitem "Auto" [ref=e16]
+      - menuitem "Investing by J.P. Morgan" [ref=e17]
+      - menuitem "Education & goals" [ref=e18]
+      - menuitem "Travel" [ref=e19]
+- main:
+  - heading "Chase home page" [level=1]
+  - text: "Username"
+  - textbox "Username" [ref=e20]
+  - text: "Password"
+  - textbox "Password" [ref=e21]
+  - button "Show" [ref=e22]
+  - checkbox "Remember username" [ref=e23] [hidden]
+  - text: "Remember username"
+  - link "Use token" [ref=e24]
+  - button "Sign in" [ref=e25]
+  - text: "Or"
+  - button "Passwordless sign in" [ref=e26]
+  - link "Forgot username/password?" [ref=e27]
+  - link "Not Enrolled? Sign Up Now." [ref=e28]
+  - text: "Enjoy $400"
+  - heading [level=2]: "New Chase checking customers"
+  - text: "Open a Chase Total Checking® account with qualifying activities."
+  - link "Open an account" [ref=e29]
+  - heading "Choose what's right for you" [level=3]
+  - region "Chase Product Carousel" [ref=e30]:
+    - link "Business" [ref=e31]
+    - link "Credit cards" [ref=e32]
+    - link "Checking" [ref=e33]
+    - link "Travel" [ref=e34]
+    - link "Savings" [ref=e35]
+    - link "Home loans" [ref=e36]
+    - button "Previous Slide" [ref=e37]
+    - button "Show slide 1 of 2, selected" [ref=e38]: "Slide 1"
+    - button "Show slide 2 of 2" [ref=e39]: "Slide 2"
+    - button "Next Slide" [ref=e40]
+  - link "Chase Credit Cards. See if you’re preapproved. Learn which Chase Credit Cards you’re preapproved for" [ref=e41]
+  - link "Chase Sapphire Preferred Registered. Earn 75,000 bonus points. Plus, earn 5x total points on Chase T" [ref=e42]
+  - link "Chase Auto. Get prequalified in seconds. Learn how much you can borrow with no impact on your credit" [ref=e43]
+  - link [ref=e44]:
+    - text: "Earn up to $1,000 cash bonus"
+    - heading [level=3]: "Commission-free online trades – plus a bonus"
+    - text: "This is an invitation to get up to $1,000 when you open and fund a J.P. Morgan Self-Directed Investing account—an investing experience that puts you in control."
+    - button "Continue" [ref=e45]: "Continue Commission-free online trades – plus a bonus"
+- contentinfo:
+  - link "Chase logo, links to Chase home" [ref=e46]
+  - heading "Checking Accounts" [level=2]
+  - text: "Choose the"
+  - link "checking account" [ref=e47]
+  - text: "that works best for you. See our"
+  - link "Chase Total Checking®" [ref=e48]
+  - text: "offer for new customers. Make purchases with your debit card, and bank from almost anywhere by phone, tablet or computer and more than 14,000 ATMs and 5,000 branches."
+  - heading "Savings Accounts & CDs" [level=2]
+  - text: "It’s never too early to begin saving."
+  - link "Open a savings account" [ref=e49]
+  - text: "or open a Certificate of Deposit ("
+  - link "see interest rates" [ref=e50]
+  - text: ") and start saving your money."
+  - heading "Credit Cards" [level=2]
+  - text: "Chase"
+  - link "credit cards" [ref=e51]
+  - text: "can help you buy the things you need. Many of our cards"
+  - link "offer rewards" [ref=e52]
+  - text: "that can be redeemed for"
+  - link "cash back" [ref=e53]
+  - text: "or"
+  - link "travel-related" [ref=e54]
+  - text: "perks. With so many options, it can be easy to find a card that matches your lifestyle. Plus, with Credit Journey you can get a"
+  - link "free credit score" [ref=e55]
+  - text: "!"
+  - heading "Mortgages" [level=2]
+  - text: "Apply for a"
+  - link "mortgage" [ref=e56]
+  - text: "or"
+  - link "refinance your mortgage" [ref=e57]
+  - text: "with Chase. View today’s"
+  - link "mortgage rates" [ref=e58]
+  - text: "or calculate what you can afford with our"
+  - link "mortgage calculator" [ref=e59]
+  - text: ". Visit our"
+  - link "Education Center" [ref=e60]
+  - text: "for homebuying tips and more."
+  - heading "Auto" [level=2]
+  - link "Chase Auto" [ref=e61]
+  - text: "is here to help you get the right car. Apply for"
+  - link "auto financing" [ref=e62]
+  - text: "for a new or used car with Chase. Use the"
+  - link "payment calculator" [ref=e63]
+  - text: "to estimate monthly payments. Check out the"
+  - link "Chase Auto Education Center" [ref=e64]
+  - text: "to get car guidance from a trusted source."
+  - heading "Chase for Business" [level=2]
+  - text: "With"
+  - link "Chase for Business" [ref=e65]
+  - text: "you’ll receive all-in-one services and guidance from a team of business professionals. Explore"
+  - link "business checking" [ref=e66]
+  - text: ", simplify payments acceptance with"
+  - link "merchant services" [ref=e67]
+  - text: ", and consider"
+  - link "small business loans" [ref=e68]
+  - text: "or"
+  - link "business credit cards" [ref=e69]
+  - text: "for help with growth. You can also visit our"
+  - link "business resource center" [ref=e70]
+  - text: "."
+  - heading "Sports & Entertainment" [level=2]
+  - text: "Chase gives you access to unique sports, entertainment and culinary events through"
+  - link "Chase Experiences" [ref=e71]
+  - text: "and our exclusive partnerships such as the"
+  - link "US Open" [ref=e72]
+  - text: ","
+  - link "Madison Square Garden" [ref=e73]
+  - text: "and"
+  - link "Chase Center" [ref=e74]
+  - text: "."
+  - heading "Chase Security Center" [level=2]
+  - text: "Our"
+  - link "suite of security features" [ref=e75]
+  - text: "can"
+  - link "help you protect" [ref=e76]
+  - text: "your info, money and give you peace of mind. See how we're dedicated to helping"
+  - link "protect you" [ref=e77]
+  - text: ", your accounts and your loved ones from"
+  - link "financial abuse" [ref=e78]
+  - text: ". Also,"
+  - link "learn about the common tricks scammers are using" [ref=e79]
+  - text: "to help you stay one step ahead of them. If you see unauthorized charges or believe your account was compromised contact us right away to"
+  - link "report fraud" [ref=e80]
+  - text: "."
+  - heading "About Chase" [level=2]
+  - text: "Chase serves millions of people with a broad range of products."
+  - link "Chase online" [ref=e81]
+  - text: "lets you manage your Chase accounts, view statements, monitor activity, pay bills or transfer funds securely from one central place. To learn more, visit the"
+  - link "Banking Education Center" [ref=e82]
+  - text: ". For questions or concerns, please contact"
+  - link "Chase customer service" [ref=e83]
+  - text: "or let us know about"
+  - link "Chase complaints and feedback" [ref=e84]
+  - text: ". View the"
+  - link "Chase Community Reinvestment Act Public File" [ref=e85]
+  - text: "for the bank’s latest CRA rating and other CRA-related information."
+  - heading "Investing by J.P. Morgan" [level=2]
+  - text: "Partner with a global leader who puts your financial needs first."
+  - link "Invest on your own" [ref=e86]
+  - text: "or"
+  - link "work with an advisor" [ref=e87]
+  - text: "— we have the"
+  - link "products" [ref=e88]
+  - text: ","
+  - link "technology" [ref=e89]
+  - text: "and"
+  - link "investment education" [ref=e90]
+  - text: ", to help you grow your wealth. Visit a J.P. Morgan"
+  - link "Wealth Management Branch" [ref=e91]
+  - text: "or check out our latest online investing"
+  - link "features" [ref=e92]
+  - text: ","
+  - link "offers, promotions, and coupons" [ref=e93]
+  - text: ".\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\nNOT FDIC INSURED\n NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES\n SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - heading "Chase Private Client" [level=2]
+  - text: "Get more from a personalized relationship offering"
+  - link "no everyday banking fees" [ref=e94]
+  - text: ", priority service from a"
+  - link "dedicated team" [ref=e95]
+  - text: "and"
+  - link "special perks and benefits" [ref=e96]
+  - text: ". Connect with a Chase Private Client Banker at your nearest"
+  - link "Chase branch" [ref=e97]
+  - text: "to learn about eligibility requirements and all available benefits.\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\nNOT A DEPOSIT\n NOT FDIC INSURED\n NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n NO BANK GUARANTEE\n MAY LOSE VALUE"
+  - heading "Other Products & Services:" [level=2]
+  - list:
+    - listitem:
+      - link "Deposit Account Agreements" [ref=e98]
+    - listitem:
+      - link "Mobile Banking" [ref=e99]
+    - listitem:
+      - link "Online Banking" [ref=e100]
+    - listitem:
+      - link "Student Center" [ref=e101]
+    - listitem:
+      - link "Zelle®" [ref=e102]
+  - link "Facebook" [ref=e103]
+  - link "Instagram" [ref=e104]
+  - link "X, formerly Twitter" [ref=e105]
+  - link "YouTube" [ref=e106]
+  - link "LinkedIn" [ref=e107]
+  - link "Pinterest" [ref=e108]
+  - text: "\"Chase,\" \"JPMorgan,\" \"JPMorgan Chase,\" the JPMorgan Chase logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A.  JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co.\n \nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC."
+  - link "Customer Service" [ref=e109]
+  - link "J.P. Morgan" [ref=e110]
+  - link "JPMorganChase" [ref=e111]
+  - link "Media Center" [ref=e112]
+  - link "Careers" [ref=e113]
+  - link "Site Map" [ref=e114]
+  - link "Privacy" [ref=e115]
+  - link "Security" [ref=e116]
+  - link "Terms of Use" [ref=e117]
+  - link "Accessibility" [ref=e118]
+  - link "AdChoices" [ref=e119]
+  - link "Give feedback" [ref=e120]
+  - text: "Member FDIC  Equal Housing Opportunity © 2026  JPMorgan Chase & Co."
+</result>
+
+[4] thinking: **Searching for a calculator**
+
+I need to find a calculator, specifically a 401k calculator. I could use a site search on the Chase website or maybe search the web for "Chase 401k calculator." I guess it would help to get some reliable results to consider my options. I’m trying to think of the best approach to make sure I find what I need efficiently! Let's see what I can uncover.
+
+[5] tool_call: websearch(objective="Find Chase 401(k) retirement calculator page URL", search_queries=["site:chase.com 401k calculator retirement","Chase 401(k) calculator retirement","site:chase.com retirement calculator 401(k)"], mode="agentic")
+<result tokens_used="159">
+{"search_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e","results":[{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/401K-403B-calculator","title":"401(k)/403(b) Retirement Calculator | Chase","excerpts":["# RETIREMENT TOOLS 401(k)/403(b) calculator\nEstimate your 401(k)/403(b) balance at retirement and how it will vary based on certain assumptions.\nReady to invest in a J.P. Morgan IRA? Get started .\n\n## Frequently asked questions\n### How is my number calculated?\nPlease note: this isn’t a projection of performance, but a calculation based on the inputs above and the assumptions outlined below. It’s not a guarantee or representation of future performance. Contribution limits are subject to change each year. This calculator reflects the contribution limits for the current year and will be updated each year accordingly. For additional limitations, please review footnote three.\nEmployee Contributions: Employee contributions are calculated by multiplying the annual employee contributions by the number of years between your indicated current age and target retirement age.\nInvestment returns: The investment returns are calculated based on annual employee and employer contributions, compounded at the annual rate of return, over the number of years between the year in which the contributions are made and your target retirement age.\nThe potential future value of your 401(k)/403(b) is adjusted to account for deferred taxes , to show the potential future value of your account in after-tax dollars, at the year of retirement. ,\n\n...\n\n## Discover how you can prepare for retirement\n### Retirement calculators\nKnowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals.\nUse our retirement calculators\nKnowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals.\nUse our retirement calculators\n\n...\n\n## Sharpen your knowledge with the latest news and market commentary on retirement\n**Chase Mobile ® app** is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile ® app. Message and data rates may apply.\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through **J.P. Morgan Securities LLC** (JPMS), a registered broker-dealer and investment adviser, member [FINRA](http://www.finra.org/) and [SIPC](https://www.sipc.org/) . Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\n**INVESTMENT AND INSURANCE PRODUCTS ARE:**\n\n...\n\n## Planning and investments\nWhether you choose to work with an advisor and develop a financial strategy or invest online , J.P. Morgan offers insights, expertise and tools to help you reach your goals.\n\n## Invest with our advisors\nWork 1:1 with a J.P. Morgan advisor virtually or in your [Chase branch](https://jpmorganwealthmanagement.chase.com/advisor) to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000.\n\n## J.P. Morgan online investing\nEasily fund , research, trade and manage your investments online all conveniently in the Chase Mobile ® app or at chase.com. J.P Morgan online investing is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing features , offers, promotions and coupons .\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you.\n\n...\n\n## Wealth Plan\nWhen planning for your future, J.P. Morgan Wealth Plan can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress.\n\n...\n\n## Other Products & Services :\n“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co.\n* Privacy\n* Security\n* Terms of Use\n* Accessibility\n* Site Map\n* [AdChoices , Opens overlay](https://optout.aboutads.info/?c=2&lang=EN)\n* Member FDIC\n* Equal Housing Opportunity\nJPMorgan Chase & Co."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#1"},{"url":"https://www.chase.com/personal/investments/investment-tools-resources","title":"Investment Tools and Calculators - Chase Bank","excerpts":["# Tools to help you plan for your future\n## Retirement calculators\nRun your numbers with our investment calculators to see how your current plan is working toward your goals.\n\n### 401(k)/403(b) calculator\nSee what your retirement savings may look like when you retire.\nUse the calculator , to see your retirement savings\n\n### IRA calculator\nCompare a Traditional and Roth IRA to a general investment account to see how your money can potentially grow over time.\nUse the calculator , to compare a Traditional and Roth IRA\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#2"},{"url":"https://am.jpmorgan.com/us/en/asset-management/adv/tools/retirement-tools/","title":"Retirement Plan Tools & Resources - J.P. Morgan Asset Management","excerpts":["Instantly generate custom 401(k) pricing proposals and show your clients how much they can save by using J.P. Morgan Retirement Link."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#3"},{"url":"https://www.chase.com/personal/investments/retirement","title":"Retirement & Investment Planning, IRAs & Annuities - Chase Bank","excerpts":["# Navigate retirement with J.P. Morgan by your side\n## Frequently asked questions\n### What retirement planning tools are available?\nWe offer multiple retirement planning tools, including J.P. Morgan Wealth Plan ® and our retirement calculators.\nWith J.P. Morgan Wealth Plan ® , you can set and track your retirement goals and get personalized insights to guide you on your journey.\nRun your numbers with our retirement calculators to see how your current plan is working toward your goals.\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator"],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#4"},{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/career-break","title":"Career Break Calculator - Chase Bank","excerpts":["# TOOLS AND CALCULATORS Career Break calculator\n## Make a plan for your career break\n### Already on a career break?\nConsider rolling over a 401(k) to a J.P. Morgan IRA as one potential way to help make the most of the assets in your employer-sponsored retirement plan.\nLearn about rollovers\n\n...\n\n## Sharpen your knowledge with the latest news and market commentary\n**Chase Mobile ® app** is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile ® app. Message and data rates may apply.\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through **J.P. Morgan Securities LLC** (JPMS), a registered broker-dealer and investment adviser, member [FINRA](http://www.finra.org/) and [SIPC](https://www.sipc.org/) . Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\n**INVESTMENT AND INSURANCE PRODUCTS ARE:**\n\n...\n\n## Invest with our advisors\nWork 1:1 with a J.P. Morgan advisor virtually or in your [Chase branch](https://jpmorganwealthmanagement.chase.com/advisor) to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000.\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you.\n\n...\n\n## Other Products & Services :\n“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co.\n* Privacy\n* Security\n* Terms of Use\n* Accessibility\n* Site Map\n* [AdChoices , Opens overlay](https://optout.aboutads.info/?c=2&lang=EN)\n* Member FDIC\n* Equal Housing Opportunity\nJPMorgan Chase & Co."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#5"},{"url":"https://content.sharefc.com/ondemand/analytics/compute.vm?hnd=23&client=jpm","title":"JP Morgan Retirement  - Projected Retirement Income (Calculator)","excerpts":["# Projected Retirement Income\nHow much income can you plan on in retirement? The answer to this question may help determine what your retirement lifestyle might be. Whether you plan to live off a pension and Social Security, personal savings, or expect to tap into other income sources, it's important to figure out up front what level of income your combined resources could be able to support.\nTo estimate your retirement income potential, fill in the information below, then click Submit.\n|## What is your current age? |1. 14\n2. 35\n3. 56\n4. 78\n5. 99\nValue: |\n| --- | --- |\n|## At what age do you expect to retire? |1. 55\n2. 60\n3. 65\n4. 70\n5. 75\nValue: |\n| --- | --- |\n|## How many years do you expect to spend in retirement? |1. 1\n2. 13\n3. 26\n4. 38\n5. 50\nValue: |\n| --- | --- |\n| ## In today's dollars, how much monthly income do you expect to receive from Social Security and other inflation-indexed sources of income? | $ |"],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#6"},{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/traditional-ira-calculator","title":"IRA Calculator: Comparing Roth Vs. Traditional IRA - Chase Bank","excerpts":["# RETIREMENT TOOLS\n## Frequently asked questions\n### How is my number calculated?\nTo calculate the estimated account value of your Deductible Traditional, Non-deductible Traditional or Roth IRA , we consider your starting account balance and monthly contributions, take into account tax savings from your Deductible Traditional IRA contributions , and credit your earnings at the annual rate of return over the number of years between your current age and your targeted retirement age. We then adjust your Traditional IRA (both Deductible and Non-deductible) to account for deferred taxes on earnings, and in the case of a Deductible Traditional IRA, taxes on the deductible contributions , to show the future value of your account in after-tax dollars , at the year of retirement. For example, assuming you have a starting account balance of $10,000, with a $500 monthly contribution, over a 20-year span until retirement and the defaulted rates, the after-tax value of your Non-deductible Traditional IRA in retirement would be $860,000.\nTo calculate the estimated account value of your general (taxable) investment account, we consider your starting account balance and monthly contributions, credit your earnings at the annual rate of return over the number of years between your current age and your targeted retirement age, and adjust for taxes owed , which shows the future value of your account in after-tax dollars, at the year of retirement.\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you.\n\n...\n\n## Other Products & Services :\n“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co.\n* Privacy\n* Security\n* Terms of Use\n* Accessibility\n* Site Map\n* [AdChoices , Opens overlay](https://optout.aboutads.info/?c=2&lang=EN)\n* Member FDIC\n* Equal Housing Opportunity\nJPMorgan Chase & Co."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#7"},{"url":"https://www.bankrate.com/retirement/401-k-calculator/","title":"401(k) retirement savings calculator - Bankrate","excerpts":["# 401(k) retirement savings calculator\nA traditional 401(k) can be one of your best tools for building your retirement savings. It provides you with two important advantages. First, all contributions and earnings in your 401(k) are tax-deferred. You pay taxes on the money only when it’s withdrawn from the account. Second, many employers provide matching contributions to your 401(k) account, which is like free money. The amount of the match will vary by employer, but often ranges from 50% to 100% of your contributions, up to a specific percentage of your pay. The combined result is a retirement savings plan you can't afford to pass up.\n\n...\n\n## 401(k) calculator definitions\n**Annual salary** : This is your annual salary before taxes and other benefit deductions. Since your contribution rate and company match are based on the salary paid to you by your employer, don't include any income you receive from other sources.\n**Contribution percentage (and annual contribution limits)** : This is the percentage of your annual salary that you contribute to your 401(k) each year. Most employers allow employees to contribute up to 100% of their salary to a 401(k). But the IRS sets limits on annual 401(k) contributions. The maximum employee contribution is $24,500 in 2026, up from $23,500 in 2025. Those age 50 or older can make a catch-up contribution of an additional $8,000 in 2026, up from $7,500 in 2025. But if you're 60, 61, 62 or 63, you're eligible for a catch-up contribution of $11,250 in 2026 and in 2025 (this dollar amount is instead of the $8,000 extra contribution available to other people age 50+). Employer contributions aren't counted in the employee's maximum annual contribution limit. Read more about [401(k) contribution limits](https://www.bankrate.com/retirement/401k-contributions/) .\nEmployees classified as \"highly compensated\" may be subject to contribution limits based on their employer's overall 401(k) participation. If you expect your salary to be $160,000 or more, you may need to contact your employer to see if these additional contribution limits apply to you.\n**Annual salary increase** : The annual percentage you expect your salary to increase. This calculator assumes that your salary will continue to increase at this rate until you retire.\n**Retirement age** : This calculator assumes that in the year you retire, you don't make any more contributions to your 401(k). For example, if you retire at 65, your last contribution occurs when you're 64.\n\n...\n\n**Current 401(k) balance** : The starting balance or current amount you have invested or saved in your 401(k).\n**Employer match** : An employer match is in addition to your annual contributions (it doesn't count towards the employee's maximum annual contribution), and is based on a percentage of your annual contributions. For example, let's assume an employer matches 50% of the employee's contributions up to 6% of their salary. The employee earns $100,000 per year and contributes 10% to the 401(k). The results would be:\n* $10,000 from the employee\n* $3,000 from the employer (which is 50% of $6,000, or 6% of the annual salary)\n* Total: $13,000\nRead the definition for \"employer maximum\" (below) for a detailed description of maximum employer matching contributions. Matching contributions can be subject to a [vesting schedule](https://www.bankrate.com/retirement/what-it-means-to-be-vested/) . See your plan information for details.\n**Employer maximum** : This is the maximum percent of your salary matched by your employer regardless of the amount you decide to contribute. For example, let's assume your employer has a 50% match, up to a maximum of 6% of your annual salary. If you have an annual salary of $25,000 and contribute 6%, your annual contribution is $1,500. With a 50% match, your employer will add $750 to your 401(k) account. If you increase your contribution to 10%, your annual contribution is $2,500 per year. Your employer match, however, is limited to 50% of the first 6% of your salary and remains $750.\n\n...\n\n## [Bankrate logo](https://www.bankrate.com/)\n### About\n* [About us](https://www.bankrate.com/about/)\n* [Leadership](https://www.bankrate.com/leadership/)\n* [Press room](https://www.bankrate.com/press-releases/)\n* [Bankrate Data Center](https://www.bankrate.com/data-center/)\n* [Careers](https://www.bankrate.com/careers/)\n* [Site map](https://www.bankrate.com/corporate/site-map/)\n\n...\n\n### How we make money\nBankrate.com is an independent, advertising-supported publisher and comparison service. Our websites may earn compensation when a customer clicks on a link, when an application is approved, or when an account is opened. Therefore, this compensation may impact what products appear and how, where, and in what order they appear within listing categories, except where prohibited by law for our mortgage, home equity and other home lending products. Other factors, such as our proprietary website rules and whether a product is offered in your area or at your self-selected credit score range, can also impact how and where products appear on this site. While we strive to provide a wide range of offers, Bankrate does not include information about every financial or credit product or service."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#8"},{"url":"https://www.chase.com/personal/investments/retirement/retirement-calculators/annuity-income-calculator","title":"Annuity Calculator: Assess Your Retirement Earnings - Chase Bank","excerpts":["# RETIREMENT TOOLS Annuity calculator\n## Sharpen your knowledge with the latest news and market commentary on retirement\n**JPMorgan Chase and its affiliates do not provide tax, legal or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for tax, legal or accounting advice. You should consult your personal tax, legal and accounting advisors for advice before engaging in any transaction.**\nAsset allocation/diversification does not guarantee a profit or protect against a loss.\nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC.\n**Chase Mobile ® app** is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile ® app. Message and data rates may apply.\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through **J.P. Morgan Securities LLC** (JPMS), a registered broker-dealer and investment adviser, member [FINRA](http://www.finra.org/) and [SIPC](https://www.sipc.org/) . Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\n**INVESTMENT AND INSURANCE PRODUCTS ARE:**\n\n...\n\n## Invest with our advisors\nWork 1:1 with a J.P. Morgan advisor virtually or in your [Chase branch](https://jpmorganwealthmanagement.chase.com/advisor) to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000.\n\n...\n\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you.\n\n...\n\n## Other Products & Services :\n“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co.\n* Privacy\n* Security\n* Terms of Use\n* Accessibility\n* Site Map\n* [AdChoices , Opens overlay](https://optout.aboutads.info/?c=2&lang=EN)\n* Member FDIC\n* Equal Housing Opportunity\nJPMorgan Chase & Co."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#9"},{"url":"https://www.chase.com/personal/investments/learning-and-insights/topic-page","title":"Topic Page - Chase Bank","excerpts":["# Planning and investments\n## Investment tools & resources\nOur calculators are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n* For a comparison of IRAs and which one aligns with you: IRA Calculator\n* Plan for your retirement: 401K/403b Calculator\n* Compare annuity payouts to create your desired strategy: Annuity Calculator\n* Understand how your retirement contributions may differ: IRA Eligibility Calculator\n\n## Retirement planning\nPlanning for retirement can start at any point in your life. Whether you prefer to independently manage your retirement planning or work with an advisor to create a personalized strategy, we can help. Roll over your 401(k) from your previous employer and compare the benefits of General Investment, Traditional IRA and Roth IRA accounts to decide which is right for you."],"source_id":"search_5fbc5ab5ec214c2b83427c4bc26ad93e#10"}],"usage":[{"name":"sku_search","count":1}]}
+</result>
+
+[6] tool_call: repl("Searching Chase site from page")
+<request>
+await page.locator('e10').click();
+const s2 = await snapshot(page);
+console.log(s2.diff);
+</request>
+<result tokens_used="159" elapsed_time="3516ms">
+- title: "Search | Chase | Chase.com" [url=https://www.chase.com/digital/resources/search-results.html]
+- generic [ref=e1]:
+  - text: "We and our partners use cookies and other tools for advertising, to help stop fraud, and for other purposes. By using this site, you agree to how your information is used as outlined in our"
+  - link "Privacy Policy" [ref=e2]
+  - text: "."
+  - button "Close Icon" [ref=e3]:
+    - image "Close Icon"
+- link "Skip to main content" [ref=e4]
+- banner:
+  - button "Open side menu" [ref=e5]: ""
+  - button "Explore Products" [ref=e7]: "Explore Products\n                    \n                    \n                    Open product menu"
+  - link "Chase logo links to Chase Home" [ref=e8]
+  - list:
+    - listitem "ATM & branch" [ref=e9]:
+      - link "ATM & branch" [ref=e10]
+    - listitem "Sign in" [ref=e11]:
+      - link "Sign in" [ref=e12]
+    - listitem "" [ref=e13]:
+      - button "" [ref=e14]: "  Show Search"
+- main:
+  - heading "Search" [level=1]
+  - region:
+    - region:
+      - search:
+        - label:
+          - text: "Search"
+          - textbox "Search" [ref=e15] [placeholder="search"]
+        - text: ""
+      - button "Search" [ref=e16]
+      - text: "submits search"
+    - region
+- contentinfo:
+  - heading "Follow us:" [level=2]
+  - list:
+    - listitem "" [ref=e17]:
+      - button "" [ref=e18]: "\n                      Facebook\n                      (Opens Overlay)"
+    - listitem "" [ref=e19]:
+      - button "" [ref=e20]: "\n                      Instagram\n                      (Opens Overlay)"
+    - listitem "" [ref=e21]:
+      - button "" [ref=e22]: "\n                      X, formerly Twitter\n                      (Opens Overlay)"
+    - listitem "" [ref=e23]:
+      - button "" [ref=e24]: "\n                      YouTube\n                      (Opens Overlay)"
+    - listitem "" [ref=e25]:
+      - button "" [ref=e26]: "\n                      LinkedIn\n                      (Opens Overlay)"
+    - listitem "" [ref=e27]:
+      - button "" [ref=e28]: "\n                      Pinterest\n                      (Opens Overlay)"
+  - heading "We're here to help you manage your money today and tomorrow" [level=2]
+  - heading "Checking Accounts" [level=3]
+  - paragraph:
+    - text: "Choose the"
+    - link "checking account" [ref=e29]
+    - text: "that works best for you. See our"
+    - link "Chase Total Checking" [ref=e30]: "Chase Total Checking®"
+    - text: "offer for new customers. Make purchases with your debit card, and bank from almost anywhere by phone, tablet or computer and more than 14,000 ATMs and 5,000 branches."
+  - heading "Savings Accounts & CDs" [level=3]
+  - paragraph:
+    - text: "It’s never too early to begin saving."
+    - link "Open a savings account" [ref=e31]
+    - text: "or open a Certificate of Deposit ("
+    - link "see interest rates" [ref=e32]
+    - text: ") and start saving your money."
+  - heading "Credit Cards" [level=3]
+  - paragraph:
+    - text: "Chase"
+    - link "credit cards" [ref=e33]
+    - text: "can help you buy the things you need. Many of our cards"
+    - link "offer rewards" [ref=e34]
+    - text: "that can be redeemed for"
+    - link "cash back" [ref=e35]
+    - text: "or"
+    - link "travel-related" [ref=e36]
+    - text: "perks. With so many options, it can be easy to find a card that matches your lifestyle. Plus, with Credit Journey you can get a"
+    - link "free credit score" [ref=e37]
+    - text: "!"
+  - heading "Mortgages" [level=3]
+  - paragraph:
+    - text: "Apply for a"
+    - link "mortgage" [ref=e38]
+    - text: "or"
+    - link "refinance your mortgage" [ref=e39]
+    - text: "with Chase. View today’s"
+    - link "mortgage rates" [ref=e40]
+    - text: "or calculate what you can afford with our"
+    - link "mortgage calculator" [ref=e41]
+    - text: ". Visit our"
+    - link "Education Center" [ref=e42]
+    - text: "for homebuying tips and more."
+  - heading "Auto" [level=3]
+  - paragraph:
+    - link "Chase Auto" [ref=e43]
+    - text: "is here to help you get the right car. Apply for"
+    - link "auto financing" [ref=e44]
+    - text: "for a new or used car with Chase. Use the"
+    - link "payment calculator" [ref=e45]
+    - text: "to estimate monthly payments. Check out the"
+    - link "Chase Auto Education Center" [ref=e46]
+    - text: "to get car guidance from a trusted source."
+  - heading "Chase for Business" [level=3]
+  - paragraph:
+    - text: "With Chase for Business you’ll receive guidance from a team of business professionals who specialize in helping improve cash flow, providing credit solutions, and managing payroll. Choose from"
+    - link "business checking" [ref=e47]
+    - text: ","
+    - link "small business loans" [ref=e48]
+    - text: ","
+    - link "business credit cards" [ref=e49]
+    - text: ","
+    - link "merchant services" [ref=e50]
+    - text: "or visit our"
+    - link "business resource center" [ref=e51]
+    - text: "."
+  - heading "Investing by J.P. Morgan" [level=3]
+  - paragraph:
+    - text: "Partner with a global leader who puts your financial needs first."
+    - link "Invest on your own" [ref=e52]
+    - text: "or"
+    - link "work with an advisor" [ref=e53]
+    - text: "— we have the"
+    - link "products" [ref=e54]
+    - text: ","
+    - link "technology" [ref=e55]
+    - text: "and"
+    - link "investment education" [ref=e56]
+    - text: ", to help you grow your wealth. Visit a J.P. Morgan"
+    - link "Wealth Management Branch" [ref=e57]
+    - text: "or check out our latest online investing"
+    - link "features" [ref=e58]
+    - text: ","
+    - link "offers, promotions, and coupons" [ref=e59]
+    - text: "."
+  - text: "`\nINVESTMENT AND INSURANCE PRODUCTS ARE:"
+  - list:
+    - listitem "•" [ref=e60]: "•NOT FDIC INSURED"
+    - listitem "•" [ref=e61]: "•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY"
+    - listitem "•" [ref=e62]: "•NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES"
+    - listitem "•" [ref=e63]: "•SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - heading "Chase Private Client" [level=3]
+  - paragraph:
+    - text: "Get more from a personalized relationship offering"
+    - link "no everyday banking fees" [ref=e64]
+    - text: ", priority service from a"
+    - link "dedicated team" [ref=e65]
+    - text: "and"
+    - link "special perks and benefits" [ref=e66]
+    - text: ". Connect with a Chase Private Client Banker at your nearest"
+    - link "Chase branch" [ref=e67]
+    - text: "to learn about eligibility requirements and all available benefits."
+  - text: "INVESTMENT AND INSURANCE PRODUCTS ARE:"
+  - list:
+    - listitem "•" [ref=e68]: "•NOT A DEPOSIT"
+    - listitem "•" [ref=e69]: "•NOT FDIC INSURED"
+    - listitem "•" [ref=e70]: "•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY"
+    - listitem "•" [ref=e71]: "•NO BANK GUARANTEE"
+    - listitem "•" [ref=e72]: "•MAY LOSE VALUE"
+  - heading "About Chase" [level=3]
+  - paragraph:
+    - text: "Chase serves millions of people with a broad range of products."
+    - link "Chase online" [ref=e73]
+    - text: "lets you manage your Chase accounts, view statements, monitor activity, pay bills or transfer funds securely from one central place. To learn more, visit the"
+    - link "Banking Education Center" [ref=e74]
+    - text: ". For questions or concerns, please contact"
+    - link "Chase customer service" [ref=e75]
+    - text: "or let us know about"
+    - link "Chase complaints and feedback" [ref=e76]
+    - text: ". View the"
+    - link "Chase Community Reinvestment Act Public File" [ref=e77]
+    - text: "for the bank’s latest CRA rating and other CRA-related information."
+  - heading "Sports & Entertainment" [level=3]
+  - paragraph:
+    - text: "Chase gives you access to unique sports, entertainment and culinary events through"
+    - link "Chase Experiences" [ref=e78]
+    - text: "and our exclusive partnerships such as the"
+    - link "US Open" [ref=e79]
+    - text: ","
+    - link "Madison Square Garden" [ref=e80]: "Madison Square Garden(Opens Overlay)"
+    - text: "and"
+    - link "Chase Center" [ref=e81]
+    - text: "."
+  - heading "Chase Security Center" [level=3]
+  - paragraph:
+    - text: "Our"
+    - link "suite of security features" [ref=e82]
+    - text: "can"
+    - link "help you protect" [ref=e83]
+    - text: "your info, money and give you peace of mind. See how we're dedicated to helping"
+    - link "protect you" [ref=e84]
+    - text: ", your accounts and your loved ones from"
+    - link "financial abuse" [ref=e85]
+    - text: ". Also,"
+    - link "learn about the common tricks scammers are using" [ref=e86]
+    - text: "to help you stay one step ahead of them.  If you see unauthorized charges or believe your account was compromised contact us right away to"
+    - link "report fraud" [ref=e87]
+    - text: "."
+  - heading "Other Products & Services:" [level=3]
+  - list:
+    - listitem "Deposit Account Agreements" [ref=e88]:
+      - link "Deposit Account Agreements" [ref=e89]
+    - listitem "Mobile Banking" [ref=e90]:
+      - link "Mobile Banking" [ref=e91]
+    - listitem "Online Banking" [ref=e92]:
+      - link "Online Banking" [ref=e93]
+    - listitem "Student Center" [ref=e94]:
+      - link "Student Center" [ref=e95]
+    - listitem "Zelle" [ref=e96]:
+      - link "Zelle" [ref=e97]: "Zelle®"
+  - text: "“Chase,” “JPMorgan,” “JPMorganChase,” the JPMorgan Chase logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A.  JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorganChase.\n\"Chase Private Client\" is the brand name for a banking and investment product and service offering, requiring a Chase Private Client Checking℠ account.\nInvesting involves market risk, including possible loss of principal, and there is no guarantee that investment objectives will be achieved. Past performance is not a guarantee of future results."
+  - paragraph:
+    - text: "J.P. Morgan Wealth Management is a business of JPMorganChase., which offers investment products and services through  J.P. Morgan Securities LLC (JPMS), a registered broker-dealer and investment adviser, member"
+    - link "FINRA" [ref=e98]: "FINRA(Opens Overlay)"
+    - text: "and"
+    - link "SIPC" [ref=e99]: "SIPC(Opens Overlay)"
+    - text: ". Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorganChase. Products not available in all states."
+  - text: "Bank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC."
+  - list:
+    - listitem "About Chase" [ref=e100]:
+      - link "About Chase" [ref=e101]
+    - listitem "J.P. Morgan" [ref=e102]:
+      - link "J.P. Morgan" [ref=e103]
+    - listitem "JPMorganChase." [ref=e104]:
+      - link "JPMorganChase." [ref=e105]
+    - listitem "Media Center" [ref=e106]:
+      - link "Media Center" [ref=e107]
+    - listitem "Careers" [ref=e108]:
+      - link "Careers" [ref=e109]
+    - listitem "Site map" [ref=e110]:
+      - link "Site map" [ref=e111]
+    - listitem "Privacy" [ref=e112]:
+      - link "Privacy" [ref=e113]
+    - listitem "Security" [ref=e114]:
+      - link "Security" [ref=e115]
+    - listitem "Terms of use" [ref=e116]:
+      - link "Terms of use" [ref=e117]
+    - listitem "Accessibility" [ref=e118]:
+      - link "Accessibility" [ref=e119]
+    - listitem "AdChoices" [ref=e120]:
+      - link "AdChoices" [ref=e121]: "AdChoices(Opens Overlay)"
+    - listitem "Give feedback" [ref=e122]:
+      - link "Give feedback" [ref=e123]
+    - listitem: "Member FDIC"
+    - listitem: "Equal Housing Opportunity"
+  - text: "© 2026 JPMorganChase."
+</result>
+
+[7] thinking: **Using the calculator**
+
+I realize I need to use a calculator for calculations. The plan is to access it directly and input the necessary numbers. Understanding the form is a step I want to ensure is clear. I’m going to make sure that each input is done correctly, so there won't be any mistakes in the calculations. It’s important for me to stay organized throughout this process!
+
+[8] tool_call: repl("Opening Chase 401(k) calculator")
+<request>
+await openTab('https://www.chase.com/personal/investments/retirement/retirement-calculators/401K-403B-calculator');
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.tree);
+</request>
+<result tokens_used="102" elapsed_time="3594ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → 401(k)/403(b) Retirement Calculator | Chase (https://www.chase.com/personal/investments/retirement/retirement-calculators/401K-403B-calculator)
+# note: interactive (clickable / focusable) elements only.
+- title: "401(k)/403(b) Retirement Calculator | Chase" [url=https://www.chase.com/personal/investments/retirement/retirement-calculators/401K-403B-calculator]
+- generic [ref=e1]:
+  - text: "We and our partners use cookies and other tools for advertising, to help stop fraud, and for other purposes. By using this site, you agree to how your information is used as outlined in our"
+  - link "Privacy Policy" [ref=e2]
+  - text: "."
+  - button "Close Icon" [ref=e3]
+- link "Skip to main content" [ref=e4]
+- banner:
+  - navigation "Customer type" [ref=e5]:
+    - link "Personal" [ref=e6]: "Personal,   current product"
+    - link "Business" [ref=e7]
+    - link "Commercial" [ref=e8]
+  - navigation "Customer Service" [ref=e9]:
+    - menubar:
+      - menuitem "Customer Service" [ref=e10]
+      - menuitem "Search" [ref=e11]
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e12]
+  - button "Sign in Opens overlay" [ref=e13]
+  - navigation:
+    - menubar:
+      - menuitem "Investment Planning" [ref=e14]
+      - menuitem "Work With Our Advisors" [ref=e15]
+      - menuitem "Invest On Your Own" [ref=e16]
+      - menuitem "Tools & Resources" [ref=e17]
+      - menuitem "Investment Products" [ref=e18]
+      - menuitem "Why J.P. Morgan" [ref=e19]
+      - menuitem "Get Started" [ref=e20]
+- main:
+  - heading [level=1]: "RETIREMENT TOOLS  401(k)/403(b) calculator"
+  - text: "Estimate your 401(k)/403(b)"
+  - button "Footnote 1 Opens overlay" [ref=e21]
+  - text: "balance at retirement and how it will vary based on certain assumptions.\nReady to invest in a J.P. Morgan IRA?"
+  - link "Get started" [ref=e22]
+  - text: ".\n401(k)/403(b) calculator"
+  - heading [level=2]: "Frequently asked questions"
+  - region:
+    - heading [level=3]:
+      - button "How is my number calculated?" [ref=e23]
+    - region
+  - heading [level=2]: "Other ways to plan for retirement"
+  - heading [level=3]: "Traditional IRA"
+  - text: "Your contributions may be tax-deductible"
+  - button "Footnote 9 Opens overlay" [ref=e24]
+  - text: ". Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal."
+  - link "Open an account, for traditional IRA" [ref=e25]
+  - link "Learn about Traditional IRA" [ref=e26]
+  - heading [level=3]: "Roth IRA"
+  - text: "Your contributions are not tax-deductible"
+  - button "Footnote 10 Opens overlay" [ref=e27]
+  - text: ". Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met."
+  - link "Open an account, for roth IRA" [ref=e28]
+  - link "Learn about Roth IRA" [ref=e29]
+  - heading [level=3]: "Roll over to an IRA"
+  - text: "Explore rolling over your 401(k) from a former employer to a J.P. Morgan IRA."
+  - link "Get Started" [ref=e30]
+  - link "Learn about rollovers" [ref=e31]
+  - heading [level=2]: "Discover how you can prepare for retirement"
+  - region "Retirement calculators" [ref=e32]:
+    - heading [level=3]: "Retirement calculators"
+    - text: "Knowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals."
+    - link "Use our retirement calculators" [ref=e33]
+  - region "Plan for retirement" [ref=e34]:
+    - heading [level=3]: "Plan for retirement"
+    - text: "Whatever you’re looking forward to—more time with family, traveling or pursuing your passions—we can can help you prepare for what comes next."
+    - link "Learn about retirement planning" [ref=e35]
+  - heading [level=2]: "Sharpen your knowledge with the latest news and market commentary on retirement"
+  - text: "Tap into the latest news and subscribe for market commentary and analysis from J.P. Morgan specialists to help you plan your investment strategy for retirement."
+  - link "Subscribe" [ref=e36]
+  - link "Read the latest, news and market commentary" [ref=e37]
+- contentinfo:
+  - text: "Footnote 1 A 401(k) is a feature of a qualified profit sharing plan that allows employees to contribute a portion of their wages to individual accounts.\n\nTraditional 401(k) salary deferrals are generally excluded from the employee’s taxable income (designated Roth deferrals are not). \nEmployers can contribute to employees’ accounts. \nDistributions, including earnings, are generally includible in taxable income (except for “qualified distributions” (as defined by the Internal Revenue Code) from designated Roth accounts).\n\nA 403(b) plan (also called a tax-sheltered annuity or TSA plan) is a similar retirement plan offered by public schools and certain 501(c)(3) tax-exempt organizations. Employees save for retirement by contributing to individual accounts. Employers can also contribute to employees' accounts, and distributions are similarly generally includible in taxable income.\nFootnote 2 This calculator assumes that the annual employee and employer contributions specified will be the same amount contributed every year between your current age and target retirement age.\n \nThe IRS imposes limits on how much can be contributed annually to a 401(k) or 403(b). In particular, the IRS limits the amount of employee contributions that you can make each year. If you are age 50 or older, the IRS also permits an additional “catch-up” contribution to be made each year. These limits are subject to potential yearly cost-of-living adjustments. For the purposes of this calculator, we limit employee contributions for future years to a single year’s basic annual contribution limit (“catch-up” contributions are not included). We are currently using the basic annual contribution limit for 2025 ($23,500). \n \nThe IRS also limits the total annual amount of employee and employer contributions that can be made. This limit is subject to yearly cost-of-living adjustments, however, for the purposes of this calculator, we limit total employee and employer contributions for future years to a single year’s annual contribution limit. We are currently using the annual contribution limit on total employee (other than “catch-up”) and employer contributions for 2025 ($70,000).\n \nWe do not take into account IRS limitations other than these basic annual limits on employee and employer contributions.\n \nWhile this calculator does not account for “catch-up” contributions, you should note the following:\n \nIf permitted by the 401(k) plan, participants age 50 or over at the end of the calendar year can also make catch-up contributions.\n \nIf the 403(b) plan allows, an employee may be able to make the same type of catch-up contributions as may be allowed by a 401(k) plan, and an employee who has worked for a qualified organization for 15 or more years may, if he or she meets certain requirements, be able to make additional contributions of up to $3,000 for up to 5 years. For more information go to IRS 403(b) website and see 15-year rule in Publication 571, Tax-Sheltered Annuity Plans (403(b) Plans) under Contributions.\nFootnote 3 In addition to the other limitations noted above, this calculator does not account for whether any given individual is eligible to contribute to or receive employer contributions under a 401(k) and/or 403(b), the application of the 10% early withdrawal tax (which generally applies to distributions taken prior to age 59½ unless an exception applies) or Required Minimum Distributions (as defined by the Internal Revenue Code), and should be used for educational purposes only. To learn more, go to the IRS"
+  - link "401(k)" [ref=e38]: "401(k), Opens overlay"
+  - text: "and"
+  - link "403(b)" [ref=e39]: "403(b), Opens overlay"
+  - text: "plan pages, or consult with a tax or legal advisor.\nFootnote 4 For the purposes of this calculator, we are assuming you have not previously contributed to your 401(k)/403(b) account (and therefore your starting account balance is $0), and that all contributions (both employee and employer) are made on a pre-tax basis (i.e., they are not designated Roth or other after-tax contributions). \nFootnote 5 This calculation does not include the calendar year of your target retirement age. The total number of years is calculated by subtracting the indicated current age from the target retirement age. \nFootnote 6 Keep in mind: you can select an annual rate of return, or the default rate of return will be 4%. This default rate is not a guarantee of any kind of return.\nFootnote 7 Keep in mind: this calculator uses an assumed retirement tax rate of 12%. Your actual rate may be different.\nFootnote 8 The potential future value of your 401(k)/403(b) is adjusted to account for the deferred taxes on contributions (employee and employer contributions) and investment returns, assuming all withdrawals occur at retirement age (i.e., you take a full distribution of your account balance at the target retirement age).\n\nFootnote 9 Deductibility may be limited if you (or your spouse, if you are married) are covered by a retirement plan at work and your income exceeds certain levels. Please refer to the IRS website for applicable limits:"
+  - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e40]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+  - text: ".\nFootnote 10 You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your ﬁling status and income. Please refer to the IRS website for applicable limits:"
+  - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e41]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+  - text: "."
+  - link "LEARN MORE" [ref=e42]: "LEARN MORE, Opens overlay"
+  - text: "ABOUT OUR FIRM AND INVESTMENT PROFESSIONALS AT FINRA BROKERCHECK.\nTo learn more about J. P. Morgan’s investment business, including our accounts, products and services, as well as our relationship with you, please review our"
+  - link "J.P. Morgan Securities LLC Form CRS (PDF)" [ref=e43]
+  - text: "and"
+  - link "Guide to Investment Services and Brokerage Products" [ref=e44]
+  - text: ".\nImages on the page are hypothetical and for informational purposes only. Screen images are simulated.\nInvesting involves market risk, including possible loss of principal, and there is no guarantee that investment objectives will be achieved. Past performance is not a guarantee of future results.\nJPMorgan Chase and its affiliates do not provide tax, legal or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for tax, legal or accounting advice. You should consult your personal tax, legal and accounting advisors for advice before engaging in any transaction.\nAsset allocation/diversification does not guarantee a profit or protect against a loss.\nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC.\nChase Mobile® app  is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile® app. Message and data rates may apply.\n\nJ.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through  J.P. Morgan Securities LLC (JPMS), a registered broker-dealer and investment adviser, member"
+  - link "FINRA" [ref=e45]: "FINRA, opens overlay"
+  - text: "and"
+  - link "SIPC" [ref=e46]: "SIPC, opens overlay"
+  - text: ". Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states.\nINVESTMENT AND INSURANCE PRODUCTS ARE:\n\n•NOT FDIC INSURED\n•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY\n•NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES\n•SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e47]
+  - heading "Planning and investments" [level=2]
+  - text: "Whether you choose to work with"
+  - link "an advisor" [ref=e48]
+  - text: "and develop a financial strategy or"
+  - link "invest online" [ref=e49]
+  - text: ", J.P. Morgan offers insights, expertise and tools to help you reach your goals."
+  - heading "Invest with our advisors" [level=2]
+  - text: "Work 1:1 with a"
+  - link "J.P. Morgan advisor" [ref=e50]
+  - text: "virtually or in your"
+  - link "Chase branch" [ref=e51]
+  - text: "to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000."
+  - heading "J.P. Morgan online investing" [level=2]
+  - text: "Easily"
+  - link "fund" [ref=e52]
+  - text: ", research, trade and manage your investments online all conveniently in the Chase Mobile® app or at chase.com."
+  - link "J.P Morgan online investing" [ref=e53]
+  - text: "is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing"
+  - link "features" [ref=e54]
+  - text: ","
+  - link "offers, promotions and coupons" [ref=e55]
+  - text: "."
+  - heading "Investment tools & resources" [level=2]
+  - text: "Our"
+  - link "calculators" [ref=e56]
+  - text: "are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals.\n\nFor a comparison of IRAs and which one aligns with you:"
+  - link "IRA Calculator" [ref=e57]
+  - text: "Plan for your retirement:"
+  - link "401K/403b Calculator" [ref=e58]
+  - text: "Compare annuity payouts to create your desired strategy:"
+  - link "Annuity Calculator" [ref=e59]
+  - text: "Understand how your retirement contributions may differ:"
+  - link "IRA Eligibility Calculator" [ref=e60]
+  - heading "Retirement planning" [level=2]
+  - text: "Planning for retirement can start at any point in your life. Whether you prefer to independently manage your"
+  - link "retirement planning" [ref=e61]
+  - text: "or work with an advisor to create a personalized strategy, we can help."
+  - link "Roll over your 401(k)" [ref=e62]
+  - text: "from your previous employer and compare the benefits of General Investment,"
+  - link "Traditional IRA" [ref=e63]
+  - text: "and"
+  - link "Roth IRA" [ref=e64]
+  - text: "accounts to decide which is right for you."
+  - heading "Education planning" [level=2]
+  - link "Funding for education" [ref=e65]
+  - text: "can come from any combination of options and a J.P. Morgan advisor can help you understand the benefits and disadvantages of each one. Compare among"
+  - link "529 Plans" [ref=e66]
+  - text: ", custodial accounts, financial aid and other education options to help meet your"
+  - link "college planning goals" [ref=e67]
+  - text: "."
+  - heading "Wealth Plan" [level=2]
+  - text: "When planning for your future,"
+  - link "J.P. Morgan Wealth Plan" [ref=e68]
+  - text: "can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress."
+  - heading "Investing insights" [level=2]
+  - text: "Stay in"
+  - link "The Know" [ref=e69]
+  - text: "by exploring articles and videos on market trends, research and financial planning."
+  - heading "Other Products & Services :" [level=2]
+  - link "Online Banking" [ref=e70]
+  - link "Mobile Banking" [ref=e71]
+  - link "Security Center" [ref=e72]
+  - link "Deposit and Prepaid Account Agreement" [ref=e73]
+  - link "Facebook" [ref=e74]: "Facebook, Opens overlay"
+  - link "Instagram" [ref=e75]: "Instagram, Opens overlay"
+  - link "X, formerly Twitter" [ref=e76]: "X, formerly Twitter, Opens overlay"
+  - link "YouTube" [ref=e77]: "YouTube, Opens overlay"
+  - link "LinkedIn" [ref=e78]: "LinkedIn, Opens overlay"
+  - link "Pinterest" [ref=e79]: "Pinterest, Opens overlay"
+  - text: "“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co."
+  - link "Privacy" [ref=e80]
+  - link "Security" [ref=e81]
+  - link "Terms of Use" [ref=e82]
+  - link "Accessibility" [ref=e83]
+  - link "Site Map" [ref=e84]
+  - link "AdChoices" [ref=e85]: "AdChoices, Opens overlay"
+  - text: "Member FDIC  Equal Housing Opportunity © 2026  JPMorgan Chase & Co."
+- iframe:
+  - text: "Run your numbers:Age range:25 to 75"
+  - textbox "25" [ref=f2e1]
+  - textbox "75" [ref=f2e2]
+  - text: "Annual rate of return (%):4"
+  - textbox "4" [ref=f2e3]
+  - text: "Annual employee contributions ($):10000"
+  - textbox "10000" [ref=f2e4]
+  - text: "Annual employer contributions ($):10000"
+  - textbox "10000" [ref=f2e5]
+  - img
+  - text: "At age 75 my 401(k)/403(b) is estimated to be worth$2,794,418"
+  - button [ref=f2e6]
+  - text: "Breakdown Employee contributions$500,000 15.7%Employer contributions$500,000 15.7%Earnings$2,175,475 68.5%"
+</result>
+
+[9] thinking: **Setting up calculations**
+
+I need to create a calculator within an iframe, starting with default inputs. I’ll set the current age to 22, retirement age to 65, and a return rate at 3%. I should also include contributions from both employee and employer, each at 8000. I’m thinking about whether making changes to text boxes will work. I might need a snapshot of the iframe for my reference, but I don't want to rely on that alone. Let’s explore using locators like f2e1 and see if Playwright references will help with clicks, fills, and snapshots.
+
+[10] tool_call: repl("Filling in calculator inputs")
+<request>
+await page.locator('f2e1').fill('22');
+await page.locator('f2e2').fill('65');
+await page.locator('f2e3').fill('3');
+await page.locator('f2e4').fill('8000');
+await page.locator('f2e5').fill('8000');
+const s4 = await snapshot(page);
+console.log(s4.diff);
+</request>
+<result tokens_used="203" elapsed_time="86ms">
+- title: "401(k)/403(b) Retirement Calculator | Chase" [url=https://www.chase.com/personal/investments/retirement/retirement-calculators/401K-403B-calculator]
+- generic [ref=e1]:
+  - text: "We and our partners use cookies and other tools for advertising, to help stop fraud, and for other purposes. By using this site, you agree to how your information is used as outlined in our"
+  - link "Privacy Policy" [ref=e2]
+  - text: "."
+  - button "Close Icon" [ref=e3]:
+    - image "Close Icon"
+- link "Skip to main content" [ref=e4]
+- banner:
+  - navigation "Customer type" [ref=e5]:
+    - list:
+      - listitem "Personal" [ref=e86]:
+        - link "Personal" [ref=e6]: "Personal,   current product"
+      - listitem "Business" [ref=e87]:
+        - link "Business" [ref=e7]
+      - listitem "Commercial" [ref=e88]:
+        - link "Commercial" [ref=e8]
+  - navigation "Customer Service" [ref=e9]:
+    - menubar:
+      - listitem:
+        - menuitem "Customer Service" [ref=e10]
+      - listitem:
+        - menuitem "Search" [ref=e11]
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e12]
+  - button "Sign in Opens overlay" [ref=e13]
+  - navigation:
+    - menubar:
+      - listitem:
+        - menuitem "Investment Planning" [ref=e14]
+      - listitem:
+        - menuitem "Work With Our Advisors" [ref=e15]
+      - listitem:
+        - menuitem "Invest On Your Own" [ref=e16]
+      - listitem:
+        - menuitem "Tools & Resources" [ref=e17]
+      - listitem:
+        - menuitem "Investment Products" [ref=e18]
+      - listitem:
+        - menuitem "Why J.P. Morgan" [ref=e19]
+      - listitem:
+        - menuitem "Get Started" [ref=e20]
+- main:
+  - heading [level=1]: "RETIREMENT TOOLS  401(k)/403(b) calculator"
+  - paragraph:
+    - text: "Estimate your 401(k)/403(b)"
+    - button "Footnote 1 Opens overlay" [ref=e21]
+    - text: "balance at retirement and how it will vary based on certain assumptions."
+  - paragraph:
+    - text: "Ready to invest in a J.P. Morgan IRA?"
+    - link "Get started" [ref=e22]
+    - text: "."
+  - iframe "401(k)/403(b) calculator" [ref=e89]:
+    - text: "Run your numbers:Age range:22 to 65"
+    - textbox "22" [ref=f2e1]
+    - textbox "65" [ref=f2e2]
+    - text: "Annual rate of return (%):3"
+    - textbox "3" [ref=f2e3]
+    - text: "Annual employee contributions ($):8000"
+    - textbox "8000" [ref=f2e4]
+    - text: "Annual employer contributions ($):8000"
+    - textbox "8000" [ref=f2e5]
+    - img
+    - text: "At age 65 my 401(k)/403(b) is estimated to be worth$1,239,722"
+    - button [ref=f2e6]
+    - table: "Breakdown Employee contributions$344,000 24.4%Employer contributions$344,000 24.4%Earnings$720,775 51.2%"
+  - heading [level=2]: "Frequently asked questions"
+  - region:
+    - heading [level=3]:
+      - button "How is my number calculated?" [ref=e23]
+    - region
+  - heading [level=2]: "Other ways to plan for retirement"
+  - heading [level=3]: "Traditional IRA"
+  - paragraph:
+    - text: "Your contributions may be tax-deductible"
+    - button "Footnote 9 Opens overlay" [ref=e24]
+    - text: ". Your earnings, if any, are tax-deferred and will be included in your taxable income at the time of withdrawal."
+  - list:
+    - listitem:
+      - link "Open an account, for traditional IRA" [ref=e25]
+    - listitem "Learn about Traditional IRA" [ref=e90]:
+      - link "Learn about Traditional IRA" [ref=e26]
+  - heading [level=3]: "Roth IRA"
+  - paragraph:
+    - text: "Your contributions are not tax-deductible"
+    - button "Footnote 10 Opens overlay" [ref=e27]
+    - text: ". Your earnings, if any, are tax-deferred and may be withdrawn tax-free if certain conditions are met."
+  - list:
+    - listitem:
+      - link "Open an account, for roth IRA" [ref=e28]
+    - listitem "Learn about Roth IRA" [ref=e91]:
+      - link "Learn about Roth IRA" [ref=e29]
+  - heading [level=3]: "Roll over to an IRA"
+  - text: "Explore rolling over your 401(k) from a former employer to a J.P. Morgan IRA."
+  - list:
+    - listitem:
+      - link "Get Started" [ref=e30]
+    - listitem "Learn about rollovers" [ref=e92]:
+      - link "Learn about rollovers" [ref=e31]
+  - heading [level=2]: "Discover how you can prepare for retirement"
+  - region "Retirement calculators" [ref=e32]:
+    - heading [level=3]: "Retirement calculators"
+    - text: "Knowing where you are today is an important step toward planning for your future. Run your numbers with our calculators to see how your current plan is working toward your goals."
+    - link "Use our retirement calculators" [ref=e33]
+  - region "Plan for retirement" [ref=e34]:
+    - heading [level=3]: "Plan for retirement"
+    - text: "Whatever you’re looking forward to—more time with family, traveling or pursuing your passions—we can can help you prepare for what comes next."
+    - link "Learn about retirement planning" [ref=e35]
+  - heading [level=2]: "Sharpen your knowledge with the latest news and market commentary on retirement"
+  - text: "Tap into the latest news and subscribe for market commentary and analysis from J.P. Morgan specialists to help you plan your investment strategy for retirement."
+  - link "Subscribe" [ref=e36]
+  - link "Read the latest, news and market commentary" [ref=e37]
+- contentinfo:
+  - text: "Footnote 1 A 401(k) is a feature of a qualified profit sharing plan that allows employees to contribute a portion of their wages to individual accounts."
+  - list:
+    - listitem "Traditional 401(k) salary deferrals are generally excluded from the employee’s taxable income (desig" [ref=e93]
+    - listitem "Employers can contribute to employees’ accounts." [ref=e94]
+    - listitem "Distributions, including earnings, are generally includible in taxable income (except for “qualified" [ref=e95]
+  - text: "A 403(b) plan (also called a tax-sheltered annuity or TSA plan) is a similar retirement plan offered by public schools and certain 501(c)(3) tax-exempt organizations. Employees save for retirement by contributing to individual accounts. Employers can also contribute to employees' accounts, and distributions are similarly generally includible in taxable income.\nFootnote 2 This calculator assumes that the annual employee and employer contributions specified will be the same amount contributed every year between your current age and target retirement age.\n\nThe IRS imposes limits on how much can be contributed annually to a 401(k) or 403(b). In particular, the IRS limits the amount of employee contributions that you can make each year. If you are age 50 or older, the IRS also permits an additional “catch-up” contribution to be made each year. These limits are subject to potential yearly cost-of-living adjustments. For the purposes of this calculator, we limit employee contributions for future years to a single year’s basic annual contribution limit (“catch-up” contributions are not included). We are currently using the basic annual contribution limit for 2025 ($23,500).\n\nThe IRS also limits the total annual amount of employee and employer contributions that can be made. This limit is subject to yearly cost-of-living adjustments, however, for the purposes of this calculator, we limit total employee and employer contributions for future years to a single year’s annual contribution limit. We are currently using the annual contribution limit on total employee (other than “catch-up”) and employer contributions for 2025 ($70,000).\n\nWe do not take into account IRS limitations other than these basic annual limits on employee and employer contributions.\n\nWhile this calculator does not account for “catch-up” contributions, you should note the following:\n\nIf permitted by the 401(k) plan, participants age 50 or over at the end of the calendar year can also make catch-up contributions.\n\nIf the 403(b) plan allows, an employee may be able to make the same type of catch-up contributions as may be allowed by a 401(k) plan, and an employee who has worked for a qualified organization for 15 or more years may, if he or she meets certain requirements, be able to make additional contributions of up to $3,000 for up to 5 years. For more information go to IRS 403(b) website and see 15-year rule in Publication 571, Tax-Sheltered Annuity Plans (403(b) Plans) under Contributions.\nFootnote 3"
+  - paragraph:
+    - text: "In addition to the other limitations noted above, this calculator does not account for whether any given individual is eligible to contribute to or receive employer contributions under a 401(k) and/or 403(b), the application of the 10% early withdrawal tax (which generally applies to distributions taken prior to age 59½ unless an exception applies) or Required Minimum Distributions (as defined by the Internal Revenue Code), and should be used for educational purposes only. To learn more, go to the IRS"
+    - link "401(k)" [ref=e38]: "401(k), Opens overlay"
+    - text: "and"
+    - link "403(b)" [ref=e39]: "403(b), Opens overlay"
+    - text: "plan pages, or consult with a tax or legal advisor."
+  - text: "Footnote 4 For the purposes of this calculator, we are assuming you have not previously contributed to your 401(k)/403(b) account (and therefore your starting account balance is $0), and that all contributions (both employee and employer) are made on a pre-tax basis (i.e., they are not designated Roth or other after-tax contributions).\nFootnote 5 This calculation does not include the calendar year of your target retirement age. The total number of years is calculated by subtracting the indicated current age from the target retirement age.\nFootnote 6 Keep in mind: you can select an annual rate of return, or the default rate of return will be 4%. This default rate is not a guarantee of any kind of return.\nFootnote 7 Keep in mind: this calculator uses an assumed retirement tax rate of 12%. Your actual rate may be different.\nFootnote 8 The potential future value of your 401(k)/403(b) is adjusted to account for the deferred taxes on contributions (employee and employer contributions) and investment returns, assuming all withdrawals occur at retirement age (i.e., you take a full distribution of your account balance at the target retirement age).\nFootnote 9"
+  - paragraph:
+    - text: "Deductibility may be limited if you (or your spouse, if you are married) are covered by a retirement plan at work and your income exceeds certain levels. Please refer to the IRS website for applicable limits:"
+    - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e40]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+    - text: "."
+  - text: "Footnote 10"
+  - paragraph:
+    - text: "You cannot deduct contributions to a Roth IRA. Your Roth IRA contribution may be limited based on your ﬁling status and income. Please refer to the IRS website for applicable limits:"
+    - link "http://www.irs.gov/retirement-plans/ira-deduction-limits" [ref=e41]: "http://www.irs.gov/retirement-plans/ira-deduction-limits, Opens overlay"
+    - text: "."
+  - paragraph:
+    - link "LEARN MORE" [ref=e42]: "LEARN MORE, Opens overlay"
+    - text: "ABOUT OUR FIRM AND INVESTMENT PROFESSIONALS AT FINRA BROKERCHECK."
+  - paragraph:
+    - text: "To learn more about J. P. Morgan’s investment business, including our accounts, products and services, as well as our relationship with you, please review our"
+    - link "J.P. Morgan Securities LLC Form CRS (PDF)" [ref=e43]
+    - text: "and"
+    - link "Guide to Investment Services and Brokerage Products" [ref=e44]
+    - text: "."
+  - text: "Images on the page are hypothetical and for informational purposes only. Screen images are simulated.\nInvesting involves market risk, including possible loss of principal, and there is no guarantee that investment objectives will be achieved. Past performance is not a guarantee of future results.\nJPMorgan Chase and its affiliates do not provide tax, legal or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for tax, legal or accounting advice. You should consult your personal tax, legal and accounting advisors for advice before engaging in any transaction.\nAsset allocation/diversification does not guarantee a profit or protect against a loss.\nBank deposit accounts, such as checking and savings, may be subject to approval. Deposit products and related services are offered by JPMorgan Chase Bank, N.A. Member FDIC.\nChase Mobile® app  is available for select mobile devices. Enroll in Chase Online℠ or on the Chase Mobile® app. Message and data rates may apply."
+  - paragraph:
+    - text: "J.P. Morgan Wealth Management is a business of JPMorgan Chase & Co., which offers investment products and services through  J.P. Morgan Securities LLC (JPMS), a registered broker-dealer and investment adviser, member"
+    - link "FINRA" [ref=e45]: "FINRA, opens overlay"
+    - text: "and"
+    - link "SIPC" [ref=e46]: "SIPC, opens overlay"
+    - text: ". Insurance products are made available through Chase Insurance Agency, Inc. (CIA), a licensed insurance agency, doing business as Chase Insurance Agency Services, Inc. in Florida. Certain custody and other services are provided by JPMorgan Chase Bank, N.A. (JPMCB). JPMS, CIA and JPMCB are affiliated companies under the common control of JPMorgan Chase & Co. Products not available in all states."
+  - text: "INVESTMENT AND INSURANCE PRODUCTS ARE:"
+  - list:
+    - listitem "•" [ref=e96]: "•NOT FDIC INSURED"
+    - listitem "•" [ref=e97]: "•NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY"
+    - listitem "•" [ref=e98]: "•NOT A DEPOSIT OR OTHER OBLIGATION OF, OR GUARANTEED BY, JPMORGAN CHASE BANK, N.A. OR ANY OF ITS AFFILIATES"
+    - listitem "•" [ref=e99]: "•SUBJECT TO INVESTMENT RISKS, INCLUDING POSSIBLE LOSS OF THE PRINCIPAL AMOUNT INVESTED"
+  - link "J.P. Morgan Wealth Management logo, links to Investments" [ref=e47]
+  - heading "Planning and investments" [level=2]
+  - paragraph:
+    - text: "Whether you choose to work with"
+    - link "an advisor" [ref=e48]
+    - text: "and develop a financial strategy or"
+    - link "invest online" [ref=e49]
+    - text: ", J.P. Morgan offers insights, expertise and tools to help you reach your goals."
+  - heading "Invest with our advisors" [level=2]
+  - paragraph:
+    - text: "Work 1:1 with a"
+    - link "J.P. Morgan advisor" [ref=e50]
+    - text: "virtually or in your"
+    - link "Chase branch" [ref=e51]
+    - text: "to build a personalized financial strategy based on what’s important to you, starting with a minimum investment of $25,000."
+  - heading "J.P. Morgan online investing" [level=2]
+  - paragraph:
+    - text: "Easily"
+    - link "fund" [ref=e52]
+    - text: ", research, trade and manage your investments online all conveniently in the Chase Mobile® app or at chase.com."
+    - link "J.P Morgan online investing" [ref=e53]
+    - text: "is the easy, smart and low-cost way to invest online. Check here for the latest J.P. Morgan online investing"
+    - link "features" [ref=e54]
+    - text: ","
+    - link "offers, promotions and coupons" [ref=e55]
+    - text: "."
+  - heading "Investment tools & resources" [level=2]
+  - paragraph:
+    - text: "Our"
+    - link "calculators" [ref=e56]
+    - text: "are here to help you analyze your numbers and ensure you're on the path to meeting your financial goals."
+  - list:
+    - listitem "For a comparison of IRAs and which one aligns with you: IRA Calculator" [ref=e100]:
+      - text: "For a comparison of IRAs and which one aligns with you:"
+      - link "IRA Calculator" [ref=e57]
+    - listitem "Plan for your retirement: 401K/403b Calculator" [ref=e101]:
+      - text: "Plan for your retirement:"
+      - link "401K/403b Calculator" [ref=e58]
+    - listitem "Compare annuity payouts to create your desired strategy: Annuity Calculator" [ref=e102]:
+      - text: "Compare annuity payouts to create your desired strategy:"
+      - link "Annuity Calculator" [ref=e59]
+    - listitem "Understand how your retirement contributions may differ: IRA Eligibility Calculator" [ref=e103]:
+      - text: "Understand how your retirement contributions may differ:"
+      - link "IRA Eligibility Calculator" [ref=e60]
+  - heading "Retirement planning" [level=2]
+  - paragraph:
+    - text: "Planning for retirement can start at any point in your life. Whether you prefer to independently manage your"
+    - link "retirement planning" [ref=e61]
+    - text: "or work with an advisor to create a personalized strategy, we can help."
+    - link "Roll over your 401(k)" [ref=e62]
+    - text: "from your previous employer and compare the benefits of General Investment,"
+    - link "Traditional IRA" [ref=e63]
+    - text: "and"
+    - link "Roth IRA" [ref=e64]
+    - text: "accounts to decide which is right for you."
+  - heading "Education planning" [level=2]
+  - paragraph:
+    - link "Funding for education" [ref=e65]
+    - text: "can come from any combination of options and a J.P. Morgan advisor can help you understand the benefits and disadvantages of each one. Compare among"
+    - link "529 Plans" [ref=e66]
+    - text: ", custodial accounts, financial aid and other education options to help meet your"
+    - link "college planning goals" [ref=e67]
+    - text: "."
+  - heading "Wealth Plan" [level=2]
+  - paragraph:
+    - text: "When planning for your future,"
+    - link "J.P. Morgan Wealth Plan" [ref=e68]
+    - text: "can help focus your efforts on achieving your financial goals. Through Wealth Plan, you can connect with an advisor to help you create a plan, adjust your financial strategy, and track your progress."
+  - heading "Investing insights" [level=2]
+  - paragraph:
+    - text: "Stay in"
+    - link "The Know" [ref=e69]
+    - text: "by exploring articles and videos on market trends, research and financial planning."
+  - heading "Other Products & Services :" [level=2]
+  - list:
+    - listitem "Online Banking" [ref=e104]:
+      - link "Online Banking" [ref=e70]
+    - listitem "Mobile Banking" [ref=e105]:
+      - link "Mobile Banking" [ref=e71]
+    - listitem "Security Center" [ref=e106]:
+      - link "Security Center" [ref=e72]
+    - listitem "Deposit and Prepaid Account Agreement" [ref=e107]:
+      - link "Deposit and Prepaid Account Agreement" [ref=e73]
+  - list:
+    - listitem:
+      - link "Facebook" [ref=e74]: "Facebook, Opens overlay"
+    - listitem:
+      - link "Instagram" [ref=e75]: "Instagram, Opens overlay"
+    - listitem:
+      - link "X, formerly Twitter" [ref=e76]: "X, formerly Twitter, Opens overlay"
+    - listitem:
+      - link "YouTube" [ref=e77]: "YouTube, Opens overlay"
+    - listitem:
+      - link "LinkedIn" [ref=e78]: "LinkedIn, Opens overlay"
+    - listitem:
+      - link "Pinterest" [ref=e79]: "Pinterest, Opens overlay"
+  - text: "“Chase,” “JPMorgan,” “JPMorgan Chase & Co.,” the JPMorgan Chase & Co logo and the Octagon Symbol are trademarks of JPMorgan Chase Bank, N.A. JPMorgan Chase Bank, N.A. is a wholly-owned subsidiary of JPMorgan Chase & Co."
+  - list:
+    - listitem "Privacy" [ref=e108]:
+      - link "Privacy" [ref=e80]
+    - listitem "Security" [ref=e109]:
+      - link "Security" [ref=e81]
+    - listitem "Terms of Use" [ref=e110]:
+      - link "Terms of Use" [ref=e82]
+    - listitem "Accessibility" [ref=e111]:
+      - link "Accessibility" [ref=e83]
+    - listitem "Site Map" [ref=e112]:
+      - link "Site Map" [ref=e84]
+    - listitem "AdChoices" [ref=e113]:
+      - link "AdChoices" [ref=e85]: "AdChoices, Opens overlay"
+    - listitem "Member FDIC" [ref=e114]
+    - listitem: "Equal Housing Opportunity"
+  - text: "© 2026 JPMorgan Chase & Co."
+</result>
+
+[11] thinking: **Evaluating retirement estimates**
+
+I need to mention the main amount in my calculations and possibly verify things. The snapshot shows $1,239,722, but the breakdown sums up to $1,408,775. Is the difference due to a 12% tax? If I multiply by .88, I get $1,239,722, which could be after deferred taxes. The user is curious about the retirement account value. I'll clarify that the estimates consider taxes and aging. I might need to provide citations for my claims, too.
+
+**Clarifying citation needs**
+
+I can cite the page result, but citations are necessary only for websearch or webfetch. Since I used websearch results, I'll need to cite the source URL or calculator formula. I can mention the assumptions from that search excerpt as well. I should explain that I used the calculator with live inputs—no citation tags for the browser. For the final output, I'll include concise information about the age entered, contributions, and results, with exact quotes and citation tags right after supported claims. No markdown tables; just keep it clear!
+
+[12] assistant: I used Chase’s 401(k)/403(b) calculator with:
+
+- Current age: 22
+- Retirement age: 65
+- Annual return: 3%
+- Employee contribution: $8,000/year
+- Employer contribution: $8,000/year
+
+Result: **$1,239,722 estimated at age 65**.
+
+Chase’s calculator notes this is an estimate and adjusts for deferred taxes. <citation refs="search_5fbc5ab5ec214c2b83427c4bc26ad93e#1">“Estimate your 401(k)/403(b) balance at retirement... The potential future value of your 401(k)/403(b) is adjusted to account for deferred taxes.”</citation>

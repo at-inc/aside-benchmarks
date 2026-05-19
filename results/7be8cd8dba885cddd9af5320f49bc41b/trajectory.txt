@@ -1,0 +1,1485 @@
+[1] user: Go to https://www.bbb.org/, Find roofing contractors within 5 miles of zip code 10002.
+
+[2] thinking: **Navigating roofing contractors**
+
+I need to find roofing contractors within 5 miles of the zip code 10002 through the BBB website. The user didn't specify how many results to provide, so I should check the site for the information. I might need to use a web search or open a tab, focusing on contractors in that area. It seems like a simple task, but I want to make sure I collect the right details. Let's get started!
+
+[3] tool_call: repl("Opening BBB")
+<request>
+const p1 = await openTab('https://www.bbb.org/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="140" elapsed_time="4341ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → BBB | Better Business Bureau (https://www.bbb.org/)
+# note: interactive (clickable / focusable) elements only.
+- title: "BBB | Better Business Bureau" [url=https://www.bbb.org/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - link "BBB" [ref=e2]: "BBB  Homepage"
+  - navigation "Main navigation" [ref=e3]:
+    - button "Consumers" [ref=e4]
+    - button "Businesses" [ref=e5]
+    - button "Scam Tracker" [ref=e6]
+    - button "About" [ref=e7]
+  - button "Select language" [ref=e8]: "Language"
+  - button "My BBB" [ref=e9]
+- main:
+  - heading "TRUST,BUILT LOCALLY." [level=1]
+  - text: "The Better Business Bureau is built on clarity, credibility, and trust"
+  - link "Allow us to introduce ourselves" [ref=e10]
+  - region:
+    - text: "Find"
+    - combobox "Find" [ref=e11] [placeholder="businesses, category"]
+    - listbox "Find" [ref=e12]
+    - text: "Near"
+    - combobox "Near" [ref=e13] [placeholder="city, state or zip"]: "San Francisco, CA"
+    - button "clear input" [ref=e14]
+    - text: "Country"
+    - combobox "Country" [ref=e15]: "United States"
+    - listbox "Near" [ref=e16]
+    - button "Search" [ref=e17]
+    - heading "Find a businessyou can trust." [level=2]: "Find a business you can trust."
+  - region:
+    - text: "FOR BUSINESSES"
+    - heading "Apply for Accreditation" [level=2]
+    - text: "Apply for BBB Accreditation and show customers that your company operates honestly and with integrity.Accredited Business"
+    - link "Apply for accreditation" [ref=e18]
+- contentinfo:
+  - link "BBB" [ref=e19]
+  - heading "For Consumers" [level=2]
+  - link "Get a Quote" [ref=e20]
+  - link "Start a Review" [ref=e21]
+  - link "File a Complaint" [ref=e22]
+  - heading "For Businesses" [level=2]
+  - link "Get Your Business Listed" [ref=e23]
+  - link "BBB Accreditation" [ref=e24]
+  - link "Apply for BBB Accreditation" [ref=e25]
+  - heading "Affiliated Programs" [level=2]
+  - link "BBB Institute for Marketplace Trust" [ref=e26]
+  - link "BBB Wise Giving Alliance (Give.org)" [ref=e27]
+  - link "BBB National Programs" [ref=e28]
+  - link "our Twitter (opens in a new tab)" [ref=e29]
+  - link "our LinkedIn (opens in a new tab)" [ref=e30]
+  - link "our Facebook (opens in a new tab)" [ref=e31]
+  - link "our Instagram (opens in a new tab)" [ref=e32]
+  - navigation "footer navigation" [ref=e33]:
+    - link "About BBB®" [ref=e34]
+    - text: "|"
+    - link "Terms of Use" [ref=e35]
+    - text: "|"
+    - link "Privacy Policy" [ref=e36]
+    - text: "|"
+    - link "Contact Us" [ref=e37]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[4] thinking: **Searching for roofing contractors**
+
+I need to look up roofing contractors near the zip code 10002. It seems like I'll be interacting with a combobox to select from the suggestions. I’ll make sure to fill that out properly. After I take action to search, I'll want to compare the current results with what’s there afterward to see any changes. It’s a little detail, but I’ll keep track of that snapshot for accuracy!
+
+[5] tool_call: repl("Searching roofing contractors near 10002")
+<request>
+await page.locator('e11').fill('roofing contractors');
+await page.locator('e13').fill('10002');
+await page.locator('e17').click();
+const s2 = await snapshot(page);
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="125" elapsed_time="4506ms">
+- title: "Search results for Roofing Contractors near 10002 | Search | Better Business Bureau" [url=https://www.bbb.org/search?find_country=USA&find_loc=10002&find_text=roofing%20contractors&page=1]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - link "BBB" [ref=e2]:
+    - image "BBB"
+    - text: "Homepage"
+  - navigation "Main navigation" [ref=e3]:
+    - list:
+      - listitem "Consumers" [ref=e4]:
+        - button "Consumers" [ref=e5]
+      - listitem "Businesses" [ref=e6]:
+        - button "Businesses" [ref=e7]
+      - listitem "Scam Tracker" [ref=e8]:
+        - button "Scam Tracker" [ref=e9]
+      - listitem "About" [ref=e10]:
+        - button "About" [ref=e11]
+  - button "Select language" [ref=e12]: "Language"
+  - button "My BBB" [ref=e13]
+  - search:
+    - label: "Find"
+    - combobox "Find" [ref=e14] [placeholder="businesses, category"]: "roofing contractors"
+    - button "clear entry" [ref=e15]
+    - status
+    - label: "Near"
+    - combobox "Near" [ref=e16] [placeholder="city, state, or zip"]: "10002"
+    - button "clear entry" [ref=e17]
+    - status
+    - label: "Country"
+    - combobox "Country" [ref=e18]: "US\n       United States"
+    - button "Search" [ref=e19]
+- main:
+  - navigation "breadcrumbs" [ref=e20]:
+    - list:
+      - listitem "Home" [ref=e21]:
+        - link "Home" [ref=e22]
+      - listitem ">New York" [ref=e23]:
+        - text: ">"
+        - link "New York" [ref=e24]
+      - listitem ">Manhattan" [ref=e25]:
+        - text: ">"
+        - link "Manhattan" [ref=e26]
+      - listitem ">" [ref=e27]: ">Roofing Contractors (current page)"
+  - text: "Category: Roofing Contractors"
+  - region "Filter by" [ref=e28]:
+    - heading "Filter by" [level=2]
+    - form:
+      - checkbox "BBB Accredited" [ref=e29] [hidden]
+      - label: "BBB Accredited"
+      - checkbox "Get a Quote" [ref=e30] [hidden]
+      - label: "Get a Quote"
+      - checkbox "Serving my Area" [ref=e31] [hidden]
+      - label: "Serving my Area"
+      - generic "Distance" [ref=e33]
+      - generic "Category" [ref=e35]
+      - generic "BBB Rating" [ref=e37]
+  - text: "Sort By"
+  - combobox "Sort By" [ref=e38]: "Best Match"
+  - status
+  - heading "Showing: results for near 10002" [level=1]:
+    - text: "Showing: 11,046  results for  roofing contractors  near"
+    - link "10002" [ref=e39]
+  - heading "Search results" [level=2]
+  - generic [ref=e40]:
+    - heading [level=3]:
+      - link "C Johnston Roofing, Waterproofing, & Painting" [ref=e41]
+    - text: "Roofing Contractors, Painting Contractors, Waterproofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(212) 206-2342" [ref=e42]
+    - text: "130 7th Ave Ste 349, New York, NY  10011-1803"
+    - link "Get a Quote" [ref=e43]
+  - generic [ref=e44]:
+    - heading [level=3]:
+      - link "BMJ Maintenance, LLC" [ref=e45]
+    - text: "General Contractor, Roofing Contractors, Construction Services ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(201) 420-0798" [ref=e46]
+    - text: "334 Park Ave, Hoboken, NJ  07030-3832"
+    - link "Get a Quote" [ref=e47]
+  - generic [ref=e48]:
+    - heading [level=3]:
+      - link "McGavin Roofing" [ref=e49]
+    - text: "Roofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e51]
+    - link "(718) 810-5775" [ref=e52]
+    - text: "7 Elk Street, New York, NY  10007-1277"
+    - link "Get a Quote" [ref=e53]
+  - generic [ref=e54]:
+    - heading [level=3]:
+      - link "Dawkins Development Group Inc." [ref=e55]
+    - text: "Construction Services, Handyman, Siding Contractors ..."
+    - image "Accredited Business"
+    - generic "BBB Rating: A+" [ref=e57]
+    - generic "Service Area" [ref=e59]
+    - link "(914) 835-8901" [ref=e60]
+    - text: "445 Park Ave Fl 9, New York, NY  10022-8606"
+    - link "Get a Quote" [ref=e61]
+  - generic [ref=e62]:
+    - heading [level=3]:
+      - link "Rehab Associates Inc." [ref=e63]
+    - text: "Home Improvement, Roofing Contractors, Siding Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e65]
+    - link "(800) 600-5400" [ref=e66]
+    - text: "101 Hudson St Ste 2100, Jersey City, NJ  07302-3929"
+    - link "Get a Quote" [ref=e67]
+  - generic [ref=e68]:
+    - heading [level=3]:
+      - link "NJ Pro Home Improvements" [ref=e69]
+    - text: "Home Improvement, Roofing Contractors, Painting Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e71]
+    - link "(201) 280-6366" [ref=e72]
+    - text: "Union City, NJ  07087-7605"
+    - link "Get a Quote" [ref=e73]
+  - generic [ref=e74]:
+    - heading [level=3]:
+      - link "Harbor Waterproofing Services LLC" [ref=e75]
+    - text: "Roofing Contractors, Waterproofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A"
+    - link "(718) 866-4000" [ref=e76]
+    - text: "3202 Greenpoint Ave, Long Island City, NY  11101-2010"
+    - link "Get a Quote" [ref=e77]
+  - generic [ref=e78]:
+    - heading [level=3]:
+      - link "Mighty Roofing Corp" [ref=e79]
+    - text: "Roofing Contractors, Siding Contractors, Skylights ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 873-1236" [ref=e80]
+    - text: "44 Court St Unit 1004, Brooklyn, NY  11201-4405"
+    - link "Get a Quote" [ref=e81]
+  - generic [ref=e82]:
+    - heading [level=3]:
+      - link "L.A. New York Restoration Corp." [ref=e83]
+    - text: "General Contractor, Roofing Contractors, Mason Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e85]
+    - link "(718) 361-1909" [ref=e86]
+    - text: "4011 24th St, Long Island City, NY  11101-3946"
+    - link "Get a Quote" [ref=e87]
+  - generic [ref=e88]:
+    - heading [level=3]:
+      - link "All Weather Roofing and Waterproofing Corp." [ref=e89]
+    - text: "Roofing Contractors, Waterproofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 472-4424" [ref=e90]
+    - text: "4752 44th St, Woodside, NY  11377-6349"
+    - link "Get a Quote" [ref=e91]
+  - generic [ref=e92]:
+    - heading [level=3]:
+      - link "William & Hugh Roofing" [ref=e93]
+    - text: "Roofing Contractors, Siding Contractors, Gutters ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 954-0542" [ref=e94]
+    - text: "4512 46th St PMB 311, Sunnyside, NY  11104-1702"
+    - link "Get a Quote" [ref=e95]
+  - generic [ref=e96]:
+    - heading [level=3]:
+      - link "NY Roofing Bronx" [ref=e97]
+    - text: "Roofing Contractors, Siding Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A-"
+    - link "(718) 725-7905" [ref=e98]
+    - text: "553 Prospect Ave, Brooklyn, NY  11215-7567"
+    - link "Get a Quote" [ref=e99]
+  - generic [ref=e100]:
+    - heading [level=3]:
+      - link "Premier Roofing Co., Inc." [ref=e101]
+    - text: "Roofing Contractors, Gutter Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 638-3711" [ref=e102]
+    - text: "905 Atlantic Ave, Brooklyn, NY  11238-2704"
+    - link "Get a Quote" [ref=e103]
+  - generic [ref=e104]:
+    - heading [level=3]:
+      - link "NAS Construction Solutions LLC" [ref=e105]
+    - text: "Home Improvement, Roofing Contractors, Siding Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A"
+    - link "(929) 326-5632" [ref=e106]
+    - text: "2 Macon St Apt 4C, Brooklyn, NY  11216"
+  - generic [ref=e107]:
+    - heading [level=3]:
+      - link "Northstar Restoration LLC" [ref=e108]
+    - text: "Home Improvement, Roofing Contractors, Siding Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(551) 202-5200" [ref=e109]
+    - text: "Cliffside Park, NJ  07010-1420"
+    - link "Get a Quote" [ref=e110]
+  - navigation "pagination" [ref=e111]:
+    - list:
+      - listitem "1" [ref=e112]:
+        - link "1" [ref=e113]: "Page  1"
+      - listitem "2" [ref=e114]:
+        - link "2" [ref=e115]: "Page  2"
+      - listitem "..." [ref=e116]
+      - listitem "15" [ref=e117]:
+        - link "15" [ref=e118]: "Page  15"
+    - link "Next" [ref=e119]
+    - link "Last" [ref=e120]
+  - heading "Join Trusted Businesses" [level=2]
+  - link "Become BBB Accredited" [ref=e121]
+  - heading "Related Categories" [level=2]
+  - list:
+    - listitem "Roofing Contractors" [ref=e122]:
+      - link "Roofing Contractors" [ref=e123]
+    - listitem "Siding Contractors" [ref=e124]:
+      - link "Siding Contractors" [ref=e125]
+    - listitem "Home Improvement" [ref=e126]:
+      - link "Home Improvement" [ref=e127]
+    - listitem "General Contractor" [ref=e128]:
+      - link "General Contractor" [ref=e129]
+    - listitem "Construction Services" [ref=e130]:
+      - link "Construction Services" [ref=e131]
+    - listitem "Window Installation" [ref=e132]:
+      - link "Window Installation" [ref=e133]
+    - listitem "Windows" [ref=e134]:
+      - link "Windows" [ref=e135]
+    - listitem "Gutters" [ref=e136]:
+      - link "Gutters" [ref=e137]
+    - listitem "Gutter Contractors" [ref=e138]:
+      - link "Gutter Contractors" [ref=e139]
+    - listitem "Bathroom Remodel" [ref=e140]:
+      - link "Bathroom Remodel" [ref=e141]
+  - heading "Didn't find the business you were looking for?" [level=2]
+  - text: "If the business you're looking for isn't in our directory, submit a request to have it added."
+  - link "Request a Business" [ref=e142]
+- contentinfo:
+  - link "BBB" [ref=e143]
+  - heading "For Consumers" [level=2]
+  - list:
+    - listitem "Get a Quote" [ref=e144]:
+      - link "Get a Quote" [ref=e145]
+    - listitem "Start a Review" [ref=e146]:
+      - link "Start a Review" [ref=e147]
+    - listitem "File a Complaint" [ref=e148]:
+      - link "File a Complaint" [ref=e149]
+  - heading "For Businesses" [level=2]
+  - list:
+    - listitem "Get Your Business Listed" [ref=e150]:
+      - link "Get Your Business Listed" [ref=e151]
+    - listitem "BBB Accreditation" [ref=e152]:
+      - link "BBB Accreditation" [ref=e153]
+    - listitem "Apply for BBB Accreditation" [ref=e154]:
+      - link "Apply for BBB Accreditation" [ref=e155]
+  - heading "Affiliated Programs" [level=2]
+  - list:
+    - listitem "BBB Institute for Marketplace Trust" [ref=e156]:
+      - link "BBB Institute for Marketplace Trust" [ref=e157]
+    - listitem "BBB Wise Giving Alliance (Give.org)" [ref=e158]:
+      - link "BBB Wise Giving Alliance (Give.org)" [ref=e159]
+    - listitem "BBB National Programs" [ref=e160]:
+      - link "BBB National Programs" [ref=e161]
+  - list:
+    - listitem:
+      - link "our Twitter (opens in a new tab)" [ref=e162]
+    - listitem:
+      - link "our LinkedIn (opens in a new tab)" [ref=e163]
+    - listitem:
+      - link "our Facebook (opens in a new tab)" [ref=e164]
+    - listitem:
+      - link "our Instagram (opens in a new tab)" [ref=e165]
+  - navigation "footer navigation" [ref=e166]:
+    - list:
+      - listitem "About BBB®|" [ref=e167]:
+        - link "About BBB®" [ref=e168]
+        - text: "|"
+      - listitem "Terms of Use|" [ref=e169]:
+        - link "Terms of Use" [ref=e170]
+        - text: "|"
+      - listitem "Privacy Policy|" [ref=e171]:
+        - link "Privacy Policy" [ref=e172]
+        - text: "|"
+      - listitem "Contact Us" [ref=e173]:
+        - link "Contact Us" [ref=e174]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[6] tool_call: repl("Opening distance filter")
+<request>
+await page.locator('e33').click();
+const s3 = await snapshot(page);
+console.log(s3.diff || s3.tree);
+</request>
+<result tokens_used="84" elapsed_time="423ms">
+@@ -52 +52,15 @@
+-      - generic "Distance" [ref=e33]
++      - generic [ref=e32]:
++        - generic "Distance" [ref=e33] [focused]
++        - group "Distance":
++          - radio "All distances" [ref=e175] [hidden] [checked]
++          - label: "All distances"
++          - radio "< 5 Miles" [ref=e176] [hidden]
++          - label: "< 5 Miles"
++          - radio "< 10 Miles" [ref=e177] [hidden]
++          - label: "< 10 Miles"
++          - radio "< 25 Miles" [ref=e178] [hidden]
++          - label: "< 25 Miles"
++          - radio "< 50 Miles" [ref=e179] [hidden]
++          - label: "< 50 Miles"
++          - radio "< 100 Miles" [ref=e180] [hidden]
++          - label: "< 100 Miles"
+@@ -62,0 +76,31 @@
++  - generic [ref=e181]:
++    - link "Why are there ads on BBB.org?" [ref=e182]
++    - heading [level=3]:
++      - link "advertisement: William & Hugh Roofing" [ref=e183]
++    - text: "Roofing Contractors"
++    - image "Accredited Business"
++    - text: "BBB Rating: A+"
++    - link "(718) 954-0542" [ref=e184]
++    - text: "4512 46th St PMB 311, Sunnyside, NY  11104"
++    - link "Get a Quote" [ref=e185]
++  - generic [ref=e186]:
++    - link "Why are there ads on BBB.org?" [ref=e187]
++    - heading [level=3]:
++      - link "advertisement: Forever Home Improvement Inc." [ref=e188]
++    - text: "HOME IMPROVEMENTS"
++    - image "Accredited Business"
++    - text: "BBB Rating: A+"
++    - link "(516) 551-8676" [ref=e189]
++    - text: "646 Centre Ave, Lindenhurst, NY  11757"
++    - link "Get a Quote" [ref=e190]
++  - generic [ref=e191]:
++    - link "Why are there ads on BBB.org?" [ref=e192]
++    - heading [level=3]:
++      - link "advertisement: Reynolds Restoration" [ref=e193]
++    - text: "Roofing Contractors"
++    - image "Accredited Business"
++    - text: "BBB Rating: A+"
++    - link "(718) 256-5400" [ref=e194]
++    - text: "10 Shore Blvd, Brooklyn, NY  11235"
++    - link "Get a Quote" [ref=e195]
++    - text: "Department of Consumer and Worker Protection - NYC, License # 1470373"
+@@ -201,0 +246,10 @@
++  - generic [ref=e196]:
++    - link "Why are there ads on BBB.org?" [ref=e197]
++    - heading [level=3]:
++      - link "advertisement: NY Roofing Bronx" [ref=e198]
++    - text: "Roofing Contractors"
++    - image "Accredited Business"
++    - text: "BBB Rating: A-"
++    - link "(718) 725-7905" [ref=e199]
++    - text: "553 Prospect Ave, Brooklyn, NY  11215"
++    - link "Get a Quote" [ref=e200]
+@@ -212,0 +267,4 @@
++  - link "Why are there ads on BBB.org?" [ref=e201]
++  - link "giveorgad" [ref=e202]:
++    - text: "advertisement:"
++    - image "giveorgad"
+@@ -214,0 +273,4 @@
++  - link "Why are there ads on BBB.org?" [ref=e203]
++  - link "Forever Home Improvement Inc." [ref=e204]:
++    - text: "advertisement:"
++    - image "Forever Home Improvement Inc."
+@@ -236,0 +299,4 @@
++  - link "Why are there ads on BBB.org?" [ref=e205]
++  - link "northstaradbanner" [ref=e206]:
++    - text: "advertisement:"
++    - image "northstaradbanner"
+@@ -288,0 +355,3 @@
++- iframe "LiveChat chat widget" [ref=e207]:
++  - main:
++    - button "Open LiveChat chat widget" [ref=f19e1]
+</result>
+
+[7] thinking: **Locating the radio button**
+
+I need to find the e176 radio button. It's hidden, but I think there's a label I can use to locate it. The label might not reference e176 directly, which makes it a bit tricky. But I'm determined to keep looking for it and to click the right button. I'll just need to make sure I'm checking everything carefully to avoid any mistakes. Let's keep going!
+
+[8] tool_call: repl("Applying 5 mile distance filter")
+<request>
+await page.locator('e176').click({force:true});
+const s4 = await snapshot(page);
+console.log(s4.diff || s4.tree);
+</request>
+<result tokens_used="85" elapsed_time="1167ms">
+@@ -53 +53 @@
+-        - generic "Distance" [ref=e33] [focused]
++        - generic "Distance" [ref=e33]
+@@ -55 +55 @@
+-          - radio "All distances" [ref=e175] [hidden] [checked]
++          - radio "All distances" [ref=e175] [hidden]
+@@ -57 +57 @@
+-          - radio "< 5 Miles" [ref=e176] [hidden]
++          - radio "< 5 Miles" [ref=e176] [hidden] [checked] [focused]
+@@ -69,0 +69,5 @@
++    - heading "Applied filters" [level=3]
++    - list:
++      - listitem:
++        - button "Remove filter:< 5 Miles" [ref=e208]
++    - button "Clear all filters" [ref=e209]
+@@ -71 +76 @@
+-  - status
++  - status: "Updated: 126 results available."
+@@ -73,2 +78,2 @@
+-    - text: "Showing: 11,046  results for  roofing contractors  near"
+-    - link "10002" [ref=e39]
++    - text: "Showing: 126  results for  roofing contractors  near"
++    - link "10002" [ref=e210]
+@@ -99,2 +104,2 @@
+-      - link "advertisement: Reynolds Restoration" [ref=e193]
+-    - text: "Roofing Contractors"
++      - link "advertisement: North Star General Contractor Inc." [ref=e193]
++    - text: "General Contractor"
+@@ -103,2 +108,2 @@
+-    - link "(718) 256-5400" [ref=e194]
+-    - text: "10 Shore Blvd, Brooklyn, NY  11235"
++    - link "(800) 429-3722" [ref=e211]
++    - text: "4007 75th St Suite 1, Elmhurst, NY  11373"
+@@ -106 +111,0 @@
+-    - text: "Department of Consumer and Worker Protection - NYC, License # 1470373"
+@@ -229 +233 @@
+-  - generic [ref=e104]:
++  - generic [ref=e212]:
+@@ -231,7 +235,6 @@
+-      - link "NAS Construction Solutions LLC" [ref=e105]
+-    - text: "Home Improvement, Roofing Contractors, Siding Contractors ..."
+-    - image "Accredited Business"
+-    - text: "BBB Rating: A"
+-    - link "(929) 326-5632" [ref=e106]
+-    - text: "2 Macon St Apt 4C, Brooklyn, NY  11216"
+-  - generic [ref=e107]:
++      - link "Nagel Roofing, Inc." [ref=e213]
++    - text: "Roofing Contractors"
++    - image "not BBB accredited"
++    - link "(212) 727-8470" [ref=e214]
++    - text: "128 West 18th Street, New York, NY  10011"
++  - generic [ref=e215]:
+@@ -239,7 +242,5 @@
+-      - link "Northstar Restoration LLC" [ref=e108]
+-    - text: "Home Improvement, Roofing Contractors, Siding Contractors"
+-    - image "Accredited Business"
+-    - text: "BBB Rating: A+"
+-    - link "(551) 202-5200" [ref=e109]
+-    - text: "Cliffside Park, NJ  07010-1420"
+-    - link "Get a Quote" [ref=e110]
++      - link "West Star Roofing & Consruction Co.,Inc." [ref=e216]
++    - text: "Roofing Contractors"
++    - image "not BBB accredited"
++    - link "(212) 924-1453" [ref=e217]
++    - text: "508 West 20th Street, New York, NY  10011-2820"
+@@ -249,2 +250,2 @@
+-      - link "advertisement: NY Roofing Bronx" [ref=e198]
+-    - text: "Roofing Contractors"
++      - link "advertisement: SAS Contracting Co, Inc." [ref=e198]
++    - text: "ROOFING CONTRACTORS"
+@@ -252,3 +253,3 @@
+-    - text: "BBB Rating: A-"
+-    - link "(718) 725-7905" [ref=e199]
+-    - text: "553 Prospect Ave, Brooklyn, NY  11215"
++    - text: "BBB Rating: A+"
++    - link "(347) 221-6549" [ref=e218]
++    - text: "552 Rugby Rd, Brooklyn, NY  11230"
+@@ -263,2 +264,2 @@
+-      - listitem "15" [ref=e117]:
+-        - link "15" [ref=e118]: "Page  15"
++      - listitem "9" [ref=e219]:
++        - link "9" [ref=e220]: "Page  9"
+@@ -268 +269 @@
+-  - link "giveorgad" [ref=e202]:
++  - link "National Debt Relief" [ref=e221]:
+@@ -270 +271 @@
+-    - image "giveorgad"
++    - image "National Debt Relief"
+@@ -274 +275 @@
+-  - link "Forever Home Improvement Inc." [ref=e204]:
++  - link "royalrenovations banner ad" [ref=e222]:
+@@ -276 +277 @@
+-    - image "Forever Home Improvement Inc."
++    - image "royalrenovations banner ad"
+@@ -283,2 +284,0 @@
+-    - listitem "Home Improvement" [ref=e126]:
+-      - link "Home Improvement" [ref=e127]
+@@ -287,0 +286,10 @@
++    - listitem "Home Improvement" [ref=e126]:
++      - link "Home Improvement" [ref=e127]
++    - listitem "Waterproofing Contractors" [ref=e223]:
++      - link "Waterproofing Contractors" [ref=e224]
++    - listitem "Mason Contractors" [ref=e225]:
++      - link "Mason Contractors" [ref=e226]
++    - listitem "Bathroom Design" [ref=e227]:
++      - link "Bathroom Design" [ref=e228]
++    - listitem "Commercial Roofing" [ref=e229]:
++      - link "Commercial Roofing" [ref=e230]
+@@ -291,8 +300,0 @@
+-    - listitem "Windows" [ref=e134]:
+-      - link "Windows" [ref=e135]
+-    - listitem "Gutters" [ref=e136]:
+-      - link "Gutters" [ref=e137]
+-    - listitem "Gutter Contractors" [ref=e138]:
+-      - link "Gutter Contractors" [ref=e139]
+-    - listitem "Bathroom Remodel" [ref=e140]:
+-      - link "Bathroom Remodel" [ref=e141]
+@@ -306,0 +307 @@
++- progressbar: "loading..."
+@@ -357 +359 @@
+-    - button "Open LiveChat chat widget" [ref=f19e1]
++    - button "Open LiveChat chat widget" [ref=f12e2]
+</result>
+
+[9] tool_call: repl("Verifying filtered results")
+<request>
+const s5 = await snapshot(page);
+console.log(s5.tree);
+</request>
+<result tokens_used="54" elapsed_time="114ms">
+- title: "Search results for Roofing Contractors near 10002 | Search | Better Business Bureau" [url=https://www.bbb.org/search?find_country=USA&find_loc=10002&find_text=roofing%20contractors&page=1]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - link "BBB" [ref=e2]:
+    - image "BBB"
+    - text: "Homepage"
+  - navigation "Main navigation" [ref=e3]:
+    - list:
+      - listitem "Consumers" [ref=e4]:
+        - button "Consumers" [ref=e5]
+      - listitem "Businesses" [ref=e6]:
+        - button "Businesses" [ref=e7]
+      - listitem "Scam Tracker" [ref=e8]:
+        - button "Scam Tracker" [ref=e9]
+      - listitem "About" [ref=e10]:
+        - button "About" [ref=e11]
+  - button "Select language" [ref=e12]: "Language"
+  - button "My BBB" [ref=e13]
+  - search:
+    - label: "Find"
+    - combobox "Find" [ref=e14] [placeholder="businesses, category"]: "roofing contractors"
+    - button "clear entry" [ref=e15]
+    - status
+    - label: "Near"
+    - combobox "Near" [ref=e16] [placeholder="city, state, or zip"]: "10002"
+    - button "clear entry" [ref=e17]
+    - status
+    - label: "Country"
+    - combobox "Country" [ref=e18]: "US\n       United States"
+    - button "Search" [ref=e19]
+- main:
+  - navigation "breadcrumbs" [ref=e20]:
+    - list:
+      - listitem "Home" [ref=e21]:
+        - link "Home" [ref=e22]
+      - listitem ">New York" [ref=e23]:
+        - text: ">"
+        - link "New York" [ref=e24]
+      - listitem ">Manhattan" [ref=e25]:
+        - text: ">"
+        - link "Manhattan" [ref=e26]
+      - listitem ">" [ref=e27]: ">Roofing Contractors (current page)"
+  - text: "Category: Roofing Contractors"
+  - region "Filter by" [ref=e28]:
+    - heading "Filter by" [level=2]
+    - form:
+      - checkbox "BBB Accredited" [ref=e29] [hidden]
+      - label: "BBB Accredited"
+      - checkbox "Get a Quote" [ref=e30] [hidden]
+      - label: "Get a Quote"
+      - checkbox "Serving my Area" [ref=e31] [hidden]
+      - label: "Serving my Area"
+      - generic [ref=e32]:
+        - generic "Distance" [ref=e33]
+        - group "Distance":
+          - radio "All distances" [ref=e175] [hidden]
+          - label: "All distances"
+          - radio "< 5 Miles" [ref=e176] [hidden] [checked] [focused]
+          - label: "< 5 Miles"
+          - radio "< 10 Miles" [ref=e177] [hidden]
+          - label: "< 10 Miles"
+          - radio "< 25 Miles" [ref=e178] [hidden]
+          - label: "< 25 Miles"
+          - radio "< 50 Miles" [ref=e179] [hidden]
+          - label: "< 50 Miles"
+          - radio "< 100 Miles" [ref=e180] [hidden]
+          - label: "< 100 Miles"
+      - generic "Category" [ref=e35]
+      - generic "BBB Rating" [ref=e37]
+    - heading "Applied filters" [level=3]
+    - list:
+      - listitem:
+        - button "Remove filter:< 5 Miles" [ref=e208]
+    - button "Clear all filters" [ref=e209]
+  - text: "Sort By"
+  - combobox "Sort By" [ref=e38]: "Best Match"
+  - status: "Updated: 126 results available."
+  - heading "Showing: results for near 10002" [level=1]:
+    - text: "Showing: 126  results for  roofing contractors  near"
+    - link "10002" [ref=e210]
+  - heading "Search results" [level=2]
+  - generic [ref=e181]:
+    - link "Why are there ads on BBB.org?" [ref=e182]
+    - heading [level=3]:
+      - link "advertisement: William & Hugh Roofing" [ref=e183]
+    - text: "Roofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 954-0542" [ref=e184]
+    - text: "4512 46th St PMB 311, Sunnyside, NY  11104"
+    - link "Get a Quote" [ref=e185]
+  - generic [ref=e186]:
+    - link "Why are there ads on BBB.org?" [ref=e187]
+    - heading [level=3]:
+      - link "advertisement: Forever Home Improvement Inc." [ref=e188]
+    - text: "HOME IMPROVEMENTS"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(516) 551-8676" [ref=e189]
+    - text: "646 Centre Ave, Lindenhurst, NY  11757"
+    - link "Get a Quote" [ref=e190]
+  - generic [ref=e191]:
+    - link "Why are there ads on BBB.org?" [ref=e192]
+    - heading [level=3]:
+      - link "advertisement: North Star General Contractor Inc." [ref=e193]
+    - text: "General Contractor"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(800) 429-3722" [ref=e211]
+    - text: "4007 75th St Suite 1, Elmhurst, NY  11373"
+    - link "Get a Quote" [ref=e195]
+  - generic [ref=e40]:
+    - heading [level=3]:
+      - link "C Johnston Roofing, Waterproofing, & Painting" [ref=e41]
+    - text: "Roofing Contractors, Painting Contractors, Waterproofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(212) 206-2342" [ref=e42]
+    - text: "130 7th Ave Ste 349, New York, NY  10011-1803"
+    - link "Get a Quote" [ref=e43]
+  - generic [ref=e44]:
+    - heading [level=3]:
+      - link "BMJ Maintenance, LLC" [ref=e45]
+    - text: "General Contractor, Roofing Contractors, Construction Services ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(201) 420-0798" [ref=e46]
+    - text: "334 Park Ave, Hoboken, NJ  07030-3832"
+    - link "Get a Quote" [ref=e47]
+  - generic [ref=e48]:
+    - heading [level=3]:
+      - link "McGavin Roofing" [ref=e49]
+    - text: "Roofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e51]
+    - link "(718) 810-5775" [ref=e52]
+    - text: "7 Elk Street, New York, NY  10007-1277"
+    - link "Get a Quote" [ref=e53]
+  - generic [ref=e54]:
+    - heading [level=3]:
+      - link "Dawkins Development Group Inc." [ref=e55]
+    - text: "Construction Services, Handyman, Siding Contractors ..."
+    - image "Accredited Business"
+    - generic "BBB Rating: A+" [ref=e57]
+    - generic "Service Area" [ref=e59]
+    - link "(914) 835-8901" [ref=e60]
+    - text: "445 Park Ave Fl 9, New York, NY  10022-8606"
+    - link "Get a Quote" [ref=e61]
+  - generic [ref=e62]:
+    - heading [level=3]:
+      - link "Rehab Associates Inc." [ref=e63]
+    - text: "Home Improvement, Roofing Contractors, Siding Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e65]
+    - link "(800) 600-5400" [ref=e66]
+    - text: "101 Hudson St Ste 2100, Jersey City, NJ  07302-3929"
+    - link "Get a Quote" [ref=e67]
+  - generic [ref=e68]:
+    - heading [level=3]:
+      - link "NJ Pro Home Improvements" [ref=e69]
+    - text: "Home Improvement, Roofing Contractors, Painting Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e71]
+    - link "(201) 280-6366" [ref=e72]
+    - text: "Union City, NJ  07087-7605"
+    - link "Get a Quote" [ref=e73]
+  - generic [ref=e74]:
+    - heading [level=3]:
+      - link "Harbor Waterproofing Services LLC" [ref=e75]
+    - text: "Roofing Contractors, Waterproofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A"
+    - link "(718) 866-4000" [ref=e76]
+    - text: "3202 Greenpoint Ave, Long Island City, NY  11101-2010"
+    - link "Get a Quote" [ref=e77]
+  - generic [ref=e78]:
+    - heading [level=3]:
+      - link "Mighty Roofing Corp" [ref=e79]
+    - text: "Roofing Contractors, Siding Contractors, Skylights ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 873-1236" [ref=e80]
+    - text: "44 Court St Unit 1004, Brooklyn, NY  11201-4405"
+    - link "Get a Quote" [ref=e81]
+  - generic [ref=e82]:
+    - heading [level=3]:
+      - link "L.A. New York Restoration Corp." [ref=e83]
+    - text: "General Contractor, Roofing Contractors, Mason Contractors ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - generic "Service Area" [ref=e85]
+    - link "(718) 361-1909" [ref=e86]
+    - text: "4011 24th St, Long Island City, NY  11101-3946"
+    - link "Get a Quote" [ref=e87]
+  - generic [ref=e88]:
+    - heading [level=3]:
+      - link "All Weather Roofing and Waterproofing Corp." [ref=e89]
+    - text: "Roofing Contractors, Waterproofing Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 472-4424" [ref=e90]
+    - text: "4752 44th St, Woodside, NY  11377-6349"
+    - link "Get a Quote" [ref=e91]
+  - generic [ref=e92]:
+    - heading [level=3]:
+      - link "William & Hugh Roofing" [ref=e93]
+    - text: "Roofing Contractors, Siding Contractors, Gutters ..."
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 954-0542" [ref=e94]
+    - text: "4512 46th St PMB 311, Sunnyside, NY  11104-1702"
+    - link "Get a Quote" [ref=e95]
+  - generic [ref=e96]:
+    - heading [level=3]:
+      - link "NY Roofing Bronx" [ref=e97]
+    - text: "Roofing Contractors, Siding Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A-"
+    - link "(718) 725-7905" [ref=e98]
+    - text: "553 Prospect Ave, Brooklyn, NY  11215-7567"
+    - link "Get a Quote" [ref=e99]
+  - generic [ref=e100]:
+    - heading [level=3]:
+      - link "Premier Roofing Co., Inc." [ref=e101]
+    - text: "Roofing Contractors, Gutter Contractors"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(718) 638-3711" [ref=e102]
+    - text: "905 Atlantic Ave, Brooklyn, NY  11238-2704"
+    - link "Get a Quote" [ref=e103]
+  - generic [ref=e212]:
+    - heading [level=3]:
+      - link "Nagel Roofing, Inc." [ref=e213]
+    - text: "Roofing Contractors"
+    - image "not BBB accredited"
+    - link "(212) 727-8470" [ref=e214]
+    - text: "128 West 18th Street, New York, NY  10011"
+  - generic [ref=e215]:
+    - heading [level=3]:
+      - link "West Star Roofing & Consruction Co.,Inc." [ref=e216]
+    - text: "Roofing Contractors"
+    - image "not BBB accredited"
+    - link "(212) 924-1453" [ref=e217]
+    - text: "508 West 20th Street, New York, NY  10011-2820"
+  - generic [ref=e196]:
+    - link "Why are there ads on BBB.org?" [ref=e197]
+    - heading [level=3]:
+      - link "advertisement: SAS Contracting Co, Inc." [ref=e198]
+    - text: "ROOFING CONTRACTORS"
+    - image "Accredited Business"
+    - text: "BBB Rating: A+"
+    - link "(347) 221-6549" [ref=e218]
+    - text: "552 Rugby Rd, Brooklyn, NY  11230"
+    - link "Get a Quote" [ref=e200]
+  - navigation "pagination" [ref=e111]:
+    - list:
+      - listitem "1" [ref=e112]:
+        - link "1" [ref=e113]: "Page  1"
+      - listitem "2" [ref=e114]:
+        - link "2" [ref=e115]: "Page  2"
+      - listitem "..." [ref=e116]
+      - listitem "9" [ref=e219]:
+        - link "9" [ref=e220]: "Page  9"
+    - link "Next" [ref=e119]
+    - link "Last" [ref=e120]
+  - link "Why are there ads on BBB.org?" [ref=e201]
+  - link "National Debt Relief" [ref=e221]:
+    - text: "advertisement:"
+    - image "National Debt Relief"
+  - heading "Join Trusted Businesses" [level=2]
+  - link "Become BBB Accredited" [ref=e121]
+  - link "Why are there ads on BBB.org?" [ref=e203]
+  - link "royalrenovations banner ad" [ref=e222]:
+    - text: "advertisement:"
+    - image "royalrenovations banner ad"
+  - heading "Related Categories" [level=2]
+  - list:
+    - listitem "Roofing Contractors" [ref=e122]:
+      - link "Roofing Contractors" [ref=e123]
+    - listitem "Siding Contractors" [ref=e124]:
+      - link "Siding Contractors" [ref=e125]
+    - listitem "General Contractor" [ref=e128]:
+      - link "General Contractor" [ref=e129]
+    - listitem "Home Improvement" [ref=e126]:
+      - link "Home Improvement" [ref=e127]
+    - listitem "Waterproofing Contractors" [ref=e223]:
+      - link "Waterproofing Contractors" [ref=e224]
+    - listitem "Mason Contractors" [ref=e225]:
+      - link "Mason Contractors" [ref=e226]
+    - listitem "Bathroom Design" [ref=e227]:
+      - link "Bathroom Design" [ref=e228]
+    - listitem "Commercial Roofing" [ref=e229]:
+      - link "Commercial Roofing" [ref=e230]
+    - listitem "Construction Services" [ref=e130]:
+      - link "Construction Services" [ref=e131]
+    - listitem "Window Installation" [ref=e132]:
+      - link "Window Installation" [ref=e133]
+  - link "Why are there ads on BBB.org?" [ref=e205]
+  - link "northstaradbanner" [ref=e206]:
+    - text: "advertisement:"
+    - image "northstaradbanner"
+  - heading "Didn't find the business you were looking for?" [level=2]
+  - text: "If the business you're looking for isn't in our directory, submit a request to have it added."
+  - link "Request a Business" [ref=e142]
+- contentinfo:
+  - link "BBB" [ref=e143]
+  - heading "For Consumers" [level=2]
+  - list:
+    - listitem "Get a Quote" [ref=e144]:
+      - link "Get a Quote" [ref=e145]
+    - listitem "Start a Review" [ref=e146]:
+      - link "Start a Review" [ref=e147]
+    - listitem "File a Complaint" [ref=e148]:
+      - link "File a Complaint" [ref=e149]
+  - heading "For Businesses" [level=2]
+  - list:
+    - listitem "Get Your Business Listed" [ref=e150]:
+      - link "Get Your Business Listed" [ref=e151]
+    - listitem "BBB Accreditation" [ref=e152]:
+      - link "BBB Accreditation" [ref=e153]
+    - listitem "Apply for BBB Accreditation" [ref=e154]:
+      - link "Apply for BBB Accreditation" [ref=e155]
+  - heading "Affiliated Programs" [level=2]
+  - list:
+    - listitem "BBB Institute for Marketplace Trust" [ref=e156]:
+      - link "BBB Institute for Marketplace Trust" [ref=e157]
+    - listitem "BBB Wise Giving Alliance (Give.org)" [ref=e158]:
+      - link "BBB Wise Giving Alliance (Give.org)" [ref=e159]
+    - listitem "BBB National Programs" [ref=e160]:
+      - link "BBB National Programs" [ref=e161]
+  - list:
+    - listitem:
+      - link "our Twitter (opens in a new tab)" [ref=e162]
+    - listitem:
+      - link "our LinkedIn (opens in a new tab)" [ref=e163]
+    - listitem:
+      - link "our Facebook (opens in a new tab)" [ref=e164]
+    - listitem:
+      - link "our Instagram (opens in a new tab)" [ref=e165]
+  - navigation "footer navigation" [ref=e166]:
+    - list:
+      - listitem "About BBB®|" [ref=e167]:
+        - link "About BBB®" [ref=e168]
+        - text: "|"
+      - listitem "Terms of Use|" [ref=e169]:
+        - link "Terms of Use" [ref=e170]
+        - text: "|"
+      - listitem "Privacy Policy|" [ref=e171]:
+        - link "Privacy Policy" [ref=e172]
+        - text: "|"
+      - listitem "Contact Us" [ref=e173]:
+        - link "Contact Us" [ref=e174]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe "LiveChat chat widget" [ref=e207]:
+  - main:
+    - button "Open LiveChat chat widget" [ref=f12e2]
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[10] thinking: **Exploring roofing contractor search**
+
+I need to find roofing contractors within 5 miles of zip code 10002. There are 126 results, so I could say I found that many and provide just the first page. The user might only want to navigate to that page. I should also consider searching BBB for a report. Maybe I need to filter results because the current URL doesn’t reflect the distance properly. Also, I should mention any ads that may not meet the distance criteria.
+
+**Assessing roofing contractor search**
+
+It's crucial to note that ads may not align with the distance filter. I should separate ads from organic results since the user requested "roofing contractors within 5 miles," likely meaning to ignore advertisements. My plan is to collect organic results from the first page, perhaps the first 15 without ads. There could be multiple pages, leading to a total of 126 results. I might analyze URL parameters for distance to refine the search. Also, it’s important to mention that I found 126 results initially, along with the option to pull a full list.
+
+**Considering full contractor results**
+
+I can gather all 126 results, but I shouldn't necessarily list them all in the chat. Making a CSV artifact is an option, though the user hasn't asked for that explicitly. I should check if the page has filters or categories, as "within 5 miles" might include organizations that aren't strictly roofing contractors. It might be helpful to apply the BBB Accredited filter as well, even if the user didn't specify that. I could fetch and parse HTML to gather all the results across the pages.
+
+[11] tool_call: repl("Checking result page data")
+<request>
+const nextDataText1 = await page.locator('script#__NEXT_DATA__').count().catch(e=>0);
+console.log('nextData count', nextDataText1);
+if (nextDataText1) { console.log((await page.locator('script#__NEXT_DATA__').textContent()).slice(0,1000)); }
+</request>
+<result tokens_used="927" elapsed_time="29ms">
+nextData count 0
+</result>
+
+[12] thinking: **Exploring HTML Inspection**
+
+I’m considering using the DOM to inspect a small card in the HTML. I might want to utilize the locator with specific text and possibly call `page.locator('main').evaluate`. I think the key here is to stick to the exact selector 'main' without overcomplicating it. I'll work on this inspection, keeping it simple and straightforward to avoid any confusion in the process!
+
+[13] tool_call: repl("Inspecting result card structure")
+<request>
+const cardInfo1 = await page.locator('main').evaluate(el => {
+  const headings = [...el.querySelectorAll('h3')].slice(0,8).map(h => ({text:h.innerText, html:h.outerHTML.slice(0,300), parent:h.parentElement?.outerHTML.slice(0,500)}));
+  return headings;
+});
+console.log(JSON.stringify(cardInfo1, null, 2));
+</request>
+<result tokens_used="159" elapsed_time="591ms">
+[
+  {
+    "text": "Filter by",
+    "html": "<h3 class=\"bds-body leading-1 text-primary-medium-blue text-size-50\">Filter by</h3>",
+    "parent": "<div class=\"search-filters-dialog-form-header repel shadow-bottom\"><h3 class=\"bds-body leading-1 text-primary-medium-blue text-size-50\">Filter by</h3><button class=\"bds-button-unstyled\">Clear all</button></div>"
+  },
+  {
+    "text": "BBB Accredited",
+    "html": "<h3 class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" id=\"«R1ehbm»\">BBB Accredited</h3>",
+    "parent": "<section aria-labelledby=\"«R1ehbm»\"><h3 class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" id=\"«R1ehbm»\">BBB Accredited</h3><div class=\"pad-block-20 pad-inline-20\" style=\"padding-block-end:0\"><div class=\"bds-form-group\"><div class=\"bds-checkbox\" data-enhanced=\"\"><input id=\"«R19ehbm»\" type=\"checkbox\" name=\"filter_accredited\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" aria-hidden=\"true\" focusable=\"false\"><rect class=\"background\" width=\"31\" height=\"31\" stroke=\"curren"
+  },
+  {
+    "text": "Get a Quote",
+    "html": "<h3 class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" id=\"«R2ehbm»\">Get a Quote</h3>",
+    "parent": "<section aria-labelledby=\"«R2ehbm»\"><h3 class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" id=\"«R2ehbm»\">Get a Quote</h3><div class=\"pad-block-20 pad-inline-20\" style=\"padding-block-end:0\"><div class=\"bds-form-group\"><div class=\"bds-checkbox\" data-enhanced=\"\"><input id=\"«R1aehbm»\" type=\"checkbox\" name=\"filter_raq\" value=\"1\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" aria-hidden=\"true\" focusable=\"false\"><rect class=\"background\" width=\"31\" height=\"31\" stroke=\"curren"
+  },
+  {
+    "text": "Service Area",
+    "html": "<h3 class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" id=\"«R3ehbm»\">Service Area</h3>",
+    "parent": "<section aria-labelledby=\"«R3ehbm»\"><h3 class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" id=\"«R3ehbm»\">Service Area</h3><div class=\"pad-block-20 pad-inline-20\" style=\"padding-block-end:0\"><div class=\"bds-form-group\"><div class=\"bds-checkbox\" data-enhanced=\"\"><input id=\"«R1behbm»\" type=\"checkbox\" name=\"filter_sa\" value=\"1\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" aria-hidden=\"true\" focusable=\"false\"><rect class=\"background\" width=\"31\" height=\"31\" stroke=\"curren"
+  },
+  {
+    "text": "collapse filters:Distance",
+    "html": "<h3 id=\"«R4ehbm»\"><button aria-expanded=\"true\" type=\"button\"><span class=\"visually-hidden\">collapse filters:</span><span class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" data-label=\"\">Distance</span><span class=\"pad-block-8 pad-inline-10 bg-blue-dark text-white\" data-ico",
+    "parent": "<section aria-labelledby=\"«R4ehbm»\" class=\"filter-collapsible-section\"><h3 id=\"«R4ehbm»\"><button aria-expanded=\"true\" type=\"button\"><span class=\"visually-hidden\">collapse filters:</span><span class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" data-label=\"\">Distance</span><span class=\"pad-block-8 pad-inline-10 bg-blue-dark text-white\" data-icon-container=\"\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\" focusable=\"false\" height=\"1em\" width=\"1em\"><rect class=\"vert\" height=\""
+  },
+  {
+    "text": "expand filters:Category",
+    "html": "<h3 id=\"«R5ehbm»\"><button aria-expanded=\"false\" type=\"button\"><span class=\"visually-hidden\">expand filters:</span><span class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" data-label=\"\">Category</span><span class=\"pad-block-8 pad-inline-10 bg-blue-dark text-white\" data-icon",
+    "parent": "<section aria-labelledby=\"«R5ehbm»\" class=\"filter-collapsible-section\"><h3 id=\"«R5ehbm»\"><button aria-expanded=\"false\" type=\"button\"><span class=\"visually-hidden\">expand filters:</span><span class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" data-label=\"\">Category</span><span class=\"pad-block-8 pad-inline-10 bg-blue-dark text-white\" data-icon-container=\"\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\" focusable=\"false\" height=\"1em\" width=\"1em\"><rect class=\"vert\" height=\"2"
+  },
+  {
+    "text": "expand filters:BBB Rating",
+    "html": "<h3 id=\"«R6ehbm»\"><button aria-expanded=\"false\" type=\"button\"><span class=\"visually-hidden\">expand filters:</span><span class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" data-label=\"\">BBB Rating</span><span class=\"pad-block-8 pad-inline-10 bg-blue-dark text-white\" data-ic",
+    "parent": "<section aria-labelledby=\"«R6ehbm»\" class=\"filter-collapsible-section\"><h3 id=\"«R6ehbm»\"><button aria-expanded=\"false\" type=\"button\"><span class=\"visually-hidden\">expand filters:</span><span class=\"bg-blue-medium-8 font-semibold pad-block-8 pad-inline-20 text-size-10\" data-label=\"\">BBB Rating</span><span class=\"pad-block-8 pad-inline-10 bg-blue-dark text-white\" data-icon-container=\"\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\" focusable=\"false\" height=\"1em\" width=\"1em\"><rect class=\"vert\" height="
+  },
+  {
+    "text": "Applied filters",
+    "html": "<h3 class=\"visually-hidden\">Applied filters</h3>",
+    "parent": "<div style=\"--stack-space: 1.25rem;\"><h3 class=\"visually-hidden\">Applied filters</h3><div class=\"cluster text-size-5\" style=\"--gutter: 0.4375rem;\"><ul class=\"list-reset cluster\" style=\"--gutter: 0.375rem; margin-block: 0px;\"><li><button class=\"remove-filter-button with-icon bg-gray-40 pad-inline-10\" dir=\"rtl\" type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" aria-hidden=\"true\" class=\"icon text-size-3\" focusable=\"false\" height=\"1em\" width=\"1em\"><path d=\"M324.5 411.1c6.2 "
+  }
+]
+</result>
+
+[14] tool_call: repl("Inspecting business result elements")
+<request>
+const h3s2 = await page.locator('main').evaluate(el => [...el.querySelectorAll('h3')].map((h,i)=>({i, text:h.innerText, cls:h.className, parentClass:h.parentElement?.className, parentText:h.parentElement?.innerText?.slice(0,300)})).slice(8,40));
+console.log(JSON.stringify(h3s2, null, 2));
+</request>
+<result tokens_used="128" elapsed_time="3094ms">
+[
+  {
+    "i": 8,
+    "text": "advertisement:\nWilliam & Hugh Roofing",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "advertisement:\nWilliam & Hugh Roofing\n\nRoofing Contractors"
+  },
+  {
+    "i": 9,
+    "text": "advertisement:\nForever Home Improvement Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "advertisement:\nForever Home Improvement Inc.\n\nHOME IMPROVEMENTS"
+  },
+  {
+    "i": 10,
+    "text": "advertisement:\nNorth Star General Contractor Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "advertisement:\nNorth Star General Contractor Inc.\n\nGeneral Contractor"
+  },
+  {
+    "i": 11,
+    "text": "C Johnston Roofing, Waterproofing, & Painting",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "C Johnston Roofing, Waterproofing, & Painting\n\nRoofing Contractors, Painting Contractors, Waterproofing Contractors"
+  },
+  {
+    "i": 12,
+    "text": "BMJ Maintenance, LLC",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "BMJ Maintenance, LLC\n\nGeneral Contractor, Roofing Contractors, Construction Services ..."
+  },
+  {
+    "i": 13,
+    "text": "McGavin Roofing",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "McGavin Roofing\n\nRoofing Contractors"
+  },
+  {
+    "i": 14,
+    "text": "Dawkins Development Group Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "Dawkins Development Group Inc.\n\nConstruction Services, Handyman, Siding Contractors ..."
+  },
+  {
+    "i": 15,
+    "text": "Rehab Associates Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "Rehab Associates Inc.\n\nHome Improvement, Roofing Contractors, Siding Contractors ..."
+  },
+  {
+    "i": 16,
+    "text": "NJ Pro Home Improvements",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "NJ Pro Home Improvements\n\nHome Improvement, Roofing Contractors, Painting Contractors ..."
+  },
+  {
+    "i": 17,
+    "text": "Harbor Waterproofing Services LLC",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "Harbor Waterproofing Services LLC\n\nRoofing Contractors, Waterproofing Contractors"
+  },
+  {
+    "i": 18,
+    "text": "Mighty Roofing Corp",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "Mighty Roofing Corp\n\nRoofing Contractors, Siding Contractors, Skylights ..."
+  },
+  {
+    "i": 19,
+    "text": "L.A. New York Restoration Corp.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "L.A. New York Restoration Corp.\n\nGeneral Contractor, Roofing Contractors, Mason Contractors ..."
+  },
+  {
+    "i": 20,
+    "text": "All Weather Roofing and Waterproofing Corp.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "All Weather Roofing and Waterproofing Corp.\n\nRoofing Contractors, Waterproofing Contractors"
+  },
+  {
+    "i": 21,
+    "text": "William & Hugh Roofing",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "William & Hugh Roofing\n\nRoofing Contractors, Siding Contractors, Gutters ..."
+  },
+  {
+    "i": 22,
+    "text": "NY Roofing Bronx",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "NY Roofing Bronx\n\nRoofing Contractors, Siding Contractors"
+  },
+  {
+    "i": 23,
+    "text": "Premier Roofing Co., Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "Premier Roofing Co., Inc.\n\nRoofing Contractors, Gutter Contractors"
+  },
+  {
+    "i": 24,
+    "text": "Nagel Roofing, Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "Nagel Roofing, Inc.\n\nRoofing Contractors"
+  },
+  {
+    "i": 25,
+    "text": "West Star Roofing & Consruction Co.,Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "West Star Roofing & Consruction Co.,Inc.\n\nRoofing Contractors"
+  },
+  {
+    "i": 26,
+    "text": "advertisement:\nSAS Contracting Co, Inc.",
+    "cls": "bds-h4 result-business-name",
+    "parentClass": "stack",
+    "parentText": "advertisement:\nSAS Contracting Co, Inc.\n\nROOFING CONTRACTORS"
+  }
+]
+</result>
+
+[15] thinking: **Inspecting result-card elements**
+
+I feel like I should extract details from result-card elements. I realize that I need to identify the selector names. To do this, I think it’s a good idea to inspect the ancestor elements around the h3 tags. That way, I can find the right structure I need to work with. Okay, focusing on getting those details sorted out! Let’s see what I can figure out through inspection.
+
+[16] tool_call: repl("Inspecting result card HTML")
+<request>
+const resultHtml1 = await page.locator('h3.result-business-name').nth(3).evaluate(h => {
+ let n=h;
+ for (let i=0;i<5;i++){ n=n.parentElement; }
+ return n.outerHTML.slice(0,3000);
+});
+console.log(resultHtml1);
+</request>
+<result tokens_used="119" elapsed_time="288ms">
+<div class="search-results stack"><div class="ad-slot" data-has-ad="true"><div id="gam-elp-1" data-google-query-id="CI786MD_tZQDFZk_rQYdcJMkcw" style="display: none;"><div id="google_ads_iframe_/21848388897/Production/Unified-Search_3__container__" style="border: 0pt; display: inline-block; width: 100%; height: auto;"><iframe frameborder="0" src="https://1893f43ca1740699345d55f8d686746f.safeframe.googlesyndication.com/safeframe/1-0-45/html/container.html" id="google_ads_iframe_/21848388897/Production/Unified-Search_3" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="0" height="0" data-is-safeframe="true" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="private-state-token-redemption;attribution-reporting" aria-label="Advertisement" tabindex="0" data-google-container-id="4" style="border: 0px; vertical-align: bottom; min-width: 100%;" data-load-complete="true"></iframe></div></div><div class="card result-card"><a class="ad-disclosure bg-gray-40 text-size-5 text-black" href="//www.bbb.org/why-ads-on-bbb/" rel="noreferrer" target="_blank"><span aria-hidden="true">Ad</span><span class="visually-hidden">Why are there ads on BBB.org?</span></a><div class="stack" style="--stack-space: 0.625rem;"><div style="align-items: flex-start; display: flex; gap: 1.5rem;"><div class="stack" style="flex-grow: 1;"><h3 class="bds-h4 result-business-name"><a class="text-primary-medium-blue" href="https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjstd67ZikUynhIC78t-jJJPN-5g5fiLT4StQrku3wO2VLyNiPALU3hhIjvcY9Ae01C-hw-Dh7Qowbnv7n5-8JAJFKzkMrpMNbS3RLHZp1lPWxbZVhGlry8xQfZeAJT0Pf5cABLTNabd9DJdBFTNyoewoR8UGDy2UTCTBnbRQmcPgxdi9DNGnuhua34PjFwye9Qyq2E_M7wEjANcM5ML32DrAoiSobirE8rBN5t6ujzt0INcObs7ZIleMgMm1D5LkTecCvCOJRXZ82SoilRhPfwIeTo1DrB9CXq6N0mWplLMnD11ErX9Svcc96sbbwsKtxraUG_3dSqsqsPF9kijG-4_X5S0MlNM3uRJTrHsWhoQ7jGK9yugTu-WYP5OVuq6MR1Pl5xeZUOPFUBCvw5V8&amp;sai=AMfl-YT3F-wkhkzjB0qRAAQmFeaHv6gjHroxnKBjO_iGgk4nfRimLfBLFLrENv1a_RPsFpsgBsxvVzAc8f9NreBK10XBNvV7zOPIhychMoL4a1sI9JFBR25VSThoSeRDn4gDvQyImUWfrO3bnqm4xvVQRnSP3hJYggaq73bx72bl2EfVIYRv0ZEYrhou6ZdCfqdul_OD5U7GNcYfUFW5ElUaujmTECGiPX6Aw67woMX6Z1L6YolYLwNJ5RPtk8cgw6Ail7Uetb8S7IpLSoV-Z_Y4tuEW8HXVeIauZwHVH9ty6xjszZ62lFMEQdwkBGydHkFx5jyFJkolKTKEVRWDVlEyJjSAVxHts6SvtQEMOROgS4jt73Q02BlEr9I&amp;sig=Cg0ArKJSzDayJYnO4ed5EAE&amp;fbs_aeid=%5Bgw_fbsaeid%5D&amp;urlfix=1&amp;adurl=https://www.bbb.org/us/ny/sunnyside/profile/roofing-contractors/william-hugh-roofing-0121-160137" rel="sponsored"><span class="visually-hidden">advertisement: </span><span translate="no">William &amp; Hugh Roofing </span></a></h3><p class="bds-body text-size-4 text-gray-70" style="--stack-space: 0.125rem;">Roofing Contractors</p></div><span class="seal-wrapper"><img class="dtm-search-listing-seal dtm-search-listing-seal-rebrand" width="auto" height="55" alt="Accredited Business" src="https://m.bbb.org/brand/seals/Accredited_Busi
+</result>
+
+[17] thinking: **Extracting information**
+
+I noticed that we climbed too high, and it seems like I might need to consider using the .result-card class. I think I'll have to extract all relevant information from it. It feels a bit overwhelming, but I'll take it step by step to make sure I get everything I need. This task might take some extra clarity to avoid getting lost in the details! Let's figure it out and keep moving forward.
+
+[18] tool_call: repl("Extracting visible result cards")
+<request>
+const cards1 = await page.locator('.result-card').evaluateAll(cards => cards.map((card, idx) => {
+  const nameEl = card.querySelector('h3.result-business-name a');
+  const name = nameEl?.innerText.trim().replace(/^advertisement:\s*/i,'').replace(/\s+/g,' ');
+  const isAd = !!card.querySelector('.ad-disclosure') || /advertisement:/i.test(card.innerText);
+  const category = card.querySelector('h3.result-business-name')?.parentElement?.querySelector('p')?.innerText.trim();
+  const ratingText = [...card.querySelectorAll('*')].map(x=>x.textContent?.trim()).find(t=>/^BBB Rating:/i.test(t||''));
+  const rating = ratingText ? ratingText.replace(/\s+/g,' ') : '';
+  const phone = [...card.querySelectorAll('a')].map(a=>a.innerText.trim()).find(t=>/^\(\d{3}\)/.test(t)) || '';
+  const lines = card.innerText.split('\n').map(s=>s.trim()).filter(Boolean);
+  const address = lines.find(s => /\b\d{5}(?:-\d{4})?\b/.test(s) && !/^\(\d{3}\)/.test(s)) || '';
+  const href = nameEl?.href || '';
+  const accredited = card.querySelector('img[alt="Accredited Business"]') ? 'Yes' : (card.querySelector('img[alt="not BBB accredited"]') ? 'No' : '');
+  return {idx, isAd, name, category, accredited, rating, phone, address, href};
+}));
+console.log(JSON.stringify(cards1, null, 2));
+</request>
+<result tokens_used="448" elapsed_time="21ms">
+[
+  {
+    "idx": 0,
+    "isAd": true,
+    "name": "William & Hugh Roofing",
+    "category": "Roofing Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(718) 954-0542",
+    "address": "4512 46th St PMB 311, Sunnyside, NY 11104",
+    "href": "https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjstd67ZikUynhIC78t-jJJPN-5g5fiLT4StQrku3wO2VLyNiPALU3hhIjvcY9Ae01C-hw-Dh7Qowbnv7n5-8JAJFKzkMrpMNbS3RLHZp1lPWxbZVhGlry8xQfZeAJT0Pf5cABLTNabd9DJdBFTNyoewoR8UGDy2UTCTBnbRQmcPgxdi9DNGnuhua34PjFwye9Qyq2E_M7wEjANcM5ML32DrAoiSobirE8rBN5t6ujzt0INcObs7ZIleMgMm1D5LkTecCvCOJRXZ82SoilRhPfwIeTo1DrB9CXq6N0mWplLMnD11ErX9Svcc96sbbwsKtxraUG_3dSqsqsPF9kijG-4_X5S0MlNM3uRJTrHsWhoQ7jGK9yugTu-WYP5OVuq6MR1Pl5xeZUOPFUBCvw5V8&sai=AMfl-YT3F-wkhkzjB0qRAAQmFeaHv6gjHroxnKBjO_iGgk4nfRimLfBLFLrENv1a_RPsFpsgBsxvVzAc8f9NreBK10XBNvV7zOPIhychMoL4a1sI9JFBR25VSThoSeRDn4gDvQyImUWfrO3bnqm4xvVQRnSP3hJYggaq73bx72bl2EfVIYRv0ZEYrhou6ZdCfqdul_OD5U7GNcYfUFW5ElUaujmTECGiPX6Aw67woMX6Z1L6YolYLwNJ5RPtk8cgw6Ail7Uetb8S7IpLSoV-Z_Y4tuEW8HXVeIauZwHVH9ty6xjszZ62lFMEQdwkBGydHkFx5jyFJkolKTKEVRWDVlEyJjSAVxHts6SvtQEMOROgS4jt73Q02BlEr9I&sig=Cg0ArKJSzDayJYnO4ed5EAE&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl=https://www.bbb.org/us/ny/sunnyside/profile/roofing-contractors/william-hugh-roofing-0121-160137"
+  },
+  {
+    "idx": 1,
+    "isAd": true,
+    "name": "Forever Home Improvement Inc.",
+    "category": "HOME IMPROVEMENTS",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(516) 551-8676",
+    "address": "646 Centre Ave, Lindenhurst, NY 11757",
+    "href": "https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjss7vo0T1tOZGg3hoq4g52Aeg4YDFWWq0AHMNoQwA491Fao8h2xaSCs_BvQm6D9nZpJnbLfFNu9WQCQJpXVfZGPZcH256UsliVGK2qESXTgQcH_x9QTqEh082pif0pV1PVB7RNQ9Vp-lJC5agJNB4cahOLtzyR4gA97LWZh3tmNWdiLF1EC7Ep1TymSzhhYdyvN5RB0MuhF4NascKNhlGnhJYAfZnq-T0wp5VaF3VQURh1QS6cWM2yZMsYNx9Ur4-nKoiQoBKGtIq-p114NPd_a7BYtKjS4U0-i-qeiWGeTbaOW_8WI88v2uZqVSplWAXvNYToxr8OweJWQ0Zn8Lj-a239jQQNPzJUD79fpFMOPOcLPMbTwOKt-CturafeCLhr1MHCIMMMgRNXN1-wIk&sai=AMfl-YTdJzm6g4Tn4rTphsie1qCoAJTe0TOBn9Vi1FWQ1hCMDLoFrN6SMIAk6hLCznqoMvBmWnj26QjkcTNugjfOIcXCu85E8ifszgt82XjiHWEGJ1YrG_MeJxdcufDnxBixhguK7AlFbOZaRU_bCxCdp6Wj3FkRTD47_0XrxAocrW4pMgSkYPT-cc5KMeXQroUiDbccQjA8ZLtY0VwR0AFsOdHAYfaRWgP-LY14SSkAMQ1iu3eUw0W5a9uSqP0CvAzo8RxS3Wa1vDGDwIiJtlwfkzOORaLr8AkP6CqsvNMqsLGT8-QeU9xw5unFe3OHSAl0APPMIJEZlMPIeQqZ3Y02coJXGIjlJALPb4iP6RphbVHbRRGejp2f20g&sig=Cg0ArKJSzLexyW_lNiYGEAE&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl=https://www.bbb.org/us/ny/lindenhurst/profile/home-improvement/forever-home-improvement-inc-0121-137298"
+  },
+  {
+    "idx": 2,
+    "isAd": true,
+    "name": "North Star General Contractor Inc.",
+    "category": "General Contractor",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(800) 429-3722",
+    "address": "4007 75th St Suite 1, Elmhurst, NY 11373",
+    "href": "https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjst1uOJNPFeOpWr1lQoVhQn05mVmnE224dIqltuJNb6r2i2PVm3hkzWAJ3VZzIHNK5DvEQzyLkfn3vzERqsghrQeHVZRhWA8_PYZqqIAkREQfRX_nA3w2t6kSWeNfSyrm6xhqN4QqfKWGSG0k4HCXpkBzugr6zJYKP27DO12azBUsSxAYjY-U7dgbykF5y5ykcMMxQoacCahompJer6imdfGZghpuBFNPFuC7qWy4BPOIhjfn3F98ifFGtdSTG3st4hEFw2X-wLCLVChtuPyocvDJhb_Cu11YbQbn8zxKyZdJPHeWhsnY_GU6YdwhxHPYZ16KVpaf3MQYEPd8hdY-TrVUtv2qDcEIHVaA7I3TnLKfyZ7KmvzuERLebOr-K3uHkqE57M_mxBogcOM3K2t&sai=AMfl-YRpBkEKMH_dWLNZVfVrpf2aTMZt_LFpIdNcaWvDcVU5FYWaBldaGdknvfTLGkTY7P483zRwD_wCc5908ArEZpyjfOnW9P7441lGbJ0a_eq4geYHvGMNGNH5B0QcP1C6J74LDHuGUwnpxsSA3UIocPqmr4NlnpIIhEsXRuKnpTyImmUFYzsu2HW1hcNtum1E0ytn9Y9NQTJIQ1JWt5qM7LQpcR3R2mUCJWL1p9IdUgh3NbreX7DlzxfO7DB67EkG4um_MLopgDvrJ0jFKSClh3UPFi9w6pI_gTE0jOPrm9GkqT9mIc66V5sg1LbYAiK5pTzQK3sVvwn_yNF9tYGmUUQFvx6j6wh7aHQkN5cp_OZYHlG1wr_D_as&sig=Cg0ArKJSzGKPvmk7zcMHEAE&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl=https://www.bbb.org/us/ny/elmhurst/profile/general-contractor/north-star-general-contractor-inc-0121-139424"
+  },
+  {
+    "idx": 3,
+    "isAd": false,
+    "name": "C Johnston Roofing, Waterproofing, & Painting",
+    "category": "Roofing Contractors, Painting Contractors, Waterproofing Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(212) 206-2342",
+    "address": "130 7th Ave Ste 349, New York, NY 10011-1803",
+    "href": "https://www.bbb.org/us/ny/new-york/profile/roofing-contractors/c-johnston-roofing-waterproofing-painting-0121-98832"
+  },
+  {
+    "idx": 4,
+    "isAd": false,
+    "name": "BMJ Maintenance, LLC",
+    "category": "General Contractor, Roofing Contractors, Construction Services ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(201) 420-0798",
+    "address": "334 Park Ave, Hoboken, NJ 07030-3832",
+    "href": "https://www.bbb.org/us/nj/hoboken/profile/general-contractor/bmj-maintenance-llc-0221-90152778"
+  },
+  {
+    "idx": 5,
+    "isAd": false,
+    "name": "McGavin Roofing",
+    "category": "Roofing Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+Service AreaServing the following areas:Bronx County, NYKings County, NYNew York County, NYQueens County, NYRichmond County, NYNYUSA",
+    "phone": "(718) 810-5775",
+    "address": "7 Elk Street, New York, NY 10007-1277",
+    "href": "https://www.bbb.org/us/ny/new-york/profile/roofing-contractors/mcgavin-roofing-0121-130451"
+  },
+  {
+    "idx": 6,
+    "isAd": false,
+    "name": "Dawkins Development Group Inc.",
+    "category": "Construction Services, Handyman, Siding Contractors ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+This rating reflects BBB's opinion about the entire organization's interactions with its customers, including interactions with local locations.View HQ Business ProfileService AreaServing the following areas:NYUSA",
+    "phone": "(914) 835-8901",
+    "address": "445 Park Ave Fl 9, New York, NY 10022-8606",
+    "href": "https://www.bbb.org/us/ny/new-york/profile/construction-services/dawkins-development-group-inc-0121-141289/addressId/264892"
+  },
+  {
+    "idx": 7,
+    "isAd": false,
+    "name": "Rehab Associates Inc.",
+    "category": "Home Improvement, Roofing Contractors, Siding Contractors ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+Service AreaServing the following areas:CTNJNYUSA",
+    "phone": "(800) 600-5400",
+    "address": "101 Hudson St Ste 2100, Jersey City, NJ 07302-3929",
+    "href": "https://www.bbb.org/us/nj/jersey-city/profile/home-improvement/rehab-associates-inc-0221-17001939"
+  },
+  {
+    "idx": 8,
+    "isAd": false,
+    "name": "NJ Pro Home Improvements",
+    "category": "Home Improvement, Roofing Contractors, Painting Contractors ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+Service AreaServing the following areas:Bergen County, NJEssex County, NJHudson County, NJPassaic County, NJNJUSA",
+    "phone": "(201) 280-6366",
+    "address": "Union City, NJ 07087-7605",
+    "href": "https://www.bbb.org/us/nj/union-city/profile/home-improvement/nj-pro-home-improvements-0221-90218456"
+  },
+  {
+    "idx": 9,
+    "isAd": false,
+    "name": "Harbor Waterproofing Services LLC",
+    "category": "Roofing Contractors, Waterproofing Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A",
+    "phone": "(718) 866-4000",
+    "address": "3202 Greenpoint Ave, Long Island City, NY 11101-2010",
+    "href": "https://www.bbb.org/us/ny/long-island-city/profile/roofing-contractors/harbor-waterproofing-services-llc-0121-87183623"
+  },
+  {
+    "idx": 10,
+    "isAd": false,
+    "name": "Mighty Roofing Corp",
+    "category": "Roofing Contractors, Siding Contractors, Skylights ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(718) 873-1236",
+    "address": "44 Court St Unit 1004, Brooklyn, NY 11201-4405",
+    "href": "https://www.bbb.org/us/ny/brooklyn/profile/roofing-contractors/mighty-roofing-corp-0121-87177247"
+  },
+  {
+    "idx": 11,
+    "isAd": false,
+    "name": "L.A. New York Restoration Corp.",
+    "category": "General Contractor, Roofing Contractors, Mason Contractors ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+Service AreaServing the following areas:Arverne, NYAstoria, NYBayside, NYBellerose, NYBreezy Point, NYBronx, NYBrooklyn, NYCambria Heights, NYCollege Point, NYCorona, NYEast Elmhurst, NYElmhurst, NYFar Rockaway, NYFloral Park, NYFlushing, NYForest Hills, NYFresh Meadows, NYGlen Oaks, NYHollis, NYHoward Beach, NYmoreservice areas",
+    "phone": "(718) 361-1909",
+    "address": "4011 24th St, Long Island City, NY 11101-3946",
+    "href": "https://www.bbb.org/us/ny/long-island-city/profile/general-contractor/la-new-york-restoration-corp-0121-87144350"
+  },
+  {
+    "idx": 12,
+    "isAd": false,
+    "name": "All Weather Roofing and Waterproofing Corp.",
+    "category": "Roofing Contractors, Waterproofing Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(718) 472-4424",
+    "address": "4752 44th St, Woodside, NY 11377-6349",
+    "href": "https://www.bbb.org/us/ny/woodside/profile/roofing-contractors/all-weather-roofing-and-waterproofing-corp-0121-121546"
+  },
+  {
+    "idx": 13,
+    "isAd": false,
+    "name": "William & Hugh Roofing",
+    "category": "Roofing Contractors, Siding Contractors, Gutters ...",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(718) 954-0542",
+    "address": "4512 46th St PMB 311, Sunnyside, NY 11104-1702",
+    "href": "https://www.bbb.org/us/ny/sunnyside/profile/roofing-contractors/william-hugh-roofing--0121-160137"
+  },
+  {
+    "idx": 14,
+    "isAd": false,
+    "name": "NY Roofing Bronx",
+    "category": "Roofing Contractors, Siding Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A-",
+    "phone": "(718) 725-7905",
+    "address": "553 Prospect Ave, Brooklyn, NY 11215-7567",
+    "href": "https://www.bbb.org/us/ny/brooklyn/profile/roofing-contractors/ny-roofing-bronx-0121-87183402"
+  },
+  {
+    "idx": 15,
+    "isAd": false,
+    "name": "Premier Roofing Co., Inc.",
+    "category": "Roofing Contractors, Gutter Contractors",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(718) 638-3711",
+    "address": "905 Atlantic Ave, Brooklyn, NY 11238-2704",
+    "href": "https://www.bbb.org/us/ny/brooklyn/profile/roofing-contractors/premier-roofing-co-inc-0121-1230"
+  },
+  {
+    "idx": 16,
+    "isAd": false,
+    "name": "Nagel Roofing, Inc.",
+    "category": "Roofing Contractors",
+    "accredited": "No",
+    "rating": "",
+    "phone": "(212) 727-8470",
+    "address": "128 West 18th Street, New York, NY 10011",
+    "href": "https://www.bbb.org/us/ny/new-york/profile/roofing-contractors/nagel-roofing-inc-0121-13259"
+  },
+  {
+    "idx": 17,
+    "isAd": false,
+    "name": "West Star Roofing & Consruction Co.,Inc.",
+    "category": "Roofing Contractors",
+    "accredited": "No",
+    "rating": "",
+    "phone": "(212) 924-1453",
+    "address": "508 West 20th Street, New York, NY 10011-2820",
+    "href": "https://www.bbb.org/us/ny/new-york/profile/roofing-contractors/west-star-roofing-consruction-coinc-0121-21818/addressId/20620"
+  },
+  {
+    "idx": 18,
+    "isAd": true,
+    "name": "SAS Contracting Co, Inc.",
+    "category": "ROOFING CONTRACTORS",
+    "accredited": "Yes",
+    "rating": "BBB Rating: A+",
+    "phone": "(347) 221-6549",
+    "address": "552 Rugby Rd, Brooklyn, NY 11230",
+    "href": "https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjssD02HENy29U8X9CK_t9wMwB_TrvxcLYSqOO4lUFVqD-woMF7RYqLbyhKKVZ_RGqgxGqC4f0U2Z3FRjfXcPHEbEv5C4g7-HkUB3s8Exi5f33dDJEZM7AVMF_H1Am6ThcArjJkW1HcsWLmlKRXMlauP3JYJoY-wMAUnFjQhtxUA57Tpvu_sxgL-gnbIb6-arX8Nm-0XlNX2I88JvC8ujs51DAQ2rgwvJRSLDauepsTVARtceTGS5jxoYk2rCJFkpv5FBRe5EniaivMayodSvkfU-ArvHeLz6fonHc0WvtCoODqwWp8LMdCeKd4M4iGVxaIMNdGEIWAPPg4D5PJ48xdbjOH4pPbHRJGOiM5zN93LPt5Vj4kKJnEElKKbwsQZuVg7L-pvsBM3XYzKWXS_N&sai=AMfl-YRRxoU9OwiWb9xY_62uaMAjbnvvs4VZbG3WpKEWVS6rX-CNNXSJMUPXVs-F4GAvy2boz5f6UN-94apCkrLgzuLGDH95d25hIFhhXjw_5c1LNCn0UM1dDtYd1CyzjZ0QUoi1Lok73-zZuR9mXZIYeg8PJKT0QtnTA_h4LwJ5nrgD36BRsXrN3qyVJoLcWxzI3aMnrAM-NCVHWv7SAFKwFRe6bzpAtHNJeRlC8fXB-7FHeuv8AZr8gUeKxT-DPfIbYf27Y28lzbxMauQuehvdXtefsF8mJPDPBbs3q2SBInh0QT9bwr2KeQUBPnZQ4fVm1AHDKU5RdWbnVsqU96S8fT74QHTAm6Iu0jj7sGO5pnVgTaQs7zGo-UY&sig=Cg0ArKJSzFcaRY6jiBoSEAE&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl=https://www.bbb.org/us/ny/brooklyn/profile/roofing-contractors/sas-contracting-co-inc-0121-161078"
+  }
+]
+</result>
+
+[19] thinking: **Improving rating extraction**
+
+I'm thinking about the rating extraction process, which feels a bit greedy due to the nested text—it could definitely improve. The user asked for roofing contractors within 5 miles of zip code 10002, and I want to give a concise answer. I’ll consider if I need to include all pages, but presenting the best match from the first page might be enough. While I could consider gathering all 126 results into a CSV, the focus is on finding, not exporting.
+
+**Refining contractor retrieval**
+
+I need to refine how to retrieve the 126 roofing contractors and potentially highlight the top 15. Since the user asked to "find" contractors, they might expect all names included. My response could be: "Done. BBB shows 126 results filtered within 5 miles." I should clarify that I've excluded sponsored ads and confirm that the filter was applied correctly, showing the update status. If the user wants all 126, I should offer to export the full list without explicitly asking. The final format needs to be concise with names, ratings, phone numbers, and addresses.
+
+**Deciding on contractor results**
+
+I’m considering whether listing 15 rows is excessive—maybe 10 would be better. The first page shows 15 organic results labeled as "first non-ad results." Incorporating a "best match" sort could help too. I should mention the total count of 126 results but keep it manageable by listing only the top 10. The user didn’t specifically ask for top results, so providing too much information might overwhelm them. I’ll also clarify that “within 5 miles of 10002” might include companies servicing nearby areas.
+
+[20] assistant: Done. BBB is filtered for:
+
+- Category: Roofing Contractors
+- Near: 10002
+- Distance: < 5 miles
+- Results: 126
+
+First non-ad BBB results shown:
+
+| Business | BBB Rating | Phone | Address |
+|---|---:|---|---|
+| C Johnston Roofing, Waterproofing, & Painting | A+ | (212) 206-2342 | 130 7th Ave Ste 349, New York, NY 10011 |
+| BMJ Maintenance, LLC | A+ | (201) 420-0798 | 334 Park Ave, Hoboken, NJ 07030 |
+| McGavin Roofing | A+ | (718) 810-5775 | 7 Elk Street, New York, NY 10007 |
+| Dawkins Development Group Inc. | A+ | (914) 835-8901 | 445 Park Ave Fl 9, New York, NY 10022 |
+| Rehab Associates Inc. | A+ | (800) 600-5400 | 101 Hudson St Ste 2100, Jersey City, NJ 07302 |
+| NJ Pro Home Improvements | A+ | (201) 280-6366 | Union City, NJ 07087 |
+| Harbor Waterproofing Services LLC | A | (718) 866-4000 | 3202 Greenpoint Ave, Long Island City, NY 11101 |
+| Mighty Roofing Corp | A+ | (718) 873-1236 | 44 Court St Unit 1004, Brooklyn, NY 11201 |
+| L.A. New York Restoration Corp. | A+ | (718) 361-1909 | 4011 24th St, Long Island City, NY 11101 |
+| All Weather Roofing and Waterproofing Corp. | A+ | (718) 472-4424 | 4752 44th St, Woodside, NY 11377 |
+
+I left the BBB results page open with the 5-mile filter applied.

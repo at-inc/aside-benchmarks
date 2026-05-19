@@ -1,0 +1,2581 @@
+[1] user: Go to https://www.ycombinator.com/, Find all startup companies from the 2022 and 2023 Y Combinator batches that are based in France and currently have job openings.
+
+[2] thinking: **Searching for YC startups**
+
+I need to browse the Y Combinator site to find all startup companies from the 2022 and 2023 batches that are based in France and currently have job openings. I'll look for a directory that allows filtering by batch year and location while checking for hiring status. I could either use web search or the YC API for this, ensuring that I gather the most current data. Let's inspect the site and see what I can find!
+
+[3] tool_call: write_todos:
+Todo list updated:
+- [in_progress] t1: Inspect Y Combinator company directory filters and data sources
+- [pending] t2: Query/filter 2022 and 2023 batches for France and hiring status
+- [pending] t3: Verify results and provide final company list
+
+[4] assistant: I’ll inspect YC’s company directory directly and filter for France, 2022/2023 batches, and companies marked as hiring.
+
+[5] tool_call: repl("Opening Y Combinator")
+<request>
+const p1 = await openTab('https://www.ycombinator.com/');
+const s1 = await snapshot(page, {interactive: true});
+console.log(s1.tree);
+</request>
+<result tokens_used="100" elapsed_time="1551ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Y Combinator (https://www.ycombinator.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Y Combinator" [url=https://www.ycombinator.com/]
+- banner:
+  - navigation:
+    - link "About" [ref=e1]
+    - link "Companies" [ref=e2]
+    - link "Library" [ref=e3]
+    - link "Y Combinator" [ref=e4]
+    - link "Partners" [ref=e5]
+    - link "Resources" [ref=e6]
+    - link "Startup Jobs" [ref=e7]
+    - link "Open messages" [ref=e8]: "9"
+    - link "Chat with YC Agent" [ref=e9]
+    - button "User menu" [ref=e10]: "J"
+    - link "Apply" [ref=e11]
+- region: "YC  turns  builders  into  formidable founders[1][1] “A formidable person is one who seems like they’ll get what they want, regardless of whatever obstacles are in the way.”— Paul Graham"
+- region:
+  - button "OpenAI" [ref=e12]
+  - button "Airbnb" [ref=e13]
+  - button "Stripe" [ref=e14]
+  - button "Coinbase" [ref=e15]
+  - button "DoorDash" [ref=e16]
+  - button "Scale AI" [ref=e17]
+  - button "Dropbox" [ref=e18]
+  - button "Reddit" [ref=e19]
+  - button "Instacart" [ref=e20]
+  - button "GitLab" [ref=e21]
+  - button "Kalshi" [ref=e22]
+  - button "Replit" [ref=e23]
+  - button "Twitch" [ref=e24]
+  - button "$1.3 Trillion in combined valuation" [ref=e25]
+  - link "All companies" [ref=e26]
+- region:
+  - text: "In 2005, Y Combinator developed a new model of startup funding. Four times a year we invest $500k in a select group of startups. They move to San Francisco for three months, where we work intensively with them to get the company into the best possible shape, before they present to a large audience of investors on Demo Day.But YC doesn’t end on Demo Day. We and the YC alumni network continue to help founders for the life of their company, and beyond.Founder Founder Founder Founder Founder"
+  - heading "In Founders’ Words" [level=2]
+  - region:
+    - text: "YC compresses months of growth into weeks."
+    - button "Aman Mishra" [ref=e27]
+    - text: "The sense of urgency is so infectious among founders that it becomes the most productive period in most people’s lives."
+    - button "Adith Reddi" [ref=e28]
+    - text: "It’s a community of founders that you can’t find anywhere else."
+    - button "Bishesh Khadka" [ref=e29]
+    - text: "It feels like having the entire world at your back—from Partners to batchmates."
+    - button "Justin Lee" [ref=e30]
+    - text: "Being surrounded by the top 1% of founders in the world just completely resets the bar."
+    - button "Fern Morrison" [ref=e31]
+    - text: "You leave with a completely new sense of how fast ‘fast’ can be."
+    - button "Aman Mishra" [ref=e32]
+- region:
+  - heading "Be in the room with …" [level=2]: "Be in the room with …"
+- region:
+  - heading "All partners were YC founders first" [level=2]: "All partners were  YC founders first"
+  - link "Garry Tan Posterous, S08 Co-founder of Posterous (acquired by Twitter) and Initialized Capital. Earl" [ref=e33]
+  - link "Harj Taggar Auctomatic, W07 Co-founder and CEO of Triplebyte (acquired by Karat) and Auctomatic (acq" [ref=e34]
+  - link "Jared Friedman Scribd, S06 Co-founder of Scribd, one of the top 100 sites on the web. Harvard CS dro" [ref=e35]
+  - link "Aaron Epstein Creative Market, W10 Co-founder of Creative Market, generating over $100M in sales for" [ref=e36]
+  - link "Diana Hu Escher Reality, S17 Co-founder and CTO of Escher Reality (acquired by Niantic). Shipped AR " [ref=e37]
+  - link "Gustaf Alströmer Heysan, W07 Led Growth at Airbnb for 4.5 years. Co-founder of Heysan. Previously He" [ref=e38]
+  - link "Nicolas Dessaigne Algolia, W14 Co-founder of Algolia, a Search API used by millions of developers. P" [ref=e39]
+  - link "Tom Blomfield GoCardless, S11 Co-founder of Monzo (£500M raised, 10% UK population). Founded GoCardl" [ref=e40]
+  - link "Brad Flora Perfect Audience, S11 Co-founder and CEO of Perfect Audience (acquired by Marin Software)" [ref=e41]
+  - link "Pete Koomen Optimizely, W10 Co-founder of Optimizely, grew to $100M+ ARR before acquisition. Master’" [ref=e42]
+  - link "Ankit Gupta Reverie Labs, W18 Co-founder and CTO of Reverie Labs (acquired by Ginkgo Bioworks). Deep" [ref=e43]
+  - link "Tyler Bosmeny Clever, S12 Co-founder and CEO of Clever (acquired for $500M). Used by 60% of US stude" [ref=e44]
+  - link "David Lieb Bump, S09 Co-founder and CEO of Bump (150M+ users, acquired by Google). Co-founder of Goo" [ref=e45]
+  - link "Andrew Miklas PagerDuty, S10 Co-founder & CTO of PagerDuty (NYSE:PD), the first incident management " [ref=e46]
+  - link "Harshita Arora AtoB, S20 Co-founder of AtoB, a fintech startup worth $800M. Moved from India to SF o" [ref=e47]
+  - link "Jon Xu FutureAdvisor, S10 Co-founder and CTO of FutureAdvisor (acquired by BlackRock). Built robo-ad" [ref=e48]
+- region:
+  - heading "Knowledge & News" [level=2]
+  - article:
+    - link "Andrej Karpathy: Software Is Changing (Again)" [ref=e49]:
+      - text: "Karpathy on AI▶"
+      - heading "Andrej Karpathy: Software Is Changing (Again)" [level=3]
+  - article:
+    - link "How To Build The Future: Sam Altman" [ref=e50]:
+      - text: "How to Build the Future▶"
+      - heading "How To Build The Future: Sam Altman" [level=3]
+  - article:
+    - link "YC Partners Answer Your Questions" [ref=e51]:
+      - text: "Office Hours Series▶"
+      - heading "YC Partners Answer Your Questions" [level=3]
+  - article:
+    - link "Lightcone Podcast - Billion-Dollar Unpopular Startup Ideas▶LIGHTCONE PODCAST Billion-Dollar Unpopula" [ref=e52]
+  - complementary:
+    - heading [level=4]: "Startup News"
+    - link "Announcing the YC AI Stack›" [ref=e53]
+    - link "Emergent Raises $70M Series B at $300M Valuation›" [ref=e54]
+    - link "Govdash Raises $30M Series B›" [ref=e55]
+    - link "Fleetzero Raises $43M Series A for Battery-Powered Cargo Ships›" [ref=e56]
+    - link "Deepgram Raises $130M Series C›" [ref=e57]
+    - heading [level=4]: "Paul Graham Essays"
+    - link "Default Alive or Default Dead›" [ref=e58]
+    - link "Do Things that Don’t Scale›" [ref=e59]
+    - link "Be Relentlessly Resourceful›" [ref=e60]
+    - link "How to Get Startup Ideas›" [ref=e61]
+    - link "Startup = Growth›" [ref=e62]
+- region:
+  - text: "It's never too early to apply.We fund companies with no revenue, product, or fully baked idea."
+  - link "Apply" [ref=e63]
+  - text: "Founder Founder Founder Founder Founder"
+- contentinfo "Footer":
+  - link "Y Combinator" [ref=e64]: "Y Combinator Y Combinator"
+  - heading "Make something people want." [level=3]
+  - heading "Programs" [level=3]
+  - link "YC Program" [ref=e65]
+  - link "Startup School" [ref=e66]
+  - link "Work at a Startup" [ref=e67]
+  - link "Co-Founder Matching" [ref=e68]
+  - heading "Resources" [level=3]
+  - link "Startup Directory" [ref=e69]
+  - link "Startup Library" [ref=e70]
+  - link "Investors" [ref=e71]
+  - link "Demo Day" [ref=e72]
+  - link "Safe" [ref=e73]
+  - link "Hacker News" [ref=e74]
+  - link "Launch YC" [ref=e75]
+  - link "YC Deals" [ref=e76]
+  - heading "Company" [level=3]
+  - link "YC Blog" [ref=e77]
+  - link "Contact" [ref=e78]
+  - link "Press" [ref=e79]
+  - link "People" [ref=e80]
+  - link "Careers" [ref=e81]
+  - link "Privacy Policy" [ref=e82]
+  - link "Notice at Collection" [ref=e83]
+  - link "Security" [ref=e84]
+  - link "Terms of Use" [ref=e85]
+  - link "Twitter" [ref=e86]
+  - link "Facebook" [ref=e87]
+  - link "Instagram" [ref=e88]
+  - link "LinkedIn" [ref=e89]
+  - link "Youtube" [ref=e90]
+  - text: "© 2026  Y Combinator"
+</result>
+
+[6] thinking: **Deciding how to access company data**
+
+I need to figure out how to get the company data. My initial thought is to click on "Companies" or check the directory at /companies. It seems like those would be the right paths to find what I need, but I want to make sure I'm following the right steps to access the data effectively. Gathering the right information is key here! Let's see how this works out.
+
+[7] tool_call: repl("Opening companies directory")
+<request>
+await page.locator('e2').click();
+const s2 = await snapshot(page, {interactive: true});
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="79" elapsed_time="777ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "The YC Startup Directory | Y Combinator" [url=https://www.ycombinator.com/companies]
+- banner:
+  - navigation:
+    - link "About" [ref=e1]
+    - link "Companies" [ref=e2]
+    - link "Library" [ref=e3]
+    - link "Y Combinator" [ref=e4]
+    - link "Partners" [ref=e5]
+    - link "Resources" [ref=e6]
+    - link "Startup Jobs" [ref=e7]
+    - button "User menu" [ref=e8]: "J"
+    - link "Apply" [ref=e9]
+- heading "Startup Directory" [level=1]
+- text: "Since 2005, we have invested in over 5,000 companies that have a combined valuation of over $1T. To find jobs at these startups, visit"
+- link "Work at a Startup" [ref=e10]
+- text: ".Sort by"
+- combobox "Default" [ref=e11]:
+  - option "Default" (selected) value="YCCompany_production"
+  - option "Launch Date" value="YCCompany_By_Launch_Date_production"
+- checkbox "💎 Top Companies" [ref=e12]
+- generic "💎 Top Companies" [ref=e13]
+- checkbox "Is Hiring" [ref=e14]
+- generic "Is Hiring" [ref=e15]
+- checkbox "Nonprofit" [ref=e16]
+- generic "Nonprofit" [ref=e17]
+- heading "Batch" [level=4]
+- checkbox "All batches" [ref=e19] [checked]
+- generic "All batches" [ref=e20]
+- checkbox "Winter 2027" [ref=e21]
+- generic "Winter 2027" [ref=e22]
+- checkbox "Fall 2026" [ref=e23]
+- generic "Fall 2026" [ref=e24]
+- checkbox "Summer 2026" [ref=e25]
+- generic "Summer 2026" [ref=e26]
+- checkbox "Spring 2026" [ref=e27]
+- generic "Spring 2026" [ref=e28]
+- checkbox "Winter 2026" [ref=e29]
+- generic "Winter 2026" [ref=e30]
+- checkbox "Fall 2025" [ref=e31]
+- generic "Fall 2025" [ref=e32]
+- checkbox "Summer 2025" [ref=e33]
+- generic "Summer 2025" [ref=e34]
+- link "See all options" [ref=e35]
+- heading "Industry" [level=4]
+- checkbox "All industries" [ref=e37] [checked]
+- generic "All industries" [ref=e38]
+- checkbox "B2B" [ref=e39]
+- button [ref=e40]
+- generic "B2B" [ref=e41]
+- checkbox "Consumer" [ref=e42]
+- button [ref=e43]
+- generic "Consumer" [ref=e44]
+- checkbox "Fintech" [ref=e45]
+- button [ref=e46]
+- generic "Fintech" [ref=e47]
+- checkbox "Healthcare" [ref=e48]
+- button [ref=e49]
+- generic "Healthcare" [ref=e50]
+- checkbox "Education" [ref=e51]
+- generic "Education" [ref=e52]
+- checkbox "Industrials" [ref=e53]
+- button [ref=e54]
+- generic "Industrials" [ref=e55]
+- checkbox "Real Estate and Construction" [ref=e56]
+- button [ref=e57]
+- generic "Real Estate and Construction" [ref=e58]
+- link "See all options" [ref=e59]
+- heading "HQ Region" [level=4]
+- checkbox "Anywhere" [ref=e61] [checked]
+- generic "Anywhere" [ref=e62]
+- checkbox "America / Canada" [ref=e63]
+- button [ref=e64]
+- generic "America / Canada" [ref=e65]
+- checkbox "Remote" [ref=e66]
+- button [ref=e67]
+- generic "Remote" [ref=e68]
+- checkbox "Europe" [ref=e69]
+- button [ref=e70]
+- generic "Europe" [ref=e71]
+- checkbox "South Asia" [ref=e72]
+- button [ref=e73]
+- generic "South Asia" [ref=e74]
+- checkbox "Latin America" [ref=e75]
+- button [ref=e76]
+- generic "Latin America" [ref=e77]
+- checkbox "Southeast Asia" [ref=e78]
+- button [ref=e79]
+- generic "Southeast Asia" [ref=e80]
+- checkbox "Africa" [ref=e81]
+- button [ref=e82]
+- generic "Africa" [ref=e83]
+- checkbox "Middle East and North Africa" [ref=e84]
+- button [ref=e85]
+- generic "Middle East and North Africa" [ref=e86]
+- checkbox "East Asia" [ref=e87]
+- button [ref=e88]
+- generic "East Asia" [ref=e89]
+- checkbox "Oceania" [ref=e90]
+- button [ref=e91]
+- generic "Oceania" [ref=e92]
+- heading "Company Size" [level=4]
+- text: "1 - 1,000+"
+- slider [ref=e93]
+- slider [ref=e94]
+- checkbox "Public Application Video" [ref=e95]
+- generic "Public Application Video" [ref=e96]
+- checkbox "Public Demo Day Video" [ref=e97]
+- generic "Public Demo Day Video" [ref=e98]
+- checkbox "Has Application Answers" [ref=e99]
+- generic "Has Application Answers" [ref=e100]
+- checkbox "Has Bonus Questions" [ref=e101]
+- generic "Has Bonus Questions" [ref=e102]
+- textbox "Search..." [ref=e103] [focused] [placeholder="Search..."]
+- text: "Loading  companies..."
+- contentinfo "Footer":
+  - link "Y Combinator" [ref=e104]: "Y Combinator Y Combinator"
+  - heading "Make something people want." [level=3]
+  - heading "Programs" [level=3]
+  - link "YC Program" [ref=e105]
+  - link "Startup School" [ref=e106]
+  - link "Work at a Startup" [ref=e107]
+  - link "Co-Founder Matching" [ref=e108]
+  - heading "Resources" [level=3]
+  - link "Startup Directory" [ref=e109]
+  - link "Startup Library" [ref=e110]
+  - link "Investors" [ref=e111]
+  - link "Demo Day" [ref=e112]
+  - link "Safe" [ref=e113]
+  - link "Hacker News" [ref=e114]
+  - link "Launch YC" [ref=e115]
+  - link "YC Deals" [ref=e116]
+  - heading "Company" [level=3]
+  - link "YC Blog" [ref=e117]
+  - link "Contact" [ref=e118]
+  - link "Press" [ref=e119]
+  - link "People" [ref=e120]
+  - link "Careers" [ref=e121]
+  - link "Privacy Policy" [ref=e122]
+  - link "Notice at Collection" [ref=e123]
+  - link "Security" [ref=e124]
+  - link "Terms of Use" [ref=e125]
+  - link "Twitter" [ref=e126]
+  - link "Facebook" [ref=e127]
+  - link "Instagram" [ref=e128]
+  - link "LinkedIn" [ref=e129]
+  - link "Youtube" [ref=e130]
+  - text: "© 2026  Y Combinator"
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[8] thinking: **Inspecting data sources**
+
+I need to gather data from Algolia. I might consider interacting with filters, but I'm wondering if the exact "France" locations won't be visible in the UI. It could be helpful to inspect the network or page scripts, using fetch with JS instead of page content. Maybe I can use the developer tools to check the loaded network and fetch the app JS to extract the Algolia indexes. I'll take a snapshot after everything's loaded.
+
+[9] tool_call: repl("Reading loaded directory")
+<request>
+const s3 = await snapshot(page);
+console.log(s3.tree);
+</request>
+<result tokens_used="117" elapsed_time="97ms">
+- title: "The YC Startup Directory | Y Combinator" [url=https://www.ycombinator.com/companies]
+- banner:
+  - navigation:
+    - link "About" [ref=e1]
+    - link "Companies" [ref=e2]
+    - link "Library" [ref=e3]
+    - link "Y Combinator" [ref=e4]:
+      - image "Y Combinator"
+    - link "Partners" [ref=e5]
+    - link "Resources" [ref=e6]
+    - link "Startup Jobs" [ref=e7]
+    - link "Open messages" [ref=e131]: "9"
+    - link "Chat with YC Agent" [ref=e132]
+    - button "User menu" [ref=e8]: "J"
+    - link "Apply" [ref=e9]
+- heading "Startup Directory" [level=1]
+- paragraph:
+  - text: "Since 2005, we have invested in over 5,000 companies that have a combined valuation of over $1T. To find jobs at these startups, visit"
+  - link "Work at a Startup" [ref=e10]
+  - text: "."
+- label: "Sort by"
+- combobox "Default" [ref=e11]:
+  - option "Default" (selected) value="YCCompany_production"
+  - option "Launch Date" value="YCCompany_By_Launch_Date_production"
+- label:
+  - checkbox "💎 Top Companies91" [ref=e133]
+  - generic "💎 Top Companies" [ref=e13]
+  - generic "91" [ref=e134]
+- label:
+  - checkbox "Is Hiring1462" [ref=e135]
+  - generic "Is Hiring" [ref=e15]
+  - generic "1462" [ref=e136]
+- label:
+  - checkbox "Nonprofit42" [ref=e137]
+  - generic "Nonprofit" [ref=e17]
+  - generic "42" [ref=e138]
+- heading "Batch" [level=4]
+- label:
+  - checkbox "All batches5903" [ref=e139] [checked]
+  - generic "All batches" [ref=e20]
+  - generic "5903" [ref=e140]
+- label:
+  - checkbox "Winter 20271" [ref=e141]
+  - generic "Winter 2027" [ref=e22]
+  - generic "1" [ref=e142]
+- label:
+  - checkbox "Fall 20261" [ref=e143]
+  - generic "Fall 2026" [ref=e24]
+  - generic "1" [ref=e144]
+- label:
+  - checkbox "Summer 20263" [ref=e145]
+  - generic "Summer 2026" [ref=e26]
+  - generic "3" [ref=e146]
+- label:
+  - checkbox "Spring 2026149" [ref=e147]
+  - generic "Spring 2026" [ref=e28]
+  - generic "149" [ref=e148]
+- label:
+  - checkbox "Winter 2026199" [ref=e149]
+  - generic "Winter 2026" [ref=e30]
+  - generic "199" [ref=e150]
+- label:
+  - checkbox "Fall 2025148" [ref=e151]
+  - generic "Fall 2025" [ref=e32]
+  - generic "148" [ref=e152]
+- label:
+  - checkbox "Summer 2025167" [ref=e153]
+  - generic "Summer 2025" [ref=e34]
+  - generic "167" [ref=e154]
+- link "See all options" [ref=e35]
+- heading "Industry" [level=4]
+- label:
+  - checkbox "All industries5903" [ref=e155] [checked]
+  - generic "All industries" [ref=e38]
+  - generic "5903" [ref=e156]
+- label:
+  - checkbox "B2B3020" [ref=e157]
+  - button [ref=e40]
+  - generic "B2B" [ref=e41]
+  - generic "3020" [ref=e158]
+- label:
+  - checkbox "Consumer872" [ref=e159]
+  - button [ref=e43]
+  - generic "Consumer" [ref=e44]
+  - generic "872" [ref=e160]
+- label:
+  - checkbox "Fintech623" [ref=e161]
+  - button [ref=e46]
+  - generic "Fintech" [ref=e47]
+  - generic "623" [ref=e162]
+- label:
+  - checkbox "Healthcare671" [ref=e163]
+  - button [ref=e49]
+  - generic "Healthcare" [ref=e50]
+  - generic "671" [ref=e164]
+- label:
+  - checkbox "Education124" [ref=e165]
+  - generic "Education" [ref=e52]
+  - generic "124" [ref=e166]
+- label:
+  - checkbox "Industrials379" [ref=e167]
+  - button [ref=e54]
+  - generic "Industrials" [ref=e55]
+  - generic "379" [ref=e168]
+- label:
+  - checkbox "Real Estate and Construction155" [ref=e169]
+  - button [ref=e57]
+  - generic "Real Estate and Construction" [ref=e58]
+  - generic "155" [ref=e170]
+- link "See all options" [ref=e59]
+- heading "HQ Region" [level=4]
+- label:
+  - checkbox "Anywhere5903" [ref=e171] [checked]
+  - generic "Anywhere" [ref=e62]
+  - generic "5903" [ref=e172]
+- label:
+  - checkbox "America / Canada4479" [ref=e173]
+  - button [ref=e64]
+  - generic "America / Canada" [ref=e65]
+  - generic "4479" [ref=e174]
+- label:
+  - checkbox "Remote3013" [ref=e175]
+  - button [ref=e67]
+  - generic "Remote" [ref=e68]
+  - generic "3013" [ref=e176]
+- label:
+  - checkbox "Europe435" [ref=e177]
+  - button [ref=e70]
+  - generic "Europe" [ref=e71]
+  - generic "435" [ref=e178]
+- label:
+  - checkbox "South Asia221" [ref=e179]
+  - button [ref=e73]
+  - generic "South Asia" [ref=e74]
+  - generic "221" [ref=e180]
+- label:
+  - checkbox "Latin America214" [ref=e181]
+  - button [ref=e76]
+  - generic "Latin America" [ref=e77]
+  - generic "214" [ref=e182]
+- label:
+  - checkbox "Southeast Asia105" [ref=e183]
+  - button [ref=e79]
+  - generic "Southeast Asia" [ref=e80]
+  - generic "105" [ref=e184]
+- label:
+  - checkbox "Africa85" [ref=e185]
+  - button [ref=e82]
+  - generic "Africa" [ref=e83]
+  - generic "85" [ref=e186]
+- label:
+  - checkbox "Middle East and North Africa69" [ref=e187]
+  - button [ref=e85]
+  - generic "Middle East and North Africa" [ref=e86]
+  - generic "69" [ref=e188]
+- label:
+  - checkbox "East Asia21" [ref=e189]
+  - button [ref=e88]
+  - generic "East Asia" [ref=e89]
+  - generic "21" [ref=e190]
+- label:
+  - checkbox "Oceania14" [ref=e191]
+  - button [ref=e91]
+  - generic "Oceania" [ref=e92]
+  - generic "14" [ref=e192]
+- heading "Company Size" [level=4]
+- text: "1 - 1,000+"
+- slider [ref=e93]
+- slider [ref=e94]
+- label:
+  - checkbox "Public Application Video101" [ref=e193]
+  - generic "Public Application Video" [ref=e96]
+  - generic "101" [ref=e194]
+- label:
+  - checkbox "Public Demo Day Video156" [ref=e195]
+  - generic "Public Demo Day Video" [ref=e98]
+  - generic "156" [ref=e196]
+- label:
+  - checkbox "Has Application Answers64" [ref=e197]
+  - generic "Has Application Answers" [ref=e100]
+  - generic "64" [ref=e198]
+- label:
+  - checkbox "Has Bonus Questions210" [ref=e199]
+  - generic "Has Bonus Questions" [ref=e102]
+  - generic "210" [ref=e200]
+- textbox "Search..." [ref=e103] [focused] [placeholder="Search..."]
+- text: "Showing  40  of  1,000+ companies"
+- link [ref=e201]:
+  - text: "Airbnb San Francisco, CA, USA Book accommodations around the world."
+  - link "Winter 2009" [ref=e202]
+  - link "Consumer" [ref=e203]
+  - link "Travel, Leisure and Tourism" [ref=e204]
+- link [ref=e205]:
+  - text: "DoorDash San Francisco, CA, USA Restaurant delivery."
+  - link "Summer 2013" [ref=e206]
+  - link "Consumer" [ref=e207]
+  - link "Food and Beverage" [ref=e208]
+- link [ref=e209]:
+  - text: "Coinbase Los Angeles, CA, USA Buy, sell, and manage cryptocurrencies."
+  - link "Summer 2012" [ref=e210]
+  - link "Fintech" [ref=e211]
+  - link "Banking and Exchange" [ref=e212]
+- link [ref=e213]:
+  - text: "Groww Bengaluru, KA, India Making financial services simple, transparent and delightful."
+  - link "Winter 2018" [ref=e214]
+  - link "Fintech" [ref=e215]
+  - link "Asset Management" [ref=e216]
+- link [ref=e217]:
+  - text: "Oklo Santa Clara, CA, USA Emission free, always on power from advanced fission power plants."
+  - link "Summer 2014" [ref=e218]
+  - link "Industrials" [ref=e219]
+  - link "Energy" [ref=e220]
+- link [ref=e221]:
+  - text: "Meesho Bengaluru, KA, India Democratizing internet commerce for everyone in India"
+  - link "Summer 2016" [ref=e222]
+  - link "B2B" [ref=e223]
+  - link "Retail" [ref=e224]
+- link [ref=e225]:
+  - text: "Instacart San Francisco, CA, USA Marketplace for grocery delivery and pickup"
+  - link "Summer 2012" [ref=e226]
+  - link "Consumer" [ref=e227]
+  - link "Food and Beverage" [ref=e228]
+- link [ref=e229]:
+  - text: "Dropbox San Francisco, CA, USA Backup and share files in the cloud."
+  - link "Summer 2007" [ref=e230]
+  - link "B2B" [ref=e231]
+  - link "Productivity" [ref=e232]
+- link [ref=e233]:
+  - text: "Rigetti Computing Berkeley, CA, USA Quantum coherent supercomputing."
+  - link "Summer 2014" [ref=e234]
+  - link "Industrials" [ref=e235]
+  - link "Manufacturing and Robotics" [ref=e236]
+- link [ref=e237]:
+  - text: "EquipmentShare Columbia, MO, USA Cloud solutions for the construction industry."
+  - link "Winter 2015" [ref=e238]
+  - link "Real Estate and Construction" [ref=e239]
+  - link "Construction" [ref=e240]
+- link [ref=e241]:
+  - text: "BillionToOne Menlo Park, CA, USA The genetic testing platform detecting and measuring disease."
+  - link "Summer 2017" [ref=e242]
+  - link "Healthcare" [ref=e243]
+  - link "Diagnostics" [ref=e244]
+- link [ref=e245]:
+  - text: "GitLab San Francisco, CA, USA A complete DevOps platform delivered as a single application."
+  - link "Winter 2015" [ref=e246]
+  - link "B2B" [ref=e247]
+  - link "Engineering, Product and Design" [ref=e248]
+- link [ref=e249]:
+  - text: "Matterport Sunnyvale, CA, USA Turn physical objects and environments into 3D models in seconds."
+  - link "Winter 2012" [ref=e250]
+  - link "Consumer" [ref=e251]
+  - link "Virtual and Augmented Reality" [ref=e252]
+- link [ref=e253]:
+  - text: "Amplitude San Francisco, CA, USA Digital Analytics Platform"
+  - link "Winter 2012" [ref=e254]
+  - link "B2B" [ref=e255]
+  - link "Analytics" [ref=e256]
+- link [ref=e257]:
+  - text: "Ginkgo Bioworks Boston, MA, USA Our mission is to make biology easier to engineer."
+  - link "Summer 2014" [ref=e258]
+  - link "Healthcare" [ref=e259]
+  - link "Industrial Bio" [ref=e260]
+- link [ref=e261]:
+  - text: "PagerDuty San Francisco, CA, USA Real-time visibility into critical apps and services all in one place."
+  - link "Summer 2010" [ref=e262]
+  - link "B2B" [ref=e263]
+  - link "Engineering, Product and Design" [ref=e264]
+- link [ref=e265]:
+  - text: "Weave Lehi, UT, USA Customer communication and payments platform."
+  - link "Winter 2014" [ref=e266]
+  - link "B2B" [ref=e267]
+  - link "Office Management" [ref=e268]
+- link [ref=e269]:
+  - text: "Pardes Biosciences San Francisco, CA, USA We break viruses"
+  - link "Summer 2020" [ref=e270]
+  - link "Healthcare" [ref=e271]
+  - link "Drug Discovery and Delivery" [ref=e272]
+- link [ref=e273]:
+  - text: "Embark Trucks San Francisco, CA, USA Self-driving semi trucks."
+  - link "Winter 2016" [ref=e274]
+  - link "Industrials" [ref=e275]
+  - link "Automotive" [ref=e276]
+- link [ref=e277]:
+  - text: "Momentus Santa Clara, CA, USA The space infrastructure services company"
+  - link "Summer 2018" [ref=e278]
+  - link "Industrials" [ref=e279]
+  - link "Aviation and Space" [ref=e280]
+- link [ref=e281]:
+  - text: "Lucira Health Emeryville, CA, USA Next generation infectious disease test kits"
+  - link "Winter 2015" [ref=e282]
+  - link "Healthcare" [ref=e283]
+  - link "Diagnostics" [ref=e284]
+- link [ref=e285]:
+  - text: "Segment San Francisco, CA, USA Software and APIs to collect, clean, and control customer data."
+  - link "Summer 2011" [ref=e286]
+  - link "B2B" [ref=e287]
+  - link "Analytics" [ref=e288]
+- link [ref=e289]:
+  - text: "Algolia San Francisco, CA, USA A developer-friendly and enterprise-grade search API."
+  - link "Winter 2014" [ref=e290]
+  - link "B2B" [ref=e291]
+  - link "Engineering, Product and Design" [ref=e292]
+- link [ref=e293]:
+  - text: "Truebill Silver Spring, MD, USA Live your best financial life"
+  - link "Winter 2016" [ref=e294]
+  - link "Fintech" [ref=e295]
+  - link "Consumer Finance" [ref=e296]
+- link [ref=e297]:
+  - text: "Twitch San Francisco, CA, USA A global community creating the future of live entertainment."
+  - link "Winter 2007" [ref=e298]
+  - link "Consumer" [ref=e299]
+  - link "Content" [ref=e300]
+- link [ref=e301]:
+  - text: "PlanGrid San Francisco, CA, USA Mobile applications for the construction industry."
+  - link "Winter 2012" [ref=e302]
+  - link "Real Estate and Construction" [ref=e303]
+  - link "Construction" [ref=e304]
+- link [ref=e305]:
+  - text: "Bellabeat San Francisco, CA, USA Tech-powered women's wellness."
+  - link "Winter 2014" [ref=e306]
+  - link "Consumer" [ref=e307]
+  - link "Consumer Electronics" [ref=e308]
+- link [ref=e309]:
+  - text: "Cruise San Francisco, CA, USA Self-driving cars."
+  - link "Winter 2014" [ref=e310]
+  - link "Industrials" [ref=e311]
+  - link "Automotive" [ref=e312]
+- link [ref=e313]:
+  - text: "Benchling San Francisco, CA, USA Unlocking the power of biotech with modern software for modern science"
+  - link "Summer 2012" [ref=e314]
+  - link "B2B" [ref=e315]
+- link [ref=e316]:
+  - text: "Casetext San Francisco, CA, USA We make the world's laws free and understandable."
+  - link "Summer 2013" [ref=e317]
+  - link "B2B" [ref=e318]
+  - link "Legal" [ref=e319]
+- link [ref=e320]:
+  - text: "Bird Amsterdam, NH, Netherlands The world’s largest omnichannel communications platform"
+  - link "Summer 2016" [ref=e321]
+  - link "B2B" [ref=e322]
+  - link "Engineering, Product and Design" [ref=e323]
+- link [ref=e324]:
+  - text: "Brex San Francisco, CA, USA Business accounts, corporate cards, and spend management software."
+  - link "Winter 2017" [ref=e325]
+  - link "Fintech" [ref=e326]
+  - link "Banking and Exchange" [ref=e327]
+- link [ref=e328]:
+  - text: "The Athletic San Francisco, CA, USA Subscription sports media."
+  - link "Summer 2016" [ref=e329]
+  - link "Consumer" [ref=e330]
+  - link "Content" [ref=e331]
+- link [ref=e332]:
+  - text: "Codecademy New York, NY, USA The leading online learning platform for technical skills."
+  - link "Summer 2011" [ref=e333]
+  - link "Education" [ref=e334]
+- link [ref=e335]:
+  - text: "Checkr San Francisco, CA, USA People infrastructure for the future of work"
+  - link "Summer 2014" [ref=e336]
+  - link "B2B" [ref=e337]
+  - link "Human Resources" [ref=e338]
+- link [ref=e339]:
+  - text: "Lever San Francisco, CA, USA Talent Acquisition Suite that combines ATS + Talent CRM"
+  - link "Summer 2012" [ref=e340]
+  - link "B2B" [ref=e341]
+  - link "Recruiting and Talent" [ref=e342]
+- link [ref=e343]:
+  - text: "Clipboard San Francisco, CA, USA Every shift, Covered."
+  - link "Winter 2017" [ref=e344]
+  - link "Consumer" [ref=e345]
+- link [ref=e346]:
+  - text: "Heap Seattle, WA, USA Captures user interactions with no code to generate analytics."
+  - link "Winter 2013" [ref=e347]
+  - link "B2B" [ref=e348]
+  - link "Analytics" [ref=e349]
+- link [ref=e350]:
+  - text: "Sendwave Boston, MA, USA Instant, no fee international remittances."
+  - link "Winter 2012" [ref=e351]
+  - link "Fintech" [ref=e352]
+  - link "Payments" [ref=e353]
+- link [ref=e354]:
+  - text: "Deel San Francisco, CA, USA The all-in-one HR and payroll platform for global teams"
+  - link "Winter 2019" [ref=e355]
+  - link "B2B" [ref=e356]
+  - link "Finance and Accounting" [ref=e357]
+- text: "Loading more..."
+- contentinfo "Footer":
+  - link "Y Combinator" [ref=e104]:
+    - text: "Y Combinator"
+    - image "Y Combinator"
+  - heading "Make something people want." [level=3]
+  - heading "Programs" [level=3]
+  - list:
+    - listitem "YC Program" [ref=e358]:
+      - link "YC Program" [ref=e105]
+    - listitem "Startup School" [ref=e359]:
+      - link "Startup School" [ref=e106]
+    - listitem "Work at a Startup" [ref=e360]:
+      - link "Work at a Startup" [ref=e107]
+    - listitem "Co-Founder Matching" [ref=e361]:
+      - link "Co-Founder Matching" [ref=e108]
+  - heading "Resources" [level=3]
+  - list:
+    - listitem "Startup Directory" [ref=e362]:
+      - link "Startup Directory" [ref=e109]
+    - listitem "Startup Library" [ref=e363]:
+      - link "Startup Library" [ref=e110]
+    - listitem "Investors" [ref=e364]:
+      - link "Investors" [ref=e111]
+    - listitem "Demo Day" [ref=e365]:
+      - link "Demo Day" [ref=e112]
+    - listitem "Safe" [ref=e366]:
+      - link "Safe" [ref=e113]
+    - listitem "Hacker News" [ref=e367]:
+      - link "Hacker News" [ref=e114]
+    - listitem "Launch YC" [ref=e368]:
+      - link "Launch YC" [ref=e115]
+    - listitem "YC Deals" [ref=e369]:
+      - link "YC Deals" [ref=e116]
+  - heading "Company" [level=3]
+  - list:
+    - listitem "YC Blog" [ref=e370]:
+      - link "YC Blog" [ref=e117]
+    - listitem "Contact" [ref=e371]:
+      - link "Contact" [ref=e118]
+    - listitem "Press" [ref=e372]:
+      - link "Press" [ref=e119]
+    - listitem "People" [ref=e373]:
+      - link "People" [ref=e120]
+    - listitem "Careers" [ref=e374]:
+      - link "Careers" [ref=e121]
+    - listitem "Privacy Policy" [ref=e375]:
+      - link "Privacy Policy" [ref=e122]
+    - listitem "Notice at Collection" [ref=e376]:
+      - link "Notice at Collection" [ref=e123]
+    - listitem "Security" [ref=e377]:
+      - link "Security" [ref=e124]
+    - listitem "Terms of Use" [ref=e378]:
+      - link "Terms of Use" [ref=e125]
+  - link "Twitter" [ref=e126]
+  - link "Facebook" [ref=e127]
+  - link "Instagram" [ref=e128]
+  - link "LinkedIn" [ref=e129]
+  - link "Youtube" [ref=e130]
+  - text: "© 2026  Y Combinator"
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[10] thinking: **Exploring page resources**
+
+I think I need to use the page UI and possibly some filters to access everything, not just the top 40 results. Algolia seems easier. I should also inspect the network to see performance entries and sources. Since I'm allowed to use page.evaluate if I know how, that could help me analyze the page resources. I’m thinking about listing scripts and checking local storage for the environment settings too.
+
+[11] tool_call: repl("Inspecting page resources")
+<request>
+const resources1 = await page.evaluate(() => performance.getEntriesByType('resource').map(e => e.name).filter(n => n.includes('algolia') || n.includes('_next') || n.includes('companies')).slice(0,100));
+console.log(JSON.stringify(resources1, null, 2));
+</request>
+<result tokens_used="147" elapsed_time="21ms">
+[
+  "https://bookface-static.ycombinator.com/vite/assets/algoliasearch-CgPFIVRF.js",
+  "https://bookface-static.ycombinator.com/vite/assets/algoliaClient-BRMfylyj.js",
+  "https://www.google-analytics.com/j/collect?v=1&_v=j102&a=980158310&t=pageview&_s=1&dl=https%3A%2F%2Fwww.ycombinator.com%2Fcompanies&ul=en-us&dt=The%20YC%20Startup%20Directory%20%7C%20Y%20Combinator&sr=1440x900&vp=1440x900&_u=CCCAAEAjAAAAACAAI~&jid=&gjid=&cid=1020889040.1772354068&tid=UA-51714649-1&_gid=1175282001.1778719959&_slc=1&z=1965011494",
+  "https://bookface-static.ycombinator.com/vite/assets/algoliasearch-lite.umd-H_7Af5fA.js"
+]
+</result>
+
+[12] tool_call: repl("Inspecting Algolia client script")
+<request>
+const algRes1 = await fetch('https://bookface-static.ycombinator.com/vite/assets/algoliaClient-BRMfylyj.js');
+const algText1 = await algRes1.text();
+console.log(algText1.slice(0,4000));
+</request>
+<result tokens_used="86" elapsed_time="262ms">
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="977abd8f-4b9e-5c74-b8bd-6d67e65e8cd8")}catch(e){}}();
+import{o as e}from"./chunk-DOn8Aukd.js";import{t}from"./algoliasearch-CgPFIVRF.js";var n=e(t());function r(){let e={},t=!1;function r(){if(t)return e;if(t=!0,typeof window<`u`)try{!window.AlgoliaOpts||window.AlgoliaOpts.indices_not_set?console.debug(`Algolia indices not set`):e=(0,n.default)(window.AlgoliaOpts.app,window.AlgoliaOpts.key)}catch(e){console.error(e)}return e}return r}var i=r();export{i as t};
+//# debugId=977abd8f-4b9e-5c74-b8bd-6d67e65e8cd8
+</result>
+
+[13] tool_call: repl("Reading Algolia configuration")
+<request>
+const algOpts1 = await page.evaluate(() => window.AlgoliaOpts);
+console.log(JSON.stringify(algOpts1, null, 2));
+</request>
+<result tokens_used="68" elapsed_time="20ms">
+{
+  "app": "45BWZJ1SGC",
+  "key": "NzllNTY5MzJiZGM2OTY2ZTQwMDEzOTNhYWZiZGRjODlhYzVkNjBmOGRjNzJiMWM4ZTU0ZDlhYTZjOTJiMjlhMWFuYWx5dGljc1RhZ3M9eWNkYyZyZXN0cmljdEluZGljZXM9WUNDb21wYW55X3Byb2R1Y3Rpb24lMkNZQ0NvbXBhbnlfQnlfTGF1bmNoX0RhdGVfcHJvZHVjdGlvbiZ0YWdGaWx0ZXJzPSU1QiUyMnljZGNfcHVibGljJTIyJTVE",
+  "chat_key": "ZmY2ZWIwMGYwMjk1YzQxOWU0ZmUwMzQ5NWI2NTk2NDk2YWQ5YjhiYzUwYTQwOTU2OTU2ODJkYWNlYmQxZGQ3ZWZpbHRlcnM9X3RhZ3MlM0ElMjJ1c2VyJTNBMTU3NjU4OSUyMiZyZXN0cmljdEluZGljZXM9Q2hhdHNfcHJvZHVjdGlvbiUyQ0NoYXRzQnlSZWNlbnRBY3Rpdml0eV9wcm9kdWN0aW9uJTJDTWVzc2FnZXNVc2Vyc19wcm9kdWN0aW9uJnVzZXJUb2tlbj1md29DelNCQ0E2YjNyOHU3UUZSRSUyQmhKRDY3N3BLY1ZFRHlyMUtvZ1BlMGMlM0Q=",
+  "public_chat_key": "ZThmZDk4NDJmZjJhNTY0YmRjM2EzZWE3ZjFlOWE0MzMxN2EyMzY0YzNjMWRhMDhhYzFmY2Y1OWI5NzE1ZTY5OWZpbHRlcnM9cHVibGljJTNBdHJ1ZSZyZXN0cmljdEluZGljZXM9Q2hhdHNfcHJvZHVjdGlvbiUyQ0NoYXRzQnlSZWNlbnRBY3Rpdml0eV9wcm9kdWN0aW9uJTJDTWVzc2FnZXNVc2Vyc19wcm9kdWN0aW9u",
+  "chat_app": "45BWZJ1SGC"
+}
+</result>
+
+[14] thinking: **Planning Algolia query**
+
+I need to set up an Algolia query using the fetch method to access the endpoint. I must include the necessary fields and filters and consider the facets. It might be smart to look at the app's JavaScript or use Algolia's search features for help. The API endpoint is already clear, and I should include the appropriate headers. I'll need filters for things like location or job status, specifically focusing on France. Let's finalize how to structure the query!
+
+[15] tool_call: repl("Querying YC company index sample")
+<request>
+const appId1 = '45BWZJ1SGC'; const apiKey1 = (await page.evaluate(() => window.AlgoliaOpts.key));
+async function algoliaQuery1(params){
+  const body = {requests:[{indexName:'YCCompany_production', params: new URLSearchParams(params).toString()}]};
+  const res = await fetch(`https://${appId1}-dsn.algolia.net/1/indexes/*/queries`, {method:'POST', headers:{'x-algolia-api-key':apiKey1,'x-algolia-application-id':appId1,'content-type':'application/json'}, body:JSON.stringify(body)});
+  const text = await res.text();
+  console.log(text.slice(0,5000));
+}
+await algoliaQuery1({query:'', hitsPerPage:'2', page:'0', facets:'*'});
+</request>
+<result tokens_used="352" elapsed_time="139ms">
+{"results":[{"hits":[{"id":271,"name":"Airbnb","slug":"airbnb","former_names":[],"small_logo_thumb_url":"https://bookface-images.s3.amazonaws.com/small_logos/3e9a0092bee2ccf926e650e59c06503ec6b9ee65.png","website":"http://airbnb.com","all_locations":"San Francisco, CA, USA","long_description":"Founded in August of 2008 and based in San Francisco, California, Airbnb is a trusted community marketplace for people to list, discover, and book unique accommodations around the world — online or from a mobile phone. Whether an apartment for a night, a castle for a week, or a villa for a month, Airbnb connects people to unique travel experiences, at any price point, in more than 33,000 cities and 192 countries. And with world-class customer service and a growing community of users, Airbnb is the easiest way for people to monetize their extra space and showcase it to an audience of millions.  \r\n\r\nNo global movement springs from individuals. It takes an entire team united behind something big. Together, we work hard, we laugh a lot, we brainstorm nonstop, we use hundreds of Post-Its a week, and we give the best high-fives in town. Headquartered in San Francisco, we have satellite offices in Dublin, London, Barcelona, Paris, Milan, Copenhagen, Berlin, Moscow, São Paolo, Sydney, and Singapore.","one_liner":"Book accommodations around the world.","team_size":6132,"industry":"Consumer","subindustry":"Consumer -> Travel, Leisure and Tourism","launched_at":1326790856,"tags":["Marketplace","Travel"],"tags_highlighted":[],"top_company":true,"isHiring":false,"nonprofit":false,"batch":"Winter 2009","status":"Public","industries":["Consumer","Travel, Leisure and Tourism"],"regions":["United States of America","America / Canada"],"stage":"Growth","app_video_public":false,"demo_day_video_public":false,"app_answers":null,"question_answers":false,"objectID":"271","_highlightResult":{"name":{"value":"Airbnb","matchLevel":"none","matchedWords":[]},"website":{"value":"http://airbnb.com","matchLevel":"none","matchedWords":[]},"all_locations":{"value":"San Francisco, CA, USA","matchLevel":"none","matchedWords":[]},"long_description":{"value":"Founded in August of 2008 and based in San Francisco, California, Airbnb is a trusted community marketplace for people to list, discover, and book unique accommodations around the world — online or from a mobile phone. Whether an apartment for a night, a castle for a week, or a villa for a month, Airbnb connects people to unique travel experiences, at any price point, in more than 33,000 cities and 192 countries. And with world-class customer service and a growing community of users, Airbnb is the easiest way for people to monetize their extra space and showcase it to an audience of millions.  \r\n\r\nNo global movement springs from individuals. It takes an entire team united behind something big. Together, we work hard, we laugh a lot, we brainstorm nonstop, we use hundreds of Post-Its a week, and we give the best high-fives in town. Headquartered in San Francisco, we have satellite offices in Dublin, London, Barcelona, Paris, Milan, Copenhagen, Berlin, Moscow, São Paolo, Sydney, and Singapore.","matchLevel":"none","matchedWords":[]},"one_liner":{"value":"Book accommodations around the world.","matchLevel":"none","matchedWords":[]},"tags":[{"value":"Marketplace","matchLevel":"none","matchedWords":[]},{"value":"Travel","matchLevel":"none","matchedWords":[]}]}},{"id":531,"name":"DoorDash","slug":"doordash","former_names":[],"small_logo_thumb_url":"https://bookface-images.s3.amazonaws.com/small_logos/d13287c52acc96909f32342e85c26a33cfdac310.png","website":"http://doordash.com","all_locations":"San Francisco, CA, USA","long_description":"Founded in 2013, DoorDash is a San Francisco-based technology company passionate about transforming local businesses and dedicated to enabling new ways of working, earning, and living. Today, DoorDash connects customers with their favorite local and national restaurants in more than 600 cities across the United States and Canada. By building intelligent, last-mile delivery technology for local cities, DoorDash aims to connect people with the things they care about — one dash at a time. \r\n\r\nRead more at blog.doordash.com, and find us on Glassdoor.","one_liner":"Restaurant delivery.","team_size":8600,"industry":"Consumer","subindustry":"Consumer -> Food and Beverage","launched_at":1367523459,"tags":["Marketplace","E-commerce"],"tags_highlighted":[],"top_company":true,"isHiring":true,"nonprofit":false,"batch":"Summer 2013","status":"Public","industries":["Consumer","Food and Beverage"],"regions":["United States of America","America / Canada"],"stage":"Growth","app_video_public":false,"demo_day_video_public":false,"app_answers":null,"question_answers":false,"objectID":"531","_highlightResult":{"name":{"value":"DoorDash","matchLevel":"none","matchedWords":[]},"website":{"value":"http://doordash.com","matchLevel":"none","matchedWords":[]},"all_locations":{"value":"Sa
+</result>
+
+[16] tool_call: repl("Checking available facets")
+<request>
+async function algoliaRaw1(params){
+  const body = {requests:[{indexName:'YCCompany_production', params: new URLSearchParams(params).toString()}]};
+  const res = await fetch(`https://${appId1}-dsn.algolia.net/1/indexes/*/queries`, {method:'POST', headers:{'x-algolia-api-key':apiKey1,'x-algolia-application-id':appId1,'content-type':'application/json'}, body:JSON.stringify(body)});
+  return (await res.json()).results[0];
+}
+const facetsRes1 = await algoliaRaw1({query:'', hitsPerPage:'0', facets:JSON.stringify(['batch','regions','isHiring']), maxValuesPerFacet:'200'});
+console.log(JSON.stringify({nbHits: facetsRes1.nbHits, facets: facetsRes1.facets}, null, 2).slice(0,10000));
+</request>
+<result tokens_used="413" elapsed_time="162ms">
+{
+  "nbHits": 5903,
+  "facets": {
+    "batch": {
+      "Winter 2022": 399,
+      "Summer 2021": 391,
+      "Winter 2021": 336,
+      "Winter 2023": 275,
+      "Winter 2024": 249,
+      "Summer 2024": 248,
+      "Summer 2022": 234,
+      "Winter 2020": 229,
+      "Summer 2023": 220,
+      "Summer 2020": 208,
+      "Winter 2026": 199,
+      "Winter 2019": 195,
+      "Summer 2019": 176,
+      "Winter 2025": 168,
+      "Summer 2025": 167,
+      "Spring 2026": 149,
+      "Fall 2025": 148,
+      "Winter 2018": 146,
+      "Spring 2025": 144,
+      "Summer 2018": 131,
+      "Summer 2017": 125,
+      "Winter 2016": 122,
+      "Winter 2017": 116,
+      "Winter 2015": 111,
+      "Summer 2015": 104,
+      "Summer 2016": 102,
+      "Fall 2024": 94,
+      "Summer 2012": 83,
+      "Summer 2014": 78,
+      "Winter 2014": 74,
+      "Winter 2012": 66,
+      "Summer 2011": 60,
+      "Summer 2013": 52,
+      "Winter 2013": 46,
+      "Winter 2011": 45,
+      "Summer 2010": 36,
+      "Winter 2010": 27,
+      "Summer 2009": 26,
+      "Summer 2008": 22,
+      "Winter 2008": 21,
+      "Summer 2007": 19,
+      "Winter 2009": 16,
+      "Winter 2007": 13,
+      "Summer 2006": 11,
+      "Summer 2005": 9,
+      "Winter 2006": 7,
+      "Summer 2026": 3,
+      "Fall 2026": 1,
+      "Unspecified": 1,
+      "Winter 2027": 1
+    },
+    "regions": {
+      "America / Canada": 4479,
+      "United States of America": 4348,
+      "Remote": 3013,
+      "Partly Remote": 1864,
+      "Fully Remote": 1149,
+      "Europe": 435,
+      "Unspecified": 229,
+      "South Asia": 221,
+      "Latin America": 214,
+      "India": 209,
+      "United Kingdom": 209,
+      "Canada": 142,
+      "Southeast Asia": 105,
+      "Mexico": 88,
+      "Africa": 85,
+      "Middle East and North Africa": 69,
+      "France": 62,
+      "Nigeria": 58,
+      "Singapore": 53,
+      "Germany": 50,
+      "Brazil": 49,
+      "Colombia": 32,
+      "Indonesia": 31,
+      "Israel": 31,
+      "East Asia": 21,
+      "Argentina": 20,
+      "Chile": 20,
+      "Spain": 19,
+      "Denmark": 16,
+      "Oceania": 14,
+      "Australia": 12,
+      "Egypt": 12,
+      "Netherlands": 12,
+      "Sweden": 12,
+      "United Arab Emirates": 11,
+      "Kenya": 10,
+      "Pakistan": 10,
+      "Peru": 10,
+      "Philippines": 10,
+      "Switzerland": 10,
+      "Ireland": 8,
+      "China": 7,
+      "Hong Kong": 7,
+      "Malaysia": 7,
+      "Panama": 6,
+      "South Korea": 6,
+      "Vietnam": 6,
+      "Ghana": 5,
+      "Norway": 5,
+      "Poland": 5,
+      "Saudi Arabia": 5,
+      "Turkey": 5,
+      "Austria": 4,
+      "Finland": 4,
+      "Slovenia": 4,
+      "Belgium": 3,
+      "Estonia": 3,
+      "Italy": 3,
+      "Morocco": 3,
+      "Portugal": 3,
+      "Senegal": 3,
+      "New Zealand": 2,
+      "Puerto Rico": 2,
+      "Romania": 2,
+      "South Africa": 2,
+      "Uganda": 2,
+      "Ukraine": 2,
+      "Algeria": 1,
+      "Asia": 1,
+      "Bahrain": 1,
+      "Bangladesh": 1,
+      "Belarus": 1,
+      "Costa Rica": 1,
+      "Croatia": 1,
+      "Cyprus": 1,
+      "Czechia": 1,
+      "Democratic Republic of the Congo": 1,
+      "Ecuador": 1,
+      "Ethiopia": 1,
+      "Georgia": 1,
+      "Greece": 1,
+      "Hungary": 1,
+      "Iceland": 1,
+      "Iraq": 1,
+      "Ivory Coast": 1,
+      "Japan": 1,
+      "Kyrgyzstan": 1,
+      "Latvia": 1,
+      "Lithuania": 1,
+      "Namibia": 1,
+      "Nepal": 1,
+      "Russia": 1,
+      "Seychelles": 1,
+      "Tanzania": 1,
+      "Thailand": 1,
+      "Uruguay": 1,
+      "Venezuela": 1,
+      "Zambia": 1
+    },
+    "isHiring": {
+      "false": 4441,
+      "true": 1462
+    }
+  }
+}
+</result>
+
+[17] thinking: **Searching for job openings**
+
+I need to gather information on companies that are currently hiring. I'll query for current job openings, using markers like "isHiring true" and possibly including job counts. It’s also worth looking into profiles of startups with active jobs. "Currently have job openings" could work as a marker, so I’ll incorporate that. I'll verify if the company profiles show job counts and use facetFilters in the Algolia query with JSON string format.
+
+[18] tool_call: repl("Filtering YC companies")
+<request>
+const facetFilters1 = JSON.stringify([
+  ['batch:Winter 2022','batch:Summer 2022','batch:Winter 2023','batch:Summer 2023'],
+  'regions:France',
+  'isHiring:true'
+]);
+const resultFrance1 = await algoliaRaw1({query:'', hitsPerPage:'1000', page:'0', facetFilters: facetFilters1, facets:JSON.stringify(['batch','regions','isHiring'])});
+console.log(JSON.stringify({nbHits: resultFrance1.nbHits, hits: resultFrance1.hits.map(h=>({name:h.name, slug:h.slug, batch:h.batch, locations:h.all_locations, isHiring:h.isHiring, one_liner:h.one_liner, website:h.website, id:h.id, team_size:h.team_size, status:h.status, regions:h.regions, industry:h.industry, subindustry:h.subindustry}))}, null, 2));
+</request>
+<result tokens_used="304" elapsed_time="302ms">
+{
+  "nbHits": 4,
+  "hits": [
+    {
+      "name": "Osium AI",
+      "slug": "osium-ai",
+      "batch": "Summer 2023",
+      "locations": "Paris, Île-de-France, France",
+      "isHiring": true,
+      "one_liner": "Speed up materials innovation with Artificial Intelligence",
+      "website": "https://osium.ai/",
+      "id": 28980,
+      "team_size": 2,
+      "status": "Active",
+      "regions": [
+        "France",
+        "Europe"
+      ],
+      "industry": "B2B",
+      "subindustry": "B2B"
+    },
+    {
+      "name": "Rimward",
+      "slug": "rimward",
+      "batch": "Summer 2023",
+      "locations": "Paris, Île-de-France, France",
+      "isHiring": true,
+      "one_liner": "Low-false-positive intrusion detection for remote outdoor sites",
+      "website": "https://rimward.ai/",
+      "id": 28958,
+      "team_size": 1,
+      "status": "Active",
+      "regions": [
+        "France",
+        "Europe",
+        "Remote",
+        "Partly Remote"
+      ],
+      "industry": "B2B",
+      "subindustry": "B2B -> Security"
+    },
+    {
+      "name": "HyLight",
+      "slug": "hylight",
+      "batch": "Summer 2023",
+      "locations": "Paris, Île-de-France, France",
+      "isHiring": true,
+      "one_liner": "Small unmanned hydrogen airships for long range monitoring",
+      "website": "https://www.hylight.aero/",
+      "id": 28593,
+      "team_size": 22,
+      "status": "Active",
+      "regions": [
+        "France",
+        "Europe"
+      ],
+      "industry": "Industrials",
+      "subindustry": "Industrials -> Climate"
+    },
+    {
+      "name": "Windmill",
+      "slug": "windmill",
+      "batch": "Summer 2022",
+      "locations": "Paris, Île-de-France, France",
+      "isHiring": true,
+      "one_liner": "Open-source platform to turn scripts into internal apps & workflows",
+      "website": "https://windmill.dev",
+      "id": 26793,
+      "team_size": 7,
+      "status": "Active",
+      "regions": [
+        "France",
+        "Europe",
+        "Remote",
+        "Partly Remote"
+      ],
+      "industry": "B2B",
+      "subindustry": "B2B -> Infrastructure"
+    }
+  ]
+}
+</result>
+
+[19] thinking: **Investigating hiring profiles**
+
+I need to verify profile pages for hiring tags, possibly looking for sections like “Jobs at...” and the count of active open positions. Checking for “isHiring” in Algolia might not be enough — I should look for “currently have job openings” or actual listings. I’ll inspect pages using fetch or snapshots and consider querying the WorkAtStartup jobs index. It’s key to investigate each company's YC profile and jobs. I'll need a snapshot of that URL to confirm status.
+
+[20] tool_call: write_todos:
+Todo list updated:
+- [completed] t1: Inspect Y Combinator company directory filters and data sources
+- [in_progress] t2: Query/filter 2022 and 2023 batches for France and hiring status
+- [pending] t3: Verify results and provide final company list
+
+[21] thinking: **Exploring data access**
+
+I think I should look into using APIs to help me with this task. My plan is to inspect company pages' data, and for that, I'll need to fetch the relevant information. I wonder which specific APIs would be best suited for this, and how I can ensure I'm getting the data I need. I'll open one and see what I can find, just to get the ball rolling!
+
+[22] tool_call: repl("Opening first company profile")
+<request>
+const p2 = await openTab('https://www.ycombinator.com/companies/osium-ai');
+const s4 = await snapshot(page);
+console.log(s4.tree);
+</request>
+<result tokens_used="85" elapsed_time="1510ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → Osium AI: Speed up materials innovation with Artificial Intelligence | Y Combinator (https://www.ycombinator.com/companies/osium-ai)
+- title: "Osium AI: Speed up materials innovation with Artificial Intelligence | Y Combinator" [url=https://www.ycombinator.com/companies/osium-ai]
+- banner:
+  - navigation:
+    - link "About" [ref=e1]
+    - link "Companies" [ref=e2]
+    - link "Library" [ref=e3]
+    - link "Y Combinator" [ref=e4]:
+      - image "Y Combinator"
+    - link "Partners" [ref=e5]
+    - link "Resources" [ref=e6]
+    - link "Startup Jobs" [ref=e7]
+    - link "Open messages" [ref=e8]: "9"
+    - link "Chat with YC Agent" [ref=e9]
+    - button "User menu" [ref=e10]: "J"
+    - link "Apply" [ref=e11]
+- text: "Hi, Jun! Find 2000+ YC startups hiring on the YC company directory."
+- link "Browse startups" [ref=e12]
+- link "Home" [ref=e13]
+- text: "›"
+- link "Companies" [ref=e14]
+- text: "›Osium AI Osium AI Speed up materials innovation with Artificial Intelligence"
+- link "Summer 2023" [ref=e15]
+- text: "Active"
+- navigation:
+  - link "Company" [ref=e16]
+  - link "Jobs" [ref=e17]
+  - text: "3"
+  - link "News" [ref=e18]
+- link "https://osium.ai/" [ref=e19]
+- text: "Our AI-powered software enables materials R&D engineers to design new materials much faster. \n\nTo date, manufacturing companies rely on trial-and-error and manual approaches to develop new materials. This is a tedious and time-consuming process. Yet, carbon neutrality requirements urge manufacturers to adopt greener and lighter materials to decarbonize the industry.Active Founders"
+- image "Sarah Najmark"
+- text: "Sarah Najmark"
+- link "LinkedIn profile" [ref=e20]
+- text: "Founder Sarah is the co-founder and CEO of Osium AI, which she started with Luisa Bouneder, her close friend since College.\n\nShe studied Mathematics, Physics and Chemistry at Ecole Centrale Paris. She holds a Master in Science from Stanford University where she conducted and led AI research. \n\nSarah has deep expertise in AI technologies applied to complex systems as she spent 3 years as a Tech Lead and Product Manager at Google X, the moonshot division of Google. She authored 2 AI patents."
+- image "Luisa Bouneder"
+- text: "Luisa Bouneder"
+- link "LinkedIn profile" [ref=e21]
+- text: "Founder Luisa is the co-founder and CTO of Osium AI, which she started with Sarah Najmark, her close friend since College.\nShe studied Mathematics, Physics and Chemistry at Ecole Polytechnique, France. She holds a Master in Science from Stanford University where she conducted and led AI research. She has hands-on experience in building AI tools for industry leaders thanks to her years of experience in Data Science services in the Materials and Life Science industries.Latest News"
+- link "Osium AI uses artificial intelligence to speed up materials innovation | TechCrunch" [ref=e22]
+- text: "Nov 22, 2023 Company Launches"
+- generic [ref=e23]:
+  - text: "🚀 Osium AI -  AI for advanced and sustainable materials discovery"
+  - link "See original launch post" [ref=e24]
+  - text: "Hello everyone,"
+  - paragraph:
+    - text: "We are"
+    - link "Sarah Najmark" [ref=e25]
+    - text: "(left) and"
+    - link "Luisa Bouneder" [ref=e26]
+    - text: "(right), the founders of"
+    - link "Osium AI" [ref=e27]
+    - text: ", and close friends from Stanford University."
+  - paragraph:
+    - image "uploaded image"
+  - text: "Our AI-powered software enables materials R&D engineers to formulate and analyze materials much faster."
+  - heading [level=3]: "Problem"
+  - text: "To date, materials manufacturing companies rely on trial-and-error and manual approaches to develop new materials. This is a tedious and time-consuming process - at least 5 years are spent just formulating and testing in the R&D lab. Yet, the paradigm shift towards carbon neutrality by 2050 puts more and more pressure on advanced materials innovation."
+  - heading [level=3]: "Solution"
+  - text: "We develop state-of-the-art AI technologies for materials properties predictions, inverse design of materials, and accelerated microscopy image analysis. Our product is an AI-powered software with an intuitive interface making it easy-to-use by any material R&D engineer with no data science background."
+  - paragraph:
+    - image "uploaded image"
+  - paragraph:
+    - image "uploaded image"
+  - heading [level=3]: "Our team"
+  - text: "We leverage our unique combination of expertise in Materials Science and Artificial Intelligence.\nWe led AI research at Stanford and Google [X], authored 2 AI patents, and we have a track record in building AI products for Materials Industry leaders."
+  - heading [level=3]: "Our ask"
+  - list:
+    - listitem "Follow us on Linkedin." [ref=e28]:
+      - text: "Follow us on"
+      - link "Linkedin" [ref=e29]
+      - text: "."
+    - listitem "Are you willing to accelerate your materials innovation? Book a demo here." [ref=e30]:
+      - text: "Are you willing to accelerate your materials innovation? Book a demo"
+      - link "here" [ref=e31]
+      - text: "."
+    - listitem "Do you know someone working in materials manufacturing or chemistry companies? Reach out to us at fo" [ref=e32]:
+      - text: "Do you know someone working in materials manufacturing or chemistry companies? Reach out to us at"
+      - link "founders@osium.ai" [ref=e33]
+      - text: "."
+- text: "Jobs at  Osium AI"
+- link "View all jobs" [ref=e34]
+- link "Data Scientist at Osium AI (YC S23)" [ref=e35]
+- text: "Paris, IDF, FR•€40K - €70K EUR•Any (new grads ok)"
+- link "Apply Now ›" [ref=e36]
+- link "AI Engineer at Osium AI (YC S23)" [ref=e37]
+- text: "Paris, IDF, FR•€40K - €70K EUR•Any (new grads ok)"
+- link "Apply Now ›" [ref=e38]
+- link "Full-stack engineer at Osium AI (S23)" [ref=e39]
+- text: "Paris, IDF, FR•€50K - €70K EUR•3+ years"
+- link "Apply Now ›" [ref=e40]
+- link "Osium AI" [ref=e41]:
+  - image "Osium AI"
+- link "Osium AI" [ref=e42]
+- text: "Founded:2023 Batch:Summer 2023 Team Size:2 Status:Active Location:Paris, France Primary Partner:"
+- link "Nicolas Dessaigne" [ref=e43]
+- link "Company website" [ref=e44]
+- link "LinkedIn profile" [ref=e45]
+- contentinfo "Footer":
+  - link "Y Combinator" [ref=e46]:
+    - text: "Y Combinator"
+    - image "Y Combinator"
+  - heading "Make something people want." [level=3]
+  - heading "Programs" [level=3]
+  - list:
+    - listitem "YC Program" [ref=e47]:
+      - link "YC Program" [ref=e48]
+    - listitem "Startup School" [ref=e49]:
+      - link "Startup School" [ref=e50]
+    - listitem "Work at a Startup" [ref=e51]:
+      - link "Work at a Startup" [ref=e52]
+    - listitem "Co-Founder Matching" [ref=e53]:
+      - link "Co-Founder Matching" [ref=e54]
+  - heading "Resources" [level=3]
+  - list:
+    - listitem "Startup Directory" [ref=e55]:
+      - link "Startup Directory" [ref=e56]
+    - listitem "Startup Library" [ref=e57]:
+      - link "Startup Library" [ref=e58]
+    - listitem "Investors" [ref=e59]:
+      - link "Investors" [ref=e60]
+    - listitem "Demo Day" [ref=e61]:
+      - link "Demo Day" [ref=e62]
+    - listitem "Safe" [ref=e63]:
+      - link "Safe" [ref=e64]
+    - listitem "Hacker News" [ref=e65]:
+      - link "Hacker News" [ref=e66]
+    - listitem "Launch YC" [ref=e67]:
+      - link "Launch YC" [ref=e68]
+    - listitem "YC Deals" [ref=e69]:
+      - link "YC Deals" [ref=e70]
+  - heading "Company" [level=3]
+  - list:
+    - listitem "YC Blog" [ref=e71]:
+      - link "YC Blog" [ref=e72]
+    - listitem "Contact" [ref=e73]:
+      - link "Contact" [ref=e74]
+    - listitem "Press" [ref=e75]:
+      - link "Press" [ref=e76]
+    - listitem "People" [ref=e77]:
+      - link "People" [ref=e78]
+    - listitem "Careers" [ref=e79]:
+      - link "Careers" [ref=e80]
+    - listitem "Privacy Policy" [ref=e81]:
+      - link "Privacy Policy" [ref=e82]
+    - listitem "Notice at Collection" [ref=e83]:
+      - link "Notice at Collection" [ref=e84]
+    - listitem "Security" [ref=e85]:
+      - link "Security" [ref=e86]
+    - listitem "Terms of Use" [ref=e87]:
+      - link "Terms of Use" [ref=e88]
+  - link "Twitter" [ref=e89]
+  - link "Facebook" [ref=e90]
+  - link "Instagram" [ref=e91]
+  - link "LinkedIn" [ref=e92]
+  - link "Youtube" [ref=e93]
+  - text: "© 2026  Y Combinator"
+</result>
+
+[23] thinking: **Parsing job counts**
+
+I’m confirming the first step, which seems necessary. I’m thinking I might need to use code to fetch all pages to extract the job count. Maybe browser snapshots for each one could work. I wonder if I can open the same tab using openTab — that might be okay. I definitely need to verify that I get all the current pages and parse their job counts. Let’s see if I can open the remaining ones.
+
+[24] tool_call: repl("Verifying company profiles and jobs")
+<request>
+const slugsVerify1 = ['rimward','hylight','windmill'];
+for (const slug of slugsVerify1) {
+  const pt = await openTab(`https://www.ycombinator.com/companies/${slug}`);
+  const st = await snapshot(page);
+  console.log('\n--- '+slug+' ---');
+  const txt = st.tree;
+  const lines = txt.split('\n').filter(l => /title:|Batch:|Location:|Jobs at|link "[^"]+ at|text: ".*•/.test(l));
+  console.log(lines.join('\n'));
+}
+</request>
+<result tokens_used="223" elapsed_time="4677ms">
+✔︎ Opened a new tab and set it active: tabs[2], page → Rimward: Low-false-positive intrusion detection for remote outdoor sites | Y Combinator (https://www.ycombinator.com/companies/rimward)
+
+--- rimward ---
+- title: "Rimward: Low-false-positive intrusion detection for remote outdoor sites | Y Combinator" [url=https://www.ycombinator.com/companies/rimward]
+- link "Here are this year’s top 40 startups at Station F | TechCrunch" [ref=e27]
+- text: "Jobs at  Rimward"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€50K - €70K EUR•0.50% - 2.00%•3+ years"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€50K - €70K EUR•0.50% - 2.00%•3+ years"
+- text: "Founded:2023 Batch:Summer 2023 Team Size:1 Status:Active Location:Paris, France Primary Partner:"
+      - link "Work at a Startup" [ref=e61]
+      - link "Notice at Collection" [ref=e93]
+✔︎ Opened a new tab and set it active: tabs[3], page → HyLight: Small unmanned hydrogen airships for long range monitoring | Y Combinator (https://www.ycombinator.com/companies/hylight)
+
+--- hylight ---
+- title: "HyLight: Small unmanned hydrogen airships for long range monitoring | Y Combinator" [url=https://www.ycombinator.com/companies/hylight]
+- text: "YC  Summer 2023  Demo Day Video Jobs at  HyLight"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€45K - €60K EUR•1+ years"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€1K - €1.4K EUR / monthly•Any"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€15K - €20K EUR•Any"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€45K - €60K EUR•1+ years"
+- text: "Founded:2022 Batch:Summer 2023 Team Size:22 Status:Active Location:Paris, France Primary Partner:"
+      - link "Work at a Startup" [ref=e64]
+      - link "Notice at Collection" [ref=e96]
+✔︎ Opened a new tab and set it active: tabs[4], page → Windmill: Open-source platform to turn scripts into internal apps & workflows | Y Combinator (https://www.ycombinator.com/companies/windmill)
+
+--- windmill ---
+- title: "Windmill: Open-source platform to turn scripts into internal apps & workflows | Y Combinator" [url=https://www.ycombinator.com/companies/windmill]
+- text: "Jobs at  Windmill"
+- text: "FR / Remote (FR; US)•$50K - $100K•3+ years"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR / Remote (FR)•€45K - €90K EUR•Any (new grads ok)"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR•€2K - €3K EUR / monthly•Junior and above"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR / Remote (FR)•€40K - €80K EUR•Any (new grads ok)"
+- text: "Paris, IDF, FR / Paris, Île-de-France, FR / Remote (FR)•€60K - €90K EUR•3+ years"
+- text: "Founded:2022 Batch:Summer 2022 Team Size:7 Status:Active Location:Paris, France Primary Partner:"
+      - link "Work at a Startup" [ref=e67]
+      - link "Notice at Collection" [ref=e99]
+</result>
+
+[25] thinking: **Exploring data sources**
+
+I’m considering another data source, which might include job listings in embedded properties. I'll fetch the HTML for the profile and parse the JSON data using regex. I need to find current job titles and their counts, and I think I'll inspect the page's HTML for hidden JSON. It seems important to check if there are more companies in regions that list France but aren't actually in France. I could query with batches and filter results that include France to compare.
+
+[26] tool_call: repl("Cross-checking by location text")
+<request>
+const batches2022_2023 = ['Winter 2022','Summer 2022','Winter 2023','Summer 2023'];
+const filterBatchesHiring = JSON.stringify([batches2022_2023.map(b=>'batch:'+b),'isHiring:true']);
+const allHiring2022_2023 = await algoliaRaw1({query:'', hitsPerPage:'1000', page:'0', facetFilters: filterBatchesHiring});
+const franceByLocation1 = allHiring2022_2023.hits.filter(h => /France/i.test(h.all_locations || '')).map(h=>({name:h.name, slug:h.slug, batch:h.batch, loc:h.all_locations, regions:h.regions, isHiring:h.isHiring}));
+console.log(JSON.stringify({nbHiring2022_2023: allHiring2022_2023.nbHits, franceByLocation: franceByLocation1}, null, 2));
+</request>
+<result tokens_used="535" elapsed_time="191ms">
+{
+  "nbHiring2022_2023": 342,
+  "franceByLocation": [
+    {
+      "name": "Osium AI",
+      "slug": "osium-ai",
+      "batch": "Summer 2023",
+      "loc": "Paris, Île-de-France, France",
+      "regions": [
+        "France",
+        "Europe"
+      ],
+      "isHiring": true
+    },
+    {
+      "name": "Rimward",
+      "slug": "rimward",
+      "batch": "Summer 2023",
+      "loc": "Paris, Île-de-France, France",
+      "regions": [
+        "France",
+        "Europe",
+        "Remote",
+        "Partly Remote"
+      ],
+      "isHiring": true
+    },
+    {
+      "name": "HyLight",
+      "slug": "hylight",
+      "batch": "Summer 2023",
+      "loc": "Paris, Île-de-France, France",
+      "regions": [
+        "France",
+        "Europe"
+      ],
+      "isHiring": true
+    },
+    {
+      "name": "Windmill",
+      "slug": "windmill",
+      "batch": "Summer 2022",
+      "loc": "Paris, Île-de-France, France",
+      "regions": [
+        "France",
+        "Europe",
+        "Remote",
+        "Partly Remote"
+      ],
+      "isHiring": true
+    }
+  ]
+}
+</result>
+
+[27] tool_call: webfetch(url="https://www.ycombinator.com/companies/osium-ai", format="markdown", timeout=30)
+<result tokens_used="279">
+<webfetch-citation source_id="fetch_call_jj8bIeGqOPgceF94sKiCVSAf|fc_030b4f5f2f109245016a051d6136948199926e11fcb69bc0ba#1"></webfetch-citation>
+
+Osium AI: Speed up materials innovation with Artificial Intelligence | Y Combinator                                                                                                                                                                                                      
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")Open menu
+
+[About](/about)
+
+[What Happens at YC?](/about)[Apply](/apply)[YC Interview Guide](/interviews)[FAQ](/faq)[People](/people)[YC Blog](/blog)
+
+[Companies](/companies)
+
+[Startup Directory](/companies)[Founder Directory](/founders)[Launch YC](/launches)
+
+[Library](/library)
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+[Partners](/partners)
+
+[Resources](/library)
+
+[Startup School](https://startupschool.org?utm_source=yc&utm_campaign=ycdc_header)[Newsletter](/subscribe)[Requests for Startups](/rfs)[For Investors](/investors)[Verify Founders](/verify)[Hacker News](https://news.ycombinator.com/)[Bookface](https://bookface.ycombinator.com)[Safe](/documents)[Find a Co-Founder](/cofounder-matching)
+
+[Startup Jobs](/jobs)
+
+[Log in](https://account.ycombinator.com/?continue=https://www.ycombinator.com/companies/osium-ai)[Apply](/apply)
+
+[Home](/home)›[Companies](/companies)›Osium AI
+
+![](https://bookface-images.s3.amazonaws.com/small_logos/17409239d13cf1106205231c915b030f64bc868e.png)
+
+Osium AI
+
+Speed up materials innovation with Artificial Intelligence
+
+[
+
+Y Combinator LogoSummer 2023
+
+
+
+](</companies?batch=Summer 2023>)
+
+Active
+
+---
+
+[Company](/companies/osium-ai)
+
+[Jobs](/companies/osium-ai/jobs)3
+
+[News](/companies/osium-ai#news)
+
+ [https://osium.ai/](https://osium.ai/)
+
+---
+
+### Speed up materials innovation with Artificial Intelligence
+
+Our AI-powered software enables materials R&D engineers to design new materials much faster. To date, manufacturing companies rely on trial-and-error and manual approaches to develop new materials. This is a tedious and time-consuming process. Yet, carbon neutrality requirements urge manufacturers to adopt greener and lighter materials to decarbonize the industry.
+
+Active Founders
+
+![Sarah Najmark](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/a93826c7cd03ac0af34837cbe1a21cec84e1e084.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAIXCZ3KZO%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIHsal5ogqIY1PNsqGZISanjxpm%2BX2kOG%2BCJpCEbT2pwpAiEA9aD9FxLUBPu2Ahmd%2BfBqIC1fmg3RJbjmjjVWv3k%2F1EUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDMGwluCwmPvxolWuPyrCA3YnvQJCvSRFnI%2FKYMkJ58yGaZVu%2BkAboiiE%2F1S9PMZSVmNWLySw7JuQzndwD6GwzHDIVgloUxpbTg8DI3qcdAgZPkfKl%2Bw4N3kelH%2BgkWDElvnm5PiRFsuZdlZbXD24F5XHTWRTFSiNYya12lmhdTB4fJ6M9Q8sHQ%2BULY1tCIxvT2HHWA8zH1XqlQTBh7QhiCHKk5DSuxs8vfPMPxYuxBX517Hp7AhTgsJWdhTT3iyNYDDnHBpRt7DLdFrZW7zmitywWj7TEpoP3MG5w7Ovkf2JGquGHhk0b1KnuoYpjrG8lt%2B5AGT3v5Z%2Fh18s5ML346e8gh61wC4NpugIYxk%2Fsven9BR4GfeRWHimdk2DBjYElmxXdbWgO3Ml1%2B0V%2B7eM1fhH31grXkkh0SnpMJ5Bbcdl3nAyMluOcs%2Fgzy9%2BPFOsAoM0ktnhF6ZQvWeQWGHAAO3nFiPMFjrDqbbNlznYB1U0b%2BQENc4GT%2F955XuPN2ZF%2FSfn7%2FGy1RXuP1i3TlnHGwmLLaDgsDyPCrQG6uGEGRQOMYmkHgmBaGbqysQPgMeIPTo3aaVLi%2Foj9EIQxIRwj3b4I7N8Gh%2FNX6%2BTXWhb9uKv2DDbqZTQBjqlAaY0iieKjQDIBm9Ls0CcgkYdF0sf6cgOHd015ew4OCrsn11gICQoC7eRs%2FP0Z91E0NYhHULh1p4In5eKi0YHsJqzTuBSWjzXwE14uCmzZzqDiDUb8EUmNgeZec4xoHOFCDpcfErsEv8cfuMXff41viVsJdu%2F302rmwVqhtYJjFsdrWD0GdGz9FdRYvB6TaEZ4r8UKt%2BtB8j8ab1Mw5BcRS6kuSPFlQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=a239a6b93f464ce47f95ae95c39624a5f94222d703f38e7cd32728ac061a3b49)
+
+Sarah Najmark
+
+ [](https://linkedin.com/in/sarah-najmark-706b80131)
+
+Founder
+
+Sarah is the co-founder and CEO of Osium AI, which she started with Luisa Bouneder, her close friend since College. She studied Mathematics, Physics and Chemistry at Ecole Centrale Paris. She holds a Master in Science from Stanford University where she conducted and led AI research. Sarah has deep expertise in AI technologies applied to complex systems as she spent 3 years as a Tech Lead and Product Manager at Google X, the moonshot division of Google. She authored 2 AI patents.
+
+![Sarah Najmark](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/a93826c7cd03ac0af34837cbe1a21cec84e1e084.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAIXCZ3KZO%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIHsal5ogqIY1PNsqGZISanjxpm%2BX2kOG%2BCJpCEbT2pwpAiEA9aD9FxLUBPu2Ahmd%2BfBqIC1fmg3RJbjmjjVWv3k%2F1EUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDMGwluCwmPvxolWuPyrCA3YnvQJCvSRFnI%2FKYMkJ58yGaZVu%2BkAboiiE%2F1S9PMZSVmNWLySw7JuQzndwD6GwzHDIVgloUxpbTg8DI3qcdAgZPkfKl%2Bw4N3kelH%2BgkWDElvnm5PiRFsuZdlZbXD24F5XHTWRTFSiNYya12lmhdTB4fJ6M9Q8sHQ%2BULY1tCIxvT2HHWA8zH1XqlQTBh7QhiCHKk5DSuxs8vfPMPxYuxBX517Hp7AhTgsJWdhTT3iyNYDDnHBpRt7DLdFrZW7zmitywWj7TEpoP3MG5w7Ovkf2JGquGHhk0b1KnuoYpjrG8lt%2B5AGT3v5Z%2Fh18s5ML346e8gh61wC4NpugIYxk%2Fsven9BR4GfeRWHimdk2DBjYElmxXdbWgO3Ml1%2B0V%2B7eM1fhH31grXkkh0SnpMJ5Bbcdl3nAyMluOcs%2Fgzy9%2BPFOsAoM0ktnhF6ZQvWeQWGHAAO3nFiPMFjrDqbbNlznYB1U0b%2BQENc4GT%2F955XuPN2ZF%2FSfn7%2FGy1RXuP1i3TlnHGwmLLaDgsDyPCrQG6uGEGRQOMYmkHgmBaGbqysQPgMeIPTo3aaVLi%2Foj9EIQxIRwj3b4I7N8Gh%2FNX6%2BTXWhb9uKv2DDbqZTQBjqlAaY0iieKjQDIBm9Ls0CcgkYdF0sf6cgOHd015ew4OCrsn11gICQoC7eRs%2FP0Z91E0NYhHULh1p4In5eKi0YHsJqzTuBSWjzXwE14uCmzZzqDiDUb8EUmNgeZec4xoHOFCDpcfErsEv8cfuMXff41viVsJdu%2F302rmwVqhtYJjFsdrWD0GdGz9FdRYvB6TaEZ4r8UKt%2BtB8j8ab1Mw5BcRS6kuSPFlQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=a239a6b93f464ce47f95ae95c39624a5f94222d703f38e7cd32728ac061a3b49)
+
+Sarah Najmark
+
+ [](https://linkedin.com/in/sarah-najmark-706b80131)
+
+Founder
+
+Sarah is the co-founder and CEO of Osium AI, which she started with Luisa Bouneder, her close friend since College. She studied Mathematics, Physics and Chemistry at Ecole Centrale Paris. She holds a Master in Science from Stanford University where she conducted and led AI research. Sarah has deep expertise in AI technologies applied to complex systems as she spent 3 years as a Tech Lead and Product Manager at Google X, the moonshot division of Google. She authored 2 AI patents.
+
+![Luisa Bouneder](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/3d8a4638f200931a81255e61a1cbc536864fa793.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAIXCZ3KZO%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIHsal5ogqIY1PNsqGZISanjxpm%2BX2kOG%2BCJpCEbT2pwpAiEA9aD9FxLUBPu2Ahmd%2BfBqIC1fmg3RJbjmjjVWv3k%2F1EUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDMGwluCwmPvxolWuPyrCA3YnvQJCvSRFnI%2FKYMkJ58yGaZVu%2BkAboiiE%2F1S9PMZSVmNWLySw7JuQzndwD6GwzHDIVgloUxpbTg8DI3qcdAgZPkfKl%2Bw4N3kelH%2BgkWDElvnm5PiRFsuZdlZbXD24F5XHTWRTFSiNYya12lmhdTB4fJ6M9Q8sHQ%2BULY1tCIxvT2HHWA8zH1XqlQTBh7QhiCHKk5DSuxs8vfPMPxYuxBX517Hp7AhTgsJWdhTT3iyNYDDnHBpRt7DLdFrZW7zmitywWj7TEpoP3MG5w7Ovkf2JGquGHhk0b1KnuoYpjrG8lt%2B5AGT3v5Z%2Fh18s5ML346e8gh61wC4NpugIYxk%2Fsven9BR4GfeRWHimdk2DBjYElmxXdbWgO3Ml1%2B0V%2B7eM1fhH31grXkkh0SnpMJ5Bbcdl3nAyMluOcs%2Fgzy9%2BPFOsAoM0ktnhF6ZQvWeQWGHAAO3nFiPMFjrDqbbNlznYB1U0b%2BQENc4GT%2F955XuPN2ZF%2FSfn7%2FGy1RXuP1i3TlnHGwmLLaDgsDyPCrQG6uGEGRQOMYmkHgmBaGbqysQPgMeIPTo3aaVLi%2Foj9EIQxIRwj3b4I7N8Gh%2FNX6%2BTXWhb9uKv2DDbqZTQBjqlAaY0iieKjQDIBm9Ls0CcgkYdF0sf6cgOHd015ew4OCrsn11gICQoC7eRs%2FP0Z91E0NYhHULh1p4In5eKi0YHsJqzTuBSWjzXwE14uCmzZzqDiDUb8EUmNgeZec4xoHOFCDpcfErsEv8cfuMXff41viVsJdu%2F302rmwVqhtYJjFsdrWD0GdGz9FdRYvB6TaEZ4r8UKt%2BtB8j8ab1Mw5BcRS6kuSPFlQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=eb12a63aa1a816f35582ea6f51c79c4a1f4bedc1cc12a4c1998d764c0b4db965)
+
+Luisa Bouneder
+
+ [](https://linkedin.com/in/luisa-bouneder-262b801aa)
+
+Founder
+
+Luisa is the co-founder and CTO of Osium AI, which she started with Sarah Najmark, her close friend since College. She studied Mathematics, Physics and Chemistry at Ecole Polytechnique, France. She holds a Master in Science from Stanford University where she conducted and led AI research. She has hands-on experience in building AI tools for industry leaders thanks to her years of experience in Data Science services in the Materials and Life Science industries.
+
+![Luisa Bouneder](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/3d8a4638f200931a81255e61a1cbc536864fa793.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAIXCZ3KZO%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIHsal5ogqIY1PNsqGZISanjxpm%2BX2kOG%2BCJpCEbT2pwpAiEA9aD9FxLUBPu2Ahmd%2BfBqIC1fmg3RJbjmjjVWv3k%2F1EUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDMGwluCwmPvxolWuPyrCA3YnvQJCvSRFnI%2FKYMkJ58yGaZVu%2BkAboiiE%2F1S9PMZSVmNWLySw7JuQzndwD6GwzHDIVgloUxpbTg8DI3qcdAgZPkfKl%2Bw4N3kelH%2BgkWDElvnm5PiRFsuZdlZbXD24F5XHTWRTFSiNYya12lmhdTB4fJ6M9Q8sHQ%2BULY1tCIxvT2HHWA8zH1XqlQTBh7QhiCHKk5DSuxs8vfPMPxYuxBX517Hp7AhTgsJWdhTT3iyNYDDnHBpRt7DLdFrZW7zmitywWj7TEpoP3MG5w7Ovkf2JGquGHhk0b1KnuoYpjrG8lt%2B5AGT3v5Z%2Fh18s5ML346e8gh61wC4NpugIYxk%2Fsven9BR4GfeRWHimdk2DBjYElmxXdbWgO3Ml1%2B0V%2B7eM1fhH31grXkkh0SnpMJ5Bbcdl3nAyMluOcs%2Fgzy9%2BPFOsAoM0ktnhF6ZQvWeQWGHAAO3nFiPMFjrDqbbNlznYB1U0b%2BQENc4GT%2F955XuPN2ZF%2FSfn7%2FGy1RXuP1i3TlnHGwmLLaDgsDyPCrQG6uGEGRQOMYmkHgmBaGbqysQPgMeIPTo3aaVLi%2Foj9EIQxIRwj3b4I7N8Gh%2FNX6%2BTXWhb9uKv2DDbqZTQBjqlAaY0iieKjQDIBm9Ls0CcgkYdF0sf6cgOHd015ew4OCrsn11gICQoC7eRs%2FP0Z91E0NYhHULh1p4In5eKi0YHsJqzTuBSWjzXwE14uCmzZzqDiDUb8EUmNgeZec4xoHOFCDpcfErsEv8cfuMXff41viVsJdu%2F302rmwVqhtYJjFsdrWD0GdGz9FdRYvB6TaEZ4r8UKt%2BtB8j8ab1Mw5BcRS6kuSPFlQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=eb12a63aa1a816f35582ea6f51c79c4a1f4bedc1cc12a4c1998d764c0b4db965)
+
+Luisa Bouneder
+
+ [](https://linkedin.com/in/luisa-bouneder-262b801aa)
+
+Founder
+
+Luisa is the co-founder and CTO of Osium AI, which she started with Sarah Najmark, her close friend since College. She studied Mathematics, Physics and Chemistry at Ecole Polytechnique, France. She holds a Master in Science from Stanford University where she conducted and led AI research. She has hands-on experience in building AI tools for industry leaders thanks to her years of experience in Data Science services in the Materials and Life Science industries.
+
+Latest News
+
+[Osium AI uses artificial intelligence to speed up materials innovation | TechCrunch](https://techcrunch.com/2023/11/22/osium-ai-uses-artificial-intelligence-to-speed-up-materials-innovation/)
+
+Nov 22, 2023
+
+Company Launches
+
+🚀 Osium AI - AI for advanced and sustainable materials discovery
+
+[See original launch post](/launches/Iy6-osium-ai-ai-for-advanced-and-sustainable-materials-discovery)
+
+Hello everyone,
+
+**We are **[**Sarah Najmark**](https://www.linkedin.com/in/sarah-najmark-706b80131/)** (left) and **[**Luisa Bouneder**](https://www.linkedin.com/in/luisa-bouneder-262b801aa/)** (right), the founders of **[**Osium AI**](https://osium.ai/)**, and close friends from Stanford University.**
+
+![uploaded image](/media/?type=post&id=72918&key=user_uploads%2F806335%2Fa66e9745-84c1-4978-a0ab-49153939a69d&variant=large)
+
+**Our AI-powered software enables materials R&D engineers to formulate and analyze materials much faster.**
+
+### **Problem**
+
+To date, materials manufacturing companies rely on trial-and-error and manual approaches to develop new materials. This is a tedious and time-consuming process - at least 5 years are spent just formulating and testing in the R&D lab. Yet, the paradigm shift towards carbon neutrality by 2050 puts more and more pressure on advanced materials innovation.
+
+### **Solution**
+
+We develop state-of-the-art AI technologies for materials properties predictions, inverse design of materials, and accelerated microscopy image analysis. Our product is an AI-powered software with an intuitive interface making it easy-to-use by any material R&D engineer with no data science background.
+
+![uploaded image](/media/?type=post&id=72918&key=user_uploads%2F806335%2F24105469-4ab7-47cc-ba78-719fab587cbe&variant=large)
+
+![uploaded image](/media/?type=post&id=72918&key=user_uploads%2F806335%2F10393954-73d9-4a8c-afa4-991e7baaaad8&variant=large)
+
+### **Our team**
+
+We leverage our unique combination of expertise in Materials Science and Artificial Intelligence.
+
+We led AI research at Stanford and Google \[X\], authored 2 AI patents, and we have a track record in building AI products for Materials Industry leaders.
+
+### **Our ask**
+
+-   Follow us on [Linkedin](https://www.linkedin.com/company/osiumai/?viewAsMember=true).
+-   Are you willing to accelerate your materials innovation? Book a demo [here](https://calendly.com/osiumai).
+-   Do you know someone working in materials manufacturing or chemistry companies? Reach out to us at [founders@osium.ai](mailto:founders@osium.ai).
+
+Jobs at Osium AI
+
+[View all jobs](/companies/osium-ai/jobs)
+
+[Data Scientist at Osium AI (YC S23)](/companies/osium-ai/jobs/sLA7Iis-data-scientist-at-osium-ai-yc-s23)
+
+Paris, IDF, FR
+
+€40K - €70K EUR
+
+Any (new grads ok)
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D67314&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28980)
+
+[AI Engineer at Osium AI (YC S23)](/companies/osium-ai/jobs/UctjBug-ai-engineer-at-osium-ai-yc-s23)
+
+Paris, IDF, FR
+
+€40K - €70K EUR
+
+Any (new grads ok)
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D67313&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28980)
+
+[Full-stack engineer at Osium AI (S23)](/companies/osium-ai/jobs/pG0jDkF-full-stack-engineer-at-osium-ai-s23)
+
+Paris, IDF, FR
+
+€50K - €70K EUR
+
+3+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D62802&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28980)
+
+[![Osium AI](https://bookface-images.s3.us-west-2.amazonaws.com/logos/cd3f1938629075bba89dd04f2603ea2798feea5f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAIXCZ3KZO%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIHsal5ogqIY1PNsqGZISanjxpm%2BX2kOG%2BCJpCEbT2pwpAiEA9aD9FxLUBPu2Ahmd%2BfBqIC1fmg3RJbjmjjVWv3k%2F1EUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDMGwluCwmPvxolWuPyrCA3YnvQJCvSRFnI%2FKYMkJ58yGaZVu%2BkAboiiE%2F1S9PMZSVmNWLySw7JuQzndwD6GwzHDIVgloUxpbTg8DI3qcdAgZPkfKl%2Bw4N3kelH%2BgkWDElvnm5PiRFsuZdlZbXD24F5XHTWRTFSiNYya12lmhdTB4fJ6M9Q8sHQ%2BULY1tCIxvT2HHWA8zH1XqlQTBh7QhiCHKk5DSuxs8vfPMPxYuxBX517Hp7AhTgsJWdhTT3iyNYDDnHBpRt7DLdFrZW7zmitywWj7TEpoP3MG5w7Ovkf2JGquGHhk0b1KnuoYpjrG8lt%2B5AGT3v5Z%2Fh18s5ML346e8gh61wC4NpugIYxk%2Fsven9BR4GfeRWHimdk2DBjYElmxXdbWgO3Ml1%2B0V%2B7eM1fhH31grXkkh0SnpMJ5Bbcdl3nAyMluOcs%2Fgzy9%2BPFOsAoM0ktnhF6ZQvWeQWGHAAO3nFiPMFjrDqbbNlznYB1U0b%2BQENc4GT%2F955XuPN2ZF%2FSfn7%2FGy1RXuP1i3TlnHGwmLLaDgsDyPCrQG6uGEGRQOMYmkHgmBaGbqysQPgMeIPTo3aaVLi%2Foj9EIQxIRwj3b4I7N8Gh%2FNX6%2BTXWhb9uKv2DDbqZTQBjqlAaY0iieKjQDIBm9Ls0CcgkYdF0sf6cgOHd015ew4OCrsn11gICQoC7eRs%2FP0Z91E0NYhHULh1p4In5eKi0YHsJqzTuBSWjzXwE14uCmzZzqDiDUb8EUmNgeZec4xoHOFCDpcfErsEv8cfuMXff41viVsJdu%2F302rmwVqhtYJjFsdrWD0GdGz9FdRYvB6TaEZ4r8UKt%2BtB8j8ab1Mw5BcRS6kuSPFlQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=c6ccc2b254d546f7506741999f6271505b188a0d7c401877e8c3ee939a9ba50f)](/companies/osium-ai)
+
+[Osium AI](/companies/osium-ai)
+
+Founded:2023
+
+Batch:Summer 2023
+
+Team Size:2
+
+Status:
+
+Active
+
+Location:Paris, France
+
+Primary Partner:[Nicolas Dessaigne](https://www.ycombinator.com/people/nicolas-dessaigne)
+
+[](https://osium.ai/) [](https://www.linkedin.com/company/osiumai)
+
+  
+
+## Footer
+
+[Y Combinator![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+### Make something people want.
+
+### Programs
+
+-   [YC Program](/about)
+-   [Startup School](https://startupschool.org)
+-   [Work at a Startup](/jobs)
+-   [Co-Founder Matching](/cofounder-matching)
+
+### Resources
+
+-   [Startup Directory](/companies)
+-   [Startup Library](/library)
+-   [Investors](/investors)
+-   [Demo Day](/demoday)
+-   [Safe](/documents)
+-   [Hacker News](https://news.ycombinator.com/)
+-   [Launch YC](/launches)
+-   [YC Deals](https://deals.ycombinator.com)
+
+### Company
+
+-   [YC Blog](/blog)
+-   [Contact](/contact)
+-   [Press](/press)
+-   [People](/people)
+-   [Careers](/software)
+-   [Privacy Policy](/legal#privacy)
+-   [Notice at Collection](/legal#notice-at-collection)
+-   [Security](/security)
+-   [Terms of Use](/legal#tou)
+
+[TwitterTwitter](https://twitter.com/ycombinator)[FacebookFacebook](https://www.facebook.com/YCombinator/)[InstagramInstagram](https://www.instagram.com/ycombinator)[LinkedInLinkedIn](https://www.linkedin.com/school/y-combinator/)[YoutubeYouTube](https://www.youtube.com/c/ycombinator)
+
+© 2026 Y Combinator
+</result>
+
+[28] tool_call: webfetch(url="https://www.ycombinator.com/companies/rimward", format="markdown", timeout=30)
+<result tokens_used="279">
+<webfetch-citation source_id="fetch_call_tXgBNIaLqsXVZ9AdMWb8yHrN|fc_030b4f5f2f109245016a051d6136a88199a9a945dc0c34c994#1"></webfetch-citation>
+
+Rimward: Low-false-positive intrusion detection for remote outdoor sites | Y Combinator                                                                                                                                                                                                      
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")Open menu
+
+[About](/about)
+
+[What Happens at YC?](/about)[Apply](/apply)[YC Interview Guide](/interviews)[FAQ](/faq)[People](/people)[YC Blog](/blog)
+
+[Companies](/companies)
+
+[Startup Directory](/companies)[Founder Directory](/founders)[Launch YC](/launches)
+
+[Library](/library)
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+[Partners](/partners)
+
+[Resources](/library)
+
+[Startup School](https://startupschool.org?utm_source=yc&utm_campaign=ycdc_header)[Newsletter](/subscribe)[Requests for Startups](/rfs)[For Investors](/investors)[Verify Founders](/verify)[Hacker News](https://news.ycombinator.com/)[Bookface](https://bookface.ycombinator.com)[Safe](/documents)[Find a Co-Founder](/cofounder-matching)
+
+[Startup Jobs](/jobs)
+
+[Log in](https://account.ycombinator.com/?continue=https://www.ycombinator.com/companies/rimward)[Apply](/apply)
+
+[Home](/home)›[Companies](/companies)›Rimward
+
+![](https://bookface-images.s3.amazonaws.com/small_logos/bd215af97ab581709a04ff6284c6091f29c2058e.png)
+
+Rimward
+
+Low-false-positive intrusion detection for remote outdoor sites
+
+[
+
+Y Combinator LogoSummer 2023
+
+
+
+](</companies?batch=Summer 2023>)
+
+Active
+
+[
+
+Machine Learning
+
+](</companies/industry/Machine Learning>)[
+
+Computer Vision
+
+](</companies/industry/Computer Vision>)[
+
+B2B
+
+](/companies/industry/B2B)[
+
+Security
+
+](/companies/industry/Security)[
+
+Enterprise
+
+](/companies/industry/Enterprise)
+
+---
+
+[Company](/companies/rimward)
+
+[Jobs](/companies/rimward/jobs)2
+
+[News](/companies/rimward#news)
+
+ [https://rimward.ai/](https://rimward.ai/)
+
+---
+
+### Low-false-positive intrusion detection for remote outdoor sites
+
+Rimward helps operators of solar farms and other remote outdoor infrastructure detect intrusions from existing camera networks. We turn existing CCTV into operator-ready alerts with video verification, so security teams can reduce false alarms, respond faster, and avoid heavy hardware retrofits. We are focused on sites where recurring theft, perimeter intrusion, and low staffing make traditional monitoring noisy and operationally weak. Our approach is software-heavy, field-oriented, and built to work with real site constraints.
+
+Active Founders
+
+![F-G Fernandez](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/eed0d8708a06aa60a305c5d378c1355472e2e065.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAJMIF2WV6%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQD%2B0mtWlBzjVgNmeHJUuyqvO27%2FR9I8NR%2FRgBAD6ggMiwIhAPXty6xM2nSRXmxgkhnZ%2Bng4vsIlFoB7VBa8pRspfFh1KuUDCFEQABoMMDA2MjAxODExMDcyIgyyYtSEI1Nys4RbUxIqwgPRJrbakqvsRCxy81BHf%2BpBYJ06TMOV9EMGbumwDGQSMiDPsPshrcHCwk66udcoGN64GGr3VW0bOI53%2B1fZ3kN0zx13bgRzqPkBRtI%2FOByaCImPNxlerAf6LDgofDeC6Nfdh8B7t9yxYtlmkJjNm72Cp8TOqj9HwwCXVBpxk%2BzL3t2O1NeMHGo58T0Xu77HyiqDVZmGxPnQurjSZIzjvBrDXeKiW3mVwkSo7BOaXYJlmeSOi0SzEoa3z8gKWvDk00I215uwfR%2FzpLV9RH63RvW5CG0e1Bhbeu24CmP%2Ft2XUTwTzOzSnA9W8lo6l%2FQPxr5iY1Gsvc3ilV0VaTXMYGWLsHn3%2ByB37deqKsJutmacBLDuCs7r1XWqJd2q2vyw%2F9eowJxVZ1XIqrc02l4xF2U8swFo03DgHQfOZ7Rdk2szVRWf%2BFqe4kz11KQiiAAGcdbxS1RFU6X8bDeWHdfjlMlFAGAqWKnFP5ge8h2a0QpWY9CgiuUPb3PEG9zxe1mu%2BMfau%2BTQsVllUmn8l5UL5iR2wt4xzqlT2%2Fl%2BYvCJBiCsowbjA0%2FMoG42%2BUP9lXSFDrvKObaorf9gC%2F9orBzMFpqsR1low3KmU0AY6pAGmenCD8Oz%2BBzPcuZ%2F80DHuofc%2BxwuXLotzWdU9DB5QpzGb%2BPP9JEyz%2Frn3%2FkU%2FNoSXir%2BWnwGs9Y0aw19uMrVZCj3IrJTWWmAdk8K8V7DXdHxpTop5%2BZP2qw6DYoJA7flURkLnkB6KeRV6pLHf%2FbptZp6Ms5vWBihwgvgOnyOtkbgtf9gk5S5uKTvonRopuA7XnNgC2Pj%2FsJ%2F1Av8AViVNw5IzIQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=e10c64282f4d7fa13366bdea1aa08237820958c718a893a6a391a3fd1d65d592)
+
+F-G Fernandez
+
+[![Twitter account](/images/social/x-logo.svg)](https://twitter.com/FrG_FM) [](https://linkedin.com/in/frgfm)
+
+Founder
+
+FG is the founder & CEO of Rimward (S23). He earned a MSc in Mathematics and Computer Science from CentraleSupélec and has a deep background in ML, having led the research team at Mindee (YC W21), published several papers, and become one of the top PyTorch contributors. Beyond AI, FG specializes in large-scale engineering systems - he built and deployed a ground-based wildfire detection network across Europe, and South America starting with a Raspberry Pi, a camera and his laptop.
+
+![F-G Fernandez](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/eed0d8708a06aa60a305c5d378c1355472e2e065.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAJMIF2WV6%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQD%2B0mtWlBzjVgNmeHJUuyqvO27%2FR9I8NR%2FRgBAD6ggMiwIhAPXty6xM2nSRXmxgkhnZ%2Bng4vsIlFoB7VBa8pRspfFh1KuUDCFEQABoMMDA2MjAxODExMDcyIgyyYtSEI1Nys4RbUxIqwgPRJrbakqvsRCxy81BHf%2BpBYJ06TMOV9EMGbumwDGQSMiDPsPshrcHCwk66udcoGN64GGr3VW0bOI53%2B1fZ3kN0zx13bgRzqPkBRtI%2FOByaCImPNxlerAf6LDgofDeC6Nfdh8B7t9yxYtlmkJjNm72Cp8TOqj9HwwCXVBpxk%2BzL3t2O1NeMHGo58T0Xu77HyiqDVZmGxPnQurjSZIzjvBrDXeKiW3mVwkSo7BOaXYJlmeSOi0SzEoa3z8gKWvDk00I215uwfR%2FzpLV9RH63RvW5CG0e1Bhbeu24CmP%2Ft2XUTwTzOzSnA9W8lo6l%2FQPxr5iY1Gsvc3ilV0VaTXMYGWLsHn3%2ByB37deqKsJutmacBLDuCs7r1XWqJd2q2vyw%2F9eowJxVZ1XIqrc02l4xF2U8swFo03DgHQfOZ7Rdk2szVRWf%2BFqe4kz11KQiiAAGcdbxS1RFU6X8bDeWHdfjlMlFAGAqWKnFP5ge8h2a0QpWY9CgiuUPb3PEG9zxe1mu%2BMfau%2BTQsVllUmn8l5UL5iR2wt4xzqlT2%2Fl%2BYvCJBiCsowbjA0%2FMoG42%2BUP9lXSFDrvKObaorf9gC%2F9orBzMFpqsR1low3KmU0AY6pAGmenCD8Oz%2BBzPcuZ%2F80DHuofc%2BxwuXLotzWdU9DB5QpzGb%2BPP9JEyz%2Frn3%2FkU%2FNoSXir%2BWnwGs9Y0aw19uMrVZCj3IrJTWWmAdk8K8V7DXdHxpTop5%2BZP2qw6DYoJA7flURkLnkB6KeRV6pLHf%2FbptZp6Ms5vWBihwgvgOnyOtkbgtf9gk5S5uKTvonRopuA7XnNgC2Pj%2FsJ%2F1Av8AViVNw5IzIQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=e10c64282f4d7fa13366bdea1aa08237820958c718a893a6a391a3fd1d65d592)
+
+F-G Fernandez
+
+[![Twitter account](/images/social/x-logo.svg)](https://twitter.com/FrG_FM) [](https://linkedin.com/in/frgfm)
+
+Founder
+
+FG is the founder & CEO of Rimward (S23). He earned a MSc in Mathematics and Computer Science from CentraleSupélec and has a deep background in ML, having led the research team at Mindee (YC W21), published several papers, and become one of the top PyTorch contributors. Beyond AI, FG specializes in large-scale engineering systems - he built and deployed a ground-based wildfire detection network across Europe, and South America starting with a Raspberry Pi, a camera and his laptop.
+
+Latest News
+
+[Here are this year’s top 40 startups at Station F | TechCrunch](https://techcrunch.com/2023/11/15/here-are-this-years-top-40-startups-at-station-f/)
+
+Nov 15, 2023
+
+Company Launches
+
+🦆 Quack AI - AI companion for developer onboarding
+
+[See original launch post](/launches/JJk-quack-ai-ai-companion-for-developer-onboarding)
+
+Hello there! I'm FG (short for François-Guillaume 🇫🇷), the founder of [Quack AI](https://www.ycombinator.com/companies/quack-ai).
+
+**tl;dr:** *We help large software companies run like the most efficient open-source projects. In the future, top-tier developers in those organizations will be able to contribute to pivotal projects, regardless of what teams they're from.*
+
+### **💬** The Problem
+
+Successful OSS projects are well-organized communities where information is shared and valued. Recognizing this gold standard, corporate giants like Microsoft and IBM are shifting towards 'innersource' - a strategy that fosters ownership, augments communication, and bolsters productivity. However, like many cluttered OSS projects, the vast array of solicitations and varying expertise easily gets overwhelming.
+
+### 💻 Our Solution
+
+Our Dual-Fold Approach:
+
+![uploaded image](/media/?type=post&id=74260&key=user_uploads%2F1390247%2F195e8fa1-3b7d-4327-9507-c05a168f1531&variant=large)
+
+-   **Clarity for maintainers** (Web interface): we empower maintainers with a framework to streamline contribution processes. Through our intuitive interface, maintainers can design, curate, and sequence the optimal steps for smooth project contributions.
+
+![uploaded image](/media/?type=post&id=74260&key=user_uploads%2F1390247%2F94e7fe10-fc64-4df9-893a-8f20fd16e2ea&variant=large)
+
+-   **Guidance for developers** (VSCode extension): with our IDE extension, developers aren't just compliant; they're efficient. It aids in identifying the right issues, ensures alignment with contribution flows, and keeps a pulse on project priorities.
+
+While maintaining popular OSS projects and being an active contributor to PyTorch, I’ve often faced the frustration of seeing Pull Requests from newcomers and thinking “If only that person had the reflex to do XYZ.” Those unwritten norms, which often evade CI restrictions, only sink in after repeated code reviews and numerous trials and errors. This uneasy feeling that “it would be so easy if they were to do ABC” highlights the absence of a solid framework for collaborative development.
+
+### 🦆 The Team
+
+![uploaded image](/media/?type=post&id=74260&key=user_uploads%2F1390247%2F153b4727-f3fd-4ba1-9020-45fbc7e19d2b&variant=large)
+
+I tend to describe myself as a *"Deep learning engineer by day, open source contributor by night 🦇"* which is fairly accurate! On top of being among the top contributors of PyTorch, I’ve led the development of the open-source OCR library of devtool company Mindee (YC W21). I experienced first-hand how some open-source communities are structured to achieve high engagement & productivity, which now appeals to software behemoths.
+
+### 🙏 How you can help
+
+-   **🤝 Refer**: know someone in a major corporation looming over innersource or part of a substantial OSS project? Please connect us.
+-   **⭐ Engage**: star us on [GitHub](https://github.com/quack-ai/companion) & hop into our [Discord](https://discord.gg/E9rY3bVCWd) for the latest updates!
+-   **👍👎 Experiment & feedback**: mold your unique coding insights and take our [VSCode extension](https://marketplace.visualstudio.com/items?itemName=quackai.quack-companion) for a whirl.
+-   **📣 Share**: share this post with your network, you can find us on [Twitter](https://twitter.com/quack_ai) or [LinkedIn](https://www.linkedin.com/company/quackai)
+
+Up to revolutionize developer collaboration? Let’s get quacking then!
+
+Jobs at Rimward
+
+[View all jobs](/companies/rimward/jobs)
+
+[Security / IoT Deployment Engineer](/companies/rimward/jobs/j4L5SKW-security-iot-deployment-engineer)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€50K - €70K EUR
+
+0.50% - 2.00%
+
+3+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D92922&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28958)
+
+[Platform Engineer](/companies/rimward/jobs/Ocflvow-platform-engineer)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€50K - €70K EUR
+
+0.50% - 2.00%
+
+3+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D92923&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28958)
+
+[![Rimward](https://bookface-images.s3.us-west-2.amazonaws.com/logos/a7b27b5f3fb82cace22e8ced32b69caab81cc30f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAJMIF2WV6%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQD%2B0mtWlBzjVgNmeHJUuyqvO27%2FR9I8NR%2FRgBAD6ggMiwIhAPXty6xM2nSRXmxgkhnZ%2Bng4vsIlFoB7VBa8pRspfFh1KuUDCFEQABoMMDA2MjAxODExMDcyIgyyYtSEI1Nys4RbUxIqwgPRJrbakqvsRCxy81BHf%2BpBYJ06TMOV9EMGbumwDGQSMiDPsPshrcHCwk66udcoGN64GGr3VW0bOI53%2B1fZ3kN0zx13bgRzqPkBRtI%2FOByaCImPNxlerAf6LDgofDeC6Nfdh8B7t9yxYtlmkJjNm72Cp8TOqj9HwwCXVBpxk%2BzL3t2O1NeMHGo58T0Xu77HyiqDVZmGxPnQurjSZIzjvBrDXeKiW3mVwkSo7BOaXYJlmeSOi0SzEoa3z8gKWvDk00I215uwfR%2FzpLV9RH63RvW5CG0e1Bhbeu24CmP%2Ft2XUTwTzOzSnA9W8lo6l%2FQPxr5iY1Gsvc3ilV0VaTXMYGWLsHn3%2ByB37deqKsJutmacBLDuCs7r1XWqJd2q2vyw%2F9eowJxVZ1XIqrc02l4xF2U8swFo03DgHQfOZ7Rdk2szVRWf%2BFqe4kz11KQiiAAGcdbxS1RFU6X8bDeWHdfjlMlFAGAqWKnFP5ge8h2a0QpWY9CgiuUPb3PEG9zxe1mu%2BMfau%2BTQsVllUmn8l5UL5iR2wt4xzqlT2%2Fl%2BYvCJBiCsowbjA0%2FMoG42%2BUP9lXSFDrvKObaorf9gC%2F9orBzMFpqsR1low3KmU0AY6pAGmenCD8Oz%2BBzPcuZ%2F80DHuofc%2BxwuXLotzWdU9DB5QpzGb%2BPP9JEyz%2Frn3%2FkU%2FNoSXir%2BWnwGs9Y0aw19uMrVZCj3IrJTWWmAdk8K8V7DXdHxpTop5%2BZP2qw6DYoJA7flURkLnkB6KeRV6pLHf%2FbptZp6Ms5vWBihwgvgOnyOtkbgtf9gk5S5uKTvonRopuA7XnNgC2Pj%2FsJ%2F1Av8AViVNw5IzIQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=90900ff917816618c47cef7c5aea7ecc30eee05824bb7e3157a0c8835cfe1c09)](/companies/rimward)
+
+[Rimward](/companies/rimward)
+
+Founded:2023
+
+Batch:Summer 2023
+
+Team Size:1
+
+Status:
+
+Active
+
+Location:Paris, France
+
+Primary Partner:[Diana Hu](https://www.ycombinator.com/people/diana-hu)
+
+[](https://rimward.ai/) [](https://www.linkedin.com/company/rimward)[![X (Twitter) logo](/images/social/x-logo.svg)](https://twitter.com/rimward_ai) [](https://www.crunchbase.com/organization/rimward) [](https://github.com/rimward)
+
+  
+
+## Footer
+
+[Y Combinator![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+### Make something people want.
+
+### Programs
+
+-   [YC Program](/about)
+-   [Startup School](https://startupschool.org)
+-   [Work at a Startup](/jobs)
+-   [Co-Founder Matching](/cofounder-matching)
+
+### Resources
+
+-   [Startup Directory](/companies)
+-   [Startup Library](/library)
+-   [Investors](/investors)
+-   [Demo Day](/demoday)
+-   [Safe](/documents)
+-   [Hacker News](https://news.ycombinator.com/)
+-   [Launch YC](/launches)
+-   [YC Deals](https://deals.ycombinator.com)
+
+### Company
+
+-   [YC Blog](/blog)
+-   [Contact](/contact)
+-   [Press](/press)
+-   [People](/people)
+-   [Careers](/software)
+-   [Privacy Policy](/legal#privacy)
+-   [Notice at Collection](/legal#notice-at-collection)
+-   [Security](/security)
+-   [Terms of Use](/legal#tou)
+
+[TwitterTwitter](https://twitter.com/ycombinator)[FacebookFacebook](https://www.facebook.com/YCombinator/)[InstagramInstagram](https://www.instagram.com/ycombinator)[LinkedInLinkedIn](https://www.linkedin.com/school/y-combinator/)[YoutubeYouTube](https://www.youtube.com/c/ycombinator)
+
+© 2026 Y Combinator
+</result>
+
+[29] tool_call: webfetch(url="https://www.ycombinator.com/companies/hylight", format="markdown", timeout=30)
+<result tokens_used="279">
+<webfetch-citation source_id="fetch_call_MGwidw6AJ4KmOOSwYIAC7m7B|fc_030b4f5f2f109245016a051d6136b081999b6e6afa9a465f7a#1"></webfetch-citation>
+
+HyLight: Small unmanned hydrogen airships for long range monitoring | Y Combinator                                                                                                                                                                                                      
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")Open menu
+
+[About](/about)
+
+[What Happens at YC?](/about)[Apply](/apply)[YC Interview Guide](/interviews)[FAQ](/faq)[People](/people)[YC Blog](/blog)
+
+[Companies](/companies)
+
+[Startup Directory](/companies)[Founder Directory](/founders)[Launch YC](/launches)
+
+[Library](/library)
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+[Partners](/partners)
+
+[Resources](/library)
+
+[Startup School](https://startupschool.org?utm_source=yc&utm_campaign=ycdc_header)[Newsletter](/subscribe)[Requests for Startups](/rfs)[For Investors](/investors)[Verify Founders](/verify)[Hacker News](https://news.ycombinator.com/)[Bookface](https://bookface.ycombinator.com)[Safe](/documents)[Find a Co-Founder](/cofounder-matching)
+
+[Startup Jobs](/jobs)
+
+[Log in](https://account.ycombinator.com/?continue=https://www.ycombinator.com/companies/hylight)[Apply](/apply)
+
+[Home](/home)›[Companies](/companies)›HyLight
+
+![](https://bookface-images.s3.amazonaws.com/small_logos/17e115f6387d31c268302079d59ab1981c37d8ca.png)
+
+HyLight
+
+Small unmanned hydrogen airships for long range monitoring
+
+[
+
+Y Combinator LogoSummer 2023
+
+
+
+](</companies?batch=Summer 2023>)
+
+Active
+
+[
+
+Hydrogen Energy
+
+](</companies/industry/Hydrogen Energy>)[
+
+B2B
+
+](/companies/industry/B2B)[
+
+Climate
+
+](/companies/industry/Climate)[
+
+Energy
+
+](/companies/industry/Energy)[
+
+Aerospace
+
+](/companies/industry/Aerospace)
+
+---
+
+[Company](/companies/hylight)
+
+[Jobs](/companies/hylight/jobs)8
+
+[News](/companies/hylight#news)
+
+ [https://www.hylight.aero/](https://www.hylight.aero/)
+
+---
+
+### Small unmanned hydrogen airships for long range monitoring
+
+HyLight builds and operates autonomous airships for long range monitoring. We focus on detecting methane leaks on pipelines and defects on power lines. Our innovation, the HyLighter, is a crossover between drone and airship technology. Like a drone, it is easily controllable and transportable. And, like an airship, it is extremely energy-efficient, enabling it to fly for up to 10 hours at slow speed (22mph) for optimal data collection which represents a range of 220miles. Today, energy infrastructure operators struggle with conducting inspections that are simultaneously: massive and precise. HyLight offers a solution to precisely detect issues on the infrastructure at an industrial scale, and all of this without emitting GHGs. We are 3 co-founders experienced in hardware and energy companies with Masters in Mechanical Engineering, Computer Science and Business from the best Engineering and Business School in France. We have developed 5 different flying aircrafts and signed 5 pilots programs with major energy infrastructure operators. We also have LOIs worth over $3.5M.
+
+Active Founders
+
+![Thomas Laporte](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/baa91f6567508aa8dbb57a8367c6b92040bcc085.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=32e29be3d29107c62ac50a717685aa1987a4bf4ee80eb6a7b3daceab0f8248f3)
+
+Thomas Laporte
+
+ [](https://www.linkedin.com/in/thomaslaporte/)
+
+Founder
+
+Co-founder & CBO at HyLight | My goal is to reduce greenhouse gas emissions. At HyLight, I do that by helping our clients replace a bad solution with a high carbon footprint by our great solution with zero carbon footprint. I support utilities in taking care of critical energy infrastructure and help them in detecting defects before the outage.
+
+![Thomas Laporte](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/baa91f6567508aa8dbb57a8367c6b92040bcc085.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=32e29be3d29107c62ac50a717685aa1987a4bf4ee80eb6a7b3daceab0f8248f3)
+
+Thomas Laporte
+
+ [](https://www.linkedin.com/in/thomaslaporte/)
+
+Founder
+
+Co-founder & CBO at HyLight | My goal is to reduce greenhouse gas emissions. At HyLight, I do that by helping our clients replace a bad solution with a high carbon footprint by our great solution with zero carbon footprint. I support utilities in taking care of critical energy infrastructure and help them in detecting defects before the outage.
+
+![Martin Bocken](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/fc2a3eb98268019633e365686398888f46b8dfc4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=ffe801c85c2aba7e55fa822e723752116f45f69fcff00da65514b64ab727a69a)
+
+Martin Bocken
+
+ [](https://www.linkedin.com/in/martin-bocken/)
+
+Founder
+
+Co-founder & CEO of @HyLight. I'm a doer at heart, my engineering background helped me to launch several entrepreneurial projects. I devote my energy to creating and designing the innovations that will enable us to live in a low-carbon world tomorrow.
+
+![Martin Bocken](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/fc2a3eb98268019633e365686398888f46b8dfc4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=ffe801c85c2aba7e55fa822e723752116f45f69fcff00da65514b64ab727a69a)
+
+Martin Bocken
+
+ [](https://www.linkedin.com/in/martin-bocken/)
+
+Founder
+
+Co-founder & CEO of @HyLight. I'm a doer at heart, my engineering background helped me to launch several entrepreneurial projects. I devote my energy to creating and designing the innovations that will enable us to live in a low-carbon world tomorrow.
+
+![Josef Rokusek](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/555fb088667941d22fbe137c580424eb0139aedf.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=ea0e90face95440e2f6bef9f5beefdc4ae9412635d41056285d0e68009377f37)
+
+Josef Rokusek
+
+ [](https://www.linkedin.com/in/josef-rokusek/)
+
+Founder
+
+Co-founder & CTO of @HyLight. With a boundless passion for innovation and a commitment to sustainable solutions, I've dedicated my life to making a difference in the world. My journey began with a solid foundation in mechanical engineering and sustainable energy. This background provided me with the tools to turn my creative ideas into real-world innovations. My mission? Lead the change in reshaping society's approach to technology, making it environmentally friendly.
+
+![Josef Rokusek](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/555fb088667941d22fbe137c580424eb0139aedf.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=ea0e90face95440e2f6bef9f5beefdc4ae9412635d41056285d0e68009377f37)
+
+Josef Rokusek
+
+ [](https://www.linkedin.com/in/josef-rokusek/)
+
+Founder
+
+Co-founder & CTO of @HyLight. With a boundless passion for innovation and a commitment to sustainable solutions, I've dedicated my life to making a difference in the world. My journey began with a solid foundation in mechanical engineering and sustainable energy. This background provided me with the tools to turn my creative ideas into real-world innovations. My mission? Lead the change in reshaping society's approach to technology, making it environmentally friendly.
+
+Latest News
+
+[HyLight raises $4M for hydrogen-powered airship drones - Tech.eu](https://tech.eu/2024/04/15/hylight-raises-4m-for-hydrogen-powered-airship-drones/)
+
+Apr 15, 2024
+
+Company Launches
+
+HyLight 🎈 Hydrogen airships for long range monitoring
+
+[See original launch post](/launches/It7-hylight-hydrogen-airships-for-long-range-monitoring)
+
+Hello everyone, we are [HyLight](https://www.hylight.aero/). We build small unmanned hydrogen airships to automatically gather massive amounts of precise data in a sustainable and cost-effective way.
+
+🚫 **The problem :**
+
+We currently focus on:
+
+-   💨 Pipeline inspection to detect methane leaks (4% of global greenhouse gas emissions).
+-   ⚡Power line inspection to prevent outages, reduce wildfire risks ($19 billion per year in the US), and ensure grid reliability.
+
+Current solutions (helicopters, airplanes, satellites and drones) are not adapted to make accurate, efficient and sustainable observations.
+
+✅ **Our solution** :  
+Our solution is a crossover between drone and lighter than air technologies, using hydrogen as a lifting gas and power source.
+
+![uploaded image](/media/?type=post&id=72609&key=user_uploads%2F935793%2F71bfe7a3-7276-4501-a63f-19311f24fcb5&variant=large)
+
+This vehicle combines long range, high payload, and hovering capabilities
+
+We have already built four prototypes, [two minimum viable products (MVPs)](https://youtu.be/MQLInmqLF7M), and are running a paid pilot with the largest power line company in Europe.
+
+🙏 **Our ask: How you can help**
+
+-   **🤝 Refer:** If you know anyone that works in Oil&Gas or utilities please connect us ([thomas@hylight.aero](mailto:thoma@hylight.aero)).
+-   **📣 Share:** Share this post with your network.
+-   **🔔 Follow:** Follow us on [LinkedIn](https://www.linkedin.com/company/hylightaero).
+
+We are building the perfect airborne platform to better observe, understand, and improve our world.
+
+Join us for the flight!
+
+![uploaded image](/media/?type=post&id=72609&key=user_uploads%2F935793%2F56584ff9-a2da-41ab-985b-3a830e9f5f67&variant=large)
+
+YC Photos
+
+![Company photo](https://bookface-images.s3.us-west-2.amazonaws.com/attachments/3a84c7aa583e7ae282f0d5c2761491dd74d862f2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=5dd5163c586f296c8b62f023580a8679d8f23b4ba0857b9721580006aa980f2a)
+
+YC Summer 2023 Demo Day Video
+
+Jobs at HyLight
+
+[View all jobs](/companies/hylight/jobs)
+
+[Senior Embedded Software Engineer - Full-Time Position](/companies/hylight/jobs/LeUToBH-senior-embedded-software-engineer-full-time-position)
+
+Paris, France
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D84339&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28593)
+
+[Electronics Engineer](/companies/hylight/jobs/gd9IK7e-electronics-engineer)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€45K - €60K EUR
+
+1+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D91870&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28593)
+
+[Payload Operator & Embedded Data Analyst - Internship](/companies/hylight/jobs/YOmpEeA-payload-operator-embedded-data-analyst-internship)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€1K - €1.4K EUR / monthly
+
+Any
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D90290&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28593)
+
+[Founder's right-arm | Business | End-of-study internship](/companies/hylight/jobs/vQRHMre-founder-s-right-arm-business-end-of-study-internship)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€15K - €20K EUR
+
+Any
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D78047&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28593)
+
+[Talent Acquisition Manager](/companies/hylight/jobs/ODunVnl-talent-acquisition-manager)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€45K - €60K EUR
+
+1+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D88033&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=28593)
+
+[![HyLight](https://bookface-images.s3.us-west-2.amazonaws.com/logos/01edc6f16eec1ab7c14af2d433021e566709359e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECABQCKE2LR%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCfJkwyWFDVoosTDTeh%2FalYvBYrCdZxQzOdVqfPJS%2BbfQIgOk1HmddEjKCbKc7GALdX7nz%2F%2BuBpPFGo%2BeNSwmuH5hUq5QMIURAAGgwwMDYyMDE4MTEwNzIiDBnRLKhKcoN9diaSLyrCA6Pd5%2BvJbJMmGmVJyi9e7qk9zAU5Lr5NLBsS23RUuwNTasZLAFwsY863hUh80sNT3jLpVfadKj7sG8sIzD1q1Zwgp5i6J%2BFPyBvY%2B1d%2BoeiX09IB91fQHQi8GVUu%2BGuFx3qPqZlWH9018KYs1UL%2FL9gc5JPxicmo3dPq0PF3ZbVONX7oGkjJtyDitsRiZJcU3xoJXPR2Hi7CFcbe69N7pE9iUm%2FojrY6GZbAZXMw4iR6rxjWN7dirByeqvCZ8aHfA%2BWKydVegC%2FMovRv68ZiWaDg1f%2BCf1n2Sq%2Bvl3LawrTGvLJgjBnDa2CDq0jMnodJf1y3WdOwhcWzlSGTfkwd456uTGhQ4zac6tmiyKyebfAYNMh6FykuKDYSx1w736j8Jc6oHs9T33fWi4oXVG4sJpW8X018EoZAcFe4jZJHO%2BeBDSNtHEbSC8zdbghDX9Ru4YwAIG8CXxLstSq11hTuaSI37y5qn6%2BVTUuOaFQZapK2UQsep8RHA%2B75Lf%2B1tBkoVI3XsFkClXeOW41f%2BxgV9Pd%2BCGdfu4%2BH0zn6HazovtSDB0%2B3kn01ABxBecp2UdtLTcyRgN21AaTTYFqjNlQ7SOmmpzDcqZTQBjqlAalmE70Alhs7ZqxTfmI%2FVh3aoO8JnnX9JSWdv4rGnlRmkrPP%2FYiV09TQs5Omir4uheIxQ%2BsqnRWJsd4fUVuVLDHL2igDK9iuJd2kyy2t8AYrELMLStxsy%2BkUs2FMs9%2B%2BJCdzWAYKjZwbgWF3zd743%2Bf4j6lXZ5h8fBPPVzUHvJMeWh1rmIeuzvN4ULTbs9GGdVi72SpkGVyk9ripBZzWmUIEORV6ww%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=cda4b4aebe39b40e2bb57c508ba69a0afdc99814aded45f26d47748ecf163db5)](/companies/hylight)
+
+[HyLight](/companies/hylight)
+
+Founded:2022
+
+Batch:Summer 2023
+
+Team Size:22
+
+Status:
+
+Active
+
+Location:Paris, France
+
+Primary Partner:[Nicolas Dessaigne](https://www.ycombinator.com/people/nicolas-dessaigne)
+
+[](https://www.hylight.aero/) [](https://www.linkedin.com/company/hylightaero)
+
+  
+
+## Footer
+
+[Y Combinator![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+### Make something people want.
+
+### Programs
+
+-   [YC Program](/about)
+-   [Startup School](https://startupschool.org)
+-   [Work at a Startup](/jobs)
+-   [Co-Founder Matching](/cofounder-matching)
+
+### Resources
+
+-   [Startup Directory](/companies)
+-   [Startup Library](/library)
+-   [Investors](/investors)
+-   [Demo Day](/demoday)
+-   [Safe](/documents)
+-   [Hacker News](https://news.ycombinator.com/)
+-   [Launch YC](/launches)
+-   [YC Deals](https://deals.ycombinator.com)
+
+### Company
+
+-   [YC Blog](/blog)
+-   [Contact](/contact)
+-   [Press](/press)
+-   [People](/people)
+-   [Careers](/software)
+-   [Privacy Policy](/legal#privacy)
+-   [Notice at Collection](/legal#notice-at-collection)
+-   [Security](/security)
+-   [Terms of Use](/legal#tou)
+
+[TwitterTwitter](https://twitter.com/ycombinator)[FacebookFacebook](https://www.facebook.com/YCombinator/)[InstagramInstagram](https://www.instagram.com/ycombinator)[LinkedInLinkedIn](https://www.linkedin.com/school/y-combinator/)[YoutubeYouTube](https://www.youtube.com/c/ycombinator)
+
+© 2026 Y Combinator
+</result>
+
+[30] tool_call: webfetch(url="https://www.ycombinator.com/companies/windmill", format="markdown", timeout=30)
+<result tokens_used="279">
+<webfetch-citation source_id="fetch_call_13ru8yQtEBid4oMTGAdY6ZKY|fc_030b4f5f2f109245016a051d6136b88199b9f378d845e792d7#1"></webfetch-citation>
+
+Windmill: Open-source platform to turn scripts into internal apps & workflows | Y Combinator                                                                                                                                                                                                      
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")Open menu
+
+[About](/about)
+
+[What Happens at YC?](/about)[Apply](/apply)[YC Interview Guide](/interviews)[FAQ](/faq)[People](/people)[YC Blog](/blog)
+
+[Companies](/companies)
+
+[Startup Directory](/companies)[Founder Directory](/founders)[Launch YC](/launches)
+
+[Library](/library)
+
+[![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+[Partners](/partners)
+
+[Resources](/library)
+
+[Startup School](https://startupschool.org?utm_source=yc&utm_campaign=ycdc_header)[Newsletter](/subscribe)[Requests for Startups](/rfs)[For Investors](/investors)[Verify Founders](/verify)[Hacker News](https://news.ycombinator.com/)[Bookface](https://bookface.ycombinator.com)[Safe](/documents)[Find a Co-Founder](/cofounder-matching)
+
+[Startup Jobs](/jobs)
+
+[Log in](https://account.ycombinator.com/?continue=https://www.ycombinator.com/companies/windmill)[Apply](/apply)
+
+[Home](/home)›[Companies](/companies)›Windmill
+
+![](https://bookface-images.s3.amazonaws.com/small_logos/65ba001ab4d9a51e57b2d599e1b3c910c0a39b01.png)
+
+Windmill
+
+Open-source platform to turn scripts into internal apps & workflows
+
+[
+
+Y Combinator LogoSummer 2022
+
+
+
+](</companies?batch=Summer 2022>)
+
+Active
+
+[
+
+Developer Tools
+
+](</companies/industry/Developer Tools>)[
+
+SaaS
+
+](/companies/industry/SaaS)[
+
+B2B
+
+](/companies/industry/B2B)[
+
+Workflow Automation
+
+](</companies/industry/Workflow Automation>)[
+
+Open Source
+
+](</companies/industry/Open Source>)
+
+---
+
+[Company](/companies/windmill)
+
+[Jobs](/companies/windmill/jobs)6
+
+ [https://windmill.dev](https://windmill.dev)
+
+---
+
+### Open-source platform to turn scripts into internal apps & workflows
+
+Windmill is an open-source developer platform that turns scripts into workflows, internal tools, and full-stack apps. Write scripts in Python, TypeScript, Go, Bash, Rust, SQL - Windmill auto-generates UIs from their parameters, handles dependencies, credentials, permissions, and scheduling so you focus on business logic, not infra. Open-source alternative to Airflow, Temporal, Retool and n8n. Chain scripts into flows with branching, parallelism, retries. Build dashboards with the app builder. Trigger via cron, webhook, or UI. All-in-one runtime, editor, secret manager, and OAuth platform - enterprise-ready out of the box. Stack: Rust / TypeScript + Svelte / PostgreSQL. Self-hostable, easy to deploy, built for performance and DX.
+
+Active Founders
+
+![Ruben Fiszel](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/c8fbc73c8ea02cf3ca30ba2ae9aa7e3ab94e9df6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAKXFHHUZG%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDdNe2U8Dol1nc9clQLdDh1MqwNWEZMIhViOJe4Dbir0QIgYRiu6pAK5UrwooTTrVAItVlAJHM4AquwuXIwSTtxV8wq5QMIURAAGgwwMDYyMDE4MTEwNzIiDKQ7MueZLbang4XAmSrCA9xx96MYb3GlAjyQH19i1IM%2BmTZoeUqFsEFCilQg3rbHOXebQef2VtifrGaOCjvoEPneXz6PXKzbMZkyJZdGjvIn3CnwfsZHqdW%2FBcHCXYfXN%2Bo%2BV%2BiZZvqFm30Zg7Kus94AvZ125XGUYXcPrNQxm6lBOgYgGWc7v3mgUcNlcvitBvtfHaSWI5ICjcOv24smTkqA3vcQ7hjWtBM%2F6RF1mPKR1mAySkBn00dPS9EJ1L02PQ%2B3wWvVDOK%2BJIjFGXRAuJpUGLd1IwObuy8B27eCbTcPAe%2BZI7boj99cug8fLNW4Dhg96TT16ghOEE9IWFqaYfz3%2BpHmdBU2Ed%2BNV85H0LybghlqmXui%2B2rNXII%2Bv1i3jCoQqFbO6DJsTk9Z%2Bi3Ig5kDUhWbaTPlql3WGjKPR%2FwF6p9wQoOcuNeORHZwTZATJydGS%2F9UaUD7jbqOXDEi7WBgWNMypRPEp5HfbUR74s441tcKj4WHP0UdbnsewmWZI5ZBq6uEgMEyOuhCFg3r5HEvfvMeuKInNH1qRht%2FS3x9EbmkF6uD2iIEq2Csd2XYxeSyBcFXPB2xv8m6xuSQ56EkAwFDzjj5HbgjuKWIQVnHJzDaqZTQBjqlAdrwq2Ca6PlI%2FFpthwcLBSIOznnB0GXff0GeYD5gNsJEdiblw3qmHIw%2BY6wyG9v2V1549XQP17fqFa825MnhVOtRsQSJwYqS3UfGbEya7x7nOumOi%2BL4r7O%2FmqZqoIBxd0BtokPdfkPOB2RVSdzXr31xMCi%2FJp8oHqx1GDbkkiVHlXmcsi2PHz4uKPupT7zk%2F7QxAIFr6v9W%2FRL1j22ga1ZKKYtkkQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=0084cf872a71af4d3936e393073505ae210ab7c7fd0a88c1fd3b8c977432d657)
+
+Ruben Fiszel
+
+ [](https://www.linkedin.com/in/rubenfiszel/)
+
+Founder
+
+Ruben was top of his class MSc in CS at EPFL, did research on compilers from Scala to Hardware at Stanford, built the first open-source library for reinforcement learning for Java, , built distributed systems at scale at Palantir and ran the engineering team at a Multi-Party Computation startup. He is now building Windmill, an open-source alternative to Retool, Pipedream, Airplane that contains the infra to run it and that you can deploy at scale.
+
+![Ruben Fiszel](https://bookface-images.s3.us-west-2.amazonaws.com/avatars/c8fbc73c8ea02cf3ca30ba2ae9aa7e3ab94e9df6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAKXFHHUZG%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDdNe2U8Dol1nc9clQLdDh1MqwNWEZMIhViOJe4Dbir0QIgYRiu6pAK5UrwooTTrVAItVlAJHM4AquwuXIwSTtxV8wq5QMIURAAGgwwMDYyMDE4MTEwNzIiDKQ7MueZLbang4XAmSrCA9xx96MYb3GlAjyQH19i1IM%2BmTZoeUqFsEFCilQg3rbHOXebQef2VtifrGaOCjvoEPneXz6PXKzbMZkyJZdGjvIn3CnwfsZHqdW%2FBcHCXYfXN%2Bo%2BV%2BiZZvqFm30Zg7Kus94AvZ125XGUYXcPrNQxm6lBOgYgGWc7v3mgUcNlcvitBvtfHaSWI5ICjcOv24smTkqA3vcQ7hjWtBM%2F6RF1mPKR1mAySkBn00dPS9EJ1L02PQ%2B3wWvVDOK%2BJIjFGXRAuJpUGLd1IwObuy8B27eCbTcPAe%2BZI7boj99cug8fLNW4Dhg96TT16ghOEE9IWFqaYfz3%2BpHmdBU2Ed%2BNV85H0LybghlqmXui%2B2rNXII%2Bv1i3jCoQqFbO6DJsTk9Z%2Bi3Ig5kDUhWbaTPlql3WGjKPR%2FwF6p9wQoOcuNeORHZwTZATJydGS%2F9UaUD7jbqOXDEi7WBgWNMypRPEp5HfbUR74s441tcKj4WHP0UdbnsewmWZI5ZBq6uEgMEyOuhCFg3r5HEvfvMeuKInNH1qRht%2FS3x9EbmkF6uD2iIEq2Csd2XYxeSyBcFXPB2xv8m6xuSQ56EkAwFDzjj5HbgjuKWIQVnHJzDaqZTQBjqlAdrwq2Ca6PlI%2FFpthwcLBSIOznnB0GXff0GeYD5gNsJEdiblw3qmHIw%2BY6wyG9v2V1549XQP17fqFa825MnhVOtRsQSJwYqS3UfGbEya7x7nOumOi%2BL4r7O%2FmqZqoIBxd0BtokPdfkPOB2RVSdzXr31xMCi%2FJp8oHqx1GDbkkiVHlXmcsi2PHz4uKPupT7zk%2F7QxAIFr6v9W%2FRL1j22ga1ZKKYtkkQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=0084cf872a71af4d3936e393073505ae210ab7c7fd0a88c1fd3b8c977432d657)
+
+Ruben Fiszel
+
+ [](https://www.linkedin.com/in/rubenfiszel/)
+
+Founder
+
+Ruben was top of his class MSc in CS at EPFL, did research on compilers from Scala to Hardware at Stanford, built the first open-source library for reinforcement learning for Java, , built distributed systems at scale at Palantir and ran the engineering team at a Multi-Party Computation startup. He is now building Windmill, an open-source alternative to Retool, Pipedream, Airplane that contains the infra to run it and that you can deploy at scale.
+
+Company Launches
+
+Windmill: Turn scripts into internal apps and workflows
+
+[See original launch post](/launches/Gye-windmill-turn-scripts-into-internal-apps-and-workflows)
+
+## Developer platform for APIs, background jobs, workflows and UIs
+
+Windmill is an open-source developer platform to quickly build production-grade internal apps, workflows and integrations from scripts in Python, Typescript, Go, Bash, SQL.
+
+Open-source alternative to Airplane and Pipedream. Simplified Temporal with automatic app generation. Usable as a self-hosted AWS Lambda.
+
+Sync your scripts from your GitHub repo or write them directly on Windmill, have them be converted to apps and no-code modules automatically. Use those apps as standalone (triggered on demand, by webhook or schedule) or build powerful flows using those scripts. The experience is similar to no-code tools except that at any point, any module can have its code inspected and tweaked. Leveraging the open-source community, we will build an exhaustive library of scripts for all APIs and generic tasks on [hub.windmill.dev](https://hub.windmill.dev/).
+
+You may also wrap Windmill with your own frontend to provide automation as a feature on top of your own SaaS.
+
+Focus on your business logic for all kind of flows, Windmill is the platform to build, share and run them.
+
+## Active Founders
+
+**Ruben Fiszel**
+
+Ruben was top of his class MSc in CS at EPFL, did research on compilers from Scala to Hardware at Stanford, built the first open-source library for reinforcement learning for Java, built distributed systems at scale at Palantir and ran the engineering team at a Multi-Party Computation startup. He is now building Windmill, an open-source alternative to Retool, Pipedream, Airplane that contains the infra to run it and that you can deploy at scale.
+
+### The sweet spot between low-code and code from scratch
+
+### Open-source and self-hostable alternative to Pipedream and Airplane. Simplified Temporal
+
+To build internal apps for ops, integrations between services that cannot talk to each other directly, or to run background jobs that run your business logic and analytics, the two main options today are no-code solutions and old-fashioned, roll-your-own scripting. Both have problems, and our goal with Windmill is to find a new sweet spot between the two. No-code solutions are productive *if* your problem matches the tool exactly - but if not, they are rigid, hard to extend and quickly become tech debt, annihilating their initial time advantage. Indeed, no-code is just code but made by an opinionated someone else and hidden as a blackbox with an UI.
+
+The alternative is to do it the old-fashioned way, writing everything from scratch, both backend and frontend, perhaps deploying it on the latest flavor of serverless, and pray to never have to touch it again because that took way too much time and it has now became a burden that the ops and business team might poke you about regularly.
+
+Furthermore, the landscape of SaaS is specialized tools for everything—alerting, data analytics, administration panels, support management, integration between services—when it feels like a few scripts and some SQL would have been as good or even better and spared you the need of depending on one yet another tool. This could be even further facilitated if there was a way to import the right bunch of scripts from a fellow community of engineers, tweak it and deploy it like you can do in communities where automation can be shared as simple JSON files, for instance in the node-red or home assistant community… That’s the idea of Windmill: to bring back the power of scripting in an easy but high-scale production-grade way.
+
+## What are good use cases for Windmill
+
+1\. The biggest pain we solve is to turn scripts that you would run on your own laptop as internal apps that you can share with your team.
+
+2\. Avoid SQL queries to production in favor of templatized SQL made into apps instead (automatically!). Making live SQL queries is common in DevOps, support and ops in general. It can be very error-prone, stressful and inconvenient.
+
+3\. Integrations between tools you already use but that are unable to talk to each other.
+
+4\. Workflows, background jobs: code that runs very frequently to react to new events, transform data and run your business logic. Many companies are a frontend on top of a database, and that database is updated in the background. We make it possible to build those workflows from simple scripts so that you can build it faster, more reliable and easier to maintain.
+
+5\. The last one only apply if you are a SaaS that wants to provide automation as a feature of your product, or a no-code tools yourself. Because we focused very much on the hard-engineering of orchestration and specs for workflows, you might simply want to wrap Windmill to offer it to your own clients.
+
+### Where is the catch, how do you make money
+
+We make money from support, dual licensing of commercial licenses (for SaaS wrapping Windmill or for clients requiring it) and the hosted solution. On self-hosted, our Enterprise plan embedds:
+
+-   SLA & Priority Support 24/7
+-   Design partners for roadmap (priority on feature requests)
+-   Enterprise-specific features (Audit logs, Distributed dependency cache backed by S3, SAML support etc.)
+
+We are workflows experts and would be happy to support you to transition to clean code working on open-source software.
+
+You can however self-host it for free forever as long as you do not go against the AGPL license (keep open-source or do not provide it as your service).
+
+![uploaded image](/media/?type=post&id=65264&key=user_uploads%2F229730%2F0fe6dab5-5378-4e2e-ad66-930378bbe8ac&variant=large)
+
+![uploaded image](/media/?type=post&id=65264&key=user_uploads%2F229730%2F5d176de7-2303-49de-adb4-9bb98c559506&variant=large)
+
+![uploaded image](/media/?type=post&id=65264&key=user_uploads%2F229730%2Fe1d39016-bd36-4241-b0df-a5f7799ef4f5&variant=large)
+
+**Docs:** [https://windmill.dev](https://windmill.dev/)
+
+**Hosted app:** [https://app.windmill.dev](https://app.windmill.dev/)
+
+**Self-host (star us!):** [https://github.com/windmill-labs/windmill#how-to-self-host](https://github.com/windmill-labs/windmill#how-to-self-host)
+
+**Discord to chat with the team/community:** [https://discord.com/invite/V7PM2YHsPB](https://discord.com/invite/V7PM2YHsPB)
+
+**Schedule a demo:** [https://www.windmill.dev/book-demo](https://www.windmill.dev/book-demo)
+
+**Windmill on HackerNews:**
+
+-   [Aug 9 2022, HN Launch](https://news.ycombinator.com/item?id=32400849)
+-   [May 12 2023, Before v2](https://news.ycombinator.com/item?id=35920082)
+-   [Nov 22 2023, Why Windmill is the fastest self-hostable workflow engine?](https://news.ycombinator.com/item?id=38383138)
+
+YC Photos
+
+![Company photo](https://bookface-images.s3.us-west-2.amazonaws.com/attachments/8bae564e0c7ca477efb46466f76a9b96d0a3e84f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAKXFHHUZG%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDdNe2U8Dol1nc9clQLdDh1MqwNWEZMIhViOJe4Dbir0QIgYRiu6pAK5UrwooTTrVAItVlAJHM4AquwuXIwSTtxV8wq5QMIURAAGgwwMDYyMDE4MTEwNzIiDKQ7MueZLbang4XAmSrCA9xx96MYb3GlAjyQH19i1IM%2BmTZoeUqFsEFCilQg3rbHOXebQef2VtifrGaOCjvoEPneXz6PXKzbMZkyJZdGjvIn3CnwfsZHqdW%2FBcHCXYfXN%2Bo%2BV%2BiZZvqFm30Zg7Kus94AvZ125XGUYXcPrNQxm6lBOgYgGWc7v3mgUcNlcvitBvtfHaSWI5ICjcOv24smTkqA3vcQ7hjWtBM%2F6RF1mPKR1mAySkBn00dPS9EJ1L02PQ%2B3wWvVDOK%2BJIjFGXRAuJpUGLd1IwObuy8B27eCbTcPAe%2BZI7boj99cug8fLNW4Dhg96TT16ghOEE9IWFqaYfz3%2BpHmdBU2Ed%2BNV85H0LybghlqmXui%2B2rNXII%2Bv1i3jCoQqFbO6DJsTk9Z%2Bi3Ig5kDUhWbaTPlql3WGjKPR%2FwF6p9wQoOcuNeORHZwTZATJydGS%2F9UaUD7jbqOXDEi7WBgWNMypRPEp5HfbUR74s441tcKj4WHP0UdbnsewmWZI5ZBq6uEgMEyOuhCFg3r5HEvfvMeuKInNH1qRht%2FS3x9EbmkF6uD2iIEq2Csd2XYxeSyBcFXPB2xv8m6xuSQ56EkAwFDzjj5HbgjuKWIQVnHJzDaqZTQBjqlAdrwq2Ca6PlI%2FFpthwcLBSIOznnB0GXff0GeYD5gNsJEdiblw3qmHIw%2BY6wyG9v2V1549XQP17fqFa825MnhVOtRsQSJwYqS3UfGbEya7x7nOumOi%2BL4r7O%2FmqZqoIBxd0BtokPdfkPOB2RVSdzXr31xMCi%2FJp8oHqx1GDbkkiVHlXmcsi2PHz4uKPupT7zk%2F7QxAIFr6v9W%2FRL1j22ga1ZKKYtkkQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=394cfe9e6b220e56697d1511f4445293bad7e55cb74cdd9661692bacdd8db935)
+
+Jobs at Windmill
+
+[View all jobs](/companies/windmill/jobs)
+
+[Founding Enterprise Sales](/companies/windmill/jobs/4swi05r-founding-enterprise-sales)
+
+FR / Remote (FR; US)
+
+$50K - $100K
+
+3+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D93197&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=26793)
+
+[Product Software Engineer](/companies/windmill/jobs/aXpL7BC-product-software-engineer)
+
+Paris, IDF, FR / Paris, Île-de-France, FR / Remote (FR)
+
+€45K - €90K EUR
+
+Any (new grads ok)
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D93199&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=26793)
+
+[Agentic Code-Generation Loop Research Intern](/companies/windmill/jobs/AgszNqZ-agentic-code-generation-loop-research-intern)
+
+Paris, IDF, FR / Paris, Île-de-France, FR
+
+€2K - €3K EUR / monthly
+
+Junior and above
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D94198&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=26793)
+
+[Growth Manager](/companies/windmill/jobs/t7ToQBK-growth-manager)
+
+Paris, IDF, FR / Paris, Île-de-France, FR / Remote (FR)
+
+€40K - €80K EUR
+
+Any (new grads ok)
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D93198&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=26793)
+
+[Backend Engineer](/companies/windmill/jobs/HVVT6HN-backend-engineer)
+
+Paris, IDF, FR / Paris, Île-de-France, FR / Remote (FR)
+
+€60K - €90K EUR
+
+3+ years
+
+[Apply Now ›](https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D93196&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=26793)
+
+[![Windmill](https://bookface-images.s3.us-west-2.amazonaws.com/logos/25d0e1760a98d2e87d9ec2e70566e792718800b3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAQC4NIECAKXFHHUZG%2F20260514%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260514T005457Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDdNe2U8Dol1nc9clQLdDh1MqwNWEZMIhViOJe4Dbir0QIgYRiu6pAK5UrwooTTrVAItVlAJHM4AquwuXIwSTtxV8wq5QMIURAAGgwwMDYyMDE4MTEwNzIiDKQ7MueZLbang4XAmSrCA9xx96MYb3GlAjyQH19i1IM%2BmTZoeUqFsEFCilQg3rbHOXebQef2VtifrGaOCjvoEPneXz6PXKzbMZkyJZdGjvIn3CnwfsZHqdW%2FBcHCXYfXN%2Bo%2BV%2BiZZvqFm30Zg7Kus94AvZ125XGUYXcPrNQxm6lBOgYgGWc7v3mgUcNlcvitBvtfHaSWI5ICjcOv24smTkqA3vcQ7hjWtBM%2F6RF1mPKR1mAySkBn00dPS9EJ1L02PQ%2B3wWvVDOK%2BJIjFGXRAuJpUGLd1IwObuy8B27eCbTcPAe%2BZI7boj99cug8fLNW4Dhg96TT16ghOEE9IWFqaYfz3%2BpHmdBU2Ed%2BNV85H0LybghlqmXui%2B2rNXII%2Bv1i3jCoQqFbO6DJsTk9Z%2Bi3Ig5kDUhWbaTPlql3WGjKPR%2FwF6p9wQoOcuNeORHZwTZATJydGS%2F9UaUD7jbqOXDEi7WBgWNMypRPEp5HfbUR74s441tcKj4WHP0UdbnsewmWZI5ZBq6uEgMEyOuhCFg3r5HEvfvMeuKInNH1qRht%2FS3x9EbmkF6uD2iIEq2Csd2XYxeSyBcFXPB2xv8m6xuSQ56EkAwFDzjj5HbgjuKWIQVnHJzDaqZTQBjqlAdrwq2Ca6PlI%2FFpthwcLBSIOznnB0GXff0GeYD5gNsJEdiblw3qmHIw%2BY6wyG9v2V1549XQP17fqFa825MnhVOtRsQSJwYqS3UfGbEya7x7nOumOi%2BL4r7O%2FmqZqoIBxd0BtokPdfkPOB2RVSdzXr31xMCi%2FJp8oHqx1GDbkkiVHlXmcsi2PHz4uKPupT7zk%2F7QxAIFr6v9W%2FRL1j22ga1ZKKYtkkQ%3D%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=17204e1345a9c0ade2bb63351222732ec2fcb9441c3c9977fe21bf6d7ce3bc3f)](/companies/windmill)
+
+[Windmill](/companies/windmill)
+
+Founded:2022
+
+Batch:Summer 2022
+
+Team Size:7
+
+Status:
+
+Active
+
+Location:Paris, France
+
+Primary Partner:[Nicolas Dessaigne](https://www.ycombinator.com/people/nicolas-dessaigne)
+
+[](https://windmill.dev) [](https://www.linkedin.com/company/windmill-dev)[![X (Twitter) logo](/images/social/x-logo.svg)](https://x.com/WindmillDev) [](https://github.com/windmill-labs/windmill)
+
+  
+
+## Footer
+
+[Y Combinator![Y Combinator](data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M47.9985%2047.9994H0V8.61853e-07H47.9985V47.9994Z'%20fill='%23FF6600'/%3e%3cpath%20d='M13.9012%2011.7843H17.6595L22.4961%2021.5325C23.203%2022.9836%2023.7984%2024.3976%2023.7984%2024.3976C23.7984%2024.3976%2024.4313%2023.021%2025.175%2021.5325L30.0868%2011.7843H33.5843L25.2865%2027.3746V37.309H22.1244V27.1884L13.9012%2011.7843Z'%20fill='white'/%3e%3c/svg%3e)](/ "Y Combinator")
+
+### Make something people want.
+
+### Programs
+
+-   [YC Program](/about)
+-   [Startup School](https://startupschool.org)
+-   [Work at a Startup](/jobs)
+-   [Co-Founder Matching](/cofounder-matching)
+
+### Resources
+
+-   [Startup Directory](/companies)
+-   [Startup Library](/library)
+-   [Investors](/investors)
+-   [Demo Day](/demoday)
+-   [Safe](/documents)
+-   [Hacker News](https://news.ycombinator.com/)
+-   [Launch YC](/launches)
+-   [YC Deals](https://deals.ycombinator.com)
+
+### Company
+
+-   [YC Blog](/blog)
+-   [Contact](/contact)
+-   [Press](/press)
+-   [People](/people)
+-   [Careers](/software)
+-   [Privacy Policy](/legal#privacy)
+-   [Notice at Collection](/legal#notice-at-collection)
+-   [Security](/security)
+-   [Terms of Use](/legal#tou)
+
+[TwitterTwitter](https://twitter.com/ycombinator)[FacebookFacebook](https://www.facebook.com/YCombinator/)[InstagramInstagram](https://www.instagram.com/ycombinator)[LinkedInLinkedIn](https://www.linkedin.com/school/y-combinator/)[YoutubeYouTube](https://www.youtube.com/c/ycombinator)
+
+© 2026 Y Combinator
+</result>
+
+[31] thinking: **Finalizing job analysis**
+
+I need to create a concise summary with citations. I've filtered the directory for Winter/Summer 2022/2023 in France, focusing on companies that are hiring. I found four profiles, but my source from Algolia doesn’t have citations. I could say, "After filtering YC's directory and cross-checking profiles," even without a citation. I should individually cite company facts but can avoid over-citation for job titles. I’ll finalize columns for Company, Batch, Location, current openings, and sample jobs, noting the discrepancies in job counts versus previews.
+
+**Clarifying job openings**
+
+I need to ensure "current job openings" includes counts. It might be helpful to mention "openings shown on YC profile" for clarity. If counts are sufficient, I can specify that companies "currently have job openings" without listing all jobs. For example, HyLight shows 8 jobs on the profile, but the web page only lists 5; a direct fetch could help here but isn't strictly necessary. I'll also note that all companies are in Summer batches, as none from Winter 2022 or 2023 matched my criteria.
+
+**Finalizing citations for sources**
+
+I’m thinking about how to present the final claim, "I found 4" based on our filter. It seems that a citation might not be necessary for mere computations. The cited pages confirm those four findings. I’ll ensure that I use the correct citation format with the source IDs. The returned source_id includes `fetch_call...#1`, so I should keep the citation references consistent with that string, using the same short source IDs right after each citation.
+
+[32] assistant: I found 4 YC companies matching: 2022 or 2023 batch, based in France, and currently showing jobs on YC.
+
+| Company | Batch | Location | YC jobs shown | Profile |
+|---|---:|---|---:|---|
+| Osium AI | Summer 2023 | Paris, France | 3 | https://www.ycombinator.com/companies/osium-ai |
+| Rimward | Summer 2023 | Paris, France | 2 | https://www.ycombinator.com/companies/rimward |
+| HyLight | Summer 2023 | Paris, France | 8 | https://www.ycombinator.com/companies/hylight |
+| Windmill | Summer 2022 | Paris, France | 6 | https://www.ycombinator.com/companies/windmill |
+
+YC profile checks: Osium AI is Summer 2023, Paris, France, with “Jobs” showing 3. <citation refs="fetch_call_jj8bIeGqOPgceF94sKiCVSAf|fc_030b4f5f2f109245016a051d6136948199926e11fcb69bc0ba#1">“Batch:Summer 2023… Location:Paris, France” and “Jobs…3”</citation> Rimward is Summer 2023, Paris, France, with 2 jobs. <citation refs="fetch_call_tXgBNIaLqsXVZ9AdMWb8yHrN|fc_030b4f5f2f109245016a051d6136a88199a9a945dc0c34c994#1">“Batch:Summer 2023… Location:Paris, France” and “Jobs…2”</citation> HyLight is Summer 2023, Paris, France, with 8 jobs. <citation refs="fetch_call_MGwidw6AJ4KmOOSwYIAC7m7B|fc_030b4f5f2f109245016a051d6136b081999b6e6afa9a465f7a#1">“Batch:Summer 2023… Location:Paris, France” and “Jobs…8”</citation> Windmill is Summer 2022, Paris, France, with 6 jobs. <citation refs="fetch_call_13ru8yQtEBid4oMTGAdY6ZKY|fc_030b4f5f2f109245016a051d6136b88199b9f378d845e792d7#1">“Batch:Summer 2022… Location:Paris, France” and “Jobs…6”</citation>
+
+[33] system_message (todo_continuation):
+<system_message>
+Incomplete tasks remain in your todo list. Continue working on the next pending task.
+- Proceed without asking for permission
+- Mark each task complete when finished
+- Do not stop until all tasks are done
+[Status: 1/3 completed, 2 remaining]
+Remaining tasks:
+- [in_progress] Query/filter 2022 and 2023 batches for France and hiring status
+- [pending] Verify results and provide final company list
+</system_message>
+
+[34] thinking: **Addressing incomplete tasks**
+
+I need to respond to the user who’s asking for a continuation because there are incomplete tasks. It turns out we did finish them, but I just didn’t mark them as complete. So, I’ll make sure to comply and properly mark those tasks as done. I’ll also mention that they’re complete. For this, I should use the commentary tool to update everything properly.
+
+[35] tool_call: write_todos:
+Todo list updated:
+- [completed] t1: Inspect Y Combinator company directory filters and data sources
+- [completed] t2: Query/filter 2022 and 2023 batches for France and hiring status
+- [completed] t3: Verify results and provide final company list
+
+[36] assistant: Done. I marked the remaining tasks complete.
+
+Final verified list:
+- Osium AI, Summer 2023, Paris, France, 3 jobs
+- Rimward, Summer 2023, Paris, France, 2 jobs
+- HyLight, Summer 2023, Paris, France, 8 jobs
+- Windmill, Summer 2022, Paris, France, 6 jobs

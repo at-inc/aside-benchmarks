@@ -1,0 +1,2593 @@
+[1] user: Go to https://phys.org/, Find the comments for the most popular news in the past month under the Quantum Physics topic.
+
+[2] tool_call: write_todos:
+Todo list updated:
+- [in_progress] t1: Open Phys.org Quantum Physics topic and locate past-month popular news
+- [pending] t2: Identify the most popular article and its comment section
+- [pending] t3: Extract/summarize comments or note if unavailable
+
+[3] assistant: I’ll inspect Phys.org directly and look for the past-month popular Quantum Physics story and its comments.
+
+[4] tool_call: repl("Opening Phys.org")
+<request>
+const p1 = await openTab('https://phys.org/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="86" elapsed_time="718ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Checking your connection (https://phys.org/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Checking your connection" [url=https://phys.org/]
+</result>
+
+[5] tool_call: repl("Checking site load")
+<request>
+await sleep(3000);
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.tree);
+</request>
+<result tokens_used="65" elapsed_time="3271ms">
+[Output too large (68.2KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_gJp01tjb31db4xVJ/tmp/repl-result-L9T5FpHcwdwt3gMV.txt]
+
+Preview (first 4.0KB):
+# note: interactive (clickable / focusable) elements only.
+- title: "Phys.org - News and Articles on Science and Technology" [url=https://phys.org/]
+- banner:
+  - navigation:
+    - banner:
+      - link "Phys.org" [ref=e1]
+      - button "Topics" [ref=e2]
+      - link "Week's top" [ref=e3]
+      - link "Latest news" [ref=e4]
+      - link "Unread news" [ref=e5]
+      - link "Subscribe" [ref=e6]
+      - button [ref=e7]
+      - link "✚" [ref=e8]
+  - navigation:
+    - menubar:
+      - menuitem "Nanotechnology" [ref=e9]:
+        - link "Nanotechnology" [ref=e10]
+      - menuitem "Physics" [ref=e11]:
+        - link "Physics" [ref=e12]
+      - menuitem "Earth" [ref=e13]:
+        - link "Earth" [ref=e14]
+      - menuitem "Astronomy & Space" [ref=e15]:
+        - link "Astronomy & Space" [ref=e16]
+      - menuitem "Chemistry" [ref=e17]:
+        - link "Chemistry" [ref=e18]
+      - menuitem "Biology" [ref=e19]:
+        - link "Biology" [ref=e20]
+      - menuitem "Other Sciences" [ref=e21]:
+        - link "Other Sciences" [ref=e22]
+      - menuitem "Medical Xpress Medicine" [ref=e23]:
+        - link "Medical Xpress Medicine" [ref=e24]
+      - menuitem "Tech Xplore Technology" [ref=e25]:
+        - link "Tech Xplore Technology" [ref=e26]
+- main:
+  - text: "Last update:\n                                30 minutes ago"
+  - link "Researchers identify stability range for piezoelectric glycine using nanoconfinement" [ref=e27]
+  - heading "Science news" [level=1]
+  - link "Date" [ref=e28]
+  - link "Rank" [ref=e29]
+  - link "LiveRank" [ref=e30]
+  - link "Popular" [ref=e31]
+  - article:
+    - link [ref=e32]
+    - text: "Nanophysics"
+    - heading "Researchers identify stability range for piezoelectric glycine using nanoconfinement" [level=3]
+    - text: "Have you ever wondered if the simple building blocks of life could one day power our wearable electronics? Glycine, the simplest amino acid found in our bodies, has a superpower in its β-phase form: it is highly piezoelectric, ...\n                  \n                          \n                                  \n                                          \n                                  \n                                  30 minutes ago\n                          \n                          \n                                  \n                                          \n                                  \n                                   0\n                          \n                          \n                                  \n                                          \n                                  \n                                   0"
+  - article:
+    - link [ref=e33]
+    - text: "Archaeology"
+    - heading "Neanderthal dentists used stone drills to treat cavities nearly 60,000 years ago, ancient molar sugg" [level=3]: "Neanderthal dentists used stone drills to treat cavities nearly 60,000 years ago, ancient molar suggests"
+    - text: "Neanderthals had the know-how to identify a tooth infection and the motor skills to drill out the damage, according to a study published May 13, 2026, in the open-access journal PLOS One by Alisa Zubova of Peter the Great ...\n                  \n                          \n                                  \n                                          \n                                  \n                                  5 hours ago\n                          \n                          \n                                  \n                                          \n                                  \n                                   0\n                          \n                          \n                                  \n                                          \n                                  \n                                   14"
+  - article:
+    - link [ref=e34]
+    - link "A history of containers, an ancient technology hundreds of thousands of years in the making" [ref=e35]:
+      - heading "A history of containers, an ancient technology hundreds of thousands of years in the making" [level=3]
+...
+</result>
+
+[6] thinking: **Searching for quantum physics news**
+
+I need to find comments on the most popular news over the past month related to Quantum Physics. I might navigate through a structure like Physics > Quantum Physics. Inspecting the URL structure is key, and I might end up searching for "topics/physics-news/quantum-physics/." Exploring links or using a web search seems easier. I need to consider citations, as the user asked for a browser task. Phys.org might have useful topic pages sorted by popularity in the last month, so I’ll check that out!
+
+[7] tool_call: websearch(objective="Find the Phys.org Quantum Physics topic page URL and its most popular past month listing.", search_queries=["site:phys.org quantum physics phys.org popular month","Phys.org Quantum Physics most popular month"], mode="agentic")
+<result tokens_used="216">
+[Output too large (54.3KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_gJp01tjb31db4xVJ/tmp/websearch-result-GIBOJsYMz9voqVuq.txt]
+
+Preview (first 4.0KB):
+{"search_id":"search_4a0c6584e51048578bc617aa6a967327","results":[{"url":"https://phys.org/physics-news/quantum-physics/","title":"Quantum Physics News - Phys.org","excerpts":["# Quantum Physics news\n* [Date](https://phys.org/physics-news/quantum-physics/sort/date/all/)\n[6 hours](https://phys.org/physics-news/quantum-physics/sort/date/6h/) [12 hours](https://phys.org/physics-news/quantum-physics/sort/date/12h/) [1 day](https://phys.org/physics-news/quantum-physics/sort/date/1d/) [3 days](https://phys.org/physics-news/quantum-physics/sort/date/3d/) [all](https://phys.org/physics-news/quantum-physics/sort/date/all/)\n* [Rank](https://phys.org/physics-news/quantum-physics/sort/rank/all/)\n[Last day](https://phys.org/physics-news/quantum-physics/sort/rank/1d/) [1 week](https://phys.org/physics-news/quantum-physics/sort/rank/1w/) [1 month](https://phys.org/physics-news/quantum-physics/sort/rank/1m/) [all](https://phys.org/physics-news/quantum-physics/sort/rank/all/)\n* [LiveRank](https://phys.org/physics-news/quantum-physics/sort/liverank/all/)\n[Last day](https://phys.org/physics-news/quantum-physics/sort/liverank/1d/) [1 week](https://phys.org/physics-news/quantum-physics/sort/liverank/1w/) [1 month](https://phys.org/physics-news/quantum-physics/sort/liverank/1m/) [all](https://phys.org/physics-news/quantum-physics/sort/liverank/all/)\n* [Popular](https://phys.org/physics-news/quantum-physics/sort/popular/all/)\n[Last day](https://phys.org/physics-news/quantum-physics/sort/popular/1d/) [1 week](https://phys.org/physics-news/quantum-physics/sort/popular/1w/) [1 month](https://phys.org/physics-news/quantum-physics/sort/popular/1m/) [all](https://phys.org/physics-news/quantum-physics/sort/popular/all/)\n\n...\n\n## ['Elegant triangle' experiment suggests quantum internet may be closer than we think](https://phys.org/news/2026-05-elegant-triangle-quantum-internet-closer.html)\n### [Symmetry says these crystal vibrations can never mix, but an exotic quantum phase rewrites the rules](https://phys.org/news/2026-05-symmetry-crystal-vibrations-exotic-quantum.html)\nSymmetry is one of the most fundamental principles in nature. It describes the rules that make an object look unchanged after a rotation, reflection, or other transformations. In materials, symmetry governs how atoms and ...\nCondensed Matter\nMay 4, 2026\n0\n124\n[](https://phys.org/news/2026-05-magnon-lifetime-100x-paves-mini.html)\n\n...\n\n### [Physicists achieve first-ever 'quadsqueezing' quantum interaction](https://phys.org/news/2026-05-physicists-quadsqueezing-quantum-interaction.html)\nResearchers at the University of Oxford have demonstrated a new type of quantum interaction using a single trapped ion. By creating and controlling increasingly complex forms of \"squeezing\" – including a fourth-order effect ...\nGeneral Physics\nMay 1, 2026\n0\n137\n[](https://phys.org/news/2026-05-physicists-negative-lab.html)\n\n### [Physicists have measured 'negative time' in the lab](https://phys.org/news/2026-05-physicists-negative-lab.html)\nAs Homer tells us, Odysseus made an epic journey, against the odds, from Troy to his home in Ithaca. He visited many lands, but mostly dwelt with the nymph Calypso on her island. We can imagine that his wife, Penelope, would ...\nOptics & Photonics\nMay 1, 2026\n11\n611\n[](https://phys.org/news/2026-04-longstanding-quantum-roadblock-fell-fiber.html)\n\n...\n\n### [Physicists reveal universal speed limit on quantum information scrambling](https://phys.org/news/2026-04-physicists-reveal-universal-limit-quantum.html)\nTheoretical physicists in the US have discovered a \"speed limit\" on the time taken for quantum information to spread through larger systems. Publishing their results in Physical Review Letters, Amit Vikram and colleagues ...\nQuantum Physics\n[feature](https://phys.org/editorials/)\nApr 29, 2026\n1\n306\n[](https://phys.org/news/2026-04-space-boost-links.html)\n\n...\n\n### [This ultracold quantum device turns electricity into something far stranger that could unlock sound-based lasers](https://phys.org/news/2026-04-ultr
+...
+</result>
+
+[8] thinking: **Searching for news comments**
+
+I'm noticing that the search results provide direct URLs, but they might not contain the most popular news comments. So, I might need to find an exact listing instead. I could consider using a browser or webfetch to help with this. It seems like there might be issues with accessing comments on Phys.org, and the articles show comment counts, some even at "0". I’ll need to find the comments section and perhaps use webfetch to get a markdown list.
+
+[9] tool_call: webfetch(url="https://phys.org/physics-news/quantum-physics/sort/popular/1m/", format="markdown", timeout=30)
+<result tokens_used="130">
+<webfetch-citation source_id="fetch_call_Q39C6Msn2ej5C4MwKz5zhbQ4|fc_08739d9f1fdf4587016a050e7239b081988c4f8924e00e4a3a#1"></webfetch-citation>
+
+   Quantum Physics News( ... sorted: popular/1m)                                   
+
+[![Phys.org](https://phys.b-cdn.net/tmpl/v6/img/logo-header.png)](https://phys.org/)
+
+Topics
+
+-   [Week's top](https://phys.org/weekly-news/)
+-   [Latest news](https://phys.org/latest-news/)
+-   [Unread news](https://phys.org/unread-news/)
+-   [Subscribe](#)
+
+ 
+
+[](#)
+
+### Science X Account
+
+  
+
+Sign In
+
+Sign in with[](https://sciencex.com/profile/sm-login-redirect/fb/)[](https://sciencex.com/profile/sm-login-redirect/google/)[](https://sciencex.com/profile/sm-login-redirect/apple/)
+
+[Forget Password?](https://sciencex.com/profile/pwdreset/)
+
+[Not a member? **Sign up**](https://sciencex.com/profile/register/)
+
+[Learn more](https://sciencex.com/help/account/)
+
+-   [Nanotechnology](https://phys.org/nanotech-news/)
+-   [Physics](https://phys.org/physics-news/)
+-   [Earth](https://phys.org/earth-news/)
+-   [Astronomy & Space](https://phys.org/space-news/)
+-   [Chemistry](https://phys.org/chemistry-news/)
+-   [Biology](https://phys.org/biology-news/)
+-   [Other Sciences](https://phys.org/science-news/)
+-    [![Medical Xpress](https://phys.b-cdn.net/tmpl/v6/img/MedicalXpress2.svg) Medicine](https://medicalxpress.com/)
+-    [![Tech Xplore](https://phys.b-cdn.net/tmpl/v6/img/techX_w.svg) Technology](https://techxplore.com/)
+
+1.  [Home](https://phys.org/) 
+2.  [Physics](https://phys.org/physics-news/) 
+3.  [Quantum Physics](https://phys.org/physics-news/quantum-physics/) 
+4.  by popular
+5.  page 1
+
+# Quantum Physics news
+
+-   [Date](https://phys.org/physics-news/quantum-physics/sort/date/all/)
+    
+    [6 hours](https://phys.org/physics-news/quantum-physics/sort/date/6h/) [12 hours](https://phys.org/physics-news/quantum-physics/sort/date/12h/) [1 day](https://phys.org/physics-news/quantum-physics/sort/date/1d/) [3 days](https://phys.org/physics-news/quantum-physics/sort/date/3d/) [all](https://phys.org/physics-news/quantum-physics/sort/date/all/)
+    
+-   [Rank](https://phys.org/physics-news/quantum-physics/sort/rank/all/)
+    
+    [Last day](https://phys.org/physics-news/quantum-physics/sort/rank/1d/) [1 week](https://phys.org/physics-news/quantum-physics/sort/rank/1w/) [1 month](https://phys.org/physics-news/quantum-physics/sort/rank/1m/) [all](https://phys.org/physics-news/quantum-physics/sort/rank/all/)
+    
+-   [LiveRank](https://phys.org/physics-news/quantum-physics/sort/liverank/all/)
+    
+    [Last day](https://phys.org/physics-news/quantum-physics/sort/liverank/1d/) [1 week](https://phys.org/physics-news/quantum-physics/sort/liverank/1w/) [1 month](https://phys.org/physics-news/quantum-physics/sort/liverank/1m/) [all](https://phys.org/physics-news/quantum-physics/sort/liverank/all/)
+    
+-   [Popular](https://phys.org/physics-news/quantum-physics/sort/popular/all/)
+    
+    [Last day](https://phys.org/physics-news/quantum-physics/sort/popular/1d/) [1 week](https://phys.org/physics-news/quantum-physics/sort/popular/1w/) [1 month](https://phys.org/physics-news/quantum-physics/sort/popular/1m/) [all](https://phys.org/physics-news/quantum-physics/sort/popular/all/)
+    
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html)
+
+### [Classical physics can explain quantum weirdness, study shows](https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html)
+
+When you throw a ball in the air, the equations of classical physics will tell you exactly what path the ball will take as it falls, and when and where it will land. But if you were to squeeze that same ball down to the size ...
+
+General Physics
+
+Apr 22, 2026
+
+11
+
+920
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-05-physicists-negative-lab.html)
+
+### [Physicists have measured 'negative time' in the lab](https://phys.org/news/2026-05-physicists-negative-lab.html)
+
+As Homer tells us, Odysseus made an epic journey, against the odds, from Troy to his home in Ithaca. He visited many lands, but mostly dwelt with the nymph Calypso on her island. We can imagine that his wife, Penelope, would ...
+
+Optics & Photonics
+
+May 1, 2026
+
+11
+
+623
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-mathematical-universe-cosmological-constant-problem.html)
+
+### [Could the mathematical 'shape' of the universe solve the cosmological constant problem?](https://phys.org/news/2026-04-mathematical-universe-cosmological-constant-problem.html)
+
+The cosmological constant is the mathematical description of the energy that drives the ever-accelerating expansion of the cosmos. It's also the source of one of the most enduring and confounding problems in modern physics.
+
+General Physics
+
+Apr 20, 2026
+
+21
+
+580
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-simulation-famous-quantum-effect-reveals.html)
+
+### [Water simulation of famous quantum effect reveals unexpected wave patterns](https://phys.org/news/2026-04-simulation-famous-quantum-effect-reveals.html)
+
+In the quirky quantum world, particles can be affected by forces that they never directly encounter. A classic example is the Aharonov–Bohm (AB) effect, where electrons are affected by a magnetic field, despite not passing ...
+
+Soft Matter
+
+Apr 20, 2026
+
+3
+
+537
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-physicists-revive-1990s-laser-concept.html)
+
+### [Physicists revive 1990s laser concept to propose a next-generation atomic clock](https://phys.org/news/2026-04-physicists-revive-1990s-laser-concept.html)
+
+Researchers in the US and Germany have unveiled a theoretical blueprint for an atomic clock driven by a highly synchronized laser, where atoms work in concert rather than independently. Publishing their results in Physical ...
+
+Optics & Photonics
+
+[feature](https://phys.org/editorials/)
+
+Apr 23, 2026
+
+0
+
+474
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-particle-thought-physics-reveals.html)
+
+### [Particle thought to break physics followed rules all along, research reveals](https://phys.org/news/2026-04-particle-thought-physics-reveals.html)
+
+A tiny discrepancy in particle physics has loomed for decades as an exciting possible crack in one of science's most successful theories, hinting at unknown forces or quantum objects. Now, an international team led by a Penn ...
+
+General Physics
+
+Apr 22, 2026
+
+31
+
+359
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-tabletop-atoms-universe-doomsday-vacuum.html)
+
+### [A tabletop ring of atoms brings the universe's doomsday vacuum collapse into the lab](https://phys.org/news/2026-04-tabletop-atoms-universe-doomsday-vacuum.html)
+
+Physicists in China have simulated the effect of "false vacuum decay": a phenomenon believed to play out constantly in the seemingly empty expanses of space, and which one theory even suggests could bring an abrupt end to ...
+
+General Physics
+
+[feature](https://phys.org/editorials/)
+
+Apr 13, 2026
+
+1
+
+349
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-05-magnon-lifetime-100x-paves-mini.html)
+
+### [Magnon lifetime extended 100x paves the way for mini quantum computers](https://phys.org/news/2026-05-magnon-lifetime-100x-paves-mini.html)
+
+Magnons are tiny waves in magnetization that travel through solid magnetic materials, much like the ripples that spread across a pond when a stone is thrown into it. Unlike photons, which travel through empty space or optical ...
+
+Condensed Matter
+
+May 4, 2026
+
+1
+
+347
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-physicists-reveal-universal-limit-quantum.html)
+
+### [Physicists reveal universal speed limit on quantum information scrambling](https://phys.org/news/2026-04-physicists-reveal-universal-limit-quantum.html)
+
+Theoretical physicists in the US have discovered a "speed limit" on the time taken for quantum information to spread through larger systems. Publishing their results in Physical Review Letters, Amit Vikram and colleagues ...
+
+Quantum Physics
+
+[feature](https://phys.org/editorials/)
+
+Apr 29, 2026
+
+1
+
+309
+
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)](https://phys.org/news/2026-04-quantum-electrons-silicon-chips.html)
+
+### [Quantum model explains how single electrons cause damage inside silicon chips](https://phys.org/news/2026-04-quantum-electrons-silicon-chips.html)
+
+Researchers in the UC Santa Barbara Materials Department have uncovered the elusive quantum mechanism by which energetic electrons break chemical bonds inside microelectronic devices—a detrimental process that slowly degrades ...
+
+Condensed Matter
+
+Apr 19, 2026
+
+0
+
+291
+
+page **1** from 8
+
+-   «
+-   [»](page2.html)
+
+[
+
+![Medical Xpress](https://phys.b-cdn.net/tmpl/v6/img/MedicalXpress.svg)
+
+### Medical Xpress
+
+Medical research advances and health news
+
+
+
+
+
+](https://medicalxpress.com/)
+
+[
+
+![Tech Xplore](https://phys.b-cdn.net/tmpl/v6/img/techexploer.svg)
+
+### Tech Xplore
+
+The latest engineering, electronics and technology advances
+
+
+
+
+
+](https://techxplore.com/)
+
+[
+
+![Science X](https://phys.b-cdn.net/tmpl/v6/img/ScienceX.svg)
+
+### Science X
+
+The most comprehensive sci-tech news coverage on the web
+
+
+
+
+
+](https://sciencex.com/)
+
+## Newsletters
+
+ 
+
+Subscribe
+
+[Science X Daily and the Weekly Email Newsletter are free features that allow you to receive your favorite sci-tech news updates in your email inbox](https://sciencex.com/help/newsletter/)
+
+## Follow us
+
+-   [](https://www.facebook.com/physorg)
+-   [](https://twitter.com/physorg_com)
+-   [](https://www.linkedin.com/company/phys-org/)
+-   [](https://bsky.app/profile/sciencex.bsky.social)
+-   [](https://www.threads.net/@sciencex.physorg)
+-   [](https://www.youtube.com/@Science-X)
+-   [](https://profile.google.com/cp/CgovbS8wMjdrbmRi?pf=0)
+
+-   [Top](#)
+-   [Home](https://phys.org/)
+-   [Search](https://phys.org/search/)
+-   [Mobile version](https://phys.org/physics-news/quantum-physics/sort/popular/1m/?deviceType=mobile)
+
+-   [Help](https://sciencex.com/help/)
+-   [FAQ](https://sciencex.com/help/contactus/)
+-   [About](https://sciencex.com/help/about-us/)
+-   [Contact](https://sciencex.com/help/feedback/)
+
+-   [Support us](https://sciencex.com/help/donate/)
+-   [Science X Account](https://sciencex.com/profile/)
+-   [Archive](https://phys.org/archive/)
+-   [News wire](https://sciencex.com/wire-news/)
+
+-   [Android app](https://play.google.com/store/apps/details?id=com.PhysOrg.RssLite)
+-   [iOS app](https://itunes.apple.com/us/app/phys-org/id356443503?mt=8)
+-   [RSS feeds](https://phys.org/feeds/)
+-   [Push notification](javascript:void\(0\))
+
+© Phys.org 2003 - 2026 powered by [Science X Network](https://sciencex.com/)
+
+[Privacy policy](https://sciencex.com/help/privacy/) [Terms of use](https://sciencex.com/help/terms/)
+
+#### E-mail newsletter
+
+ 
+
+Subscribe
+
+#### Follow us
+
+-   [](https://www.facebook.com/physorg)
+-   [](https://twitter.com/physorg_com)
+-   [](https://www.linkedin.com/company/phys-org/)
+-   [](https://phys.org/feeds/)
+
+![Quantcast](//pixel.quantserve.com/pixel/p-5dNhPAnM9r0yY.gif)
+</result>
+
+[10] thinking: **Fetching physics article**
+
+I see the top listing is about how classical physics can explain quantum weirdness, which sounds intriguing! The user mentioned they're under the Quantum Physics topic, so I’m thinking this might include various subcategories, right? The article seems to have gathered 11 comments too, which is interesting! I need to fetch the article and check those comments. It’ll be good to get a deeper understanding and potentially add to the discussion!
+
+[11] tool_call: repl("Opening top popular article")
+<request>
+await openTab('https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html');
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.tree);
+</request>
+<result tokens_used="140" elapsed_time="916ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → Classical physics can explain quantum weirdness, study shows (https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html)
+# note: interactive (clickable / focusable) elements only.
+- title: "Classical physics can explain quantum weirdness, study shows" [url=https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html]
+- banner:
+  - navigation:
+    - banner:
+      - link "Phys.org" [ref=e1]
+      - button "Topics" [ref=e2]
+      - link "Week's top" [ref=e3]
+      - link "Latest news" [ref=e4]
+      - link "Unread news" [ref=e5]
+      - link "Subscribe" [ref=e6]
+      - button [ref=e7]
+      - link "✚" [ref=e8]
+  - navigation:
+    - menubar:
+      - menuitem "Nanotechnology" [ref=e9]:
+        - link "Nanotechnology" [ref=e10]
+      - menuitem "Physics" [ref=e11]:
+        - link "Physics" [ref=e12]
+      - menuitem "Earth" [ref=e13]:
+        - link "Earth" [ref=e14]
+      - menuitem "Astronomy & Space" [ref=e15]:
+        - link "Astronomy & Space" [ref=e16]
+      - menuitem "Chemistry" [ref=e17]:
+        - link "Chemistry" [ref=e18]
+      - menuitem "Biology" [ref=e19]:
+        - link "Biology" [ref=e20]
+      - menuitem "Other Sciences" [ref=e21]:
+        - link "Other Sciences" [ref=e22]
+      - menuitem "Medical Xpress Medicine" [ref=e23]:
+        - link "Medical Xpress Medicine" [ref=e24]
+      - menuitem "Tech Xplore Technology" [ref=e25]:
+        - link "Tech Xplore Technology" [ref=e26]
+- link "Share" [ref=e27]
+- link "Tweet" [ref=e28]
+- link "Share" [ref=e29]
+- link "Email" [ref=e30]
+- main:
+  - navigation "breadcrumb" [ref=e31]:
+    - link "Home" [ref=e32]
+    - text: "/"
+    - link "Physics" [ref=e33]
+    - text: "/"
+    - link "General Physics" [ref=e34]
+    - link "Home" [ref=e35]
+    - text: "/"
+    - link "Physics" [ref=e36]
+    - text: "/"
+    - link "Quantum Physics" [ref=e37]
+  - link [ref=e38]
+  - link "Save as pdf file" [ref=e39]
+  - link "Print" [ref=e40]
+  - article:
+    - link [ref=e41]
+    - text: "April 22, 2026"
+    - heading "Classical physics can explain quantum weirdness, study shows" [level=1]
+    - text: "by Jennifer Chu,"
+    - link "Massachusetts Institute of Technology" [ref=e42]
+    - text: "edited by"
+    - link "Gaby Clark" [ref=e43]
+    - text: ", 																								reviewed by"
+    - link "Robert Egan" [ref=e44]
+    - button "Editors' notes" [ref=e45]
+    - button "The GIST" [ref=e46]
+    - link "Add as preferred source" [ref=e47]
+    - text: "When you throw a ball in the air, the equations of classical physics will tell you exactly what path the ball will take as it falls, and when and where it will land. But if you were to squeeze that same ball down to the size of an atom or smaller, it would behave in ways beyond anything that classical physics can predict.\n\n\n										  \n    \n    \n  \n\n																																																																Or so we've thought.\nMIT scientists have now shown that certain mathematical ideas from everyday classical physics can be used to describe the often weird and nonintuitive behavior that occurs at the quantum, subatomic scale.\nIn a"
+    - link "paper" [ref=e48]
+    - text: "appearing today in the journal  Proceedings of the Royal Society A Mathematical Physical and Engineering Science, the team shows that the motion of a quantum object can be calculated by applying an idea from classical physics known as \"least action.\" With their new formulation, they show they can arrive at exactly the same solution as the Schrödinger equation—the main description of quantum mechanics—for a number of textbook quantum-mechanical scenarios, including the double-slit experiment and quantum tunneling.\nSuch mysterious phenomena, that could only be understood through equations of quantum mechanics, can now also be described using the team's new classical formulation. In essence, the researchers have built an exact mathematical bridge between the classical, everyday physical world and the world that happens at dimensions smaller than an atom.\n\"Before, there was a very tenuous bridge that worked only for reasonably large [quantum] particles,\" says study co-author Winfried Lohmiller, a research associate in the Nonlinear Systems Laboratory at MIT. \"Now we have a strong bridge—a common way to describe quantum mechanics, classical mechanics, and relativity, that holds at all scales.\"\n\"We're not saying there's anything wrong with quantum mechanics,\" emphasizes co-author Jean-Jacques Slotine, an MIT professor of mechanical engineering and information sciences, and of brain and cognitive sciences. \"We're just showing a different way to compute quantum mechanics, which is based on well-known classical ideas that we put together in a simple way.\""
+    - heading "To infinity and far below" [level=2]
+    - text: "Slotine and Lohmiller derived the quantum bridge while working on solidly classical problems. The researchers are members of the MIT Nonlinear Systems Laboratory, which Slotine directs. He and his colleagues develop models to describe complex behavior in problems of robotic and aircraft control, neuroscience, and machine learning. To predict the behavior of such systems, engineers often look to the Hamilton-Jacobi equation, which is one of the major formulations of classical mechanics and is related to Newton's famous laws of motion.\nThe Hamilton-Jacobi equation essentially represents an object's motion as minimizing a quantity called the action. Take, for instance, a simple scenario in which a ball is thrown from point A to point B. Theoretically, the ball could take any number of zigzagging paths between the two points. But the equation states that the actual path should be one where the ball's \"action\" is minimized at every single point along that path.\nIn this case, the term \"action\" refers to the sum over time of the difference between an object's kinetic energy (the energy that is generating the motion) and its potential energy (the object's stored energy). The actual path that a ball takes between points A and B should then be a sequence of positions where the overall difference between kinetic and potential energy is minimized.\nSlotine and Lohmiller were applying the Hamilton-Jacobi equation, and the principle of least action, to a number of classical mechanics problems with constraints when they realized that the equation, with some mathematical extensions, could solve a famous problem in quantum mechanics known as the"
+    - link "double-slit experiment" [ref=e49]
+    - text: ".\n\n																									\n																																			The double-slit experiment illustrates one of the weird, nonclassical behaviors that arises at quantum scales. In the experiment, two slits are cut out of a metal wall. When a single photon—a quantum-scale particle of light—is shot toward the wall, classical physics predicts that you should see a spot of light on the other side of the wall, assuming that the photon flew straight through either one of the holes, following a single path.\nBut experimentalists have instead observed alternating bright and dark stripes. The reality-bending pattern is a result of a quantum mechanical phenomenon by which a photon takes more than one path simultaneously. In this context, when a single photon is shot toward the wall, it can pass through both holes at the same time, along two paths that end up interfering with each other. The pattern of stripes that results means that the photon's two interfering paths must be wave-like. The experiment therefore demonstrates how a quantum particle can also behave, however improbably, like a wave.\nSince the discovery of quantum mechanics, physicists have tried to explain the double-slit experiment using tools from classical, everyday physics. But they've only ever been able to approximate the experiment's results.\nEven the noted physicist Richard Feynman '39 found the task impossible. He assumed that one would have to consider and average over every single theoretical path that a photon could take, whether it be a straight line or any variation of a zigzagging path through either of the two holes. Such an exercise would require calculating an infinite number of possible zigzag paths, which all contradict the classical smooth paths one would expect.\nThis last point is what Slotine and Lohmiller realized could be tweaked. Where classical physics assumes that an object must only take a single path from point A to B, quantum mechanics allows for an object to take multiple paths and multiple states simultaneously—a fundamental quantum property known as superposition.\nThe team wondered: What if classical physics could also entertain, at least mathematically, this notion of multiple paths? Then, they reasoned that an infinite number of paths wouldn't have to be calculated. Instead, a much smaller number of \"least action\" classical paths might produce the exact same quantum result.\nWith this idea in mind, they looked back to the Hamilton-Jacobi equation to see how they might adapt its principles of least action to predict the double-slit experiment and other quantum phenomena.\n\"For a while we thought it was a little too good to be true,\" Slotine says."
+    - heading "A particle's destiny is in its density" [level=2]
+    - text: "In their new study, the team adds another ingredient of classical physics: \"density,\" which is, essentially, a probability that a given path is taken.\n\"We think of density in terms of fluid dynamics,\" Lohmiller explains. \"For the double-slit experiment, imagine pumping a hose toward the wall. What will happen is, most of the water will hit the center, but some droplets will also go toward the sides. A high density of water at the center means there is a high probability of finding a droplet along that path. And there will be a distribution which we can compute.\"\nHe and Slotine tweaked the Hamilton-Jacobi equation to include terms of density and multiple least action paths, and applied it to the double-slit experiment. They found that with this formulation, they only had to consider two classical paths through the two slits, as compared to Feynman's infinity of zigzag paths. Ultimately, their calculations of classical density and action produced a wave function, or distribution of most probable paths that a photon could take, that was exactly the same as what was predicted by the Schrödinger equation, which is the central equation used to describe quantum-mechanical behavior.\n\"We show that the Schrödinger's equation of quantum mechanics and the Hamilton-Jacobi equation of classical physics are actually identical given a suitable computation of density,\" Slotine says. \"That's a purely mathematical result. We're not saying that quantum phenomena happens at classical scales. We're saying you can compute this quantum behavior with very simple classical tools.\"\n\n																																			In addition to the double-slit experiment, the researchers showed the reworked equation can also predict other quantum mechanical behavior, such as quantum tunneling, in which particles such as electrons can pass through energy barriers that would not be possible according to classical physics. They could also derive the exact quantum wave of the electron in a hydrogen atom from the classical orbit of a planet. Finally, they revisited from this perspective the famous Einstein-Podolski-Rosen experiment, which started the modern study of quantum entanglement.\nThe researchers envision that scientists could use the new formula as a simple method to predict how certain quantum systems and devices will perform.\n\"There could be important implications for quantum computing, where quantum bits have these nonlinear energies that physicists must approximate, or for better understanding problems involving both quantum physics and general relativity,\" Slotine offers. \"In principle at least, we should now be able to characterize this quantum behavior exactly, with simple classical tools, and show that it's not so mysterious after all.\""
+    - heading "More information" [level=6]
+    - text: "Winfried Lohmiller et al, On computing quantum waves exactly from classical action, Proceedings of the Royal Society A Mathematical Physical and Engineering Science (2026)."
+    - link "DOI: 10.1098/rspa.2025.0413" [ref=e50]
+    - heading "Key concepts" [level=6]
+    - link "Classical mechanics" [ref=e51]
+    - link "Quantum algorithms & computation" [ref=e52]
+    - link "Quantum correlations, foundations & formalism" [ref=e53]
+    - link "Mathematical physics methods" [ref=e54]
+    - text: "Provided by"
+    - link "Massachusetts Institute of Technology" [ref=e55]
+    - link [ref=e56]
+    - text: "Who's behind this story?"
+    - link "Gaby Clark" [ref=e57]
+    - heading "Gaby Clark" [level=5]:
+      - link "Gaby Clark" [ref=e58]
+    - text: "MA in English, copy editor since 2021 with experience in higher education and health content. Dedicated to trustworthy science news."
+    - link "Full profile →" [ref=e59]
+    - link "Robert Egan" [ref=e60]
+    - heading "Robert Egan" [level=5]:
+      - link "Robert Egan" [ref=e61]
+    - text: "Bachelor's in mathematical biology, Master's in creative writing. Well-traveled with unique perspectives on science and language."
+    - link "Full profile →" [ref=e62]
+    - text: "This story is republished courtesy of MIT News ("
+    - link "web.mit.edu/newsoffice/" [ref=e63]
+    - text: "), a popular site that covers news about MIT research, innovation and teaching."
+  - text: "Explore further"
+  - link "Using entanglement to test whether gravity is quantum just got more complicated" [ref=e64]
+  - toolbar "Article actions":
+    - link "shares" [ref=e65]: "920  shares"
+    - link "Facebook" [ref=e66]
+    - link "Twitter/X" [ref=e67]: "Twitter"
+    - link "Share by email" [ref=e68]: "Email"
+    - link "Feedback to editors" [ref=e69]
+- complementary:
+  - complementary:
+    - tablist:
+      - tab "Trending" [ref=e70] [selected]
+      - tab "Featured" [ref=e71]
+      - tab "Last Comments" [ref=e72]
+    - tabpanel "Trending":
+      - region "scrollable content" [ref=e73]:
+        - article:
+          - heading "Why are some people mosquito magnets? Clues are emerging" [level=4]:
+            - link "Why are some people mosquito magnets? Clues are emerging" [ref=e74]
+          - text: "May 12, 2026\n                  \n                  \n                          \n                                  \n                          \n                           1"
+        - article:
+          - heading "Under mushroom caps, 17-plus bacterial species help drive stubborn blotch disease" [level=4]:
+            - link "Under mushroom caps, 17-plus bacterial species help drive stubborn blotch disease" [ref=e75]
+          - text: "May 10, 2026\n                  \n                  \n                          \n                                  \n                          \n                           1"
+        - article:
+          - heading "Atoms vibrate on circular paths—with an unexpected twist" [level=4]:
+            - link "Atoms vibrate on circular paths—with an unexpected twist" [ref=e76]
+          - text: "May 12, 2026\n                  \n                  \n                          \n                                  \n                          \n                           2"
+        - article:
+          - heading "80 years after the Trinity nuclear test, scientists identify new molecule-trapping crystal formed in" [level=4]:
+            - link "80 years after the Trinity nuclear test, scientists identify new molecule-trapping crystal formed in" [ref=e77]
+          - text: "May 12, 2026\n                  \n                  \n                          \n                                  \n                          \n                           0"
+        - article:
+          - heading "Cut marks on 1.6 million-year-old bones reveal early humans moved prized meat" [level=4]:
+            - link "Cut marks on 1.6 million-year-old bones reveal early humans moved prized meat" [ref=e78]
+          - text: "May 10, 2026\n                  \n                  \n                          \n                                  \n                          \n                           0"
+  - link "Researchers identify stability range for piezoelectric glycine using nanoconfinement Researchers ide" [ref=e79]
+  - link "Optical meta‑conveyors enable programmable nanomanipulation along arbitrary open paths Optical meta‑" [ref=e80]
+  - link "The dam dilemma: How to build anew without repeating old harms The dam dilemma: How to build anew wi" [ref=e81]
+  - link "Chemists discover and isolate a new boron–oxygen molecule Chemists discover and isolate a new boron–" [ref=e82]
+  - link "A twinkling pulsar reveals invisible structures in space A twinkling pulsar reveals invisible struct" [ref=e83]
+  - link "Rice plants observed trapping and killing fall armyworm caterpillars Rice plants observed trapping a" [ref=e84]
+  - link "The hidden force of growth: Dividing cell colonies drive phase separation in passing particles The h" [ref=e85]
+  - link "Statistical technique could uncover secrets of 'ringing' black holes Statistical technique could unc" [ref=e86]
+  - link "How flies dodge so fast: Brain map reveals rare synapses behind split-second escapes How flies dodge" [ref=e87]
+  - link "Rising seasonal sea-level swings are under-reported, but could have a major impact Rising seasonal s" [ref=e88]
+  - heading "Relevant PhysicsForums posts" [level=3]
+  - heading "Difficulties in Measuring the Contact Angle of a Sessile Droplet" [level=4]:
+    - link "Difficulties in Measuring the Contact Angle of a Sessile Droplet" [ref=e89]
+  - text: "May 5, 2026"
+  - heading "Thinking Outside The Box Versus Knowing What’s In The Box" [level=4]:
+    - link "Thinking Outside The Box Versus Knowing What’s In The Box" [ref=e90]
+  - text: "May 3, 2026"
+  - heading "Buoyancy and gravity" [level=4]:
+    - link "Buoyancy and gravity" [ref=e91]
+  - text: "Apr 27, 2026"
+  - heading "A question about leverage and stability of shelf support" [level=4]:
+    - link "A question about leverage and stability of shelf support" [ref=e92]
+  - text: "Apr 10, 2026"
+  - heading "What are the speed limits of a maglev track?" [level=4]:
+    - link "What are the speed limits of a maglev track?" [ref=e93]
+  - text: "Apr 4, 2026"
+  - heading "What causes knots and stress when untwisting ropes?" [level=4]:
+    - link "What causes knots and stress when untwisting ropes?" [ref=e94]
+  - text: "Mar 31, 2026\n							   \n							\n												  \n							More from"
+  - link "Other Physics Topics" [ref=e95]
+- complementary:
+  - link "1" [ref=e96]
+  - link "2" [ref=e97]
+  - heading "Related Stories" [level=3]
+  - link "Using entanglement to test whether gravity is quantum just got more complicated Using entanglement t" [ref=e98]
+  - link "100 years before quantum mechanics, one scientist glimpsed a link between light and matter 100 years" [ref=e99]
+  - link "Making sense of quantum gravity in five dimensions Making sense of quantum gravity in five dimension" [ref=e100]
+  - link "How the act of measuring a quantum particle transforms it into an everyday object How the act of mea" [ref=e101]
+  - link "Real-life experiment shows Niels Bohr was right in a theoretical debate with Einstein Real-life expe" [ref=e102]
+  - link "Speed test of 'tunneling' electrons challenges alternative interpretation of quantum mechanics Speed" [ref=e103]
+  - heading "Recommended for you" [level=3]
+  - link "Mostly empty foam overturns assumptions of electron beam stopping Mostly empty foam overturns assump" [ref=e104]
+  - link "Quantum geometry provides theoretical limits on measurable properties of solids Quantum geometry pro" [ref=e105]
+  - link "Atomic bands in two transition metal dichalcogenides hint at long-theorized quantum state Atomic ban" [ref=e106]
+  - link "Tiny forces, big effects: How particle interactions control the flow of soft materials Tiny forces, " [ref=e107]
+  - link "Torpedo bats may shift baseball's sweet spot, acoustic analysis shows Torpedo bats may shift basebal" [ref=e108]
+  - link "3D atomic rearrangement creates 40,000 quantum defects in 40 minutes 3D atomic rearrangement creates" [ref=e109]
+- region:
+  - link "Load comments (11)" [ref=e110]
+- region
+- contentinfo:
+  - link "Medical Xpress Medical Xpress Medical research advances and health news" [ref=e111]
+  - link "Tech Xplore Tech Xplore The latest engineering, electronics and technology advances" [ref=e112]
+  - link [ref=e113]:
+    - text: "Science X"
+    - heading "Science X" [level=3]: "Science X"
+    - text: "The most comprehensive sci-tech news coverage on the web"
+  - heading "Newsletters" [level=2]
+  - textbox "Email" [ref=e114] [placeholder="Email"]
+  - button "Subscribe" [ref=e115]
+  - link "Science X Daily and the Weekly Email Newsletter are free features that allow you to receive your fav" [ref=e116]
+  - heading "Follow us" [level=2]
+  - link [ref=e117]
+  - link [ref=e118]
+  - link [ref=e119]
+  - link [ref=e120]
+  - link [ref=e121]
+  - link [ref=e122]
+  - link [ref=e123]
+  - navigation:
+    - link "Top" [ref=e124]
+    - link "Home" [ref=e125]
+    - link "Search" [ref=e126]
+    - link "Mobile version" [ref=e127]
+    - link "Help" [ref=e128]
+    - link "FAQ" [ref=e129]
+    - link "About" [ref=e130]
+    - link "Contact" [ref=e131]
+    - link "Support us" [ref=e132]
+    - link "Science X Account" [ref=e133]
+    - link "Archive" [ref=e134]
+    - link "News wire" [ref=e135]
+    - link "Android app" [ref=e136]
+    - link "iOS app" [ref=e137]
+    - link "RSS feeds" [ref=e138]
+    - link "Push notification" [ref=e139]
+  - text: "© Phys.org 2003 - 2026 powered by"
+  - link "Science X Network" [ref=e140]
+  - link "Privacy policy" [ref=e141]
+  - link "Terms of use" [ref=e142]
+- button "Do Not Sell or Share My Personal Information" [ref=e143]
+</result>
+
+[12] tool_call: repl("Loading article comments")
+<request>
+await page.locator('e110').click();
+const s4 = await snapshot(page);
+console.log(s4.diff);
+</request>
+<result tokens_used="61" elapsed_time="494ms">
+- title: "Classical physics can explain quantum weirdness, study shows" [url=https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html]
+- banner:
+  - navigation:
+    - banner:
+      - link "Phys.org" [ref=e1]:
+        - image "Phys.org"
+      - button "Topics" [ref=e2]
+      - list:
+        - listitem "Week's top" [ref=e144]:
+          - link "Week's top" [ref=e3]
+        - listitem "Latest news" [ref=e145]:
+          - link "Latest news" [ref=e4]
+        - listitem "Unread news" [ref=e146]:
+          - link "Unread news" [ref=e5]
+        - listitem "Subscribe" [ref=e147]:
+          - link "Subscribe" [ref=e6]
+      - form:
+        - button [ref=e7]
+      - link "✚" [ref=e8]
+  - navigation:
+    - menubar:
+      - menuitem "Nanotechnology" [ref=e9]:
+        - link "Nanotechnology" [ref=e10]
+      - menuitem "Physics" [ref=e11]:
+        - link "Physics" [ref=e12]
+      - menuitem "Earth" [ref=e13]:
+        - link "Earth" [ref=e14]
+      - menuitem "Astronomy & Space" [ref=e15]:
+        - link "Astronomy & Space" [ref=e16]
+      - menuitem "Chemistry" [ref=e17]:
+        - link "Chemistry" [ref=e18]
+      - menuitem "Biology" [ref=e19]:
+        - link "Biology" [ref=e20]
+      - menuitem "Other Sciences" [ref=e21]:
+        - link "Other Sciences" [ref=e22]
+      - menuitem "Medical Xpress Medicine" [ref=e23]:
+        - link "Medical Xpress Medicine" [ref=e24]:
+          - image "Medical Xpress"
+          - text: "Medicine"
+      - menuitem "Tech Xplore Technology" [ref=e25]:
+        - link "Tech Xplore Technology" [ref=e26]:
+          - image "Tech Xplore"
+          - text: "Technology"
+- list:
+  - listitem:
+    - link "Share" [ref=e27]
+  - listitem:
+    - link "Tweet" [ref=e28]
+  - listitem:
+    - link "Share" [ref=e29]
+  - listitem:
+    - link "Email" [ref=e30]
+- main:
+  - navigation "breadcrumb" [ref=e31]:
+    - list:
+      - listitem:
+        - link "Home" [ref=e32]
+      - listitem "/" [ref=e148]:
+        - text: "/"
+        - link "Physics" [ref=e33]
+      - listitem "/" [ref=e149]:
+        - text: "/"
+        - link "General Physics" [ref=e34]
+    - list:
+      - listitem:
+        - link "Home" [ref=e35]
+      - listitem "/" [ref=e150]:
+        - text: "/"
+        - link "Physics" [ref=e36]
+      - listitem "/" [ref=e151]:
+        - text: "/"
+        - link "Quantum Physics" [ref=e37]
+  - list:
+    - listitem:
+      - link [ref=e38]
+    - listitem "Save as pdf file" [ref=e152]:
+      - link "Save as pdf file" [ref=e39]
+    - listitem "Print" [ref=e153]:
+      - link "Print" [ref=e40]
+  - article:
+    - link [ref=e41]
+    - text: "April 22, 2026"
+    - heading "Classical physics can explain quantum weirdness, study shows" [level=1]
+    - paragraph:
+      - text: "by Jennifer Chu,"
+      - link "Massachusetts Institute of Technology" [ref=e42]
+    - paragraph:
+      - text: "edited by"
+      - link "Gaby Clark" [ref=e43]
+      - text: ", 																								reviewed by"
+      - link "Robert Egan" [ref=e44]
+    - button "Editors' notes" [ref=e45]
+    - button "The GIST" [ref=e46]
+    - link "Add as preferred source" [ref=e47]
+    - text: "When you throw a ball in the air, the equations of classical physics will tell you exactly what path the ball will take as it falls, and when and where it will land. But if you were to squeeze that same ball down to the size of an atom or smaller, it would behave in ways beyond anything that classical physics can predict."
+    - iframe "Advertisement" [ref=e154]:
+      - link [ref=f20e1]
+      - button [ref=f20e3]
+    - text: "Or so we've thought.\nMIT scientists have now shown that certain mathematical ideas from everyday classical physics can be used to describe the often weird and nonintuitive behavior that occurs at the quantum, subatomic scale."
+    - paragraph:
+      - text: "In a"
+      - link "paper" [ref=e48]
+      - text: "appearing today in the journal  Proceedings of the Royal Society A Mathematical Physical and Engineering Science, the team shows that the motion of a quantum object can be calculated by applying an idea from classical physics known as \"least action.\" With their new formulation, they show they can arrive at exactly the same solution as the Schrödinger equation—the main description of quantum mechanics—for a number of textbook quantum-mechanical scenarios, including the double-slit experiment and quantum tunneling."
+    - text: "Such mysterious phenomena, that could only be understood through equations of quantum mechanics, can now also be described using the team's new classical formulation. In essence, the researchers have built an exact mathematical bridge between the classical, everyday physical world and the world that happens at dimensions smaller than an atom.\n\"Before, there was a very tenuous bridge that worked only for reasonably large [quantum] particles,\" says study co-author Winfried Lohmiller, a research associate in the Nonlinear Systems Laboratory at MIT. \"Now we have a strong bridge—a common way to describe quantum mechanics, classical mechanics, and relativity, that holds at all scales.\"\n\"We're not saying there's anything wrong with quantum mechanics,\" emphasizes co-author Jean-Jacques Slotine, an MIT professor of mechanical engineering and information sciences, and of brain and cognitive sciences. \"We're just showing a different way to compute quantum mechanics, which is based on well-known classical ideas that we put together in a simple way.\""
+    - iframe "Advertisement" [ref=e155]:
+      - button [ref=f25e1]
+      - button "Play video" [ref=f25e3]
+      - button "Unmute video" [ref=f25e5]
+      - button "Learn more" [ref=f25e6]
+      - button "Replay" [ref=f25e7]
+      - canvas [ref=f25e8] [size=538x303]
+    - heading "To infinity and far below" [level=2]
+    - text: "Slotine and Lohmiller derived the quantum bridge while working on solidly classical problems. The researchers are members of the MIT Nonlinear Systems Laboratory, which Slotine directs. He and his colleagues develop models to describe complex behavior in problems of robotic and aircraft control, neuroscience, and machine learning. To predict the behavior of such systems, engineers often look to the Hamilton-Jacobi equation, which is one of the major formulations of classical mechanics and is related to Newton's famous laws of motion.\nThe Hamilton-Jacobi equation essentially represents an object's motion as minimizing a quantity called the action. Take, for instance, a simple scenario in which a ball is thrown from point A to point B. Theoretically, the ball could take any number of zigzagging paths between the two points. But the equation states that the actual path should be one where the ball's \"action\" is minimized at every single point along that path.\nIn this case, the term \"action\" refers to the sum over time of the difference between an object's kinetic energy (the energy that is generating the motion) and its potential energy (the object's stored energy). The actual path that a ball takes between points A and B should then be a sequence of positions where the overall difference between kinetic and potential energy is minimized."
+    - paragraph:
+      - text: "Slotine and Lohmiller were applying the Hamilton-Jacobi equation, and the principle of least action, to a number of classical mechanics problems with constraints when they realized that the equation, with some mathematical extensions, could solve a famous problem in quantum mechanics known as the"
+      - link "double-slit experiment" [ref=e49]
+      - text: "."
+    - text: "The double-slit experiment illustrates one of the weird, nonclassical behaviors that arises at quantum scales. In the experiment, two slits are cut out of a metal wall. When a single photon—a quantum-scale particle of light—is shot toward the wall, classical physics predicts that you should see a spot of light on the other side of the wall, assuming that the photon flew straight through either one of the holes, following a single path.\nBut experimentalists have instead observed alternating bright and dark stripes. The reality-bending pattern is a result of a quantum mechanical phenomenon by which a photon takes more than one path simultaneously. In this context, when a single photon is shot toward the wall, it can pass through both holes at the same time, along two paths that end up interfering with each other. The pattern of stripes that results means that the photon's two interfering paths must be wave-like. The experiment therefore demonstrates how a quantum particle can also behave, however improbably, like a wave.\nSince the discovery of quantum mechanics, physicists have tried to explain the double-slit experiment using tools from classical, everyday physics. But they've only ever been able to approximate the experiment's results.\nEven the noted physicist Richard Feynman '39 found the task impossible. He assumed that one would have to consider and average over every single theoretical path that a photon could take, whether it be a straight line or any variation of a zigzagging path through either of the two holes. Such an exercise would require calculating an infinite number of possible zigzag paths, which all contradict the classical smooth paths one would expect.\nThis last point is what Slotine and Lohmiller realized could be tweaked. Where classical physics assumes that an object must only take a single path from point A to B, quantum mechanics allows for an object to take multiple paths and multiple states simultaneously—a fundamental quantum property known as superposition.\nThe team wondered: What if classical physics could also entertain, at least mathematically, this notion of multiple paths? Then, they reasoned that an infinite number of paths wouldn't have to be calculated. Instead, a much smaller number of \"least action\" classical paths might produce the exact same quantum result.\nWith this idea in mind, they looked back to the Hamilton-Jacobi equation to see how they might adapt its principles of least action to predict the double-slit experiment and other quantum phenomena.\n\"For a while we thought it was a little too good to be true,\" Slotine says."
+    - heading "A particle's destiny is in its density" [level=2]
+    - text: "In their new study, the team adds another ingredient of classical physics: \"density,\" which is, essentially, a probability that a given path is taken.\n\"We think of density in terms of fluid dynamics,\" Lohmiller explains. \"For the double-slit experiment, imagine pumping a hose toward the wall. What will happen is, most of the water will hit the center, but some droplets will also go toward the sides. A high density of water at the center means there is a high probability of finding a droplet along that path. And there will be a distribution which we can compute.\"\nHe and Slotine tweaked the Hamilton-Jacobi equation to include terms of density and multiple least action paths, and applied it to the double-slit experiment. They found that with this formulation, they only had to consider two classical paths through the two slits, as compared to Feynman's infinity of zigzag paths. Ultimately, their calculations of classical density and action produced a wave function, or distribution of most probable paths that a photon could take, that was exactly the same as what was predicted by the Schrödinger equation, which is the central equation used to describe quantum-mechanical behavior.\n\"We show that the Schrödinger's equation of quantum mechanics and the Hamilton-Jacobi equation of classical physics are actually identical given a suitable computation of density,\" Slotine says. \"That's a purely mathematical result. We're not saying that quantum phenomena happens at classical scales. We're saying you can compute this quantum behavior with very simple classical tools.\"\n\n																																			In addition to the double-slit experiment, the researchers showed the reworked equation can also predict other quantum mechanical behavior, such as quantum tunneling, in which particles such as electrons can pass through energy barriers that would not be possible according to classical physics. They could also derive the exact quantum wave of the electron in a hydrogen atom from the classical orbit of a planet. Finally, they revisited from this perspective the famous Einstein-Podolski-Rosen experiment, which started the modern study of quantum entanglement.\nThe researchers envision that scientists could use the new formula as a simple method to predict how certain quantum systems and devices will perform.\n\"There could be important implications for quantum computing, where quantum bits have these nonlinear energies that physicists must approximate, or for better understanding problems involving both quantum physics and general relativity,\" Slotine offers. \"In principle at least, we should now be able to characterize this quantum behavior exactly, with simple classical tools, and show that it's not so mysterious after all.\""
+    - heading "More information" [level=6]
+    - paragraph:
+      - text: "Winfried Lohmiller et al, On computing quantum waves exactly from classical action, Proceedings of the Royal Society A Mathematical Physical and Engineering Science (2026)."
+      - link "DOI: 10.1098/rspa.2025.0413" [ref=e50]
+    - heading "Key concepts" [level=6]
+    - link "Classical mechanics" [ref=e51]
+    - link "Quantum algorithms & computation" [ref=e52]
+    - link "Quantum correlations, foundations & formalism" [ref=e53]
+    - link "Mathematical physics methods" [ref=e54]
+    - paragraph:
+      - text: "Provided by"
+      - link "Massachusetts Institute of Technology" [ref=e55]
+      - link [ref=e56]
+    - text: "Who's behind this story?"
+    - link "Gaby Clark" [ref=e57]:
+      - image "Gaby Clark"
+    - heading "Gaby Clark" [level=5]:
+      - link "Gaby Clark" [ref=e58]
+    - paragraph:
+      - text: "MA in English, copy editor since 2021 with experience in higher education and health content. Dedicated to trustworthy science news."
+      - link "Full profile →" [ref=e59]
+    - link "Robert Egan" [ref=e60]:
+      - image "Robert Egan"
+    - heading "Robert Egan" [level=5]:
+      - link "Robert Egan" [ref=e61]
+    - paragraph:
+      - text: "Bachelor's in mathematical biology, Master's in creative writing. Well-traveled with unique perspectives on science and language."
+      - link "Full profile →" [ref=e62]
+    - paragraph:
+      - text: "This story is republished courtesy of MIT News ("
+      - link "web.mit.edu/newsoffice/" [ref=e63]
+      - text: "), a popular site that covers news about MIT research, innovation and teaching."
+  - text: "Explore further"
+  - link "Using entanglement to test whether gravity is quantum just got more complicated" [ref=e64]
+  - toolbar "Article actions":
+    - link "shares" [ref=e65]: "920  shares"
+    - list:
+      - listitem "Facebook" [ref=e156]:
+        - link "Facebook" [ref=e66]
+      - listitem "Twitter/X" [ref=e157]:
+        - link "Twitter/X" [ref=e67]: "Twitter"
+      - listitem "Share by email" [ref=e158]:
+        - link "Share by email" [ref=e68]: "Email"
+    - link "Feedback to editors" [ref=e69]
+- complementary:
+  - iframe "Advertisement" [ref=e159]:
+    - link [ref=f23e1]
+    - button [ref=f23e3]
+  - complementary:
+    - tablist:
+      - listitem "Trending" [ref=e160]:
+        - tab "Trending" [ref=e70] [selected]
+      - listitem "Featured" [ref=e161]:
+        - tab "Featured" [ref=e71]
+      - listitem "Last Comments" [ref=e162]:
+        - tab "Last Comments" [ref=e72]
+    - tabpanel "Trending":
+      - region "scrollable content" [ref=e73]:
+        - article:
+          - heading "Why are some people mosquito magnets? Clues are emerging" [level=4]:
+            - link "Why are some people mosquito magnets? Clues are emerging" [ref=e74]
+          - text: "May 12, 2026\n                  \n                  \n                          \n                                  \n                          \n                           1"
+        - article:
+          - heading "Under mushroom caps, 17-plus bacterial species help drive stubborn blotch disease" [level=4]:
+            - link "Under mushroom caps, 17-plus bacterial species help drive stubborn blotch disease" [ref=e75]
+          - text: "May 10, 2026\n                  \n                  \n                          \n                                  \n                          \n                           1"
+        - article:
+          - heading "Atoms vibrate on circular paths—with an unexpected twist" [level=4]:
+            - link "Atoms vibrate on circular paths—with an unexpected twist" [ref=e76]
+          - text: "May 12, 2026\n                  \n                  \n                          \n                                  \n                          \n                           2"
+        - article:
+          - heading "80 years after the Trinity nuclear test, scientists identify new molecule-trapping crystal formed in" [level=4]:
+            - link "80 years after the Trinity nuclear test, scientists identify new molecule-trapping crystal formed in" [ref=e77]
+          - text: "May 12, 2026\n                  \n                  \n                          \n                                  \n                          \n                           0"
+        - article:
+          - heading "Cut marks on 1.6 million-year-old bones reveal early humans moved prized meat" [level=4]:
+            - link "Cut marks on 1.6 million-year-old bones reveal early humans moved prized meat" [ref=e78]
+          - text: "May 10, 2026\n                  \n                  \n                          \n                                  \n                          \n                           0"
+  - iframe "Advertisement" [ref=e163]:
+    - iframe [ref=f22e1]:
+      - text: "Reserve Your Unit Today     Reserve now to lock in an exclusive online offer! Limited units available."
+    - iframe [ref=f22e2]
+    - iframe [ref=f22e3]
+    - iframe [ref=f22e4]
+    - button [ref=f22e6]
+  - link [ref=e79]:
+    - image "Researchers identify stability range for piezoelectric glycine using nanoconfinement"
+    - heading "Researchers identify stability range for piezoelectric glycine using nanoconfinement" [level=5]
+    - text: "31 minutes ago"
+  - link [ref=e80]:
+    - image "Optical meta‑conveyors enable programmable nanomanipulation along arbitrary open paths"
+    - heading "Optical meta‑conveyors enable programmable nanomanipulation along arbitrary open paths" [level=5]
+    - text: "1 hour ago"
+  - link [ref=e81]:
+    - image "The dam dilemma: How to build anew without repeating old harms"
+    - heading "The dam dilemma: How to build anew without repeating old harms" [level=5]
+    - text: "2 hours ago"
+  - link [ref=e82]:
+    - image "Chemists discover and isolate a new boron–oxygen molecule"
+    - heading "Chemists discover and isolate a new boron–oxygen molecule" [level=5]
+    - text: "3 hours ago"
+  - link [ref=e83]:
+    - image "A twinkling pulsar reveals invisible structures in space"
+    - heading "A twinkling pulsar reveals invisible structures in space" [level=5]
+    - text: "3 hours ago"
+  - link [ref=e84]:
+    - image "Rice plants observed trapping and killing fall armyworm caterpillars"
+    - heading "Rice plants observed trapping and killing fall armyworm caterpillars" [level=5]
+    - text: "3 hours ago"
+  - link [ref=e85]:
+    - image "The hidden force of growth: Dividing cell colonies drive phase separation in passing particles"
+    - heading "The hidden force of growth: Dividing cell colonies drive phase separation in passing particles" [level=5]
+    - text: "3 hours ago"
+  - link [ref=e86]:
+    - image "Statistical technique could uncover secrets of 'ringing' black holes"
+    - heading "Statistical technique could uncover secrets of 'ringing' black holes" [level=5]
+    - text: "3 hours ago"
+  - link [ref=e87]:
+    - image "How flies dodge so fast: Brain map reveals rare synapses behind split-second escapes"
+    - heading "How flies dodge so fast: Brain map reveals rare synapses behind split-second escapes" [level=5]
+    - text: "3 hours ago"
+  - link [ref=e88]:
+    - image "Rising seasonal sea-level swings are under-reported, but could have a major impact"
+    - heading "Rising seasonal sea-level swings are under-reported, but could have a major impact" [level=5]
+    - text: "3 hours ago"
+  - heading "Relevant PhysicsForums posts" [level=3]
+  - heading "Difficulties in Measuring the Contact Angle of a Sessile Droplet" [level=4]:
+    - link "Difficulties in Measuring the Contact Angle of a Sessile Droplet" [ref=e89]
+  - text: "May 5, 2026"
+  - heading "Thinking Outside The Box Versus Knowing What’s In The Box" [level=4]:
+    - link "Thinking Outside The Box Versus Knowing What’s In The Box" [ref=e90]
+  - text: "May 3, 2026"
+  - heading "Buoyancy and gravity" [level=4]:
+    - link "Buoyancy and gravity" [ref=e91]
+  - text: "Apr 27, 2026"
+  - heading "A question about leverage and stability of shelf support" [level=4]:
+    - link "A question about leverage and stability of shelf support" [ref=e92]
+  - text: "Apr 10, 2026"
+  - heading "What are the speed limits of a maglev track?" [level=4]:
+    - link "What are the speed limits of a maglev track?" [ref=e93]
+  - text: "Apr 4, 2026"
+  - heading "What causes knots and stress when untwisting ropes?" [level=4]:
+    - link "What causes knots and stress when untwisting ropes?" [ref=e94]
+  - text: "Mar 31, 2026"
+  - paragraph:
+    - text: "More from"
+    - link "Other Physics Topics" [ref=e95]
+  - iframe "Advertisement" [ref=e164]
+- region:
+  - heading "Your Health Matters" [level=2]
+  - link [ref=e165]
+  - link "arialabel" [ref=e166]:
+    - image "logo"
+  - link "arialabel" [ref=e167]:
+    - image "img-responsive"
+  - link "arialabel" [ref=e168]: "5 Foods Damaging Your Liver And Causing Belly Fat"
+  - link "arialabel" [ref=e169]: "Liver Renew"
+  - link "arialabel" [ref=e170]:
+    - image "img-responsive"
+  - link "arialabel" [ref=e171]: "Vaccines Keep Us Healthy"
+  - link "arialabel" [ref=e172]: "NFID"
+  - link "arialabel" [ref=e173]:
+    - image "img-responsive"
+  - link "arialabel" [ref=e174]: "Dermatologists: Crepey neck skin comes down to 1 thing"
+  - link "arialabel" [ref=e175]: "Cellular Restore"
+- complementary:
+  - list:
+    - listitem "1" [ref=e176]:
+      - link "1" [ref=e96]
+    - listitem "2" [ref=e177]:
+      - link "2" [ref=e97]
+  - list:
+    - listitem:
+      - heading "Related Stories" [level=3]
+      - link [ref=e98]:
+        - image "Using entanglement to test whether gravity is quantum just got more complicated"
+        - heading "Using entanglement to test whether gravity is quantum just got more complicated" [level=5]
+        - text: "Oct 24, 2025"
+      - link [ref=e99]:
+        - image "100 years before quantum mechanics, one scientist glimpsed a link between light and matter"
+        - heading "100 years before quantum mechanics, one scientist glimpsed a link between light and matter" [level=5]
+        - text: "Sep 24, 2025"
+      - link [ref=e100]:
+        - image "Making sense of quantum gravity in five dimensions"
+        - heading "Making sense of quantum gravity in five dimensions" [level=5]
+        - text: "Jan 5, 2026"
+      - link [ref=e101]:
+        - image "How the act of measuring a quantum particle transforms it into an everyday object"
+        - heading "How the act of measuring a quantum particle transforms it into an everyday object" [level=5]
+        - text: "Nov 30, 2021"
+      - link [ref=e102]:
+        - image "Real-life experiment shows Niels Bohr was right in a theoretical debate with Einstein"
+        - heading "Real-life experiment shows Niels Bohr was right in a theoretical debate with Einstein" [level=5]
+        - text: "Dec 31, 2025"
+      - link [ref=e103]:
+        - image "Speed test of 'tunneling' electrons challenges alternative interpretation of quantum mechanics"
+        - heading "Speed test of 'tunneling' electrons challenges alternative interpretation of quantum mechanics" [level=5]
+        - text: "Jul 10, 2025"
+    - listitem:
+      - heading "Recommended for you" [level=3]
+      - link [ref=e104]:
+        - image "Mostly empty foam overturns assumptions of electron beam stopping"
+        - heading "Mostly empty foam overturns assumptions of electron beam stopping" [level=5]
+        - text: "7 hours ago"
+      - link [ref=e105]:
+        - image "Quantum geometry provides theoretical limits on measurable properties of solids"
+        - heading "Quantum geometry provides theoretical limits on measurable properties of solids" [level=5]
+        - text: "6 hours ago"
+      - link [ref=e106]:
+        - image "Atomic bands in two transition metal dichalcogenides hint at long-theorized quantum state"
+        - heading "Atomic bands in two transition metal dichalcogenides hint at long-theorized quantum state" [level=5]
+        - text: "13 hours ago"
+      - link [ref=e107]:
+        - image "Tiny forces, big effects: How particle interactions control the flow of soft materials"
+        - heading "Tiny forces, big effects: How particle interactions control the flow of soft materials" [level=5]
+        - text: "6 hours ago"
+      - link [ref=e108]:
+        - image "Torpedo bats may shift baseball's sweet spot, acoustic analysis shows"
+        - heading "Torpedo bats may shift baseball's sweet spot, acoustic analysis shows" [level=5]
+        - text: "8 hours ago"
+      - link [ref=e109]:
+        - image "3D atomic rearrangement creates 40,000 quantum defects in 40 minutes"
+        - heading "3D atomic rearrangement creates 40,000 quantum defects in 40 minutes" [level=5]
+        - text: "8 hours ago"
+- region:
+  - link "Load comments (11)" [ref=e110]
+- region
+- contentinfo:
+  - link [ref=e111]:
+    - image "Medical Xpress"
+    - heading "Medical Xpress" [level=3]
+    - text: "Medical research advances and health news"
+  - link [ref=e112]:
+    - image "Tech Xplore"
+    - heading "Tech Xplore" [level=3]
+    - text: "The latest engineering, electronics and technology advances"
+  - link [ref=e113]:
+    - image "Science X"
+    - heading "Science X" [level=3]: "Science X"
+    - text: "The most comprehensive sci-tech news coverage on the web"
+  - heading "Newsletters" [level=2]
+  - form:
+    - textbox "Email" [ref=e114] [placeholder="Email"]
+    - button "Subscribe" [ref=e115]
+    - link "Science X Daily and the Weekly Email Newsletter are free features that allow you to receive your fav" [ref=e116]
+  - heading "Follow us" [level=2]
+  - list:
+    - listitem:
+      - link [ref=e117]
+    - listitem:
+      - link [ref=e118]
+    - listitem:
+      - link [ref=e119]
+    - listitem:
+      - link [ref=e120]
+    - listitem:
+      - link [ref=e121]
+    - listitem:
+      - link [ref=e122]
+    - listitem:
+      - link [ref=e123]
+  - navigation:
+    - list:
+      - listitem "Top" [ref=e178]:
+        - link "Top" [ref=e124]
+      - listitem "Home" [ref=e179]:
+        - link "Home" [ref=e125]
+      - listitem "Search" [ref=e180]:
+        - link "Search" [ref=e126]
+      - listitem "Mobile version" [ref=e181]:
+        - link "Mobile version" [ref=e127]
+    - list:
+      - listitem "Help" [ref=e182]:
+        - link "Help" [ref=e128]
+      - listitem "FAQ" [ref=e183]:
+        - link "FAQ" [ref=e129]
+      - listitem "About" [ref=e184]:
+        - link "About" [ref=e130]
+      - listitem "Contact" [ref=e185]:
+        - link "Contact" [ref=e131]
+    - list:
+      - listitem "Support us" [ref=e186]:
+        - link "Support us" [ref=e132]
+      - listitem "Science X Account" [ref=e187]:
+        - link "Science X Account" [ref=e133]
+      - listitem "Archive" [ref=e188]:
+        - link "Archive" [ref=e134]
+      - listitem "News wire" [ref=e189]:
+        - link "News wire" [ref=e135]
+    - list:
+      - listitem "Android app" [ref=e190]:
+        - link "Android app" [ref=e136]
+      - listitem "iOS app" [ref=e191]:
+        - link "iOS app" [ref=e137]
+      - listitem "RSS feeds" [ref=e192]:
+        - link "RSS feeds" [ref=e138]
+      - listitem "Push notification" [ref=e193]:
+        - link "Push notification" [ref=e139]
+  - text: "© Phys.org 2003 - 2026 powered by"
+  - link "Science X Network" [ref=e140]
+  - link "Privacy policy" [ref=e141]
+  - link "Terms of use" [ref=e142]
+- button "Do Not Sell or Share My Personal Information" [ref=e143]
+- generic "Reserve Your Unit Today Reserve now to lock in an exclusive online offer! Limited units available." [ref=e195]
+</result>
+
+[13] thinking: **Investigating comment loading issues**
+
+I’m trying to figure out why the comments might not have loaded. Maybe they didn’t fully load due to some problem with the button or JavaScript being blocked. I think I should look for a specific selector and consider taking a full snapshot around the region to get a clearer picture. I could also inspect the page’s HTML through the network tab and attempt to fetch the article to retrieve the comments from the markup.
+
+[14] tool_call: webfetch(url="https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html", format="markdown", timeout=30)
+<result tokens_used="109">
+<webfetch-citation source_id="fetch_call_3Hd45VzVEuiZExzOGLIeAo8J|fc_08739d9f1fdf4587016a050e8360f88198a1b4b0db528b62b7#1"></webfetch-citation>
+
+   Classical physics can explain quantum weirdness, study shows                                             
+
+[![Phys.org](https://phys.b-cdn.net/tmpl/v6/img/logo-header.png)](https://phys.org/)
+
+Topics
+
+-   [Week's top](https://phys.org/weekly-news/)
+-   [Latest news](https://phys.org/latest-news/)
+-   [Unread news](https://phys.org/unread-news/)
+-   [Subscribe](#)
+
+ 
+
+[](#)
+
+### Science X Account
+
+  
+
+Sign In
+
+Sign in with[](https://sciencex.com/profile/sm-login-redirect/fb/)[](https://sciencex.com/profile/sm-login-redirect/google/)[](https://sciencex.com/profile/sm-login-redirect/apple/)
+
+[Forget Password?](https://sciencex.com/profile/pwdreset/)
+
+[Not a member? **Sign up**](https://sciencex.com/profile/register/)
+
+[Learn more](https://sciencex.com/help/account/)
+
+-   [Nanotechnology](https://phys.org/nanotech-news/)
+-   [Physics](https://phys.org/physics-news/)
+-   [Earth](https://phys.org/earth-news/)
+-   [Astronomy & Space](https://phys.org/space-news/)
+-   [Chemistry](https://phys.org/chemistry-news/)
+-   [Biology](https://phys.org/biology-news/)
+-   [Other Sciences](https://phys.org/science-news/)
+-    [![Medical Xpress](https://phys.b-cdn.net/tmpl/v6/img/MedicalXpress2.svg) Medicine](https://medicalxpress.com/)
+-    [![Tech Xplore](https://phys.b-cdn.net/tmpl/v6/img/techX_w.svg) Technology](https://techxplore.com/)
+
+-   share this!
+    
+-   [
+    
+    Share
+    
+    ](javascript:void\(0\))
+-   [
+    
+    Tweet
+    
+    ](#)
+-   [
+    
+    Share
+    
+    ](#)
+-   [
+    
+    Email
+    
+    ](mailto:)
+
+1.  [Home](/)
+2.  [Physics](https://phys.org/physics-news/)
+3.  [General Physics](https://phys.org/physics-news/physics/)
+
+1.  [Home](/)
+2.  [Physics](https://phys.org/physics-news/)
+3.  [Quantum Physics](https://phys.org/physics-news/quantum-physics/)
+
+-   [](javascript:void\(0\))
+-   [](https://phys.org/news/2026-04-classical-physics-quantum-weirdness.pdf "Save as pdf file")
+-   [](javascript:window.print\(\) "Print")
+
+---
+
+[](https://phys.org/archive/22-04-2026/)
+
+April 22, 2026
+
+# Classical physics can explain quantum weirdness, study shows
+
+by Jennifer Chu, [Massachusetts Institute of Technology](http://web.mit.edu/)
+
+edited by [Gaby Clark](https://sciencex.com/help/editorial-team/), reviewed by [Robert Egan](https://sciencex.com/help/editorial-team/)
+
+[Editors' notes](javascript:void\(0\))
+
+This article has been reviewed according to Science X's [editorial process](https://sciencex.com/help/editorial-process/) and [policies](https://sciencex.com/help/editorial-standards/). [Editors](https://sciencex.com/help/editorial-team/) have highlighted the following attributes while ensuring the content's credibility:
+
+fact-checked
+
+trusted source
+
+proofread
+
+[The GIST](javascript:void\(0\))
+
+[
+
+Add as preferred source](https://google.com/preferences/source?q=https%3A%2F%2Fphys.org%2F)
+
+---
+
+When you throw a ball in the air, the equations of classical physics will tell you exactly what path the ball will take as it falls, and when and where it will land. But if you were to squeeze that same ball down to the size of an atom or smaller, it would behave in ways beyond anything that classical physics can predict.
+
+Or so we've thought.
+
+MIT scientists have now shown that certain mathematical ideas from everyday classical physics can be used to describe the often weird and nonintuitive behavior that occurs at the quantum, subatomic scale.
+
+In a [paper](https://royalsocietypublishing.org/rspa/article/482/2336/20250413/481461/On-computing-quantum-waves-exactly-from-classical) appearing today in the journal *Proceedings of the Royal Society A Mathematical Physical and Engineering Science*, the team shows that the motion of a quantum object can be calculated by applying an idea from classical physics known as "least action." With their new formulation, they show they can arrive at exactly the same solution as the Schrödinger equation—the main description of quantum mechanics—for a number of textbook quantum-mechanical scenarios, including the double-slit experiment and quantum tunneling.
+
+Such mysterious phenomena, that could only be understood through equations of quantum mechanics, can now also be described using the team's new classical formulation. In essence, the researchers have built an exact mathematical bridge between the classical, everyday physical world and the world that happens at dimensions smaller than an atom.
+
+"Before, there was a very tenuous bridge that worked only for reasonably large \[quantum\] particles," says study co-author Winfried Lohmiller, a research associate in the Nonlinear Systems Laboratory at MIT. "Now we have a strong bridge—a common way to describe quantum mechanics, classical mechanics, and relativity, that holds at all scales."
+
+"We're not saying there's anything wrong with quantum mechanics," emphasizes co-author Jean-Jacques Slotine, an MIT professor of mechanical engineering and information sciences, and of brain and cognitive sciences. "We're just showing a different way to compute quantum mechanics, which is based on well-known classical ideas that we put together in a simple way."
+
+## To infinity and far below
+
+Slotine and Lohmiller derived the quantum bridge while working on solidly classical problems. The researchers are members of the MIT Nonlinear Systems Laboratory, which Slotine directs. He and his colleagues develop models to describe complex behavior in problems of robotic and aircraft control, neuroscience, and machine learning. To predict the behavior of such systems, engineers often look to the Hamilton-Jacobi equation, which is one of the major formulations of classical mechanics and is related to Newton's famous laws of motion.
+
+The Hamilton-Jacobi equation essentially represents an object's motion as minimizing a quantity called the action. Take, for instance, a simple scenario in which a ball is thrown from point A to point B. Theoretically, the ball could take any number of zigzagging paths between the two points. But the equation states that the actual path should be one where the ball's "action" is minimized at every single point along that path.
+
+In this case, the term "action" refers to the sum over time of the difference between an object's kinetic energy (the energy that is generating the motion) and its potential energy (the object's stored energy). The actual path that a ball takes between points A and B should then be a sequence of positions where the overall difference between kinetic and potential energy is minimized.
+
+Slotine and Lohmiller were applying the Hamilton-Jacobi equation, and the principle of least action, to a number of classical mechanics problems with constraints when they realized that the equation, with some mathematical extensions, could solve a famous problem in quantum mechanics known as the [double-slit experiment](https://phys.org/news/2025-07-famous-quantum-essentials.html).
+
+Discover the latest in science, tech, and space with over **100,000 subscribers** who rely on Phys.org for daily insights. Sign up for our [free newsletter](https://sciencex.com/help/newsletter/) and get updates on breakthroughs, innovations, and research that matter—**daily or weekly**.
+
+ 
+
+Subscribe
+
+The double-slit experiment illustrates one of the weird, nonclassical behaviors that arises at quantum scales. In the experiment, two slits are cut out of a metal wall. When a single photon—a quantum-scale particle of light—is shot toward the wall, classical physics predicts that you should see a spot of light on the other side of the wall, assuming that the photon flew straight through either one of the holes, following a single path.
+
+But experimentalists have instead observed alternating bright and dark stripes. The reality-bending pattern is a result of a quantum mechanical phenomenon by which a photon takes more than one path simultaneously. In this context, when a single photon is shot toward the wall, it can pass through both holes at the same time, along two paths that end up interfering with each other. The pattern of stripes that results means that the photon's two interfering paths must be wave-like. The experiment therefore demonstrates how a quantum particle can also behave, however improbably, like a wave.
+
+Since the discovery of quantum mechanics, physicists have tried to explain the double-slit experiment using tools from classical, everyday physics. But they've only ever been able to approximate the experiment's results.
+
+Even the noted physicist Richard Feynman '39 found the task impossible. He assumed that one would have to consider and average over every single theoretical path that a photon could take, whether it be a straight line or any variation of a zigzagging path through either of the two holes. Such an exercise would require calculating an infinite number of possible zigzag paths, which all contradict the classical smooth paths one would expect.
+
+This last point is what Slotine and Lohmiller realized could be tweaked. Where classical physics assumes that an object must only take a single path from point A to B, quantum mechanics allows for an object to take multiple paths and multiple states simultaneously—a fundamental quantum property known as superposition.
+
+The team wondered: What if classical physics could also entertain, at least mathematically, this notion of multiple paths? Then, they reasoned that an infinite number of paths wouldn't have to be calculated. Instead, a much smaller number of "least action" classical paths might produce the exact same quantum result.
+
+With this idea in mind, they looked back to the Hamilton-Jacobi equation to see how they might adapt its principles of least action to predict the double-slit experiment and other quantum phenomena.
+
+"For a while we thought it was a little too good to be true," Slotine says.
+
+## A particle's destiny is in its density
+
+In their new study, the team adds another ingredient of classical physics: "density," which is, essentially, a probability that a given path is taken.
+
+"We think of density in terms of fluid dynamics," Lohmiller explains. "For the double-slit experiment, imagine pumping a hose toward the wall. What will happen is, most of the water will hit the center, but some droplets will also go toward the sides. A high density of water at the center means there is a high probability of finding a droplet along that path. And there will be a distribution which we can compute."
+
+He and Slotine tweaked the Hamilton-Jacobi equation to include terms of density and multiple least action paths, and applied it to the double-slit experiment. They found that with this formulation, they only had to consider two classical paths through the two slits, as compared to Feynman's infinity of zigzag paths. Ultimately, their calculations of classical density and action produced a wave function, or distribution of most probable paths that a photon could take, that was exactly the same as what was predicted by the Schrödinger equation, which is the central equation used to describe quantum-mechanical behavior.
+
+"We show that the Schrödinger's equation of quantum mechanics and the Hamilton-Jacobi equation of classical physics are actually identical given a suitable computation of density," Slotine says. "That's a purely mathematical result. We're not saying that quantum phenomena happens at classical scales. We're saying you can compute this quantum behavior with very simple classical tools."
+
+In addition to the double-slit experiment, the researchers showed the reworked equation can also predict other quantum mechanical behavior, such as quantum tunneling, in which particles such as electrons can pass through energy barriers that would not be possible according to classical physics. They could also derive the exact quantum wave of the electron in a hydrogen atom from the classical orbit of a planet. Finally, they revisited from this perspective the famous Einstein-Podolski-Rosen experiment, which started the modern study of quantum entanglement.
+
+The researchers envision that scientists could use the new formula as a simple method to predict how certain quantum systems and devices will perform.
+
+"There could be important implications for quantum computing, where quantum bits have these nonlinear energies that physicists must approximate, or for better understanding problems involving both quantum physics and general relativity," Slotine offers. "In principle at least, we should now be able to characterize this quantum behavior exactly, with simple classical tools, and show that it's not so mysterious after all."
+
+###### More information
+
+Winfried Lohmiller et al, On computing quantum waves exactly from classical action, *Proceedings of the Royal Society A Mathematical Physical and Engineering Science* (2026). [DOI: 10.1098/rspa.2025.0413](https://dx.doi.org/10.1098/rspa.2025.0413)
+
+###### Key concepts
+
+[**Classical mechanics**](https://phys.org/concepts/classical-mechanics/)[**Quantum algorithms & computation**](https://phys.org/concepts/quantum-algorithms-computation/)[**Quantum correlations, foundations & formalism**](https://phys.org/concepts/quantum-correlations-foundations-formalism/)[**Mathematical physics methods**](https://phys.org/concepts/mathematical-physics-methods/)
+
+Provided by [Massachusetts Institute of Technology](https://phys.org/partners/massachusetts-institute-of-technology/)[](http://web.mit.edu/)
+
+Who's behind this story?
+
+[![Gaby Clark](https://scx1.b-cdn.net/gfx/profiles/f233d40c9bb6ec42.jpg)](https://sciencex.com/help/editorial-team/gaby-clark/)
+
+##### [Gaby Clark](https://sciencex.com/help/editorial-team/gaby-clark/)
+
+MA in English, copy editor since 2021 with experience in higher education and health content. Dedicated to trustworthy science news. [Full profile →](https://sciencex.com/help/editorial-team/gaby-clark/)
+
+[![Robert Egan](https://scx1.b-cdn.net/gfx/profiles/782dcfc6701d278c.jpg)](https://sciencex.com/help/editorial-team/robert-egan/)
+
+##### [Robert Egan](https://sciencex.com/help/editorial-team/robert-egan/)
+
+Bachelor's in mathematical biology, Master's in creative writing. Well-traveled with unique perspectives on science and language. [Full profile →](https://sciencex.com/help/editorial-team/robert-egan/)
+
+*This story is republished courtesy of MIT News ([web.mit.edu/newsoffice/](http://web.mit.edu/newsoffice/)), a popular site that covers news about MIT research, innovation and teaching.*
+
+**Citation**: Classical physics can explain quantum weirdness, study shows (2026, April 22) retrieved 13 May 2026 from https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html
+
+This document is subject to copyright. Apart from any fair dealing for the purpose of private study or research, no part may be reproduced without the written permission. The content is provided for information purposes only.
+
+---
+
+Explore further
+
+[Using entanglement to test whether gravity is quantum just got more complicated](https://phys.org/news/2025-10-entanglement-gravity-quantum-complicated.html)
+
+---
+
+[920 shares](javascript:void\(0\))
+
+-   [
+    
+    Facebook
+    
+    ](javascript:void\(0\))
+-   [
+    
+    Twitter
+    
+    ](#)
+-   [
+    
+    Email
+    
+    ](#)
+
+[
+
+Feedback to editors
+
+](#)
+
+-   [Trending](#nav-popular)
+-   [Featured](#nav-editorials)
+-   [Last Comments](#nav-commented)
+
+#### [Why are some people mosquito magnets? Clues are emerging](https://phys.org/news/2026-05-people-mosquito-magnets-clues-emerging.html)
+
+May 12, 2026
+
+1
+
+#### [Under mushroom caps, 17-plus bacterial species help drive stubborn blotch disease](https://phys.org/news/2026-05-mushroom-caps-bacterial-species-stubborn.html)
+
+May 10, 2026
+
+1
+
+#### [Atoms vibrate on circular paths—with an unexpected twist](https://phys.org/news/2026-05-atoms-vibrate-circular-paths-unexpected.html)
+
+May 12, 2026
+
+2
+
+#### [80 years after the Trinity nuclear test, scientists identify new molecule-trapping crystal formed in the blast](https://phys.org/news/2026-05-years-trinity-nuclear-scientists-molecule.html)
+
+May 12, 2026
+
+0
+
+#### [Cut marks on 1.6 million-year-old bones reveal early humans moved prized meat](https://phys.org/news/2026-05-million-year-bones-reveal-early.html)
+
+May 10, 2026
+
+0
+
+---
+
+[
+
+![Researchers identify stability range for piezoelectric glycine using nanoconfinement](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### Researchers identify stability range for piezoelectric glycine using nanoconfinement
+
+31 minutes ago
+
+
+
+
+
+](https://phys.org/news/2026-05-stability-range-piezoelectric-glycine-nanoconfinement.html)[
+
+![Optical meta‑conveyors enable programmable nanomanipulation along arbitrary open paths](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### Optical meta‑conveyors enable programmable nanomanipulation along arbitrary open paths
+
+1 hour ago
+
+
+
+
+
+](https://phys.org/news/2026-05-optical-metaconveyors-enable-programmable-nanomanipulation.html)[
+
+![The dam dilemma: How to build anew without repeating old harms](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### The dam dilemma: How to build anew without repeating old harms
+
+2 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-dilemma-anew.html)[
+
+![Chemists discover and isolate a new boron–oxygen molecule](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### Chemists discover and isolate a new boron–oxygen molecule
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-chemists-isolate-boronoxygen-molecule.html)[
+
+![A twinkling pulsar reveals invisible structures in space](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### A twinkling pulsar reveals invisible structures in space
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-twinkling-pulsar-reveals-invisible-space.html)[
+
+![Rice plants observed trapping and killing fall armyworm caterpillars](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### Rice plants observed trapping and killing fall armyworm caterpillars
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-rice-fall-armyworm-caterpillars.html)[
+
+![The hidden force of growth: Dividing cell colonies drive phase separation in passing particles](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### The hidden force of growth: Dividing cell colonies drive phase separation in passing particles
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-hidden-growth-cell-colonies-phase.html)[
+
+![Statistical technique could uncover secrets of 'ringing' black holes](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### Statistical technique could uncover secrets of 'ringing' black holes
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-statistical-technique-uncover-secrets-black.html)[
+
+![How flies dodge so fast: Brain map reveals rare synapses behind split-second escapes](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### How flies dodge so fast: Brain map reveals rare synapses behind split-second escapes
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-flies-dodge-fast-brain-reveals.html)[
+
+![Rising seasonal sea-level swings are under-reported, but could have a major impact](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+
+##### Rising seasonal sea-level swings are under-reported, but could have a major impact
+
+3 hours ago
+
+
+
+
+
+](https://phys.org/news/2026-05-seasonal-sea-major-impact.html)
+
+---
+
+### Relevant PhysicsForums posts
+
+#### [Difficulties in Measuring the Contact Angle of a Sessile Droplet](https://www.physicsforums.com/threads/difficulties-in-measuring-the-contact-angle-of-a-sessile-droplet.1084967/)
+
+May 5, 2026
+
+#### [Thinking Outside The Box Versus Knowing What’s In The Box](https://www.physicsforums.com/threads/thinking-outside-the-box-versus-knowing-whats-in-the-box.1082576/)
+
+May 3, 2026
+
+#### [Buoyancy and gravity](https://www.physicsforums.com/threads/buoyancy-and-gravity.1084909/)
+
+Apr 27, 2026
+
+#### [A question about leverage and stability of shelf support](https://www.physicsforums.com/threads/a-question-about-leverage-and-stability-of-shelf-support.1084785/)
+
+Apr 10, 2026
+
+#### [What are the speed limits of a maglev track?](https://www.physicsforums.com/threads/what-are-the-speed-limits-of-a-maglev-track.1084736/)
+
+Apr 4, 2026
+
+#### [What causes knots and stress when untwisting ropes?](https://www.physicsforums.com/threads/what-causes-knots-and-stress-when-untwisting-ropes.1016887/)
+
+Mar 31, 2026
+
+More from [Other Physics Topics](https://www.physicsforums.com/forums/other-physics-topics.111/)
+
+---
+
+-   ### Related Stories
+    
+    [
+    
+    ![Using entanglement to test whether gravity is quantum just got more complicated](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Using entanglement to test whether gravity is quantum just got more complicated
+    
+    Oct 24, 2025
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2025-10-entanglement-gravity-quantum-complicated.html)[
+    
+    ![100 years before quantum mechanics, one scientist glimpsed a link between light and matter](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### 100 years before quantum mechanics, one scientist glimpsed a link between light and matter
+    
+    Sep 24, 2025
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2025-09-years-quantum-mechanics-scientist-glimpsed.html)[
+    
+    ![Making sense of quantum gravity in five dimensions](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Making sense of quantum gravity in five dimensions
+    
+    Jan 5, 2026
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-01-quantum-gravity-dimensions.html)
+    
+    [
+    
+    ![How the act of measuring a quantum particle transforms it into an everyday object](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### How the act of measuring a quantum particle transforms it into an everyday object
+    
+    Nov 30, 2021
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2021-11-quantum-particle-everyday.html)[
+    
+    ![Real-life experiment shows Niels Bohr was right in a theoretical debate with Einstein](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Real-life experiment shows Niels Bohr was right in a theoretical debate with Einstein
+    
+    Dec 31, 2025
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2025-12-real-life-niels-bohr-theoretical.html)[
+    
+    ![Speed test of 'tunneling' electrons challenges alternative interpretation of quantum mechanics](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Speed test of 'tunneling' electrons challenges alternative interpretation of quantum mechanics
+    
+    Jul 10, 2025
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2025-07-tunneling-electrons-alternative-quantum-mechanics.html)
+    
+-   ### Recommended for you
+    
+    [
+    
+    ![Mostly empty foam overturns assumptions of electron beam stopping](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Mostly empty foam overturns assumptions of electron beam stopping
+    
+    7 hours ago
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-05-foam-overturns-assumptions-electron.html)[
+    
+    ![Quantum geometry provides theoretical limits on measurable properties of solids](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Quantum geometry provides theoretical limits on measurable properties of solids
+    
+    6 hours ago
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-05-quantum-geometry-theoretical-limits-properties.html)[
+    
+    ![Atomic bands in two transition metal dichalcogenides hint at long-theorized quantum state](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Atomic bands in two transition metal dichalcogenides hint at long-theorized quantum state
+    
+    13 hours ago
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-05-atomic-bands-transition-metal-dichalcogenides.html)
+    
+    [
+    
+    ![Tiny forces, big effects: How particle interactions control the flow of soft materials](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Tiny forces, big effects: How particle interactions control the flow of soft materials
+    
+    6 hours ago
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-05-tiny-big-effects-particle-interactions.html)[
+    
+    ![Torpedo bats may shift baseball's sweet spot, acoustic analysis shows](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### Torpedo bats may shift baseball's sweet spot, acoustic analysis shows
+    
+    8 hours ago
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-05-torpedo-shift-baseball-sweet-acoustic.html)[
+    
+    ![3D atomic rearrangement creates 40,000 quantum defects in 40 minutes](data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)
+    
+    ##### 3D atomic rearrangement creates 40,000 quantum defects in 40 minutes
+    
+    8 hours ago
+    
+    
+    
+    
+    
+    ](https://phys.org/news/2026-05-3d-atomic-rearrangement-quantum-defects.html)
+    
+
+[Load comments (11)](Javascript:void\(0\);)
+
+##### Get Instant Summarized Text (Gist)
+
+A reformulation of the classical Hamilton-Jacobi equation, incorporating density and multiple least-action paths, can exactly reproduce quantum phenomena such as the double-slit experiment, quantum tunneling, and hydrogen atom wave functions. This approach mathematically bridges classical and quantum mechanics, showing that quantum behavior can be computed using classical principles without approximations.
+
+This summary was automatically generated using LLM. [Full disclaimer](https://sciencex.com/help/ai-disclaimer/)
+
+##### Let us know if there is a problem with our content
+
+Use this form if you have come across a typo, inaccuracy or would like to send an edit request for the content on this page. For general inquiries, please use our [contact form](https://sciencex.com/help/feedback/). For general feedback, use the public comments section below (please [adhere to guidelines](https://sciencex.com/help/comments/)).
+
+Please select the most appropriate category to facilitate processing of your request
+
+\-- please select one -- Compliments / Critique Typos / Errors / Inaccuracies Edit / Removal request
+
+Your message to the editors
+
+Your email (optional, only if you'd like a response) 
+
+Send Feedback
+
+Thank you for taking time to provide your feedback to the editors.
+
+Your feedback is important to us. However, we do not guarantee individual replies due to the high volume of messages.
+
+###### E-mail the story
+
+##### Classical physics can explain quantum weirdness, study shows
+
+Your friend's email 
+
+Your email 
+
+ I would like to subscribe to Science X Newsletter. [Learn more](https://sciencex.com/help/newsletter/)
+
+Your name 
+
+###### Note
+
+Your email address is used **only** to let the recipient know who sent the email. Neither your address nor the recipient's address will be used for any other purpose. The information you enter will appear in your e-mail message and is not retained by Phys.org in any form.
+
+Your message
+
+Send
+
+#### Newsletter sign up
+
+Get weekly and/or daily updates delivered to your inbox. You can unsubscribe at any time and we'll never share your details to third parties.
+
+ 
+
+Subscribe
+
+[More information](https://sciencex.com/help/newsletter/) [Privacy policy](https://sciencex.com/help/privacy/)
+
+#### Donate and enjoy an ad-free experience
+
+We keep our content available to everyone. Consider supporting Science X's mission by getting a premium account.
+
+[Remove ads](https://sciencex.com/donate/?utm_source=phys&utm_medium=desktop&utm_campaign=popup)
+
+[Maybe later](#)
+
+[
+
+![Medical Xpress](https://phys.b-cdn.net/tmpl/v6/img/MedicalXpress.svg)
+
+### Medical Xpress
+
+Medical research advances and health news
+
+
+
+
+
+](https://medicalxpress.com/)
+
+[
+
+![Tech Xplore](https://phys.b-cdn.net/tmpl/v6/img/techexploer.svg)
+
+### Tech Xplore
+
+The latest engineering, electronics and technology advances
+
+
+
+
+
+](https://techxplore.com/)
+
+[
+
+![Science X](https://phys.b-cdn.net/tmpl/v6/img/ScienceX.svg)
+
+### Science X
+
+The most comprehensive sci-tech news coverage on the web
+
+
+
+
+
+](https://sciencex.com/)
+
+## Newsletters
+
+ 
+
+Subscribe
+
+[Science X Daily and the Weekly Email Newsletter are free features that allow you to receive your favorite sci-tech news updates in your email inbox](https://sciencex.com/help/newsletter/)
+
+## Follow us
+
+-   [](https://www.facebook.com/physorg)
+-   [](https://twitter.com/physorg_com)
+-   [](https://www.linkedin.com/company/phys-org/)
+-   [](https://bsky.app/profile/sciencex.bsky.social)
+-   [](https://www.threads.net/@sciencex.physorg)
+-   [](https://www.youtube.com/@Science-X)
+-   [](https://profile.google.com/cp/CgovbS8wMjdrbmRi?pf=0)
+
+-   [Top](#)
+-   [Home](https://phys.org/)
+-   [Search](https://phys.org/search/)
+-   [Mobile version](https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html?deviceType=mobile)
+
+-   [Help](https://sciencex.com/help/)
+-   [FAQ](https://sciencex.com/help/contactus/)
+-   [About](https://sciencex.com/help/about-us/)
+-   [Contact](https://sciencex.com/help/feedback/)
+
+-   [Support us](https://sciencex.com/help/donate/)
+-   [Science X Account](https://sciencex.com/profile/)
+-   [Archive](https://phys.org/archive/)
+-   [News wire](https://sciencex.com/wire-news/)
+
+-   [Android app](https://play.google.com/store/apps/details?id=com.PhysOrg.RssLite)
+-   [iOS app](https://itunes.apple.com/us/app/phys-org/id356443503?mt=8)
+-   [RSS feeds](https://phys.org/feeds/)
+-   [Push notification](javascript:void\(0\))
+
+© Phys.org 2003 - 2026 powered by [Science X Network](https://sciencex.com/)
+
+[Privacy policy](https://sciencex.com/help/privacy/) [Terms of use](https://sciencex.com/help/terms/)
+
+#### E-mail newsletter
+
+ 
+
+Subscribe
+
+#### Follow us
+
+-   [](https://www.facebook.com/physorg)
+-   [](https://twitter.com/physorg_com)
+-   [](https://www.linkedin.com/company/phys-org/)
+-   [](https://phys.org/feeds/)
+
+   
+
+![Quantcast](//pixel.quantserve.com/pixel/p-5dNhPAnM9r0yY.gif)
+</result>
+
+[15] thinking: **Exploring comment retrieval**
+
+I need to gather comments from a source. The button might trigger an AJAX request which connects to an endpoint. I’ll inspect the JavaScript and HTML to figure out how to access it. My plan is to use the fetch method with cookies to retrieve the source and find the comments endpoint. Maybe I should use the REPL to fetch the URL and then grep for "comments" to pinpoint what I need.
+
+[16] tool_call: repl("Inspecting comment loader source")
+<request>
+const res5 = await fetch('https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html');
+const html5 = await res5.text();
+console.log(html5.match(/Load comments[\s\S]{0,1000}/)?.[0] || 'no match');
+console.log([...html5.matchAll(/comments?[\w\-\/\.]*|comment[\w\-\/\.]*/gi)].slice(0,50).map(m=>m[0]).join('\n'));
+</request>
+<result tokens_used="195" elapsed_time="155ms">
+Load comments (11)
+									 </a>
+							  </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		        <script>
+    googletag.cmd.push(() => {
+        const slots = googletag.pubads().getSlots();
+        if (slots.length > 0) {
+            googletag.display(slots[0].getSlotElementId());
+        }
+    });
+</script>
+		
+		<section class="bg-light d-print-none">
+			<div id="news-more" data-ads="Y"></div>
+		</section>
+        <!-- /news-more -->
+        
+		<div class="modal modal-sm fade d-print-none" tabindex="-1" role="dialog" id="summary-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header mb-5">
+                        <button class="modal-custom__close" type="button" data-dismiss="modal" aria-label="Close">
+                            <svg>
+                                <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#icon_close" x="0" y="0"/
+comments-tab
+commented
+commented
+Comments
+comment
+comment
+comment
+comment
+comment
+commented
+comments-tab
+comments-wrapper-new
+comments
+commentsModal
+comments
+comments
+comments/
+comments
+comments
+</result>
+
+[17] tool_call: repl("Locating comment script details")
+<request>
+const idx5 = html5.indexOf('comments-wrapper-new');
+console.log('idx', idx5);
+console.log(html5.substring(Math.max(0, idx5-1500), idx5+2500));
+const matches5 = [...html5.matchAll(/(?:comments\/|comments)[^'"<>\s]*/gi)].map(m=>m[0]);
+console.log([...new Set(matches5)].slice(0,100).join('\n'));
+</request>
+<result tokens_used="126" elapsed_time="17ms">
+idx 136249
+gement-quantum-defects.html" class="news-link selection-link">
+                <div class="selection-article">
+                        <div class="selection-article__figure">
+                                                                        <img
+                                                class="selection-article__image"
+                                                data-src="https://scx1.b-cdn.net/csz/news/tmb/2026/researchers-reprogram-2.jpg"
+                                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+                                                alt="3D atomic rearrangement creates 40,000 quantum defects in 40 minutes">
+                                                                <div class="selection-article__description">
+                                        <h5>3D atomic rearrangement creates 40,000 quantum defects in 40 minutes</h5>
+                                        <time datetime="2026-05-13">
+                                                8 hours ago
+                                        </time>
+                                </div>
+                        </div>
+                </div>
+        </a>
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- /related -->
+		
+		
+
+
+        <div class="comments-wrapper-new" data-story-id="696077161">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-10 offset-lg-2 article-interaction my-4 d-flex align-items-center d-print-none">
+                        <section class="my-4 text-center w-75">
+									 <a href="Javascript:void(0);" class="btn btn-info border-bold text-low-up px-5 load-comments" data-toggle="modal" data-target="#commentsModal">
+										Load comments (11)
+									 </a>
+							  </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		        <script>
+    googletag.cmd.push(() => {
+        const slots = googletag.pubads().getSlots();
+        if (slots.length > 0) {
+            googletag.display(slots[0].getSlotElementId());
+        }
+    });
+</script>
+		
+		<section class="bg-light d-print-none">
+			<div id="news-more" data-ads="Y"></div>
+		</section>
+        <!-- /news-more -->
+        
+		<div class="modal modal-sm fade d-print-none" tabindex="-1" role="dialog" id="summary-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header mb-5">
+                        <button class="modal-custom__close" type="button" data-dismiss="modal" aria-label="Close">
+                            <svg>
+                                <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#icon_close" x="0" y="0"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body py-3">
+						<div class="mb-3">
+							<h5 class="modal-title text-center">Get Instant Summarized Text (Gist)</h5>
+							<p class="gist">A reformulation of the classical Hamilton-Jacobi equation, incorporating density and multiple least-action paths, can exactly reproduce quantum phenomena such as the double-slit experiment, quantum tunneling, and hydrogen atom wave functions. This approach mathematically bridges classical and quantum mechanics, showing that quantum behavior can be computed using classical principles without approximations.</p>
+							<p class="text-center text-muted">
+								<small>
+								This summary was automatically generated using LLM. 
+								<a class="text-info" href="https://sciencex.com/help/ai-disclaimer/" target="_blank">Full disclaimer</a>
+								</small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+comments-tab
+Comments
+comments-wrapper-new
+comments
+commentsModal
+comments/
+</result>
+
+[18] tool_call: repl("Searching JavaScript for comments AJAX")
+<request>
+const scriptSrcs5 = [...html5.matchAll(/<script[^>]+src=["']([^"']+)["']/g)].map(m=>m[1]);
+console.log(scriptSrcs5.join('\n'));
+// show inline scripts around 'load-comments'
+const idxLC5 = html5.indexOf('load-comments');
+console.log('load idx', idxLC5, html5.substring(idxLC5-500, idxLC5+1000));
+console.log('commentsModal idx', html5.indexOf('commentsModal'));
+console.log(html5.substring(html5.indexOf('commentsModal')-500, html5.indexOf('commentsModal')+500));
+</request>
+<result tokens_used="174" elapsed_time="34ms">
+https://www.googletagmanager.com/gtag/js?id=G-6M86390YBL
+https://securepubads.g.doubleclick.net/tag/js/gpt.js
+https://fundingchoicesmessages.google.com/i/pub-0536483524803400?ers=1
+https://phys.b-cdn.net/tmpl/v6/js/svgxuse.607259959.js
+https://phys.b-cdn.net/tmpl/v6/js/libs.607259959.js
+https://phys.b-cdn.net/tmpl/v6/js/common.1415117240.js
+https://www.google.com/recaptcha/api.js?hl=en
+https://phys.b-cdn.net/tmpl/v6/js/news.607259959.js
+//connect.facebook.net/en_US/sdk.js
+load idx 136651  </div>
+            </div>
+        </aside>
+        <!-- /related -->
+		
+		
+
+
+        <div class="comments-wrapper-new" data-story-id="696077161">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-10 offset-lg-2 article-interaction my-4 d-flex align-items-center d-print-none">
+                        <section class="my-4 text-center w-75">
+									 <a href="Javascript:void(0);" class="btn btn-info border-bold text-low-up px-5 load-comments" data-toggle="modal" data-target="#commentsModal">
+										Load comments (11)
+									 </a>
+							  </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		        <script>
+    googletag.cmd.push(() => {
+        const slots = googletag.pubads().getSlots();
+        if (slots.length > 0) {
+            googletag.display(slots[0].getSlotElementId());
+        }
+    });
+</script>
+		
+		<section class="bg-light d-print-none">
+			<div id="news-more" data-ads="Y"></div>
+		</section>
+        <!-- /news-more -->
+        
+		<div class="modal modal-sm fade d-print-none" tabindex="-1" role="dialog" id="summary-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header mb-5">
+                        <button class="modal-custom__close" type="button" data-dismiss="modal" aria-label="Close">
+                            <svg>
+                             
+commentsModal idx 136700
+   <!-- /related -->
+		
+		
+
+
+        <div class="comments-wrapper-new" data-story-id="696077161">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-10 offset-lg-2 article-interaction my-4 d-flex align-items-center d-print-none">
+                        <section class="my-4 text-center w-75">
+									 <a href="Javascript:void(0);" class="btn btn-info border-bold text-low-up px-5 load-comments" data-toggle="modal" data-target="#commentsModal">
+										Load comments (11)
+									 </a>
+							  </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		        <script>
+    googletag.cmd.push(() => {
+        const slots = googletag.pubads().getSlots();
+        if (slots.length > 0) {
+            googletag.display(slots[0].getSlotElementId());
+        }
+    });
+</script>
+		
+		<section class="bg-light d-print-none">
+			<div id="news-more" data-ads="Y"></div>
+		</section>
+        <!-
+</result>
+
+[19] tool_call: repl("Inspecting news script for comment endpoint")
+<request>
+const jsNews5 = await (await fetch('https://phys.b-cdn.net/tmpl/v6/js/news.607259959.js')).text();
+console.log('len', jsNews5.length);
+for (const term of ['load-comments','comments-wrapper-new','comments/','comment']) {
+ const ix = jsNews5.indexOf(term);
+ console.log('TERM', term, ix, ix>=0 ? jsNews5.substring(Math.max(0,ix-800), ix+1600) : '');
+}
+</request>
+<result tokens_used="153" elapsed_time="134ms">
+len 21459
+TERM load-comments 294 function storyComments(){var e={baseUrl:"/comments/",wrapperSelector:".comments-wrapper-new",$wrapper:null,$loadCommentsBtn:null,page:null,commentsPerPage:1e6,isLoading:!1,modalId:null,init:function(){if(e.$wrapper=$(e.wrapperSelector),!e.$wrapper)return!1;e.$loadCommentsBtn=e.$wrapper.find(".load-comments"),e.modalId=e.$loadCommentsBtn.attr("data-target"),e.$loadCommentsBtn.on("click",(function(t){t.preventDefault(),e.commentsLoaded||(t.stopPropagation(),e.loadComments())})),$("body").on("click",e.modalId+" .leave-comment-button",(function(t){t.preventDefault(),e.showAddCommentForm()})),$("body").on("click",e.modalId+" .login-button",(function(t){t.preventDefault(),e.addUrlReturnParamAfterLogin()})),$("body").on("click",e.modalId+" .close-comments-form",(function(t){t.preventDefault(),e.hideAddCommentForm()})),$("body").on("click",e.modalId+" a[data-action]:not(.not-active)",(function(t){t.preventDefault(),e.runCommentAction(t.target.closest("a[data-action]:not(.not-active)").dataset.action,t.target.closest(".comment-body").dataset.id)})),$("body").on("change",e.modalId+' input[name="follow"]',(function(t){t.preventDefault(),e.toggleFollow()})),$("body").on("click",e.modalId+" .show-comment",(function(t){t.preventDefault(),e.showHiddenComment(t.target)})),$("body").on("submit",e.modalId+" form.comments-form",(function(t){t.preventDefault(),e.submitCommentsForm()})),$("body").on("change",e.modalId+' select[name="sortOrder"]',(function(t){t.preventDefault(),e.isLoading=!0,e.reloadComments()})),$("header .navbar .dropdown").on("hidden.bs.dropdown",(function(){if(!new URL(window.location.href).searchParams.get("loadCommentsForm"))return!1;$(e.modalId).modal("show")})),e.loadCommentsForm()},message:function(e){var t=$(".comment-modal-popup");t.find(".comment-message").html(e),t.modal("show")},scrollVertical:function(t){var o,n,a=$(e.modalId).find(".modal-content")[0
+TERM comments-wrapper-new 71 function storyComments(){var e={baseUrl:"/comments/",wrapperSelector:".comments-wrapper-new",$wrapper:null,$loadCommentsBtn:null,page:null,commentsPerPage:1e6,isLoading:!1,modalId:null,init:function(){if(e.$wrapper=$(e.wrapperSelector),!e.$wrapper)return!1;e.$loadCommentsBtn=e.$wrapper.find(".load-comments"),e.modalId=e.$loadCommentsBtn.attr("data-target"),e.$loadCommentsBtn.on("click",(function(t){t.preventDefault(),e.commentsLoaded||(t.stopPropagation(),e.loadComments())})),$("body").on("click",e.modalId+" .leave-comment-button",(function(t){t.preventDefault(),e.showAddCommentForm()})),$("body").on("click",e.modalId+" .login-button",(function(t){t.preventDefault(),e.addUrlReturnParamAfterLogin()})),$("body").on("click",e.modalId+" .close-comments-form",(function(t){t.preventDefault(),e.hideAddCommentForm()})),$("body").on("click",e.modalId+" a[data-action]:not(.not-active)",(function(t){t.preventDefault(),e.runCommentAction(t.target.closest("a[data-action]:not(.not-active)").dataset.action,t.target.closest(".comment-body").dataset.id)})),$("body").on("change",e.modalId+' input[name="follow"]',(function(t){t.preventDefault(),e.toggleFollow()})),$("body").on("click",e.modalId+" .show-comment",(function(t){t.preventDefault(),e.showHiddenComment(t.target)})),$("body").on("submit",e.modalId+" form.comments-form",(function(t){t.preventDefault(),e.submitCommentsForm()})),$("body").on("change",e.modalId+' select[name="sortOrder"]',(function(t){t.preventDefault(),e.isLoading=!0,e.reloadComments()})),$("header .navbar .dropdown").on("hidden.bs.dropdown",(function(){if(!new URL(window.location.href).searchParams.get("loadCommentsForm"))return!1;$(e.mod
+TERM comments/ 42 function storyComments(){var e={baseUrl:"/comments/",wrapperSelector:".comments-wrapper-new",$wrapper:null,$loadCommentsBtn:null,page:null,commentsPerPage:1e6,isLoading:!1,modalId:null,init:function(){if(e.$wrapper=$(e.wrapperSelector),!e.$wrapper)return!1;e.$loadCommentsBtn=e.$wrapper.find(".load-comments"),e.modalId=e.$loadCommentsBtn.attr("data-target"),e.$loadCommentsBtn.on("click",(function(t){t.preventDefault(),e.commentsLoaded||(t.stopPropagation(),e.loadComments())})),$("body").on("click",e.modalId+" .leave-comment-button",(function(t){t.preventDefault(),e.showAddCommentForm()})),$("body").on("click",e.modalId+" .login-button",(function(t){t.preventDefault(),e.addUrlReturnParamAfterLogin()})),$("body").on("click",e.modalId+" .close-comments-form",(function(t){t.preventDefault(),e.hideAddCommentForm()})),$("body").on("click",e.modalId+" a[data-action]:not(.not-active)",(function(t){t.preventDefault(),e.runCommentAction(t.target.closest("a[data-action]:not(.not-active)").dataset.action,t.target.closest(".comment-body").dataset.id)})),$("body").on("change",e.modalId+' input[name="follow"]',(function(t){t.preventDefault(),e.toggleFollow()})),$("body").on("click",e.modalId+" .show-comment",(function(t){t.preventDefault(),e.showHiddenComment(t.target)})),$("body").on("submit",e.modalId+" form.comments-form",(function(t){t.preventDefault(),e.submitCommentsForm()})),$("body").on("change",e.modalId+' select[name="sortOrder"]',(function(t){t.preventDefault(),e.isLoading=!0,e.reloadComments()})),$("header .navbar .dropdown").on("hidden.bs.dropdown",(function(){if(!new URL(window.location.href).searchParams.get("loadCo
+TERM comment 42 function storyComments(){var e={baseUrl:"/comments/",wrapperSelector:".comments-wrapper-new",$wrapper:null,$loadCommentsBtn:null,page:null,commentsPerPage:1e6,isLoading:!1,modalId:null,init:function(){if(e.$wrapper=$(e.wrapperSelector),!e.$wrapper)return!1;e.$loadCommentsBtn=e.$wrapper.find(".load-comments"),e.modalId=e.$loadCommentsBtn.attr("data-target"),e.$loadCommentsBtn.on("click",(function(t){t.preventDefault(),e.commentsLoaded||(t.stopPropagation(),e.loadComments())})),$("body").on("click",e.modalId+" .leave-comment-button",(function(t){t.preventDefault(),e.showAddCommentForm()})),$("body").on("click",e.modalId+" .login-button",(function(t){t.preventDefault(),e.addUrlReturnParamAfterLogin()})),$("body").on("click",e.modalId+" .close-comments-form",(function(t){t.preventDefault(),e.hideAddCommentForm()})),$("body").on("click",e.modalId+" a[data-action]:not(.not-active)",(function(t){t.preventDefault(),e.runCommentAction(t.target.closest("a[data-action]:not(.not-active)").dataset.action,t.target.closest(".comment-body").dataset.id)})),$("body").on("change",e.modalId+' input[name="follow"]',(function(t){t.preventDefault(),e.toggleFollow()})),$("body").on("click",e.modalId+" .show-comment",(function(t){t.preventDefault(),e.showHiddenComment(t.target)})),$("body").on("submit",e.modalId+" form.comments-form",(function(t){t.preventDefault(),e.submitCommentsForm()})),$("body").on("change",e.modalId+' select[name="sortOrder"]',(function(t){t.preventDefault(),e.isLoading=!0,e.reloadComments()})),$("header .navbar .dropdown").on("hidden.bs.dropdown",(function(){if(!new URL(window.location.href).searchParams.get("loadCo
+</result>
+
+[20] system_message (background-consult):
+<system_message>
+The article has `data-story-id="696077161"` and comments are loaded via a modal. Try fetching the comments API directly, e.g. `https://sciencex.com/comments/` or `https://phys.org/news/comments/?id=696077161` (or similar endpoint). Inspect the `news.607259959.js` bundle or network requests triggered by clicking "Load comments" to find the exact AJAX endpoint URL, then fetch it to retrieve the comment data.
+</system_message>
+
+[21] tool_call: repl("Finding exact comments endpoint in JavaScript")
+<request>
+const js6 = jsNews5;
+for (const term of ['loadComments:function','reloadComments:function','$.ajax','getJSON','baseUrl']) {
+  const positions=[]; let start=0;
+  while(true){ const ix=js6.indexOf(term,start); if(ix<0) break; positions.push(ix); start=ix+term.length; }
+  console.log('TERM', term, positions.slice(0,10).join(','));
+  for (const ix of positions.slice(0,3)) console.log(js6.substring(Math.max(0,ix-700), ix+1800));
+}
+</request>
+<result tokens_used="295" elapsed_time="29ms">
+TERM loadComments:function 4393,6743
+crollTop),e.isLoading=!1}))},runActionLikeDislike:function(t,o){if(e.isLoading)return!1;e.isLoading=!0;var n=new FormData;n.append("vote",o),fetch(e.getLikeUrl(t),{method:"POST",body:n}).then((e=>e.json())).then((o=>{o.error?(e.message(o.error),e.isLoading=!1):e.reloadComment(t)}))},runActionIgnoreUnIgnore:function(t,o){if(e.isLoading)return!1;e.isLoading=!0;var n=new FormData;n.append("state",o),fetch(e.getIgnoreUrl(t),{method:"POST",body:n}).then((e=>e.json())).then((t=>{t.error?(e.message(t.error),e.isLoading=!1):e.reloadComments()}))},reloadComment:function(t){var o=$(e.modalId).find('.comment-body[data-id="'+t+'"]');e.getCommentPromise(t).then((t=>{o.replaceWith(t),e.isLoading=!1}))},reloadComments:function(){fetch(e.getCommentsReloadUrl(),{headers:{"X-Requested-With":"XMLHttpRequest"}}).then((e=>e.text())).then((t=>{$(e.modalId).find(".comments-list").html(t),e.isLoading=!1}))},showHiddenComment:function(e){var t=e.closest(".comment-content");t.innerHTML=t.querySelector(".hidden-content").innerHTML},getCommentsForm:function(){return $(e.modalId).find("form.comments-form")},submitCommentsForm:function(){if(e.isLoading)return!1;e.isLoading=!0;var t=e.getCommentsForm();fetch(t.attr("action"),{method:"POST",body:new FormData(t[0])}).then((e=>e.json())).then((o=>{o.error?(e.message(o.error),e.isLoading=!1):("create"==t.attr("data-action")?e.addComment(o.comment_id):(e.reloadComment(o.comment_id),e.scrollVertical($(e.modalId).find('.comment-body[data-id="'+o.comment_id+'"]').position().top)),t.find("textarea").val(""),t.attr({action:e.getCreateCommentUrl(),"data-action":"create"}))}))},addComment:function(t){e.getCommentPromise(t).then((o=>{"ASC"==$(e.modalId).find('select[name="sortOrder"]').val()?$(e.modalId).find(".comments-list").append(o):$(e.modalId).find(".comments-list").prepend(o),e.scrollVertical($(e.modalId).find('.comment-body[data-id="'+t+'"]').position().top),e.isLoading=!1}))},getCommentPromise:function(t){return fetch(e.getSingleCommentUrl(t)).then((e=>e.text()))},toggleFollow:function(){fetch(e.getToggleFollowUrl(),{method:"POST"})},loadCommentsForm:function(){var t=new URL(window.location.href);if(!t.searchParams.get("loadCommentsForm"))return!1;window.history&&window.history.replaceState&&(t.searchParams.delete("loadCommentsForm"),history.replaceState(null,null,t.toString())),e.loadComments(!0),window.scroll(0,e.$wrapper.offset().top)},addUrlReturnParamAfterLogin:function(){if(!window.history||!window.history.replaceState)return!1;var t=
+(!0),window.scroll(0,e.$wrapper.offset().top)},addUrlReturnParamAfterLogin:function(){if(!window.history||!window.history.replaceState)return!1;var t=new URL(window.location.href);t.searchParams.set("loadCommentsForm",1),history.replaceState(null,null,t.toString()),window.scroll(0,0),$(e.modalId).modal("hide"),setTimeout((function(){$(".header-account").dropdown("toggle")}),50),console.log("uuuu")},showAddCommentForm:function(){$(e.modalId).find(".leave-comment-button").addClass("d-none"),$(e.modalId).find(".add-comment").removeClass("d-none")},hideAddCommentForm:function(){$(e.modalId).find(".leave-comment-button").removeClass("d-none"),$(e.modalId).find(".add-comment").addClass("d-none")},loadComments:function(t=!1){e.isLoading=!0,fetch(e.getCommentsLoadPageUrl(1)).then((e=>e.text())).then((o=>{e.$wrapper.after(o),$(e.modalId).find(".sort-area select").niceSelect(),e.commentsLoaded=!0,$(e.modalId).modal("show"),e.page=1,e.isLoading=!1,t&&e.showAddCommentForm(),e.hideLoadMoreBtn()}))},loadPage:function(t){if(e.isLoading)return!1;e.isLoading=!0,fetch(e.getCommentsLoadPageUrl(t)).then((e=>e.text())).then((o=>{$(e.modalId).find(".comments-list").append(o),e.page=t,e.isLoading=!1,e.hideLoadMoreBtn()}))},hideLoadMoreBtn:function(){e.page&&e.page*e.commentsPerPage>=$(e.modalId).find(".comments-shown").data("count")&&$(e.modalId).find(".load-button").addClass("d-none")},getCommentsReloadUrl:function(){var t=e.page*e.commentsPerPage,o=e.baseUrl+"load-page/"+e.$wrapper.data("storyId")+"/1/"+t+"/";return e.getSortOrder()&&(o=o+e.getSortOrder()+"/"),o},getCommentsLoadPageUrl:function(t){var o=e.baseUrl+"load-page/"+e.$wrapper.data("storyId")+"/"+t+"/"+e.commentsPerPage+"/";return e.getSortOrder()&&(o=o+e.getSortOrder()+"/"),o},getCommentsCountUrl:function(){return e.baseUrl+"count/"+e.$wrapper.data("storyId")+"/"},getToggleFollowUrl:function(){return e.baseUrl+"follow/"+e.$wrapper.data("storyId")+"/"},getSingleCommentUrl:function(t){return e.baseUrl+"single-html/"+t+"/"},getSingleJsonCommentUrl:function(t){return e.baseUrl+"single/"+t+"/"},getCreateCommentUrl:function(){return e.baseUrl+e.$wrapper.data("storyId")+"/"},getIgnoreUrl:function(t){return e.baseUrl+"ignore/"+t+"/"},getLikeUrl:function(t){return e.baseUrl+"rate/"+t+"/"},getReportUrl:function(t){return e.baseUrl+"flag/"+t+"/"},getSortOrder:function(){return $(e.modalId).find('select[name="sortOrder"]').length?$(e.modalId).find('select[name="sortOrder"]').val():null}};return e.init(),e}!function(e){e.fn.nice
+TERM reloadComments:function 4391
+.scrollTop),e.isLoading=!1}))},runActionLikeDislike:function(t,o){if(e.isLoading)return!1;e.isLoading=!0;var n=new FormData;n.append("vote",o),fetch(e.getLikeUrl(t),{method:"POST",body:n}).then((e=>e.json())).then((o=>{o.error?(e.message(o.error),e.isLoading=!1):e.reloadComment(t)}))},runActionIgnoreUnIgnore:function(t,o){if(e.isLoading)return!1;e.isLoading=!0;var n=new FormData;n.append("state",o),fetch(e.getIgnoreUrl(t),{method:"POST",body:n}).then((e=>e.json())).then((t=>{t.error?(e.message(t.error),e.isLoading=!1):e.reloadComments()}))},reloadComment:function(t){var o=$(e.modalId).find('.comment-body[data-id="'+t+'"]');e.getCommentPromise(t).then((t=>{o.replaceWith(t),e.isLoading=!1}))},reloadComments:function(){fetch(e.getCommentsReloadUrl(),{headers:{"X-Requested-With":"XMLHttpRequest"}}).then((e=>e.text())).then((t=>{$(e.modalId).find(".comments-list").html(t),e.isLoading=!1}))},showHiddenComment:function(e){var t=e.closest(".comment-content");t.innerHTML=t.querySelector(".hidden-content").innerHTML},getCommentsForm:function(){return $(e.modalId).find("form.comments-form")},submitCommentsForm:function(){if(e.isLoading)return!1;e.isLoading=!0;var t=e.getCommentsForm();fetch(t.attr("action"),{method:"POST",body:new FormData(t[0])}).then((e=>e.json())).then((o=>{o.error?(e.message(o.error),e.isLoading=!1):("create"==t.attr("data-action")?e.addComment(o.comment_id):(e.reloadComment(o.comment_id),e.scrollVertical($(e.modalId).find('.comment-body[data-id="'+o.comment_id+'"]').position().top)),t.find("textarea").val(""),t.attr({action:e.getCreateCommentUrl(),"data-action":"create"}))}))},addComment:function(t){e.getCommentPromise(t).then((o=>{"ASC"==$(e.modalId).find('select[name="sortOrder"]').val()?$(e.modalId).find(".comments-list").append(o):$(e.modalId).find(".comments-list").prepend(o),e.scrollVertical($(e.modalId).find('.comment-body[data-id="'+t+'"]').position().top),e.isLoading=!1}))},getCommentPromise:function(t){return fetch(e.getSingleCommentUrl(t)).then((e=>e.text()))},toggleFollow:function(){fetch(e.getToggleFollowUrl(),{method:"POST"})},loadCommentsForm:function(){var t=new URL(window.location.href);if(!t.searchParams.get("loadCommentsForm"))return!1;window.history&&window.history.replaceState&&(t.searchParams.delete("loadCommentsForm"),history.replaceState(null,null,t.toString())),e.loadComments(!0),window.scroll(0,e.$wrapper.offset().top)},addUrlReturnParamAfterLogin:function(){if(!window.history||!window.history.replaceState)return!1;var 
+TERM $.ajax 16186,19175
+lid")})),!1)}$(".fb").click((()=>(FB.ui({method:"share",mobile_iframe:!0,href:t},(()=>{})),!1))),$(".goog").click((function(){return window.open($(this).attr("href"),"",o(600,600)).opener=null,!1})),$(".tw").click((function(){const e=`https://twitter.com/intent/tweet?text=${`${$(this).data("title")} ${encodeURIComponent(t)} via @${$(this).data("via")}`}`;return window.open(e,"ShareOnTwitter",o(500,450)).opener=null,!1})),$(".ln").click((function(){const e=`https://www.linkedin.com/shareArticle?mini=true&url=${t}`;return window.open(e,"ShareOnLinkedIN",o(520,570)).opener=null,!1})),$("#fav").click((function(){const e=$(this).data("nid"),t=$.cookie("PhysAccount"),o=t?`?u=${btoa(t)}`:"";return $.ajax(`https://sciencex.com/api/story/addFav/${e}/${o}`,{method:"get",crossDomain:!0}).done((()=>$("#notify").find(".modal-message").html("Saved to your Science X account"))).fail((()=>$("#notify").find(".modal-message").html('Please sign into <a href="https://sciencex.com/profile/login/">Science X account</a>'))).always((()=>$("#notify").modal("show"))),!1})),$("form[name=email]").on("submit",(function(){const e=$(this),t=e.attr("action");let o=e.serialize();return!!n(e)&&(o+="&project=physorg&xRequest=true",$.post(t,o).done((t=>{t.error?($("#email-error").html(t.error),2===t.code?e.find("input[type=email]").addClass("is-invalid"):1===t.code&&e.find("[required]").addClass("is-invalid")):(e[0].reset(),$("#feedback-email").modal("hide"))})).fail((()=>{e[0].reset(),$("#feedback-email").modal("hide"),alert("An unknown error has occurred")})),!1)})),$("form[name=feedback]").on("submit",(function(){const e=$(this),t=e.attr("action");if(!n(e))return!1;const o=$(this)[0].querySelector("div[data-recaptcha]"),a=o.getAttribute("data-sitekey");let r=grecaptcha.render(o,{sitekey:a,size:"invisible",callback:o=>{let n=e.serialize();$.post(t,n).always((()=>{e.find(".modal-body").hide(),e.find("button[type=submit]").hide(),e.find(".message").removeClass("d-none")}))}});return grecaptcha.execute(r),!1}))}(),function(){const e=$("#news-more");if("IntersectionObserver"in window){const t=(t,o)=>{t.forEach((t=>{t.intersectionRatio>0&&(e[0]===t.target&&e.attr("data-loaded",!0).load("/ajax/story/",{ads:e.data("ads")}),o.unobserve(t.target))}))};new IntersectionObserver(t,{rootMargin:`${$(window).height()}px 0px`,threshold:.01}).observe(e[0])}else e.attr("data-loaded",!0).load("/ajax/story/",{ads:e.data("ads")})}(),function(){if($(".popup-cookies__displayed").length>0)return;if(!e())return!1;
+popup-nwletter]"),m=document.getElementById("popup-recaptcha-invisible"),u=m.getAttribute("data-sitekey");let f=null;c.on("submit",(function(e){e.preventDefault();try{grecaptcha.execute(f)}catch(e){$(this).append('<p class="text-danger">reCaptcha error, please try again.</p>')}return a.hide=!0,a.exp=t+31104e3,localStorage.setItem(n,JSON.stringify(a)),!1})),getScxUser($.cookie("PhysAccount")).then((e=>{e.mid||(d=setInterval((()=>{s&&($(window).scrollTop()+$(window).height()+300<i.offset().top+i.height()||$(".popup-cookies__displayed").length>0||(r.addClass("popup-cookies__displayed"),$(window).off("scroll",l),clearInterval(d),f||(f=grecaptcha.render(m,{sitekey:u,size:"invisible",callback:e=>($.ajax("https://sciencex.com/api/nwletter/",{method:"post",data:c.serialize()}).done((()=>c.html("<p>We sent you a confirmation email with a link to activate your subscription</p>"))),!1)}))),s=!1)}),250))})),r.find("[data-dismiss=modal]").on("click",(function(){return r.removeClass("popup-cookies__displayed"),a.hide=!0,a.exp=Math.max(a.exp,t+5184e3),localStorage.setItem(n,JSON.stringify(a)),!1}))}(),function(){if($(".popup-cookies__displayed").length>0)return;if(!e())return;const t=Date.now()/1e3|0,o={hide:!1,v:1,exp:t+18748800},n="scxDonate";let a=localStorage.getItem(n);const r=$("#js-popup-donate");null!=a?(a=JSON.parse(a),a.exp<t?localStorage.setItem(n,JSON.stringify(o)):a.hide||(a.v=parseInt(a.v),a.v++,localStorage.setItem(n,JSON.stringify(a)),a.v<3||(getScxUser($.cookie("PhysAccount")).then((e=>{e.premium?(a.hide=!0,localStorage.setItem(n,JSON.stringify(a))):setTimeout((()=>{$(".popup-cookies__displayed").length>0||r.addClass("popup-cookies__displayed")}),2e3)})),r.find("[data-dismiss=modal]").on("click",(function(){return r.removeClass("popup-cookies__displayed"),a.hide=!0,localStorage.setItem(n,JSON.stringify(a)),!1}))))):localStorage.setItem(n,JSON.stringify(o))}(),$('[data-toggle="popover"]').on("click",(function(){return!1})).popover({content:function(){const e=$(this).attr("data-div");return $(e).html()},html:!0}).on("focus",(function(){$(this).popover("show")})).on("focusout",(function(){const e=this;$(".popover:hover").length?$(".popover").mouseleave((function(){$(e).popover("hide"),$(this).off("mouseleave")})):$(this).popover("hide")})),$("#summary-modal").one("show.bs.modal",(function(){const e=$(this),t=function(e){const t=e.clone().css("display","block"),o=$("<div></div>").css({position:"absolute",visibility:"hidden",height:"auto",width:e.outerWidth()
+TERM getJSON 
+TERM baseUrl 32,7497,7655,7830,7918,8009,8084,8149,8223,8280
+function storyComments(){var e={baseUrl:"/comments/",wrapperSelector:".comments-wrapper-new",$wrapper:null,$loadCommentsBtn:null,page:null,commentsPerPage:1e6,isLoading:!1,modalId:null,init:function(){if(e.$wrapper=$(e.wrapperSelector),!e.$wrapper)return!1;e.$loadCommentsBtn=e.$wrapper.find(".load-comments"),e.modalId=e.$loadCommentsBtn.attr("data-target"),e.$loadCommentsBtn.on("click",(function(t){t.preventDefault(),e.commentsLoaded||(t.stopPropagation(),e.loadComments())})),$("body").on("click",e.modalId+" .leave-comment-button",(function(t){t.preventDefault(),e.showAddCommentForm()})),$("body").on("click",e.modalId+" .login-button",(function(t){t.preventDefault(),e.addUrlReturnParamAfterLogin()})),$("body").on("click",e.modalId+" .close-comments-form",(function(t){t.preventDefault(),e.hideAddCommentForm()})),$("body").on("click",e.modalId+" a[data-action]:not(.not-active)",(function(t){t.preventDefault(),e.runCommentAction(t.target.closest("a[data-action]:not(.not-active)").dataset.action,t.target.closest(".comment-body").dataset.id)})),$("body").on("change",e.modalId+' input[name="follow"]',(function(t){t.preventDefault(),e.toggleFollow()})),$("body").on("click",e.modalId+" .show-comment",(function(t){t.preventDefault(),e.showHiddenComment(t.target)})),$("body").on("submit",e.modalId+" form.comments-form",(function(t){t.preventDefault(),e.submitCommentsForm()})),$("body").on("change",e.modalId+' select[name="sortOrder"]',(function(t){t.preventDefault(),e.isLoading=!0,e.reloadComments()})),$("header .navbar .dropdown").on("hidden.bs.dropdown",(function(){if(!new URL(window.location.href).searchParams.get("loadCommentsForm"))return!1;$(e.modalId).modal("show")})),e.loadCommentsForm()},message:function(e){var t=$(".comment-modal-popup");t.find(".comment-message").html(e),t.modal("show")},scrollVertic
+CommentsLoadPageUrl(1)).then((e=>e.text())).then((o=>{e.$wrapper.after(o),$(e.modalId).find(".sort-area select").niceSelect(),e.commentsLoaded=!0,$(e.modalId).modal("show"),e.page=1,e.isLoading=!1,t&&e.showAddCommentForm(),e.hideLoadMoreBtn()}))},loadPage:function(t){if(e.isLoading)return!1;e.isLoading=!0,fetch(e.getCommentsLoadPageUrl(t)).then((e=>e.text())).then((o=>{$(e.modalId).find(".comments-list").append(o),e.page=t,e.isLoading=!1,e.hideLoadMoreBtn()}))},hideLoadMoreBtn:function(){e.page&&e.page*e.commentsPerPage>=$(e.modalId).find(".comments-shown").data("count")&&$(e.modalId).find(".load-button").addClass("d-none")},getCommentsReloadUrl:function(){var t=e.page*e.commentsPerPage,o=e.baseUrl+"load-page/"+e.$wrapper.data("storyId")+"/1/"+t+"/";return e.getSortOrder()&&(o=o+e.getSortOrder()+"/"),o},getCommentsLoadPageUrl:function(t){var o=e.baseUrl+"load-page/"+e.$wrapper.data("storyId")+"/"+t+"/"+e.commentsPerPage+"/";return e.getSortOrder()&&(o=o+e.getSortOrder()+"/"),o},getCommentsCountUrl:function(){return e.baseUrl+"count/"+e.$wrapper.data("storyId")+"/"},getToggleFollowUrl:function(){return e.baseUrl+"follow/"+e.$wrapper.data("storyId")+"/"},getSingleCommentUrl:function(t){return e.baseUrl+"single-html/"+t+"/"},getSingleJsonCommentUrl:function(t){return e.baseUrl+"single/"+t+"/"},getCreateCommentUrl:function(){return e.baseUrl+e.$wrapper.data("storyId")+"/"},getIgnoreUrl:function(t){return e.baseUrl+"ignore/"+t+"/"},getLikeUrl:function(t){return e.baseUrl+"rate/"+t+"/"},getReportUrl:function(t){return e.baseUrl+"flag/"+t+"/"},getSortOrder:function(){return $(e.modalId).find('select[name="sortOrder"]').length?$(e.modalId).find('select[name="sortOrder"]').val():null}};return e.init(),e}!function(e){e.fn.niceSelect=function(t){function o(t){t.after(e("<div></div>").addClass("nice-select").addClass(t.attr("class")||"").addClass(t.attr("disabled")?"disabled":"").attr("tabindex",t.attr("disabled")?null:"0").html('<span class="current"></span><ul class="list"></ul>'));var o=t.next(),n=t.find("option"),a=t.find("option:selected");o.find(".current").html(a.data("display")||a.text()),n.each((function(t){var n=e(this),a=n.data("display");o.find("ul").append(e("<li></li>").attr("data-value",n.val()).attr("data-display",a||null).addClass("option"+(n.is(":selected")?" selected":"")+(n.is(":disabled")?" disabled":"")).html(n.text()))}))}if("string"==typeof t)return"update"==t?this.each((function(){var t=e(this),n=e(this).next(".nice-select"),a=n.hasClass("open
+.modal("show"),e.page=1,e.isLoading=!1,t&&e.showAddCommentForm(),e.hideLoadMoreBtn()}))},loadPage:function(t){if(e.isLoading)return!1;e.isLoading=!0,fetch(e.getCommentsLoadPageUrl(t)).then((e=>e.text())).then((o=>{$(e.modalId).find(".comments-list").append(o),e.page=t,e.isLoading=!1,e.hideLoadMoreBtn()}))},hideLoadMoreBtn:function(){e.page&&e.page*e.commentsPerPage>=$(e.modalId).find(".comments-shown").data("count")&&$(e.modalId).find(".load-button").addClass("d-none")},getCommentsReloadUrl:function(){var t=e.page*e.commentsPerPage,o=e.baseUrl+"load-page/"+e.$wrapper.data("storyId")+"/1/"+t+"/";return e.getSortOrder()&&(o=o+e.getSortOrder()+"/"),o},getCommentsLoadPageUrl:function(t){var o=e.baseUrl+"load-page/"+e.$wrapper.data("storyId")+"/"+t+"/"+e.commentsPerPage+"/";return e.getSortOrder()&&(o=o+e.getSortOrder()+"/"),o},getCommentsCountUrl:function(){return e.baseUrl+"count/"+e.$wrapper.data("storyId")+"/"},getToggleFollowUrl:function(){return e.baseUrl+"follow/"+e.$wrapper.data("storyId")+"/"},getSingleCommentUrl:function(t){return e.baseUrl+"single-html/"+t+"/"},getSingleJsonCommentUrl:function(t){return e.baseUrl+"single/"+t+"/"},getCreateCommentUrl:function(){return e.baseUrl+e.$wrapper.data("storyId")+"/"},getIgnoreUrl:function(t){return e.baseUrl+"ignore/"+t+"/"},getLikeUrl:function(t){return e.baseUrl+"rate/"+t+"/"},getReportUrl:function(t){return e.baseUrl+"flag/"+t+"/"},getSortOrder:function(){return $(e.modalId).find('select[name="sortOrder"]').length?$(e.modalId).find('select[name="sortOrder"]').val():null}};return e.init(),e}!function(e){e.fn.niceSelect=function(t){function o(t){t.after(e("<div></div>").addClass("nice-select").addClass(t.attr("class")||"").addClass(t.attr("disabled")?"disabled":"").attr("tabindex",t.attr("disabled")?null:"0").html('<span class="current"></span><ul class="list"></ul>'));var o=t.next(),n=t.find("option"),a=t.find("option:selected");o.find(".current").html(a.data("display")||a.text()),n.each((function(t){var n=e(this),a=n.data("display");o.find("ul").append(e("<li></li>").attr("data-value",n.val()).attr("data-display",a||null).addClass("option"+(n.is(":selected")?" selected":"")+(n.is(":disabled")?" disabled":"")).html(n.text()))}))}if("string"==typeof t)return"update"==t?this.each((function(){var t=e(this),n=e(this).next(".nice-select"),a=n.hasClass("open");n.length&&(n.remove(),o(t),a&&t.next().trigger("click"))})):"destroy"==t?(this.each((function(){var t=e(this),o=e(this).next(".nice-select");o.length&&(o.r
+</result>
+
+[22] thinking: **Fetching comments data**
+
+I'm looking to fetch comments from a specific endpoint likely related to phys.org, not sciencex. It seems I need to get these comments in an HTML format. I might utilize browser cookies for a more straightforward fetch. Then I'll parse the returned data once it's done. Let's go ahead and start fetching that information!
+
+[23] tool_call: repl("Fetching comments endpoint")
+<request>
+const commentsUrl6 = 'https://phys.org/comments/load-page/696077161/1/1000000/';
+const commentsResp6 = await fetch(commentsUrl6, {headers:{'X-Requested-With':'XMLHttpRequest','Referer':'https://phys.org/news/2026-04-classical-physics-quantum-weirdness.html'}});
+console.log('status', commentsResp6.status, commentsResp6.url, commentsResp6.headers.get('content-type'));
+const commentsHtml6 = await commentsResp6.text();
+console.log(commentsHtml6.substring(0,4000));
+console.log('len', commentsHtml6.length);
+</request>
+<result tokens_used="225" elapsed_time="146ms">
+status 200 https://phys.org/comments/load-page/696077161/1/1000000/ text/html;charset=UTF-8
+    <div class="comment-body" data-id="1845727">
+    <div class="comment-body-header">
+        <div class="comment-author">
+            <h3><a class="user-profile" href="https://sciencex.com/profile/user/MicahStone/" target="_blank">MicahStone</a></h3>
+            <span class="post-date">Apr 22, 2026</span>
+        </div>
+                        
+        <div class="comment-mark">
+            <a class=" " href="javascript:void(0);" data-action="like">
+                <svg>
+                    <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#thumb_up" x="0" y="0"/>
+                </svg>
+            </a>
+
+            <span>0</span>
+            
+            <a class=" " href="javascript:void(0);" data-action="dislike">
+                <svg>
+                    <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#thumb_down" x="0" y="0"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+                    
+    <div class="comment-content">
+
+                            Gotta wonder: have these MIT folks ever heard of Richard Feynman? Richard Feynman completed his doctoral thesis titled "The Principle of Least Action in Quantum Mechanics" in 1942.  Feynman's least action approach to quantum mechanics, known as the path integral formulation, considers all possible paths a particle can take between two points and assigns a probability amplitude to each path. This method connects classical mechanics with quantum mechanics by showing that the classical path is the one that minimizes the action.
+               
+    </div>
+                    
+    <div class="comment-footer">
+
+                    <a class="not-active" href="javascript:void(0);" data-action="quote">
+                <svg>
+                    <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#icon_quote" x="0" y="0"/>
+                </svg>
+                Quote
+            </a>
+
+
+            <div class="comment-footer-action">  
+                <a href="javascript:void(0);" data-action="report">
+                    <svg>
+                        <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#icon_warning" x="0" y="0"/>
+                    </svg>
+                    Report
+                </a>
+
+                                    <a href="javascript:void(0);" data-action="ignore">
+                        <svg>
+                            <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#eye_closed" x="0" y="0"/>
+                        </svg>
+                        Block
+                    </a>
+                                
+
+                            </div>
+            </div>
+</div>    <div class="comment-body" data-id="1845728">
+    <div class="comment-body-header">
+        <div class="comment-author">
+            <h3><a class="user-profile" href="https://sciencex.com/profile/user/grandpa/" target="_blank">grandpa</a></h3>
+            <span class="post-date">Apr 22, 2026</span>
+        </div>
+                        
+        <div class="comment-mark">
+            <a class=" " href="javascript:void(0);" data-action="like">
+                <svg>
+                    <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#thumb_up" x="0" y="0"/>
+                </svg>
+            </a>
+
+            <span>-3</span>
+            
+            <a class=" " href="javascript:void(0);" data-action="dislike">
+                <svg>
+                    <use href="https://phys.b-cdn.net/tmpl/v6/img/svg/sprite.svg#thumb_down" x="0" y="0"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+                    
+    <div class="comment-content">
+
+                            Imagine rain trying to reach the ground through a tangled forest canopy. The new paper says quantum behavior can be understood if you track many possible raindrop routes and assign a density to where drops are most likely to pass. That already gets you much closer than old single-path classical thinking. Holosphere classical 
+len 30516
+</result>
+
+[24] tool_call: repl("Parsing comments")
+<request>
+const parsedComments6 = await page.evaluate((html) => {
+  const doc = new DOMParser().parseFromString('<div id="root">'+html+'</div>', 'text/html');
+  return [...doc.querySelectorAll('.comment-body')].map((el, idx) => {
+    const author = el.querySelector('.comment-author a')?.textContent.trim() || '';
+    const date = el.querySelector('.post-date')?.textContent.trim() || '';
+    const score = el.querySelector('.comment-mark span')?.textContent.trim() || '';
+    const contentEl = el.querySelector('.comment-content');
+    // remove hidden quote/action artifacts if any? Keep visible text.
+    const content = contentEl ? contentEl.textContent.replace(/\s+/g,' ').trim() : '';
+    return {index: idx+1, id: el.getAttribute('data-id'), author, date, score, content};
+  });
+}, commentsHtml6);
+console.log(JSON.stringify(parsedComments6, null, 2));
+</request>
+<result tokens_used="430" elapsed_time="24ms">
+[
+  {
+    "index": 1,
+    "id": "1845727",
+    "author": "MicahStone",
+    "date": "Apr 22, 2026",
+    "score": "0",
+    "content": "Gotta wonder: have these MIT folks ever heard of Richard Feynman? Richard Feynman completed his doctoral thesis titled \"The Principle of Least Action in Quantum Mechanics\" in 1942. Feynman's least action approach to quantum mechanics, known as the path integral formulation, considers all possible paths a particle can take between two points and assigns a probability amplitude to each path. This method connects classical mechanics with quantum mechanics by showing that the classical path is the one that minimizes the action."
+  },
+  {
+    "index": 2,
+    "id": "1845728",
+    "author": "grandpa",
+    "date": "Apr 22, 2026",
+    "score": "-3",
+    "content": "Imagine rain trying to reach the ground through a tangled forest canopy. The new paper says quantum behavior can be understood if you track many possible raindrop routes and assign a density to where drops are most likely to pass. That already gets you much closer than old single-path classical thinking. Holosphere classical mechanics goes further. It says not every route is truly available. Some openings are too narrow, some wind corridors are unstable, some droplets lose coherence and break apart, and some channels steal flow from others. So the final rain pattern on the ground is not just \"all paths averaged together.\" It is the result of many paths being tested, most being rejected, and only a structured set of stable corridors surviving. The paper gives the map of likely paths. Holosphere tries to explain why those particular paths remain open in the first place."
+  },
+  {
+    "index": 3,
+    "id": "1845729",
+    "author": "grandpa",
+    "date": "Apr 22, 2026",
+    "score": "-3",
+    "content": "Think of the difference between a path integral rewritten in classical terms and a constrained transport model on a structured medium. The paper argues that, instead of a single extremal trajectory, one can use a small set of least-action paths with a density field to exactly reproduce Schrödinger behavior in key cases. Holosphere agrees this is a powerful computational bridge, but sees it as incomplete without a selection mechanism. In this view, paths are not simply weighted—they are filtered by admissibility, limited by finite strain budgets, shaped by competition, and stabilized by phase retention. The resulting signal reflects a surviving corridor network, not an unrestricted family of paths. The paper shows how classical mathematics can mirror quantum evolution. Holosphere extends this by explaining why certain paths persist physically, why others are eliminated early, and how coherent survivors come to dominate what we observe."
+  },
+  {
+    "index": 4,
+    "id": "1845731",
+    "author": "grandpa",
+    "date": "Apr 22, 2026",
+    "score": "-2",
+    "content": "Picture a city at rush hour. The paper says quantum weirdness can be modeled by treating traffic like many possible driving routes, then calculating which streets carry the most cars. That is already a big shift from saying every driver takes one perfect road. But Holosphere says the real story is harsher and more physical. Some streets are closed, some are too damaged to use, some intersections jam and redirect cars, and some routes stay efficient because earlier cars keep them open while weak routes die out. By the time you look from a helicopter, the traffic pattern is not just a probability cloud. It is a survival pattern shaped by constraints, bottlenecks, and route competition. That is the difference. The paper says classical math can imitate quantum traffic. Holosphere says reality may actually be built from corridors that continually test, reject, reinforce, and preserve certain flows over others."
+  },
+  {
+    "index": 5,
+    "id": "1845733",
+    "author": "barakn",
+    "date": "Apr 22, 2026",
+    "score": "2",
+    "content": "Gotta wonder: have these MIT folks ever heard of Richard Feynman? Gotta wonder: did you try reading the article?"
+  },
+  {
+    "index": 6,
+    "id": "1845734",
+    "author": "Elmo_McGillicutty",
+    "date": "Apr 22, 2026",
+    "score": "-3",
+    "content": "What our scientist believe to be a particle is only a field duration, not a particle.EM radiation is an expanding field shell, and it has a blink duration. That blink duration is the only constant property of the photon. Unless reflected with a moving reflector. That duration transfers a duration of torque to matter. That is constant. The intensity of the torque comes from density, and that decreases with distance. As does the kinetic momentum. Momentum only needs density, not mass or matter.The two slit experiment has to be focused. Meaning a classical dynamic. One does not need quantum equations or calculus to understand it.Just set it up and play with it.The most misunderstood concept in science is superposition."
+  },
+  {
+    "index": 7,
+    "id": "1845735",
+    "author": "PhysicsPhD",
+    "date": "Apr 22, 2026",
+    "score": "1",
+    "content": "\"We show that the Schrödinger's equation of quantum mechanics and the Hamilton-Jacobi equation of classical physics are actually identical given a suitable computation of density\"… \"Feynman's infinity of non-classical zig-zag paths can be reduced to the subset of all extremal classical action paths, each weighted according to the classical fluid density computed along the path.\"So, a nonlocal formulation of the density, and by extension, nonlocal equations of motion. Congratulations! (John Bell is taking note)…I'd also add that the modular variable formation of Aharonov et al. achieve similar results. Modular variables are quantities that can influence quantum systems without direct local interactions. In the context of the Aharonov-Bohm effect, these variables allow for instantaneous changes in a system's behavior, even when the systems are spatially separated."
+  },
+  {
+    "index": 8,
+    "id": "1845755",
+    "author": "Anonym886881",
+    "date": "Apr 23, 2026",
+    "score": "0",
+    "content": "The MIT paper tries to save the continuous E1 paradigm. As the 'PhD' commenter notes, mapping QM to Hamilton-Jacobi via fluid density forces non-local equations. This \"non-locality\" is the penalty for forcing topology into a continuous background. They haven't solved quantum weirdness; they hid it in an ad-hoc variable. In a discrete architecture (STKWC \\v{C}ech cohomology), this \"density\" is a non-trivial cohomology class (\\pi_H \\neq 0). There is no non-locality because there is no classical metric space. The particle is a topological node, its behavior strictly forced by the prevention of false closure (\\check{H}^1=0)."
+  },
+  {
+    "index": 9,
+    "id": "1845851",
+    "author": "Quantum Geometer",
+    "date": "Apr 29, 2026",
+    "score": "0",
+    "content": "Photons are not classical entities. Classical physics predicts interfering electromagnetic waves. Electrons, however, are truly quantum mechanical. The new result seems applicable to modeling some of the behavior of massive particles, but not electromagnetic waves.I wonder how the authors propose to deal with quantum mechanical spin, Larmor precession, the Bloch sphere, the quantum vacuum, etc?"
+  },
+  {
+    "index": 10,
+    "id": "1845853",
+    "author": "Elmo_McGillicutty",
+    "date": "Apr 29, 2026",
+    "score": "0",
+    "content": "The only EM wave we will ever see or manufacture is local and from current.Only discreet intermittent field durations can leave a source and propagate thru space.Blinks. Not waves. It takes matter to wave. Waving is a matter property.EM radiation is a duty cycle of blinks."
+  },
+  {
+    "index": 11,
+    "id": "1845856",
+    "author": "Anonym886881",
+    "date": "Apr 29, 2026",
+    "score": "0",
+    "content": "Elmo's \"blinks, not waves\" is exactly the discrete reality the MIT continuous fluid model ignores. Those \"blinks\" are discrete topological phase-shifts on a rigid relational structure (what some call the E_8 lattice).Geometer asks about spin and the quantum vacuum: in a discrete C0 topology, the \"vacuum\" isn't empty space; it's the lattice itself. Spin isn't a tiny rotating ball; it is a structural topological constraint required to maintain symmetry across discrete \"blinks.\" You both see the cracks in the continuous space illusion. The math to back up those \"blinks\" already exists in discrete knot theory and cohomology."
+  }
+]
+</result>
+
+[25] tool_call: webfetch(url="https://phys.org/comments/load-page/696077161/1/1000000/", format="markdown", timeout=30, useCookies=true)
+<result tokens_used="260">
+<webfetch-citation source_id="fetch_call_mp1pUaHgOYoRHzvPiFsUUBxy|fc_08739d9f1fdf4587016a050ecd9c048198bae15b7ca0a860db#1"></webfetch-citation>
+
+[](Javascript:void\(0\);)
+
+## Comments (11)
+
+Leave comment
+
+[Sign in](#modalLogin) or [create Science X account](https://sciencex.com/profile/register/) to leave the comment.
+
+Sort by ASC DESC
+
+### [MicahStone](https://sciencex.com/profile/user/MicahStone/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)0[](javascript:void\(0\);)
+
+Gotta wonder: have these MIT folks ever heard of Richard Feynman? Richard Feynman completed his doctoral thesis titled "The Principle of Least Action in Quantum Mechanics" in 1942. Feynman's least action approach to quantum mechanics, known as the path integral formulation, considers all possible paths a particle can take between two points and assigns a probability amplitude to each path. This method connects classical mechanics with quantum mechanics by showing that the classical path is the one that minimizes the action.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [grandpa](https://sciencex.com/profile/user/grandpa/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)\-3[](javascript:void\(0\);)
+
+Imagine rain trying to reach the ground through a tangled forest canopy. The new paper says quantum behavior can be understood if you track many possible raindrop routes and assign a density to where drops are most likely to pass. That already gets you much closer than old single-path classical thinking. Holosphere classical mechanics goes further. It says not every route is truly available. Some openings are too narrow, some wind corridors are unstable, some droplets lose coherence and break apart, and some channels steal flow from others. So the final rain pattern on the ground is not just "all paths averaged together." It is the result of many paths being tested, most being rejected, and only a structured set of stable corridors surviving. The paper gives the map of likely paths. Holosphere tries to explain why those particular paths remain open in the first place.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [grandpa](https://sciencex.com/profile/user/grandpa/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)\-3[](javascript:void\(0\);)
+
+Think of the difference between a path integral rewritten in classical terms and a constrained transport model on a structured medium. The paper argues that, instead of a single extremal trajectory, one can use a small set of least-action paths with a density field to exactly reproduce Schrödinger behavior in key cases. Holosphere agrees this is a powerful computational bridge, but sees it as incomplete without a selection mechanism. In this view, paths are not simply weighted—they are filtered by admissibility, limited by finite strain budgets, shaped by competition, and stabilized by phase retention. The resulting signal reflects a surviving corridor network, not an unrestricted family of paths. The paper shows how classical mathematics can mirror quantum evolution. Holosphere extends this by explaining why certain paths persist physically, why others are eliminated early, and how coherent survivors come to dominate what we observe.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [grandpa](https://sciencex.com/profile/user/grandpa/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)\-2[](javascript:void\(0\);)
+
+Picture a city at rush hour. The paper says quantum weirdness can be modeled by treating traffic like many possible driving routes, then calculating which streets carry the most cars. That is already a big shift from saying every driver takes one perfect road. But Holosphere says the real story is harsher and more physical. Some streets are closed, some are too damaged to use, some intersections jam and redirect cars, and some routes stay efficient because earlier cars keep them open while weak routes die out. By the time you look from a helicopter, the traffic pattern is not just a probability cloud. It is a survival pattern shaped by constraints, bottlenecks, and route competition. That is the difference. The paper says classical math can imitate quantum traffic. Holosphere says reality may actually be built from corridors that continually test, reject, reinforce, and preserve certain flows over others.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [barakn](https://sciencex.com/profile/user/barakn/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)2[](javascript:void\(0\);)
+
+> Gotta wonder: have these MIT folks ever heard of Richard Feynman?
+
+Gotta wonder: did you try reading the article?
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [Elmo\_McGillicutty](https://sciencex.com/profile/user/Elmo_McGillicutty/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)\-3[](javascript:void\(0\);)
+
+What our scientist believe to be a particle is only a field duration, not a particle.  
+  
+EM radiation is an expanding field shell, and it has a blink duration. That blink duration is the only constant property of the photon. Unless reflected with a moving reflector.  
+  
+That duration transfers a duration of torque to matter. That is constant. The intensity of the torque comes from density, and that decreases with distance. As does the kinetic momentum. Momentum only needs density, not mass or matter.  
+  
+The two slit experiment has to be focused. Meaning a classical dynamic. One does not need quantum equations or calculus to understand it.  
+  
+Just set it up and play with it.  
+  
+The most misunderstood concept in science is superposition.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [PhysicsPhD](https://sciencex.com/profile/user/PhysicsPhD/)
+
+Apr 22, 2026
+
+[](javascript:void\(0\);)1[](javascript:void\(0\);)
+
+"We show that the Schrödinger's equation of quantum mechanics and the Hamilton-Jacobi equation of classical physics are actually identical given a suitable computation of density"… "Feynman's infinity of non-classical zig-zag paths can be reduced to the subset of all extremal classical action paths, each weighted according to the classical fluid density computed along the path."  
+  
+So, a nonlocal formulation of the density, and by extension, nonlocal equations of motion. Congratulations! (John Bell is taking note)…I'd also add that the modular variable formation of Aharonov et al. achieve similar results. Modular variables are quantities that can influence quantum systems without direct local interactions. In the context of the Aharonov-Bohm effect, these variables allow for instantaneous changes in a system's behavior, even when the systems are spatially separated.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [Anonym886881](https://sciencex.com/profile/user/Anonym886881/)
+
+Apr 23, 2026
+
+[](javascript:void\(0\);)0[](javascript:void\(0\);)
+
+The MIT paper tries to save the continuous E1 paradigm. As the 'PhD' commenter notes, mapping QM to Hamilton-Jacobi via fluid density forces non-local equations. This "non-locality" is the penalty for forcing topology into a continuous background. They haven't solved quantum weirdness; they hid it in an ad-hoc variable. In a discrete architecture (STKWC \\v{C}ech cohomology), this "density" is a non-trivial cohomology class (\\pi\_H \\neq 0). There is no non-locality because there is no classical metric space. The particle is a topological node, its behavior strictly forced by the prevention of false closure (\\check{H}^1=0).
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [Quantum Geometer](https://sciencex.com/profile/user/Quantum+Geometer/)
+
+Apr 29, 2026
+
+[](javascript:void\(0\);)0[](javascript:void\(0\);)
+
+Photons are not classical entities. Classical physics predicts interfering electromagnetic waves. Electrons, however, are truly quantum mechanical. The new result seems applicable to modeling some of the behavior of massive particles, but not electromagnetic waves.  
+  
+I wonder how the authors propose to deal with quantum mechanical spin, Larmor precession, the Bloch sphere, the quantum vacuum, etc?
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [Elmo\_McGillicutty](https://sciencex.com/profile/user/Elmo_McGillicutty/)
+
+Apr 29, 2026
+
+[](javascript:void\(0\);)0[](javascript:void\(0\);)
+
+The only EM wave we will ever see or manufacture is local and from current.  
+  
+Only discreet intermittent field durations can leave a source and propagate thru space.  
+  
+Blinks. Not waves. It takes matter to wave. Waving is a matter property.  
+  
+EM radiation is a duty cycle of blinks.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+
+### [Anonym886881](https://sciencex.com/profile/user/Anonym886881/)
+
+Apr 29, 2026
+
+[](javascript:void\(0\);)0[](javascript:void\(0\);)
+
+Elmo's "blinks, not waves" is exactly the discrete reality the MIT continuous fluid model ignores. Those "blinks" are discrete topological phase-shifts on a rigid relational structure (what some call the E\_8 lattice).  
+Geometer asks about spin and the quantum vacuum: in a discrete C0 topology, the "vacuum" isn't empty space; it's the lattice itself. Spin isn't a tiny rotating ball; it is a structural topological constraint required to maintain symmetry across discrete "blinks." You both see the cracks in the continuous space illusion. The math to back up those "blinks" already exists in discrete knot theory and cohomology.
+
+[Quote](javascript:void\(0\);)
+
+[Report](javascript:void\(0\);) [Block](javascript:void\(0\);)
+</result>
+
+[26] thinking: **Updating todos**
+
+I think I need to check my to-do list and see what tasks need updating. It feels like keeping my tasks organized can really help me stay on track. I wonder if there are any deadlines I might have forgotten or things that need to be prioritized. I should make a quick review and see if there’s anything I can tackle right now! Yeah, let’s see what I can sort out!
+
+[27] tool_call: write_todos:
+Todo list updated:
+- [completed] t1: Open Phys.org Quantum Physics topic and locate past-month popular news
+- [completed] t2: Identify the most popular article and its comment section
+- [completed] t3: Extract/summarize comments or note if unavailable
+
+[28] assistant: I found it.
+
+Most popular Quantum Physics news in the past month: **“Classical physics can explain quantum weirdness, study shows”**. Phys.org’s popular/1m list shows it first with **11 comments** and **920 shares**. <citation refs="fetch_call_Q39C6Msn2ej5C4MwKz5zhbQ4|fc_08739d9f1fdf4587016a050e7239b081988c4f8924e00e4a3a#1">“Classical physics can explain quantum weirdness, study shows” ... “Apr 22, 2026” ... “11” ... “920”</citation>
+
+Comments endpoint used: `https://phys.org/comments/load-page/696077161/1/1000000/`
+
+The comments are loaded there, showing **Comments (11)**. <citation refs="fetch_call_mp1pUaHgOYoRHzvPiFsUUBxy|fc_08739d9f1fdf4587016a050ecd9c048198bae15b7ca0a860db#1">“Comments (11)”</citation>
+
+### Comments found
+
+1. **MicahStone**, Apr 22, score 0  
+   Says the MIT authors should acknowledge Feynman’s 1942 least-action/path-integral work.
+
+2. **grandpa**, Apr 22, score -3  
+   Uses a rain-through-canopy analogy and argues “Holosphere” mechanics explains why only certain paths remain open.
+
+3. **grandpa**, Apr 22, score -3  
+   Says the paper is a useful computational bridge but lacks a physical “selection mechanism” for surviving paths.
+
+4. **grandpa**, Apr 22, score -2  
+   Uses a traffic analogy to say quantum patterns are “survival patterns” shaped by constraints and bottlenecks.
+
+5. **barakn**, Apr 22, score 2  
+   Replies to MicahStone: “Gotta wonder: did you try reading the article?”
+
+6. **Elmo_McGillicutty**, Apr 22, score -3  
+   Argues photons are “field durations,” not particles, and says the two-slit experiment is a classical dynamic.
+
+7. **PhysicsPhD**, Apr 22, score 1  
+   Notes the formulation implies nonlocal density/equations of motion and compares it with Aharonov modular variables.
+
+8. **Anonym886881**, Apr 23, score 0  
+   Critiques the paper as hiding weirdness in an ad-hoc density variable, arguing for a discrete/topological interpretation.
+
+9. **Quantum Geometer**, Apr 29, score 0  
+   Questions whether the result applies to photons and asks how it handles spin, Larmor precession, Bloch sphere, vacuum, etc.
+
+10. **Elmo_McGillicutty**, Apr 29, score 0  
+   Repeats the view that EM radiation is “blinks,” not waves.
+
+11. **Anonym886881**, Apr 29, score 0  
+   Builds on “blinks, not waves,” arguing for discrete topological phase shifts and lattice-based vacuum/spin interpretations.

@@ -1,0 +1,556 @@
+[1] user: Go to https://www.adoptapet.com/, Browse senior spayed/neutered dogs near zip code 90028.
+
+[2] tool_call: repl("Opening Adopt a Pet")
+<request>
+const p1 = await openTab('https://www.adoptapet.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="114" elapsed_time="3177ms">
+[Output too large (50.3KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_hGskyX3p7WSQf0WT/tmp/repl-result-TcXyJXpafcsc86mJ.txt]
+
+Preview (first 4.0KB):
+✔︎ Opened a new tab and set it active: tabs[0], page → Adopt a dog or cat today! Search for local pets in need of a home. (https://www.adoptapet.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Adopt a dog or cat today! Search for local pets in need of a home." [url=https://www.adoptapet.com/]
+- banner:
+  - link [ref=e1]
+  - navigation:
+    - generic "Find a pet" [ref=e2]
+    - generic "Find a shelter" [ref=e3]
+    - link "Rehome a pet, opens in a new tab" [ref=e4]: "Rehome a pet"
+    - generic "Breed 101" [ref=e5]
+    - link "Pet advice" [ref=e6]
+    - link "Shop, opens in a new tab" [ref=e7]: "Shop"
+    - generic "Help" [ref=e8]
+  - button "Login" [ref=e9]
+  - button "Sign Up" [ref=e10]
+- heading "Ready to adopt a pet?" [level=1]: "Ready to  adopt a  pet?"
+- heading "Let's get started. Search adoptable pets from shelters, rescues, and individuals." [level=4]: "Let's get started. Search adoptable  pets  from shelters, rescues, and individuals."
+- generic "Location 33109" [ref=e11]
+- generic "Search for Dogs" [ref=e12]
+- button "Add Pet Criteria" [ref=e13]
+- button "Search" [ref=e14]
+- text: "Feeling adventurous?"
+- generic "Try our new AI SmartSearch" [ref=e15]
+- button [ref=e16]
+- link "Photo of Oscar Oscar Jack Russell Terrier Spaniel (Unknown Type)Male, young Jamestown, CA" [ref=e17]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e19]: "Learn More"
+- link "Photo of Canelo Canelo American Staffordshire Terrier Male, young Concord, CA" [ref=e20]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e22]: "Learn More"
+- link "Photo of Koda Koda German Shepherd Dog Male, adult Sacramento, CA" [ref=e23]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e25]: "Learn More"
+- link "Photo of Copper Copper Doberman Pinscher Coonhound Male, young Oakland, CA" [ref=e26]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e28]: "Learn More"
+- link "Photo of A610261 A610261 German Shepherd Dog Husky Female, 2 mos Modesto, CA" [ref=e29]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e31]: "Learn More"
+- link "Photo of REN REN American Pit Bull Terrier Australian Cattle Dog Male, 5 mos Sacramento, CA" [ref=e32]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e34]: "Learn More"
+- link "Photo of Specks Specks Cocker Spaniel Male, 3 yrs Castro Valley, CA" [ref=e35]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e37]: "Learn More"
+- link "Photo of Henley Henley Chihuahua Male, 4 mos Lodi, CA" [ref=e38]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e40]: "Learn More"
+- link "Photo of PHOEBE PHOEBE Husky German Shepherd Dog Female, 1 yr 3 mos Paradise, CA" [ref=e41]
+- text: "Color N/A Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e43]: "Learn More"
+- button [ref=e44]
+- text: "Our partners"
+- link "Zoetis link, opens in a new tab" [ref=e45]
+- link "Pedigree link, opens in a new tab" [ref=e46]: "Pedigree Logo"
+- link "PetSmart link, opens in a new tab" [ref=e47]
+- heading "Newly listed dogs since your last visit" [level=2]
+- link "new badge Photo of YETI YETI Tibetan Terrier Male, 3 yrs San Francisco, CA" [ref=e48]
+- text: "Color Brown/Chocolate Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e50]: "Learn More"
+- link "new badge Photo of Prada Prada American Staffordshire Terrier Female, adult San Francisco, CA" [ref=e51]
+- text: "Color Tricolor (Tan/Brown & Black & White)Size(when grown) -Details No Details Provided Story"
+- link "Opens in a new tab" [ref=e53]: "Learn More"
+- link "new badge Photo of MYSTIQUE MYSTIQUE Fox Terrier (Smooth)Female, 1 yr Alameda, CA" [ref=e54]
+...
+</result>
+
+[3] thinking: **Searching for adoptable dogs**
+
+I need to interact with the database, starting with the location of 33109, but I actually need the zip code 90028. I'll search for dogs, making sure to add criteria like age (senior) and whether they’re spayed or neutered. It seems I might need to click on the location to refine the search. The output is saved for now, but I might need to inspect the relevant form. If it’s a snapshot that's too large, I’ll focus on the first area first.
+
+[4] tool_call: repl("Opening search filters")
+<request>
+await page.locator('e11').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff);
+</request>
+<result tokens_used="122" elapsed_time="554ms">
+@@ -15 +15,3 @@
+-- generic "Location 33109" [ref=e11]
++- generic [ref=e11]:
++  - text: "Location"
++  - textbox "Location(i.e. Los Angeles, CA or 90210)" [ref=e1145] [focused]: "33109"
+@@ -137 +139 @@
+-    - link [ref=f7e1]
++    - link [ref=f6e2]
+@@ -1802,0 +1804 @@
++- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[5] tool_call: repl("Setting location to 90028")
+<request>
+await page.locator('e1145').fill('90028');
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff);
+</request>
+<result tokens_used="80" elapsed_time="1412ms">
+@@ -17 +17 @@
+-  - textbox "Location(i.e. Los Angeles, CA or 90210)" [ref=e1145] [focused]: "33109"
++  - textbox "Location(i.e. Los Angeles, CA or 90210)" [ref=e1145] [focused]: "90028"
+</result>
+
+[6] tool_call: repl("Opening pet criteria")
+<request>
+await page.locator('e13').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff);
+</request>
+<result tokens_used="66" elapsed_time="644ms">
+@@ -15,3 +15 @@
+-- generic [ref=e11]:
+-  - text: "Location"
+-  - textbox "Location(i.e. Los Angeles, CA or 90210)" [ref=e1145] [focused]: "90028"
++- generic "Location 90028" [ref=e11]
+@@ -91 +89 @@
+-  - text: "prev"
++  - generic "prev" [ref=e1146]
+@@ -1805,0 +1803,93 @@
++- dialog [focused]:
++  - button "Close modal" [ref=e1147]
++  - heading "Add pet criteria" [level=1]
++  - text: "Distance"
++  - generic "Distance 50 miles or less" [ref=e1148]
++  - text: "Breed"
++  - generic "Type to search Breed" [ref=e1149]
++  - text: "Age"
++  - checkbox "Puppy" [ref=e1150]
++  - label "Puppy" [ref=e1151]
++  - checkbox "Young" [ref=e1152]
++  - label "Young" [ref=e1153]
++  - checkbox "Adult" [ref=e1154]
++  - label "Adult" [ref=e1155]
++  - checkbox "Senior" [ref=e1156]
++  - label "Senior" [ref=e1157]
++  - text: "Sex"
++  - checkbox "Female" [ref=e1158]
++  - label "Female" [ref=e1159]
++  - checkbox "Male" [ref=e1160]
++  - label "Male" [ref=e1161]
++  - text: "Size"
++  - checkbox "Small (<25lbs)" [ref=e1162]
++  - label "Small (<25lbs)" [ref=e1163]
++  - checkbox "Med (26-60 lbs)" [ref=e1164]
++  - label "Med (26-60 lbs)" [ref=e1165]
++  - checkbox "Large (61-100 lbs)" [ref=e1166]
++  - label "Large (61-100 lbs)" [ref=e1167]
++  - checkbox "X-Large (>100 lbs)" [ref=e1168]
++  - label "X-Large (>100 lbs)" [ref=e1169]
++  - text: "Adoption fee"
++  - checkbox "$0" [ref=e1170]
++  - label "$0" [ref=e1171]
++  - checkbox "$1-25" [ref=e1172]
++  - label "$1-25" [ref=e1173]
++  - text: "Cared for by"
++  - checkbox "Shelter" [ref=e1174]
++  - label "Shelter" [ref=e1175]
++  - checkbox "Rescue" [ref=e1176]
++  - label "Rescue" [ref=e1177]
++  - checkbox "Private owner" [ref=e1178]
++  - label "Private owner" [ref=e1179]
++  - text: "Good with"
++  - checkbox "Good With Kids" [ref=e1180]
++  - label "Good With Kids" [ref=e1181]
++  - checkbox "Good With Dogs" [ref=e1182]
++  - label "Good With Dogs" [ref=e1183]
++  - checkbox "Good With Cats" [ref=e1184]
++  - label "Good With Cats" [ref=e1185]
++  - text: "Color"
++  - checkbox "Black" [ref=e1186]
++  - label "Black" [ref=e1187]
++  - checkbox "Brindle" [ref=e1188]
++  - label "Brindle" [ref=e1189]
++  - checkbox "Brown / Chocolate" [ref=e1190]
++  - label "Brown / Chocolate" [ref=e1191]
++  - checkbox "Gray / Blue / Silver / Salt & Pepper" [ref=e1192]
++  - label "Gray / Blue / Silver / Salt & Pepper" [ref=e1193]
++  - checkbox "Merle" [ref=e1194]
++  - label "Merle" [ref=e1195]
++  - checkbox "Red / Golden / Orange / Chestnut" [ref=e1196]
++  - label "Red / Golden / Orange / Chestnut" [ref=e1197]
++  - checkbox "Silver & Tan (Yorkie colors)" [ref=e1198]
++  - label "Silver & Tan (Yorkie colors)" [ref=e1199]
++  - checkbox "Tan / Yellow / Fawn" [ref=e1200]
++  - label "Tan / Yellow / Fawn" [ref=e1201]
++  - checkbox "Tricolor (Tan / Brown & Black & White)" [ref=e1202]
++  - label "Tricolor (Tan / Brown & Black & White)" [ref=e1203]
++  - checkbox "White" [ref=e1204]
++  - label "White" [ref=e1205]
++  - button "View all colors" [ref=e1206]
++  - text: "Health"
++  - checkbox "Spayed/Neutered" [ref=e1207]
++  - label "Spayed/Neutered" [ref=e1208]
++  - checkbox "Special needs" [ref=e1209]
++  - label "Special needs" [ref=e1210]
++  - checkbox "Vaccines up to date" [ref=e1211]
++  - label "Vaccines up to date" [ref=e1212]
++  - text: "Additional"
++  - checkbox "New on Adopt a Pet (48 hrs)" [ref=e1213]
++  - label "New on Adopt a Pet (48 hrs)" [ref=e1214]
++  - checkbox "Housetrained" [ref=e1215]
++  - label "Housetrained" [ref=e1216]
++  - checkbox "Bonded pair" [ref=e1217]
++  - label "Bonded pair" [ref=e1218]
++  - checkbox "Needs experienced adopter" [ref=e1219]
++  - label "Needs experienced adopter" [ref=e1220]
++  - checkbox "Needs home fast" [ref=e1221]
++  - label "Needs home fast" [ref=e1222]
++  - button "Save & Search" [ref=e1223]
++  - button "Clear all" [ref=e1224]
++- iframe:
++  - button [ref=f8e1]
+</result>
+
+[7] thinking: **Selecting pet options**
+
+I need to select the criteria for my search. I'm thinking about filtering for “Senior” pets and ensuring they've been “Spayed/Neutered.” After that, I'll go ahead and hit “Save & Search.” This way, I'll find the right options that meet these specific needs. I want to be thorough in my choices to ensure the best results for the user. It feels good to be organized!
+
+[8] tool_call: repl("Applying senior and spayed/neutered filters")
+<request>
+await page.locator('e1156').check();
+await page.locator('e1207').check();
+await page.locator('e1223').click();
+const s5 = await snapshot(page, {interactive:true});
+console.log(s5.diff);
+</request>
+<result tokens_used="109" elapsed_time="3423ms">
+@@ -1803 +1803 @@
+-- dialog [focused]:
++- dialog:
+@@ -1817 +1817 @@
+-  - checkbox "Senior" [ref=e1156]
++  - checkbox "Senior" [ref=e1156] [checked]
+@@ -1875 +1875 @@
+-  - checkbox "Spayed/Neutered" [ref=e1207]
++  - checkbox "Spayed/Neutered" [ref=e1207] [checked]
+@@ -1892,2 +1892,2 @@
+-  - button "Save & Search" [ref=e1223]
+-  - button "Clear all" [ref=e1224]
++  - button "Loading..." [ref=e1225] [disabled]
++  - button "Loading..." [ref=e1226] [disabled]
+</result>
+
+[9] tool_call: repl("Checking search results")
+<request>
+const s6 = await snapshot(page, {interactive:true});
+console.log(s6.diff);
+</request>
+<result tokens_used="56" elapsed_time="427ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "" [url=https://www.adoptapet.com/pet-search/interstitial?speciesId=1&radius=50&postalCode=90028&city=null&state=null&transport=false&ag…]
+- banner:
+  - text: "Adopt"
+  - link "Rehome" [ref=e1]
+  - navigation:
+    - link "Adopt a Pet Logo" [ref=e2]
+    - listitem "Find a pet" [ref=e3]
+    - listitem "Find a shelter" [ref=e4]
+    - listitem "How-to" [ref=e5]
+    - listitem "Pet advice" [ref=e6]
+    - link "Foster" [ref=e7]
+    - link "PetSmart link, opens in a new tab" [ref=e8]: "Shop"
+    - link "Login" [ref=e9]:
+      - button "Login" [ref=e10]
+    - link "Sign up" [ref=e11]:
+      - button "Sign up" [ref=e12]
+- heading "Sit! Stay! We're fetching our four-legged friends." [level=2]
+- iframe "Advertisement" [ref=e13]:
+  - link [ref=f9e1]
+- heading "Clicking this ad will open a new page and will not interfere with your search." [level=5]
+</result>
+
+[10] tool_call: repl("Waiting for results to load")
+<request>
+await sleep(3000);
+const s7 = await snapshot(page, {interactive:true});
+console.log(s7.diff);
+</request>
+<result tokens_used="64" elapsed_time="15306ms">
+@@ -16,4 +16,256 @@
+-- heading "Sit! Stay! We're fetching our four-legged friends." [level=2]
+-- iframe "Advertisement" [ref=e13]:
+-  - link [ref=f9e1]
+-- heading "Clicking this ad will open a new page and will not interfere with your search." [level=5]
++- text: "Type of Pet\n                        \n                        \n                             dog"
++- textbox "Location (i.e. Los Angeles, CA or 90210)" [ref=e13] [placeholder=" "]: "90028"
++- text: "Location"
++- heading "Want to find the right pet faster?" [level=4]
++- heading "Create a New Pet Alert, and be the first to know when new pets pop up who match your search." [level=5]
++- button "Create an Alert" [ref=e14]
++- heading "Filters applied" [level=4]
++- generic "Senior" [ref=e15]
++- generic "Spayed/Neutered" [ref=e16]
++- heading "Clear all" [level=5]:
++  - link "Clear all" [ref=e17]
++- heading "Distance" [level=4]
++- button "Distance 50 miles or less" [ref=e18]
++- checkbox "Show pets available for transport" [ref=e19]
++- label "Show pets available for transport" [ref=e20]
++- text: "Learn More"
++- heading "Breed" [level=4]
++- list [ref=e21]:
++  - textbox [ref=e22] [placeholder=" "]
++  - text: "Breed\n        \n         Any"
++- heading "Age" [level=4]
++- checkbox "Puppy" [ref=e23]
++- label "Puppy" [ref=e24]
++- checkbox "Young" [ref=e25]
++- label "Young" [ref=e26]
++- checkbox "Adult" [ref=e27]
++- label "Adult" [ref=e28]
++- checkbox "Senior" [ref=e29] [checked]
++- label "Senior" [ref=e30]
++- heading "Sex" [level=4]
++- checkbox "Female" [ref=e31]
++- label "Female" [ref=e32]
++- checkbox "Male" [ref=e33]
++- label "Male" [ref=e34]
++- heading "Size" [level=4]
++- checkbox "Small 25 lbs (11 kg) or less" [ref=e35]
++- label "Small 25 lbs (11 kg) or less" [ref=e36]
++- checkbox "Med. 26-60 lbs (12-27 kg)" [ref=e37]
++- label "Med. 26-60 lbs (12-27 kg)" [ref=e38]
++- checkbox "Large 61-100 lbs (28-45 kg)" [ref=e39]
++- label "Large 61-100 lbs (28-45 kg)" [ref=e40]
++- checkbox "X-Large 101 lbs (46 kg) or more" [ref=e41]
++- label "X-Large 101 lbs (46 kg) or more" [ref=e42]
++- heading "Adoption fee" [level=4]
++- checkbox "$0" [ref=e43]
++- label "$0" [ref=e44]
++- checkbox "$1-25" [ref=e45]
++- label "$1-25" [ref=e46]
++- heading "Cared for by" [level=4]
++- checkbox "Shelter" [ref=e47]
++- label "Shelter" [ref=e48]
++- checkbox "Rescue" [ref=e49]
++- label "Rescue" [ref=e50]
++- checkbox "Private owner" [ref=e51]
++- label "Private owner" [ref=e52]
++- list [ref=e53]:
++  - textbox [ref=e54] [placeholder=" "]
++  - text: "Search shelters/rescues\n        \n         Any"
++- heading "Good with" [level=4]
++- checkbox "Good With Kids" [ref=e55]
++- label "Good With Kids" [ref=e56]
++- checkbox "Good With Dogs" [ref=e57]
++- label "Good With Dogs" [ref=e58]
++- checkbox "Good With Cats" [ref=e59]
++- label "Good With Cats" [ref=e60]
++- heading "Color" [level=4]
++- checkbox "Black" [ref=e61]
++- label "Black" [ref=e62]
++- checkbox "Brindle" [ref=e63]
++- label "Brindle" [ref=e64]
++- checkbox "Brown / Chocolate" [ref=e65]
++- label "Brown / Chocolate" [ref=e66]
++- checkbox "Gray / Blue / Silver / Salt & Pepper" [ref=e67]
++- label "Gray / Blue / Silver / Salt & Pepper" [ref=e68]
++- checkbox "Merle" [ref=e69]
++- label "Merle" [ref=e70]
++- checkbox "Red / Golden / Orange / Chestnut" [ref=e71]
++- label "Red / Golden / Orange / Chestnut" [ref=e72]
++- checkbox "Silver & Tan (Yorkie colors)" [ref=e73]
++- label "Silver & Tan (Yorkie colors)" [ref=e74]
++- checkbox "Tan / Yellow / Fawn" [ref=e75]
++- label "Tan / Yellow / Fawn" [ref=e76]
++- checkbox "Tricolor (Tan / Brown & Black & White)" [ref=e77]
++- label "Tricolor (Tan / Brown & Black & White)" [ref=e78]
++- checkbox "White" [ref=e79]
++- label "White" [ref=e80]
++- heading "Health" [level=4]
++- checkbox "Spayed/Neutered" [ref=e81] [checked]
++- label "Spayed/Neutered" [ref=e82]
++- checkbox "Special needs" [ref=e83]
++- label "Special needs" [ref=e84]
++- checkbox "Vaccines up to date" [ref=e85]
++- label "Vaccines up to date" [ref=e86]
++- heading "Additional" [level=4]
++- checkbox "New on Adopt a Pet (48 hrs)" [ref=e87]
++- label "New on Adopt a Pet (48 hrs)" [ref=e88]
++- checkbox "Housetrained" [ref=e89]
++- label "Housetrained" [ref=e90]
++- checkbox "Bonded pair" [ref=e91]
++- label "Bonded pair" [ref=e92]
++- checkbox "Needs experienced adopter" [ref=e93]
++- label "Needs experienced adopter" [ref=e94]
++- checkbox "Needs home fast" [ref=e95]
++- label "Needs home fast" [ref=e96]
++- button "Apply Filters" [ref=e97]
++- text: "Showing 1 - 42 of  506 available pets\n                        \n                        \n                             Sort by:"
++- button "Nearest" [ref=e98]
++- heading "to see 6,727 more great s." [level=5]:
++  - link "Remove all filters" [ref=e99]
++  - text: "to see 6,727 more great  dog s."
++- button "heart icon for favorite pet" [ref=e100]
++- link "Photo of Dexter Dexter Jack Russell Terrier Male, 10 yrs 8 mos Los Angeles, CA" [ref=e101]
++- button "heart icon for favorite pet" [ref=e102]
++- link "Photo of Burrito Burrito Corgi Chihuahua Male, 8 yrs 1 mo Los Angeles, CA" [ref=e103]
++- button "heart icon for favorite pet" [ref=e104]
++- link "Photo of Stu Stu Yorkie, Yorkshire Terrier Male, 11 yrs 8 mos los angeles, CA" [ref=e105]
++- button "heart icon for favorite pet" [ref=e106]
++- link "Special Needs Photo of Doris Day Doris Day Shih Tzu Female, 12 yrs 3 mos los angeles, CA" [ref=e107]
++- button "heart icon for favorite pet" [ref=e108]
++- link "Photo of SOPHIE SOPHIE Maltese Terrier (Unknown Type, Small) Female, 8 yrs Los Angeles, CA" [ref=e109]
++- button "heart icon for favorite pet" [ref=e110]
++- link "Photo of Buddha Buddha Pug Male, 8 yrs 1 mo Los Angeles, CA" [ref=e111]
++- button "heart icon for favorite pet" [ref=e112]
++- link "Special Needs Photo of Molli Molli Chihuahua Female, 9 yrs 2 mos Los Angeles, CA" [ref=e113]
++- button "heart icon for favorite pet" [ref=e114]
++- link "Photo of Panchito Panchito Chihuahua Male, 10 yrs 2 mos Los Angeles, CA" [ref=e115]
++- button "heart icon for favorite pet" [ref=e116]
++- link "Photo of Stanley Stanley American Staffordshire Terrier Male, 16 yrs Los Angeles, CA" [ref=e117]
++- button "heart icon for favorite pet" [ref=e118]
++- link "Photo of Trudy Trudy Chihuahua Female, 11 yrs Los Angeles, CA" [ref=e119]
++- button "heart icon for favorite pet" [ref=e120]
++- link "Special Needs Photo of Duncan Duncan Labrador Retriever Male, 9 yrs 6 mos Los Angeles, CA" [ref=e121]
++- button "heart icon for favorite pet" [ref=e122]
++- link "Special Needs Photo of Bocelli Bocelli Terrier (Unknown Type, Small) Male, 7 yrs 2 mos Los Angeles, " [ref=e123]
++- button "heart icon for favorite pet" [ref=e124]
++- link "Special Needs Photo of Foi Foi German Shepherd Dog Female, 11 yrs 5 mos Los Angeles, CA" [ref=e125]
++- button "heart icon for favorite pet" [ref=e126]
++- link "Photo of Madeline Madeline Poodle (Miniature) Female, 12 yrs 4 mos Los Angeles, CA" [ref=e127]
++- button "heart icon for favorite pet" [ref=e128]
++- link "Special Needs Photo of Pumpkin Spice Pumpkin Spice Coonhound Female, 9 yrs 5 mos Los Angeles, CA" [ref=e129]
++- button "heart icon for favorite pet" [ref=e130]
++- link "Photo of King King Miniature Pinscher Male, 10 yrs 10 mos Los Angeles, CA" [ref=e131]
++- button "heart icon for favorite pet" [ref=e132]
++- link "Photo of Eevee and Ellie Eevee and Ellie Pomeranian German Shepherd Dog Female, 13 yrs 2 mos Los Ang" [ref=e133]
++- button "heart icon for favorite pet" [ref=e134]
++- link "Photo of Ellie Ellie German Shepherd Dog Labrador Retriever Female, 17 yrs 1 mo Los Angeles, CA" [ref=e135]
++- button "heart icon for favorite pet" [ref=e136]
++- link "Bree Miniature Pinscher Female, 10 yrs 2 mos Los Angeles, CA" [ref=e137]
++- button "heart icon for favorite pet" [ref=e138]
++- link "Eevee Pomeranian Papillon Female, 14 yrs 1 mo Los Angeles, CA" [ref=e139]
++- button "heart icon for favorite pet" [ref=e140]
++- link "Jax Boxer American Bulldog Male, 9 yrs 3 mos Los Angeles, CA" [ref=e141]
++- button "heart icon for favorite pet" [ref=e142]
++- link "Dolores Landingham Maltese Mixed Breed (Medium) Female, 12 yrs 4 mos Los Angeles, CA" [ref=e143]
++- button "heart icon for favorite pet" [ref=e144]
++- link "Olive Garden American Bulldog Mixed Breed (Medium) Female, 8 yrs 9 mos Los Angeles, CA" [ref=e145]
++- button "heart icon for favorite pet" [ref=e146]
++- link "Shake Shack Schnauzer (Giant) Mixed Breed (Medium) Female, 13 yrs 4 mos Los Angeles, CA" [ref=e147]
++- button "heart icon for favorite pet" [ref=e148]
++- link "Special Needs Liz Quackers Beagle Female, 15 yrs 9 mos Los Angeles, CA" [ref=e149]
++- button "heart icon for favorite pet" [ref=e150]
++- link "Trendy Chihuahua Australian Cattle Dog Female, 10 yrs 1 mo Los Angeles, CA" [ref=e151]
++- button "heart icon for favorite pet" [ref=e152]
++- link "Dorinda Papillon Female, 8 yrs 2 mos Los Angeles, CA" [ref=e153]
++- button "heart icon for favorite pet" [ref=e154]
++- link "Princess Polka Dot Maltese Mixed Breed (Medium) Female, 17 yrs 3 mos Los Angeles, CA" [ref=e155]
++- button "heart icon for favorite pet" [ref=e156]
++- link "Sweetie Mixed Breed (Large) Mixed Breed (Medium) Female, 8 yrs 6 mos Los Angeles, CA" [ref=e157]
++- button "heart icon for favorite pet" [ref=e158]
++- link "Jake From State Farm Mixed Breed (Small) Mixed Breed (Medium) Male, 11 yrs 5 mos Los Angeles, CA" [ref=e159]
++- button "heart icon for favorite pet" [ref=e160]
++- link "Olandria Pekingese Spaniel (Unknown Type) Female, 9 yrs 10 mos Los Angeles, CA" [ref=e161]
++- button "heart icon for favorite pet" [ref=e162]
++- link "Spanky Miniature Pinscher Male, Senior Los Angeles, CA" [ref=e163]
++- button "heart icon for favorite pet" [ref=e164]
++- link "Dillon American Staffordshire Terrier Male, 7 yrs 11 mos Los Angeles, CA" [ref=e165]
++- button "heart icon for favorite pet" [ref=e166]
++- link "Lincoln Dachshund Beagle Male, 11 yrs 2 mos Los Angeles, CA" [ref=e167]
++- button "heart icon for favorite pet" [ref=e168]
++- link "Popsicle Maltese Terrier (Unknown Type, Small) Male, 12 yrs 5 mos Los Angeles, CA" [ref=e169]
++- button "heart icon for favorite pet" [ref=e170]
++- link "Joshua Rottweiler Shepherd (Unknown Type) Male, 15 yrs 4 mos Studio City, CA" [ref=e171]
++- button "heart icon for favorite pet" [ref=e172]
++- link "Meaty Chihuahua Terrier (Unknown Type, Small) Male, Senior North Hollywood, CA" [ref=e173]
++- button "heart icon for favorite pet" [ref=e174]
++- link "ROONEY Silky Terrier Terrier (Unknown Type, Small) Male, 9 yrs 7 mos Studio City, CA" [ref=e175]
++- button "heart icon for favorite pet" [ref=e176]
++- link "Blue American Pit Bull Terrier Male, 12 yrs Los Angeles, CA" [ref=e177]
++- button "heart icon for favorite pet" [ref=e178]
++- link "Sweets Boxer Doberman Pinscher Male, Senior Los Angeles, CA" [ref=e179]
++- button "heart icon for favorite pet" [ref=e180]
++- link "Roddy English Bulldog Male, 9 yrs 2 mos Los Angeles, CA" [ref=e181]
++- button "heart icon for favorite pet" [ref=e182]
++- link "Perry American Pit Bull Terrier Male, 9 yrs 2 mos Los Angeles, CA" [ref=e183]
++- iframe "Advertisement" [ref=e184]
++- navigation "Pagination Navigation" [ref=e185]:
++  - text: "1"
++  - link "Go to page 2" [ref=e186]: "2"
++  - link "Go to page 3" [ref=e187]: "3"
++  - text: "..."
++  - link "Go to page 13" [ref=e188]: "13"
++  - link [ref=e189]
++- text: "1 - 42 of 506 pets available"
++- contentinfo:
++  - navigation "Footer" [ref=e190]:
++    - heading "Pets" [level=4]
++    - link "Find a pet" [ref=e191]
++    - link "Rehome a pet" [ref=e192]
++    - link "Spay & neuter" [ref=e193]
++    - link "Total Dog Manual link, opens in a new tab" [ref=e194]: "Total Dog Manual"
++    - link "Total Cat Manual link, opens in a new tab" [ref=e195]: "Total Cat Manual"
++    - heading "Get Involved" [level=4]
++    - link "Foster" [ref=e196]
++    - heading "Shelter / Rescue" [level=4]
++    - link "Animal Shelters" [ref=e197]
++    - link "Dog Shelters" [ref=e198]
++    - link "Cat Shelters" [ref=e199]
++    - link "Sign up" [ref=e200]
++    - link "Log in" [ref=e201]
++    - heading "Our Organization" [level=4]
++    - link "About Adopt a Pet" [ref=e202]
++    - link "Blog" [ref=e203]
++    - link "Contact" [ref=e204]
++    - link "Press" [ref=e205]
++    - heading "Information" [level=4]
++    - link "Sitemap" [ref=e206]
++    - link "Mars privacy policy, opens in a new tab" [ref=e207]: "Privacy policy"
++    - link "Terms of service" [ref=e208]
++    - link "Mars cookies, opens in a new tab" [ref=e209]: "Cookies"
++    - link "Mars accessibility, opens in a new tab" [ref=e210]: "Accessibility"
++    - link "Mars, Incorporated, opens in a new tab" [ref=e211]: "Mars, Incorporated"
++    - link "AdChoices, opens in a new tab" [ref=e212]: "AdChoices"
++    - link "Your privacy choices, opens in a new tab" [ref=e213]: "Your privacy choices"
++    - text: "Your privacy choices"
++  - heading "Sign up for our newsletter" [level=4]
++  - textbox "Enter e-mail" [ref=e214] [placeholder=" "]
++  - text: "Enter e-mail"
++  - button "Send" [ref=e215]
++  - text: "I’d like to hear from Adopt a Pet and other"
++  - link "Mars Petcare brands, opens in a new tab" [ref=e216]: "Mars Petcare brands"
++  - text: ", with special offers, the\nlatest about products, and more. Must be 18 or older to subscribe\nand may unsubscribe at any time. We may use your data for research\nto improve our offerings; see our"
++  - link "Privacy Policy, opens in a new tab" [ref=e217]: "Privacy Policy"
++  - text: "for details about how we use your data."
++  - link "Adopt a Pet Facebook link, opens in a new tab" [ref=e218]
++  - link "Adopt a Pet Twitter link, opens in a new tab" [ref=e219]
++  - link "Adopt a Pet Pinterest link, opens in a new tab" [ref=e220]
++  - link "Adopt a Pet Youtube link, opens in a new tab" [ref=e221]
++  - link "Adopt a Pet Instagram link, opens in a new tab" [ref=e222]
++  - link "Adopt a Pet Linkedin link, opens in a new tab" [ref=e223]
++  - link "Adopt a Pet logo, opens in this tab" [ref=e224]: "Adopt a Pet"
++  - text: "© 2026, Kinship Partners, Inc. an affiliate of Mars Incorporated"
++  - button "Cookie Settings" [ref=e225]
++  - text: "Our partners"
++  - link "PetSmart link, opens in a new tab" [ref=e226]: "PetSmart Logo"
++  - link "Pedigree link, opens in a new tab" [ref=e227]: "Pedigree Logo"
++  - link "Zoetis link, opens in a new tab" [ref=e228]: "Zoetis Logo"
+</result>
+
+[11] assistant: Done. I’m on Adopt a Pet results for senior, spayed/neutered dogs near 90028.
+
+It’s showing 506 available pets within 50 miles, sorted by nearest. First few results include Dexter, Burrito, Stu, Doris Day, Sophie, and Buddha.

@@ -1,0 +1,2257 @@
+[1] user: Go to https://www.akc.org/, Find the nearest vet within 50 miles of zip 75228.
+
+[2] thinking: **Finding a nearby vet**
+
+I need to browse the AKC site to find the nearest vet within 50 miles of the zip code 75228. To do this, I plan to use a browser. Once I open the site, I can inspect it for the information. My goal is to provide an answer that helps the user easily locate a vet nearby. Let’s get started on this search!
+
+[3] tool_call: repl("Opening AKC website")
+<request>
+const p1 = await openTab('https://www.akc.org/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="107" elapsed_time="1163ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → American Kennel Club (https://www.akc.org/)
+# note: interactive (clickable / focusable) elements only.
+- title: "American Kennel Club" [url=https://www.akc.org/]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - tab "Dog Info" [ref=e8]
+  - tab "Registration" [ref=e9]
+  - tab "Sports & Events" [ref=e10]
+  - tab "Clubs & Delegates" [ref=e11]
+  - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- button [ref=e14]
+- textbox "Search" [ref=e15] [placeholder="Search"]
+- text: "Search for a Breed"
+- textbox "Search for a Breed" [ref=e17] [placeholder="Select a Breed"]
+- complementary:
+  - text: "AKC branding text: At AKC, we know and love all dogs"
+  - textbox "AKC branding text: At AKC, we know and love all dogs" [ref=e18] [placeholder="How can we help?"]
+  - button "Search" [ref=e19]
+- heading "Everything We Do, We Do for Dogs" [level=1]
+- link [ref=e20]
+- link "Register Today" [ref=e21]
+- link [ref=e22]
+- link "Training" [ref=e23]
+- link [ref=e24]
+- link "Find Puppies" [ref=e25]
+- link [ref=e26]
+- link "AKC TV" [ref=e27]
+- link [ref=e28]
+- link "Shop New Products" [ref=e29]
+- link "Learn About Pet Insurance" [ref=e30]
+- link "Learn about Pet Insurance" [ref=e31]
+- link [ref=e32]
+- link "Sports & Events" [ref=e33]
+- region:
+  - heading "Declare Your Love and Register with the AKC" [level=2]
+  - text: "Your dog is more than a pet - they’re family. Registering with the AKC means celebrating that bond while supporting a not-for-profit doing great work for dogs everywhere. Discover your dog’s pedigree, connect with a community that cares, and unlock lifelong benefits together."
+  - link "Make It Official Today" [ref=e34]
+- heading "Top Stories" [level=2]
+- link "Dog Breeds" [ref=e35]
+- link "Is the Australian Cattle Dog Right for You?" [ref=e36]
+- link "Feature" [ref=e37]
+- link "Breeder Spotlight: Gaelic Dalmatians" [ref=e38]
+- link "Dog Behavior" [ref=e39]
+- link "Why Does Your Dog Bark Out the Window?" [ref=e40]
+- link "Events" [ref=e41]
+- link "Meet the 2026 AKC Diving Dogs Premier Cup Winners" [ref=e42]
+- link "Watch on AKC.tv" [ref=e43]
+- link "Watch on Roku" [ref=e44]
+- link "Watch on Apple TV / iOS" [ref=e45]
+- link "Watch on Amazon Fire" [ref=e46]
+- region:
+  - heading "Latest Stories" [level=2]
+  - text: "Rhodesian Ridgeback standing in profile outdoors."
+  - link "Expert Advice" [ref=e47]
+  - link "Is the Rhodesian Ridgeback Right for You?" [ref=e48]
+  - link "Family Dog Magazine" [ref=e49]
+  - link "Get tips and tricks from AKC’s experts in our lifestyle magazine for dog lovers" [ref=e50]
+  - text: "Czechoslovakian Vlcak standing outdoors in a forest at sunset."
+  - link "Expert Advice" [ref=e51]
+  - link "Is the Czechoslovakian Vlciak Right for You?" [ref=e52]
+- text: "Breed Of The Day"
+- link "Parson Russell Terrier" [ref=e53]
+- heading "Find The Right Breed" [level=2]
+- link "Explore Breeds" [ref=e54]
+- link "Find Your Match" [ref=e55]
+- link "Compare Breeds" [ref=e56]
+- link "Dog Name Finder" [ref=e57]
+- heading "AKC Cares" [level=2]
+- link "AKC Canine Health Foundation" [ref=e58]
+- link "Rescue Network" [ref=e59]
+- link "AKC Reunite" [ref=e60]
+- link "AKC Humane Fund" [ref=e61]
+- link "Museum of the Dog" [ref=e62]
+- link "Protecting Your Rights" [ref=e63]
+- heading "AKC Canine Health Foundation" [level=2]
+- text: "The AKC Canine Health Foundation is a nonprofit organization dedicated to the prevention and treatment of diseases in all dogs. Since 1995, we’ve been awarding grants to scientists and professionals to advance canine health research, while providing professional information and resources for today’s dog owner."
+- link "Learn About AKC Canine Health Foundation" [ref=e64]
+- region:
+  - heading "Sports & Events" [level=2]
+  - tabpanel [ref=e65]:
+    - link "Conformation Dog shows (officially conformation) may look like beauty pageants, but they’re not. Dog" [ref=e66]
+  - tabpanel [ref=e67]:
+    - link "Agility An exhilarating way to exercise with your dog, Agility is a fast-paced obstacle course with " [ref=e68]
+  - tabpanel [ref=e69]:
+    - link "Rally In Rally, you and your dog navigate a course, side-by-side, through 10-20 different exercises " [ref=e70]
+  - tabpanel [ref=e71]:
+    - link "Fast CAT This fast-paced event features one dog running at a time, with their speed clocked and conv" [ref=e72]
+  - link "Find Events Near You" [ref=e73]
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- link "About AKC" [ref=e74]
+- link "Our Mission" [ref=e75]
+- link "Our History" [ref=e76]
+- link "Minutes & Reports" [ref=e77]
+- link "AKC Library & Archives" [ref=e78]
+- link "Awards & Honors" [ref=e79]
+- link "Press Center" [ref=e80]
+- link "Careers" [ref=e81]
+- link "Newsletter Subscriptions" [ref=e82]
+- link "Meeting Code" [ref=e83]
+- link "Contact Us" [ref=e84]
+- heading "Top Services" [level=3]
+- link "Find a Puppy" [ref=e85]
+- link "Find a Dog Groomer" [ref=e86]
+- link "Register" [ref=e87]
+- link "Enroll a Mixed-Breed Dog" [ref=e88]
+- link "Dog Training Help" [ref=e89]
+- link "Shop AKC Store" [ref=e90]
+- link "AKC Magazines" [ref=e91]
+- heading "Top Resources" [level=3]
+- link "Delegates Portal" [ref=e92]
+- link "Downloadable Forms" [ref=e93]
+- link "Rules, Regulations & Policies" [ref=e94]
+- link "Answer Center" [ref=e95]
+- link "Judges' Directory" [ref=e96]
+- link "Government Relations" [ref=e97]
+- link "Inspections & Compliance" [ref=e98]
+- link "Working It Out℠ Guide & FAQs" [ref=e99]
+- link "Active Shooter & Mass Attack Safety Resources" [ref=e100]
+- heading "Get Involved" [level=3]
+- link "Attend a Dog Show" [ref=e101]
+- link "Participate in an Event" [ref=e102]
+- link "Donate to AKC" [ref=e103]
+- link "Find a Dog Club" [ref=e104]
+- link "AKC Humane Fund" [ref=e105]
+- heading "Favorite Things" [level=3]
+- link "Watch Dog Shows" [ref=e106]
+- link "Top 100 Girl Dog Names" [ref=e107]
+- link "Top 100 Boy Dog Names" [ref=e108]
+- link "Most Popular Dog Breeds" [ref=e109]
+- link "Hypoallergenic Dog Breeds" [ref=e110]
+- link "Why Do Dogs Eat Poop?" [ref=e111]
+- link "Why Is My Dog Limping?" [ref=e112]
+- link "How to Remove a Tick" [ref=e113]
+- link "How to Potty Train a Puppy" [ref=e114]
+- link "Best Dog Podcast" [ref=e115]
+- link "Advertise With AKC" [ref=e116]
+- link "Terms of Use" [ref=e117]
+- link "Privacy & Cookies" [ref=e118]
+- link "Cookie Settings" [ref=e119]
+- link "CA Privacy Rights" [ref=e120]
+- link "Website Info & FAQs" [ref=e121]
+- link "Linking Policy" [ref=e122]
+- link "Material Reproduction Policy" [ref=e123]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved.\n    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSelect a Breed"
+- region "Cookie banner" [ref=e124]:
+  - dialog "We use cookies":
+    - heading "We use cookies" [level=2]
+    - text: "We use necessary cookies to make our website function.  We’d like to use additional cookies to understand our website traffic, make improvements, remember your preferences, load videos, and allow our customer support team to provide assistance regarding the use of our website. We also use cookies from other sites to help deliver content from their services. By clicking \"Accept All Cookies\", and continuing to browse our website, we consider that you accept our Terms of Use (https://www.akc.org/terms-of-use) and also agree to the terms of our Privacy Notice (https://www.akc.org/privacy)."
+    - button "Cookie Settings, Opens the preference center dialog" [ref=e125]: "Cookie Settings"
+    - button "Necessary Cookies Only" [ref=e126]
+    - button "Accept All Cookies" [ref=e127]
+</result>
+
+[4] thinking: **Searching for nearby vet**
+
+I need to find the nearest vet within 50 miles. It seems like the AKC might have a "Find a Vet" feature, so I’ll check their site for that. I think I might need to click on the search option and also dismiss any cookie notifications. My next step is to search for "find vet" to see what results come up. Let’s see what I can find!
+
+[5] tool_call: repl("Searching AKC for vet finder")
+<request>
+await page.locator('e126').click();
+const s2 = await snapshot(page);
+console.log(s2.diff);
+await page.locator('e15').fill('find a vet');
+await page.keyboard.press('Enter');
+const s3 = await snapshot(page);
+console.log(s3.diff);
+</request>
+<result tokens_used="136" elapsed_time="802ms">
+Error: Error: Cannot find context with specified id
+    at CdpClient.#handleMessage (/Users/vista/projects/bro/apps/daemon/src/browser-v3/cdp/client.ts:574:11)
+    at WebSocket.<anonymous> (/Users/vista/projects/bro/apps/daemon/src/browser-v3/cdp/client.ts:473:19)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+    at WebSocket.dispatchEvent (node:internal/event_target:776:26)
+    at fireEvent (node:internal/deps/undici/undici:14147:14)
+    at #onMessage (node:internal/deps/undici/undici:15425:9)
+    at Object.onMessage (node:internal/deps/undici/undici:15138:76)
+    at websocketMessageReceived (node:internal/deps/undici/undici:14151:15)
+    at node:internal/deps/undici/undici:14857:19
+@@ -11,5 +11,10 @@
+-  - tab "Dog Info" [ref=e8]
+-  - tab "Registration" [ref=e9]
+-  - tab "Sports & Events" [ref=e10]
+-  - tab "Clubs & Delegates" [ref=e11]
+-  - tab "Expert Advice" [ref=e12]
++  - listitem "Dog Info" [ref=e128]:
++    - tab "Dog Info" [ref=e8]
++  - listitem "Registration" [ref=e129]:
++    - tab "Registration" [ref=e9]
++  - listitem "Sports & Events" [ref=e130]:
++    - tab "Sports & Events" [ref=e10]
++  - listitem "Clubs & Delegates" [ref=e131]:
++    - tab "Clubs & Delegates" [ref=e11]
++  - listitem "Expert Advice" [ref=e132]:
++    - tab "Expert Advice" [ref=e12]
+@@ -17,4 +22,6 @@
+-- button [ref=e14]
+-- textbox "Search" [ref=e15] [placeholder="Search"]
+-- text: "Search for a Breed"
+-- textbox "Search for a Breed" [ref=e17] [placeholder="Select a Breed"]
++- form:
++  - button [ref=e14]
++  - textbox "Search" [ref=e15] [placeholder="Search"]
++- form:
++  - label: "Search for a Breed"
++  - textbox "Search for a Breed" [ref=e17] [placeholder="Select a Breed"]
+@@ -22,3 +29,5 @@
+-  - text: "AKC branding text: At AKC, we know and love all dogs"
+-  - textbox "AKC branding text: At AKC, we know and love all dogs" [ref=e18] [placeholder="How can we help?"]
+-  - button "Search" [ref=e19]
++  - form:
++    - label:
++      - image "AKC branding text: At AKC, we know and love all dogs"
++    - textbox "AKC branding text: At AKC, we know and love all dogs" [ref=e18] [placeholder="How can we help?"]
++    - button "Search" [ref=e19]
+@@ -36 +45,2 @@
+-- link "Learn About Pet Insurance" [ref=e30]
++- link "Learn About Pet Insurance" [ref=e30]:
++  - image "Learn About Pet Insurance"
+@@ -45,0 +55 @@
++- image "Australian Cattle Dog puppy learning commands in the yard."
+@@ -47,0 +58 @@
++- image "Dalmatians together outdoors."
+@@ -49,0 +61 @@
++- image "Yorkshire Terrier waiting at the window on a rainy day."
+@@ -51,0 +64 @@
++- image "Air Retrieve Open Class First Place: \"Ricky Bobby\" and Shelby Saemann. 2026 AKC Diving Dogs Premier "
+@@ -59 +73 @@
+-  - text: "Rhodesian Ridgeback standing in profile outdoors."
++  - image "Rhodesian Ridgeback standing in profile outdoors."
+@@ -64 +78 @@
+-  - text: "Czechoslovakian Vlcak standing outdoors in a forest at sunset."
++  - image "Czechoslovakian Vlcak standing outdoors in a forest at sunset."
+@@ -75,6 +89,13 @@
+-- link "AKC Canine Health Foundation" [ref=e58]
+-- link "Rescue Network" [ref=e59]
+-- link "AKC Reunite" [ref=e60]
+-- link "AKC Humane Fund" [ref=e61]
+-- link "Museum of the Dog" [ref=e62]
+-- link "Protecting Your Rights" [ref=e63]
++- list:
++  - listitem:
++    - link "AKC Canine Health Foundation" [ref=e58]
++  - listitem:
++    - link "Rescue Network" [ref=e59]
++  - listitem:
++    - link "AKC Reunite" [ref=e60]
++  - listitem:
++    - link "AKC Humane Fund" [ref=e61]
++  - listitem:
++    - link "Museum of the Dog" [ref=e62]
++  - listitem:
++    - link "Protecting Your Rights" [ref=e63]
+@@ -97,11 +118,23 @@
+-- link "About AKC" [ref=e74]
+-- link "Our Mission" [ref=e75]
+-- link "Our History" [ref=e76]
+-- link "Minutes & Reports" [ref=e77]
+-- link "AKC Library & Archives" [ref=e78]
+-- link "Awards & Honors" [ref=e79]
+-- link "Press Center" [ref=e80]
+-- link "Careers" [ref=e81]
+-- link "Newsletter Subscriptions" [ref=e82]
+-- link "Meeting Code" [ref=e83]
+-- link "Contact Us" [ref=e84]
++- list:
++  - listitem "About AKC" [ref=e133]:
++    - link "About AKC" [ref=e74]
++  - listitem "Our Mission" [ref=e134]:
++    - link "Our Mission" [ref=e75]
++  - listitem "Our History" [ref=e135]:
++    - link "Our History" [ref=e76]
++  - listitem "Minutes & Reports" [ref=e136]:
++    - link "Minutes & Reports" [ref=e77]
++  - listitem "AKC Library & Archives" [ref=e137]:
++    - link "AKC Library & Archives" [ref=e78]
++  - listitem "Awards & Honors" [ref=e138]:
++    - link "Awards & Honors" [ref=e79]
++  - listitem "Press Center" [ref=e139]:
++    - link "Press Center" [ref=e80]
++  - listitem "Careers" [ref=e140]:
++    - link "Careers" [ref=e81]
++  - listitem "Newsletter Subscriptions" [ref=e141]:
++    - link "Newsletter Subscriptions" [ref=e82]
++  - listitem "Meeting Code" [ref=e142]:
++    - link "Meeting Code" [ref=e83]
++  - listitem "Contact Us" [ref=e143]:
++    - link "Contact Us" [ref=e84]
+@@ -109,7 +142,15 @@
+-- link "Find a Puppy" [ref=e85]
+-- link "Find a Dog Groomer" [ref=e86]
+-- link "Register" [ref=e87]
+-- link "Enroll a Mixed-Breed Dog" [ref=e88]
+-- link "Dog Training Help" [ref=e89]
+-- link "Shop AKC Store" [ref=e90]
+-- link "AKC Magazines" [ref=e91]
++- list:
++  - listitem "Find a Puppy" [ref=e144]:
++    - link "Find a Puppy" [ref=e85]
++  - listitem "Find a Dog Groomer" [ref=e145]:
++    - link "Find a Dog Groomer" [ref=e86]
++  - listitem "Register" [ref=e146]:
++    - link "Register" [ref=e87]
++  - listitem "Enroll a Mixed-Breed Dog" [ref=e147]:
++    - link "Enroll a Mixed-Breed Dog" [ref=e88]
++  - listitem "Dog Training Help" [ref=e148]:
++    - link "Dog Training Help" [ref=e89]
++  - listitem "Shop AKC Store" [ref=e149]:
++    - link "Shop AKC Store" [ref=e90]
++  - listitem "AKC Magazines" [ref=e150]:
++    - link "AKC Magazines" [ref=e91]
+@@ -117,9 +158,19 @@
+-- link "Delegates Portal" [ref=e92]
+-- link "Downloadable Forms" [ref=e93]
+-- link "Rules, Regulations & Policies" [ref=e94]
+-- link "Answer Center" [ref=e95]
+-- link "Judges' Directory" [ref=e96]
+-- link "Government Relations" [ref=e97]
+-- link "Inspections & Compliance" [ref=e98]
+-- link "Working It Out℠ Guide & FAQs" [ref=e99]
+-- link "Active Shooter & Mass Attack Safety Resources" [ref=e100]
++- list:
++  - listitem "Delegates Portal" [ref=e151]:
++    - link "Delegates Portal" [ref=e92]
++  - listitem "Downloadable Forms" [ref=e152]:
++    - link "Downloadable Forms" [ref=e93]
++  - listitem "Rules, Regulations & Policies" [ref=e153]:
++    - link "Rules, Regulations & Policies" [ref=e94]
++  - listitem "Answer Center" [ref=e154]:
++    - link "Answer Center" [ref=e95]
++  - listitem "Judges' Directory" [ref=e155]:
++    - link "Judges' Directory" [ref=e96]
++  - listitem "Government Relations" [ref=e156]:
++    - link "Government Relations" [ref=e97]
++  - listitem "Inspections & Compliance" [ref=e157]:
++    - link "Inspections & Compliance" [ref=e98]
++  - listitem "Working It Out℠ Guide & FAQs" [ref=e158]:
++    - link "Working It Out℠ Guide & FAQs" [ref=e99]
++  - listitem "Active Shooter & Mass Attack Safety Resources" [ref=e159]:
++    - link "Active Shooter & Mass Attack Safety Resources" [ref=e100]
+@@ -127,5 +178,11 @@
+-- link "Attend a Dog Show" [ref=e101]
+-- link "Participate in an Event" [ref=e102]
+-- link "Donate to AKC" [ref=e103]
+-- link "Find a Dog Club" [ref=e104]
+-- link "AKC Humane Fund" [ref=e105]
++- list:
++  - listitem "Attend a Dog Show" [ref=e160]:
++    - link "Attend a Dog Show" [ref=e101]
++  - listitem "Participate in an Event" [ref=e161]:
++    - link "Participate in an Event" [ref=e102]
++  - listitem "Donate to AKC" [ref=e162]:
++    - link "Donate to AKC" [ref=e103]
++  - listitem "Find a Dog Club" [ref=e163]:
++    - link "Find a Dog Club" [ref=e104]
++  - listitem "AKC Humane Fund" [ref=e164]:
++    - link "AKC Humane Fund" [ref=e105]
+@@ -133,19 +190,42 @@
+-- link "Watch Dog Shows" [ref=e106]
+-- link "Top 100 Girl Dog Names" [ref=e107]
+-- link "Top 100 Boy Dog Names" [ref=e108]
+-- link "Most Popular Dog Breeds" [ref=e109]
+-- link "Hypoallergenic Dog Breeds" [ref=e110]
+-- link "Why Do Dogs Eat Poop?" [ref=e111]
+-- link "Why Is My Dog Limping?" [ref=e112]
+-- link "How to Remove a Tick" [ref=e113]
+-- link "How to Potty Train a Puppy" [ref=e114]
+-- link "Best Dog Podcast" [ref=e115]
+-- link "Advertise With AKC" [ref=e116]
+-- link "Terms of Use" [ref=e117]
+-- link "Privacy & Cookies" [ref=e118]
+-- link "Cookie Settings" [ref=e119]
+-- link "CA Privacy Rights" [ref=e120]
+-- link "Website Info & FAQs" [ref=e121]
+-- link "Linking Policy" [ref=e122]
+-- link "Material Reproduction Policy" [ref=e123]
+-- text: "© The American Kennel Club, Inc. 2026. All rights reserved.\n    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSelect a Breed"
++- list:
++  - listitem "Watch Dog Shows" [ref=e165]:
++    - link "Watch Dog Shows" [ref=e106]
++  - listitem "Top 100 Girl Dog Names" [ref=e166]:
++    - link "Top 100 Girl Dog Names" [ref=e107]
++  - listitem "Top 100 Boy Dog Names" [ref=e167]:
++    - link "Top 100 Boy Dog Names" [ref=e108]
++  - listitem "Most Popular Dog Breeds" [ref=e168]:
++    - link "Most Popular Dog Breeds" [ref=e109]
++  - listitem "Hypoallergenic Dog Breeds" [ref=e169]:
++    - link "Hypoallergenic Dog Breeds" [ref=e110]
++  - listitem "Why Do Dogs Eat Poop?" [ref=e170]:
++    - link "Why Do Dogs Eat Poop?" [ref=e111]
++  - listitem "Why Is My Dog Limping?" [ref=e171]:
++    - link "Why Is My Dog Limping?" [ref=e112]
++  - listitem "How to Remove a Tick" [ref=e172]:
++    - link "How to Remove a Tick" [ref=e113]
++  - listitem "How to Potty Train a Puppy" [ref=e173]:
++    - link "How to Potty Train a Puppy" [ref=e114]
++  - listitem "Best Dog Podcast" [ref=e174]:
++    - link "Best Dog Podcast" [ref=e115]
++- list:
++  - listitem "Advertise With AKC" [ref=e175]:
++    - link "Advertise With AKC" [ref=e116]
++  - listitem "Terms of Use" [ref=e176]:
++    - link "Terms of Use" [ref=e117]
++  - listitem "Privacy & Cookies" [ref=e177]:
++    - link "Privacy & Cookies" [ref=e118]
++  - listitem "Cookie Settings" [ref=e178]:
++    - link "Cookie Settings" [ref=e119]
++  - listitem "CA Privacy Rights" [ref=e179]:
++    - link "CA Privacy Rights" [ref=e120]
++  - listitem "Website Info & FAQs" [ref=e180]:
++    - link "Website Info & FAQs" [ref=e121]
++  - listitem "Linking Policy" [ref=e181]:
++    - link "Linking Policy" [ref=e122]
++  - listitem "Material Reproduction Policy" [ref=e182]:
++    - link "Material Reproduction Policy" [ref=e123]
++- text: "© The American Kennel Club, Inc. 2026. All rights reserved."
++- iframe "Advertisement" [ref=e183]:
++  - button [ref=f8e2]
++- text: "Select a Breed"
+@@ -157 +237 @@
+-    - button "Necessary Cookies Only" [ref=e126]
++    - button "Necessary Cookies Only" [ref=e126] [focused]
+@@ -159,0 +239,5 @@
++- iframe [ref=e186]:
++  - iframe [ref=f16e1]:
++    - image "Click to learn more about this sponsored product"
++    - link [ref=f17e1]
++    - link "Click to learn more about this sponsored product" [ref=f17e2]
+</result>
+
+[6] tool_call: repl("Checking page after search attempt")
+<request>
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.tree);
+</request>
+<result tokens_used="73" elapsed_time="230ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "You searched for find a vet – American Kennel Club" [url=https://www.akc.org/?s=find+a+vet]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - tab "Dog Info" [ref=e8]
+  - tab "Registration" [ref=e9]
+  - tab "Sports & Events" [ref=e10]
+  - tab "Clubs & Delegates" [ref=e11]
+  - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- button [ref=e14]
+- textbox "Search" [ref=e15] [placeholder="Search"]
+- link "Home" [ref=e16]
+- text: "/\n                    \n                            Search results for find a vet"
+- textbox "Search results for \"find a vet\"" [ref=e17] [placeholder=" Search results for \"find a vet\" "]
+- button "Search" [ref=e18]
+- complementary:
+  - heading "Filter Results" [level=3]
+  - link "Clear All" [ref=e19]
+  - generic [ref=e20]:
+    - heading "Section" [level=3]: "Section\n                                                        \n                                                        —"
+  - label [ref=e21]:
+    - checkbox "Dog Breeds" [ref=e22] [hidden]
+    - text: "Dog Breeds"
+  - label [ref=e23]:
+    - checkbox "Expert Advice" [ref=e24] [hidden]
+    - text: "Expert Advice"
+  - label [ref=e25]:
+    - checkbox "Products & Services" [ref=e26] [hidden]
+    - text: "Products & Services"
+  - label [ref=e27]:
+    - checkbox "Sports & Events" [ref=e28] [hidden]
+    - text: "Sports & Events"
+  - label [ref=e29]:
+    - checkbox "Clubs & Delegates" [ref=e30] [hidden]
+    - text: "Clubs & Delegates"
+  - label [ref=e31]:
+    - checkbox "AKC Shop" [ref=e32] [hidden]
+    - text: "AKC Shop"
+  - label [ref=e33]:
+    - checkbox "Legislative Alerts" [ref=e34] [hidden]
+    - text: "Legislative Alerts"
+  - label [ref=e35]:
+    - checkbox "Press Releases" [ref=e36] [hidden]
+    - text: "Press Releases"
+  - button "Submit" [ref=e37]
+  - link "Clear All" [ref=e38]
+  - iframe "Advertisement" [ref=e39]:
+    - link [ref=f15e1]
+- main:
+  - heading "Showing 1-10 of 5,160 results" [level=3]
+  - text: "10"
+  - link "20" [ref=e40]
+  - link "30" [ref=e41]
+  - text: "items per page\n                                \n                            \n\n                \n\n                    \n                         SORT BY"
+  - link "SORT BY" [ref=e42]: "Relevance"
+  - link "SORT BY" [ref=e43]: "Newest"
+  - link "SORT BY" [ref=e44]: "Oldest"
+  - text: "Expert Advice"
+  - link "Finding a “Breeder’s Vet”" [ref=e45]
+  - text: "Spend enough time talking with dog breeders, and you will hear all sorts of stories—stories about veterinarians who “didn’t know anything,” about veterinary costs, and about veterinarians who didn’t jump when the breeder said so. Ask those same veterinarians about those clients, and you’ll hear [...]"
+  - link "https://www.akc.org/expert-advice/news/finding-a-breeders-vet/" [ref=e46]
+  - text: "| June 1, 2015\n                    \n            \n        \n        \n            \n        \n                 Expert Advice"
+  - link "Where Have All the Doberman Breeders Gone?" [ref=e47]
+  - text: "When I was looking for my first Doberman, I went to the local dog shows and saw which dogs appealed to me. At that time there were over 80 Dobermans entered at all the big shows in the Pacific Northwest. I talked to the people there and got the names of breeders. The people were friendly [...]"
+  - link "https://www.akc.org/expert-advice/dog-breeding/where-have-all-the-doberman-breeders-gone/" [ref=e48]
+  - text: "| June 1, 2015"
+  - link [ref=e49]
+  - text: "Expert Advice"
+  - link "How to Find a Pet-Friendly Apartment" [ref=e50]
+  - text: "We love our animals. Pets are bona fide, highly valued members of the family — sometimes more valued than the human members — but not all rental building landlords feel so warm and fuzzy about four-legged tenants. Despite the fact that an estimated 72 percent of renters have pets, many landlords simply don’t allow dogs or cats [...]"
+  - link "https://www.akc.org/expert-advice/home-living/how-to-find-truly-pet-friendly-apartments/" [ref=e51]
+  - text: "| June 1, 2015"
+  - link [ref=e52]
+  - text: "Expert Advice"
+  - link "How to Find and Choose a Pet Sitter" [ref=e53]
+  - text: "Professional pet sitters can offer a variety of services, from dog walking to overnight stays at your house. Here's how to find and choose a pet sitter."
+  - link "https://www.akc.org/expert-advice/travel/how-to-select-a-pet-sitter/" [ref=e54]
+  - text: "| June 1, 2015"
+  - link "ill" [ref=e55]
+  - text: "Expert Advice"
+  - link "Caring for a Chronically Ill Dog: How to Make Life Easier for You and Your Pup" [ref=e56]
+  - text: "For better or worse, in sickness and in health, it’s a pet owner’s responsibility to provide the love and care needed throughout her dog’s lifetime. Nobody wants to imagine her canine companion falling ill, but it’s a good idea to prepare for the unexpected.\n\n“Owners do not want to plan for [...]"
+  - link "https://www.akc.org/expert-advice/health/caring-for-chronically-ill-dog/" [ref=e57]
+  - text: "| June 1, 2015"
+  - link [ref=e58]
+  - text: "Expert Advice"
+  - link "Finding Safe Pet Transportation for Your Puppies" [ref=e59]
+  - text: "There have been a lot of changes in the world since COVID-19 appeared. Every day we have to figure new ways to do lots of things differently to protect ourselves and our families.\n\nWe have always had to think about how to protect ourselves from the bad guys.  We know the bad guys are always [...]"
+  - link "https://www.akc.org/expert-advice/dog-breeding/finding-safe-pet-transportation-puppies/" [ref=e60]
+  - text: "| June 1, 2015"
+  - link [ref=e61]
+  - text: "Expert Advice"
+  - link "French Bulldog Puppy Training Timeline: How to Train a Frenchie" [ref=e62]
+  - text: "Preparing to welcome a French Bulldog puppy into your home for the first time? Plan on making time for puppy-proofing, training, playtime, and other key activities.\n\nWe turned to Sharon Dykes, who is an AKC Breeder of Merit with 25 years of experience, an AKC judge, and a board member of the French Bulldog Club of [...]"
+  - link "https://www.akc.org/expert-advice/training/french-bulldog-puppy-training-timeline/" [ref=e63]
+  - text: "| June 1, 2015"
+  - link "Puppies doing research with a microscope and stethoscope." [ref=e64]
+  - text: "Expert Advice"
+  - link "Plasma Treatment for Fading Puppies Could Offer COVID-19 Clues" [ref=e65]
+  - text: "EDITOR'S NOTE: A big, blinking, red stop sign of warning: There is absolutely no connection between the COVID-19 virus and any canine coronavirus referenced in this article. Most importantly, even though dogs can get a mild respiratory form of the canine-specific coronavirus, that virus is totally unrelated to the current human pandemic. Bottom line: Your [...]"
+  - link "https://www.akc.org/expert-advice/dog-breeding/puppy-plasma-treatment-could-offer-covid-19-clues/" [ref=e66]
+  - text: "| June 1, 2015\n                    \n            \n        \n        \n            \n        \n                 Canine Partners"
+  - link "Incredible Nose Earns Top Titles & Finds Lost Pets" [ref=e67]
+  - text: "Incredible Nose Earns Top Titles and Finds Lost Pets\n\nGriffin Fielding TDX owned by Maureen Fielding of N. Vancouver, British Columbia, Canada\n\nSeven-year-old Griffin came into being through an accidental mating between a black German Shepherd female and a German Short-haired Pointer male.\n\n “He is a fine hunting dog with a strong work [...]"
+  - link "https://www.akc.org/canine-partners/incredible-nose-earns-top-titles-finds-lost-pets/" [ref=e68]
+  - text: "| June 1, 2015\n                    \n            \n        \n        \n            \n        \n                 Canine Partners"
+  - link "Incredible Nose Earns Top Titles & Finds Lost Pets" [ref=e69]
+  - text: "Griffin Fielding TDX owned by Maureen Fielding of N. Vancouver, British Columbia, Canada\n\nSeven-year-old Griffin came into being through an accidental mating between a black German Shepherd female and a German Short-haired Pointer male.\n\n“He is a fine hunting dog with a strong work ethic, making him an excellent tracking dog,” Maureen said.\n\nGriffin started [...]"
+  - link "https://www.akc.org/canine-partners/incredible-nose-earns-top-titles-finds-lost-pets-2/" [ref=e70]
+  - text: "| June 1, 2015"
+  - heading "Showing 1-10 of 5,160 results" [level=3]
+  - text: "1"
+  - link "2" [ref=e71]
+  - link "3" [ref=e72]
+  - text: "…"
+  - link "516" [ref=e73]
+  - link "Next" [ref=e74]
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- link "About AKC" [ref=e75]
+- link "Our Mission" [ref=e76]
+- link "Our History" [ref=e77]
+- link "Minutes & Reports" [ref=e78]
+- link "AKC Library & Archives" [ref=e79]
+- link "Awards & Honors" [ref=e80]
+- link "Press Center" [ref=e81]
+- link "Careers" [ref=e82]
+- link "Newsletter Subscriptions" [ref=e83]
+- link "Meeting Code" [ref=e84]
+- link "Contact Us" [ref=e85]
+- heading "Top Services" [level=3]
+- link "Find a Puppy" [ref=e86]
+- link "Find a Dog Groomer" [ref=e87]
+- link "Register" [ref=e88]
+- link "Enroll a Mixed-Breed Dog" [ref=e89]
+- link "Dog Training Help" [ref=e90]
+- link "Shop AKC Store" [ref=e91]
+- link "AKC Magazines" [ref=e92]
+- heading "Top Resources" [level=3]
+- link "Delegates Portal" [ref=e93]
+- link "Downloadable Forms" [ref=e94]
+- link "Rules, Regulations & Policies" [ref=e95]
+- link "Answer Center" [ref=e96]
+- link "Judges' Directory" [ref=e97]
+- link "Government Relations" [ref=e98]
+- link "Inspections & Compliance" [ref=e99]
+- link "Working It Out℠ Guide & FAQs" [ref=e100]
+- link "Active Shooter & Mass Attack Safety Resources" [ref=e101]
+- heading "Get Involved" [level=3]
+- link "Attend a Dog Show" [ref=e102]
+- link "Participate in an Event" [ref=e103]
+- link "Donate to AKC" [ref=e104]
+- link "Find a Dog Club" [ref=e105]
+- link "AKC Humane Fund" [ref=e106]
+- heading "Favorite Things" [level=3]
+- link "Watch Dog Shows" [ref=e107]
+- link "Top 100 Girl Dog Names" [ref=e108]
+- link "Top 100 Boy Dog Names" [ref=e109]
+- link "Most Popular Dog Breeds" [ref=e110]
+- link "Hypoallergenic Dog Breeds" [ref=e111]
+- link "Why Do Dogs Eat Poop?" [ref=e112]
+- link "Why Is My Dog Limping?" [ref=e113]
+- link "How to Remove a Tick" [ref=e114]
+- link "How to Potty Train a Puppy" [ref=e115]
+- link "Best Dog Podcast" [ref=e116]
+- link "Advertise With AKC" [ref=e117]
+- link "Terms of Use" [ref=e118]
+- link "Privacy & Cookies" [ref=e119]
+- link "Cookie Settings" [ref=e120]
+- link "CA Privacy Rights" [ref=e121]
+- link "Website Info & FAQs" [ref=e122]
+- link "Linking Policy" [ref=e123]
+- link "Material Reproduction Policy" [ref=e124]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved."
+- iframe "Advertisement" [ref=e125]:
+  - button [ref=f17e2]
+- iframe:
+  
+  - iframe:
+    - link [ref=f23e1]
+    - link "Click to learn more about this sponsored product" [ref=f23e2]
+</result>
+
+[7] thinking: **Searching for VetNet**
+
+I need to find information on a feature, possibly called "AKC VetNet." This sounds like something that might be useful for users needing veterinary assistance. The best approach is to search the web to gather relevant details about it. I want to ensure I'm accurately capturing everything that relates to this feature and its purposes. Once I find the information, I can provide a clear summary to help the user!
+
+[8] tool_call: websearch(objective="Find the AKC website page or tool for finding nearby veterinarians, especially with zip code and distance filter.", search_queries=["site:akc.org find vet zip code","AKC find a vet locator","site:akc.org veterinarian locator"], mode="agentic")
+<result tokens_used="89">
+{"search_id":"search_7669a65d7c8b435a88cf5b3e884110c6","results":[{"url":"https://www.apps.akc.org/vetnet/main","title":"American Kennel Club - The Dog's Champion - AKC Veterinary Network","excerpts":["# Breed Explorer\n## Choosing The Right Breed\n### Tools & Quizzes\n* [Find Your Match Answer a few simple questions and find the right dog for you](https://www.akc.org/dog-breed-selector/)\n* [Dog Name Finder Browse our extensive library of dog names for inspiration](https://www.akc.org/dog-name-finder/)\n* [Can My Dog Eat____? Find out the best and worst foods for your dog and which to avoid](https://www.akc.org/dog-food-quiz/)"],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#1"},{"url":"https://www.akcpetinsurance.com/blog/how-to-find-the-best-vet","title":"How to Find the Best Vet For Your Pet | AKC Pet Insurance","publish_date":"2025-02-04","excerpts":["# How to Find the Best Vet\n## How to Choose a Vet Clinic\n* **Recommendations -**If you know other pet owners living in your area, ask them which vet they use and why they chose that clinic. Word of mouth is a great way to find a vet that the community supports and depends on.\n* **Online search -**You can find a lot of information about vet clinics online, including which are accepting new patients, clinic hours, and a bit of background on their current veterinarians. Check out the AKC’s [Veterinary Network](https://webapps.akc.org/vetnet/#/ \"opens in a new window undefined\") to search for a veterinarian.\n* **Reviews -**Whether it’s from a community magazine or a quick search online, reading the reviews for a vet clinic can give you a good idea of how patients and their owners feel about the service. Remember, people don’t leave reviews if they feel neutral about something, so a vet clinic with a high rating probably has a good reputation with their clientele.\n\n...\n\n## Every Dog and Cat Deserves the Pet Insurance of Champions\nGet prize-winning care for your pets.\n[GET A QUOTE](https://quote.akcpetinsurance.com/step-one \"opens in a new window undefined\")\n[](https://twitter.com/intent/tweet?url=https://www.akcpetinsurance.com/blog/how-to-find-the-best-vet) [](https://www.facebook.com/sharer/sharer.php?u=https://www.akcpetinsurance.com/blog/how-to-find-the-best-vet)\nTags\n* \\\n* \\\nMary Bays\nMary comes to AKC Pet Insurance with an extensive background in animal care. As a lifelong animal lover, she has a passion for promoting pet health and wellness. Mary lives in Kentucky with her orange kitty, \"Cat\" and her dog, \" Wubbi\".\nREAD MORE ARTICLES\n\n## Related Articles\nView All\n* The AKC’s Most Popular Dog Breeds of 2021\n  The American Kennel Club (AKC) recently released their list of the most popular dog breeds in America for 2021, and there are some surprises in store!\n  Read more\n* Cat Ownership 101 – The Essentials to Keeping Your New Cat Happy and Healthy\n  Nervous about getting a new cat? Here's everything you need to know to best acclimate your cat to their new home and ensure they're happy and healthy.\n  Read more\n* Does Your Puppy Have Cabin Fever?\n  Keeping your dog or puppy entertained in the winter can be a hassle with the frigid temperatures. Here are some ways to keep your pooch busy without freezing!\n  Read more\n\n...\n\nThe initial 30 days of accident and illness pet insurance is administered by PetPartners, Inc. (PPI) available to U.S. residents, but not available in all states (CA, NY, and WA). Eligibility restrictions apply. Offer for 30 days of initial pet insurance coverage must be activated within 28 days of your pet’s registration date with The American Kennel Club (AKC) for coverage to take effect. Premium is deferred for 30 days for the initial 30 days of coverage. Waiting/exclusionary periods for Intervertebral Disc Disease (IVDD), Cruciate Ligament, and Pre-Existing Conditions still apply. Pre-existing conditions may be eligible after 365 days of continuous coverage.\n\n...\n\nInsurance products are underwritten by Independence American Insurance Company (NAIC #26581) or Independence Pet Insurance Company (NAIC #17543). Independence American Insurance Company and Independence Pet Insurance Company are Delaware insurance companies located at 11333 N Scottsdale Rd., Ste. 160, Scottsdale, AZ 85254. Policies are produced by PetPartners, Inc. (NPN #7612549),domiciled in Delaware with corporate offices at Scottsdale, AZ. California producer license #0F27261, PPI Pet Insurance Agency, Inc. “AKC Pet Insurance” program is a marketing name used by PPI and is not an AKC business nor an insurer. AKC does not offer or sell insurance plans. “AKC” and its related trademarks are used by PPI under license; AKC may receive compensation from PPI."],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#2"},{"url":"https://www.akc.org/expert-advice/health/how-to-find-best-veterinarian/","title":"How to Find the Best Veterinarian – American Kennel Club","publish_date":"2024-02-09","excerpts":["# How to Find the Best Veterinarian\nBy [Harriet Meyers](https://www.akc.org/author/harriet-meyers/ \"Posts by Harriet Meyers\")\nUpdated: Feb 09, 2024 | 3 Minutes\nUpdated: Feb 09, 2024 | 3 Minutes\n* [responsible dog ownership](https://www.akc.org/tag/responsible-dog-ownership/)\n* [vaccinations](https://www.akc.org/tag/vaccinations/)\n* [find a veterinarian](https://www.akc.org/tag/find-a-veterinarian/)\n* [health testing](https://www.akc.org/tag/health-testing/)\n* [vet visits](https://www.akc.org/tag/vet-visits/)\nChoosing the right veterinarian for your dog is a serious decision. You’ll want to consider factors such as your dog’s age, underlying medical conditions, or previous injuries and surgeries. Your dog may need a veterinarian with specialty training, with state-of-the-art equipment, or one who offers special services.\nHere are a few tips on what to do when selecting a veterinarian:\n\n## Get Recommendations\nTalk to neighbors, friends, and family. Find out whom they use and are willing to recommend. Talk to breeders or breed club members who likely know of veterinarians knowledgeable about your breed and the types of problems they experience. [Groomers](https://www.akc.org/content/dog-care/articles/how-to-groom-a-dog/) , managers of local shelters, and [local dog trainers](https://www.akc.org/expert-advice/training/choosing-a-dog-trainer/) could be helpful, and state and local veterinary societies can also help you locate a convenient, reputable veterinarian.\n©New Africa - stock.adobe.com\n\n...\n\n## Consider Location\nA close and convenient location is beneficial when you’re taking your dog to the vet. Should your dog need [emergency care](https://www.akc.org/expert-advice/home-living/do-you-have-disaster-plan-for-dog/) , you’ll want to know exactly where to go. If your new veterinarian does not provide 24-hour care, they should provide precise directions to the nearest 24-hour emergency facility."],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#3"},{"url":"https://www.akc.org/products-services/akc-vetline/","title":"AKC Vetline – American Kennel Club","excerpts":["# About AKC Vetline\nAKC Vetline is a live telephone service that offers 24/7 health advice from licensed veterinary staff and pet professionals. Vetline provides trustworthy info regarding your pet’s health whenever and wherever you need it.\nFor $99/yr Vetline can support you through every health-related question. Not sure whether your dog’s strange behavior warrants a trip to the vet? Or has your dog ever eaten something he shouldn’t? Vetline connects pet owners to expert advice in just one call. *\n[Frequently Asked Questions](https://www.akc.org/products-services/akc-vetline/faq)\n\n## What is included in AKC Vetline?\nAKC Vetline gives you immediate expert advice to help keep your pets happy and healthy. The service is designed to advise pet owners on all health-related issues, including when an incident is severe enough to warrant an emergency vet visit.\nServices include:\n  + Answers to questions regarding general pet health, parasite prevention, illness and injury, poison issues, and nutrition. *\n    + Advice on whether you should take your dog to the vet or seek further medical attention for a potential problem.\n    + Access to veterinarians, licensed veterinary techs, toxicologists, and other pet-care professionals.\n    + 24/7 unlimited access via a toll-free phone number.\n\n...\n\n### Determine Veterinary Attention\nAKC Vetline experts can help you determine if the severity of your dog’s health problem requires further medical attention. With unnecessary vet visits ranging from $100 – 200 per visit, AKC Vetline can help you decide if taking your dog to a local veterinary practice is the right choice for you.\n[AKC Veterinary Network](https://webapps.akc.org/vetnet/#/main)\n\n...\n\n### AKC Vet's Corner\n> Our dog Lulu was struggling with some pretty severe seasonal allergy symptoms. Vetline gave us ideas to provide immediate relief for Lulu's symptoms, as well as long term options to discuss with our vet such as medications that might be available to help Lulu deal with her allergy issues. We love that Vetline is available 24/7 to answer any questions we have and to give us the advice and support we need when dealing with our furry friends!Katherine & Lulu\n> I want to give a big THANK YOU to the AKC Vetline staff. My experience calling in could not have been better. I initially called to get some more information on issues with flea and tick control Sasha was experiencing. They were able to answer my questions and give me advice on how to solve this issue better. Since then, I have called in many times about different concerns, and the staff have ALWAYS been companionate and knowledgeable.Teresa & Sasha\n_*Please note that the AKC Vetline **cannot** prescribe or recommend medications, diagnose diseases, provide “second opinions”, or provide any other medical advice that necessitates a corresponding physical exam and/or legal veterinary-client-patient relationship. They will be able to field questions surrounding triage of an ill animal to help the pet owner determine if the pet needs immediate veterinary intervention. Additionally, they will be able to answer questions regarding general health, parasite prevention, illness and injury, poison issues, and nutrition. For the full Terms & Conditions for AKC Vetline, please [click here](https://www.akc.org/products-services/akc-vetline/terms-use-akc-vetline/) ._\nTOP\nFounded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports.\n\n### ABOUT US +\n* [About AKC](https://www.akc.org/about/)\n* [Our Mission](https://akc.org/about/mission)\n* [Our History](https://akc.org/about/history/)\n* [Minutes & Reports](https://akc.org/about/minutes-reports/)\n* [AKC Library & Archives](https://akc.org/about/archive/)\n* [Awards & Honors](https://akc.org/about/awards-and-honors/)\n* [Press Center](https://akc.org/press-center/)\n* [Careers](https://akc.org/careers-at-akc/)\n* [Newsletter Subscriptions](https://akc.org/subscription/)\n* Meeting Code\n* [Contact Us](https://www.apps.akc.org/apps/contact/index.cfm)"],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#4"},{"url":"https://www.akc.org/","title":"American Kennel Club (AKC)","excerpts":["# Everything We Do, We Do for Dogs\n## Find The Right Breed\n[Explore Breeds](https://www.akc.org/dog-breeds/)\n[Find Your Match](https://www.akc.org/dog-breed-selector/)\n[Compare Breeds](https://www.akc.org/compare-breeds/)\n[Dog Name Finder](https://www.akc.org/dog-name-finder/)\n\n...\n\n## AKC Canine Health Foundation\nThe AKC Canine Health Foundation is a nonprofit organization dedicated to the prevention and treatment of diseases in all dogs. Since 1995, we’ve been awarding grants to scientists and professionals to advance canine health research, while providing professional information and resources for today’s dog owner.\n[Learn About AKC Canine Health Foundation](https://www.akcchf.org/)\n\n...\n\n## AKC Reunite\nAKC Reunite is North America’s largest not-for-profit pet ID and recovery service, providing microchipping and ID services as well as a national recovery database to safely return dogs home should they get lost and, through AKC Pet Disaster Relief, helping local Emergency Management to provide animal care services immediately following disasters.\n[Learn About AKC Reunite](https://www.akcreunite.org/)\n\n...\n\n## Protecting Your Rights\nThe AKC Government Relations Department (GR) leads advocacy and legislative efforts to protect the rights of all dog owners, promote responsible dog ownership and ensure that laws governing dog ownership and breeding are reasonable, enforceable and non-discriminatory. AKC GR monitors and addresses canine legislation that impacts dog ownership, and is pleased to offer a wide range of educational materials, policy resources and assistance to dog owners, club/community leaders and policymakers alike.\n[Learn About AKC Government Relations](https://www.akc.org/clubs-delegates/government-relations/)\n\n...\n\n## Sports & Events\n### ABOUT US +\n* [About AKC](https://www.akc.org/about/)\n* [Our Mission](https://akc.org/about/mission)\n* [Our History](https://akc.org/about/history/)\n* [Minutes & Reports](https://akc.org/about/minutes-reports/)\n* [AKC Library & Archives](https://akc.org/about/archive/)\n* [Awards & Honors](https://akc.org/about/awards-and-honors/)\n* [Press Center](https://akc.org/press-center/)\n* [Careers](https://akc.org/careers-at-akc/)\n* [Newsletter Subscriptions](https://akc.org/subscription/)\n* Meeting Code\n* [Contact Us](https://www.apps.akc.org/apps/contact/index.cfm)"],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#5"},{"url":"https://www.akcreunite.org/faq-items/can-you-help-find-me-a-veterinarian-that-uses-your-brand-of-microchips-in-my-area/?srsltid=AfmBOoqC42VNNe8fzb-cWV2QZn32BmCSXZoSvbdxmUEo0eDqKrHppXL5","title":"Can you locate a vet that uses your microchips in my area?","excerpts":["AAHA provides an internet-based application that enables veterinarians , humane organizations, pet owners or other persons to search various Pet Recovery Service"],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#6"},{"url":"https://www.apps.akc.org/vetnet/certificate","title":"American Kennel Club - The Dog's Champion - AKC Veterinary Network","excerpts":["[](https://www.akc.org)\n[Event Search](https://www.apps.akc.org/event-search) [Find a Puppy](https://marketplace.akc.org/)  [Shop](https://shop.akc.org/) [AKC TV](https://akc.tv/?utm_source=akc.org&utm_medium=homepage&utm_campaign=utility_bar)\n[](https://www.akc.org)\nSearch  Menu\nFounded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports.\n\n# ABOUT US +\n* [About AKC](https://www.akc.org/about/)\n* [Our Mission](https://akc.org/about/mission)\n* [Our History](https://akc.org/about/history/)\n* [Minutes & Reports](https://akc.org/about/minutes-reports/)\n* [AKC Library & Archives](https://akc.org/about/archive/)\n* [Awards & Honors](https://akc.org/about/awards-and-honors/)\n* [Press Center](https://akc.org/press-center/)\n* [Careers](https://akc.org/careers-at-akc/)\n* [Newsletter Subscriptions](https://akc.org/subscription/)\n* Meeting Code\n* [Contact Us](https://www.apps.akc.org/apps/contact/index.cfm)"],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#7"},{"url":"http://www.akc.org/expert-advice/vets-corner/","title":"Vet's Corner – American Kennel Club","excerpts":["[](https://www.akc.org)\n[Event Search](https://www.apps.akc.org/event-search) [Find a Puppy](https://marketplace.akc.org/)  [Shop](https://shop.akc.org/) [AKC TV](https://akc.tv/?utm_source=akc.org&utm_medium=homepage&utm_campaign=utility_bar)\n[](https://www.akc.org)\nSearch  Menu\nFollow Us\n1 [2](https://www.akc.org/expert-advice/vets-corner/page/2/) [3](https://www.akc.org/expert-advice/vets-corner/page/3/) [4](https://www.akc.org/expert-advice/vets-corner/page/4/) [Next](https://www.akc.org/expert-advice/vets-corner/page/2/)\nTOP\nFounded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports.\n\n# ABOUT US +\n* [About AKC](https://www.akc.org/about/)\n* [Our Mission](https://akc.org/about/mission)\n* [Our History](https://akc.org/about/history/)\n* [Minutes & Reports](https://akc.org/about/minutes-reports/)\n* [AKC Library & Archives](https://akc.org/about/archive/)\n* [Awards & Honors](https://akc.org/about/awards-and-honors/)\n* [Press Center](https://akc.org/press-center/)\n* [Careers](https://akc.org/careers-at-akc/)\n* [Newsletter Subscriptions](https://akc.org/subscription/)\n* Meeting Code\n* [Contact Us](https://www.apps.akc.org/apps/contact/index.cfm)"],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#8"},{"url":"https://www.akc.org/expert-advice/news/finding-a-breeders-vet/","title":"Finding a “Breeder's Vet” - American Kennel Club","publish_date":"2021-05-26","excerpts":["# Finding a “Breeder’s Vet”\n**Decide on how you might use various veterinary hospitals in your area** . Can you use the same clinic for routine care, emergencies, reproductive procedures, and health testing, or do you need to visit different clinics and veterinarians for these services? Find out who covers emergencies locally. Is your clinic available after hours, or would you need to go to a rotating-location or emergency-only clinic? Some clients travel long-distance to our clinic for services such as reproductive procedures, pre-breeding screenings, or complicated surgeries but use a closer clinic for routine exams, vaccinations, and minor issues.\n\n...\n\n## Tips for Responsible Dog Owners\nThis e-book is a great resource for anyone who's considering dog ownership or already owns a dog. Download for tips on how to be the best dog owner you can be.\nSUBMIT\n*Turn off pop-up blocker to download\n[DOWNLOAD E-BOOK](http://images.akc.org/pdf/ebook/Responsible_Dog_Owners.pdf)\n*Turn off pop-up blocker to download\n[AKC Privacy Policy](https://www.akc.org/privacy)\nAKC is a participant in affiliate advertising programs designed to provide a means for sites to earn advertising fees by advertising and linking to akc.org. If you purchase a product through this article, we may receive a portion of the sale.\nTOP\nFounded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#9"},{"url":"https://apps.akcreunite.org/cares-pub/customer/faqs.car","title":"Online Records System | Frequently Asked Questions | AKC Reunite","excerpts":["# ONLINE RECORDS SYSTEM FAQ\n## How do I link my pet's enrollment to my Online Records System Account?\n1. Select the type of ID your pet has. It could be a microchip ID number, the ID number on your pet's AKC Reunite collar tag, or your dog's AKC Registration number.\n2. Enter the ID number.\n3. Enter the last name and zip code of the Primary Contact on the pet's enrollment record with AKC Reunite.\n4. Refer to your pet's AKC Reunite Enrollment Confirmation for your pet's Enrollment Key and enter it in the Enrollment Key field. If you cannot locate your pet's Enrollment Key, you can request we email it to the address from the pet's enrollment record, or you can call us at 800-252-7894.\n5. Click the Search button after all of these fields are complete."],"source_id":"search_7669a65d7c8b435a88cf5b3e884110c6#10"}],"usage":[{"name":"sku_search","count":1}]}
+</result>
+
+[9] tool_call: repl("Opening AKC Veterinary Network")
+<request>
+const p2 = await openTab('https://www.apps.akc.org/vetnet/main');
+const s5 = await snapshot(page, {interactive:true});
+console.log(s5.tree);
+</request>
+<result tokens_used="86" elapsed_time="3650ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → American Kennel Club - The Dog's Champion - AKC Veterinary Network (https://www.apps.akc.org/vetnet/main)
+# note: interactive (clickable / focusable) elements only.
+- title: "American Kennel Club - The Dog's Champion - AKC Veterinary Network" [url=https://www.apps.akc.org/vetnet/main]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- checkbox [ref=e8] [hidden]
+- button [ref=e9]
+- textbox "Search" [ref=e10] [placeholder="Search"]
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- link "About AKC" [ref=e11]
+- link "Our Mission" [ref=e12]
+- link "Our History" [ref=e13]
+- link "Minutes & Reports" [ref=e14]
+- link "AKC Library & Archives" [ref=e15]
+- link "Awards & Honors" [ref=e16]
+- link "Press Center" [ref=e17]
+- link "Careers" [ref=e18]
+- link "Newsletter Subscriptions" [ref=e19]
+- link "Meeting Code" [ref=e20]
+- link "Contact Us" [ref=e21]
+- heading "Top Services" [level=3]
+- link "Find a Puppy" [ref=e22]
+- link "Find a Dog Groomer" [ref=e23]
+- link "Register" [ref=e24]
+- link "Enroll a Mixed-Breed Dog" [ref=e25]
+- link "Dog Training Help" [ref=e26]
+- link "Shop AKC Store" [ref=e27]
+- link "AKC Magazines" [ref=e28]
+- heading "Top Resources" [level=3]
+- link "Delegates Portal" [ref=e29]
+- link "Downloadable Forms" [ref=e30]
+- link "Rules, Regulations & Policies" [ref=e31]
+- link "Answer Center" [ref=e32]
+- link "Judges' Directory" [ref=e33]
+- link "Government Relations" [ref=e34]
+- link "Inspections & Compliance" [ref=e35]
+- link "Working It Out℠ Guide & FAQs" [ref=e36]
+- link "Active Shooter & Mass Attack Safety Resources" [ref=e37]
+- heading "Get Involved" [level=3]
+- link "Attend a Dog Show" [ref=e38]
+- link "Participate in an Event" [ref=e39]
+- link "Donate to AKC" [ref=e40]
+- link "Find a Dog Club" [ref=e41]
+- link "AKC Humane Fund" [ref=e42]
+- heading "Favorite Things" [level=3]
+- link "Watch Dog Shows" [ref=e43]
+- link "Top 100 Girl Dog Names" [ref=e44]
+- link "Top 100 Boy Dog Names" [ref=e45]
+- link "Most Popular Dog Breeds" [ref=e46]
+- link "Hypoallergenic Dog Breeds" [ref=e47]
+- link "Why Do Dogs Eat Poop?" [ref=e48]
+- link "Why Is My Dog Limping?" [ref=e49]
+- link "How to Remove a Tick" [ref=e50]
+- link "How to Potty Train a Puppy" [ref=e51]
+- link "Best Dog Podcast" [ref=e52]
+- link "Advertise With AKC" [ref=e53]
+- link "Terms of Use" [ref=e54]
+- link "Privacy & Cookies" [ref=e55]
+- link "Cookie Settings" [ref=e56]
+- link "CA Privacy Rights" [ref=e57]
+- link "Website Info & FAQs" [ref=e58]
+- link "Linking Policy" [ref=e59]
+- link "Material Reproduction Policy" [ref=e60]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved."
+</result>
+
+[10] tool_call: repl("Opening hash-based vet locator")
+<request>
+const p3 = await openTab('https://webapps.akc.org/vetnet/#/main');
+const s6 = await snapshot(page, {interactive:true});
+console.log(s6.tree);
+</request>
+<result tokens_used="109" elapsed_time="1496ms">
+✔︎ Opened a new tab and set it active: tabs[2], page → American Kennel Club - The Dog's Champion - AKC Veterinary Network (https://www.apps.akc.org/vetnet//)
+# note: interactive (clickable / focusable) elements only.
+- title: "American Kennel Club - The Dog's Champion - AKC Veterinary Network" [url=https://www.apps.akc.org/vetnet//]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - tab "Dog Info" [ref=e8]
+  - tab "Registration" [ref=e9]
+  - tab "Sports & Events" [ref=e10]
+  - tab "Clubs & Delegates" [ref=e11]
+  - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- button [ref=e14]
+- textbox "Search" [ref=e15] [placeholder="Search"]
+- main:
+  - complementary:
+    - link "Vetnet Home" [ref=e16]
+    - generic "For Dog Owners +" [ref=e17]
+    - generic "For Veterinarians +" [ref=e18]
+    - link [ref=e19]
+    - link [ref=e20]
+  - heading "AKC Veterinary Network" [level=1]
+  - link "Certificate Program" [ref=e21]
+  - text: "Learn how your puppy can receive a complimentary first office visit to a veterinarian."
+  - link "Search for a Veterinarian" [ref=e22]
+  - text: "Search for a participating practice in the AKC Veterinary Network."
+  - link "FAQs" [ref=e23]
+  - text: "Answers to frequently asked questions about the AKC Veterinary Network Certificate Program."
+  - link "Benefits of AKC Registration" [ref=e24]
+  - text: "Discover the benefits of registering your purebred dog with the AKC."
+  - link "About the Program" [ref=e25]
+  - text: "About the AKC Veterinary Network Program."
+  - link "Enroll Your Practice" [ref=e26]
+  - text: "Enroll your practice into the AKC Veterinary Network."
+  - link "Edit Practice Information" [ref=e27]
+  - text: "Keep your practice information current."
+  - link "Reorder Educational Materials" [ref=e28]
+  - text: "Reorder Educational Materials for your practice."
+  - link "Opt-out of Program" [ref=e29]
+  - text: "Opt-out of the AKC Veterinary Network."
+  - heading "Helpful Links" [level=3]
+  - link "Overview" [ref=e30]
+  - link "FAQs" [ref=e31]
+  - link "Quick Links" [ref=e32]
+  - link "AKC Canine Health Foundation" [ref=e33]
+  - link "Top Health Concerns Fact Sheets" [ref=e34]
+  - link "VetVine Webinars" [ref=e35]
+  - text: "Veterinary Outreach Program"
+  - link "Research Portfolio" [ref=e36]
+  - link "Tribute Cards" [ref=e37]
+  - link "Emergencies and First Aids" [ref=e38]
+  - link "Grooming" [ref=e39]
+  - link "Training Clubs" [ref=e40]
+  - link "AKC STAR Puppy®" [ref=e41]
+  - text: "Health Links"
+  - link "Canine Good Citizen® (CGC)" [ref=e42]
+  - link "Canine Partners" [ref=e43]
+  - link "Events" [ref=e44]
+  - text: "Training"
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- link "About AKC" [ref=e45]
+- link "Our Mission" [ref=e46]
+- link "Our History" [ref=e47]
+- link "Minutes & Reports" [ref=e48]
+- link "AKC Library & Archives" [ref=e49]
+- link "Awards & Honors" [ref=e50]
+- link "Press Center" [ref=e51]
+- link "Careers" [ref=e52]
+- link "Newsletter Subscriptions" [ref=e53]
+- link "Meeting Code" [ref=e54]
+- link "Contact Us" [ref=e55]
+- heading "Top Services" [level=3]
+- link "Find a Puppy" [ref=e56]
+- link "Find a Dog Groomer" [ref=e57]
+- link "Register" [ref=e58]
+- link "Enroll a Mixed-Breed Dog" [ref=e59]
+- link "Dog Training Help" [ref=e60]
+- link "Shop AKC Store" [ref=e61]
+- link "AKC Magazines" [ref=e62]
+- heading "Top Resources" [level=3]
+- link "Delegates Portal" [ref=e63]
+- link "Downloadable Forms" [ref=e64]
+- link "Rules, Regulations & Policies" [ref=e65]
+- link "Answer Center" [ref=e66]
+- link "Judges' Directory" [ref=e67]
+- link "Government Relations" [ref=e68]
+- link "Inspections & Compliance" [ref=e69]
+- link "Working It Out℠ Guide & FAQs" [ref=e70]
+- link "Active Shooter & Mass Attack Safety Resources" [ref=e71]
+- heading "Get Involved" [level=3]
+- link "Attend a Dog Show" [ref=e72]
+- link "Participate in an Event" [ref=e73]
+- link "Donate to AKC" [ref=e74]
+- link "Find a Dog Club" [ref=e75]
+- link "AKC Humane Fund" [ref=e76]
+- heading "Favorite Things" [level=3]
+- link "Watch Dog Shows" [ref=e77]
+- link "Top 100 Girl Dog Names" [ref=e78]
+- link "Top 100 Boy Dog Names" [ref=e79]
+- link "Most Popular Dog Breeds" [ref=e80]
+- link "Hypoallergenic Dog Breeds" [ref=e81]
+- link "Why Do Dogs Eat Poop?" [ref=e82]
+- link "Why Is My Dog Limping?" [ref=e83]
+- link "How to Remove a Tick" [ref=e84]
+- link "How to Potty Train a Puppy" [ref=e85]
+- link "Best Dog Podcast" [ref=e86]
+- link "Advertise With AKC" [ref=e87]
+- link "Terms of Use" [ref=e88]
+- link "Privacy & Cookies" [ref=e89]
+- link "Cookie Settings" [ref=e90]
+- link "CA Privacy Rights" [ref=e91]
+- link "Website Info & FAQs" [ref=e92]
+- link "Linking Policy" [ref=e93]
+- link "Material Reproduction Policy" [ref=e94]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved."
+- region "Cookie banner" [ref=e95]:
+  - dialog "We use cookies":
+    - heading "We use cookies" [level=2]
+    - text: "We use necessary cookies to make our website function.  We’d like to use additional cookies to understand our website traffic, make improvements, remember your preferences, load videos, and allow our customer support team to provide assistance regarding the use of our website. We also use cookies from other sites to help deliver content from their services. By clicking \"Accept All Cookies\", and continuing to browse our website, we consider that you accept our Terms of Use (https://www.akc.org/terms-of-use) and also agree to the terms of our Privacy Notice (https://www.akc.org/privacy)."
+    - button "Cookie Settings, Opens the preference center dialog" [ref=e96]: "Cookie Settings"
+    - button "Accept All Cookies" [ref=e97]
+</result>
+
+[11] tool_call: repl("Opening veterinarian search form")
+<request>
+await page.locator('e97').click().catch(()=>{});
+await page.locator('e22').click();
+const s7 = await snapshot(page);
+console.log(s7.diff);
+</request>
+<result tokens_used="79" elapsed_time="1707ms">
+- title: "American Kennel Club - The Dog's Champion - AKC Veterinary Network" [url=https://www.apps.akc.org/vetnet//]
+- button "Accessibility Menu" [ref=e98]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - listitem "Dog Info" [ref=e99]:
+    - tab "Dog Info" [ref=e8]
+  - listitem "Registration" [ref=e100]:
+    - tab "Registration" [ref=e9]
+  - listitem "Sports & Events" [ref=e101]:
+    - tab "Sports & Events" [ref=e10]
+  - listitem "Clubs & Delegates" [ref=e102]:
+    - tab "Clubs & Delegates" [ref=e11]
+  - listitem "Expert Advice" [ref=e103]:
+    - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- form:
+  - button [ref=e14]
+  - textbox "Search" [ref=e15] [placeholder="Search"]
+- main:
+  - complementary:
+    - list:
+      - listitem "Vetnet Home" [ref=e104]:
+        - link "Vetnet Home" [ref=e16]
+        - generic "For Dog Owners +" [ref=e17]
+      - listitem:
+        - generic "For Veterinarians +" [ref=e18]
+    - paragraph:
+      - link [ref=e19]
+    - paragraph:
+      - link [ref=e20]
+  - heading "Vet Search" [level=1]
+  - text: "Search for a participating practice in the AKC veterinary network."
+  - form:
+    - generic [ref=e105]:
+      - radio [ref=e106] [hidden] [checked]
+      - label
+    - text: "ZIP CODE"
+    - textbox [ref=e107]
+    - text: "Radius"
+    - generic "25 miles" [ref=e108]
+  - form:
+    - generic [ref=e109]:
+      - radio [ref=e110] [hidden]
+      - label
+    - text: "CITY"
+    - textbox [ref=e111] [disabled]
+    - text: "State"
+    - text: "PRACTICE NAME"
+    - textbox [ref=e114] [disabled]
+  - form:
+    - checkbox "*" [ref=e115] [hidden]
+    - label "*" [ref=e117]
+    - label [ref=e118]
+    - text: "I agree to the  AKC Veterinary Network Terms of Use **"
+    - button "Clear" [ref=e119] [disabled]
+    - button "Search" [ref=e120] [disabled]
+  - text: "**AKC Veterinary Network Terms of Use  AKC is not affiliated with and does not license or endorse any veterinarians, including those listed on akc.org. AKC has no control over veterinarians' business practices and is not liable for any dealings between you and any veterinarian. The AKC does not provide healthcare and makes no warranty or guarantee as to the quality of care provided by any of these practices. The AKC accepts no responsibility for any transactions between you and the veterinarian. These listings are provided only as a service to the public."
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- list:
+  - listitem "About AKC" [ref=e121]:
+    - link "About AKC" [ref=e45]
+  - listitem "Our Mission" [ref=e122]:
+    - link "Our Mission" [ref=e46]
+  - listitem "Our History" [ref=e123]:
+    - link "Our History" [ref=e47]
+  - listitem "Minutes & Reports" [ref=e124]:
+    - link "Minutes & Reports" [ref=e48]
+  - listitem "AKC Library & Archives" [ref=e125]:
+    - link "AKC Library & Archives" [ref=e49]
+  - listitem "Awards & Honors" [ref=e126]:
+    - link "Awards & Honors" [ref=e50]
+  - listitem "Press Center" [ref=e127]:
+    - link "Press Center" [ref=e51]
+  - listitem "Careers" [ref=e128]:
+    - link "Careers" [ref=e52]
+  - listitem "Newsletter Subscriptions" [ref=e129]:
+    - link "Newsletter Subscriptions" [ref=e53]
+  - listitem "Meeting Code" [ref=e130]:
+    - link "Meeting Code" [ref=e54]
+  - listitem "Contact Us" [ref=e131]:
+    - link "Contact Us" [ref=e55]
+- heading "Top Services" [level=3]
+- list:
+  - listitem "Find a Puppy" [ref=e132]:
+    - link "Find a Puppy" [ref=e56]
+  - listitem "Find a Dog Groomer" [ref=e133]:
+    - link "Find a Dog Groomer" [ref=e57]
+  - listitem "Register" [ref=e134]:
+    - link "Register" [ref=e58]
+  - listitem "Enroll a Mixed-Breed Dog" [ref=e135]:
+    - link "Enroll a Mixed-Breed Dog" [ref=e59]
+  - listitem "Dog Training Help" [ref=e136]:
+    - link "Dog Training Help" [ref=e60]
+  - listitem "Shop AKC Store" [ref=e137]:
+    - link "Shop AKC Store" [ref=e61]
+  - listitem "AKC Magazines" [ref=e138]:
+    - link "AKC Magazines" [ref=e62]
+- heading "Top Resources" [level=3]
+- list:
+  - listitem "Delegates Portal" [ref=e139]:
+    - link "Delegates Portal" [ref=e63]
+  - listitem "Downloadable Forms" [ref=e140]:
+    - link "Downloadable Forms" [ref=e64]
+  - listitem "Rules, Regulations & Policies" [ref=e141]:
+    - link "Rules, Regulations & Policies" [ref=e65]
+  - listitem "Answer Center" [ref=e142]:
+    - link "Answer Center" [ref=e66]
+  - listitem "Judges' Directory" [ref=e143]:
+    - link "Judges' Directory" [ref=e67]
+  - listitem "Government Relations" [ref=e144]:
+    - link "Government Relations" [ref=e68]
+  - listitem "Inspections & Compliance" [ref=e145]:
+    - link "Inspections & Compliance" [ref=e69]
+  - listitem "Working It Out℠ Guide & FAQs" [ref=e146]:
+    - link "Working It Out℠ Guide & FAQs" [ref=e70]
+  - listitem "Active Shooter & Mass Attack Safety Resources" [ref=e147]:
+    - link "Active Shooter & Mass Attack Safety Resources" [ref=e71]
+- heading "Get Involved" [level=3]
+- list:
+  - listitem "Attend a Dog Show" [ref=e148]:
+    - link "Attend a Dog Show" [ref=e72]
+  - listitem "Participate in an Event" [ref=e149]:
+    - link "Participate in an Event" [ref=e73]
+  - listitem "Donate to AKC" [ref=e150]:
+    - link "Donate to AKC" [ref=e74]
+  - listitem "Find a Dog Club" [ref=e151]:
+    - link "Find a Dog Club" [ref=e75]
+  - listitem "AKC Humane Fund" [ref=e152]:
+    - link "AKC Humane Fund" [ref=e76]
+- heading "Favorite Things" [level=3]
+- list:
+  - listitem "Watch Dog Shows" [ref=e153]:
+    - link "Watch Dog Shows" [ref=e77]
+  - listitem "Top 100 Girl Dog Names" [ref=e154]:
+    - link "Top 100 Girl Dog Names" [ref=e78]
+  - listitem "Top 100 Boy Dog Names" [ref=e155]:
+    - link "Top 100 Boy Dog Names" [ref=e79]
+  - listitem "Most Popular Dog Breeds" [ref=e156]:
+    - link "Most Popular Dog Breeds" [ref=e80]
+  - listitem "Hypoallergenic Dog Breeds" [ref=e157]:
+    - link "Hypoallergenic Dog Breeds" [ref=e81]
+  - listitem "Why Do Dogs Eat Poop?" [ref=e158]:
+    - link "Why Do Dogs Eat Poop?" [ref=e82]
+  - listitem "Why Is My Dog Limping?" [ref=e159]:
+    - link "Why Is My Dog Limping?" [ref=e83]
+  - listitem "How to Remove a Tick" [ref=e160]:
+    - link "How to Remove a Tick" [ref=e84]
+  - listitem "How to Potty Train a Puppy" [ref=e161]:
+    - link "How to Potty Train a Puppy" [ref=e85]
+  - listitem "Best Dog Podcast" [ref=e162]:
+    - link "Best Dog Podcast" [ref=e86]
+- list:
+  - listitem "Advertise With AKC" [ref=e163]:
+    - link "Advertise With AKC" [ref=e87]
+  - listitem "Terms of Use" [ref=e164]:
+    - link "Terms of Use" [ref=e88]
+  - listitem "Privacy & Cookies" [ref=e165]:
+    - link "Privacy & Cookies" [ref=e89]
+  - listitem "Cookie Settings" [ref=e166]:
+    - link "Cookie Settings" [ref=e90]
+  - listitem "CA Privacy Rights" [ref=e167]:
+    - link "CA Privacy Rights" [ref=e91]
+  - listitem "Website Info & FAQs" [ref=e168]:
+    - link "Website Info & FAQs" [ref=e92]
+  - listitem "Linking Policy" [ref=e169]:
+    - link "Linking Policy" [ref=e93]
+  - listitem "Material Reproduction Policy" [ref=e170]:
+    - link "Material Reproduction Policy" [ref=e94]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    \n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n \n \n  \n  \n   Need help with your registration? Call us today at 919-233-9767 to register your dog over the phone!"
+- button "X" [ref=e171]
+</result>
+
+[12] thinking: **Inspecting radius settings**
+
+I think the radius indicating "25 miles" might be due to an inaccessible dropdown. I should probably set it to 50 instead. I need to inspect the full interactive settings and check if labels are clear. I also need to enter a zip code and agree to search. It seems like the radius control is standard, so let’s take a snapshot after clicking the radius to help with further analysis.
+
+[13] tool_call: repl("Inspecting radius selector")
+<request>
+await page.locator('e108').click();
+const s8 = await snapshot(page);
+console.log(s8.diff);
+</request>
+<result tokens_used="103" elapsed_time="366ms">
+@@ -48,0 +48,11 @@
++    - textbox "Search" [ref=e172] [focused] [placeholder="Search"]
++    - list:
++      - listitem [ref=e173]:
++        - checkbox [ref=e174] [checked]
++        - label: "25 miles"
++      - listitem [ref=e175]:
++        - checkbox [ref=e176]
++        - label: "50 miles"
++      - listitem [ref=e177]:
++        - checkbox [ref=e178]
++        - label: "100 miles"
+@@ -179,0 +190 @@
++- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[14] tool_call: repl("Submitting AKC vet search")
+<request>
+await page.locator('e175').click();
+const s9 = await snapshot(page);
+console.log(s9.diff);
+// Need use current refs from s9; fill by visible fields maybe nth
+await page.locator('input').nth(1).fill('75228');
+// click terms checkbox maybe label or input
+await page.locator('input[type="checkbox"]').first().check({force:true});
+const s10 = await snapshot(page, {interactive:true});
+console.log(s10.diff);
+</request>
+<result tokens_used="159" elapsed_time="5621ms">
+Error: Error: Timeout waiting for element to be ready
+    at ensurePointerActionable (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/actions.ts:311:13)
+    at async runClick (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/actions.ts:519:13)
+    at async performActionAndWait (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/wait.ts:661:14)
+    at async clickElement (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/actions.ts:612:7)
+    at async checkElement (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/actions.ts:905:5)
+    at async Locator.check (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/locator.ts:171:5)
+    at async repl.js:7:1
+@@ -47,12 +47 @@
+-    - generic "25 miles" [ref=e108]
+-    - textbox "Search" [ref=e172] [focused] [placeholder="Search"]
+-    - list:
+-      - listitem [ref=e173]:
+-        - checkbox [ref=e174] [checked]
+-        - label: "25 miles"
+-      - listitem [ref=e175]:
+-        - checkbox [ref=e176]
+-        - label: "50 miles"
+-      - listitem [ref=e177]:
+-        - checkbox [ref=e178]
+-        - label: "100 miles"
++    - generic "50 miles" [ref=e108]
+</result>
+
+[15] tool_call: repl("Checking vet search form state")
+<request>
+const s11 = await snapshot(page, {interactive:true});
+console.log(s11.tree);
+</request>
+<result tokens_used="63" elapsed_time="56ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "American Kennel Club - The Dog's Champion - AKC Veterinary Network" [url=https://www.apps.akc.org/vetnet//]
+- button "Accessibility Menu" [ref=e98]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - tab "Dog Info" [ref=e8]
+  - tab "Registration" [ref=e9]
+  - tab "Sports & Events" [ref=e10]
+  - tab "Clubs & Delegates" [ref=e11]
+  - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- button [ref=e14]
+- textbox "Search" [ref=e15] [placeholder="Search"]
+- main:
+  - complementary:
+    - link "Vetnet Home" [ref=e16]
+    - generic "For Dog Owners +" [ref=e17]
+    - generic "For Veterinarians +" [ref=e18]
+    - link [ref=e19]
+    - link [ref=e20]
+  - heading "Vet Search" [level=1]
+  - text: "Search for a participating practice in the AKC veterinary network."
+  - radio [ref=e106] [hidden] [checked]
+  - text: "ZIP CODE"
+  - textbox [ref=e107]
+  - text: "Radius"
+  - generic "50 miles" [ref=e108]
+  - radio [ref=e110] [hidden]
+  - text: "CITY"
+  - textbox [ref=e111] [disabled]
+  - text: "State"
+  - text: "PRACTICE NAME"
+  - textbox [ref=e114] [disabled]
+  - checkbox "*" [ref=e115] [hidden]
+  - label "*" [ref=e117]
+  - label [ref=e118]
+  - text: "I agree to the  AKC Veterinary Network Terms of Use **"
+  - button "Clear" [ref=e119] [disabled]
+  - button "Search" [ref=e120] [disabled]
+  - text: "**AKC Veterinary Network Terms of Use  AKC is not affiliated with and does not license or endorse any veterinarians, including those listed on akc.org. AKC has no control over veterinarians' business practices and is not liable for any dealings between you and any veterinarian. The AKC does not provide healthcare and makes no warranty or guarantee as to the quality of care provided by any of these practices. The AKC accepts no responsibility for any transactions between you and the veterinarian. These listings are provided only as a service to the public."
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- link "About AKC" [ref=e45]
+- link "Our Mission" [ref=e46]
+- link "Our History" [ref=e47]
+- link "Minutes & Reports" [ref=e48]
+- link "AKC Library & Archives" [ref=e49]
+- link "Awards & Honors" [ref=e50]
+- link "Press Center" [ref=e51]
+- link "Careers" [ref=e52]
+- link "Newsletter Subscriptions" [ref=e53]
+- link "Meeting Code" [ref=e54]
+- link "Contact Us" [ref=e55]
+- heading "Top Services" [level=3]
+- link "Find a Puppy" [ref=e56]
+- link "Find a Dog Groomer" [ref=e57]
+- link "Register" [ref=e58]
+- link "Enroll a Mixed-Breed Dog" [ref=e59]
+- link "Dog Training Help" [ref=e60]
+- link "Shop AKC Store" [ref=e61]
+- link "AKC Magazines" [ref=e62]
+- heading "Top Resources" [level=3]
+- link "Delegates Portal" [ref=e63]
+- link "Downloadable Forms" [ref=e64]
+- link "Rules, Regulations & Policies" [ref=e65]
+- link "Answer Center" [ref=e66]
+- link "Judges' Directory" [ref=e67]
+- link "Government Relations" [ref=e68]
+- link "Inspections & Compliance" [ref=e69]
+- link "Working It Out℠ Guide & FAQs" [ref=e70]
+- link "Active Shooter & Mass Attack Safety Resources" [ref=e71]
+- heading "Get Involved" [level=3]
+- link "Attend a Dog Show" [ref=e72]
+- link "Participate in an Event" [ref=e73]
+- link "Donate to AKC" [ref=e74]
+- link "Find a Dog Club" [ref=e75]
+- link "AKC Humane Fund" [ref=e76]
+- heading "Favorite Things" [level=3]
+- link "Watch Dog Shows" [ref=e77]
+- link "Top 100 Girl Dog Names" [ref=e78]
+- link "Top 100 Boy Dog Names" [ref=e79]
+- link "Most Popular Dog Breeds" [ref=e80]
+- link "Hypoallergenic Dog Breeds" [ref=e81]
+- link "Why Do Dogs Eat Poop?" [ref=e82]
+- link "Why Is My Dog Limping?" [ref=e83]
+- link "How to Remove a Tick" [ref=e84]
+- link "How to Potty Train a Puppy" [ref=e85]
+- link "Best Dog Podcast" [ref=e86]
+- link "Advertise With AKC" [ref=e87]
+- link "Terms of Use" [ref=e88]
+- link "Privacy & Cookies" [ref=e89]
+- link "Cookie Settings" [ref=e90]
+- link "CA Privacy Rights" [ref=e91]
+- link "Website Info & FAQs" [ref=e92]
+- link "Linking Policy" [ref=e93]
+- link "Material Reproduction Policy" [ref=e94]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    \n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n \n \n  \n  \n    Need help with your registration? Call us today at 919-233-9767 to register your dog over the phone!"
+- button "X" [ref=e171]
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[16] thinking: **Evaluating fill options**
+
+I’m noticing that it shows as empty, which is puzzling. I might have accidentally filled the search instead of the zip code. I need to check reference e107 for the fill options. There's also reference e115 to check the checkbox, and maybe I should click the label there too. I’m gathering the right references to get everything sorted out! Let's dive in and find the solution!
+
+[17] tool_call: repl("Filling zip and agreeing to terms")
+<request>
+await page.locator('e107').fill('75228');
+await page.locator('e117').click();
+const s12 = await snapshot(page, {interactive:true});
+console.log(s12.diff);
+</request>
+<result tokens_used="114" elapsed_time="616ms">
+@@ -31 +31 @@
+-  - textbox [ref=e107]
++  - textbox "75228" [ref=e107]
+@@ -40 +40 @@
+-  - checkbox "*" [ref=e115] [hidden]
++  - checkbox "*" [ref=e115] [hidden] [checked] [disabled]
+@@ -44,2 +44,2 @@
+-  - button "Clear" [ref=e119] [disabled]
+-  - button "Search" [ref=e120] [disabled]
++  - button "Clear" [ref=e119]
++  - button "Search" [ref=e120]
+@@ -105 +105,0 @@
+-- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[18] tool_call: repl("Running vet search")
+<request>
+await page.locator('e120').click();
+const s13 = await snapshot(page);
+console.log(s13.diff);
+</request>
+<result tokens_used="50" elapsed_time="892ms">
+- title: "American Kennel Club - The Dog's Champion - AKC Veterinary Network" [url=https://www.apps.akc.org/vetnet//]
+- button "Accessibility Menu" [ref=e98]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - listitem "Dog Info" [ref=e99]:
+    - tab "Dog Info" [ref=e8]
+  - listitem "Registration" [ref=e100]:
+    - tab "Registration" [ref=e9]
+  - listitem "Sports & Events" [ref=e101]:
+    - tab "Sports & Events" [ref=e10]
+  - listitem "Clubs & Delegates" [ref=e102]:
+    - tab "Clubs & Delegates" [ref=e11]
+  - listitem "Expert Advice" [ref=e103]:
+    - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- form:
+  - button [ref=e14]
+  - textbox "Search" [ref=e15] [placeholder="Search"]
+- main:
+  - complementary:
+    - list:
+      - listitem "Vetnet Home" [ref=e104]:
+        - link "Vetnet Home" [ref=e16]
+        - generic "For Dog Owners +" [ref=e17]
+      - listitem:
+        - generic "For Veterinarians +" [ref=e18]
+    - paragraph:
+      - link [ref=e19]
+    - paragraph:
+      - link [ref=e20]
+  - heading "Vet Search" [level=1]
+  - text: "Search for a participating practice in the AKC veterinary network."
+  - form:
+    - generic [ref=e105]:
+      - radio [ref=e106] [hidden] [checked]
+      - label
+    - text: "ZIP CODE"
+    - textbox "75228" [ref=e107]
+    - text: "Radius"
+    - generic "50 miles" [ref=e108]
+  - form:
+    - generic [ref=e109]:
+      - radio [ref=e110] [hidden]
+      - label
+    - text: "CITY"
+    - textbox [ref=e111] [disabled]
+    - text: "State"
+    - text: "PRACTICE NAME"
+    - textbox [ref=e114] [disabled]
+  - form:
+    - checkbox "*" [ref=e115] [hidden] [checked] [disabled]
+    - label "*" [ref=e117]
+    - label [ref=e118]
+    - text: "I agree to the  AKC Veterinary Network Terms of Use **"
+    - button "Clear" [ref=e119]
+    - button "Search" [ref=e120] [focused]
+  - heading "Search Results" [level=1]
+  - form:
+    - text: "124 results Rows per page"
+    - combobox "25" [ref=e179]
+    - table:
+      - rowgroup:
+        - row "Name ascendingInformationDistance indicator":
+          - columnheader "Name ascending" [ref=e181]:
+            - text: "Name"
+            - image "ascending"
+          - columnheader "Information" [ref=e182]
+          - columnheader "Distance indicator" [ref=e183]: "Distance"
+      - rowgroup:
+        - row "2 miles":
+          - cell: "Casa Linda Animal Clinic"
+          - cell:
+            - link "www.casalindaanimalclinic.com" [ref=e184]
+            - text: "(214) 328 - 5445(214) 328 - 5445\n             \n            11434 Garland Road  \n              \n            Dallas, TX ,75218-2516"
+            - link "dog Get Directions" [ref=e185]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "2 miles" [ref=e186]
+        - row "3 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e187]
+            - text: "(972) 270 - 0777\n             \n            19175 Lyndon B Johnson Fwy  \n              \n            Mesquite, TX ,75150"
+            - link "dog Get Directions" [ref=e188]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "3 miles" [ref=e189]
+        - row "4 miles":
+          - cell: "VCA Lakewood Animal Hospital"
+          - cell:
+            - link "vcalakewoodtx.com" [ref=e190]
+            - text: "(214) 826 - 6601\n             \n            6363 Richmond Avenue  \n              \n            Dallas, TX ,75214"
+            - link "dog Get Directions" [ref=e191]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "4 miles" [ref=e192]
+        - row "4 miles":
+          - cell: "Metro Paws Animal Hospital - White Rock"
+          - cell:
+            - link "https://dallasmetropaws.com/" [ref=e193]
+            - text: "(214) 324 - 1500\n             \n            7446 E Grand Ave.  \n             \n            Dallas, TX ,75214"
+            - link "dog Get Directions" [ref=e194]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "4 miles" [ref=e195]
+        - row "5 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e196]
+            - text: "(469) 232 - 9963\n             \n            5500 Greenville Ave Suite 900 \n              \n            Dallas, TX ,75206"
+            - link "dog Get Directions" [ref=e197]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "5 miles" [ref=e198]
+        - row "5 miles":
+          - cell: "Metro Paws Animal Hospital - Skillman"
+          - cell:
+            - link "https://dallasmetropaws.com/" [ref=e199]
+            - text: "(214) 887 - 1400\n             \n            1910 Skillman St  \n              \n            Dallas, TX ,75206"
+            - link "dog Get Directions" [ref=e200]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "5 miles" [ref=e201]
+        - row "5 miles":
+          - cell: "South Mesquite Veterinary Hospital"
+          - cell:
+            - link "www.smvh.com" [ref=e202]
+            - text: "(972) 289 - 0681(972) 289 - 0626\n             \n            615 S. Bryan Belt Line Rd.  \n             \n            Mesquite, TX ,75149"
+            - link "dog Get Directions" [ref=e203]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "5 miles" [ref=e204]
+        - row "7 miles":
+          - cell: "VCA Beltline East Animal Hospital"
+          - cell:
+            - link "vcabeltlineeast.com" [ref=e205]
+            - text: "(972) 226 - 0265\n             \n            2555 North Beltline Road  \n              \n            Sunnyvale, TX ,75182"
+            - link "dog Get Directions" [ref=e206]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "7 miles" [ref=e207]
+        - row "7 miles":
+          - cell: "VCA Central Expressway Animal Hospital"
+          - cell:
+            - link "vcacentralexpressway.com" [ref=e208]
+            - text: "(214) 341 - 3322\n             \n            11680 Forest Central Drive  \n              \n            Dallas, TX ,75243"
+            - link "dog Get Directions" [ref=e209]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "7 miles" [ref=e210]
+        - row "7 miles":
+          - cell: "VCA Park Cities Animal Hospital"
+          - cell:
+            - link "vcaparkcities.com" [ref=e211]
+            - text: "(214) 368 - 8573\n             \n            4365 Lovers Lane  \n              \n            Dallas, TX ,75225"
+            - link "dog Get Directions" [ref=e212]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "7 miles" [ref=e213]
+        - row "8 miles":
+          - cell: "Highland Park Animal Clinic"
+          - cell:
+            - link "hpanimalclinic.com" [ref=e214]
+            - text: "(214) 528 - 3360(214) 559 - 3351\n             \n            5323 N Central Exwy.  \n             \n            Dallas, TX ,75205"
+            - link "dog Get Directions" [ref=e215]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e216]
+        - row "8 miles":
+          - cell: "VCA Pet Doctor Animal Hospital"
+          - cell:
+            - link "vcapetdoctor.com" [ref=e217]
+            - text: "(972) 699 - 9999\n             \n            1421 East Spring Valley Road  \n              \n            Richardson, TX ,75081-5348"
+            - link "dog Get Directions" [ref=e218]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e219]
+        - row "8 miles":
+          - cell: "VCA University Animal Hospital"
+          - cell:
+            - link "vcauniversitytx.com" [ref=e220]
+            - text: "(214) 357 - 5501\n             \n            5501 West Lovers Lane  \n              \n            Dallas, TX ,75209"
+            - link "dog Get Directions" [ref=e221]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e222]
+        - row "8 miles":
+          - cell: "VCA Love Field Animal Hospital"
+          - cell:
+            - link "vcalovefield.com" [ref=e223]
+            - text: "(214) 357 - 0348\n             \n            6550 Lemmon Avenue  \n              \n            Dallas, TX ,75209"
+            - link "dog Get Directions" [ref=e224]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e225]
+        - row "10 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e226]
+            - text: "(972) 496 - 3252\n             \n            5401 N Garland Ave  \n              \n            Garland, TX ,75040-2718"
+            - link "dog Get Directions" [ref=e227]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "10 miles" [ref=e228]
+        - row "10 miles":
+          - cell: "Metro Paws Animal Hospital - Oak Cliff"
+          - cell:
+            - link "https://dallasmetropaws.com/" [ref=e229]
+            - text: "(214) 939 - 1600\n             \n            1021 Fort Worth Ave.  \n             \n            Dallas, TX ,75208"
+            - link "dog Get Directions" [ref=e230]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "10 miles" [ref=e231]
+        - row "12 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e232]
+            - text: "(972) 233 - 5693\n             \n            12100 Inwood Rd.  \n             \n            Dallas, TX ,75244"
+            - link "dog Get Directions" [ref=e233]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "12 miles" [ref=e234]
+        - row "12 miles":
+          - cell: "Sachse Veterinary Hospital"
+          - cell:
+            - link "www.sachsevet.com" [ref=e235]
+            - text: "(972) 442 - 4441\n             \n            4730 Ranch Rd  \n              \n            Sachse, TX ,75048"
+            - link "dog Get Directions" [ref=e236]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "12 miles" [ref=e237]
+        - row "12 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e238]
+            - text: "(972) 458 - 7387\n             \n            16821 N. Coit Road  \n              \n            Dallas, TX ,75248"
+            - link "dog Get Directions" [ref=e239]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "12 miles" [ref=e240]
+        - row "13 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e241]
+            - text: "(972) 481 - 9403\n             \n            3800 Belt Line Rd  \n              \n            Addison, TX ,75001-4303"
+            - link "dog Get Directions" [ref=e242]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "13 miles" [ref=e243]
+        - row "13 miles":
+          - cell: "East Plano Animal Hospital"
+          - cell:
+            - link "www.eastplanovet.com" [ref=e244]
+            - text: "(972) 516 - 0717\n             \n            1409 Shiloh Rd. Suite 230  \n              \n            Plano, TX ,75074-8200"
+            - link "dog Get Directions" [ref=e245]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "13 miles" [ref=e246]
+        - row "14 miles":
+          - cell: "VCA Preston Park Animal Hospital"
+          - cell:
+            - link "vcaprestonpark.com" [ref=e247]
+            - text: "(972) 985 - 0081\n             \n            18770 Preston Road  \n              \n            Dallas, TX ,75252"
+            - link "dog Get Directions" [ref=e248]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e249]
+        - row "14 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e250]
+            - text: "(972) 429 - 5468\n             \n            3340 West FM 544 Suite 800 \n              \n            Wylie, TX ,75098-9434"
+            - link "dog Get Directions" [ref=e251]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e252]
+        - row "14 miles":
+          - cell: "Valley View Pet Health Center"
+          - cell:
+            - text: "(972) 247 - 2242\n             \n            2561 Valley View Lane  \n              \n            Farmers Branch, TX ,75234-6189"
+            - link "dog Get Directions" [ref=e253]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e254]
+        - row "14 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e255]
+            - text: "(972) 423 - 6032\n             \n            3300 N. Central Expressway  \n              \n            Plano, TX ,75074"
+            - link "dog Get Directions" [ref=e256]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e257]
+    - list:
+      - listitem "1" [ref=e258]
+      - listitem "2" [ref=e259]
+      - listitem "3" [ref=e260]
+      - listitem "4" [ref=e261]
+      - listitem "5" [ref=e262]
+      - listitem ">" [ref=e263]
+  - text: "**AKC Veterinary Network Terms of Use  AKC is not affiliated with and does not license or endorse any veterinarians, including those listed on akc.org. AKC has no control over veterinarians' business practices and is not liable for any dealings between you and any veterinarian. The AKC does not provide healthcare and makes no warranty or guarantee as to the quality of care provided by any of these practices. The AKC accepts no responsibility for any transactions between you and the veterinarian. These listings are provided only as a service to the public."
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- list:
+  - listitem "About AKC" [ref=e121]:
+    - link "About AKC" [ref=e45]
+  - listitem "Our Mission" [ref=e122]:
+    - link "Our Mission" [ref=e46]
+  - listitem "Our History" [ref=e123]:
+    - link "Our History" [ref=e47]
+  - listitem "Minutes & Reports" [ref=e124]:
+    - link "Minutes & Reports" [ref=e48]
+  - listitem "AKC Library & Archives" [ref=e125]:
+    - link "AKC Library & Archives" [ref=e49]
+  - listitem "Awards & Honors" [ref=e126]:
+    - link "Awards & Honors" [ref=e50]
+  - listitem "Press Center" [ref=e127]:
+    - link "Press Center" [ref=e51]
+  - listitem "Careers" [ref=e128]:
+    - link "Careers" [ref=e52]
+  - listitem "Newsletter Subscriptions" [ref=e129]:
+    - link "Newsletter Subscriptions" [ref=e53]
+  - listitem "Meeting Code" [ref=e130]:
+    - link "Meeting Code" [ref=e54]
+  - listitem "Contact Us" [ref=e131]:
+    - link "Contact Us" [ref=e55]
+- heading "Top Services" [level=3]
+- list:
+  - listitem "Find a Puppy" [ref=e132]:
+    - link "Find a Puppy" [ref=e56]
+  - listitem "Find a Dog Groomer" [ref=e133]:
+    - link "Find a Dog Groomer" [ref=e57]
+  - listitem "Register" [ref=e134]:
+    - link "Register" [ref=e58]
+  - listitem "Enroll a Mixed-Breed Dog" [ref=e135]:
+    - link "Enroll a Mixed-Breed Dog" [ref=e59]
+  - listitem "Dog Training Help" [ref=e136]:
+    - link "Dog Training Help" [ref=e60]
+  - listitem "Shop AKC Store" [ref=e137]:
+    - link "Shop AKC Store" [ref=e61]
+  - listitem "AKC Magazines" [ref=e138]:
+    - link "AKC Magazines" [ref=e62]
+- heading "Top Resources" [level=3]
+- list:
+  - listitem "Delegates Portal" [ref=e139]:
+    - link "Delegates Portal" [ref=e63]
+  - listitem "Downloadable Forms" [ref=e140]:
+    - link "Downloadable Forms" [ref=e64]
+  - listitem "Rules, Regulations & Policies" [ref=e141]:
+    - link "Rules, Regulations & Policies" [ref=e65]
+  - listitem "Answer Center" [ref=e142]:
+    - link "Answer Center" [ref=e66]
+  - listitem "Judges' Directory" [ref=e143]:
+    - link "Judges' Directory" [ref=e67]
+  - listitem "Government Relations" [ref=e144]:
+    - link "Government Relations" [ref=e68]
+  - listitem "Inspections & Compliance" [ref=e145]:
+    - link "Inspections & Compliance" [ref=e69]
+  - listitem "Working It Out℠ Guide & FAQs" [ref=e146]:
+    - link "Working It Out℠ Guide & FAQs" [ref=e70]
+  - listitem "Active Shooter & Mass Attack Safety Resources" [ref=e147]:
+    - link "Active Shooter & Mass Attack Safety Resources" [ref=e71]
+- heading "Get Involved" [level=3]
+- list:
+  - listitem "Attend a Dog Show" [ref=e148]:
+    - link "Attend a Dog Show" [ref=e72]
+  - listitem "Participate in an Event" [ref=e149]:
+    - link "Participate in an Event" [ref=e73]
+  - listitem "Donate to AKC" [ref=e150]:
+    - link "Donate to AKC" [ref=e74]
+  - listitem "Find a Dog Club" [ref=e151]:
+    - link "Find a Dog Club" [ref=e75]
+  - listitem "AKC Humane Fund" [ref=e152]:
+    - link "AKC Humane Fund" [ref=e76]
+- heading "Favorite Things" [level=3]
+- list:
+  - listitem "Watch Dog Shows" [ref=e153]:
+    - link "Watch Dog Shows" [ref=e77]
+  - listitem "Top 100 Girl Dog Names" [ref=e154]:
+    - link "Top 100 Girl Dog Names" [ref=e78]
+  - listitem "Top 100 Boy Dog Names" [ref=e155]:
+    - link "Top 100 Boy Dog Names" [ref=e79]
+  - listitem "Most Popular Dog Breeds" [ref=e156]:
+    - link "Most Popular Dog Breeds" [ref=e80]
+  - listitem "Hypoallergenic Dog Breeds" [ref=e157]:
+    - link "Hypoallergenic Dog Breeds" [ref=e81]
+  - listitem "Why Do Dogs Eat Poop?" [ref=e158]:
+    - link "Why Do Dogs Eat Poop?" [ref=e82]
+  - listitem "Why Is My Dog Limping?" [ref=e159]:
+    - link "Why Is My Dog Limping?" [ref=e83]
+  - listitem "How to Remove a Tick" [ref=e160]:
+    - link "How to Remove a Tick" [ref=e84]
+  - listitem "How to Potty Train a Puppy" [ref=e161]:
+    - link "How to Potty Train a Puppy" [ref=e85]
+  - listitem "Best Dog Podcast" [ref=e162]:
+    - link "Best Dog Podcast" [ref=e86]
+- list:
+  - listitem "Advertise With AKC" [ref=e163]:
+    - link "Advertise With AKC" [ref=e87]
+  - listitem "Terms of Use" [ref=e164]:
+    - link "Terms of Use" [ref=e88]
+  - listitem "Privacy & Cookies" [ref=e165]:
+    - link "Privacy & Cookies" [ref=e89]
+  - listitem "Cookie Settings" [ref=e166]:
+    - link "Cookie Settings" [ref=e90]
+  - listitem "CA Privacy Rights" [ref=e167]:
+    - link "CA Privacy Rights" [ref=e91]
+  - listitem "Website Info & FAQs" [ref=e168]:
+    - link "Website Info & FAQs" [ref=e92]
+  - listitem "Linking Policy" [ref=e169]:
+    - link "Linking Policy" [ref=e93]
+  - listitem "Material Reproduction Policy" [ref=e170]:
+    - link "Material Reproduction Policy" [ref=e94]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    \n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n \n \n  \n  \n   Need help with your registration? Call us today at 919-233-9767 to register your dog over the phone!"
+- button "X" [ref=e171]
+</result>
+
+[19] thinking: **Exploring network API**
+
+I’m thinking about discovering the network API to verify results and get exact data. It might involve calling an endpoint and possibly using a page network or inspecting JavaScript. There could be an API endpoint with query parameters that I can fetch directly. Then, I might not even need a citation. So, I’ll look into inspecting page URLs and checking performance entries using JavaScript to gather this information.
+
+[20] tool_call: repl("Inspecting search network calls")
+<request>
+const entries1 = await page.evaluate(() => performance.getEntriesByType('resource').map(e=>e.name).filter(n=>/vet|search|zip|elastic|api|rest|json/i.test(n)));
+console.log(JSON.stringify(entries1, null, 2));
+</request>
+<result tokens_used="544" elapsed_time="54ms">
+[
+  "https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900|Merriweather:400,600,700|Montserrat:400,700|Crimson+Text:600italic",
+  "https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/styles.css",
+  "https://cdn.cookielaw.org/consent/018e9f44-a7bd-77fd-8442-9e7374198d51/018e9f44-a7bd-77fd-8442-9e7374198d51.json",
+  "https://cdn.cookielaw.org/consent/018e9f44-a7bd-77fd-8442-9e7374198d51/01983d18-7f0f-7cba-8493-68e1e407decc/en.json",
+  "https://cdn.cookielaw.org/scripttemplates/202507.1.0/assets/otFlat.json",
+  "https://cdn.cookielaw.org/scripttemplates/202507.1.0/assets/v2/otPcCenter.json",
+  "https://cdns.gigya.com/js/gigya.js?apiKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9",
+  "https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/runtime.js",
+  "https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/polyfills.js",
+  "https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/main.js",
+  "https://cdns.gigya.com/sdk.config.get?apiKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9&httpStatusCodes=true&ver=1778714280000",
+  "https://www.apps.akc.org/wp-content/themes/akc/component-library/assets/js/built/chunk-searchAutocomplete.bundle.js?ver=54bffac",
+  "https://www.apps.akc.org/wp-content/themes/akc/component-library/assets/js/built/chunk-submitSearch.bundle.js?ver=1ba80ea",
+  "https://www.akc.org/wp-content/uploads/2025/07/Event-search1.svg",
+  "https://www.akc.org/wp-content/uploads/2025/07/Search-all-AKC-Clubs1.svg",
+  "https://cdns.us1.gigya.com/js/Api.htm?apiKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9&version=latest&build=1757&flavor=base&serviceName=apiService#origin=https://www.apps.akc.org/vetnet//",
+  "https://images.akc.org/vetnet/PHP_300x250.png",
+  "https://cdn-apps.akc.org/vetnet/CHF_Logo.jpg",
+  "https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/assets/images/owner_title.gif",
+  "https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/assets/images/vet_title.gif",
+  "https://www.apps.akc.org/vetnet/favicon.ico",
+  "https://cdns.us1.gigya.com/js/sso.htm?APIKey=3_Lj3tvb7hiyZc-gMQzdPPjDtkzed-My4IbPS_nnWd_dGSIk93QMKAyhZaIDmhQsll&ssoSegment=&version=latest&build=1757&flavor=base&sourceKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9#m=getToken&d=https%3A%2F%2Fwww.apps.akc.org&callbackID=gig_sso_cb1778714367155_0&sAPIKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9&gig_loggerConfig=%7B%22logLevel%22%3A0%2C%22clientMuteLevel%22%3A0%2C%22logTheme%22%3A1%7D",
+  "https://cdns.us1.gigya.com/js/sso.htm?APIKey=3_Lj3tvb7hiyZc-gMQzdPPjDtkzed-My4IbPS_nnWd_dGSIk93QMKAyhZaIDmhQsll&ssoSegment=&version=latest&build=1757&flavor=base&sourceKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9#m=removeToken&d=https%3A%2F%2Fwww.apps.akc.org&callbackID=gig_sso_cb1778714367426_1&sAPIKey=3_6N5MqYstj26g4IjwY36Jq-XVS3ZmjqaJAjKxaPB8k5VOLJYENzfOK9_zsgKJDzx9&gig_loggerConfig=%7B%22logLevel%22%3A0%2C%22clientMuteLevel%22%3A0%2C%22logTheme%22%3A1%7D",
+  "https://www.google.com/ccm/collect?rcb=19&frm=0&ae=g&en=page_view&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&scrsrc=www.googletagmanager.com&rnd=1164073230.1778714371&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&auid=562957633.1778714371&navt=n&npa=0&ep.ads_data_redaction=0&gdid=dYWJhMj&gtm=45He65b1v78015039za200zd78015039xea&gcs=G111&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616986~115938466~115938468~118128922&apve=1&apvf=f&apvc=1&tft=1778714371424&tfd=5323",
+  "https://www.google.com/ccm/collect?rcb=7&frm=0&en=page_view&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&scrsrc=www.googletagmanager.com&rnd=1164073230.1778714371&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&auid=562957633.1778714371&navt=n&npa=0&gdid=dYWJhMj&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&gtm=45fe65b1v9189805618z878015039za20gzb78015039zd78015039xec&gcs=G111&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616985~115938466~115938468~118012008&apve=1&apvf=f&apvc=0&tids=DC-9693615&tid=DC-9693615&tft=1778714371545&tfd=5444",
+  "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/962185798/?random=1778714371553&cv=11&fst=1778714371553&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be65b1v880577862z878015039za20gzb78015039zd78015039xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616986~115938466~115938469&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&rcb=6&frm=0&tiba=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&did=dYWJhMj&gdid=dYWJhMj&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=562957633.1778714371&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uamb=0&uam=&uap=macOS&uapv=26.2.0&uaw=0&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&data=event%3Dgtag.config&rfmt=3&fmt=4",
+  "https://www.google.com/rmkt/collect/962185798/?random=1778714371553&cv=11&fst=1778714371553&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be65b1v880577862z878015039za20gzb78015039zd78015039xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616986~115938466~115938469&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&rcb=6&frm=0&tiba=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&did=dYWJhMj&gdid=dYWJhMj&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=562957633.1778714371&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uamb=0&uam=&uap=macOS&uapv=26.2.0&uaw=0&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&data=event%3Dgtag.config&gcp=5",
+  "https://www.google.com/ccm/collect?rcb=6&frm=0&en=page_view&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&scrsrc=www.googletagmanager.com&rnd=1164073230.1778714371&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&auid=562957633.1778714371&navt=n&npa=0&did=dYWJhMj&gdid=dYWJhMj&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&gtm=45be65b1v880577862z878015039za20gzb78015039zd78015039xec&gcs=G111&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616986~115938466~115938469&apve=1&apvf=f&apvc=0&tids=AW-962185798&tid=AW-962185798&tft=1778714371564&tfd=5464",
+  "https://ad.doubleclick.net/activity;src=12537103;type=vis;cat=akcor0;rcb=17;ord=1;num=2272063671018;npa=0;auiddc=562957633.1778714371;gdid=dYWJhMj;uaa=arm;uab=64;uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97;uamb=0;uam=;uap=macOS;uapv=26.2.0;uaw=0;pscdl=noapi;frm=0;gpp=DBABBg~BUoAAAJY.QA;gpp_sid=8;_tu=KJA;gtm=45fe65b1v9190982357z878015039za20gzb78015039zd78015039xea;gcs=G111;gcd=13n3n3n3n5l1;dma=0;dc_fmt=3;tag_exp=0~115938466~115938468~118128922;epver=2;dc_random=1778714371_L1NEkyxGcZLcXdF_IuF-55YLImpm_tYe0g;~oref=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F?",
+  "https://12537103.fls.doubleclick.net/activityi;src=12537103;type=vis;cat=akcor0;rcb=17;ord=1;num=2272063671018;npa=0;auiddc=562957633.1778714371;gdid=dYWJhMj;uaa=arm;uab=64;uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97;uamb=0;uam=;uap=macOS;uapv=26.2.0;uaw=0;pscdl=noapi;frm=0;gpp=DBABBg~BUoAAAJY.QA;gpp_sid=8;_tu=KJA;gtm=45fe65b1v9190982357z878015039za20gzb78015039zd78015039xea;gcs=G111;gcd=13n3n3n3n5l1;dma=0;dc_fmt=2;tag_exp=0~115938466~115938468~118128922;epver=2;dc_random=1778714371_L1NEkyxGcZLcXdF_IuF-55YLImpm_tYe0g;_dc_test=1;~oref=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F?",
+  "https://www.google.com/ccm/collect?rcb=17&frm=0&en=page_view&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&scrsrc=www.googletagmanager.com&rnd=1164073230.1778714371&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&auid=562957633.1778714371&navt=n&npa=0&gdid=dYWJhMj&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&gtm=45fe65b1v9190982357z878015039za20gzb78015039zd78015039xec&gcs=G111&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115938466~115938468~118128922&apve=1&apvf=f&apvc=0&tids=DC-12537103&tid=DC-12537103&tft=1778714371586&tfd=5485",
+  "https://pixel.quantserve.com/pixel;r=2006832828;source=gtm;event=refresh;rf=3;a=p-TgY_QgXbz67zT;url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain;ns=0;ce=1;qjs=1;qv=cb91e2be-20260407153927;ref=;dst=1;et=1778714371527;tzo=420;ogl=url.http%3A%2F%2Fakc%252Eorg%2F;d=akc.org;uht=2;fpan=1;fpa=P1-c099608f-3ab3-4c6e-902f-26958bdac5da;pbc=;_ses=7774f35b-c022-4ade-9c0d-33a9fc54a1e5;_seg=0;_ss=1;_gacid=764985800.1778714344;_gasid=FVWZ0RM4DH_1778714343;gdpr=0;gpp=DBABBg~BUoAAAJY.QA;gpp_sid=8;mdl=",
+  "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11426909834/?random=1778714371596&cv=11&fst=1778714371596&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be65b1v9213537092z878015039za20gzb78015039zd78015039xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616985~115938466~115938468~118128922&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&rcb=7&frm=0&tiba=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&did=dYWJhMj&gdid=dYWJhMj&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=562957633.1778714371&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uamb=0&uam=&uap=macOS&uapv=26.2.0&uaw=0&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&data=event%3Dgtag.config&rfmt=3&fmt=4",
+  "https://www.google.com/rmkt/collect/11426909834/?random=1778714371596&cv=11&fst=1778714371596&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be65b1v9213537092z878015039za20gzb78015039zd78015039xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616985~115938466~115938468~118128922&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&rcb=7&frm=0&tiba=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&did=dYWJhMj&gdid=dYWJhMj&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=562957633.1778714371&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uamb=0&uam=&uap=macOS&uapv=26.2.0&uaw=0&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&data=event%3Dgtag.config&gcp=5",
+  "https://www.google.com/ccm/collect?rcb=7&frm=0&en=page_view&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&scrsrc=www.googletagmanager.com&rnd=1164073230.1778714371&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&auid=562957633.1778714371&navt=n&npa=0&did=dYWJhMj&gdid=dYWJhMj&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&gtm=45be65b1v9213537092z878015039za20gzb78015039zd78015039xec&gcs=G111&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616985~115938466~115938468~118128922&apve=1&apvf=f&apvc=0&tids=AW-11426909834&tid=AW-11426909834&tft=1778714371605&tfd=5504",
+  "https://analytics.google.com/g/collect?v=2&tid=G-8S9QMLGY5Z&gtm=45je65b1v868630590z878015039za20gzb78015039zd78015039&_p=1778714371229&_gaz=1&gcs=G111&gcd=13n3n3n3n5l1&npa=0&dma=0&gdid=dYWJhMj&_eu=AAAAAGAC&are=1&cid=764985800.1778714344&frm=0&pscdl=noapi&rcb=0&sr=1440x900&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uam=&uamb=0&uap=macOS&uapv=26.2.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115938466~115938469&sid=1778714371&sct=1&seg=0&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&en=page_view&_fv=1&_ss=1&ep.page_url_single_page_apps=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain&ep.ad_blocker=false&ep.sign_in_status=Not%20Signed%20In&epn.page_load=0.93&ep.gigya_session=&ep.gigya_logged_in=N&ep.gigya_username=&ep.gigya_uid=&ep.analytics_client_id=764985800.1778714344&tfd=5528",
+  "https://analytics.google.com/g/collect?v=2&tid=G-8B3YS82PBL&gtm=45je65b1v868630590z878015039za20gzb78015039zd78015039&_p=1778714371229&_gaz=1&gcs=G111&gcd=13n3n3n3n5l1&npa=0&dma=0&gdid=dYWJhMj&_eu=AAAAAGAC&are=1&cid=764985800.1778714344&frm=0&pscdl=noapi&rcb=0&sr=1440x900&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uam=&uamb=0&uap=macOS&uapv=26.2.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115938466~115938469&sid=1778714371&sct=1&seg=0&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&en=page_view&_fv=1&_ss=1&ep.page_url_single_page_apps=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain&ep.ad_blocker=false&ep.sign_in_status=Not%20Signed%20In&epn.page_load=0.93&ep.gigya_session=&ep.gigya_logged_in=N&ep.gigya_username=&ep.gigya_uid=&ep.analytics_client_id=764985800.1778714344&tfd=5530",
+  "https://analytics.google.com/g/collect?v=2&tid=G-BFQZN1Z8LR&gtm=45je65b1v868630590z878015039za20gzb78015039zd78015039&_p=1778714371229&_gaz=1&gcs=G111&gcd=13n3n3n3n5l1&npa=0&dma=0&gdid=dYWJhMj&_eu=AAAAAGAC&are=1&cid=764985800.1778714344&frm=0&pscdl=noapi&rcb=0&sr=1440x900&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uam=&uamb=0&uap=macOS&uapv=26.2.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115938466~115938469&sid=1778714371&sct=1&seg=0&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&en=page_view&_fv=1&_ss=1&ep.page_url_single_page_apps=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain&ep.ad_blocker=false&ep.sign_in_status=Not%20Signed%20In&epn.page_load=0.93&ep.gigya_session=&ep.gigya_logged_in=N&ep.gigya_username=&ep.gigya_uid=&ep.analytics_client_id=764985800.1778714344&tfd=5532",
+  "https://analytics.google.com/g/collect?v=2&tid=G-PS1WMXZ9DQ&gtm=45je65b1v9102377159z878015039za20gzb78015039zd78015039&_p=1778714371229&_gaz=1&gcs=G111&gcd=13n3n3n3n5l1&npa=0&dma=0&gdid=dYWJhMj&ecid=1492377448&_eu=AAAAAGAC&are=1&cid=764985800.1778714344&ec_mode=a&frm=0&pscdl=noapi&rcb=11&sr=1440x900&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uam=&uamb=0&uap=macOS&uapv=26.2.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115938466~115938468&sid=1778714371&sct=1&seg=0&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&en=page_view&_fv=1&_ss=1&ep.article_date_updated=&ep.path_clean=%2Fvetnet%2F&ep.page_url_single_page_apps=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain&ep.ad_blocker=false&ep.sign_in_status=Not%20Signed%20In&ep.analytics_client_id=764985800.1778714344&tfd=5553",
+  "https://www.facebook.com/tr/?id=987096371348061&ev=PageView&dl=https%3A%2F%2Fwww.apps.akc.org&rl=&if=false&ts=1778714371670&sw=1440&sh=900&v=2.9.319&r=stable&ec=0&o=12318&fbp=fb.1.1778714371666.422127078430015837&cs_est=true&pm=1&hrl=82678c&ler=empty&cdl=API_unavailable&plt=796.1000000238419&ups[pv]=%7B%7D&ups[rpv]=%7B%7D&it=1778714371521&coo=false&cs_cc=1&cas=26720303630938346%2C9432280883454395%2C6314265108651647%2C4398081080317079%2C5092336714198189%2C5080437728712011%2C4072197316131091&dlc=1&expv2[0]=pl0&expv2[1]=el3&expv2[2]=bc1&expv2[3]=ra0&expv2[4]=rp0&expv2[5]=im1&expv2[6]=hf0&rqm=GET",
+  "https://www.facebook.com/privacy_sandbox/pixel/register/trigger/?id=987096371348061&ev=PageView&dl=https%3A%2F%2Fwww.apps.akc.org&rl=&if=false&ts=1778714371670&sw=1440&sh=900&v=2.9.319&r=stable&ec=0&o=12318&fbp=fb.1.1778714371666.422127078430015837&cs_est=true&pm=1&hrl=82678c&ler=empty&cdl=API_unavailable&plt=796.1000000238419&ups[pv]=%7B%7D&ups[rpv]=%7B%7D&it=1778714371521&coo=false&cs_cc=1&cas=26720303630938346%2C9432280883454395%2C6314265108651647%2C4398081080317079%2C5092336714198189%2C5080437728712011%2C4072197316131091&dlc=1&expv2[0]=pl0&expv2[1]=el3&expv2[2]=bc1&expv2[3]=ra0&expv2[4]=rp0&expv2[5]=im1&expv2[6]=hf0&rqm=FGET",
+  "https://pixel.quantserve.com/pixel;r=1574475794;source=gtm;rf=0;a=p-4w_vmvF7kgKf_;url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain;ns=0;ce=1;qjs=1;qv=cb91e2be-20260407153927;ref=;dst=1;et=1778714371672;tzo=420;ogl=url.http%3A%2F%2Fakc%252Eorg%2F;d=akc.org;uht=2;fpan=1;fpa=P1-1373d7ca-dc9f-43cb-b06f-9de17c92a5ba;pbc=;_ses=52bd60d6-5123-4231-862e-b12de93b7135;_seg=0;_ss=1;_gacid=764985800.1778714344;_gasid=8S9QMLGY5Z_1778714371,8B3YS82PBL_1778714371,BFQZN1Z8LR_1778714371,PS1WMXZ9DQ_1778714371,FVWZ0RM4DH_1778714343;gdpr=0;gpp=DBABBg~BUoAAAJY.QA;gpp_sid=8;mdl=",
+  "https://www.google.com/pagead/1p-user-list/962185798/?random=1778714371553&cv=11&fst=1778713200000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be65b1v880577862z878015039za20gzb78015039zd78015039xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616986~115938466~115938469&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&rcb=6&frm=0&tiba=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&did=dYWJhMj&gdid=dYWJhMj&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=562957633.1778714371&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uamb=0&uam=&uap=macOS&uapv=26.2.0&uaw=0&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&data=event%3Dgtag.config&rfmt=3&fmt=3&is_vtc=1&cid=CAQSvwEABaugfcYzHJAfdq6fubBXr8-nw9KyGwD40NSAwZ4PrJL5DWInNNixEDHI4BYb8w4li-nBkklMwTyqA70dNhFLO0GbckCci8OsyqKXypXL0K3jGJoyTzjEKLlT57EfmgR4sXcU_68om0R2DlXRh0jYxWQ9VfTUnWgNSQzosyfcnzdHffw8VV5CFPRROLMWfg8c9GBLSjN4rIuvdAZ8nPnzndc_LCGph_HBOrUxFU54NbxpeTCphU1IJJwI0VOYzw&random=2379187551&rmt_tld=0&ipr=y",
+  "https://www.google.com/pagead/1p-user-list/11426909834/?random=1778714371596&cv=11&fst=1778713200000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be65b1v9213537092z878015039za20gzb78015039zd78015039xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115616985~115938466~115938468~118128922&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&rcb=7&frm=0&tiba=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&did=dYWJhMj&gdid=dYWJhMj&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=562957633.1778714371&uaa=arm&uab=64&uafvl=Not%252FA)Brand%3B99.0.0.0%7CChromium%3B148.0.7778.97&uamb=0&uam=&uap=macOS&uapv=26.2.0&uaw=0&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&data=event%3Dgtag.config&rfmt=3&fmt=3&is_vtc=1&cid=CAQSvwEABaugfa66PAuQae5lCvEMyZB2Y8M5AN0V5QBFcCBrX4XFv68561Up9HW7ado83vo5mlOfAb3mgt4cL_gtjF2BNCVFPCmMLLnXMKm55C_Ek9KuP2bwQ8OA8Gm6TrzodBYp1c565npzYDFyTcgNSBg1haIDhXaYV3QnhyTAZHLNZmPKw9Zja0G-Ch8PVQlSfZyFkqtKwffYPxt8anfAj2Xqp7hMEF0PbA75Qy_uEVc5LTExpROTY3SeTzrCW6qjOQ&random=3511983304&rmt_tld=0&ipr=y",
+  "https://api.userway.org/api/v1/tunings/AmDSajhMbz",
+  "https://akc.blueconic.net/DG/DEFAULT/rest/rpc/838?referer=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain&bcsessionid=&bctempid=&overruleReferrer=&time=2026-05-13T16%3A19%3A31-07%3A00&ts=1778714371702",
+  "https://www.google.com/ccm/collect?rcb=6&frm=0&en=page_view&dl=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F&scrsrc=www.googletagmanager.com&rnd=1164073230.1778714371&dt=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&auid=562957633.1778714371&navt=n&npa=0&gdid=dYWJhMj&gpp=DBABBg~BUoAAAJY.QA&gpp_sid=8&_tu=KA&gtm=45fe65b1v9188134841za200zd9188134841xec&gcs=G111&gcd=13n3n3n3n5l1&dma=0&tag_exp=0~115938466~115938468&apve=1&apvf=f&apvc=0&tids=DC-11004314&tid=DC-11004314&tft=1778714371715&tfd=5614",
+  "https://rp.liadm.com/j?dtstmp=1778714371819&aid=a-00gy&se=e30&duid=d4992b5d5654--01kmq6qsn1214ddzdjj27mn5vm&tv=v3.14.0&pu=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2F%23%2Fmain&ext__fbp=fb.1.1778714371666.422127078430015837&wpn=lc-bundle&wpv=v3.14.0&gpp_s=DBABBg~BUoAAAJY.QA&gpp_as=8&cd=.akc.org&pv=69eb796b-3625-4743-aa34-30230eabe295",
+  "https://fonts.googleapis.com/css2?family=Lato&display=swap",
+  "https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap",
+  "https://www.apps.akc.org/vetnet-edge/api/geo/states/USA",
+  "https://www.facebook.com/tr/?id=987096371348061&ev=PageView&dl=https%3A%2F%2Fwww.apps.akc.org&rl=&if=false&ts=1778714371871&sw=1440&sh=900&v=2.9.319&r=stable&ec=1&o=12318&fbp=fb.1.1778714371666.422127078430015837&cs_est=true&pm=1&hrl=c10034&ler=empty&cdl=API_unavailable&plt=796.1000000238419&ups[pv]=%7B%7D&ups[rpv]=%7B%7D&it=1778714371869&coo=false&cs_cc=1&cas=26720303630938346%2C9432280883454395%2C6314265108651647%2C4398081080317079%2C5092336714198189%2C5080437728712011%2C4072197316131091&dlc=1&expv2[0]=pl0&expv2[1]=el2&expv2[2]=bc1&expv2[3]=ra0&expv2[4]=rp0&expv2[5]=im1&expv2[6]=hf0&rqm=GET",
+  "https://www.facebook.com/privacy_sandbox/pixel/register/trigger/?id=987096371348061&ev=PageView&dl=https%3A%2F%2Fwww.apps.akc.org&rl=&if=false&ts=1778714371871&sw=1440&sh=900&v=2.9.319&r=stable&ec=1&o=12318&fbp=fb.1.1778714371666.422127078430015837&cs_est=true&pm=1&hrl=c10034&ler=empty&cdl=API_unavailable&plt=796.1000000238419&ups[pv]=%7B%7D&ups[rpv]=%7B%7D&it=1778714371869&coo=false&cs_cc=1&cas=26720303630938346%2C9432280883454395%2C6314265108651647%2C4398081080317079%2C5092336714198189%2C5080437728712011%2C4072197316131091&dlc=1&expv2[0]=pl0&expv2[1]=el2&expv2[2]=bc1&expv2[3]=ra0&expv2[4]=rp0&expv2[5]=im1&expv2[6]=hf0&rqm=FGET",
+  "https://www.apps.akc.org/vetnet/favicon.ico",
+  "https://bat.bing.com/action/0?ti=17499933&Ver=2&mid=ee4a80be-538e-4cb2-bb48-5eb8bafb6d39&bo=3&sid=3271e8404f2211f1bb393b46f9bc1e57&vid=a651b53029b711f18a71138c2b0f6c9b&vids=0&msclkid=N&pi=918639831&lg=en-US&sw=1440&sh=900&sc=30&tl=American%20Kennel%20Club%20-%20The%20Dog%27s%20Champion%20-%20AKC%20Veterinary%20Network&p=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2Fmain&r=&lt=932&evt=pageLoad&sv=2&asc=G&cdb=AQET&rn=363829",
+  "https://akc-us.attn.tv/unrenderedCreative?v=2026.05.2&r=&id=b985de3e597a46d084112dd9196f2e4a&pv=1&l=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2Fmain&w=1440&h=900&ss_ref=ORGANIC&f=3",
+  "https://cdn.userway.org/widgetapp/2026-05-12-14-26-48/locales/en-US.json",
+  "https://cacheorcheck.mopinion.com/survey/public/json-config?key=56f10bd9b170cf61c80c0b3ee6a56f4d0f4f33e0&domain=akc.mopinion.com&withBase=true",
+  "https://akc-us.attn.tv/unrenderedCreative?v=2026.05.2&r=&id=b985de3e597a46d084112dd9196f2e4a&pv=2&l=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2Fmain&w=1440&h=900&ss_ref=ORGANIC&f=3",
+  "https://akc.blueconic.net/DG/DEFAULT/rest/rpc/838/LB-Zone-1?referer=https%3A%2F%2Fwww.apps.akc.org%2Fvetnet%2Fmain&bcsessionid=&bctempid=6a32ec89-1b1d-4fac-b88d-2402958f7fa1&overruleReferrer=&time=2026-05-13T16%3A19%3A32-07%3A00&ts=1778714372435"
+]
+</result>
+
+[21] tool_call: repl("Finding vet API endpoint in app code")
+<request>
+const jsUrl1 = 'https://cdn-apps.akc.org/crate/app-statics/vetnet-ng/eb7da6f536110cbb861c10ad573b784f8454fd3f/main.js';
+const mainjs1 = await (await fetch(jsUrl1)).text();
+const matches1 = [...mainjs1.matchAll(/vetnet-edge[^"'`)]{0,100}|api\/[a-zA-Z0-9_?=&/.-]{0,120}/g)].map(m=>m[0]);
+console.log(JSON.stringify([...new Set(matches1)].slice(0,100), null, 2));
+</request>
+<result tokens_used="195" elapsed_time="295ms">
+[
+  "api/1/item/",
+  "vetnet-edge/",
+  "api/vetnet-search/",
+  "api/geo/states/",
+  "api/vetnet-enroll/",
+  "api/vetnet-edit/",
+  "api/vetnet-reorder/",
+  "api/vetnet-optout/",
+  "api/geo/countries",
+  "api/geo/states",
+  "api/baseData/colors/.",
+  "api/baseData/markings/.",
+  "api/registration-processing-metadata/feeTypeByVersion/.",
+  "api/regis/commands/preflight",
+  "api/"
+]
+</result>
+
+[22] system_message (background-consult):
+<system_message>
+The search was submitted but the results aren't visible in the snapshot. Take a fresh full snapshot now to read the actual vet listings returned — look for practice names, addresses, and distances in the main content area. Use `snapshot(page)` and print the full tree to find the result list refs.
+</system_message>
+
+[23] thinking: **Following platform instructions**
+
+I see that the user message is based on authoritative platform instructions, so I need to proceed with care. I should take a fresh snapshot of the full tree to ensure accuracy. Then, I’ll look for the nearest vet within 50 miles. The user mentioned that results aren't visible, so I should make sure the information is accessible and properly displayed. It seems like providing a complete snapshot is essential for clarity.
+
+[24] tool_call: repl("Reading current vet results")
+<request>
+const s14 = await snapshot(page);
+console.log(s14.tree);
+</request>
+<result tokens_used="110" elapsed_time="85ms">
+- title: "American Kennel Club - The Dog's Champion - AKC Veterinary Network" [url=https://www.apps.akc.org/vetnet//]
+- button "Accessibility Menu" [ref=e98]
+- link [ref=e1]
+- navigation:
+  - link "Event Search" [ref=e2]
+  - link "Find a Puppy" [ref=e3]
+  - link "Register" [ref=e4]
+  - link "Shop" [ref=e5]
+  - link "AKC TV" [ref=e6]
+- navigation:
+  - link "Sign In" [ref=e7]
+- tablist:
+  - listitem "Dog Info" [ref=e99]:
+    - tab "Dog Info" [ref=e8]
+  - listitem "Registration" [ref=e100]:
+    - tab "Registration" [ref=e9]
+  - listitem "Sports & Events" [ref=e101]:
+    - tab "Sports & Events" [ref=e10]
+  - listitem "Clubs & Delegates" [ref=e102]:
+    - tab "Clubs & Delegates" [ref=e11]
+  - listitem "Expert Advice" [ref=e103]:
+    - tab "Expert Advice" [ref=e12]
+- checkbox [ref=e13] [hidden]
+- form:
+  - button [ref=e14]
+  - textbox "Search" [ref=e15] [placeholder="Search"]
+- main:
+  - complementary:
+    - list:
+      - listitem "Vetnet Home" [ref=e104]:
+        - link "Vetnet Home" [ref=e16]
+        - generic "For Dog Owners +" [ref=e17]
+      - listitem:
+        - generic "For Veterinarians +" [ref=e18]
+    - paragraph:
+      - link [ref=e19]
+    - paragraph:
+      - link [ref=e20]
+  - heading "Vet Search" [level=1]
+  - text: "Search for a participating practice in the AKC veterinary network."
+  - form:
+    - generic [ref=e105]:
+      - radio [ref=e106] [hidden] [checked]
+      - label
+    - text: "ZIP CODE"
+    - textbox "75228" [ref=e107]
+    - text: "Radius"
+    - generic "50 miles" [ref=e108]
+  - form:
+    - generic [ref=e109]:
+      - radio [ref=e110] [hidden]
+      - label
+    - text: "CITY"
+    - textbox [ref=e111] [disabled]
+    - text: "State"
+    - text: "PRACTICE NAME"
+    - textbox [ref=e114] [disabled]
+  - form:
+    - checkbox "*" [ref=e115] [hidden] [checked] [disabled]
+    - label "*" [ref=e117]
+    - label [ref=e118]
+    - text: "I agree to the  AKC Veterinary Network Terms of Use **"
+    - button "Clear" [ref=e119]
+    - button "Search" [ref=e120] [focused]
+  - heading "Search Results" [level=1]
+  - form:
+    - text: "124 results Rows per page"
+    - combobox "25" [ref=e179]
+    - table:
+      - rowgroup:
+        - row "Name ascendingInformationDistance indicator":
+          - columnheader "Name ascending" [ref=e181]:
+            - text: "Name"
+            - image "ascending"
+          - columnheader "Information" [ref=e182]
+          - columnheader "Distance indicator" [ref=e183]:
+            - text: "Distance"
+            - image "indicator"
+      - rowgroup:
+        - row "2 miles":
+          - cell: "Casa Linda Animal Clinic"
+          - cell:
+            - link "www.casalindaanimalclinic.com" [ref=e184]
+            - text: "(214) 328 - 5445(214) 328 - 5445\n             \n            11434 Garland Road  \n              \n            Dallas, TX ,75218-2516"
+            - link "dog Get Directions" [ref=e185]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "2 miles" [ref=e186]
+        - row "3 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e187]
+            - text: "(972) 270 - 0777\n             \n            19175 Lyndon B Johnson Fwy  \n              \n            Mesquite, TX ,75150"
+            - link "dog Get Directions" [ref=e188]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "3 miles" [ref=e189]
+        - row "4 miles":
+          - cell: "VCA Lakewood Animal Hospital"
+          - cell:
+            - link "vcalakewoodtx.com" [ref=e190]
+            - text: "(214) 826 - 6601\n             \n            6363 Richmond Avenue  \n              \n            Dallas, TX ,75214"
+            - link "dog Get Directions" [ref=e191]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "4 miles" [ref=e192]
+        - row "4 miles":
+          - cell: "Metro Paws Animal Hospital - White Rock"
+          - cell:
+            - link "https://dallasmetropaws.com/" [ref=e193]
+            - text: "(214) 324 - 1500\n             \n            7446 E Grand Ave.  \n             \n            Dallas, TX ,75214"
+            - link "dog Get Directions" [ref=e194]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "4 miles" [ref=e195]
+        - row "5 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e196]
+            - text: "(469) 232 - 9963\n             \n            5500 Greenville Ave Suite 900 \n              \n            Dallas, TX ,75206"
+            - link "dog Get Directions" [ref=e197]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "5 miles" [ref=e198]
+        - row "5 miles":
+          - cell: "Metro Paws Animal Hospital - Skillman"
+          - cell:
+            - link "https://dallasmetropaws.com/" [ref=e199]
+            - text: "(214) 887 - 1400\n             \n            1910 Skillman St  \n              \n            Dallas, TX ,75206"
+            - link "dog Get Directions" [ref=e200]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "5 miles" [ref=e201]
+        - row "5 miles":
+          - cell: "South Mesquite Veterinary Hospital"
+          - cell:
+            - link "www.smvh.com" [ref=e202]
+            - text: "(972) 289 - 0681(972) 289 - 0626\n             \n            615 S. Bryan Belt Line Rd.  \n             \n            Mesquite, TX ,75149"
+            - link "dog Get Directions" [ref=e203]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "5 miles" [ref=e204]
+        - row "7 miles":
+          - cell: "VCA Beltline East Animal Hospital"
+          - cell:
+            - link "vcabeltlineeast.com" [ref=e205]
+            - text: "(972) 226 - 0265\n             \n            2555 North Beltline Road  \n              \n            Sunnyvale, TX ,75182"
+            - link "dog Get Directions" [ref=e206]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "7 miles" [ref=e207]
+        - row "7 miles":
+          - cell: "VCA Central Expressway Animal Hospital"
+          - cell:
+            - link "vcacentralexpressway.com" [ref=e208]
+            - text: "(214) 341 - 3322\n             \n            11680 Forest Central Drive  \n              \n            Dallas, TX ,75243"
+            - link "dog Get Directions" [ref=e209]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "7 miles" [ref=e210]
+        - row "7 miles":
+          - cell: "VCA Park Cities Animal Hospital"
+          - cell:
+            - link "vcaparkcities.com" [ref=e211]
+            - text: "(214) 368 - 8573\n             \n            4365 Lovers Lane  \n              \n            Dallas, TX ,75225"
+            - link "dog Get Directions" [ref=e212]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "7 miles" [ref=e213]
+        - row "8 miles":
+          - cell: "Highland Park Animal Clinic"
+          - cell:
+            - link "hpanimalclinic.com" [ref=e214]
+            - text: "(214) 528 - 3360(214) 559 - 3351\n             \n            5323 N Central Exwy.  \n             \n            Dallas, TX ,75205"
+            - link "dog Get Directions" [ref=e215]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e216]
+        - row "8 miles":
+          - cell: "VCA Pet Doctor Animal Hospital"
+          - cell:
+            - link "vcapetdoctor.com" [ref=e217]
+            - text: "(972) 699 - 9999\n             \n            1421 East Spring Valley Road  \n              \n            Richardson, TX ,75081-5348"
+            - link "dog Get Directions" [ref=e218]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e219]
+        - row "8 miles":
+          - cell: "VCA University Animal Hospital"
+          - cell:
+            - link "vcauniversitytx.com" [ref=e220]
+            - text: "(214) 357 - 5501\n             \n            5501 West Lovers Lane  \n              \n            Dallas, TX ,75209"
+            - link "dog Get Directions" [ref=e221]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e222]
+        - row "8 miles":
+          - cell: "VCA Love Field Animal Hospital"
+          - cell:
+            - link "vcalovefield.com" [ref=e223]
+            - text: "(214) 357 - 0348\n             \n            6550 Lemmon Avenue  \n              \n            Dallas, TX ,75209"
+            - link "dog Get Directions" [ref=e224]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "8 miles" [ref=e225]
+        - row "10 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e226]
+            - text: "(972) 496 - 3252\n             \n            5401 N Garland Ave  \n              \n            Garland, TX ,75040-2718"
+            - link "dog Get Directions" [ref=e227]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "10 miles" [ref=e228]
+        - row "10 miles":
+          - cell: "Metro Paws Animal Hospital - Oak Cliff"
+          - cell:
+            - link "https://dallasmetropaws.com/" [ref=e229]
+            - text: "(214) 939 - 1600\n             \n            1021 Fort Worth Ave.  \n             \n            Dallas, TX ,75208"
+            - link "dog Get Directions" [ref=e230]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "10 miles" [ref=e231]
+        - row "12 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e232]
+            - text: "(972) 233 - 5693\n             \n            12100 Inwood Rd.  \n             \n            Dallas, TX ,75244"
+            - link "dog Get Directions" [ref=e233]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "12 miles" [ref=e234]
+        - row "12 miles":
+          - cell: "Sachse Veterinary Hospital"
+          - cell:
+            - link "www.sachsevet.com" [ref=e235]
+            - text: "(972) 442 - 4441\n             \n            4730 Ranch Rd  \n              \n            Sachse, TX ,75048"
+            - link "dog Get Directions" [ref=e236]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "12 miles" [ref=e237]
+        - row "12 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e238]
+            - text: "(972) 458 - 7387\n             \n            16821 N. Coit Road  \n              \n            Dallas, TX ,75248"
+            - link "dog Get Directions" [ref=e239]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "12 miles" [ref=e240]
+        - row "13 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e241]
+            - text: "(972) 481 - 9403\n             \n            3800 Belt Line Rd  \n              \n            Addison, TX ,75001-4303"
+            - link "dog Get Directions" [ref=e242]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "13 miles" [ref=e243]
+        - row "13 miles":
+          - cell: "East Plano Animal Hospital"
+          - cell:
+            - link "www.eastplanovet.com" [ref=e244]
+            - text: "(972) 516 - 0717\n             \n            1409 Shiloh Rd. Suite 230  \n              \n            Plano, TX ,75074-8200"
+            - link "dog Get Directions" [ref=e245]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "13 miles" [ref=e246]
+        - row "14 miles":
+          - cell: "VCA Preston Park Animal Hospital"
+          - cell:
+            - link "vcaprestonpark.com" [ref=e247]
+            - text: "(972) 985 - 0081\n             \n            18770 Preston Road  \n              \n            Dallas, TX ,75252"
+            - link "dog Get Directions" [ref=e248]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e249]
+        - row "14 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e250]
+            - text: "(972) 429 - 5468\n             \n            3340 West FM 544 Suite 800 \n              \n            Wylie, TX ,75098-9434"
+            - link "dog Get Directions" [ref=e251]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e252]
+        - row "14 miles":
+          - cell: "Valley View Pet Health Center"
+          - cell:
+            - text: "(972) 247 - 2242\n             \n            2561 Valley View Lane  \n              \n            Farmers Branch, TX ,75234-6189"
+            - link "dog Get Directions" [ref=e253]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e254]
+        - row "14 miles":
+          - cell: "Banfield Pet Hospital"
+          - cell:
+            - link "www.banfield.com" [ref=e255]
+            - text: "(972) 423 - 6032\n             \n            3300 N. Central Expressway  \n              \n            Plano, TX ,75074"
+            - link "dog Get Directions" [ref=e256]:
+              - image "dog"
+              - text: "Get Directions"
+          - cell "14 miles" [ref=e257]
+    - list:
+      - listitem "1" [ref=e258]
+      - listitem "2" [ref=e259]
+      - listitem "3" [ref=e260]
+      - listitem "4" [ref=e261]
+      - listitem "5" [ref=e262]
+      - listitem ">" [ref=e263]
+  - text: "**AKC Veterinary Network Terms of Use  AKC is not affiliated with and does not license or endorse any veterinarians, including those listed on akc.org. AKC has no control over veterinarians' business practices and is not liable for any dealings between you and any veterinarian. The AKC does not provide healthcare and makes no warranty or guarantee as to the quality of care provided by any of these practices. The AKC accepts no responsibility for any transactions between you and the veterinarian. These listings are provided only as a service to the public."
+- text: "Founded in 1884, the not-for-profit AKC is the recognized and trusted expert in breed, health, and training information for all dogs. AKC actively advocates for responsible dog ownership and is dedicated to advancing dog sports."
+- heading "ABOUT US" [level=3]
+- list:
+  - listitem "About AKC" [ref=e121]:
+    - link "About AKC" [ref=e45]
+  - listitem "Our Mission" [ref=e122]:
+    - link "Our Mission" [ref=e46]
+  - listitem "Our History" [ref=e123]:
+    - link "Our History" [ref=e47]
+  - listitem "Minutes & Reports" [ref=e124]:
+    - link "Minutes & Reports" [ref=e48]
+  - listitem "AKC Library & Archives" [ref=e125]:
+    - link "AKC Library & Archives" [ref=e49]
+  - listitem "Awards & Honors" [ref=e126]:
+    - link "Awards & Honors" [ref=e50]
+  - listitem "Press Center" [ref=e127]:
+    - link "Press Center" [ref=e51]
+  - listitem "Careers" [ref=e128]:
+    - link "Careers" [ref=e52]
+  - listitem "Newsletter Subscriptions" [ref=e129]:
+    - link "Newsletter Subscriptions" [ref=e53]
+  - listitem "Meeting Code" [ref=e130]:
+    - link "Meeting Code" [ref=e54]
+  - listitem "Contact Us" [ref=e131]:
+    - link "Contact Us" [ref=e55]
+- heading "Top Services" [level=3]
+- list:
+  - listitem "Find a Puppy" [ref=e132]:
+    - link "Find a Puppy" [ref=e56]
+  - listitem "Find a Dog Groomer" [ref=e133]:
+    - link "Find a Dog Groomer" [ref=e57]
+  - listitem "Register" [ref=e134]:
+    - link "Register" [ref=e58]
+  - listitem "Enroll a Mixed-Breed Dog" [ref=e135]:
+    - link "Enroll a Mixed-Breed Dog" [ref=e59]
+  - listitem "Dog Training Help" [ref=e136]:
+    - link "Dog Training Help" [ref=e60]
+  - listitem "Shop AKC Store" [ref=e137]:
+    - link "Shop AKC Store" [ref=e61]
+  - listitem "AKC Magazines" [ref=e138]:
+    - link "AKC Magazines" [ref=e62]
+- heading "Top Resources" [level=3]
+- list:
+  - listitem "Delegates Portal" [ref=e139]:
+    - link "Delegates Portal" [ref=e63]
+  - listitem "Downloadable Forms" [ref=e140]:
+    - link "Downloadable Forms" [ref=e64]
+  - listitem "Rules, Regulations & Policies" [ref=e141]:
+    - link "Rules, Regulations & Policies" [ref=e65]
+  - listitem "Answer Center" [ref=e142]:
+    - link "Answer Center" [ref=e66]
+  - listitem "Judges' Directory" [ref=e143]:
+    - link "Judges' Directory" [ref=e67]
+  - listitem "Government Relations" [ref=e144]:
+    - link "Government Relations" [ref=e68]
+  - listitem "Inspections & Compliance" [ref=e145]:
+    - link "Inspections & Compliance" [ref=e69]
+  - listitem "Working It Out℠ Guide & FAQs" [ref=e146]:
+    - link "Working It Out℠ Guide & FAQs" [ref=e70]
+  - listitem "Active Shooter & Mass Attack Safety Resources" [ref=e147]:
+    - link "Active Shooter & Mass Attack Safety Resources" [ref=e71]
+- heading "Get Involved" [level=3]
+- list:
+  - listitem "Attend a Dog Show" [ref=e148]:
+    - link "Attend a Dog Show" [ref=e72]
+  - listitem "Participate in an Event" [ref=e149]:
+    - link "Participate in an Event" [ref=e73]
+  - listitem "Donate to AKC" [ref=e150]:
+    - link "Donate to AKC" [ref=e74]
+  - listitem "Find a Dog Club" [ref=e151]:
+    - link "Find a Dog Club" [ref=e75]
+  - listitem "AKC Humane Fund" [ref=e152]:
+    - link "AKC Humane Fund" [ref=e76]
+- heading "Favorite Things" [level=3]
+- list:
+  - listitem "Watch Dog Shows" [ref=e153]:
+    - link "Watch Dog Shows" [ref=e77]
+  - listitem "Top 100 Girl Dog Names" [ref=e154]:
+    - link "Top 100 Girl Dog Names" [ref=e78]
+  - listitem "Top 100 Boy Dog Names" [ref=e155]:
+    - link "Top 100 Boy Dog Names" [ref=e79]
+  - listitem "Most Popular Dog Breeds" [ref=e156]:
+    - link "Most Popular Dog Breeds" [ref=e80]
+  - listitem "Hypoallergenic Dog Breeds" [ref=e157]:
+    - link "Hypoallergenic Dog Breeds" [ref=e81]
+  - listitem "Why Do Dogs Eat Poop?" [ref=e158]:
+    - link "Why Do Dogs Eat Poop?" [ref=e82]
+  - listitem "Why Is My Dog Limping?" [ref=e159]:
+    - link "Why Is My Dog Limping?" [ref=e83]
+  - listitem "How to Remove a Tick" [ref=e160]:
+    - link "How to Remove a Tick" [ref=e84]
+  - listitem "How to Potty Train a Puppy" [ref=e161]:
+    - link "How to Potty Train a Puppy" [ref=e85]
+  - listitem "Best Dog Podcast" [ref=e162]:
+    - link "Best Dog Podcast" [ref=e86]
+- list:
+  - listitem "Advertise With AKC" [ref=e163]:
+    - link "Advertise With AKC" [ref=e87]
+  - listitem "Terms of Use" [ref=e164]:
+    - link "Terms of Use" [ref=e88]
+  - listitem "Privacy & Cookies" [ref=e165]:
+    - link "Privacy & Cookies" [ref=e89]
+  - listitem "Cookie Settings" [ref=e166]:
+    - link "Cookie Settings" [ref=e90]
+  - listitem "CA Privacy Rights" [ref=e167]:
+    - link "CA Privacy Rights" [ref=e91]
+  - listitem "Website Info & FAQs" [ref=e168]:
+    - link "Website Info & FAQs" [ref=e92]
+  - listitem "Linking Policy" [ref=e169]:
+    - link "Linking Policy" [ref=e93]
+  - listitem "Material Reproduction Policy" [ref=e170]:
+    - link "Material Reproduction Policy" [ref=e94]
+- text: "© The American Kennel Club, Inc. 2026. All rights reserved.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    \n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n \n \n  \n  \n   Need help with your registration? Call us today at 919-233-9767 to register your dog over the phone!"
+- button "X" [ref=e171]
+</result>
+
+[25] assistant: The nearest AKC Veterinary Network listing within 50 miles of ZIP 75228 is:
+
+**Casa Linda Animal Clinic**  
+**Distance:** 2 miles  
+**Address:** 11434 Garland Road, Dallas, TX 75218-2516  
+**Phone:** (214) 328-5445  
+**Website:** www.casalindaanimalclinic.com
+
+AKC returned 124 participating vet results for the 50-mile search.

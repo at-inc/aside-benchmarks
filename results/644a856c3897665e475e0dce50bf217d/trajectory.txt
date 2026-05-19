@@ -1,0 +1,2035 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="amazon" path="/Users/vista/.aside/u/0/agents/main/skills/site-specific/amazon/SKILL.md">
+# Amazon
+
+## Canonical URLs
+
+- Home: `https://www.amazon.com/`
+- Search: `https://www.amazon.com/s?k=${query}`
+- Orders: `https://www.amazon.com/gp/css/order-history?ref_=nav_orders_first`
+- Cart: `https://www.amazon.com/gp/cart/view.html?ref_=nav_cart`
+- Account: `https://www.amazon.com/gp/css/homepage.html`
+
+## Efficient Snapshot Strategy
+
+Amazon's snapshot results are large. You should use below selectors to minimize the amount of content captured.
+If it's updated, please update this SKILL.md to reflect the new selector.
+
+- On search result page: use `snapshot(page, { selector: '[data-component-type="s-search-results"]' })`
+- On cart page: `snapshot(page, { selector: '#activeCartViewForm' })`.
+  - Checkout button is outside the form and it can be found via `<input name="proceedToRetailCheckout">` 
+
+## Working style
+
+- Avoid the home page unless the user explicitly wants it. It is noisy and ad-heavy.
+- Before anything involving orders, returns, payments, or addresses, verify the active account and address in the header.
+- Prefer `Your Orders` for shipment, invoice, return, and rebuy tasks.
+- Prefer `Cart` for quantity and checkout-adjacent tasks.
+- Re-snapshot after navigation and after inline card expansion because Amazon frequently re-renders order cards.
+
+## Useful shortcuts
+
+- Search: `Option+/`
+- Cart: `Shift+Option+C`
+- Home: `Shift+Option+H`
+- Orders: `Shift+Option+O`
+- Shortcuts help: `Shift+Option+Z`
+</skill>
+</system_message>
+
+[2] user: Go to https://www.amazon.com/, Find a pair of wireless headphones on Amazon with active noise canceling for $100 or less and add them to the cart.
+
+[3] thinking: **Searching for headphones**
+
+I need to act in the browser to find ANC wireless headphones priced under $100 on Amazon. It seems the user wants me to choose a product without purchasing. I can search and inspect the options, ensuring they match the required specifications, like being wireless with active noise canceling. I might need to log in to confirm additions to the cart. I'll be cautious about the side effects of adding items. Let's get started!
+
+[4] assistant: I’ll use the Amazon-specific browsing guidance to keep snapshots focused and avoid noisy pages.
+
+[5] tool_call: repl("Opening Amazon")
+<request>
+const p1 = await openTab('https://www.amazon.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="241" elapsed_time="5349ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Amazon.com. Spend less. Smile more. (https://www.amazon.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Amazon.com. Spend less. Smile more." [url=https://www.amazon.com/]
+- link [ref=e1]
+- navigation "Shortcuts menu" [ref=e2]:
+  - heading "Skip to" [level=2]
+  - link "main content" [ref=e3]: "Main content"
+  - heading "Keyboard shortcuts" [level=2]
+  - link "Search, option, forward slash" [ref=e4]
+  - link "Cart, shift, option, c" [ref=e5]
+  - link "Home, shift, option, h" [ref=e6]
+  - link "Your orders, shift, option, o" [ref=e7]
+  - button "Show/hide shortcuts, shift, option, z" [ref=e8]
+  - text: "To move between items, use your keyboard's up or down arrows."
+- banner:
+  - navigation "Primary" [ref=e9]:
+    - link "Amazon Prime" [ref=e10]
+    - link [ref=e11]
+    - button "Deliver to Jun San Franc... 94105‌" [ref=e12]
+    - search:
+      - text: "All"
+      - searchbox "Search Amazon" [ref=e13] [placeholder="Search Amazon"]
+      - button "Go" [ref=e15]
+    - link "Choose a language for shopping in Amazon United States. The current selection is English (EN)." [ref=e16]:
+      - img "United States"
+      - text: "EN"
+    - button "Expand to Change Language or Country" [ref=e17]
+    - link "Hello, Hyojun Account & Lists" [ref=e18]
+    - button "Expand Account and Lists" [ref=e19]
+    - link "Returns & Orders" [ref=e20]
+    - link "0 items in cart" [ref=e21]
+    - button "Open All Categories Menu" [ref=e22]: "All"
+    - button "Open Rufus panel" [ref=e23]: "Rufus"
+    - link "Health AI" [ref=e24]
+    - link "Same-Day Delivery" [ref=e25]
+    - link "Medical Care" [ref=e26]
+    - button "Medical Care Details" [ref=e27]
+    - link "Prime Video" [ref=e28]
+    - link "Customer Service" [ref=e29]
+    - link "Groceries" [ref=e30]
+    - link "Amazon Basics" [ref=e31]
+    - link "Keep Shopping For" [ref=e32]
+    - link "Buy Again" [ref=e33]
+    - link "Audible" [ref=e34]
+    - link "Pet Supplies" [ref=e35]
+    - link "Amazon Business" [ref=e36]
+    - button "Amazon Business Details" [ref=e37]
+    - link "Beauty & Personal Care" [ref=e38]
+    - link "Subscribe & Save" [ref=e39]
+    - link "Handmade" [ref=e40]
+    - link "Pharmacy" [ref=e41]
+    - link "Computers" [ref=e42]
+    - link "Sell" [ref=e43]
+    - link "Livestreams" [ref=e44]
+    - link "Video Games" [ref=e45]
+    - link "Household, Health & Baby Care" [ref=e46]
+    - link "Hyojun's Amazon.com" [ref=e47]
+    - link "TV & Video" [ref=e48]
+    - link "Shop By Interest" [ref=e49]
+    - link "Registry" [ref=e50]
+    - link "Best Sellers" [ref=e51]
+    - link "Today's Deals" [ref=e52]
+    - link "Prime" [ref=e53]
+    - button "Prime Details" [ref=e54]
+    - link "Books" [ref=e55]
+    - link "Kindle Books" [ref=e56]
+    - link "New Releases" [ref=e57]
+    - link "Amazon Home" [ref=e58]
+    - button "Amazon Home Details" [ref=e59]
+    - link "Gift Cards" [ref=e60]
+    - button "Gift Cards Details" [ref=e61]
+    - link "Automotive" [ref=e62]
+    - link "Fashion" [ref=e63]
+- main:
+  - link [ref=e64]
+  - banner:
+    - group "Featured content":
+      - button "Previous slide" [ref=e65] [disabled]
+      - group:
+        - link "Spend less on your meds Prime members save up to 80% on meds Amazon Pharmacy Restrictions apply." [ref=e66]
+      - button "Next slide" [ref=e67]
+  - heading [level=2]
+  - link "8BitDo Retro Cube 2 Speaker, Portable Bluetooth Speaker with Stereo Sound, Wireless Charging Dock, B" [ref=e68]
+  - link "8BitDo Retro R8 Mouse with Charging Dock, PAW 3395 Optical Sensor DPI 26,000, Wireless Mouse with 4K" [ref=e69]
+  - link "8Bitdo N30 2.4Ghz Wireless Mouse for PC Windows and macOS" [ref=e70]
+  - link "LOFREE Hypace Ultra-Lightweight Wireless Gaming Mouse, 47g, PAW3950 Sensor, 40K DPI, 8K Polling Rate" [ref=e71]
+  - link "Pick up where you left off - Computer mice" [ref=e72]
+  - heading [level=3]
+  - link "Buy again - Diet Coke Soda Soft Drink Fridge Pack Mini Cans, 7.5 fl oz, 10 Pack" [ref=e73]: "Diet Coke Soda Soft Drink Fridge Pack Mini Cans, 7.5 fl oz, 10 Pack"
+  - link "Buy again - MOWI Atlantic Salmon Portion Tuscan Herb, 12oz, Fresh Never Frozen" [ref=e74]: "MOWI Atlantic Salmon Portion Tuscan Herb, 12oz, Fresh Never Frozen"
+  - link "Buy again - Nongshim Neoguri Spicy Seafood with Udon-Style Noodle, 4.2 Ounce (Pack of 10)" [ref=e75]: "Nongshim Neoguri Spicy Seafood with Udon-Style Noodle, 4.2 Ounce (Pack of 10)"
+  - link "Buy again - Mother in Law's Kimchi House Napa Cabbage, 16 oz" [ref=e76]: "Mother in Law's Kimchi House Napa Cabbage, 16 oz"
+  - link [ref=e77]
+  - heading [level=2]
+  - link "Baseus PicoGo AC22 Mini Power Bank, 20000mAh 45W PD Portable Charger Built-in USB-C Cable, Travel Es" [ref=e78]
+  - link "Anker MagSafe Charger Compatible, MagGo 3-in-1 Charging Station, Nano Charging Stand, Qi2 Certified" [ref=e79]
+  - link "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H" [ref=e80]
+  - link "Amazon Echo Show 11 (newest model), Vibrant Full-HD 11\" display with more viewing area and spatial a" [ref=e81]
+  - link [ref=e82]
+  - heading [level=2]
+  - link "Men's rotary shavers" [ref=e83]: "Philips Norelco Shaver 3600 Series, Wet and Dry Electric Shaver, P-Cap, Travel Pouch, Storm Blue, Mo 1 viewed"
+  - link "Clocks" [ref=e84]: "BXF SPORTS Digital Shower Clock Waterproof,Bathroom Extra Large LCD Screen Wall Clock Timer,Countdow 1 viewed"
+  - link "Sewing repair patches" [ref=e85]: "OAZ 8 Pieces 7.87 x 5.9 inch Nylon Repair Patches Nylon Fabric Patch Self-Adhesive Fabric Repair Tap 1 viewed"
+  - link "Video projectors" [ref=e86]: "[Google TV/ 1200 ANSI/ HDR 10] Wanbo Mozart 1 Pro 4K Smart Projector with WiFi and Bluetooth. Outdoo 1 viewed"
+  - link "View your browsing history" [ref=e87]
+  - heading [level=2]
+  - link "Tribesigns Large Dining Table for 6-8 People, 70.9-Inch Wood Rustic Rectangular Table with Black Woo" [ref=e88]
+  - link "Tribesigns Dining Table for 8 People, 70.87-inch Rectangular Wood Kitchen Table with Strong Metal Fr" [ref=e89]
+  - link "Keebler Fudge Cookies, Coconut Dreams, 8.5oz" [ref=e90]
+  - link "Nourison Home 16\" Matte Black Metal Mushroom Table Lamp, Modern, Retro, Desk Light for Bedroom, Dini" [ref=e91]
+  - link [ref=e92]
+  - heading [level=2]
+  - link "Green Onions (Scallions), One Bunch" [ref=e93]
+  - link "365 by Whole Foods Market, Large White Grade A Eggs, 12 ct" [ref=e94]
+  - link "365 by Whole Foods Market Organic Peeled Garlic 6oz, 6 OZ" [ref=e95]
+  - link "Lactaid 2% Reduced Fat Milk, 64 fl oz (Pack of 1)" [ref=e96]
+  - link [ref=e97]
+  - heading [level=2]
+  - link "Hisense 75\" E6 Cinema Series Hi-QLED 4K UHD Smart Fire TV (75E6QF, 2025 Model) - AI Light Sensor, Do" [ref=e98]
+  - link "Amazon Echo Dot Kids (newest model) - Designed for kids, Designed for Alexa+, parental controls, Inc" [ref=e99]
+  - link "Echo Show 5 (3rd Gen) Adjustable Stand with USB-C Charging Port | Charcoal 15% off Limited time deal" [ref=e100]
+  - link "Blink Video Doorbell + Outdoor 4 – Wireless smart security cameras, head-to-toe HD view, two-year ba" [ref=e101]
+  - link "Save on Amazon Devices - See more" [ref=e102]
+  - heading "Deals on tech" [level=2]
+  - link "PC" [ref=e103]: "PC PC"
+  - link "Wireless" [ref=e104]: "Wireless Wireless"
+  - link "Software" [ref=e105]: "Software Software"
+  - link "Home entertainment" [ref=e106]: "Home entertainment Home entertainment"
+  - link "Deals on tech - Shop all tech deals" [ref=e107]
+  - heading "Selected for you" [level=2]
+  - button "Leave feedback on Sponsored ad" [ref=e108]: "Sponsored"
+  - text: "| Inspired by your shopping trends"
+  - list:
+    - link "OontZ Angle 3 Ultra - Portable Bluetooth Speaker, 14 Watts, Bigger Bass, Hi-Quality Sound, 100 Ft Wi" [ref=e109]
+    - link "Portable Bluetooth Speakers, Retro Speakers Bluetooth Wireless Wearable Mini Bluetooth Boombox with " [ref=e110]
+    - link "Monster S360 Portable Bluetooth Speaker, IPX7 Waterproof, Bluetooth 6.0, 20H Playtime, Powerful Ster" [ref=e111]
+    - link "Monster S360 Portable Bluetooth Speaker, IPX7 Waterproof, Bluetooth 6.0, 20H Playtime, Powerful Ster" [ref=e112]
+    - link "Tribit StormBox Mini+ Portable Bluetooth Speaker, 12W Wireless Speaker with 360°Surround Sound, 12H " [ref=e113]
+    - link "Belkin BoostCharge 42-Watt Dual Port Fast Car Charger w/30W USB-C & 12W USB-A Ports for iPhone 16, 1" [ref=e114]
+    - link "Passau Portable Bluetooth Speakers Loud 40W Peak Stereo Sound, Passive Radiators-Deep Bass, All Day " [ref=e115]
+    - link "AKLLCCR Wireless Induction Audio Bluetooth Speaker 5in1 Phone Holder Emergency Rechargeable (3000mAh" [ref=e116]
+    - link "OontZ Angle 3 (4th Gen) – Portable Bluetooth Speaker, 12W Stereo Sound, 24 Hour Playtime, Rich Bass," [ref=e117]
+    - link "Ortizan 80W Speakers Bluetooth Wireless Loud with Bass, 24H Playtime, IPX7 Waterproof, Bluetooth 5.3" [ref=e118]
+    - link "JLab Go Party Portable Bluetooth Speaker, Mulberry, 10 Watts of Power, 16+ Hours of Playtime, IP56 W" [ref=e119]
+    - link "Monster S150 Speaker, Strong Bluetooth 5.4, IPX7 Waterproof Wireless Speaker, Support Sulti-Channel " [ref=e120]
+    - link "ZEALOT Portable Speaker 20W, Bluetooth Speaker Waterproof, Bocinas Bluetooth, IPX6 Waterproof, Wirel" [ref=e121]
+    - link "RUIMATECH Party Bluetooth Speaker: 60W Peak Power, Deep Bass Dual Woofers, 12H Battery, RGB Lights, " [ref=e122]
+    - link "MIATONE Bluetooth Speaker 40W BT 6.0 Outdoor Portable Bluetooth Speakers with 3 EQ,Deep Bass,24H Pla" [ref=e123]
+    - link "TAZATA 30W Loud Outdoor Portable Bluetooth Speaker, IPX7 Waterproof - Dustproof Wireless Speaker wit" [ref=e124]
+    - link "BolaButty Bluetooth Speaker Portable Wireless, IPX5 Waterproof, Up to 20H Playtime, TWS Pairing, BT5" [ref=e125]
+    - link "ZEALOT Portable Bluetooth Speaker, Speakers Bluetooth Wireless, Outdoor Speaker Waterproof, IPX6, 40" [ref=e126]
+    - link "Tribit PocketGo Bluetooth Shower Speaker, IP68 Waterproof/Dustproof, Portable Speaker with 20H Playt" [ref=e127]
+    - link "Small Speaker, Bluetooth Speaker with 360°HD Stereo Sound and Robust Bass, Mini Speakers with Hands-" [ref=e128]
+  - heading [level=2]: "Items you may like"
+  - list:
+    - listitem:
+      - link "CHAKO LAB BaWang Insulated Stainless Steel Tumbler | Tumbler with Handle and Straw 33oz | Cup Holder" [ref=e129]
+    - listitem:
+      - link "WHJY Japanese Retro Porcelain Side Dish Ceramic Side Dishes Bowl Seasoning Dishes Soy Dipping Sauce " [ref=e130]
+    - listitem:
+      - link "Huusk Japanese Kitchen Knife Set of 2 - Professional Chef Knives Set for Kitchen, Hand Forged Nakiri" [ref=e131]
+    - listitem:
+      - link "Souso 6pcs Stainless Steel Stacking Food Containers with Lids, Reusable Snack & Prep Containers for " [ref=e132]
+    - listitem:
+      - link "STE-CER Ceramic Chopsticks Holder,Japanese Chopstick Rest,Spoon,knife & Fork Stand,Set of 8 (Multico" [ref=e133]
+    - listitem:
+      - link "Amazon Basics Glazed Stoneware Dinner Plates, Ceramic 4-Piece Set, Microwave and Dishwasher-Safe, 10" [ref=e134]
+    - listitem:
+      - link "Amber Glass Espresso Mugs with Handle, 12 oz Borosilicate Small Coffee Cups for Cappuccino, American" [ref=e135]
+    - listitem:
+      - link "CHAKO LAB Insulated Stainless Steel Water Bottle | Dual-layer tumbler with Glass Linner and Stainste" [ref=e136]
+    - listitem:
+      - link "LERATIO Dinner Plates,Ceramic Dinner Plates Set of 6,10.75 inch Large ceramic plates,Modern Shape Di" [ref=e137]
+    - listitem:
+      - link "CHAKO LAB Insulated Stainless Steel Water Bottle with Two Strap | BPA-Free Leak Proof | 17oz Bottle " [ref=e138]
+    - listitem:
+      - link "Winco Serving Platter, Oval, 16\"x 10-1/4\", S/S" [ref=e139]
+    - listitem:
+      - link "Kaneshotouki 209537 Miffy Chopsticks Rest Rabbit S White" [ref=e140]
+    - listitem:
+      - link "PETINUBE Silicone Multi-Steamer Made in Korea Microwave Steamer for Cooking & Reheating BPA-Free Fle" [ref=e141]
+    - listitem:
+      - link "PARACITY Highball Glasses Set of 2, Drinking Glasses 12 Oz, Clear Glass Cups, Tall Tumbler Water Gla" [ref=e142]
+    - listitem:
+      - link "MITSUMOTO SAKARI Japanese Kitchen Shears, Cooking Scissors Titanium Plated for Meat Vegetable Herb" [ref=e143]
+    - listitem:
+      - link "Colander 304 Stainless Steel 3-quart with Mixing Bowls, Strainer for Kitchen Food For washing vegeta" [ref=e144]
+    - listitem:
+      - link "Marna K555CL Standing Rice Spoon, Premium Clear (Freestanding/Ladle Letter/Made in Japan), Non-Stick" [ref=e145]
+    - listitem:
+      - link "TECHEF - Onyx Collection, Nonstick Tamagoyaki Japanese Omelette Pan/Egg Pan (PFOA Free), Made in Kor" [ref=e146]
+    - listitem:
+      - link "SHI BA ZI ZUO Meat Cleaver Professional Chef Knife Stainless Steel 8 Inch Butcher Knife Classic Bala" [ref=e147]
+    - listitem:
+      - link "Lnncdsc 3 Tier Bamboo Matcha Station, coffee station organizer Shelf for Kitchen Countertop, Tea Bar" [ref=e148]
+    - listitem:
+      - link "Okllen Set of 3 Korean Ramen Noodle Pot with Handles, Stainless Steel Everyday Pan, Golden Korean Co" [ref=e149]
+    - listitem:
+      - link "Uaral Japanese Plates Serving Dishes,Salad Bowl Set,Dessert Plate,Appetizer Plate Set of 4,5.5 inch(" [ref=e150]
+    - listitem:
+      - link "Alessi Blip PG02 - Spoon Rest in 18/10 Stainless Steel Mirror Polished" [ref=e151]
+    - listitem:
+      - link "Kitchen Scissors, All Purpose，Ultra Sharp Meat Scissors，Heavy Duty Silver Cooking Scissor，Dishwash S" [ref=e152]
+    - listitem:
+      - link "Alessi PSJS Juicy Salif Citrus Juicer, Aluminium, Mirror Polished" [ref=e153]
+    - listitem:
+      - link "QINLANG 38 oz Japanese Ramen Bowls, Ceramic Set of 4 for Cereal, Soup, Pho, Noodles - Blue and White" [ref=e154]
+    - listitem:
+      - link "LURRIER Gongfu tea sets, Portable Ceramic TeaSet, Asian Tea sets for adult, Tea Gift sets, Grey leat" [ref=e155]
+    - listitem:
+      - link "AIKENBBKK Tamagoyaki Japanese Omelette Pan, Japanese Egg Pan, Square Egg Pan Nonstick, Induction-Rea" [ref=e156]
+    - listitem:
+      - link "Patelai 2 Pieces Korean and Japanese BBQ Tongs Non Slip Cooking Utensils Stainless Steel Tongs for S" [ref=e157]
+    - listitem:
+      - link "Villeroy & Boch Manufacture Rock Pasta Plate with Wide Rim, Premium Porcelain, Made in Germany, Dish" [ref=e158]
+  - heading [level=2]
+  - link "List:" [ref=e160]
+  - radiogroup:
+    - radio [ref=e161]:
+      - link "INIU Ultra Compact Portable Charger, 10000mAh 45W Fast Charging Power Bank with Detachable USB-C Cab" [ref=e163]
+    - radio [ref=e164]:
+      - link "INIU 20000mAh Power Bank, Smaller 45W PD Fast Charging Portable Charger, Battery Pack with Build in" [ref=e166]
+    - radio [ref=e167]:
+      - link "INIU 20000mAh Laptop Power Bank, Ultra Compact 65W PD Dual Fast Charging Portable Charger, Flight-Sa" [ref=e169]
+    - radio [ref=e170]:
+      - link "INIU 45W Fast Charging Portable Charger, 40% Smaller 10000mAh with Detachable Cable, Flight-Safe Tra" [ref=e172]
+  - heading [level=2]
+  - link "List:" [ref=e173]
+  - radiogroup:
+    - radio [ref=e174]:
+      - link "MAGNIVIT Men's Lightweight Sweatpants Loose Fit Open Bottom Mesh Athletic Pants with Zipper Pockets" [ref=e176]
+    - radio [ref=e177]:
+      - link "Pudolla Men's Workout Athletic Pants Elastic Waist Jogging Running Pants for Men with Zipper Pockets" [ref=e179]
+    - radio [ref=e180]:
+      - link "Under Armour Men's Brawler Pants" [ref=e182]
+    - radio [ref=e183]:
+      - link "Rapoo Men's Lightweight Pants with Zipper Pockets Quick Dry Workout Athletic Travel Pants" [ref=e185]
+  - link [ref=e186]
+  - heading [level=2]
+  - link [ref=e187]
+  - radiogroup:
+    - radio [ref=e188]:
+      - link "Nature's Own Perfectly Crafted Brioche Style Hot Dog Rolls, Non-GMO Hot Dog Buns, 8 Count" [ref=e190]
+    - radio [ref=e191]:
+      - link "Schweid and Sons, Butcher's Blend, Beef Burgers, 80% Lean/20% Fat, 1.325 lb, Pack of 4" [ref=e193]
+    - radio [ref=e194]:
+      - link "Amazon Grocery, Ground Beef Burgers, 80% Lean, 20% Fat, 32 Oz, 8 Ct, Frozen" [ref=e196]
+    - radio [ref=e197]:
+      - link "Just Bare® Chicken Lightly Breaded Chicken Breast Fillets| Fully Cooked | 16 G Protein | Frozen | 1." [ref=e199]
+  - heading [level=2]
+  - link [ref=e200]
+  - radiogroup:
+    - radio [ref=e201]:
+      - link "Diet Coke Soda Soft Drink Fridge Pack Mini Cans, 7.5 fl oz, 10 Pack" [ref=e203]
+    - radio [ref=e204]:
+      - link "MOWI Atlantic Salmon Portion Tuscan Herb, 12oz, Fresh Never Frozen" [ref=e206]
+    - radio [ref=e207]:
+      - link "Organicgirl Supergreens, 5 Oz" [ref=e209]
+    - radio [ref=e210]:
+      - link "Snapple Zero Sugar Peach Tea, 16 fl oz recycled plastic bottle (Pack of 12)" [ref=e212]
+  - heading [level=2]: "Related to items you've viewed"
+  - link "See more" [ref=e213]
+  - list:
+    - listitem:
+      - link "8BitDo Retro Cube 2 Speaker, Portable Bluetooth Speaker with Stereo Sound, Wireless Charging Dock, B" [ref=e214]
+    - listitem:
+      - link "8BitDo Retro R8 Mouse with Charging Dock, PAW 3395 Optical Sensor DPI 26,000, Wireless Mouse with 4K" [ref=e215]
+    - listitem:
+      - link "Star Fox™ - Nintendo Switch 2" [ref=e216]
+    - listitem:
+      - link "8BITDO Retro 18 Mechanical NUMPAD - N Edition" [ref=e217]
+    - listitem:
+      - link "syitren N200 Bluetooth Speaker, TWS Pairing, Retro Speakers for Home,Desktop,Small Wireless Portable" [ref=e218]
+    - listitem:
+      - link "8BitDo Retro 108 Mechanical Keyboard with 108 Keys and Integrated Numpad, Bluetooth/2.4G/USB-C Hot S" [ref=e219]
+    - listitem:
+      - link "8BitDo N30 Wireless Charger for Mobile" [ref=e220]
+    - listitem:
+      - link "8BITDO Retro 87-Key Wireless RGB Mechanical Gaming Keyboard - Xbox Edition" [ref=e221]
+    - listitem:
+      - link "GameSir Pocket Taco Vertical Mobile Gaming Controller – Retro Arcade Bluetooth Gamepad for Android, " [ref=e222]
+    - listitem:
+      - link "Hwyxcx Neon Genesis Evangelion Unit-01 Tool Storage Bag Pencil Case by Treasure Case" [ref=e223]
+    - listitem:
+      - link "Teenage Engineering OB–4 Portable Bluetooth Wireless Stereo Speaker with fm-Radio and Long-Lasting, " [ref=e224]
+    - listitem:
+      - link "MPCO. Original Large Gaming Desk Mat – 36\" x 17\" Aeroglyde OZGMX Buenavista Full Desk Mouse Pad for " [ref=e225]
+    - listitem:
+      - link "8Bitdo N30 2.4Ghz Wireless Mouse for PC Windows and macOS" [ref=e226]
+    - listitem:
+      - link "8Bitdo Retro R8 Mouse with Charging Dock, PAW 3395 Optical Sensor DPI 26K, 4K Polling Rate, Programm" [ref=e227]
+    - listitem:
+      - link "Divoom MiniToo Retro PC-Style Computer Speaker, Smart Pixel Screen with DIY Faces, Bluetooth & USB A" [ref=e228]
+    - listitem:
+      - link "8BitDo Retro 87 Mechanical Keyboard with Hot-Swappable Kailh Switches, RGB Backlight, Programmable B" [ref=e229]
+    - listitem:
+      - link "syitren R300 CD Player Bluetooth Portable Desktop Retro CD Player for Home Fiber Output No Built-in " [ref=e230]
+    - listitem:
+      - link "8Bitdo 18 Key Retro Mechanical Numpad, Supports PC & Standard Calculator Mode, Hot-swappable, PC Cal" [ref=e231]
+    - listitem:
+      - link "Teenage Engineering CM–15 Portable Battery-Powered Condenser Microphone Audio Converter via USB-c, p" [ref=e232]
+    - listitem:
+      - link "SKINACT Palma Electric Medical Spa Treatment Table (Light Saphire)" [ref=e233]
+    - listitem:
+      - link "LOFREE Hypace Ultra-Lightweight Wireless Gaming Mouse, 47g, PAW3950 Sensor, 40K DPI, 8K Polling Rate" [ref=e234]
+    - listitem:
+      - link "Kooduu Sensa Play Bluetooth Speaker Light with Sound by JBL - Cordless, Rechargeable Speaker & Light" [ref=e235]
+    - listitem:
+      - link "Coca-Cola Vending Machine Bluetooth Speaker, Dual 5W Speakers, Wireless Bluetooth v5.3, FM Radio, US" [ref=e236]
+    - listitem:
+      - link "3D Pinball For Windows - Space Cadet Sticker Bumper Sticker Vinyl Decal 5\"" [ref=e237]
+    - listitem:
+      - link "AceGamer Wireless Pocket Controller for Nintendo Switch/Switch 2/Android/iOS/PC/Steam Deck/Phone,100" [ref=e238]
+    - listitem:
+      - link "8BitDo All-Button Arcade Controller for Switch/Switch 2 & Windows – Bluetooth, 2.4G, Wired Connectiv" [ref=e239]
+    - listitem:
+      - link "8BitDo Pro 3 Bluetooth Controller for Switch/Switch 2,TMR Joysticks,Programmable Pro Back Buttons&R4" [ref=e240]
+    - listitem:
+      - link "Muzen Mini Bluetooth Speaker, Button Small Cute Portable Metal Retro Wireless Speaker with Loud Volu" [ref=e241]
+    - listitem:
+      - link "THARO New Wireless Mouse Barcode Scanner, 2-in-1 Design 2D Handheld Barcode Scanner with Wireless Mo" [ref=e242]
+    - listitem:
+      - link "8Bitdo 87 Keys Retro Mechanical Keyboard Bluetooth/2.4G/USB-C, Hot Swappable, Dual Super Programmabl" [ref=e243]
+  - heading [level=2]: "Discover more"
+  - list:
+    - listitem:
+      - link "Dongwon Tuna Can, 150gram (4 Cans)" [ref=e244]
+    - listitem:
+      - link "Korean Food Crispy Pancake Mix, 2.2lb (1kg), Korean-Style Savory Pancake Batter, Perfect for Kimchi," [ref=e245]
+    - listitem:
+      - link "Egg Flower Soup Mix, Vegetable Mix Soup with 4 Flavors (Laver, Spinach, Mushroom, Tomato), 0.3 Ounce" [ref=e246]
+    - listitem:
+      - link "Seasoned Kombu (Shio Kombu), Premium Kombu from Hokkaido, Made in Japan | No MSG, No additives, Non-" [ref=e247]
+    - listitem:
+      - link "HealSpot High Protein Instant Ramen Variety Pack (6 Cups) - 32g Plant-Based Protein, Non-Fried, Low " [ref=e248]
+    - listitem:
+      - link "Shirakiku Dried Grains & Rice - Japanese Short Grain White Koshihikari - Uncooked Premium Quality Lo" [ref=e249]
+    - listitem:
+      - link "Official ICHIRAN Take-Home Ramen Kit (Pork Bone Broth Flavor), Authentic Tonkotsu Ramen Noodle Soup " [ref=e250]
+    - listitem:
+      - link "Knorr cup soup Variety box 30 packs" [ref=e251]
+    - listitem:
+      - link "Nongshim Shin Ramyun Toomba Noodles Square Bowl, Creamy Korean Mac and Cheese Style Noodles, Gentle " [ref=e252]
+    - listitem:
+      - link "Korean Food Paldo Gomtang Noodle Soup, 5 Pack (3.6oz Each) – Instant Korean-Style Broth Ramen – Mild" [ref=e253]
+    - listitem:
+      - link "Ox & Palm Corned Beef, Original Chunky Style, 11.5 Ounce (Pack of 1)" [ref=e254]
+    - listitem:
+      - link "VIFON Pho Bo Vietnamese Beef Flavor Rice Noodle Bowl, 70g (Pack of 12) | Authentic Vietnamese Instan" [ref=e255]
+    - listitem:
+      - link "Nissin Cup Noodles Ramen Noodle Soup, Seafood, 2.68 Ounce (Pack of 6)" [ref=e256]
+    - listitem:
+      - link "Nongshim Chapagetti Chajang Noodle, 4.5 Ounce (Pack of 10)" [ref=e257]
+    - listitem:
+      - link "NORITEN Japanese Snacks Tempura Seaweed Snacks Made in Japan (Wasabi, 10.58OZ)" [ref=e258]
+    - listitem:
+      - link "Nongshim Yaki Udon Hot & Spicy, Stir Fry Style Korean Inspired Noodles, Sweet and Spicy Sauce with C" [ref=e259]
+    - listitem:
+      - link "(2023 New Released!) Chinese Snacks Konjac Spicy Strips Sticks, 20 Packs Inside Box, WeiLong Chinese" [ref=e260]
+    - listitem:
+      - link "DREAM KITCHEN CUP OF RAMEN ASSORTED BOX 2.47 Ounce (Pack of 12) (Assorted)" [ref=e261]
+    - listitem:
+      - link "OTTOGI JIN Jjambbong Korean Instant Ramen – Spicy Seafood Noodles, Red Broth, 4.58 oz (Pack of 4)" [ref=e262]
+    - listitem:
+      - link "KEWPIE Mayonnaise (Product of Japan), Rich & Creamy Umami Flavor, Best Mayo for Sandwiches, Salads, " [ref=e263]
+    - listitem:
+      - link "East and Else Premium Japanese Sushi Rice, Fukkurinko Short Grain, 2.2 LB (1 KG) – 100% Grown in Hok" [ref=e264]
+    - listitem:
+      - link "OTOKI Korean Sprouted Black Rice, Antioxidant-Rich Purple Rice Bowls, Gluten-Free & Vegan, Ready in " [ref=e265]
+    - listitem:
+      - link "HAIDILAO Authentic Beef Tallow Hot Pot Sauce Premium Spicy Hot Pot Soup Base NEW ITEM 5.3oz (150g) X" [ref=e266]
+    - listitem:
+      - link "IRVINS Salted Egg Salmon Skin Chips & Crisps - Premium Hand Cooked, Halal, Keto-Friendly, High Prote" [ref=e267]
+  - heading [level=2]
+  - link [ref=e268]
+  - radiogroup:
+    - radio [ref=e269]:
+      - link "365 by Whole Foods Market, Ripe Large Pitted Olives, 6 Ounce" [ref=e271]
+    - radio [ref=e272]:
+      - link "GONIM Under Eye Patches 360° Fit, Eye Mask with Collagen Peptide, Salmon DNA PDRN, Caffeine,Retinol" [ref=e274]
+    - radio [ref=e275]:
+      - link "Beef Tallow for Skin – 2 Pcs Tallow and Honey Balm with Lavender Essential Oil, Beef Tallow for Face" [ref=e277]
+    - radio [ref=e278]:
+      - link "Philips Norelco OneBlade 360 Blades, Genuine Replacement Blades for OneBlade Electric Shaver and Tri" [ref=e280]
+  - heading [level=2]
+  - link [ref=e281]
+  - radiogroup:
+    - radio [ref=e282]:
+      - link "Banana Bunch (4-5 Count)" [ref=e284]
+    - radio [ref=e285]:
+      - link "Medium Hass Avocado" [ref=e287]
+    - radio [ref=e288]:
+      - link "Blueberries, 1 Pint" [ref=e290]
+    - radio [ref=e291]:
+      - link "Amazon Grocery, Colby Jack Cheese, 8 Oz, 10 Slices" [ref=e293]
+  - heading [level=2]
+  - link [ref=e294]
+  - radiogroup:
+    - radio [ref=e295]:
+      - link "Mundi Jacqui RFID Crossbody Wallet for Women, Vegan Leather Small Travel Handbag with Phone Holder," [ref=e297]
+    - radio [ref=e298]:
+      - link "CHOLISS Small Crossbody Bags for Women, Vegan Leather Cell Phone Purse, Mini Travel Purse with Adjus" [ref=e300]
+    - radio [ref=e301]:
+      - link "Travelon Anti-Theft Signature Quilted Slim Pouch" [ref=e303]
+    - radio [ref=e304]:
+      - link "Travelon Anti-Theft Classic Travel Bag" [ref=e306]
+  - link [ref=e307]
+  - heading "Up to 25% off pet supplies" [level=2]
+  - link "Food" [ref=e308]: "Food Food"
+  - link "Health" [ref=e309]: "Health Health"
+  - link "Litter & Odor" [ref=e310]: "Litter & Odor Litter & Odor"
+  - link "Toys" [ref=e311]: "Toys Toys"
+  - link "Up to 25% off pet supplies - Shop the Pet Days sale" [ref=e312]
+  - heading [level=2]: "Explore more items"
+  - list:
+    - listitem:
+      - link "Spigen for Mac mini M4/M4 Pro (2024) Transparent Filter Case Stand Built in Air-Filter Desktop PVC D" [ref=e313]
+    - listitem:
+      - link "UGREEN 100W Retractable USB C Cable, Type C Cord USB C Charger Cable for iPhone 17/16/15, MacBook Pr" [ref=e314]
+    - listitem:
+      - link "Nomad Slim Power Adapter, Flat Wall Charger with Dual USB C Cable Ports, Slim Block with Fast Charge" [ref=e315]
+    - listitem:
+      - link "Cadcreo Aluminum Monitor Stand with Spring-Adjustable Height, Vesa Mount with Full Tilt, Swivel & Ro" [ref=e316]
+    - listitem:
+      - link "MOFT Laptop Stand for Desk, Stick-On Computer Stand with Dual-Angle, Ergonomic Laptop Riser Holder f" [ref=e317]
+    - listitem:
+      - link "SOTSU FlipAction Elite 16\" Portable Monitor | 4K | Super Compact | Pivot Rotate | 3840x2400 DCI P3 |" [ref=e318]
+    - listitem:
+      - link "Quntis Monitor Light Bar Pro White, Eye-Care No Glare USB Computer Lamp, Stepless Dimming & Auto-Dim" [ref=e319]
+    - listitem:
+      - link "Native Union Fold Laptop Stand – Ultra-Slim Foldable & Portable Laptop Stand – Ergonomic & Optimized" [ref=e320]
+    - listitem:
+      - link "SHARGE Pixel 140 Laptop Charger 140W USB C GaN Charger 3-Port with Smart Dot-Matrix Display PD3.1 Fa" [ref=e321]
+    - listitem:
+      - link "Wokyis M5 Retro Dock Station for Mac mini M4, 5’inch HD Display, 10Gbps M.2 NVMe SSD Enclosure, SD/M" [ref=e322]
+    - listitem:
+      - link "Anker Smart Display Charger, Anker Nano USB C Charger Block, 45W Max GaN Phone Charger,180° Foldable" [ref=e323]
+    - listitem:
+      - link "LISEN 10FT USB C Cable Fast Charging, Chubby 240W Cable USB C to USB C Fast Charging Soft Silicone U" [ref=e324]
+    - listitem:
+      - link "MOFT Dynamic Folio Case for iPad mini 7th A17 Pro 2024 & iPad mini 6th A15 2021, 8.3 Inch Slim Magne" [ref=e325]
+    - listitem:
+      - link "MOFT Laptop Carry Sleeve, 2-in-1 Laptop Bag & Stand for 14\" Air/Pro & Dell/HP/Lenovo/Asus, Stylish S" [ref=e326]
+  - heading [level=2]: "Consider these items"
+  - list:
+    - listitem:
+      - link "Soundcore Anker Boom Go 3i Portable Bluetooth Speaker, 15W Punchy Sound, 24H Playtime, IP68, BassUp " [ref=e327]
+    - listitem:
+      - link "Audio-Technica AT-SB727-YL Portable Turntable, Yellow" [ref=e328]
+    - listitem:
+      - link "Unihertz Titan 2 The Latest 5G QWERTY Physical Keyboard 5G Smartphone Android 15 Dual Screen 5050mAh" [ref=e329]
+    - listitem:
+      - link "Nothing Phone (4a) Pro Cell Phone 2026 New, Unlocked Android 16 Smartphone, Triple-Lens Camera, AI P" [ref=e330]
+    - listitem:
+      - link "Sonos Play - Portable Bluetooth Speaker with WiFi, Alexa, 24-Hour Battery Life, Charging Base - Whit" [ref=e331]
+    - listitem:
+      - link "Retractable USB C Charger, 67W 2-Port Fast Charger with Retractable Cables and Foldable Plug and, PD" [ref=e332]
+    - listitem:
+      - link "KONAFEI 2-in-1 Charging Dock Compatible with Ray Ban Meta Display Smart Glasses & Neural Band, Magne" [ref=e333]
+    - listitem:
+      - link "Unihertz Jelly Star Mini Smartphone 3 Inch Smallest Tiny 4G Cell Phone Android 13 Transparent Design" [ref=e334]
+    - listitem:
+      - link "sharge ICEMAG 3 MagSafe Portable Charger, Qi2.2 25W Magnetic Power Bank 10000mAh with 35W Built-in C" [ref=e335]
+    - listitem:
+      - link "sharge Flow Mini 2 Portable Charger with Built-in Cable 22.5W Max Power Bank for Travel, Fast Chargi" [ref=e336]
+    - listitem:
+      - link "Momax Wallet Tracker Smart Finder - Rechargeable Slim Bluetooth Key Tracking Card with 1-Year Batter" [ref=e337]
+    - listitem:
+      - link "SwitchBot AI Art Frame 13.3'', Electronic Ink Picture Frame, Wireless Digital Photo Frame, Long Batt" [ref=e338]
+    - listitem:
+      - link "FiiO RR11 Portable HiFi FM Stereo Radio Receiver with Analog PVR Tuning, BASS+3D Sound Effects, 64MH" [ref=e339]
+    - listitem:
+      - link "UGREEN for Magsafe Tripod 360° Rotating Adjustable Magnetic Phone Stand for 1/4'' Screw Port Compati" [ref=e340]
+    - listitem:
+      - link "Marshall Willen II Bluetooth Portable Speaker - Cream" [ref=e341]
+    - listitem:
+      - link "VIWOODS 6.13'' Carta1300 AiPaper Reader with 4G Connectivity, Ultra-Thin & Light E Ink eReader Devic" [ref=e342]
+    - listitem:
+      - link "MOMAX Magnetic Portable Bluetooth Speaker, IPX6 Waterproof Mini Shower Speaker, Enhanced Bass, 12H P" [ref=e343]
+    - listitem:
+      - link "Apple - HomePod mini - Yellow" [ref=e344]
+    - listitem:
+      - link "Baseus 100W Power Bank 20000mAh, Portable Laptop Charger with Built-in USB-C Dual Cables, Travel Ess" [ref=e345]
+    - listitem:
+      - link "FiiO CP13 Cassette Player (Transparent)" [ref=e346]
+    - listitem:
+      - link "FiiO EH11 Retro On-Ear Bluetooth Headphones, LDAC Hi-Res Wireless, Lightweight 92g, 30H Playtime, Du" [ref=e347]
+    - listitem:
+      - link "Baseus Picogo Power Bank, Smallest Qi2 Certified 15W MagSafe Portable Charger, 0.5\" Ultra Slim 5000m" [ref=e348]
+    - listitem:
+      - link "MINIX 70W Flat USB C Wall Charger Block, Slim & Flodable Dual Type C GaN Charger Plug Fast Charging " [ref=e349]
+    - listitem:
+      - link "UGREEN FineTrack Slim Wallet Tracker Card (iOS Only), Bluetooth Air Tracker Tags Compatible with App" [ref=e350]
+    - listitem:
+      - link "Tribit StormBox Micro 3 Portable Bluetooth Speaker, 13W Bike Speaker with IP68 Waterproof, 24H Playt" [ref=e351]
+    - listitem:
+      - link "UGREEN QI2 Power Bank, 8.6mm Ultra-Slim 5000mAh Magnetic Battery, 20W PD Fast Charging Portable Char" [ref=e352]
+    - listitem:
+      - link "TALIX 140W Power Bank, 20000mAh Laptop Power Bank, PD 3.1 Fast Charging Portable Charger with 3 Port" [ref=e353]
+    - listitem:
+      - link "Universal Remote Control Adapter for Smartphone All in One Remote Control for TV/AC/DVD Compatible w" [ref=e354]
+  - heading "Small space solutions" [level=2]
+  - link "Small space furniture solutions" [ref=e355]
+  - heading [level=2]
+  - link "Typical:" [ref=e356]
+  - radiogroup:
+    - radio [ref=e357]:
+      - link "Alimens & Gentle Mens Short Sleeve Dress Shirts Wrinkle Free Solid Casual Button Down Shirts with Po" [ref=e359]
+    - radio [ref=e360]:
+      - link "Cervical Neck Pillow for Pain Relief,Cervical Pillow with Memory Foam Ergonomic Pillows with Dual He" [ref=e362]
+    - radio [ref=e363]:
+      - link "MINDBEAST Wired Earbuds with Microphone Super Bass Sound, Noise Isolation, Lightweight Cable Headpho" [ref=e365]
+    - radio [ref=e366]:
+      - link "Alimens & Gentle Mens Solid Oxford Shirt Long Sleeve Dress Shirt Work Casual Button Down Shirts with" [ref=e368]
+  - heading [level=2]
+  - link "Typical:" [ref=e369]
+  - radiogroup:
+    - radio [ref=e370]:
+      - link "UPEB Small Portable Charger for iPhone 5000mAh 2 Packs with Built in Cable, MFi Certified Compact Po" [ref=e372]
+    - radio [ref=e373]:
+      - link "Miady 2-Pack 5000mAh Mini Portable Charger, 5V 2.4A USB-C Output Fast Charging Power Bank for Travel" [ref=e375]
+    - radio [ref=e376]:
+      - link "Kuulaa Small Portable Charger iPhone with Built-in Lightning Cable 5000mAh Power Bank Fast Charging" [ref=e378]
+    - radio [ref=e379]:
+      - link "INIU Power Bank, 25000mAh 100W USB C Laptop Portable Charger, PD QC Fast Charging 3-Output Battery P" [ref=e381]
+  - link [ref=e382]
+  - heading [level=2]
+  - link [ref=e383]
+  - radiogroup:
+    - radio [ref=e384]:
+      - link "Avène Thermal Spring Water, Soothing Calming Facial Mist Spray for Sensitive Skin, Soothes, Softens" [ref=e386]
+    - radio [ref=e387]:
+      - link "La Roche-Posay Cicaplast Balm B5 Skin Barrier Repair Cream with Centella Asiatica, Shea Butter & Pan" [ref=e389]
+    - radio [ref=e390]:
+      - link "8BitDo 64 Bluetooth Controller for Analogue 3D, Switch, Switch 2, Windows, and Android (Grey)" [ref=e392]
+    - radio [ref=e393]:
+      - link "Anker MacBook Charger,140W Max 4-Port GaN USB C Charger Block with Smart Display,Fast Charger USB C" [ref=e395]
+  - heading [level=2]: "Based on your browsing history"
+  - link "See more" [ref=e396]
+  - list:
+    - listitem:
+      - link "XINKORA Waterproof Shower Clock with Timer, Bathroom Wall Clock Displaying Temperature, Date & Day, " [ref=e397]
+    - listitem:
+      - link "Wisoee Digital Shower Clock Waterproof, Bathroom Wall Clock Timer with Touch Screen, Temperature, LC" [ref=e398]
+    - listitem:
+      - link "NUOSWEK Digital Timer Waterproof Shower Timer Shower Clock Bathroom Kitchen Timer with Strong Magnet" [ref=e399]
+    - listitem:
+      - link "KADAMS Shower Clock Waterproof Bathroom Timer – Digital Wall Clock with Countdown, Magnetic Kitchen " [ref=e400]
+    - listitem:
+      - link "BXF SPORTS Digital Shower Clock Waterproof,Bathroom Extra Large LCD Screen Wall Clock Timer,Countdow" [ref=e401]
+    - listitem:
+      - link "Geevon Digital Bathroom Clock, Waterproof Shower Timer with Large Touch Screen, Battery Operated Bat" [ref=e402]
+    - listitem:
+      - link "KADAMS Bathroom Clock 9.5\" Kitchen Wall Clock with Large LCD Screen – Shower Clock with Suction Cup," [ref=e403]
+    - listitem:
+      - link "Yariaii Waterproof Shower Clock, Digital Bathroom Kitchen Wall Clock Timer with Temperature, Touch S" [ref=e404]
+    - listitem:
+      - link "HAUKINIX Shower Timer Waterproof Bathroom Toilet Timer Digital Kitchen for Wall Mount, Study w/Folda" [ref=e405]
+    - listitem:
+      - link "Digital Bathroom Shower Wall Clock Timer, LCD Digital Wall Clock with Suction Waterproof Temperature" [ref=e406]
+    - listitem:
+      - link "VOILEIPAGI Small Clock Digital Battery Operated Alarm Clock with Auto Backlight, Indoor Temperature " [ref=e407]
+    - listitem:
+      - link "Digital Wall Clock Battery Operated, 8 Inch Small Wall Clock with Large Display, Temperature and Dat" [ref=e408]
+    - listitem:
+      - link "Baldr Shower Clock Waterproof Bathroom Clock with Timer/Temperature/Humidity, Digital Timers for Kid" [ref=e409]
+    - listitem:
+      - link "LXSZRPH Digital LCD Waterproof Timer Shower Clock, Waterproof for Water Spray, Bathroom Clock Wall M" [ref=e410]
+    - listitem:
+      - link "OSTAR Waterproof Bathroom Shower Clock, Analog Quartz Clock Hanging Stand Dual Purpose, One AA Batte" [ref=e411]
+    - listitem:
+      - link "Waterproof Bathroom Wall Clock and Timer, Digital Water Resistant Hanging Timer for Shower, Large Di" [ref=e412]
+    - listitem:
+      - link "WallarGe Atomic Digital Wall Clock Battery Operated, Self-Setting, Large Display with Temperature, D" [ref=e413]
+    - listitem:
+      - link "Wisoee Waterproof Shower Clock Bathroom Timer, Digital Wall Clock with Countdown, Touch Screen, Temp" [ref=e414]
+    - listitem:
+      - link "Cirbic Extra Large Shower Clock with Suction Cups, Date and Temperature, Water Resistant Clock for B" [ref=e415]
+    - listitem:
+      - link "Digital Wall Clock with Date, Indoor Temperature, Auto-DST, Battery-Operated Digital Clock, 8 Inch S" [ref=e416]
+    - listitem:
+      - link "Mini Digital Indoor Thermometer Hygrometer Clock, Room Temperature Humidity Monitor with Calibration" [ref=e417]
+    - listitem:
+      - link "Tikonir Shower Clock Waterproof, Bathroom Digital Clock with Timer, LCD Display, Touch Screen, Sucti" [ref=e418]
+    - listitem:
+      - link "Digital Wall Clock with Date, Indoor Temperature, Auto-DST, Battery-Operated Digital Clock, 8 Inch S" [ref=e419]
+    - listitem:
+      - link "USAOSHOP Shower Clock Waterproof Bathroom Timer, Digital Wall Clock with Touch Screen, Temperature, " [ref=e420]
+    - listitem:
+      - link "Westclox Large Digital Wall Clock with Date, Day & Temperature – Battery Operated Digital Clock with" [ref=e421]
+    - listitem:
+      - link "JoFomp LCD Digital Wall Clocks Battery Operated, 8.5\" Modern Wall Clocks for Living Room Decor, Simp" [ref=e422]
+    - listitem:
+      - link "Digital Wall Clock with Large LED Display, Date, Temperature, Auto-Brightness | Small [PLUG-IN] Cloc" [ref=e423]
+    - listitem:
+      - link "WallarGe Auto Set Digital Wall Clock Battery Operated, Desk Clocks with Temperature, Humidity and Da" [ref=e424]
+    - listitem:
+      - link "GINTBN Waterproof Shower Clock, Digital Shower Timer Bathroom Clock with Alarm, LCD Screen Thermomet" [ref=e425]
+    - listitem:
+      - link "LFGKeng Digital Bathroom Shower Wall Clock, Indoor Waterproof Clock with Suction Cup, Plastic Frame," [ref=e426]
+- complementary "Your recently viewed items and featured recommendations"
+- button "Back to top" [ref=e427]
+- heading "Get to Know Us" [level=6]
+- link "Careers" [ref=e428]
+- link "Amazon Newsletter" [ref=e429]
+- link "About Amazon" [ref=e430]
+- link "Accessibility" [ref=e431]
+- link "Sustainability" [ref=e432]
+- link "Press Center" [ref=e433]
+- link "Investor Relations" [ref=e434]
+- link "Amazon Devices" [ref=e435]
+- link "Amazon Science" [ref=e436]
+- heading "Make Money with Us" [level=6]
+- link "Sell on Amazon" [ref=e437]
+- link "Sell apps on Amazon" [ref=e438]
+- link "Supply to Amazon" [ref=e439]
+- link "Protect & Build Your Brand" [ref=e440]
+- link "Become an Affiliate" [ref=e441]
+- link "Become a Delivery Driver" [ref=e442]
+- link "Start a Package Delivery Business" [ref=e443]
+- link "Advertise Your Products" [ref=e444]
+- link "Self-Publish with Us" [ref=e445]
+- link "Become an Amazon Hub Partner" [ref=e446]
+- link "See More Ways to Make Money" [ref=e447]
+- heading "Amazon Payment Products" [level=6]
+- link "Amazon Visa" [ref=e448]
+- link "Amazon Store Card" [ref=e449]
+- link "Amazon Secured Card" [ref=e450]
+- link "Amazon Business Card" [ref=e451]
+- link "Shop with Points" [ref=e452]
+- link "Credit Card Marketplace" [ref=e453]
+- link "Reload Your Balance" [ref=e454]
+- link "Gift Cards" [ref=e455]
+- link "Amazon Currency Converter" [ref=e456]
+- heading "Let Us Help You" [level=6]
+- link "Your Account" [ref=e457]
+- link "Your Orders" [ref=e458]
+- link "Shipping Rates & Policies" [ref=e459]
+- link "Amazon Prime" [ref=e460]
+- link "Returns & Replacements" [ref=e461]
+- link "Manage Your Content and Devices" [ref=e462]
+- link "Recalls and Product Safety Alerts" [ref=e463]
+- link "Registry & Gift List" [ref=e464]
+- link "Help" [ref=e465]
+- link "Amazon US Home" [ref=e466]
+- link "Choose a language for shopping. Current selection is English." [ref=e467]: "English"
+- button "Expand to Change Language or Country" [ref=e468]
+- button "Choose a country/region for shopping. The current selection is United States." [ref=e469]: "United States"
+- navigation "More on Amazon" [ref=e470]:
+  - link "Amazon Music" [ref=e471]:
+    - heading "Amazon Music" [level=5]
+    - text: "Stream millions of songs"
+  - link "Amazon Ads" [ref=e472]:
+    - heading "Amazon Ads" [level=5]
+    - text: "Reach customers wherever they spend their time"
+  - link "6pm" [ref=e473]:
+    - heading "6pm" [level=5]
+    - text: "Score deals on fashion brands"
+  - link "AbeBooks" [ref=e474]:
+    - heading "AbeBooks" [level=5]
+    - text: "Books, art& collectibles"
+  - link "ACX" [ref=e475]:
+    - heading "ACX" [level=5]
+    - text: "Audiobook Publishing Made Easy"
+  - link "Sell on Amazon" [ref=e476]:
+    - heading "Sell on Amazon" [level=5]
+    - text: "Start a Selling Account"
+  - link "Veeqo" [ref=e477]:
+    - heading "Veeqo" [level=5]
+    - text: "Shipping Software Inventory Management"
+  - link "Amazon Business" [ref=e478]:
+    - heading "Amazon Business" [level=5]
+    - text: "Everything For Your Business"
+  - link "Amazon Fresh" [ref=e479]:
+    - heading "Amazon Fresh" [level=5]
+    - text: "Groceries & More Right To Your Door"
+  - link "AmazonGlobal" [ref=e480]:
+    - heading "AmazonGlobal" [level=5]
+    - text: "Ship Orders Internationally"
+  - link "Home Services" [ref=e481]:
+    - heading "Home Services" [level=5]
+    - text: "Experienced Pros Happiness Guarantee"
+  - link "Amazon Web Services" [ref=e482]:
+    - heading "Amazon Web Services" [level=5]
+    - text: "Scalable Cloud Computing Services"
+  - link "Audible" [ref=e483]:
+    - heading "Audible" [level=5]
+    - text: "Listen to Books & Original Audio Performances"
+  - link "Box Office Mojo" [ref=e484]:
+    - heading "Box Office Mojo" [level=5]
+    - text: "Find Movie Box Office Data"
+  - link "Goodreads" [ref=e485]:
+    - heading "Goodreads" [level=5]
+    - text: "Book reviews& recommendations"
+  - link "IMDb" [ref=e486]:
+    - heading "IMDb" [level=5]
+    - text: "Movies, TV& Celebrities"
+  - link "IMDbPro" [ref=e487]:
+    - heading "IMDbPro" [level=5]
+    - text: "Get Info Entertainment Professionals Need"
+  - link "Kindle Direct Publishing" [ref=e488]:
+    - heading "Kindle Direct Publishing" [level=5]
+    - text: "Indie Digital & Print Publishing Made Easy"
+  - link "Amazon Photos" [ref=e489]:
+    - heading "Amazon Photos" [level=5]
+    - text: "Unlimited Photo Storage Free With Prime"
+  - link "Prime Video Direct" [ref=e490]:
+    - heading "Prime Video Direct" [level=5]
+    - text: "Video Distribution Made Easy"
+  - link "Shopbop" [ref=e491]:
+    - heading "Shopbop" [level=5]
+    - text: "Designer Fashion Brands"
+  - link "Amazon Resale" [ref=e492]:
+    - heading "Amazon Resale" [level=5]
+    - text: "Great Deals on Quality Used Products"
+  - link "Whole Foods Market" [ref=e493]:
+    - heading "Whole Foods Market" [level=5]
+    - text: "America’s Healthiest Grocery Store"
+  - link "Woot!" [ref=e494]:
+    - heading "Woot!" [level=5]
+    - text: "Deals and  Shenanigans"
+  - link "Zappos" [ref=e495]:
+    - heading "Zappos" [level=5]
+    - text: "Shoes &Clothing"
+  - link "Ring" [ref=e496]:
+    - heading "Ring" [level=5]
+    - text: "Smart Home Security Systems"
+  - link "eero WiFi" [ref=e497]:
+    - heading "eero WiFi" [level=5]
+    - text: "Stream 4K Video in Every Room"
+  - link "Blink" [ref=e498]:
+    - heading "Blink" [level=5]
+    - text: "Smart Security for Every Home"
+  - link "Neighbors App" [ref=e499]:
+    - heading "Neighbors App" [level=5]
+    - text: "Real-Time Crime& Safety Alerts"
+  - link "PillPack" [ref=e500]:
+    - heading "PillPack" [level=5]
+    - text: "Pharmacy Simplified"
+  - link "Amazon Renewed" [ref=e501]:
+    - heading "Amazon Renewed" [level=5]
+    - text: "Refurbished tech you can trust"
+- link "Conditions of Use" [ref=e502]
+- link "Privacy Notice" [ref=e503]
+- link "Consumer Health Data Privacy Disclosure" [ref=e504]
+- link "Your Ads Privacy Choices" [ref=e505]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[6] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="amazon" path="/Users/vista/.aside/u/0/agents/main/skills/site-specific/amazon/SKILL.md">
+# Amazon
+
+## Canonical URLs
+
+- Home: `https://www.amazon.com/`
+- Search: `https://www.amazon.com/s?k=${query}`
+- Orders: `https://www.amazon.com/gp/css/order-history?ref_=nav_orders_first`
+- Cart: `https://www.amazon.com/gp/cart/view.html?ref_=nav_cart`
+- Account: `https://www.amazon.com/gp/css/homepage.html`
+
+## Efficient Snapshot Strategy
+
+Amazon's snapshot results are large. You should use below selectors to minimize the amount of content captured.
+If it's updated, please update this SKILL.md to reflect the new selector.
+
+- On search result page: use `snapshot(page, { selector: '[data-component-type="s-search-results"]' })`
+- On cart page: `snapshot(page, { selector: '#activeCartViewForm' })`.
+  - Checkout button is outside the form and it can be found via `<input name="proceedToRetailCheckout">` 
+
+## Working style
+
+- Avoid the home page unless the user explicitly wants it. It is noisy and ad-heavy.
+- Before anything involving orders, returns, payments, or addresses, verify the active account and address in the header.
+- Prefer `Your Orders` for shipment, invoice, return, and rebuy tasks.
+- Prefer `Cart` for quantity and checkout-adjacent tasks.
+- Re-snapshot after navigation and after inline card expansion because Amazon frequently re-renders order cards.
+
+## Useful shortcuts
+
+- Search: `Option+/`
+- Cart: `Shift+Option+C`
+- Home: `Shift+Option+H`
+- Orders: `Shift+Option+O`
+- Shortcuts help: `Shift+Option+Z`
+</skill>
+</system_message>
+
+[7] thinking: **Searching for headphones**
+
+I need to find a pair of wireless headphones with active noise cancellation for $100 or less and add them to the cart. It’s important to remember that the user just asked me to add to the cart, not to complete a purchase. I should verify that my Amazon account is active and ready. I'll search for the Soundcore Q20i, which is around $69.99, and make sure to confirm its price before adding it to the cart.
+
+[8] tool_call: repl("Opening a candidate headphone product")
+<request>
+await page.locator('e80').click();
+const s2 = await snapshot(page);
+console.log(s2.diff);
+</request>
+<result tokens_used="288" elapsed_time="5737ms">
+[Output too large (75.4KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_DkkrjB7OlPP9R9Jm/tmp/repl-result-OM2BIkU0UjjWpNtH.txt]
+
+Preview (first 4.0KB):
+- title: "Amazon.com: Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black) : Electronics" [url=https://www.amazon.com/soundcore-Cancelling-Headphones-Bluetooth-Transparency/dp/B0C3HCD34R/?_encoding=UTF8&pd_rd_w=L3Xg2&conten…]
+- link [ref=e1]
+- navigation "Shortcuts menu" [ref=e2]:
+  - heading "Skip to" [level=2]
+  - list "Skip to":
+    - listitem "main content" [ref=e3]:
+      - link "main content" [ref=e4]: "Main content"
+    - listitem "About this item" [ref=e5]:
+      - link "About this item" [ref=e6]
+    - listitem "Buying options" [ref=e7]:
+      - link "Buying options" [ref=e8]
+    - listitem "Videos" [ref=e9]:
+      - link "Videos" [ref=e10]
+    - listitem "Reviews" [ref=e11]:
+      - link "Reviews" [ref=e12]
+  - heading "Keyboard shortcuts" [level=2]
+  - list "Keyboard shortcuts":
+    - listitem "Search, option, forward slash" [ref=e13]:
+      - link "Search, option, forward slash" [ref=e14]
+    - listitem "Cart, shift, option, c" [ref=e15]:
+      - link "Cart, shift, option, c" [ref=e16]
+    - listitem "Home, shift, option, h" [ref=e17]:
+      - link "Home, shift, option, h" [ref=e18]
+    - listitem "Your orders, shift, option, o" [ref=e19]:
+      - link "Your orders, shift, option, o" [ref=e20]
+    - listitem "Add to cart, shift, option, K" [ref=e21]:
+      - button "Add to cart, shift, option, K" [ref=e22]
+    - listitem "Product summary, shift, option, d" [ref=e23]:
+      - button "Product summary, shift, option, d" [ref=e24]
+    - listitem "Show/hide shortcuts, shift, option, z" [ref=e25]:
+      - button "Show/hide shortcuts, shift, option, z" [ref=e26]
+  - text: "To move between items, use your keyboard's up or down arrows."
+- banner:
+  - navigation "Primary" [ref=e28]:
+    - link "Amazon Prime" [ref=e29]
+    - link [ref=e30]
+    - button "Deliver to Jun San Franc... 94105‌" [ref=e31]
+    - search:
+      - text: "Electronics"
+      - searchbox "Search Amazon" [ref=e32] [placeholder="Search Amazon"]
+      - button "Go" [ref=e34]
+    - link "Choose a language for shopping in Amazon United States. The current selection is English (EN)." [ref=e35]:
+      - img "United States"
+      - text: "EN"
+    - button "Expand to Change Language or Country" [ref=e36]
+    - link "Hello, Hyojun Account & Lists" [ref=e37]
+    - button "Expand Account and Lists" [ref=e38]
+    - link "Returns & Orders" [ref=e39]
+    - link "0 items in cart" [ref=e40]
+    - button "Open All Categories Menu" [ref=e41]: "All"
+    - button "Open Rufus panel" [ref=e42]: "Rufus"
+    - list:
+      - listitem:
+        - link "Health AI" [ref=e43]
+      - listitem:
+        - link "Same-Day Delivery" [ref=e44]
+      - listitem:
+        - link "Medical Care" [ref=e45]
+        - button "Medical Care Details" [ref=e46]
+      - listitem:
+        - link "Prime Video" [ref=e47]
+      - listitem:
+        - link "Customer Service" [ref=e48]
+      - listitem:
+        - link "Groceries" [ref=e49]
+      - listitem:
+        - link "Amazon Basics" [ref=e50]
+      - listitem:
+        - link "Keep Shopping For" [ref=e51]
+      - listitem:
+        - link "Buy Again" [ref=e52]
+      - listitem:
+        - link "Audible" [ref=e53]
+      - listitem:
+        - link "Pet Supplies" [ref=e54]
+      - listitem:
+        - link "Amazon Business" [ref=e55]
+        - button "Amazon Business Details" [ref=e56]
+      - listitem:
+        - link "Beauty & Personal Care" [ref=e57]
+      - listitem:
+        - link "Subscribe & Save" [ref=e58]
+      - listitem:
+        - link "Handmade" [ref=e59]
+      - listitem:
+        - link "Pharmacy" [ref=e60]
+      - listitem:
+        - link "Computers" [ref=e61]
+      - listitem:
+        - link "Sell" [ref=e62]
+      - listitem:
+        - link "Livestreams" [ref=e63]
+      - listitem:
+        - link "Video Games" [ref=e64]
+      - listitem:
+        - link "Household, Health & Baby Care" [ref=e65]
+      - listitem:
+        - link "Hyojun's Amazon.com" [ref=e66]
+      - listitem:
+...
+</result>
+
+[9] thinking: **Analyzing product page snapshots**
+
+I need to take a closer look at the relevant product page. I saved a snapshot output, which will help us use targeted selectors for the title, price, and the add button. I'll consider using CSS class selectors like productTitle, price, and feature bullets. The main snapshot is possibly from the #centerCol or #ppd area. I’m wondering about other selectors like #titleSection and #corePriceDisplay_desktop_feature_div, and if using them separately would be more effective. I want to ensure I'm capturing the right details carefully.
+
+[10] tool_call: repl("Checking product details and price")
+<request>
+const s3 = await snapshot(page, { selector: '#centerCol' });
+console.log(s3.tree);
+</request>
+<result tokens_used="170" elapsed_time="328ms">
+- title: "Amazon.com: Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black) : Electronics" [url=https://www.amazon.com/soundcore-Cancelling-Headphones-Bluetooth-Transparency/dp/B0C3HCD34R/?_encoding=UTF8&pd_rd_w=L3Xg2&conten…]
+- image "Soundcore"
+- link "Visit the Soundcore Store" [ref=e158]
+- heading [level=1]: "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black)"
+- button [ref=e159]
+- link "62,925 Reviews" [ref=e160]: "(62,925)"
+- link "Search this page" [ref=e161]
+- text: "Amazon's  Choice"
+- button "4 sustainability features" [ref=e162]
+- text: "10K+ bought  in past month                                                \n                                \n                                                                                                                \n                                                                                         \n                                                       \n                                                             \n                            \n                                \n                                                             \n                                \n                            \n                                                                                                                                                                                                       \n                                        \n                                                       \n                                  \n                                                      \n                                  \n                                                            \n                                  \n                                            \n                  Limited time deal"
+- link "Price history" [ref=e163]
+- link "Learn more about Amazon pricing and savings" [ref=e164]:
+  - img "Learn more about Amazon pricing and savings"
+- link "Thank you for being a Prime member. Get a $150 Gift Card: Pay $0.00 upon approval for Prime Visa." [ref=e165]
+- img "prime"
+- text: "Today"
+- button "FREE Returns" [ref=e166]
+- table
+- generic "Color: Black" [ref=e167]
+- group "Make a Color selection":
+  - radiogroup:
+    - listitem:
+      - radio "Black /* Temporary CSS overrides for savings. Sim: https://sim.amazon.com/issues/DPOffersDev-11797 *" [ref=e169] [checked]
+    - listitem:
+      - radio "Almond White /* Temporary CSS overrides for savings. Sim: https://sim.amazon.com/issues/DPOffersDev-" [ref=e171]
+    - listitem:
+      - radio "Blue /* Temporary CSS overrides for savings. Sim: https://sim.amazon.com/issues/DPOffersDev-11797 */" [ref=e173]
+    - listitem:
+      - radio "Pink /* Temporary CSS overrides for savings. Sim: https://sim.amazon.com/issues/DPOffersDev-11797 */" [ref=e175]
+  - navigation
+- text: "Size:\n                                   Standard               Style:\n          Modern"
+- button [ref=e176]:
+  - heading [level=5]:
+    - heading "Bundles with this item" [level=5]
+- list:
+  - listitem: "Brand         Soundcore"
+  - listitem: "Connectivity Technology         Wireless"
+  - listitem: "Color         Black"
+  - listitem: "Ear Placement         Over Ear"
+  - listitem: "Form Factor         Over Ear"
+- heading "About this item" [level=2]
+- list:
+  - listitem: "Hybrid Active Noise Cancelling: 2 internal and 2 external mics work in tandem to detect external noise and effectively reduce up to 90% of it, no matter in trains or offices."
+  - listitem: "Immerse Yourself in Detailed Audio: The noise cancelling headphones have oversized 40mm dynamic drivers that produce detailed sound and thumping beats with BassUp technology for your every travel, commuting and gaming. Compatible with Hi-Res certified audio via the AUX cable for more detail."
+  - listitem: "40-Hour Long Battery Life and Fast Charging: With 40 hours of battery life with ANC on and 60 hours in normal mode, you can commute in peace with your Bluetooth headphones without thinking about recharging. Fast charge for 5 mins to get an extra 4 hours of music listening for daily users."
+  - listitem: "Dual-Connections: Connect to two devices simultaneously with Bluetooth 5.0 and instantly switch between them. Whether you're working on your laptop, or need to take a phone call, audio from your Bluetooth headphones will automatically play from the device you need to hear from."
+  - listitem: "App for EQ Customization: Download the soundcore app to tailor your sound using the customizable EQ, with 22 presets, or adjust it yourself. You can also switch between 3 modes: ANC, Normal, and Transparency, and relax with white noise."
+  - listitem: "Hear Your Surroundings: Switch to Transparency mode on your noise cancelling headphones when you need to be aware of your surroundings, such as transportation announcements, crossing the road, or just staying connected to the world around you."
+- text: "›"
+- link "See more product details" [ref=e177]
+- button [ref=e178]:
+  - heading [level=5]: "Sustainability features"
+- region "Sustainability features" [ref=e179]
+- link "Report an issue with this product or seller" [ref=e180]
+- heading "Check Compatibility" [level=1]
+- text: "Choose your product"
+- list [ref=e181] [scrollable]:
+  - listitem:
+    - button "Audio CD Player" [ref=e183]
+  - listitem:
+    - button "Audio & MIDI Interface" [ref=e185]
+  - listitem:
+    - button "Tablet Computer" [ref=e187]
+  - listitem:
+    - button "Cellular Phone" [ref=e189]
+  - listitem:
+    - button "Television" [ref=e191]
+  - listitem:
+    - button "See all options" [ref=e193]
+- heading "Competitively priced item" [level=4]
+- text: "Amazon's   Choice"
+- link "Amazon Basics Bluetooth On-Ear Headphones Wireless with Microphone, Deep Bass, 35 Hour Playtime, Fol" [ref=e194]
+- link "1670 ratings" [ref=e195]: "(1670)"
+- text: "$20.97"
+- img "Amazon Prime"
+- heading "Buy this product as Renewed and save $3.00 off the current New price." [level=4]
+- link "soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H " [ref=e196]:
+  - image "soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H "
+- link "soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H " [ref=e197]
+- text: "$36.99"
+- img "prime"
+- text: "Today 5 PM - 10 PM"
+- link [ref=e198]
+- link "(1,531)" [ref=e199]
+- text: "Works and looks like new and backed by the Amazon Renewed Guarantee"
+- iframe:
+  - image "Product image"
+  - text: "TOZO Wireless Earbuds 34% off Limited time deal 3 Layer Nosie Reduction. Feel Authentic Sound."
+  - link "Click to navigate to product detail page" [ref=f2e1]
+- iframe:
+  - link "Hybrid Active Noise Cancelling Wireless Ear Buds 80 Hrs Playtime Hi-Res Stereo Quality Bluetooth Ear" [ref=f3e1]
+  - image "Hybrid Active Noise Cancelling Wireless Ear Buds 80 Hrs Playtime Hi-Res Stereo Quality Bluetooth Ear"
+  - text: "5.0                                           47"
+- iframe:
+  - link "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playt" [ref=f4e1]
+  - image "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playt"
+  - text: "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playtime, Deep Bass, Transparency Mode, Foldable Comfort Ear Cups, Ideal gift for Travel Office - Black                                                                                                                                                         200                                                                                                                                                                    $29.98"
+- iframe:
+  - image "Product image"
+  - text: "Cascade Complete Dishwasher Pods, Dishwasher Detergent, Dish Detergent Tab Tablets, Fresh, 100 Count"
+  - img "4.8 out of 5 stars., 2,048 customer reviews.": "4.8"
+  - link "Click to navigate to product detail page" [ref=f5e1]
+- iframe:
+  - link "Sponsored Ad. Brand logo. Product image. Philips Sonicare 6500 Series Electric Toothbrush - Next-Gen" [ref=f6e1]
+  - image "Brand logo"
+  - text: "6500 Series Electric Toothbrush - Next-Generation Sonicare Technology, Pressure Sensor, 9 Brushing Settings, SmarTimer, BrushPacer, 21-Day Runtime, Travel Case, Black, HX7411/08 Next-Generation Sonicare Technology"
+  - image "Product Image"
+- iframe:
+  - iframe [ref=f8e1]
+</result>
+
+[11] thinking: **Checking price visibility**
+
+I'm looking into why the price isn't visible. It seems like the CenterCol text might be missing, which could be hiding the price. I really need to check if the buybox is functioning properly. It's crucial to have that information available, so I might need to explore further. If the price isn't showing up, it could impact the user's experience. Let's figure this out!
+
+[12] tool_call: repl("Checking buy box for price and cart button")
+<request>
+const s4 = await snapshot(page, { selector: '#rightCol' });
+console.log(s4.tree);
+</request>
+<result tokens_used="74" elapsed_time="140ms">
+- title: "Amazon.com: Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black) : Electronics" [url=https://www.amazon.com/soundcore-Cancelling-Headphones-Bluetooth-Transparency/dp/B0C3HCD34R/?_encoding=UTF8&pd_rd_w=L3Xg2&conten…]
+- form:
+  - link "Price history" [ref=e105]
+  - img "prime"
+  - text: "Today\n\n  \n                                                    \n                              \n                                                                       \n                              \n                                                                      \n                              \n                                                             \n                           FREE delivery  Today  10 AM - 3 PM. Order within  7 hrs 29 mins   Or FREE delivery  Tomorrow, May 14  Arrives with upcoming delivery"
+  - button "Deliver to Jun - San Francisco 94105‌" [ref=e106]
+  - text: "In Stock"
+  - label: "Quantity:"
+  - combobox "Quantity:" [ref=e107]:
+    - option "1" (selected)
+    - option "2"
+    - option "3"
+    - option "4"
+    - option "5"
+    - option "6"
+    - option "7"
+    - option "8"
+    - option "9"
+    - option "10"
+    - option "11"
+    - option "12"
+    - option "13"
+    - option "14"
+    - option "15"
+    - option "16"
+    - option "17"
+    - option "18"
+    - option "19"
+    - option "20"
+    - option "21"
+    - option "22"
+    - option "23"
+    - option "24"
+    - option "25"
+    - option "26"
+    - option "27"
+    - option "28"
+    - option "29"
+    - option "30"
+    - option "31"
+    - option "32"
+    - option "33"
+    - option "34"
+    - option "35"
+    - option "36"
+    - option "37"
+    - option "38"
+    - option "39"
+    - option "40"
+    - option "41"
+    - option "42"
+    - option "43"
+    - option "44"
+    - option "45"
+    - option "46"
+    - option "47"
+    - option "48"
+    - option "49"
+    - option "50"
+  - button "Add to cart" [ref=e109]
+  - button "Add to delivery. Buy instantly and get it with your upcoming delivery." [ref=e111]
+  - group "Seller, shipping, and buying option details":
+    - heading [level=4]: "Ships from"
+    - text: "Amazon"
+    - heading [level=4]: "Sold by"
+    - link "AnkerDirect" [ref=e112]
+    - heading [level=4]: "Returns"
+    - button "FREE 30-day refund/replacement" [ref=e113]
+    - heading [level=4]: "Gift options"
+    - button "Available at checkout" [ref=e114]
+  - button "See more" [ref=e115]
+  - heading "Add a Protection Plan:"
+  - label:
+    - checkbox "2-Year Protection Plan for $5.99 2-Year Protection Plan for $5.99" [ref=e116]
+    - link "2-Year Protection Plan" [ref=e117]
+    - text: "for $5.99"
+  - label:
+    - checkbox "3-Year Protection Plan for $7.99 3-Year Protection Plan for $7.99" [ref=e118]
+    - link "3-Year Protection Plan" [ref=e119]
+    - text: "for $7.99"
+  - label:
+    - checkbox "Complete Protect: One plan covers all eligible past and future purchases (Best Value) for $16.99/mon" [ref=e120]
+    - link "Complete Protect: One plan covers all eligible past and future purchases (Best Value)" [ref=e121]
+    - text: "for $16.99/month"
+  - link "Add to Auto Buy" [ref=e123]
+  - button "Add to List" [ref=e125]
+  - button "Select a list from the dropdown" [ref=e127]
+- form
+- text: "Other sellers on Amazon"
+- button [ref=e128]:
+  - text: "New (2) from"
+  - img "prime"
+  - text: "Today 10 AM - 3 PM"
+- iframe "Sponsored ad" [ref=e129]:
+  - link "Hybrid Active Noise Cancelling Wireless Ear Buds 80 Hrs Playtime Hi-Res Stereo Quality Bluetooth Ear" [ref=f3e1]
+  - image "Hybrid Active Noise Cancelling Wireless Ear Buds 80 Hrs Playtime Hi-Res Stereo Quality Bluetooth Ear"
+  - text: "5.0                                           47"
+- button "Leave feedback on Sponsored ad" [ref=e130]
+- iframe:
+  - image "Product image"
+  - text: "TOZO Wireless Earbuds 34% off Limited time deal 3 Layer Nosie Reduction. Feel Authentic Sound."
+  - link "Click to navigate to product detail page" [ref=f2e1]
+- iframe:
+  - link "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playt" [ref=f4e1]
+  - image "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playt"
+  - text: "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio...                                                                                                                                                         200                                                                                                                                                                    $29.98"
+- iframe:
+  - image "Product image"
+  - text: "Cascade Complete Dishwasher Pods, Dishwasher Detergent, Dish Detergent Tab Tablets, Fresh, 100 Count"
+  - img "4.8 out of 5 stars., 2,048 customer reviews.": "4.8"
+  - link "Click to navigate to product detail page" [ref=f5e1]
+- iframe:
+  - link "Sponsored Ad. Brand logo. Product image. Philips Sonicare 6500 Series Electric Toothbrush - Next-Gen" [ref=f6e1]
+  - image "Brand logo"
+  - text: "6500 Series Electric Toothbrush - Next-Generation Sonicare Technology, Pressure Sensor, 9 Brushing Settings, SmarTimer, BrushPacer, 21-Day Runtime, Travel Case, Black, HX7411/08 Next-Generation Sonicare Technology"
+  - image "Product Image"
+- iframe:
+  - iframe [ref=f8e1]
+</result>
+
+[13] thinking: **Checking price visibility**
+
+I'm considering why the price isn't showing. It might be missing on the left side? I noticed the snapshot center had a "Limited time deal," but no price listed. Should I use DOM text to check its accessibility? Maybe the price is hidden or not included. I think I should take a closer look at the price selector, specifically at the Amazon price section labeled as #corePrice_feature_div. That might help clarify things!
+
+[14] tool_call: repl("Reading the product price area")
+<request>
+const s5 = await snapshot(page, { selector: '#corePrice_feature_div' });
+console.log(s5.tree);
+</request>
+<result tokens_used="104" elapsed_time="146ms">
+- title: "Amazon.com: Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black) : Electronics" [url=https://www.amazon.com/soundcore-Cancelling-Headphones-Bluetooth-Transparency/dp/B0C3HCD34R/?_encoding=UTF8&pd_rd_w=L3Xg2&conten…]
+- link "Price history" [ref=e105]
+- iframe:
+  - image "Product image"
+  - text: "TOZO Wireless Earbuds 34% off Limited time deal 3 Layer Nosie Reduction. Feel Authentic Sound."
+  - link "Click to navigate to product detail page" [ref=f2e1]
+- iframe:
+  - link "Hybrid Active Noise Cancelling Wireless Ear Buds 80 Hrs Playtime Hi-Res Stereo Quality Bluetooth Ear" [ref=f3e1]
+  - image "Hybrid Active Noise Cancelling Wireless Ear Buds 80 Hrs Playtime Hi-Res Stereo Quality Bluetooth Ear"
+  - text: "5.0                                           47"
+- iframe:
+  - link "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playt" [ref=f4e1]
+  - image "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playt"
+  - text: "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playtime, Deep Bass, Transparency Mode, Foldable Comfort Ear Cups, Ideal gift for Travel Office - Black                                                                                                                                                         200                                                                                                                                                                    $29.98"
+- iframe:
+  - image "Product image"
+  - text: "Cascade Complete Dishwasher Pods, Dishwasher Detergent, Dish Detergent Tab Tablets, Fresh, 100 Count"
+  - img "4.8 out of 5 stars., 2,048 customer reviews.": "4.8"
+  - link "Click to navigate to product detail page" [ref=f5e1]
+- iframe:
+  - link "Sponsored Ad. Brand logo. Product image. Philips Sonicare 6500 Series Electric Toothbrush - Next-Gen" [ref=f6e1]
+  - image "Brand logo"
+  - text: "6500 Series Electric Toothbrush - Next-Generation Sonicare Technology, Pressure Sensor, 9 Brushing Settings, SmarTimer, BrushPacer, 21-Day Runtime, Travel Case, Black, HX7411/08 Next-Generation Sonicare Technology"
+  - image "Product Image"
+- iframe:
+  - iframe [ref=f8e1]
+</result>
+
+[15] thinking: **Verifying price accessibility**
+
+I’m considering if the price rendered as text might be hidden. Should I use Playwright to check the locator with an exact innerText selector? The rule suggests avoiding evaluate unless it’s an exact selector. Using locator innerText seems okay! I’ll need to confirm the price is accessible, so I’ll check the text from `#corePriceDisplay_desktop_feature_div` and log it to the console for verification.
+
+[16] tool_call: repl("Getting exact price text")
+<request>
+const priceText1 = await page.locator('#corePriceDisplay_desktop_feature_div').innerText().catch(e => 'ERR '+e.message);
+console.log(priceText1);
+</request>
+<result tokens_used="123" elapsed_time="1520ms">
+$39.99 with 43 percent savings
+-43%
+$39
+.
+99
+Price history
+List Price: $69.99
+List Price: 
+$69.99
+$69.99
+</result>
+
+[17] thinking: **Navigating the cart and snapshots**
+
+I need to add an item to the cart. I could click on e109 from the last snapshot, but I wonder if snapshot s5 has been invalidated. It seems like s5 was created, which might invalidate references from s4. Even though the reference IDs can remain the same, each snapshot invalidates the previous one. I’ll use the add button selector and check for the protection plan before proceeding. Alright, let’s click add!
+
+[18] tool_call: repl("Adding the headphones to the cart")
+<request>
+await page.locator('#add-to-cart-button').click();
+const s6 = await snapshot(page);
+console.log(s6.diff);
+</request>
+<result tokens_used="173" elapsed_time="3786ms">
+@@ -1 +1,23 @@
+-- link "Price history" [ref=e105]
++- text: "­­"
++- dialog "Add to your order":
++  - heading "Add to your order" [level=3]
++  - list:
++    - listitem: "Coverage for accidental damage including drops, spills, and broken parts, as well as breakdowns (plans vary)"
++    - listitem: "24/7 support when you need it"
++    - listitem: "Quick, easy, and frustration-free claims"
++  - text: "Cover this product:"
++  - label:
++    - checkbox "2-Year Protection Plan $5.99" [ref=e744] [hidden]
++  - text: "2-Year Protection Plan  $5.99"
++  - button "Learn more" [ref=e745]
++  - label:
++    - checkbox "3-Year Protection Plan $7.99" [ref=e746] [hidden]
++  - text: "3-Year Protection Plan  $7.99"
++  - button "Learn more" [ref=e747]
++  - text: "Cover all of your eligible devices:"
++  - label:
++    - checkbox "Complete Protect: One plan covers all eligible past and future purchases (Best Value) $16.99/month" [ref=e748] [hidden]
++  - text: "Complete Protect: One plan covers all eligible past and future purchases (Best Value)  $16.99/month"
++  - button "Learn more" [ref=e749]
++  - button "No thanks" [ref=e751]
++  - button "Add protection" [ref=e753]
+@@ -13 +35 @@
+-  - text: "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio, 60H Playtime, Deep Bass, Transparency Mode, Foldable Comfort Ear Cups, Ideal gift for Travel Office - Black                                                                                                                                                         200                                                                                                                                                                    $29.98"
++  - text: "Hybrid Active Noise Cancelling Headphones, Over-Ear Bluetooth Headphone with Hi-Res Audio...                                                                                                                                                         200                                                                                                                                                                    $29.98"
+</result>
+
+[19] thinking: **Finalizing the cart confirmation**
+
+I just need to confirm the cart without clicking on any unnecessary options. I'll simply choose “no thanks” for any extras. Maybe I should make sure everything is complete before wrapping it up. It's important to double-check and ensure I'm not missing any details that could affect the final outcome. I want to make sure it’s all set before proceeding!
+
+[20] tool_call: repl("Skipping protection plan and confirming cart")
+<request>
+await page.locator('e751').click();
+const s7 = await snapshot(page);
+console.log(s7.diff);
+</request>
+<result tokens_used="76" elapsed_time="2695ms">
+[Output too large (77.8KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_DkkrjB7OlPP9R9Jm/tmp/repl-result-IMCR9JWLNHgEKoGZ.txt]
+
+Preview (first 4.0KB):
+@@ -1 +1,1393 @@
+-- text: "­­"
++- link [ref=e1]
++- navigation "Shortcuts menu" [ref=e2]:
++  - heading "Skip to" [level=2]
++  - list "Skip to":
++    - listitem "main content" [ref=e3]:
++      - link "main content" [ref=e4]: "Main content"
++    - listitem "About this item" [ref=e5]:
++      - link "About this item" [ref=e6]
++    - listitem "Buying options" [ref=e7]:
++      - link "Buying options" [ref=e8]
++    - listitem "Videos" [ref=e9]:
++      - link "Videos" [ref=e10]
++    - listitem "Reviews" [ref=e11]:
++      - link "Reviews" [ref=e12]
++  - heading "Keyboard shortcuts" [level=2]
++  - list "Keyboard shortcuts":
++    - listitem "Search, option, forward slash" [ref=e13]:
++      - link "Search, option, forward slash" [ref=e14]
++    - listitem "Cart, shift, option, c" [ref=e15]:
++      - link "Cart, shift, option, c" [ref=e16]
++    - listitem "Home, shift, option, h" [ref=e17]:
++      - link "Home, shift, option, h" [ref=e18]
++    - listitem "Your orders, shift, option, o" [ref=e19]:
++      - link "Your orders, shift, option, o" [ref=e20]
++    - listitem "Add to cart, shift, option, K" [ref=e21]:
++      - button "Add to cart, shift, option, K" [ref=e22]
++    - listitem "Product summary, shift, option, d" [ref=e23]:
++      - button "Product summary, shift, option, d" [ref=e24]
++    - listitem "Show/hide shortcuts, shift, option, z" [ref=e25]:
++      - button "Show/hide shortcuts, shift, option, z" [ref=e26]
++  - text: "To move between items, use your keyboard's up or down arrows."
++- banner:
++  - navigation "Primary" [ref=e28]:
++    - link "Amazon Prime" [ref=e29]
++    - link [ref=e30]
++    - button "Deliver to Jun San Franc... 94105‌" [ref=e31]
++    - search:
++      - text: "Electronics"
++      - searchbox "Search Amazon" [ref=e32] [placeholder="Search Amazon"]
++      - button "Go" [ref=e34]
++    - link "Choose a language for shopping in Amazon United States. The current selection is English (EN)." [ref=e35]:
++      - img "United States"
++      - text: "EN"
++    - button "Expand to Change Language or Country" [ref=e36]
++    - link "Hello, Hyojun Account & Lists" [ref=e37]
++    - button "Expand Account and Lists" [ref=e38]
++    - link "Returns & Orders" [ref=e39]
++    - link "0 items in cart" [ref=e40]
++    - button "Open All Categories Menu" [ref=e41]: "All"
++    - button "Open Rufus panel" [ref=e42]: "Rufus"
++    - list:
++      - listitem:
++        - link "Health AI" [ref=e43]
++      - listitem:
++        - link "Same-Day Delivery" [ref=e44]
++      - listitem:
++        - link "Medical Care" [ref=e45]
++        - button "Medical Care Details" [ref=e46]
++      - listitem:
++        - link "Prime Video" [ref=e47]
++      - listitem:
++        - link "Customer Service" [ref=e48]
++      - listitem:
++        - link "Groceries" [ref=e49]
++      - listitem:
++        - link "Amazon Basics" [ref=e50]
++      - listitem:
++        - link "Keep Shopping For" [ref=e51]
++      - listitem:
++        - link "Buy Again" [ref=e52]
++      - listitem:
++        - link "Audible" [ref=e53]
++      - listitem:
++        - link "Pet Supplies" [ref=e54]
++      - listitem:
++        - link "Amazon Business" [ref=e55]
++        - button "Amazon Business Details" [ref=e56]
++      - listitem:
++        - link "Beauty & Personal Care" [ref=e57]
++      - listitem:
++        - link "Subscribe & Save" [ref=e58]
++      - listitem:
++        - link "Handmade" [ref=e59]
++      - listitem:
++        - link "Pharmacy" [ref=e60]
++      - listitem:
++        - link "Computers" [ref=e61]
++      - listitem:
++        - link "Sell" [ref=e62]
++      - listitem:
++        - link "Livestreams" [ref=e63]
++      - listitem:
++        - link "Video Games" [ref=e64]
++      - listitem:
++        - link "Household, Health & Baby Care" [ref=e65]
++      - listitem:
++        - link "Hyojun's Amazon.com" [ref=e66]
++      - listitem:
++        - link "TV & Video" [ref=e67]
++      - listitem:
++        - link "Shop By Interest" [ref=e68]
++      - listitem:
++        - link "Registry" [ref=e69]
++      - listitem:
++        - link "Best Sellers" [ref=e70]
++      - listitem:
+...
+</result>
+
+[21] thinking: **Inspecting cart issues**
+
+I'm noticing that the cart shows a total of 0 in the preview. It might not be updating because the page hasn't added the items correctly. I really need to check the current snapshot or the specific modal. Maybe the "no thanks" click prevented any items from being added due to some unexpected differences. I'll inspect the buy box and any alerts to understand what's going on. It's essential to get this sorted out!
+
+[22] tool_call: repl("Checking whether the cart was updated")
+<request>
+const s8 = await snapshot(page, { interactive: true });
+console.log(s8.tree);
+</request>
+<result tokens_used="101" elapsed_time="1429ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Amazon.com Shopping Cart" [url=https://www.amazon.com/cart/add-to-cart/ref=dp_start-bbf_1_glance]
+- link [ref=e1]
+- navigation "Shortcuts menu" [ref=e2]:
+  - heading "Skip to" [level=2]
+  - link "main content" [ref=e3]: "Main content"
+  - heading "Keyboard shortcuts" [level=2]
+  - link "Search, option, forward slash" [ref=e4]
+  - link "Cart, shift, option, c" [ref=e5]
+  - link "Home, shift, option, h" [ref=e6]
+  - link "Your orders, shift, option, o" [ref=e7]
+  - button "Show/hide shortcuts, shift, option, z" [ref=e8]
+  - text: "To move between items, use your keyboard's up or down arrows."
+- banner:
+  - navigation "Primary" [ref=e9]:
+    - link "Amazon Prime" [ref=e10]
+    - link [ref=e11]
+    - button "Deliver to Jun San Franc... 94105‌" [ref=e12]
+    - search:
+      - text: "All"
+      - searchbox "Search Amazon" [ref=e13] [placeholder="Search Amazon"]
+      - button "Go" [ref=e15]
+    - link "Choose a language for shopping in Amazon United States. The current selection is English (EN)." [ref=e16]:
+      - img "United States"
+      - text: "EN"
+    - button "Expand to Change Language or Country" [ref=e17]
+    - link "Hello, Hyojun Account & Lists" [ref=e18]
+    - button "Expand Account and Lists" [ref=e19]
+    - link "Returns & Orders" [ref=e20]
+    - link "1 item in cart" [ref=e21]
+    - button "Open All Categories Menu" [ref=e22]: "All"
+    - button "Open Rufus panel" [ref=e23]: "Rufus"
+    - link "Health AI" [ref=e24]
+    - link "Same-Day Delivery" [ref=e25]
+    - link "Medical Care" [ref=e26]
+    - button "Medical Care Details" [ref=e27]
+    - link "Prime Video" [ref=e28]
+    - link "Customer Service" [ref=e29]
+    - link "Groceries" [ref=e30]
+    - link "Amazon Basics" [ref=e31]
+    - link "Keep Shopping For" [ref=e32]
+    - link "Buy Again" [ref=e33]
+    - link "Audible" [ref=e34]
+    - link "Pet Supplies" [ref=e35]
+    - link "Amazon Business" [ref=e36]
+    - button "Amazon Business Details" [ref=e37]
+    - link "Beauty & Personal Care" [ref=e38]
+    - link "Subscribe & Save" [ref=e39]
+    - link "Handmade" [ref=e40]
+    - link "Pharmacy" [ref=e41]
+    - link "Computers" [ref=e42]
+    - link "Sell" [ref=e43]
+    - link "Livestreams" [ref=e44]
+    - link "Video Games" [ref=e45]
+    - link "Household, Health & Baby Care" [ref=e46]
+    - link "Hyojun's Amazon.com" [ref=e47]
+    - link "TV & Video" [ref=e48]
+    - link "Shop By Interest" [ref=e49]
+    - link "Registry" [ref=e50]
+    - link "Best Sellers" [ref=e51]
+    - link "Today's Deals" [ref=e52]
+    - link "Prime" [ref=e53]
+    - button "Prime Details" [ref=e54]
+    - link "Books" [ref=e55]
+    - link "Kindle Books" [ref=e56]
+    - link "New Releases" [ref=e57]
+    - link "Amazon Home" [ref=e58]
+    - button "Amazon Home Details" [ref=e59]
+    - link "Gift Cards" [ref=e60]
+    - button "Gift Cards Details" [ref=e61]
+    - link "Automotive" [ref=e62]
+    - link "Fashion" [ref=e63]
+    - dialog:
+      - heading "Subtotal" [level=1]
+      - heading "$39.99" [level=2]
+      - text: "FREE Same-Day delivery."
+      - link "Go to Cart" [ref=e65]
+      - list:
+        - link "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H " [ref=e66]
+        - text: "Limited time\n      \n    \n  \n\n\n        \n            \n            \n                \n                    \n                    \n                    \n                        \n                            $39.99"
+        - button "Delete Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetoot" [ref=e67]
+        - text: "1"
+        - button "Increase quantity by one Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless" [ref=e68]
+- link "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H " [ref=e69]
+- heading "Added to cart" [level=1] [focused]
+- text: "Color: \n                    \n                    \n                        Black\n                    \n                \n            \n                \n                     \n                        Size: \n                    \n                    \n                        Standard\n                    \n                \n            \n                \n                     \n                        Style: \n                    \n                    \n                        Modern"
+- heading "Cart Subtotal:"
+- button "Proceed to checkout (1 item) Check out Amazon Cart" [ref=e71]: "Proceed to checkout"
+- link "Go to Cart" [ref=e73]
+- group:
+  - heading "Products rated 4 stars and above" [level=1]
+  - text: "Page  1  of  2"
+  - button "Leave feedback on Sponsored ad" [ref=e74]: "Sponsored"
+  - button "Previous page" [ref=e75]
+  - group:
+    - list:
+      - link "BERIBES Bluetooth Headphones Over Ear, 65H Playtime and 6 EQ Music Modes Wireless Headphones with Mi" [ref=e76]
+      - link "BERIBES Bluetooth Headphones Over Ear, 65H Playtime and 6 EQ Music Modes Wireless Headphones with Mi" [ref=e77]
+      - link "4.5 out of 5 stars" [ref=e78]: "54,247"
+      - text: "31% off Limited time deal List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM  on $25 of qualifying items"
+      - button "Add to cart, BERIBES Bluetooth Headphones Over Ear, 65H Playtime and 6 EQ Music Modes Wireless Headp" [ref=e80]
+      - link "Yealink BH70 Mono Teams Wireless Headset with Mic for Work, Microsoft Teams Certified Bluetooth Head" [ref=e81]
+      - link "Yealink BH70 Mono Teams Wireless Headset with Mic for Work, Microsoft Teams Certified Bluetooth Head" [ref=e82]
+      - link "4.2 out of 5 stars" [ref=e83]: "28"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Yealink BH70 Mono Teams Wireless Headset with Mic for Work, Microsoft Teams Certified B" [ref=e85]
+      - link "OneOdio Focus A10 - Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Headphones with 62H" [ref=e86]
+      - link "OneOdio Focus A10 - Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Headphones with 62H" [ref=e87]
+      - link "4.3 out of 5 stars" [ref=e88]: "2,288"
+      - text: "15% off Limited time deal Typical price:"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, OneOdio Focus A10 - Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Headph" [ref=e90]
+      - link "TALIX H30 Hybrid Active Noise Cancelling Headphones, 110H Playtime Hi-Res Audio Bluetooth 6.0 Wirele" [ref=e91]
+      - link "TALIX H30 Hybrid Active Noise Cancelling Headphones, 110H Playtime Hi-Res Audio Bluetooth 6.0 Wirele" [ref=e92]
+      - link "4.3 out of 5 stars" [ref=e93]: "68"
+      - text: "29% off Ends in  21:28:38 List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, TALIX H30 Hybrid Active Noise Cancelling Headphones, 110H Playtime Hi-Res Audio Bluetoo" [ref=e95]
+      - link "TREBLAB Bluetooth Headphones Over the Ear, Noise Cancelling, Hybrid ANC, 65H Battery, IPX4, Foldable" [ref=e96]
+      - link "TREBLAB Bluetooth Headphones Over the Ear, Noise Cancelling, Hybrid ANC, 65H Battery, IPX4, Foldable" [ref=e97]
+      - link "4.3 out of 5 stars" [ref=e98]: "355"
+      - text: "Typical price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, TREBLAB Bluetooth Headphones Over the Ear, Noise Cancelling, Hybrid ANC, 65H Battery, I" [ref=e100]
+      - link "OneOdio A70 Bluetooth Over Ear Headphones, Wireless Headphones with 72H Playtime, Hi-Res, Built-in M" [ref=e101]
+      - link "OneOdio A70 Bluetooth Over Ear Headphones, Wireless Headphones with 72H Playtime, Hi-Res, Built-in M" [ref=e102]
+      - link "4.4 out of 5 stars" [ref=e103]: "17,946"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, OneOdio A70 Bluetooth Over Ear Headphones, Wireless Headphones with 72H Playtime, Hi-Re" [ref=e105]
+      - link "Wireless Earbuds 75hrs Bluetooth 5.4 Headphone Sport, 2026 Bluetooth Earbuds Stereo Deep Bass Over E" [ref=e106]
+      - link "Wireless Earbuds 75hrs Bluetooth 5.4 Headphone Sport, 2026 Bluetooth Earbuds Stereo Deep Bass Over E" [ref=e107]
+      - link "4.3 out of 5 stars" [ref=e108]: "27,435"
+      - text: "Typical price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Wireless Earbuds 75hrs Bluetooth 5.4 Headphone Sport, 2026 Bluetooth Earbuds Stereo Dee" [ref=e110]
+      - link "Lenovo Wireless Stereo Headset, Noise Cancelling Mic, Bluetooth 5.3 Multipoint, 31-Hour Talk & 60-Ho" [ref=e111]
+      - text: "Only 3 left in stock (more on the way)."
+      - link "Lenovo Wireless Stereo Headset, Noise Cancelling Mic, Bluetooth 5.3 Multipoint, 31-Hour Talk & 60-Ho" [ref=e112]
+      - link "3.8 out of 5 stars" [ref=e113]: "75"
+      - text: "Typical price:"
+      - img "Prime"
+      - text: "Two-Day FREE delivery  Fri, May 15"
+      - button "Add to cart, Lenovo Wireless Stereo Headset, Noise Cancelling Mic, Bluetooth 5.3 Multipoint, 31-Hour" [ref=e115]
+      - link "PocBuds Bluetooth Headphones Wireless Earbuds 80hrs Playtime Wireless Charging Case Digital Display" [ref=e116]
+      - link "PocBuds Bluetooth Headphones Wireless Earbuds 80hrs Playtime Wireless Charging Case Digital Display " [ref=e117]
+      - link "4.4 out of 5 stars" [ref=e118]: "18,499"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, PocBuds Bluetooth Headphones Wireless Earbuds 80hrs Playtime Wireless Charging Case Dig" [ref=e120]
+      - link "Raycon Essential Bluetooth Headphones - Over The Ear, Active Noise Cancelling Wireless Headphones +" [ref=e121]
+      - link "Raycon Essential Bluetooth Headphones - Over The Ear, Active Noise Cancelling Wireless Headphones + " [ref=e122]
+      - link "4.5 out of 5 stars" [ref=e123]: "172"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Raycon Essential Bluetooth Headphones - Over The Ear, Active Noise Cancelling Wireless " [ref=e125]
+  - button "Next page" [ref=e126]
+- text: "Hyojun, pay $39.99 $0.00  for this order. Get a $150  Amazon Gift Card upon approval for Prime Visa.\n    \n\n\n                        \n                    \n                \n                \n                    \n                        \n    \n\n    \n        \n\n        \n\n            \n            \n                \n                    Current total:\n                \n\n                \n                    $39.99\n                \n            \n\n            \n            \n                 \n                    Gift Card savings:\n                \n\n                \n                    \n                        - $150.00\n                    \n                \n\n                \n                    \n                \n            \n\n            \n            \n                 \n                    Cost after savings:\n                \n\n                \n                    $0.00\n                \n            \n\n            \n            \n                \n                     \n                        Savings remaining:\n                    \n\n                    \n                        $110.01"
+- link "Hyojun, pay $39.99 $0.00 for this order. Get a $150 Amazon Gift Card upon approval for Prime Visa." [ref=e127]
+- group:
+  - heading "Based on your browsing history" [level=1]
+  - text: "Page  1  of  2"
+  - button "Previous page" [ref=e128]
+  - group:
+    - list:
+      - link "INIU Ultra Compact Portable Charger, 10000mAh 45W Fast Charging Power Bank with Detachable USB-C Cab" [ref=e129]
+      - link "INIU Ultra Compact Portable Charger, 10000mAh 45W Fast Charging Power Bank with Detachable USB-C Cab" [ref=e130]
+      - link "4.5 out of 5 stars" [ref=e131]: "835"
+      - text: "17% off Limited time deal List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, INIU Ultra Compact Portable Charger, 10000mAh 45W Fast Charging Power Bank with Detacha" [ref=e133]
+      - link "INIU 45W Fast Charging Portable Charger, 40% Smaller 10000mAh with Detachable Cable, Flight-Safe Tra" [ref=e134]
+      - link "INIU 45W Fast Charging Portable Charger, 40% Smaller 10000mAh with Detachable Cable, Flight-Safe Tra" [ref=e135]
+      - link "4.5 out of 5 stars" [ref=e136]: "78,728"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, INIU 45W Fast Charging Portable Charger, 40% Smaller 10000mAh with Detachable Cable, Fl" [ref=e138]
+      - link "INIU 20000mAh Power Bank, Smaller 45W PD Fast Charging Portable Charger, Battery Pack with Build in" [ref=e139]
+      - link "INIU 20000mAh Power Bank, Smaller 45W PD Fast Charging Portable Charger, Battery Pack with Build in " [ref=e140]
+      - link "4.3 out of 5 stars" [ref=e141]: "899"
+      - text: "15% off Limited time deal List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, INIU 20000mAh Power Bank, Smaller 45W PD Fast Charging Portable Charger, Battery Pack w" [ref=e143]
+      - link "INIU 20000mAh Laptop Power Bank, Ultra Compact 65W PD Dual Fast Charging Portable Charger, Flight-Sa" [ref=e144]
+      - link "INIU 20000mAh Laptop Power Bank, Ultra Compact 65W PD Dual Fast Charging Portable Charger, Flight-Sa" [ref=e145]
+      - link "4.4 out of 5 stars" [ref=e146]: "4,382"
+      - text: "List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, INIU 20000mAh Laptop Power Bank, Ultra Compact 65W PD Dual Fast Charging Portable Charg" [ref=e148]
+      - link "INIU for MagSafe Slimmest Portable Charger, Original Qi2 Certified Wireless Fast Charging, 10000mAh" [ref=e149]
+      - link "INIU for MagSafe Slimmest Portable Charger, Original Qi2 Certified Wireless Fast Charging, 10000mAh " [ref=e150]
+      - link "4.0 out of 5 stars" [ref=e151]: "1,291"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, INIU for MagSafe Slimmest Portable Charger, Original Qi2 Certified Wireless Fast Chargi" [ref=e153]
+      - link "VRURC Portable Charger with Built-in Cable, 10000mAh 22.5W Fast Charging USB C Battery Pack, Cell Ph" [ref=e154]
+      - link "VRURC Portable Charger with Built-in Cable, 10000mAh 22.5W Fast Charging USB C Battery Pack, Cell Ph" [ref=e155]
+      - link "4.5 out of 5 stars" [ref=e156]: "3,365"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, VRURC Portable Charger with Built-in Cable, 10000mAh 22.5W Fast Charging USB C Battery " [ref=e158]
+      - link "Anker Nano Portable Charger, 45W 10000mAh with 2.3 ft Retractable Cable, Compact Power Bank, Travel" [ref=e159]
+      - link "Anker Nano Portable Charger, 45W 10000mAh with 2.3 ft Retractable Cable, Compact Power Bank, Travel " [ref=e160]
+      - link "4.6 out of 5 stars" [ref=e161]: "2,101"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Anker Nano Portable Charger, 45W 10000mAh with 2.3 ft Retractable Cable, Compact Power " [ref=e163]
+      - link "Power Bank, 15000mAh Portable Charger with Built in Cable, 22.5W Fast Charging, 6 Outputs, Slim Trav" [ref=e164]
+      - link "Power Bank, 15000mAh Portable Charger with Built in Cable, 22.5W Fast Charging, 6 Outputs, Slim Trav" [ref=e165]
+      - link "4.6 out of 5 stars" [ref=e166]: "1,197"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, Power Bank, 15000mAh Portable Charger with Built in Cable, 22.5W Fast Charging, 6 Outpu" [ref=e168]
+      - link "Anker Power Bank, 20,000mAh Travel Essential Portable Charger with Built-in USB-C Cable, 3-Port 87W" [ref=e169]
+      - link "Anker Power Bank, 20,000mAh Travel Essential Portable Charger with Built-in USB-C Cable, 3-Port 87W " [ref=e170]
+      - link "4.6 out of 5 stars" [ref=e171]: "7,402"
+      - text: "List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, Anker Power Bank, 20,000mAh Travel Essential Portable Charger with Built-in USB-C Cable" [ref=e173]
+      - link "INIU Portable Charger, Ultra Slim & Small 45W Fast Charging Power Bank, 10000mAh GaN Battery Pack wi" [ref=e174]
+      - link "INIU Portable Charger, Ultra Slim & Small 45W Fast Charging Power Bank, 10000mAh GaN Battery Pack wi" [ref=e175]
+      - link "4.4 out of 5 stars" [ref=e176]: "133"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, INIU Portable Charger, Ultra Slim & Small 45W Fast Charging Power Bank, 10000mAh GaN Ba" [ref=e178]
+      - link "Anker Power Bank(PowerCore 10K), Compact Travel-Ready 10,000mAh Battery Pack with PowerIQ Charging T" [ref=e179]
+      - link "Anker Power Bank(PowerCore 10K), Compact Travel-Ready 10,000mAh Battery Pack with PowerIQ Charging T" [ref=e180]
+      - link "4.5 out of 5 stars" [ref=e181]: "6,378"
+      - text: "23% off Limited time deal List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, Anker Power Bank(PowerCore 10K), Compact Travel-Ready 10,000mAh Battery Pack with Power" [ref=e183]
+      - link "Portable Charger 10000mAh Power Bank Fast Charging, 22.5W USB C Battery Pack with Built-in Cables, S" [ref=e184]
+      - link "Portable Charger 10000mAh Power Bank Fast Charging, 22.5W USB C Battery Pack with Built-in Cables, S" [ref=e185]
+      - link "4.6 out of 5 stars" [ref=e186]: "62"
+      - text: "List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, Portable Charger 10000mAh Power Bank Fast Charging, 22.5W USB C Battery Pack with Built" [ref=e188]
+  - button "Next page" [ref=e189]
+- group:
+  - heading "Based on what you added" [level=1]
+  - text: "Page  1  of  2"
+  - button "Leave feedback on Sponsored ad" [ref=e190]: "Sponsored"
+  - button "Previous page" [ref=e191]
+  - group:
+    - list:
+      - link "OneOdio Wired Over Ear Headphones Hi-Res Studio Monitor & Mixing DJ Stereo Headsets with 50mm Driver" [ref=e192]
+      - link "OneOdio Wired Over Ear Headphones Hi-Res Studio Monitor & Mixing DJ Stereo Headsets with 50mm Driver" [ref=e193]
+      - link "4.4 out of 5 stars" [ref=e194]: "76,277"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, OneOdio Wired Over Ear Headphones Hi-Res Studio Monitor & Mixing DJ Stereo Headsets wit" [ref=e196]
+      - link "Smart Case for Apple AirPods Max/AirPods Max 2, Hard Shell Travel Carry Bag with Sleep Mode Support," [ref=e197]
+      - link "Smart Case for Apple AirPods Max/AirPods Max 2, Hard Shell Travel Carry Bag with Sleep Mode Support," [ref=e198]
+      - link "5.0 out of 5 stars" [ref=e199]: "1"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Smart Case for Apple AirPods Max/AirPods Max 2, Hard Shell Travel Carry Bag with Sleep " [ref=e201]
+      - link "AIAIAI TMA-2 DJ XE - Professional On Ear Headphones for DJs with Clear Balanced Sound, High Isolatio" [ref=e202]
+      - link "AIAIAI TMA-2 DJ XE - Professional On Ear Headphones for DJs with Clear Balanced Sound, High Isolatio" [ref=e203]
+      - link "4.2 out of 5 stars" [ref=e204]: "81"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, AIAIAI TMA-2 DJ XE - Professional On Ear Headphones for DJs with Clear Balanced Sound, " [ref=e206]
+      - link "Headphone Case Hard Shell Super-Slim for Soundcore Anker/Sony/JBL/Bose/Skullcandy Crusher/BERIBES/KV" [ref=e207]
+      - link "Headphone Case Hard Shell Super-Slim for Soundcore Anker/Sony/JBL/Bose/Skullcandy Crusher/BERIBES/KV" [ref=e208]
+      - link "5.0 out of 5 stars" [ref=e209]: "7"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, Headphone Case Hard Shell Super-Slim for Soundcore Anker/Sony/JBL/Bose/Skullcandy Crush" [ref=e211]
+      - link "Replacement Earpads for Anker Soundcore Space Q45 Headphones, Ear Cushions Headset Earpads Ear Cups" [ref=e212]
+      - link "Replacement Earpads for Anker Soundcore Space Q45 Headphones, Ear Cushions Headset Earpads Ear Cups " [ref=e213]
+      - link "4.7 out of 5 stars" [ref=e214]: "21"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, Replacement Earpads for Anker Soundcore Space Q45 Headphones, Ear Cushions Headset Earp" [ref=e216]
+      - link "Inesore Soft Headphone Case Compatible with JBL Tune & Live/Sony WH-CH520 510 720/ Sony MDR-ZX/Bose" [ref=e217]
+      - link "Inesore Soft Headphone Case Compatible with JBL Tune & Live/Sony WH-CH520 510 720/ Sony MDR-ZX/Bose " [ref=e218]
+      - link "4.6 out of 5 stars" [ref=e219]: "64"
+      - text: "List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, Inesore Soft Headphone Case Compatible with JBL Tune & Live/Sony WH-CH520 510 720/ Sony" [ref=e221]
+      - link "Pioneer DJ HDJ-CUE1 On-Ear Wired Headphones, Dark Silver" [ref=e222]
+      - link "Pioneer DJ HDJ-CUE1 On-Ear Wired Headphones, Dark Silver" [ref=e223]
+      - link "4.6 out of 5 stars" [ref=e224]: "2,167"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Pioneer DJ HDJ-CUE1 On-Ear Wired Headphones, Dark Silver" [ref=e226]
+      - link "Replacement Ear Pads Cushions, Earpads Cover for Bose 700 Noise-Cancelling NC700 Over Ear Headphones" [ref=e227]
+      - link "Replacement Ear Pads Cushions, Earpads Cover for Bose 700 Noise-Cancelling NC700 Over Ear Headphones" [ref=e228]
+      - link "4.6 out of 5 stars" [ref=e229]: "1,379"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, Replacement Ear Pads Cushions, Earpads Cover for Bose 700 Noise-Cancelling NC700 Over E" [ref=e231]
+      - link "Replacement Ear Pads for Anker Soundcore Life Q30 / Q35 Bluetooth Headphone, Headphones Ear Cushions" [ref=e232]
+      - link "Replacement Ear Pads for Anker Soundcore Life Q30 / Q35 Bluetooth Headphone, Headphones Ear Cushions" [ref=e233]
+      - link "4.3 out of 5 stars" [ref=e234]: "15"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, Replacement Ear Pads for Anker Soundcore Life Q30 / Q35 Bluetooth Headphone, Headphones" [ref=e236]
+      - link "JSAUX Headphone Adapter for iPhone Lightning to 3.5mm Adapter [Apple MFi Certified] Compatible with" [ref=e237]
+      - link "JSAUX Headphone Adapter for iPhone Lightning to 3.5mm Adapter [Apple MFi Certified] Compatible with " [ref=e238]
+      - link "4.5 out of 5 stars" [ref=e239]: "11,083"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, JSAUX Headphone Adapter for iPhone Lightning to 3.5mm Adapter [Apple MFi Certified] Com" [ref=e241]
+      - link "Adada Hard Travel Case for Anker Soundcore Life Q20i / Q20 /Anker Soundcore Life Q30 Hybrid Active N" [ref=e242]
+      - text: "Only 4 left in stock - order soon."
+      - link "Adada Hard Travel Case for Anker Soundcore Life Q20i / Q20 /Anker Soundcore Life Q30 Hybrid Active N" [ref=e243]
+      - link "4.6 out of 5 stars" [ref=e244]: "48"
+      - img "Prime"
+      - text: "Two-Day FREE delivery  Fri, May 15"
+      - button "Add to cart, Adada Hard Travel Case for Anker Soundcore Life Q20i / Q20 /Anker Soundcore Life Q30 Hy" [ref=e246]
+  - button "Next page" [ref=e247]
+- group:
+  - heading "Products related to Soundcore by Anker Q20i Hybrid Active Noise…" [level=1]
+  - button "Leave feedback on Sponsored ad" [ref=e248]: "Sponsored"
+  - group:
+    - list:
+      - link "Marshall Monitor III A.N.C. Over-Ear Bluetooth Headphones - Active Noise Cancelling with Microphone" [ref=e249]
+      - text: "Only 1 left in stock (more on the way)."
+      - link "Marshall Monitor III A.N.C. Over-Ear Bluetooth Headphones - Active Noise Cancelling with Microphone " [ref=e250]
+      - link "4.5 out of 5 stars" [ref=e251]: "752"
+      - text: "List Price:"
+      - img "Prime"
+      - text: "FREE delivery  Sat, May 16"
+      - button "Add to cart, Marshall Monitor III A.N.C. Over-Ear Bluetooth Headphones - Active Noise Cancelling wit" [ref=e253]
+      - link "YUEPOOL Neckband Bluetooth Headphones with Voice Return Microphone,6.0 Bluetooth 100 Hours Playtime," [ref=e254]
+      - link "YUEPOOL Neckband Bluetooth Headphones with Voice Return Microphone,6.0 Bluetooth 100 Hours Playtime," [ref=e255]
+      - link "3.4 out of 5 stars" [ref=e256]: "24"
+      - img "Prime"
+      - text: "Two-Day FREE delivery  Fri, May 15"
+      - button "Add to cart, YUEPOOL Neckband Bluetooth Headphones with Voice Return Microphone,6.0 Bluetooth 100 Ho" [ref=e258]
+      - link "Hybrid Active Noise Cancelling Headphones 120H Long Playtime, 6 ENC Mic, Wireless Over-Ear Bluetooth" [ref=e259]
+      - link "Hybrid Active Noise Cancelling Headphones 120H Long Playtime, 6 ENC Mic, Wireless Over-Ear Bluetooth" [ref=e260]
+      - link "4.9 out of 5 stars" [ref=e261]: "102"
+      - text: "61% off Limited time deal List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Hybrid Active Noise Cancelling Headphones 120H Long Playtime, 6 ENC Mic, Wireless Over-" [ref=e263]
+      - link "Bose QuietComfort Headphones - Wireless Bluetooth Headphones, Active Over Ear Noise Cancelling and M" [ref=e264]
+      - link "Bose QuietComfort Headphones - Wireless Bluetooth Headphones, Active Over Ear Noise Cancelling and M" [ref=e265]
+      - link "4.6 out of 5 stars" [ref=e266]: "19,689"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 10 AM - 3 PM"
+      - button "Add to cart, Bose QuietComfort Headphones - Wireless Bluetooth Headphones, Active Over Ear Noise Can" [ref=e268]
+      - link "CMF BY Nothing Headphone Pro Active Noise Canceling Wireless Headphones Bluetooth 5.4 Over The Ear H" [ref=e269]
+      - link "CMF BY Nothing Headphone Pro Active Noise Canceling Wireless Headphones Bluetooth 5.4 Over The Ear H" [ref=e270]
+      - link "4.5 out of 5 stars" [ref=e271]: "1,395"
+      - img "Prime"
+      - text: "Tomorrow FREE delivery  Tomorrow, May 14"
+      - button "Add to cart, CMF BY Nothing Headphone Pro Active Noise Canceling Wireless Headphones Bluetooth 5.4 O" [ref=e273]
+      - link "1Mii Y8 Active Noise Cancelling Headphones, Bluetooth 6.0 Headphones Wireless Over Ear, Hi-Res 75H P" [ref=e274]
+      - link "1Mii Y8 Active Noise Cancelling Headphones, Bluetooth 6.0 Headphones Wireless Over Ear, Hi-Res 75H P" [ref=e275]
+      - link "4.5 out of 5 stars" [ref=e276]: "70"
+      - text: "List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, 1Mii Y8 Active Noise Cancelling Headphones, Bluetooth 6.0 Headphones Wireless Over Ear," [ref=e278]
+      - link "Sony WH-1000XM6 The Best Noise Canceling Wireless Headphones, HD NC Processor QN3, 12 Microphones, A" [ref=e279]
+      - link "Sony WH-1000XM6 The Best Noise Canceling Wireless Headphones, HD NC Processor QN3, 12 Microphones, A" [ref=e280]
+      - link "4.3 out of 5 stars" [ref=e281]: "2,822"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Sony WH-1000XM6 The Best Noise Canceling Wireless Headphones, HD NC Processor QN3, 12 M" [ref=e283]
+      - link "TINGER Mini Semi-in-Ear Bluetooth 5.4 Earbuds- 20H Battery Life Wireless Headphones, Ultra-Compact D" [ref=e284]
+      - link "TINGER Mini Semi-in-Ear Bluetooth 5.4 Earbuds- 20H Battery Life Wireless Headphones, Ultra-Compact D" [ref=e285]
+      - link "4.0 out of 5 stars" [ref=e286]: "30"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM  on $25 of qualifying items"
+      - button "Add to cart, TINGER Mini Semi-in-Ear Bluetooth 5.4 Earbuds- 20H Battery Life Wireless Headphones, Ul" [ref=e288]
+      - link "Edifier W800BT Pro Hybrid Active Noise Cancelling Headphones - Hi-Res Audio - AI Call Noise Cancella" [ref=e289]
+      - link "Edifier W800BT Pro Hybrid Active Noise Cancelling Headphones - Hi-Res Audio - AI Call Noise Cancella" [ref=e290]
+      - link "4.3 out of 5 stars" [ref=e291]: "1,831"
+      - text: "20% off Limited time deal List Price:"
+      - img "Prime"
+      - text: "Today FREE delivery  Today 5 PM - 10 PM"
+      - button "Add to cart, Edifier W800BT Pro Hybrid Active Noise Cancelling Headphones - Hi-Res Audio - AI Call N" [ref=e293]
+- complementary "Your recently viewed items and featured recommendations"
+- button "Back to top" [ref=e294]
+- heading "Get to Know Us" [level=6]
+- link "Careers" [ref=e295]
+- link "Amazon Newsletter" [ref=e296]
+- link "About Amazon" [ref=e297]
+- link "Accessibility" [ref=e298]
+- link "Sustainability" [ref=e299]
+- link "Press Center" [ref=e300]
+- link "Investor Relations" [ref=e301]
+- link "Amazon Devices" [ref=e302]
+- link "Amazon Science" [ref=e303]
+- heading "Make Money with Us" [level=6]
+- link "Sell on Amazon" [ref=e304]
+- link "Sell apps on Amazon" [ref=e305]
+- link "Supply to Amazon" [ref=e306]
+- link "Protect & Build Your Brand" [ref=e307]
+- link "Become an Affiliate" [ref=e308]
+- link "Become a Delivery Driver" [ref=e309]
+- link "Start a Package Delivery Business" [ref=e310]
+- link "Advertise Your Products" [ref=e311]
+- link "Self-Publish with Us" [ref=e312]
+- link "Become an Amazon Hub Partner" [ref=e313]
+- link "See More Ways to Make Money" [ref=e314]
+- heading "Amazon Payment Products" [level=6]
+- link "Amazon Visa" [ref=e315]
+- link "Amazon Store Card" [ref=e316]
+- link "Amazon Secured Card" [ref=e317]
+- link "Amazon Business Card" [ref=e318]
+- link "Shop with Points" [ref=e319]
+- link "Credit Card Marketplace" [ref=e320]
+- link "Reload Your Balance" [ref=e321]
+- link "Gift Cards" [ref=e322]
+- link "Amazon Currency Converter" [ref=e323]
+- heading "Let Us Help You" [level=6]
+- link "Your Account" [ref=e324]
+- link "Your Orders" [ref=e325]
+- link "Shipping Rates & Policies" [ref=e326]
+- link "Amazon Prime" [ref=e327]
+- link "Returns & Replacements" [ref=e328]
+- link "Manage Your Content and Devices" [ref=e329]
+- link "Recalls and Product Safety Alerts" [ref=e330]
+- link "Registry & Gift List" [ref=e331]
+- link "Help" [ref=e332]
+- link "Amazon US Home" [ref=e333]
+- link "Choose a language for shopping. Current selection is English." [ref=e334]: "English"
+- button "Expand to Change Language or Country" [ref=e335]
+- button "Choose a country/region for shopping. The current selection is United States." [ref=e336]: "United States"
+- navigation "More on Amazon" [ref=e337]:
+  - link "Amazon Music" [ref=e338]:
+    - heading "Amazon Music" [level=5]
+    - text: "Stream millions of songs"
+  - link "Amazon Ads" [ref=e339]:
+    - heading "Amazon Ads" [level=5]
+    - text: "Reach customers wherever they spend their time"
+  - link "6pm" [ref=e340]:
+    - heading "6pm" [level=5]
+    - text: "Score deals on fashion brands"
+  - link "AbeBooks" [ref=e341]:
+    - heading "AbeBooks" [level=5]
+    - text: "Books, art& collectibles"
+  - link "ACX" [ref=e342]:
+    - heading "ACX" [level=5]
+    - text: "Audiobook Publishing Made Easy"
+  - link "Sell on Amazon" [ref=e343]:
+    - heading "Sell on Amazon" [level=5]
+    - text: "Start a Selling Account"
+  - link "Veeqo" [ref=e344]:
+    - heading "Veeqo" [level=5]
+    - text: "Shipping Software Inventory Management"
+  - link "Amazon Business" [ref=e345]:
+    - heading "Amazon Business" [level=5]
+    - text: "Everything For Your Business"
+  - link "Amazon Fresh" [ref=e346]:
+    - heading "Amazon Fresh" [level=5]
+    - text: "Groceries & More Right To Your Door"
+  - link "AmazonGlobal" [ref=e347]:
+    - heading "AmazonGlobal" [level=5]
+    - text: "Ship Orders Internationally"
+  - link "Home Services" [ref=e348]:
+    - heading "Home Services" [level=5]
+    - text: "Experienced Pros Happiness Guarantee"
+  - link "Amazon Web Services" [ref=e349]:
+    - heading "Amazon Web Services" [level=5]
+    - text: "Scalable Cloud Computing Services"
+  - link "Audible" [ref=e350]:
+    - heading "Audible" [level=5]
+    - text: "Listen to Books & Original Audio Performances"
+  - link "Box Office Mojo" [ref=e351]:
+    - heading "Box Office Mojo" [level=5]
+    - text: "Find Movie Box Office Data"
+  - link "Goodreads" [ref=e352]:
+    - heading "Goodreads" [level=5]
+    - text: "Book reviews& recommendations"
+  - link "IMDb" [ref=e353]:
+    - heading "IMDb" [level=5]
+    - text: "Movies, TV& Celebrities"
+  - link "IMDbPro" [ref=e354]:
+    - heading "IMDbPro" [level=5]
+    - text: "Get Info Entertainment Professionals Need"
+  - link "Kindle Direct Publishing" [ref=e355]:
+    - heading "Kindle Direct Publishing" [level=5]
+    - text: "Indie Digital & Print Publishing Made Easy"
+  - link "Amazon Photos" [ref=e356]:
+    - heading "Amazon Photos" [level=5]
+    - text: "Unlimited Photo Storage Free With Prime"
+  - link "Prime Video Direct" [ref=e357]:
+    - heading "Prime Video Direct" [level=5]
+    - text: "Video Distribution Made Easy"
+  - link "Shopbop" [ref=e358]:
+    - heading "Shopbop" [level=5]
+    - text: "Designer Fashion Brands"
+  - link "Amazon Resale" [ref=e359]:
+    - heading "Amazon Resale" [level=5]
+    - text: "Great Deals on Quality Used Products"
+  - link "Whole Foods Market" [ref=e360]:
+    - heading "Whole Foods Market" [level=5]
+    - text: "America’s Healthiest Grocery Store"
+  - link "Woot!" [ref=e361]:
+    - heading "Woot!" [level=5]
+    - text: "Deals and  Shenanigans"
+  - link "Zappos" [ref=e362]:
+    - heading "Zappos" [level=5]
+    - text: "Shoes &Clothing"
+  - link "Ring" [ref=e363]:
+    - heading "Ring" [level=5]
+    - text: "Smart Home Security Systems"
+  - link "eero WiFi" [ref=e364]:
+    - heading "eero WiFi" [level=5]
+    - text: "Stream 4K Video in Every Room"
+  - link "Blink" [ref=e365]:
+    - heading "Blink" [level=5]
+    - text: "Smart Security for Every Home"
+  - link "Neighbors App" [ref=e366]:
+    - heading "Neighbors App" [level=5]
+    - text: "Real-Time Crime& Safety Alerts"
+  - link "PillPack" [ref=e367]:
+    - heading "PillPack" [level=5]
+    - text: "Pharmacy Simplified"
+  - link "Amazon Renewed" [ref=e368]:
+    - heading "Amazon Renewed" [level=5]
+    - text: "Refurbished tech you can trust"
+- link "Conditions of Use" [ref=e369]
+- link "Privacy Notice" [ref=e370]
+- link "Consumer Health Data Privacy Disclosure" [ref=e371]
+- link "Your Ads Privacy Choices" [ref=e372]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[23] thinking: **Finalizing product details**
+
+I need to wrap up the task by providing a concise summary. I’ll mention the product and its price, and confirm that there's an addition. Since I’m not pulling information from a web search, I don’t need to include citations. It seems like I can just state the details sourced from the inspected Amazon page. Keeping it straightforward will make it clear and effective!
+
+[24] assistant: Done. I added the Soundcore by Anker Q20i Hybrid Active Noise Cancelling Wireless Over-Ear Headphones to your Amazon cart for $39.99.
+
+[25] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="amazon" path="/Users/vista/.aside/u/0/agents/main/skills/site-specific/amazon/SKILL.md">
+# Amazon
+
+## Canonical URLs
+
+- Home: `https://www.amazon.com/`
+- Search: `https://www.amazon.com/s?k=${query}`
+- Orders: `https://www.amazon.com/gp/css/order-history?ref_=nav_orders_first`
+- Cart: `https://www.amazon.com/gp/cart/view.html?ref_=nav_cart`
+- Account: `https://www.amazon.com/gp/css/homepage.html`
+
+## Efficient Snapshot Strategy
+
+Amazon's snapshot results are large. You should use below selectors to minimize the amount of content captured.
+If it's updated, please update this SKILL.md to reflect the new selector.
+
+- On search result page: use `snapshot(page, { selector: '[data-component-type="s-search-results"]' })`
+- On cart page: `snapshot(page, { selector: '#activeCartViewForm' })`.
+  - Checkout button is outside the form and it can be found via `<input name="proceedToRetailCheckout">` 
+
+## Working style
+
+- Avoid the home page unless the user explicitly wants it. It is noisy and ad-heavy.
+- Before anything involving orders, returns, payments, or addresses, verify the active account and address in the header.
+- Prefer `Your Orders` for shipment, invoice, return, and rebuy tasks.
+- Prefer `Cart` for quantity and checkout-adjacent tasks.
+- Re-snapshot after navigation and after inline card expansion because Amazon frequently re-renders order cards.
+
+## Useful shortcuts
+
+- Search: `Option+/`
+- Cart: `Shift+Option+C`
+- Home: `Shift+Option+H`
+- Orders: `Shift+Option+O`
+- Shortcuts help: `Shift+Option+Z`
+</skill>
+</system_message>

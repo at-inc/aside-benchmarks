@@ -1,0 +1,1770 @@
+[1] user: Go to https://www.gov.uk/, Find the Eligibility to get the child benefit and How it works and how to claim
+
+[2] thinking: **Gathering information from gov.uk**
+
+I need to gather information on eligibility and how to claim from gov.uk. The user's request suggests they want specific info, so I'll likely need to use web tools to navigate there. I could use webfetch to access relevant pages and ensure to cite my sources if I use websearch or webfetch. It seems appropriate to open something in a browser tab and take a snapshot for clarity. Let's inspect what we find!
+
+[3] tool_call: write_todos:
+Todo list updated:
+- [in_progress] 1: Open GOV.UK and find the Child Benefit pages
+- [pending] 2: Extract eligibility, how it works, and how to claim details
+- [pending] 3: Summarize with source links
+
+[4] tool_call: repl("Opening GOV.UK")
+<request>
+const pg1 = await openTab('https://www.gov.uk/');
+const s1 = await snapshot(pg1, { interactive: true });
+console.log(s1.tree);
+</request>
+<result tokens_used="63" elapsed_time="1051ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Welcome to GOV.UK (https://www.gov.uk/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Welcome to GOV.UK" [url=https://www.gov.uk/]
+- banner:
+  - navigation "Navigation menu" [ref=e1]:
+    - link "Go to the GOV.UK homepage" [ref=e2]:
+      - img "GOV.UK"
+    - heading "Navigation menu" [level=2]
+    - button "Show navigation menu" [ref=e3]: "Menu"
+    - button "Show search menu" [ref=e4]: "Search GOV.UK"
+- main:
+  - banner:
+    - heading [level=1]: "The best place to find government services and information"
+    - search:
+      - text: "Search"
+      - status
+      - status
+      - combobox "Search" [ref=e5]
+      - button "Search GOV.UK" [ref=e6]
+  - region:
+    - heading "Popular on GOV.UK" [level=2]
+    - link "HMRC account: sign in or set up" [ref=e7]
+    - link "eVisas: access and use your online immigration status" [ref=e8]
+    - link "Universal Credit account: sign in" [ref=e9]
+    - link "Personal tax account: sign in or set up" [ref=e10]
+    - link "Childcare account: sign in" [ref=e11]
+    - link "Check your State Pension forecast" [ref=e12]
+  - region:
+    - heading "Services and information" [level=2]
+    - heading "Benefits" [level=3]:
+      - link "Benefits" [ref=e13]
+    - text: "Includes eligibility, appeals, tax credits and Universal Credit"
+    - heading "Births, deaths, marriages and care" [level=3]:
+      - link "Births, deaths, marriages and care" [ref=e14]
+    - text: "Parenting, civil partnerships, divorce and Lasting Power of Attorney"
+    - heading "Business and self-employed" [level=3]:
+      - link "Business and self-employed" [ref=e15]
+    - text: "Tools and guidance for businesses"
+    - heading "Childcare and parenting" [level=3]:
+      - link "Childcare and parenting" [ref=e16]
+    - text: "Includes giving birth, fostering, adopting, benefits for children, childcare and schools"
+    - heading "Citizenship and living in the UK" [level=3]:
+      - link "Citizenship and living in the UK" [ref=e17]
+    - text: "Voting, community participation, life in the UK, international projects"
+    - heading "Crime, justice and the law" [level=3]:
+      - link "Crime, justice and the law" [ref=e18]
+    - text: "Legal processes, courts and the police"
+    - heading "Disabled people" [level=3]:
+      - link "Disabled people" [ref=e19]
+    - text: "Includes carers, your rights, benefits and the Equality Act"
+    - heading "Driving and transport" [level=3]:
+      - link "Driving and transport" [ref=e20]
+    - text: "Includes vehicle tax, MOT and driving licences"
+    - heading "Education and learning" [level=3]:
+      - link "Education and learning" [ref=e21]
+    - text: "Includes student loans, admissions and apprenticeships"
+    - heading "Employing people" [level=3]:
+      - link "Employing people" [ref=e22]
+    - text: "Includes pay, contracts, hiring and redundancies"
+    - heading "Environment and countryside" [level=3]:
+      - link "Environment and countryside" [ref=e23]
+    - text: "Includes flooding, recycling, farming and wildlife"
+    - heading "Housing and local services" [level=3]:
+      - link "Housing and local services" [ref=e24]
+    - text: "Owning or renting and council services"
+    - heading "Money and tax" [level=3]:
+      - link "Money and tax" [ref=e25]
+    - text: "Includes debt and Self Assessment"
+    - heading "Passports, travel and living abroad" [level=3]:
+      - link "Passports, travel and living abroad" [ref=e26]
+    - text: "Includes renewing passports and travel advice by country"
+    - heading "Visas and immigration" [level=3]:
+      - link "Visas and immigration" [ref=e27]
+    - text: "Apply to visit, work, study, settle or seek asylum in the UK"
+    - heading "Working, jobs and pensions" [level=3]:
+      - link "Working, jobs and pensions" [ref=e28]
+    - text: "Includes holidays, finding a job and redundancy"
+  - region:
+    - heading "Featured" [level=2]
+    - heading "Find a job" [level=3]:
+      - link "Find a job" [ref=e29]
+    - text: "Search and apply for jobs in England, Scotland and Wales."
+    - heading "National Insurance" [level=3]:
+      - link "National Insurance" [ref=e30]
+    - text: "Check your record to see if you can add more contributions."
+    - heading "Cost of living support" [level=3]:
+      - link "Cost of living support" [ref=e31]
+    - text: "Find out what support is available to help with the cost of living."
+    - heading "Get the GOV.UK app" [level=3]:
+      - link "Get the GOV.UK app" [ref=e32]
+    - text: "Your government services and information, on the go."
+  - region:
+    - heading "Government activity" [level=2]
+    - text: "Find out what the government is doing"
+    - heading "Departments" [level=3]:
+      - link "Departments" [ref=e33]
+    - text: "Departments, agencies and public bodies"
+    - heading "News" [level=3]:
+      - link "News" [ref=e34]
+    - text: "News stories, speeches, letters and notices"
+    - heading "Guidance and regulation" [level=3]:
+      - link "Guidance and regulation" [ref=e35]
+    - text: "Detailed guidance, regulations and rules"
+    - heading "Research and statistics" [level=3]:
+      - link "Research and statistics" [ref=e36]
+    - text: "Reports, analysis and official statistics"
+    - heading "Policy papers and consultations" [level=3]:
+      - link "Policy papers and consultations" [ref=e37]
+    - text: "Consultations and strategy"
+    - heading "Transparency documents" [level=3]:
+      - link "Transparency documents" [ref=e38]
+    - text: "Data, Freedom of Information releases and corporate reports"
+  - region:
+    - heading "More on GOV.UK" [level=2]
+    - link "HMRC services: sign in" [ref=e39]
+    - link "Check MOT history of a vehicle" [ref=e40]
+    - link "Tax your vehicle" [ref=e41]
+    - link "Universal Credit" [ref=e42]
+    - link "Foreign travel advice" [ref=e43]
+    - link "Check your State Pension age" [ref=e44]
+    - link "Childcare account: sign in" [ref=e45]
+    - link "Student finance: sign in" [ref=e46]
+    - link "Self Assessment tax returns" [ref=e47]
+    - link "Apply for a passport" [ref=e48]
+- heading "Is this page useful?" [level=2]
+- button "Yes" [ref=e49]: "Yes   this page is useful"
+- button "No" [ref=e50]: "No   this page is not useful"
+- button "Report a problem with this page" [ref=e51]
+- contentinfo:
+  - heading "Services and information" [level=2]
+  - link "Benefits" [ref=e52]
+  - link "Births, death, marriages and care" [ref=e53]
+  - link "Business and self-employed" [ref=e54]
+  - link "Childcare and parenting" [ref=e55]
+  - link "Citizenship and living in the UK" [ref=e56]
+  - link "Crime, justice and the law" [ref=e57]
+  - link "Disabled people" [ref=e58]
+  - link "Driving and transport" [ref=e59]
+  - link "Education and learning" [ref=e60]
+  - link "Employing people" [ref=e61]
+  - link "Environment and countryside" [ref=e62]
+  - link "Housing and local services" [ref=e63]
+  - link "Money and tax" [ref=e64]
+  - link "Passports, travel and living abroad" [ref=e65]
+  - link "Visas and immigration" [ref=e66]
+  - link "Working, jobs and pensions" [ref=e67]
+  - heading "Government activity" [level=2]
+  - link "Departments" [ref=e68]
+  - link "News" [ref=e69]
+  - link "Guidance and regulation" [ref=e70]
+  - link "Research and statistics" [ref=e71]
+  - link "Policy papers and consultations" [ref=e72]
+  - link "Transparency" [ref=e73]
+  - link "How government works" [ref=e74]
+  - link "Get involved" [ref=e75]
+  - heading "Support links" [level=2]
+  - link "Help" [ref=e76]
+  - link "Privacy" [ref=e77]
+  - link "Cookies" [ref=e78]
+  - link "Accessibility statement" [ref=e79]
+  - link "Contact" [ref=e80]
+  - link "Terms and conditions" [ref=e81]
+  - link "Rhestr o Wasanaethau Cymraeg" [ref=e82]
+  - link "Government Digital Service" [ref=e83]
+  - text: "All content is available under the"
+  - link "Open Government Licence v3.0" [ref=e84]
+  - text: ", except where otherwise stated"
+  - link "© Crown copyright" [ref=e85]
+</result>
+
+[5] tool_call: repl("Searching GOV.UK for Child Benefit")
+<request>
+await pg1.locator('e5').fill('Child Benefit eligibility how it works claim');
+await pg1.locator('e6').click();
+const s2 = await snapshot(pg1);
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="97" elapsed_time="1526ms">
+- title: "Child Benefit eligibility how it works claim - Search - GOV.UK" [url=https://www.gov.uk/search/all?keywords=Child+Benefit+eligibility+how+it+works+claim]
+- banner:
+  - navigation "Navigation menu" [ref=e1]:
+    - link "Go to the GOV.UK homepage" [ref=e2]:
+      - img "GOV.UK"
+    - heading "Navigation menu" [level=2]
+    - button "Show navigation menu" [ref=e3]: "Menu"
+    - button "Show search menu" [ref=e4]: "Search GOV.UK"
+- navigation "Breadcrumb" [ref=e5]:
+  - list:
+    - listitem "Home" [ref=e6]:
+      - link "Home" [ref=e7]
+- main:
+  - form:
+    - search "Sitewide":
+      - heading [level=1]:
+        - label: "Search   all content on   GOV.UK"
+      - status
+      - status
+      - combobox "Search all content on GOV.UK" [ref=e8]: "Child Benefit eligibility how it works claim"
+      - button "Search" [ref=e9]
+    - button "Filter and sort" [ref=e10]
+    - heading "18,810 results" [level=2]
+    - list:
+      - listitem:
+        - link "Child Benefit" [ref=e11]
+        - text: "Child Benefit - child benefit rates, eligibility, how to claim, child benefit claim form CH2."
+        - list
+        - list:
+          - listitem "How it works" [ref=e12]:
+            - link "How it works" [ref=e13]
+            - text: "You get Child Benefit if you’re responsible for bringing up a child who…"
+          - listitem "What you'll get" [ref=e14]:
+            - link "What you'll get" [ref=e15]
+            - text: "There are 2 Child Benefit rates. Who the allowance is for Rate (weekly)…"
+          - listitem "When and how it's paid" [ref=e16]:
+            - link "When and how it's paid" [ref=e17]
+            - text: "Child Benefit is usually paid every 4 weeks on a Monday or Tuesday. You…"
+          - listitem "Who can get Child Benefit" [ref=e18]:
+            - link "Who can get Child Benefit" [ref=e19]
+            - text: "Only one person can get Child Benefit for a child. You normally qualify…"
+          - listitem "Make a claim" [ref=e20]:
+            - link "Make a claim" [ref=e21]
+            - text: "You can claim Child Benefit 48 hours after you’ve registered the birth of…"
+          - listitem "Make a change to your claim" [ref=e22]:
+            - link "Make a change to your claim" [ref=e23]
+            - text: "You must report any change of circumstances to the Child Benefit Office.…"
+          - listitem "Get help with your claim" [ref=e24]:
+            - link "Get help with your claim" [ref=e25]
+            - text: "Contact the Child Benefit Office if you have any questions. If you…"
+      - listitem:
+        - link "Prove you qualify for Child Benefit" [ref=e26]
+        - text: "Proof of Child Benefit - what you can use."
+        - list
+      - listitem:
+        - link "Report changes that affect your Child Benefit" [ref=e27]
+        - text: "How and when to report changes that affect your Child Benefit payments, such as earnings going above £60,000. How to update a change of address or bank details."
+        - list
+        - list:
+          - listitem "If your child’s circumstances change" [ref=e28]:
+            - link "If your child’s circumstances change" [ref=e29]
+            - text: "Report any changes that could affect your Child Benefit to HM Revenue and…"
+          - listitem "If your circumstances change or you need to update your details" [ref=e30]:
+            - link "If your circumstances change or you need to update your details" [ref=e31]
+            - text: "Report any changes that could affect your Child Benefit. If you do not,…"
+      - listitem:
+        - link "Maternity pay and leave" [ref=e32]
+        - text: "Your Statutory Maternity Pay (SMP) and Leave - what you get, how to claim, maternity rights and extra help"
+        - list
+      - listitem:
+        - link "Millions of families in line for Child Benefit rate increase" [ref=e33]
+        - text: "Families claiming Child Benefit will see an increase in payments from next week."
+        - list:
+          - listitem "Updated:" [ref=e34]: "Updated: 31 March 2026"
+      - listitem:
+        - link "Child Benefit if a child or parent dies" [ref=e35]
+        - text: "Child Benefit if your child dies or the claimant dies - report the death, when to make a new claim, arrears"
+        - list
+      - listitem:
+        - link "Claim and deal with Child Benefit for someone else" [ref=e36]
+        - text: "Claim or deal with Child Benefit for someone else - if your child has a baby, authorisation form CH105, appointees, voluntary organisations"
+        - list
+      - listitem:
+        - link "Claim Child Benefit if you cannot claim online" [ref=e37]
+        - text: "How to claim Child Benefit if you cannot make a claim online."
+        - list
+      - listitem:
+        - link "Universal Credit if you have children" [ref=e38]
+        - text: "If you’re responsible for a child, you may be entitled to an extra amount of Universal Credit and support with childcare costs."
+        - list:
+          - listitem "Updated:" [ref=e39]: "Updated: 22 April 2026"
+      - listitem:
+        - link "Benefits for families with more than 2 children before 6 April 2026" [ref=e40]
+        - text: "The rules and exceptions that apply if you had more than 2 children before 6 April 2026 and claimed Universal Credit."
+        - list:
+          - listitem "Updated:" [ref=e41]: "Updated: 22 April 2026"
+    - navigation "Pagination" [ref=e42]:
+      - link "Next page : 2 of 1,881" [ref=e43]
+- heading "Is this page useful?" [level=2]
+- list:
+  - listitem "Yes" [ref=e44]:
+    - button "Yes" [ref=e45]: "Yes   this page is useful"
+  - listitem "No" [ref=e46]:
+    - button "No" [ref=e47]: "No   this page is not useful"
+- button "Report a problem with this page" [ref=e48]
+- contentinfo:
+  - heading "Services and information" [level=2]
+  - list:
+    - listitem "Benefits" [ref=e49]:
+      - link "Benefits" [ref=e50]
+    - listitem "Births, death, marriages and care" [ref=e51]:
+      - link "Births, death, marriages and care" [ref=e52]
+    - listitem "Business and self-employed" [ref=e53]:
+      - link "Business and self-employed" [ref=e54]
+    - listitem "Childcare and parenting" [ref=e55]:
+      - link "Childcare and parenting" [ref=e56]
+    - listitem "Citizenship and living in the UK" [ref=e57]:
+      - link "Citizenship and living in the UK" [ref=e58]
+    - listitem "Crime, justice and the law" [ref=e59]:
+      - link "Crime, justice and the law" [ref=e60]
+    - listitem "Disabled people" [ref=e61]:
+      - link "Disabled people" [ref=e62]
+    - listitem "Driving and transport" [ref=e63]:
+      - link "Driving and transport" [ref=e64]
+    - listitem "Education and learning" [ref=e65]:
+      - link "Education and learning" [ref=e66]
+    - listitem "Employing people" [ref=e67]:
+      - link "Employing people" [ref=e68]
+    - listitem "Environment and countryside" [ref=e69]:
+      - link "Environment and countryside" [ref=e70]
+    - listitem "Housing and local services" [ref=e71]:
+      - link "Housing and local services" [ref=e72]
+    - listitem "Money and tax" [ref=e73]:
+      - link "Money and tax" [ref=e74]
+    - listitem "Passports, travel and living abroad" [ref=e75]:
+      - link "Passports, travel and living abroad" [ref=e76]
+    - listitem "Visas and immigration" [ref=e77]:
+      - link "Visas and immigration" [ref=e78]
+    - listitem "Working, jobs and pensions" [ref=e79]:
+      - link "Working, jobs and pensions" [ref=e80]
+  - heading "Government activity" [level=2]
+  - list:
+    - listitem "Departments" [ref=e81]:
+      - link "Departments" [ref=e82]
+    - listitem "News" [ref=e83]:
+      - link "News" [ref=e84]
+    - listitem "Guidance and regulation" [ref=e85]:
+      - link "Guidance and regulation" [ref=e86]
+    - listitem "Research and statistics" [ref=e87]:
+      - link "Research and statistics" [ref=e88]
+    - listitem "Policy papers and consultations" [ref=e89]:
+      - link "Policy papers and consultations" [ref=e90]
+    - listitem "Transparency" [ref=e91]:
+      - link "Transparency" [ref=e92]
+    - listitem "How government works" [ref=e93]:
+      - link "How government works" [ref=e94]
+    - listitem "Get involved" [ref=e95]:
+      - link "Get involved" [ref=e96]
+  - heading "Support links" [level=2]
+  - list:
+    - listitem "Help" [ref=e97]:
+      - link "Help" [ref=e98]
+    - listitem "Privacy" [ref=e99]:
+      - link "Privacy" [ref=e100]
+    - listitem "Cookies" [ref=e101]:
+      - link "Cookies" [ref=e102]
+    - listitem "Accessibility statement" [ref=e103]:
+      - link "Accessibility statement" [ref=e104]
+    - listitem "Contact" [ref=e105]:
+      - link "Contact" [ref=e106]
+    - listitem "Terms and conditions" [ref=e107]:
+      - link "Terms and conditions" [ref=e108]
+    - listitem "Rhestr o Wasanaethau Cymraeg" [ref=e109]:
+      - link "Rhestr o Wasanaethau Cymraeg" [ref=e110]
+    - listitem "Government Digital Service" [ref=e111]:
+      - link "Government Digital Service" [ref=e112]
+  - text: "All content is available under the"
+  - link "Open Government Licence v3.0" [ref=e113]
+  - text: ", except where otherwise stated"
+  - link "© Crown copyright" [ref=e114]
+</result>
+
+[6] thinking: **Extracting information for citations**
+
+I need to gather information, and I can either click on the pages or use webfetch for those with citations. I wonder if browser snapshots require a citation tag. However, I think final outputs should include sources inline. I should keep in mind that when using websearch or webfetch, it's essential to cite the sources correctly. I'll ensure I know the references in the output!
+
+[7] tool_call: webfetch(url="https://www.gov.uk/child-benefit", format="markdown", timeout=30, useCookies=false)
+<result tokens_used="110">
+<webfetch-citation source_id="fetch_call_5MPhJlftHagNLLhlaokGwQBf|fc_009e761380121985016a05078be5608199b6e0ac0928bd4052#1"></webfetch-citation>
+
+ Child Benefit: How it works - GOV.UK                                           
+
+## Cookies on GOV.UK
+
+We use some essential cookies to make this website work.
+
+We’d like to set additional cookies to understand how you use GOV.UK, remember your settings and improve government services.
+
+We also use cookies set by other sites to help us deliver content from their services.
+
+You have accepted additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+You have rejected additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+Accept additional cookies Reject additional cookies [View cookies](/help/cookies)
+
+Hide cookie message
+
+[Skip to main content](#content)
+
+[GOV.UK](/)
+
+## Navigation menu
+
+[Menu](/browse) Menu
+
+### Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+### Government activity
+
+-   [Departments](/government/organisations)
+    
+    Departments, agencies and public bodies
+    
+-   [News](/search/news-and-communications)
+    
+    News stories, speeches, letters and notices
+    
+-   [Guidance and regulation](/search/guidance-and-regulation)
+    
+    Detailed guidance, regulations and rules
+    
+-   [Research and statistics](/search/research-and-statistics)
+    
+    Reports, analysis and official statistics
+    
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+    
+    Consultations and strategy
+    
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+    
+    Data, Freedom of Information releases and corporate reports
+    
+
+Search GOV.UK × [Search GOV.UK](/search)
+
+### Search
+
+Search GOV.UK
+
+Search
+
+1.  [Home](/)
+2.  [Childcare and parenting](/browse/childcare-parenting)
+3.  [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+# Child Benefit
+
+[Skip contents](#guide-contents)
+
+## Contents
+
+1.  How it works
+2.  [What you'll get](/child-benefit/what-youll-get)
+3.  [When and how it's paid](/child-benefit/when-and-how-its-paid)
+4.  [Who can get Child Benefit](/child-benefit/eligibility)
+5.  [Make a claim](/child-benefit/how-to-claim)
+6.  [Make a change to your claim](/child-benefit/make-a-change-to-your-claim)
+7.  [Get help with your claim](/child-benefit/get-help-with-your-claim)
+
+# How it works
+
+You get Child Benefit if you’re responsible for bringing up a child who is:
+
+-   under 16
+-   under 20 if they stay in approved [education or training](/child-benefit-16-19)
+
+Only one person can get Child Benefit for a child.
+
+There’s no limit to how many children you can claim for.
+
+This guide is also available [in Welsh (Cymraeg)](/budd-dal-plant).
+
+By claiming Child Benefit, you can get:
+
+-   an allowance paid to you for each child - you’ll usually get it every 4 weeks
+-   [National Insurance credits](/national-insurance-credits) which count towards your [State Pension](/state-pension)
+-   a National Insurance number for your child without them having to apply for one - they’ll usually get the number shortly before they turn 16 years old
+
+If you choose not to get Child Benefit payments, you should still make a claim to get the other advantages.
+
+## Child Benefit and protecting your State Pension
+
+You’ll get [National Insurance credits](/national-insurance-credits) automatically if you claim Child Benefit and your child is under 12.
+
+These credits count towards your State Pension, so you do not have gaps in your National Insurance record if either:
+
+-   you’re not working
+-   you do not earn enough to pay National Insurance contributions
+
+If you do not need the National Insurance credits, your family may be eligible to get the support instead. Either:
+
+-   your husband, wife or partner can [apply to transfer the credits](/government/publications/national-insurance-credits-for-parents-and-carers-cf411a)
+-   a different family member who provides care for your child can [apply for Specified Adult Childcare credits](/government/publications/national-insurance-credits-for-adults-who-care-for-a-child-under-12-fact-sheet/specified-adult-childcare-credits-fact-sheet)
+
+## If your circumstances change
+
+You must [report any change of circumstances](/report-changes-child-benefit) to the Child Benefit Office.
+
+[Next:What you'll get](/child-benefit/what-youll-get)
+
+[View a printable version of the whole guide](/child-benefit/print)
+
+## Related content
+
+-   [Report changes that affect your Child Benefit](/report-changes-child-benefit)
+-   [Child Benefit when your child turns 16](/child-benefit-16-19)
+-   [Child Benefit payment dates](/child-benefit-payment-dates)
+-   [Prove you qualify for Child Benefit](/child-benefit-proof)
+-   [High Income Child Benefit Charge](/child-benefit-tax-charge)
+-   [Show 3 more related content links](#)
+-   [Child Benefit tax calculator](/child-benefit-tax-calculator), [Benefits calculators](/benefits-calculators), and [Child Benefit if a child or parent dies](/child-benefit-child-parent-dies)
+
+### Collection
+
+-   [Child Benefit: detailed information](/government/collections/child-benefit-detailed-information)
+
+## Explore the topic
+
+-   [Benefits and financial support for families](/browse/benefits/families)
+-   [Child Benefit](/browse/births-deaths-marriages/child-benefit)
+-   [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+## Is this page useful?
+
+-   [Maybe](/contact/govuk)
+-   Yes this page is useful
+-   No this page is not useful
+
+Thank you for your feedback
+
+Report a problem with this page
+
+## Help us improve GOV.UK
+
+Do not include personal or financial information like your National Insurance number or credit card details.
+
+This field is for robots only. Please leave blank 
+
+What were you doing?
+
+What went wrong?
+
+Send Cancel
+
+## Help us improve GOV.UK
+
+To help us improve GOV.UK, we’d like to know more about your visit today. [Please fill in this survey (opens in a new tab
+
+and requires JavaScript
+
+)](https://www.smartsurvey.co.uk/s/gov-uk-banner/?c=no-js).
+
+Cancel
+
+## Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+## Government activity
+
+-   [Departments](/government/organisations)
+-   [News](/search/news-and-communications)
+-   [Guidance and regulation](/search/guidance-and-regulation)
+-   [Research and statistics](/search/research-and-statistics)
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+-   [How government works](/government/how-government-works)
+-   [Get involved](/government/get-involved)
+
+---
+
+## Support links
+
+-   [Help](/help)
+-   [Privacy](/help/privacy-notice)
+-   [Cookies](/help/cookies)
+-   [Accessibility statement](/help/accessibility-statement)
+-   [Contact](/contact)
+-   [Terms and conditions](/help/terms-conditions)
+-   [Rhestr o Wasanaethau Cymraeg](/cymraeg)
+-   [Government Digital Service](/government/organisations/government-digital-service)
+
+All content is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), except where otherwise stated
+
+[© Crown copyright](https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/)
+</result>
+
+[8] tool_call: webfetch(url="https://www.gov.uk/child-benefit/eligibility", format="markdown", timeout=30, useCookies=false)
+<result tokens_used="179">
+<webfetch-citation source_id="fetch_call_cum3YsfU9M7DP6j1uXW1EX8n|fc_009e761380121985016a0507945a5481998012a3653073b90f#1"></webfetch-citation>
+
+ Child Benefit: Who can get Child Benefit - GOV.UK                                           
+
+## Cookies on GOV.UK
+
+We use some essential cookies to make this website work.
+
+We’d like to set additional cookies to understand how you use GOV.UK, remember your settings and improve government services.
+
+We also use cookies set by other sites to help us deliver content from their services.
+
+You have accepted additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+You have rejected additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+Accept additional cookies Reject additional cookies [View cookies](/help/cookies)
+
+Hide cookie message
+
+[Skip to main content](#content)
+
+[GOV.UK](/)
+
+## Navigation menu
+
+[Menu](/browse) Menu
+
+### Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+### Government activity
+
+-   [Departments](/government/organisations)
+    
+    Departments, agencies and public bodies
+    
+-   [News](/search/news-and-communications)
+    
+    News stories, speeches, letters and notices
+    
+-   [Guidance and regulation](/search/guidance-and-regulation)
+    
+    Detailed guidance, regulations and rules
+    
+-   [Research and statistics](/search/research-and-statistics)
+    
+    Reports, analysis and official statistics
+    
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+    
+    Consultations and strategy
+    
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+    
+    Data, Freedom of Information releases and corporate reports
+    
+
+Search GOV.UK × [Search GOV.UK](/search)
+
+### Search
+
+Search GOV.UK
+
+Search
+
+1.  [Home](/)
+2.  [Childcare and parenting](/browse/childcare-parenting)
+3.  [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+# Child Benefit
+
+[Skip contents](#guide-contents)
+
+## Contents
+
+1.  [How it works](/child-benefit)
+2.  [What you'll get](/child-benefit/what-youll-get)
+3.  [When and how it's paid](/child-benefit/when-and-how-its-paid)
+4.  Who can get Child Benefit
+5.  [Make a claim](/child-benefit/how-to-claim)
+6.  [Make a change to your claim](/child-benefit/make-a-change-to-your-claim)
+7.  [Get help with your claim](/child-benefit/get-help-with-your-claim)
+
+# Who can get Child Benefit
+
+Only one person can get Child Benefit for a child.
+
+You normally qualify for Child Benefit if you’re responsible for a child under 16 and you live in the UK.
+
+You’ll usually be responsible for a child if either:
+
+-   you live with them
+-   you’re paying at least the same amount as Child Benefit (or the equivalent in kind) towards looking after them - for example on food, clothes or pocket money
+
+Eligibility rules are different if your child:
+
+-   [goes into hospital or care](/child-benefit-for-children-in-hospital-or-care)
+    
+-   [lives with someone else](/child-benefit-child-lives-with-someone-else)
+    
+
+## If your child is 16 or over
+
+You’ll normally still qualify for Child Benefit if your child is under 20 and they stay in approved education or training.
+
+You can apply for Child Benefit to continue for 20 weeks if a 16 or 17 year old leaves education or training and registers with either:
+
+-   a government-sponsored careers service
+    
+-   the armed services
+    
+
+Find out more about Child Benefit [when your child turns 16](/child-benefit-16-19).
+
+## Fostering a child
+
+You’ll get Child Benefit if you foster a child, as long as the local council is not paying anything towards their accommodation or maintenance.
+
+## Adopting a child
+
+You can claim Child Benefit as soon as any child you’re adopting comes to live with you - you do not have to wait until the adoption process is complete.
+
+You might be able to get Child Benefit for a period before the adoption - [contact the Child Benefit Office](/contact/hm-revenue-customs/child-benefit) to find out.
+
+## Looking after someone else’s child
+
+You may be able to get Child Benefit if you’ve got an informal arrangement to look after a friend or relative’s child.
+
+You might not qualify if your local council is paying towards the child’s accommodation or maintenance - [contact the Child Benefit Office](/contact/hm-revenue-customs/child-benefit) to find out.
+
+Two people cannot get Child Benefit for the same child. If you and someone else are responsible for the same child, agree between yourselves who will get Child Benefit. If you cannot agree, HM Revenue and Customs (HMRC) will decide who will get it.
+
+You may also be entitled to [Guardian’s Allowance](https://www.gov.uk/guardians-allowance) if you’re responsible for a child who has lost one or both of their parents.
+
+## Living abroad
+
+You may be able to get Child Benefit if you [go to live in certain countries or if you’re a Crown servant](/child-benefit-abroad).
+
+## If you have settled status under the EU Settlement Scheme
+
+If you have settled status, you can claim Child Benefit.
+
+## If you have pre-settled status under the EU Settlement Scheme
+
+You can claim Child Benefit if any of the following apply.
+
+### If you’re working
+
+You must be earning or expect to earn above the [primary threshold (PT) for employees paying National Insurance](/government/publications/rates-and-allowances-national-insurance-contributions/rates-and-allowances-national-insurance-contributions) for 3 continuous months.
+
+### If you’re looking for work
+
+You can continue to claim Child Benefit as a jobseeker for 91 days, unless you get a job offer.
+
+### If you have sufficient resources to support yourself financially
+
+You can claim Child Benefit if you have sufficient resources to support yourself and your family financially. This means you may not be eligible if you claim Income Support, income-based Jobseeker’s Allowance, Pension Credit or Universal Credit.
+
+### If you’re studying
+
+You must have sufficient resources to support yourself financially.
+
+### If you’re a family member of an EEA or Swiss national who has a right to reside
+
+You can claim Child Benefit if you are:
+
+-   their spouse or civil partner
+    
+-   their child or grandchild who is dependent on them or under 21
+    
+-   their parent or grandparent who is dependent on them
+    
+
+## If you move to the UK
+
+Check if you can get [Child Benefit if you move to the UK](/child-benefit-move-to-uk) and you have the right to reside.
+
+## If your child starts work or gets benefits in their own right
+
+You’ll stop getting Child Benefit if your child:
+
+-   starts paid work for 24 hours or more a week and is no longer in approved education or training
+    
+-   starts an [apprenticeship in England](/become-apprentice)
+    
+-   starts getting certain benefits, such as Employment and Support Allowance or Universal Credit
+    
+
+Check what counts as approved education or training [when your child turns 16](/child-benefit-16-19).
+
+[Contact the Child Benefit Office](/contact/hm-revenue-customs/child-benefit) if you’re not sure about your eligibility.
+
+[Previous:When and how it's paid](/child-benefit/when-and-how-its-paid)
+
+[Next:Make a claim](/child-benefit/how-to-claim)
+
+[View a printable version of the whole guide](/child-benefit/print)
+
+## Related content
+
+-   [Report changes that affect your Child Benefit](/report-changes-child-benefit)
+-   [Child Benefit when your child turns 16](/child-benefit-16-19)
+-   [Child Benefit payment dates](/child-benefit-payment-dates)
+-   [Prove you qualify for Child Benefit](/child-benefit-proof)
+-   [High Income Child Benefit Charge](/child-benefit-tax-charge)
+-   [Show 3 more related content links](#)
+-   [Child Benefit tax calculator](/child-benefit-tax-calculator), [Benefits calculators](/benefits-calculators), and [Child Benefit if a child or parent dies](/child-benefit-child-parent-dies)
+
+### Collection
+
+-   [Child Benefit: detailed information](/government/collections/child-benefit-detailed-information)
+
+## Explore the topic
+
+-   [Benefits and financial support for families](/browse/benefits/families)
+-   [Child Benefit](/browse/births-deaths-marriages/child-benefit)
+-   [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+## Is this page useful?
+
+-   [Maybe](/contact/govuk)
+-   Yes this page is useful
+-   No this page is not useful
+
+Thank you for your feedback
+
+Report a problem with this page
+
+## Help us improve GOV.UK
+
+Do not include personal or financial information like your National Insurance number or credit card details.
+
+This field is for robots only. Please leave blank 
+
+What were you doing?
+
+What went wrong?
+
+Send Cancel
+
+## Help us improve GOV.UK
+
+To help us improve GOV.UK, we’d like to know more about your visit today. [Please fill in this survey (opens in a new tab
+
+and requires JavaScript
+
+)](https://www.smartsurvey.co.uk/s/gov-uk-banner/?c=no-js).
+
+Cancel
+
+## Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+## Government activity
+
+-   [Departments](/government/organisations)
+-   [News](/search/news-and-communications)
+-   [Guidance and regulation](/search/guidance-and-regulation)
+-   [Research and statistics](/search/research-and-statistics)
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+-   [How government works](/government/how-government-works)
+-   [Get involved](/government/get-involved)
+
+---
+
+## Support links
+
+-   [Help](/help)
+-   [Privacy](/help/privacy-notice)
+-   [Cookies](/help/cookies)
+-   [Accessibility statement](/help/accessibility-statement)
+-   [Contact](/contact)
+-   [Terms and conditions](/help/terms-conditions)
+-   [Rhestr o Wasanaethau Cymraeg](/cymraeg)
+-   [Government Digital Service](/government/organisations/government-digital-service)
+
+All content is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), except where otherwise stated
+
+[© Crown copyright](https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/)
+</result>
+
+[9] tool_call: webfetch(url="https://www.gov.uk/child-benefit/how-to-claim", format="markdown", timeout=30, useCookies=false)
+<result tokens_used="179">
+<webfetch-citation source_id="fetch_call_ZOAmgQFPKBn37sVgg2mo8bwL|fc_009e761380121985016a0507945a648199a2b4d944c45d19d1#1"></webfetch-citation>
+
+ Child Benefit: Make a claim - GOV.UK                                           
+
+## Cookies on GOV.UK
+
+We use some essential cookies to make this website work.
+
+We’d like to set additional cookies to understand how you use GOV.UK, remember your settings and improve government services.
+
+We also use cookies set by other sites to help us deliver content from their services.
+
+You have accepted additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+You have rejected additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+Accept additional cookies Reject additional cookies [View cookies](/help/cookies)
+
+Hide cookie message
+
+[Skip to main content](#content)
+
+[GOV.UK](/)
+
+## Navigation menu
+
+[Menu](/browse) Menu
+
+### Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+### Government activity
+
+-   [Departments](/government/organisations)
+    
+    Departments, agencies and public bodies
+    
+-   [News](/search/news-and-communications)
+    
+    News stories, speeches, letters and notices
+    
+-   [Guidance and regulation](/search/guidance-and-regulation)
+    
+    Detailed guidance, regulations and rules
+    
+-   [Research and statistics](/search/research-and-statistics)
+    
+    Reports, analysis and official statistics
+    
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+    
+    Consultations and strategy
+    
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+    
+    Data, Freedom of Information releases and corporate reports
+    
+
+Search GOV.UK × [Search GOV.UK](/search)
+
+### Search
+
+Search GOV.UK
+
+Search
+
+1.  [Home](/)
+2.  [Childcare and parenting](/browse/childcare-parenting)
+3.  [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+# Child Benefit
+
+[Skip contents](#guide-contents)
+
+## Contents
+
+1.  [How it works](/child-benefit)
+2.  [What you'll get](/child-benefit/what-youll-get)
+3.  [When and how it's paid](/child-benefit/when-and-how-its-paid)
+4.  [Who can get Child Benefit](/child-benefit/eligibility)
+5.  Make a claim
+6.  [Make a change to your claim](/child-benefit/make-a-change-to-your-claim)
+7.  [Get help with your claim](/child-benefit/get-help-with-your-claim)
+
+# Make a claim
+
+You can claim Child Benefit 48 hours after you’ve registered the birth of your child, or once a child comes to live with you.
+
+Child Benefit can be backdated for up to 3 months from the date you make the claim.
+
+If you’re making a new claim for a child over 16, [check they’re eligible](/child-benefit/eligibility).
+
+## Deciding who should claim
+
+Only one person can get Child Benefit for a child, so you need to decide whether it’s better for you or the other parent to claim. 
+
+Whoever claims will get National Insurance credits towards their state pension. The credits can fill gaps in your record if you’re not working or do not earn enough to pay National Insurance contributions.
+
+You and your partner can claim for different children. If you live together, only one of you can claim at the [higher rate, for the eldest child in the household](/child-benefit/what-youll-get). If you both claim at the higher rate, you may have to pay back some of the money.
+
+### If you’re under 16
+
+You can either claim for your own child or [someone responsible for you can claim for them on your behalf](/claim-child-benefit-behalf-someone-else). You’ll usually get more if you claim yourself.
+
+## Make a claim online
+
+Use this service to make a claim for Child Benefit or to add another child to an existing claim.
+
+[Start now](https://account.hmrc.gov.uk/child-benefit/make_a_claim/recently-claimed-child-benefit)
+
+Watch this video to find out more about how to claim Child Benefit online.
+
+[How to claim Child Benefit online video on YouTube](https://www.youtube.com/watch?v=hQq_IyWOYEM).
+
+## Before you start
+
+You’ll need:
+
+-   your child’s birth or adoption certificate, if you have it
+-   your bank or building society details
+-   your National Insurance number - if you have one
+-   your partner’s National Insurance number (if you have a partner)
+
+You can [order a new birth or adoption certificate](/order-copy-birth-death-marriage-certificate) if you’ve lost the original.
+
+### If you do not have the birth or adoption certificate
+
+You can still claim without a birth or adoption certificate. This will take longer. You may be asked to send the certificate as proof, after you’ve registered.
+
+If successful, your claim will be backdated for up to 3 months from the date you make the claim.
+
+If you do not send the certificate when asked, you may need to start the claim again.
+
+### If your child’s birth was registered outside the UK
+
+You’ll need to send:
+
+-   your child’s original birth or adoption certificate
+-   your child’s passport or the travel document they used to enter the UK
+
+If your child’s only form of ID is an eVisa, we’ll check the details of this. You do not need to provide a share code.
+
+Any documents you send will usually be returned in 4 weeks.
+
+If you do not have the certificate you need, make a claim now and send the certificate once you’ve got it.
+
+## Other ways to claim
+
+If you cannot apply online, you can:
+
+-   [claim by post](/government/publications/claim-child-benefit-if-you-cannot-claim-online)
+-   [claim by phone](/government/organisations/hm-revenue-customs/contact/child-benefit)
+
+## Claiming Child Benefit for someone else
+
+You may be able to [manage someone else’s Child Benefit claim](/claim-child-benefit-behalf-someone-else).
+
+[Previous:Who can get Child Benefit](/child-benefit/eligibility)
+
+[Next:Make a change to your claim](/child-benefit/make-a-change-to-your-claim)
+
+[View a printable version of the whole guide](/child-benefit/print)
+
+## Related content
+
+-   [Report changes that affect your Child Benefit](/report-changes-child-benefit)
+-   [Child Benefit when your child turns 16](/child-benefit-16-19)
+-   [Child Benefit payment dates](/child-benefit-payment-dates)
+-   [Prove you qualify for Child Benefit](/child-benefit-proof)
+-   [High Income Child Benefit Charge](/child-benefit-tax-charge)
+-   [Show 3 more related content links](#)
+-   [Child Benefit tax calculator](/child-benefit-tax-calculator), [Benefits calculators](/benefits-calculators), and [Child Benefit if a child or parent dies](/child-benefit-child-parent-dies)
+
+### Collection
+
+-   [Child Benefit: detailed information](/government/collections/child-benefit-detailed-information)
+
+## Explore the topic
+
+-   [Benefits and financial support for families](/browse/benefits/families)
+-   [Child Benefit](/browse/births-deaths-marriages/child-benefit)
+-   [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+## Is this page useful?
+
+-   [Maybe](/contact/govuk)
+-   Yes this page is useful
+-   No this page is not useful
+
+Thank you for your feedback
+
+Report a problem with this page
+
+## Help us improve GOV.UK
+
+Do not include personal or financial information like your National Insurance number or credit card details.
+
+This field is for robots only. Please leave blank 
+
+What were you doing?
+
+What went wrong?
+
+Send Cancel
+
+## Help us improve GOV.UK
+
+To help us improve GOV.UK, we’d like to know more about your visit today. [Please fill in this survey (opens in a new tab
+
+and requires JavaScript
+
+)](https://www.smartsurvey.co.uk/s/gov-uk-banner/?c=no-js).
+
+Cancel
+
+## Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+## Government activity
+
+-   [Departments](/government/organisations)
+-   [News](/search/news-and-communications)
+-   [Guidance and regulation](/search/guidance-and-regulation)
+-   [Research and statistics](/search/research-and-statistics)
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+-   [How government works](/government/how-government-works)
+-   [Get involved](/government/get-involved)
+
+---
+
+## Support links
+
+-   [Help](/help)
+-   [Privacy](/help/privacy-notice)
+-   [Cookies](/help/cookies)
+-   [Accessibility statement](/help/accessibility-statement)
+-   [Contact](/contact)
+-   [Terms and conditions](/help/terms-conditions)
+-   [Rhestr o Wasanaethau Cymraeg](/cymraeg)
+-   [Government Digital Service](/government/organisations/government-digital-service)
+
+All content is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), except where otherwise stated
+
+[© Crown copyright](https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/)
+</result>
+
+[10] tool_call: webfetch(url="https://www.gov.uk/child-benefit/what-youll-get", format="markdown", timeout=30, useCookies=false)
+<result tokens_used="179">
+<webfetch-citation source_id="fetch_call_abyAuI6AK396waL2KUsVbIAr|fc_009e761380121985016a0507945a6c8199a8eb56b74a7c89d8#1"></webfetch-citation>
+
+ Child Benefit: What you'll get - GOV.UK                                           
+
+## Cookies on GOV.UK
+
+We use some essential cookies to make this website work.
+
+We’d like to set additional cookies to understand how you use GOV.UK, remember your settings and improve government services.
+
+We also use cookies set by other sites to help us deliver content from their services.
+
+You have accepted additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+You have rejected additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+Accept additional cookies Reject additional cookies [View cookies](/help/cookies)
+
+Hide cookie message
+
+[Skip to main content](#content)
+
+[GOV.UK](/)
+
+## Navigation menu
+
+[Menu](/browse) Menu
+
+### Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+### Government activity
+
+-   [Departments](/government/organisations)
+    
+    Departments, agencies and public bodies
+    
+-   [News](/search/news-and-communications)
+    
+    News stories, speeches, letters and notices
+    
+-   [Guidance and regulation](/search/guidance-and-regulation)
+    
+    Detailed guidance, regulations and rules
+    
+-   [Research and statistics](/search/research-and-statistics)
+    
+    Reports, analysis and official statistics
+    
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+    
+    Consultations and strategy
+    
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+    
+    Data, Freedom of Information releases and corporate reports
+    
+
+Search GOV.UK × [Search GOV.UK](/search)
+
+### Search
+
+Search GOV.UK
+
+Search
+
+1.  [Home](/)
+2.  [Childcare and parenting](/browse/childcare-parenting)
+3.  [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+# Child Benefit
+
+[Skip contents](#guide-contents)
+
+## Contents
+
+1.  [How it works](/child-benefit)
+2.  What you'll get
+3.  [When and how it's paid](/child-benefit/when-and-how-its-paid)
+4.  [Who can get Child Benefit](/child-benefit/eligibility)
+5.  [Make a claim](/child-benefit/how-to-claim)
+6.  [Make a change to your claim](/child-benefit/make-a-change-to-your-claim)
+7.  [Get help with your claim](/child-benefit/get-help-with-your-claim)
+
+# What you'll get
+
+There are 2 Child Benefit rates.
+
+Who the allowance is for
+
+Rate (weekly)
+
+Eldest or only child
+
+£27.05
+
+Additional children
+
+£17.90 per child
+
+You must [contact the Child Benefit Office](/contact/hm-revenue-customs/child-benefit) if you’re paid too much or too little.
+
+Any Child Benefit payments you get will count towards the [benefit cap](/benefit-cap). If you’re affected by the cap, you’ll still get the full amount for your Child Benefit payments but your other benefits may be reduced.
+
+## If families split up
+
+If a family splits up, you get £27.05 a week for the eldest child.
+
+If you have 2 children and one lives with you and the other lives with  
+someone else (for example, your ex-partner), you’ll each get £27.05 a week.
+
+If you both claim for the same child, only one of you will get Child Benefit for them.
+
+If you’re entitled to Child Benefit for any other children, you’ll get £17.90 for each child.
+
+## If families join together
+
+If you move in with a partner who also claims Child Benefit, you get £27.05 for the eldest child in the household. You get £17.90 for any younger children.
+
+You and your partner can claim for different children. If you live together, you cannot both claim at the higher rate - you may have to pay back some of the money if you do.
+
+You must [report the change to your family circumstances](/government/publications/child-benefit-change-of-family-circumstances).
+
+## If you or your partner earn over the threshold
+
+If either you or your partner’s ‘adjusted net income’ is over the threshold, you may have to pay the [High Income Child Benefit Charge](/child-benefit-tax-charge).
+
+Your adjusted net income is your total [taxable income](/income-tax) before any personal allowances and less things like Gift Aid. Your total taxable income includes interest from savings and dividends.
+
+If you have to pay the charge, you can still get the other advantages of Child Benefit like National Insurance credits. The charge will not be more than the amount you get from Child Benefit payments.
+
+Work out if your adjusted net income is over the threshold using the [Child Benefit tax calculator](/child-benefit-tax-calculator). If it is, the calculator will also tell you how much charge you’ll have to pay.
+
+If both you and your partner have an individual income that’s over the threshold, then whoever has the higher adjusted net income is responsible for paying the charge.
+
+If either you or your partner has an individual income of £20,000 or more above the threshold (£10,000 or more before April 2024), you’ll be charged the same amount as you make through Child Benefit payments. You’ll end up with no extra money from Child Benefit.
+
+You can make a claim and [opt out of getting payments](/child-benefit-tax-charge/stop-child-benefit) if you do not want to pay the charge. You can still get the other advantages provided by Child Benefit, like National Insurance credits.
+
+## If you’re under 16
+
+You can either claim for your own child or [someone responsible for you can claim for them on your behalf](/claim-child-benefit-behalf-someone-else). You’ll usually get more if you claim yourself.
+
+[Previous:How it works](/child-benefit)
+
+[Next:When and how it's paid](/child-benefit/when-and-how-its-paid)
+
+[View a printable version of the whole guide](/child-benefit/print)
+
+## Related content
+
+-   [Report changes that affect your Child Benefit](/report-changes-child-benefit)
+-   [Child Benefit when your child turns 16](/child-benefit-16-19)
+-   [Child Benefit payment dates](/child-benefit-payment-dates)
+-   [Prove you qualify for Child Benefit](/child-benefit-proof)
+-   [High Income Child Benefit Charge](/child-benefit-tax-charge)
+-   [Show 3 more related content links](#)
+-   [Child Benefit tax calculator](/child-benefit-tax-calculator), [Benefits calculators](/benefits-calculators), and [Child Benefit if a child or parent dies](/child-benefit-child-parent-dies)
+
+### Collection
+
+-   [Child Benefit: detailed information](/government/collections/child-benefit-detailed-information)
+
+## Explore the topic
+
+-   [Benefits and financial support for families](/browse/benefits/families)
+-   [Child Benefit](/browse/births-deaths-marriages/child-benefit)
+-   [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+## Is this page useful?
+
+-   [Maybe](/contact/govuk)
+-   Yes this page is useful
+-   No this page is not useful
+
+Thank you for your feedback
+
+Report a problem with this page
+
+## Help us improve GOV.UK
+
+Do not include personal or financial information like your National Insurance number or credit card details.
+
+This field is for robots only. Please leave blank 
+
+What were you doing?
+
+What went wrong?
+
+Send Cancel
+
+## Help us improve GOV.UK
+
+To help us improve GOV.UK, we’d like to know more about your visit today. [Please fill in this survey (opens in a new tab
+
+and requires JavaScript
+
+)](https://www.smartsurvey.co.uk/s/gov-uk-banner/?c=no-js).
+
+Cancel
+
+## Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+## Government activity
+
+-   [Departments](/government/organisations)
+-   [News](/search/news-and-communications)
+-   [Guidance and regulation](/search/guidance-and-regulation)
+-   [Research and statistics](/search/research-and-statistics)
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+-   [How government works](/government/how-government-works)
+-   [Get involved](/government/get-involved)
+
+---
+
+## Support links
+
+-   [Help](/help)
+-   [Privacy](/help/privacy-notice)
+-   [Cookies](/help/cookies)
+-   [Accessibility statement](/help/accessibility-statement)
+-   [Contact](/contact)
+-   [Terms and conditions](/help/terms-conditions)
+-   [Rhestr o Wasanaethau Cymraeg](/cymraeg)
+-   [Government Digital Service](/government/organisations/government-digital-service)
+
+All content is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), except where otherwise stated
+
+[© Crown copyright](https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/)
+</result>
+
+[11] tool_call: webfetch(url="https://www.gov.uk/child-benefit/when-and-how-its-paid", format="markdown", timeout=30, useCookies=false)
+<result tokens_used="179">
+<webfetch-citation source_id="fetch_call_aMyiaND2niikV833ijDxvuhL|fc_009e761380121985016a0507945a7081999a7c143c22056c81#1"></webfetch-citation>
+
+ Child Benefit: When and how it's paid - GOV.UK                                           
+
+## Cookies on GOV.UK
+
+We use some essential cookies to make this website work.
+
+We’d like to set additional cookies to understand how you use GOV.UK, remember your settings and improve government services.
+
+We also use cookies set by other sites to help us deliver content from their services.
+
+You have accepted additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+You have rejected additional cookies. You can [change your cookie settings](/help/cookies) at any time.
+
+Accept additional cookies Reject additional cookies [View cookies](/help/cookies)
+
+Hide cookie message
+
+[Skip to main content](#content)
+
+[GOV.UK](/)
+
+## Navigation menu
+
+[Menu](/browse) Menu
+
+### Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+### Government activity
+
+-   [Departments](/government/organisations)
+    
+    Departments, agencies and public bodies
+    
+-   [News](/search/news-and-communications)
+    
+    News stories, speeches, letters and notices
+    
+-   [Guidance and regulation](/search/guidance-and-regulation)
+    
+    Detailed guidance, regulations and rules
+    
+-   [Research and statistics](/search/research-and-statistics)
+    
+    Reports, analysis and official statistics
+    
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+    
+    Consultations and strategy
+    
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+    
+    Data, Freedom of Information releases and corporate reports
+    
+
+Search GOV.UK × [Search GOV.UK](/search)
+
+### Search
+
+Search GOV.UK
+
+Search
+
+1.  [Home](/)
+2.  [Childcare and parenting](/browse/childcare-parenting)
+3.  [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+# Child Benefit
+
+[Skip contents](#guide-contents)
+
+## Contents
+
+1.  [How it works](/child-benefit)
+2.  [What you'll get](/child-benefit/what-youll-get)
+3.  When and how it's paid
+4.  [Who can get Child Benefit](/child-benefit/eligibility)
+5.  [Make a claim](/child-benefit/how-to-claim)
+6.  [Make a change to your claim](/child-benefit/make-a-change-to-your-claim)
+7.  [Get help with your claim](/child-benefit/get-help-with-your-claim)
+
+# When and how it's paid
+
+Child Benefit is usually [paid every 4 weeks](/child-benefit-payment-dates) on a Monday or Tuesday.
+
+You can have the money paid weekly if you’re a single parent or getting certain other benefits, such as Universal Credit.
+
+You can get the money [paid into any account](/how-to-have-your-benefits-paid), apart from:
+
+-   a Post Office card account
+-   a Nationwide cashbuilder account (sort code 07 00 30) in someone else’s name
+
+You can only get the money paid into one account.
+
+[Previous:What you'll get](/child-benefit/what-youll-get)
+
+[Next:Who can get Child Benefit](/child-benefit/eligibility)
+
+[View a printable version of the whole guide](/child-benefit/print)
+
+## Related content
+
+-   [Report changes that affect your Child Benefit](/report-changes-child-benefit)
+-   [Child Benefit when your child turns 16](/child-benefit-16-19)
+-   [Child Benefit payment dates](/child-benefit-payment-dates)
+-   [Prove you qualify for Child Benefit](/child-benefit-proof)
+-   [High Income Child Benefit Charge](/child-benefit-tax-charge)
+-   [Show 3 more related content links](#)
+-   [Child Benefit tax calculator](/child-benefit-tax-calculator), [Benefits calculators](/benefits-calculators), and [Child Benefit if a child or parent dies](/child-benefit-child-parent-dies)
+
+### Collection
+
+-   [Child Benefit: detailed information](/government/collections/child-benefit-detailed-information)
+
+## Explore the topic
+
+-   [Benefits and financial support for families](/browse/benefits/families)
+-   [Child Benefit](/browse/births-deaths-marriages/child-benefit)
+-   [Financial help if you have children](/browse/childcare-parenting/financial-help-children)
+
+## Is this page useful?
+
+-   [Maybe](/contact/govuk)
+-   Yes this page is useful
+-   No this page is not useful
+
+Thank you for your feedback
+
+Report a problem with this page
+
+## Help us improve GOV.UK
+
+Do not include personal or financial information like your National Insurance number or credit card details.
+
+This field is for robots only. Please leave blank 
+
+What were you doing?
+
+What went wrong?
+
+Send Cancel
+
+## Help us improve GOV.UK
+
+To help us improve GOV.UK, we’d like to know more about your visit today. [Please fill in this survey (opens in a new tab
+
+and requires JavaScript
+
+)](https://www.smartsurvey.co.uk/s/gov-uk-banner/?c=no-js).
+
+Cancel
+
+## Services and information
+
+-   [Benefits](/browse/benefits)
+-   [Births, death, marriages and care](/browse/births-deaths-marriages)
+-   [Business and self-employed](/browse/business)
+-   [Childcare and parenting](/browse/childcare-parenting)
+-   [Citizenship and living in the UK](/browse/citizenship)
+-   [Crime, justice and the law](/browse/justice)
+-   [Disabled people](/browse/disabilities)
+-   [Driving and transport](/browse/driving)
+-   [Education and learning](/browse/education)
+-   [Employing people](/browse/employing-people)
+-   [Environment and countryside](/browse/environment-countryside)
+-   [Housing and local services](/browse/housing-local-services)
+-   [Money and tax](/browse/tax)
+-   [Passports, travel and living abroad](/browse/abroad)
+-   [Visas and immigration](/browse/visas-immigration)
+-   [Working, jobs and pensions](/browse/working)
+
+## Government activity
+
+-   [Departments](/government/organisations)
+-   [News](/search/news-and-communications)
+-   [Guidance and regulation](/search/guidance-and-regulation)
+-   [Research and statistics](/search/research-and-statistics)
+-   [Policy papers and consultations](/search/policy-papers-and-consultations)
+-   [Transparency](/search/transparency-and-freedom-of-information-releases)
+-   [How government works](/government/how-government-works)
+-   [Get involved](/government/get-involved)
+
+---
+
+## Support links
+
+-   [Help](/help)
+-   [Privacy](/help/privacy-notice)
+-   [Cookies](/help/cookies)
+-   [Accessibility statement](/help/accessibility-statement)
+-   [Contact](/contact)
+-   [Terms and conditions](/help/terms-conditions)
+-   [Rhestr o Wasanaethau Cymraeg](/cymraeg)
+-   [Government Digital Service](/government/organisations/government-digital-service)
+
+All content is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), except where otherwise stated
+
+[© Crown copyright](https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/)
+</result>
+
+[12] thinking: **Considering child benefit eligibility**
+
+I need to gather information about child benefits, focusing on eligibility, how it works, and how to claim it. It might be helpful to present the current page in the browser for easy reference. I should include links to relevant sources and ensure the information is succinct. If the user is looking to find this info rather than apply right away, that’s a good distinction to keep in mind. I can also update my to-do list accordingly.
+
+[13] tool_call: write_todos:
+Todo list updated:
+- [completed] 1: Open GOV.UK and find the Child Benefit pages
+- [completed] 2: Extract eligibility, how it works, and how to claim details
+- [in_progress] 3: Summarize with source links
+
+[14] assistant: I found the GOV.UK Child Benefit guide here: https://www.gov.uk/child-benefit
+
+## Eligibility
+
+You normally qualify if you are responsible for a child under 16 and you live in the UK. You can also qualify for a child under 20 if they stay in approved education or training. Only one person can get Child Benefit for the same child. <citation refs="fetch_call_cum3YsfU9M7DP6j1uXW1EX8n|fc_009e761380121985016a0507945a5481998012a3653073b90f#1">“You normally qualify for Child Benefit if you’re responsible for a child under 16 and you live in the UK.”</citation>
+
+You are usually considered responsible if the child lives with you, or if you pay at least the Child Benefit amount toward looking after them. Special rules apply for children in care/hospital, living with someone else, fostering, adoption, informal care, living abroad, and immigration status.
+
+## How it works
+
+Child Benefit is paid for each child. There is no limit to how many children you can claim for. It also gives National Insurance credits, which can help protect your State Pension, and your child can usually get a National Insurance number automatically before age 16. <citation refs="fetch_call_5MPhJlftHagNLLhlaokGwQBf|fc_009e761380121985016a05078be5608199b6e0ac0928bd4052#1">“There’s no limit to how many children you can claim for.”</citation>
+
+Current weekly rates listed by GOV.UK are £27.05 for the eldest or only child, and £17.90 for each additional child. <citation refs="fetch_call_abyAuI6AK396waL2KUsVbIAr|fc_009e761380121985016a0507945a6c8199a8eb56b74a7c89d8#1">“Eldest or only child £27.05” and “Additional children £17.90 per child.”</citation>
+
+Payments are usually made every 4 weeks on a Monday or Tuesday. Weekly payments may be available if you are a single parent or get certain benefits such as Universal Credit. <citation refs="fetch_call_aMyiaND2niikV833ijDxvuhL|fc_009e761380121985016a0507945a7081999a7c143c22056c81#1">“Child Benefit is usually paid every 4 weeks on a Monday or Tuesday.”</citation>
+
+## How to claim
+
+You can claim 48 hours after registering your child’s birth, or once a child comes to live with you. Claims can be backdated for up to 3 months. <citation refs="fetch_call_ZOAmgQFPKBn37sVgg2mo8bwL|fc_009e761380121985016a0507945a648199a2b4d944c45d19d1#1">“You can claim Child Benefit 48 hours after you’ve registered the birth of your child, or once a child comes to live with you.”</citation>
+
+Claim online here: https://www.gov.uk/child-benefit/how-to-claim
+
+Before starting, you’ll need your child’s birth or adoption certificate if you have it, bank/building society details, your National Insurance number, and your partner’s National Insurance number if you have a partner. If you cannot apply online, GOV.UK says you can claim by post or phone.
+
+[15] system_message (todo_continuation):
+<system_message>
+Incomplete tasks remain in your todo list. Continue working on the next pending task.
+- Proceed without asking for permission
+- Mark each task complete when finished
+- Do not stop until all tasks are done
+[Status: 2/3 completed, 1 remaining]
+Remaining tasks:
+- [in_progress] Summarize with source links
+</system_message>
+
+[16] thinking: **Finalizing user request**
+
+I see I need to obey the system message and continue pending tasks. We’ve already summarized the needed information, so now I need to mark it as complete. It might be a good idea to mention that everything is finalized and concise. Keeping the user informed and ensuring that I’m following instructions is important! Once I wrap this up, I'll make sure to confirm that the task is complete.
+
+[17] tool_call: write_todos:
+Todo list updated:
+- [completed] 1: Open GOV.UK and find the Child Benefit pages
+- [completed] 2: Extract eligibility, how it works, and how to claim details
+- [completed] 3: Summarize with source links
+
+[18] assistant: Done. All tasks are complete.

@@ -1,0 +1,554 @@
+[1] user: Go to https://www.fedex.com/en-us/home.html, Look up tracking information for shipment #3023858502.
+
+[2] thinking: **Checking FedEx tracking**
+
+I'm looking at using the browser to check FedEx tracking since the user asked for it. I need to think about the possibility that FedEx might include a captcha, so I may have to interact with that. It could help to use a snapshot feature if needed. I’ll get started on this and see what information I can find!
+
+[3] tool_call: repl("Opening FedEx tracking page")
+<request>
+const p1 = await openTab('https://www.fedex.com/en-us/home.html');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="108" elapsed_time="3365ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Track & Ship Online or Find Nearby Locations | FedEx (https://www.fedex.com/en-us/home.html)
+# note: interactive (clickable / focusable) elements only.
+- title: "Track & Ship Online or Find Nearby Locations | FedEx" [url=https://www.fedex.com/en-us/home.html]
+- banner:
+  - navigation:
+    - link "FedEx Logo" [ref=e1]
+    - link "Skip to main content" [ref=e2]
+    - link "Open Shipping Menu" [ref=e3]: "Shipping"
+    - link "Open Tracking Menu" [ref=e4]: "Tracking"
+    - link "Open Design & Print menu" [ref=e5]: "Design & Print"
+    - link "Open Locations Menu" [ref=e6]: "Locations"
+    - link "Open Customer Support Menu" [ref=e7]: "Support"
+    - link "Sign Up or Log In" [ref=e9]
+    - link "Search" [ref=e11]
+- heading "Keep your automotive supply chain moving" [level=1]
+- text: "From tires to transmissions, FedEx handles every part. Reach customers fast with flexible delivery options and logistics that scale with you."
+- link "gear up to ship" [ref=e12]
+- tabpanel:
+  - link "Get a quote" [ref=e13]
+  - link "Ship now" [ref=e14]
+  - link "Find FedEx locations" [ref=e15]
+  - link "Contact support" [ref=e16]
+  - textbox "Tracking number" [ref=e17] [placeholder="Tracking number"]
+  - button "Track" [ref=e19]
+- text: "US Supreme Court Tariff Update."
+- link "See how this may impact you" [ref=e20]
+- text: "."
+- heading "Why ship with FedEx?" [level=3]
+- text: "Innovative solutions for reliability & speed\n   Whether it's across states or worldwide, we prioritize the secure and swift arrival of your shipments. \n     \n    \n  \n\n    \n \n\n                    \n                \n            \n            \n            \n                \n                    \n\n\n \n    \n     \n\n  \n  \n\n \n   \n     \n   \n   \n   \n \n \n\n\n\n  \n  \n   \n  \n  \n\n\n\nPremium shipping at professional rates\n   When you need reliable delivery and careful handling, trust FedEx to get your items where they need to go on time. \n     \n    \n  \n\n    \n \n\n                \n                \n            \n            \n        \n        \n        \n        \n        \n        \n        \n        \n     \n\n\n \n\n  \n  \n    \n    \n\n    \n      \n    \n\n \n\n \n \n\n\n\n\n     \n        \n            \n            \n                \n                    \n            \n                \n                    \n\n\n \n    \n    \n\n\n  \n  \n   \n  \n  \n\n\n\nWe ship everywhere*\n  From major cities to remote locations, your goods can reach worldwide. \n     \n    \n  \n\n    \n \n\n                    \n                \n            \n            \n            \n                \n                    \n\n\n \n    \n     \n\n  \n  \n\n \n   \n     \n   \n   \n   \n \n \n\n\n\n  \n  \n   \n  \n  \n\n\n\nWallet-friendly shipping with no weighing\n   FedEx can ship your packages for less than the Post Office. With"
+- link "FedEx One Rate" [ref=e21]
+- link "®" [ref=e22]
+- text: "**, you get flat-rate, 2-day shipping for packages up to 50 lbs. \n     \n    \n  \n\n    \n \n\n                \n                \n            \n            \n        \n        \n        \n        \n        \n        \n        \n        \n     \n\n\n\n\n\n\n     \n        \n            \n            \n                \n                    \n            \n                \n                    \n\n\n \n    \n     \n\n  \n  \n    \n    \n\n    \n      \n    \n\n \n\n \n \n\n\n\n  \n  \n   \n  \n  \n\n\n\n\n     \n    \n  \n\n    \n \n\n                    \n                \n            \n            \n            \n                \n                    \n\n\n \n    \n    \n    \n \n\n                \n                \n            \n            \n        \n        \n        \n        \n        \n        \n        \n        \n     \n\n\n\n\n\n  \n  \n   \n  \n  \n\n\n\n*FedEx doesn't ship anywhere sanctioned by the U.S.\n     **Visit the"
+- link "One Rate" [ref=e23]
+- text: "page for details."
+- link "Start shipping now" [ref=e24]
+- heading "The flexibility you want. The visibility you need." [level=2]
+- heading "Drop off on your terms" [level=5]
+- text: "Get your package on its way, on your schedule. Just enter your ZIP code to find the locations nearest you, plus store hours and directions."
+- link "Find nearby stores" [ref=e25]
+- heading "Have your package held" [level=5]
+- text: "Not going to be home to receive a delivery? Request a hold for added protection from theft and weather. Then pick it up when and where it’s convenient."
+- link "Protect your package" [ref=e26]
+- heading "Be in the know on the go" [level=5]
+- text: "Get real-time shipping updates with the FedEx Mobile App. Choose how and when you get notifications, customize them per shipment, and more."
+- link "Download the app" [ref=e27]
+- heading "Win the weekend with Saturday and Sunday delivery" [level=4]
+- text: "More customers are home to receive shipments on the weekends. That’s one way weekend delivery can help you reduce missed deliveries. Plus, when customers know they can get their shipments sooner, it can increase conversions."
+- link "See weekend options" [ref=e28]
+- heading "Specialized shipping, with perks along the way" [level=2]
+- heading "Keep your auto parts moving" [level=4]
+- text: "Get end-to-end support for auto shipping, from"
+- link "packing how-tos" [ref=e29]
+- text: "to dependable delivery and even returns support. There’s a lot riding on your shipment. You can have confidence when care and expertise are backing you."
+- link "Gear up to ship" [ref=e30]
+- heading "Protect your perishables" [level=4]
+- text: "When you’re shipping food, medicine, flowers, or other sensitive products, everything hinges on three factors: packaging, temp control, and timing. Get detailed guidance on all three for the best chance of success."
+- link "See the perishable shipping guide" [ref=e31]
+- heading "Save on deliveries big and small, near or far" [level=4]
+- text: "Sign up for a free FedEx business account for special prices on domestic and international shipments. Plus, get complimentary supplies and a $10 gift card after your first eligible shipment.*"
+- link "Sign up" [ref=e32]
+- text: "FedEx rate and surcharge changes\n   Learn more about"
+- link "rate and surcharge changes" [ref=e33]
+- text: ". \n     \n    \n  \n \n\n  \n  \n\n \n   \n     \n   \n   \n     \n   \n   \n     \n   \n \n \n\n\n\n  \n  \n   \n  \n  \n\n\n\nFedEx money-back guarantee\n   We offer a money-back guarantee for select services. This guarantee may be suspended, modified, or revoked. Please check"
+- link "money-back guarantee" [ref=e34]
+- text: "for the latest status of our money-back guarantee. \n     \n    \n  \n \n\n  \n  \n    \n    \n\n    \n      \n    \n\n \n\n \n \n\n\n\n  \n  \n   \n  \n  \n\n\n\n*For details, please see"
+- link "FedEx Rewards Terms and Conditions" [ref=e35]
+- text: "."
+- contentinfo:
+  - text: "Our Company"
+  - link "About FedEx" [ref=e36]
+  - link "Our Portfolio" [ref=e37]
+  - link "Investor Relations" [ref=e38]
+  - link "Careers" [ref=e39]
+  - link "Transportation Contracting Opportunities" [ref=e40]
+  - link "FedEx Blog" [ref=e41]
+  - link "Corporate Responsibility" [ref=e42]
+  - link "Newsroom" [ref=e43]
+  - link "Contact Us" [ref=e44]
+  - text: "More From FedEx"
+  - link "FedEx Compatible" [ref=e45]
+  - link "FedEx Developer Portal" [ref=e46]
+  - link "FedEx Logistics" [ref=e47]
+  - text: "Language"
+  - link "United States United States" [ref=e48]
+  - button "Please select language from below drop down" [ref=e49]: "English"
+  - text: "Follow FedEx"
+  - link "Newsletter Signup" [ref=e50]
+  - link "FedEx on Facebook" [ref=e51]
+  - link "FedEx on Twitter" [ref=e52]
+  - link "FedEx on Instagram" [ref=e53]
+  - link "FedEx on LinkedIn" [ref=e54]
+  - link "FedEx on YouTube" [ref=e55]
+  - link "FedEx on Pinterest" [ref=e56]
+  - text: "© FedEx 1995-2026"
+  - link "Site Map" [ref=e57]
+  - text: "|"
+  - link "Cookie Consent" [ref=e58]
+  - text: "|"
+  - link "Terms of Use" [ref=e59]
+  - text: "|"
+  - link "Privacy & Security" [ref=e60]
+  - text: "|"
+  - link "Ad Choices" [ref=e61]
+- button "ASK FEDEX" [ref=e62]
+- alert: "Chat available, press ALT plus 1 to open"
+</result>
+
+[4] tool_call: repl("Submitting tracking number")
+<request>
+await page.locator('e17').fill('3023858502');
+await page.locator('e19').click();
+const s2 = await snapshot(page);
+console.log(s2.diff);
+</request>
+<result tokens_used="77" elapsed_time="2559ms">
+- title: "Detailed Tracking" [url=https://www.fedex.com/wtrk/track/?trknbr=3023858502]
+- link "FedEx Logo" [ref=e1]
+- list:
+  - listitem "Open Shipping Menu" [ref=e2]:
+    - button "Open Shipping Menu" [ref=e3]: "Shipping"
+  - listitem "Open Tracking Menu" [ref=e4]:
+    - button "Open Tracking Menu" [ref=e5]: "Tracking"
+  - listitem "Open Design & Print menu" [ref=e6]:
+    - button "Open Design & Print menu" [ref=e7]: "Design & Print"
+  - listitem "Open Locations Menu" [ref=e8]:
+    - button "Open Locations Menu" [ref=e9]: "Locations"
+  - listitem "Open Customer Support Menu" [ref=e10]:
+    - button "Open Customer Support Menu" [ref=e11]: "Support"
+- list:
+  - listitem
+  - listitem "Fedex Search" [ref=e12]:
+    - button "Fedex Search" [ref=e13]
+- contentinfo:
+  - navigation:
+    - list:
+      - heading "Our Company" [level=3]
+      - list:
+        - listitem "About FedEx" [ref=e14]:
+          - link "About FedEx" [ref=e15]
+        - listitem "Our Portfolio" [ref=e16]:
+          - link "Our Portfolio" [ref=e17]
+        - listitem "Investor Relations" [ref=e18]:
+          - link "Investor Relations" [ref=e19]
+        - listitem "Careers" [ref=e20]:
+          - link "Careers" [ref=e21]
+        - listitem "Transportation Contracting Opportunities" [ref=e22]:
+          - link "Transportation Contracting Opportunities" [ref=e23]
+      - list:
+        - listitem "FedEx Blog" [ref=e24]:
+          - link "FedEx Blog" [ref=e25]
+        - listitem "Corporate Responsibility" [ref=e26]:
+          - link "Corporate Responsibility" [ref=e27]
+        - listitem "Newsroom" [ref=e28]:
+          - link "Newsroom" [ref=e29]
+        - listitem "Contact Us" [ref=e30]:
+          - link "Contact Us" [ref=e31]
+    - list:
+      - heading "More From FedEx" [level=3]
+      - listitem "FedEx Compatible" [ref=e32]:
+        - link "FedEx Compatible" [ref=e33]
+      - listitem "FedEx Developer Portal" [ref=e34]:
+        - link "FedEx Developer Portal" [ref=e35]
+      - listitem "FedEx Logistics" [ref=e36]:
+        - link "FedEx Logistics" [ref=e37]
+    - list
+    - list:
+      - heading "Language" [level=3]
+      - listitem "United States" [ref=e38]:
+        - link "United States" [ref=e39]
+    - list
+    - list
+  - list:
+    - heading "Follow FedEx" [level=3]
+    - listitem "Newsletter Signup" [ref=e40]:
+      - link "Newsletter Signup" [ref=e41]
+    - listitem "Facebook" [ref=e42]:
+      - link "Facebook" [ref=e43]
+    - listitem "Twitter" [ref=e44]:
+      - link "Twitter" [ref=e45]
+    - listitem "Instagram" [ref=e46]:
+      - link "Instagram" [ref=e47]
+    - listitem "LinkedIn" [ref=e48]:
+      - link "LinkedIn" [ref=e49]
+    - listitem "YouTube" [ref=e50]:
+      - link "YouTube" [ref=e51]
+    - listitem "Pinterest" [ref=e52]:
+      - link "Pinterest" [ref=e53]
+  - list
+  - list:
+    - heading "© FedEx 1995-2026" [level=3]
+  - list:
+    - list
+    - list:
+      - listitem "Site Map" [ref=e54]:
+        - link "Site Map" [ref=e55]
+      - listitem "| Terms of Use" [ref=e56]:
+        - text: "|"
+        - link "Terms of Use" [ref=e57]
+      - listitem "| Privacy & Security" [ref=e58]:
+        - text: "|"
+        - link "Privacy & Security" [ref=e59]
+      - listitem "| Ad Choices" [ref=e60]:
+        - text: "|"
+        - link "Ad Choices" [ref=e61]
+</result>
+
+[5] tool_call: repl("Reading tracking details")
+<request>
+const s3 = await snapshot(page);
+console.log(s3.tree);
+</request>
+<result tokens_used="58" elapsed_time="2828ms">
+- title: "Detailed Tracking" [url=https://www.fedex.com/wtrk/track/?trknbr=3023858502]
+- link "FedEx Logo" [ref=e1]
+- list:
+  - listitem "Open Shipping Menu" [ref=e2]:
+    - button "Open Shipping Menu" [ref=e3]: "Shipping"
+  - listitem "Open Tracking Menu" [ref=e4]:
+    - button "Open Tracking Menu" [ref=e5]: "Tracking"
+  - listitem "Open Design & Print menu" [ref=e6]:
+    - button "Open Design & Print menu" [ref=e7]: "Design & Print"
+  - listitem "Open Locations Menu" [ref=e8]:
+    - button "Open Locations Menu" [ref=e9]: "Locations"
+  - listitem "Open Customer Support Menu" [ref=e10]:
+    - button "Open Customer Support Menu" [ref=e11]: "Support"
+- list:
+  - listitem
+  - listitem "Fedex Search" [ref=e12]:
+    - button "Fedex Search" [ref=e13]
+- navigation "FedEx® Tracking" [ref=e62]:
+  - heading "FedEx Tracking" [level=2]: "FedEx® Tracking"
+  - menubar:
+    - menuitem "Track Another Shipment" [ref=e63]:
+      - button "Track Another Shipment" [ref=e64]
+    - menuitem "Local Scan Time" [ref=e65]:
+      - button "Local Scan Time" [ref=e66]
+    - menuitem "Help" [ref=e67]:
+      - link "Help" [ref=e68]
+- alert: "The tracking number you entered can't be found right now. Please check the number with the shipper or try again later."
+- heading "Watch list" [level=2]
+- text: "You do not currently have any Watch list shipments."
+- contentinfo:
+  - navigation:
+    - list:
+      - heading "Our Company" [level=3]
+      - list:
+        - listitem "About FedEx" [ref=e14]:
+          - link "About FedEx" [ref=e15]
+        - listitem "Our Portfolio" [ref=e16]:
+          - link "Our Portfolio" [ref=e17]
+        - listitem "Investor Relations" [ref=e18]:
+          - link "Investor Relations" [ref=e19]
+        - listitem "Careers" [ref=e20]:
+          - link "Careers" [ref=e21]
+        - listitem "Transportation Contracting Opportunities" [ref=e22]:
+          - link "Transportation Contracting Opportunities" [ref=e23]
+      - list:
+        - listitem "FedEx Blog" [ref=e24]:
+          - link "FedEx Blog" [ref=e25]
+        - listitem "Corporate Responsibility" [ref=e26]:
+          - link "Corporate Responsibility" [ref=e27]
+        - listitem "Newsroom" [ref=e28]:
+          - link "Newsroom" [ref=e29]
+        - listitem "Contact Us" [ref=e30]:
+          - link "Contact Us" [ref=e31]
+    - list:
+      - heading "More From FedEx" [level=3]
+      - listitem "FedEx Compatible" [ref=e32]:
+        - link "FedEx Compatible" [ref=e33]
+      - listitem "FedEx Developer Portal" [ref=e34]:
+        - link "FedEx Developer Portal" [ref=e35]
+      - listitem "FedEx Logistics" [ref=e36]:
+        - link "FedEx Logistics" [ref=e37]
+    - list
+    - list:
+      - heading "Language" [level=3]
+      - listitem "United States" [ref=e38]:
+        - link "United States" [ref=e39]
+    - list
+    - list
+  - list:
+    - heading "Follow FedEx" [level=3]
+    - listitem "Newsletter Signup" [ref=e40]:
+      - link "Newsletter Signup" [ref=e41]
+    - listitem "Facebook" [ref=e42]:
+      - link "Facebook" [ref=e43]
+    - listitem "Twitter" [ref=e44]:
+      - link "Twitter" [ref=e45]
+    - listitem "Instagram" [ref=e46]:
+      - link "Instagram" [ref=e47]
+    - listitem "LinkedIn" [ref=e48]:
+      - link "LinkedIn" [ref=e49]
+    - listitem "YouTube" [ref=e50]:
+      - link "YouTube" [ref=e51]
+    - listitem "Pinterest" [ref=e52]:
+      - link "Pinterest" [ref=e53]
+  - list
+  - list:
+    - heading "© FedEx 1995-2026" [level=3]
+  - list:
+    - list
+    - list:
+      - listitem "Site Map" [ref=e54]:
+        - link "Site Map" [ref=e55]
+      - listitem "| Cookie Consent" [ref=e69]:
+        - text: "|"
+        - link "Cookie Consent" [ref=e70]
+      - listitem "| Terms of Use" [ref=e56]:
+        - text: "|"
+        - link "Terms of Use" [ref=e57]
+      - listitem "| Privacy & Security" [ref=e58]:
+        - text: "|"
+        - link "Privacy & Security" [ref=e59]
+      - listitem "| Ad Choices" [ref=e60]:
+        - text: "|"
+        - link "Ad Choices" [ref=e61]
+- button "ASK FEDEX" [ref=e71]
+- alert: "Chat available, press ALT plus 1 to open"
+</result>
+
+[6] tool_call: repl("Rechecking tracking via FedEx track URL")
+<request>
+await openTab('https://www.fedex.com/fedextrack/?trknbr=3023858502');
+const s4 = await snapshot(page);
+console.log(s4.tree);
+</request>
+<result tokens_used="460" elapsed_time="2838ms">
+✔︎ Opened a new tab and set it active: tabs[1], page → Detailed Tracking (https://www.fedex.com/wtrk/track/?trknbr=3023858502)
+- title: "Detailed Tracking" [url=https://www.fedex.com/wtrk/track/?trknbr=3023858502]
+- link "FedEx Logo" [ref=e1]
+- list:
+  - listitem "Open Shipping Menu" [ref=e2]:
+    - button "Open Shipping Menu" [ref=e3]: "Shipping"
+  - listitem "Open Tracking Menu" [ref=e4]:
+    - button "Open Tracking Menu" [ref=e5]: "Tracking"
+  - listitem "Open Design & Print menu" [ref=e6]:
+    - button "Open Design & Print menu" [ref=e7]: "Design & Print"
+  - listitem "Open Locations Menu" [ref=e8]:
+    - button "Open Locations Menu" [ref=e9]: "Locations"
+  - listitem "Open Customer Support Menu" [ref=e10]:
+    - button "Open Customer Support Menu" [ref=e11]: "Support"
+- list:
+  - listitem:
+    - button "Sign Up or Log In" [ref=e12]
+  - listitem "Fedex Search" [ref=e13]:
+    - button "Fedex Search" [ref=e14]
+- contentinfo:
+  - navigation:
+    - list:
+      - heading "Our Company" [level=3]
+      - list:
+        - listitem "About FedEx" [ref=e15]:
+          - link "About FedEx" [ref=e16]
+        - listitem "Our Portfolio" [ref=e17]:
+          - link "Our Portfolio" [ref=e18]
+        - listitem "Investor Relations" [ref=e19]:
+          - link "Investor Relations" [ref=e20]
+        - listitem "Careers" [ref=e21]:
+          - link "Careers" [ref=e22]
+        - listitem "Transportation Contracting Opportunities" [ref=e23]:
+          - link "Transportation Contracting Opportunities" [ref=e24]
+      - list:
+        - listitem "FedEx Blog" [ref=e25]:
+          - link "FedEx Blog" [ref=e26]
+        - listitem "Corporate Responsibility" [ref=e27]:
+          - link "Corporate Responsibility" [ref=e28]
+        - listitem "Newsroom" [ref=e29]:
+          - link "Newsroom" [ref=e30]
+        - listitem "Contact Us" [ref=e31]:
+          - link "Contact Us" [ref=e32]
+    - list:
+      - heading "More From FedEx" [level=3]
+      - listitem "FedEx Compatible" [ref=e33]:
+        - link "FedEx Compatible" [ref=e34]
+      - listitem "FedEx Developer Portal" [ref=e35]:
+        - link "FedEx Developer Portal" [ref=e36]
+      - listitem "FedEx Logistics" [ref=e37]:
+        - link "FedEx Logistics" [ref=e38]
+    - list
+    - list:
+      - heading "Language" [level=3]
+      - listitem "United States" [ref=e39]:
+        - link "United States" [ref=e40]
+    - list
+    - list
+  - list:
+    - heading "Follow FedEx" [level=3]
+    - listitem "Newsletter Signup" [ref=e41]:
+      - link "Newsletter Signup" [ref=e42]
+    - listitem "Facebook" [ref=e43]:
+      - link "Facebook" [ref=e44]
+    - listitem "Twitter" [ref=e45]:
+      - link "Twitter" [ref=e46]
+    - listitem "Instagram" [ref=e47]:
+      - link "Instagram" [ref=e48]
+    - listitem "LinkedIn" [ref=e49]:
+      - link "LinkedIn" [ref=e50]
+    - listitem "YouTube" [ref=e51]:
+      - link "YouTube" [ref=e52]
+    - listitem "Pinterest" [ref=e53]:
+      - link "Pinterest" [ref=e54]
+  - list
+  - list:
+    - heading "© FedEx 1995-2026" [level=3]
+  - list:
+    - list
+    - list:
+      - listitem "Site Map" [ref=e55]:
+        - link "Site Map" [ref=e56]
+      - listitem "| Terms of Use" [ref=e57]:
+        - text: "|"
+        - link "Terms of Use" [ref=e58]
+      - listitem "| Privacy & Security" [ref=e59]:
+        - text: "|"
+        - link "Privacy & Security" [ref=e60]
+      - listitem "| Ad Choices" [ref=e61]:
+        - text: "|"
+        - link "Ad Choices" [ref=e62]
+</result>
+
+[7] tool_call: repl("Waiting for FedEx tracking app")
+<request>
+await sleep(3000);
+const s5 = await snapshot(page);
+console.log(s5.tree);
+</request>
+<result tokens_used="64" elapsed_time="3971ms">
+- title: "Detailed Tracking" [url=https://www.fedex.com/wtrk/track/?trknbr=3023858502]
+- link "FedEx Logo" [ref=e1]
+- list:
+  - listitem "Open Shipping Menu" [ref=e2]:
+    - button "Open Shipping Menu" [ref=e3]: "Shipping"
+  - listitem "Open Tracking Menu" [ref=e4]:
+    - button "Open Tracking Menu" [ref=e5]: "Tracking"
+  - listitem "Open Design & Print menu" [ref=e6]:
+    - button "Open Design & Print menu" [ref=e7]: "Design & Print"
+  - listitem "Open Locations Menu" [ref=e8]:
+    - button "Open Locations Menu" [ref=e9]: "Locations"
+  - listitem "Open Customer Support Menu" [ref=e10]:
+    - button "Open Customer Support Menu" [ref=e11]: "Support"
+- list:
+  - listitem:
+    - button "Sign Up or Log In" [ref=e12]
+  - listitem "Fedex Search" [ref=e13]:
+    - button "Fedex Search" [ref=e14]
+- navigation "FedEx® Tracking" [ref=e63]:
+  - heading "FedEx Tracking" [level=2]: "FedEx® Tracking"
+  - menubar:
+    - menuitem "Track Another Shipment" [ref=e64]:
+      - button "Track Another Shipment" [ref=e65]
+    - menuitem "Local Scan Time" [ref=e66]:
+      - button "Local Scan Time" [ref=e67]
+    - menuitem "Help" [ref=e68]:
+      - link "Help" [ref=e69]
+- alert: "The tracking number you entered can't be found right now. Please check the number with the shipper or try again later."
+- heading "Watch list" [level=2]
+- text: "You do not currently have any Watch list shipments."
+- contentinfo:
+  - navigation:
+    - list:
+      - heading "Our Company" [level=3]
+      - list:
+        - listitem "About FedEx" [ref=e15]:
+          - link "About FedEx" [ref=e16]
+        - listitem "Our Portfolio" [ref=e17]:
+          - link "Our Portfolio" [ref=e18]
+        - listitem "Investor Relations" [ref=e19]:
+          - link "Investor Relations" [ref=e20]
+        - listitem "Careers" [ref=e21]:
+          - link "Careers" [ref=e22]
+        - listitem "Transportation Contracting Opportunities" [ref=e23]:
+          - link "Transportation Contracting Opportunities" [ref=e24]
+      - list:
+        - listitem "FedEx Blog" [ref=e25]:
+          - link "FedEx Blog" [ref=e26]
+        - listitem "Corporate Responsibility" [ref=e27]:
+          - link "Corporate Responsibility" [ref=e28]
+        - listitem "Newsroom" [ref=e29]:
+          - link "Newsroom" [ref=e30]
+        - listitem "Contact Us" [ref=e31]:
+          - link "Contact Us" [ref=e32]
+    - list:
+      - heading "More From FedEx" [level=3]
+      - listitem "FedEx Compatible" [ref=e33]:
+        - link "FedEx Compatible" [ref=e34]
+      - listitem "FedEx Developer Portal" [ref=e35]:
+        - link "FedEx Developer Portal" [ref=e36]
+      - listitem "FedEx Logistics" [ref=e37]:
+        - link "FedEx Logistics" [ref=e38]
+    - list
+    - list:
+      - heading "Language" [level=3]
+      - listitem "United States" [ref=e39]:
+        - link "United States" [ref=e40]
+    - list
+    - list
+  - list:
+    - heading "Follow FedEx" [level=3]
+    - listitem "Newsletter Signup" [ref=e41]:
+      - link "Newsletter Signup" [ref=e42]
+    - listitem "Facebook" [ref=e43]:
+      - link "Facebook" [ref=e44]
+    - listitem "Twitter" [ref=e45]:
+      - link "Twitter" [ref=e46]
+    - listitem "Instagram" [ref=e47]:
+      - link "Instagram" [ref=e48]
+    - listitem "LinkedIn" [ref=e49]:
+      - link "LinkedIn" [ref=e50]
+    - listitem "YouTube" [ref=e51]:
+      - link "YouTube" [ref=e52]
+    - listitem "Pinterest" [ref=e53]:
+      - link "Pinterest" [ref=e54]
+  - list
+  - list:
+    - heading "© FedEx 1995-2026" [level=3]
+  - list:
+    - list
+    - list:
+      - listitem "Site Map" [ref=e55]:
+        - link "Site Map" [ref=e56]
+      - listitem "| Cookie Consent" [ref=e70]:
+        - text: "|"
+        - link "Cookie Consent" [ref=e71]
+      - listitem "| Terms of Use" [ref=e57]:
+        - text: "|"
+        - link "Terms of Use" [ref=e58]
+      - listitem "| Privacy & Security" [ref=e59]:
+        - text: "|"
+        - link "Privacy & Security" [ref=e60]
+      - listitem "| Ad Choices" [ref=e61]:
+        - text: "|"
+        - link "Ad Choices" [ref=e62]
+- button "ASK FEDEX" [ref=e72]
+- alert: "Chat available, press ALT plus 1 to open"
+</result>
+
+[8] assistant: I checked FedEx for shipment/tracking #3023858502.
+
+FedEx returned: “The tracking number you entered can't be found right now. Please check the number with the shipper or try again later.”
+
+So there’s no tracking status available for that number on FedEx right now.

@@ -1,0 +1,2508 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="amazon" path="/Users/vista/.aside/u/0/agents/main/skills/site-specific/amazon/SKILL.md">
+# Amazon
+
+## Canonical URLs
+
+- Home: `https://www.amazon.com/`
+- Search: `https://www.amazon.com/s?k=${query}`
+- Orders: `https://www.amazon.com/gp/css/order-history?ref_=nav_orders_first`
+- Cart: `https://www.amazon.com/gp/cart/view.html?ref_=nav_cart`
+- Account: `https://www.amazon.com/gp/css/homepage.html`
+
+## Efficient Snapshot Strategy
+
+Amazon's snapshot results are large. You should use below selectors to minimize the amount of content captured.
+If it's updated, please update this SKILL.md to reflect the new selector.
+
+- On search result page: use `snapshot(page, { selector: '[data-component-type="s-search-results"]' })`
+- On cart page: `snapshot(page, { selector: '#activeCartViewForm' })`.
+  - Checkout button is outside the form and it can be found via `<input name="proceedToRetailCheckout">` 
+
+## Working style
+
+- Avoid the home page unless the user explicitly wants it. It is noisy and ad-heavy.
+- Before anything involving orders, returns, payments, or addresses, verify the active account and address in the header.
+- Prefer `Your Orders` for shipment, invoice, return, and rebuy tasks.
+- Prefer `Cart` for quantity and checkout-adjacent tasks.
+- Re-snapshot after navigation and after inline card expansion because Amazon frequently re-renders order cards.
+
+## Useful shortcuts
+
+- Search: `Option+/`
+- Cart: `Shift+Option+C`
+- Home: `Shift+Option+H`
+- Orders: `Shift+Option+O`
+- Shortcuts help: `Shift+Option+Z`
+</skill>
+</system_message>
+
+[2] user: Go to https://www.amazon.jobs/, View the most recent job posting for a full-time pharmacy position in the US.
+
+[3] tool_call: repl("Opening Amazon Jobs")
+<request>
+const p1 = await openTab('https://www.amazon.jobs/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="166" elapsed_time="1999ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Amazon Careers: Impact the Future, Today (https://www.amazon.jobs/en/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Amazon Careers: Impact the Future, Today" [url=https://www.amazon.jobs/en/]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - menu "My career" [ref=e4]
+- link [ref=e5]
+- combobox "Search for jobs by title or keyword" [ref=e6] [placeholder="Search for jobs by title or keyword"]
+- text: "h"
+- combobox "search job by location" [ref=e7] [placeholder="Location"]
+- button "Search jobs" [ref=e8]
+- button "Explore roles" [ref=e9]
+- region
+- heading "Student opportunities" [level=2]
+- text: "At Amazon, what we’re building today defines tomorrow. Explore internships, apprenticeships, and full-time roles where you can think big, learn from others, and make an impact."
+- link "Student opportunities" [ref=e10]: "Find your role"
+- heading "Hourly jobs" [level=2]
+- text: "From the warehouse floor to customer doorsteps, every role has an impact. Search open jobs and discover how you can help shape the future of everyday life."
+- link "Hourly jobs" [ref=e11]: "Find your role"
+- heading "AI careers" [level=2]
+- text: "From personalized shopping to intelligent robotics, our AI teams shape how customers live and work every day. Explore open roles and see how you can shape what’s next."
+- link "AI careers" [ref=e12]: "Find your role"
+- heading "Innovate with us" [level=2]
+- link "Teams Get to know Amazon teams and how we’re impacting the future.Discover teams" [ref=e13]
+- link "Job categories Find the right role to shape your future at Amazon.Browse categories" [ref=e14]
+- link "Locations See where Amazonians worldwide are making every day better.Explore locations" [ref=e15]
+- heading "Rohit is making an impact, at work and in his community" [level=2]
+- text: "Senior Associate | Worldwide Amazon Stores | Pune, India Living with an orthopedic disability has unique challenges, but I choose to face them with determination and creativity instead of seeing them as limits. At Amazon, I work in compliance to help build safer, more inclusive systems that benefit everyone. Outside of work, I volunteer with an NGO that helps women with disabilities earn a living through handicrafts. I know I may not change the whole world, but even a small effort can mean everything to someone."
+- button "Read more about this employee" [ref=e16]: "Read more"
+- heading "Impact the future, today" [level=1]
+- text: "Every Amazonian, from warehouse floor to corporate HQ, shares a drive to impact the future, today. Our unmatched scale offers every employee endless opportunities to reimagine how customers shop, stream, eat, connect and live. United by our peculiar culture of curiosity, bold ownership and fearless initiative, we channel our customer obsession into making everyday impact—big and small."
+- link "Learn about working at Amazon" [ref=e17]
+- text: "JOIN US ON"
+- link "Join us on facebook" [ref=e18]: "b"
+- link "Join us on linkedin" [ref=e19]: "d"
+- link "Join us on instagram" [ref=e20]: "c"
+- link "Join us on twitter" [ref=e21]: "j"
+- text: "DOWNLOAD OUR APP"
+- link "Download Amazon A to Z from App Store" [ref=e22]
+- link "Download Amazon A to Z from Google Play" [ref=e23]
+- text: "Find Careers"
+- link "Job Categories" [ref=e24]
+- link "Teams" [ref=e25]
+- link "Locations" [ref=e26]
+- link "Military careers" [ref=e27]
+- link "Hourly" [ref=e28]
+- text: "Working At Amazon"
+- link "Culture" [ref=e29]
+- link "Benefits" [ref=e30]
+- link "Amazon Newsletter" [ref=e31]
+- link "Inclusive experiences" [ref=e32]
+- link "Leadership Principles" [ref=e33]
+- text: "Help"
+- link "FAQ" [ref=e34]
+- link "How We Hire" [ref=e35]
+- link "Application status" [ref=e36]
+- link "Accommodations" [ref=e37]
+- link "Legal disclosures and notices" [ref=e38]
+- combobox "English" [ref=e39]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e40]
+- link "Impressum" [ref=e41]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+- heading [level=3]: "Notice of Right to Opt-Out Sharing"
+- text: "Amazon Jobs uses cookies and similar tools such as pixels (collectively, “cookies”) for advertising purposes.  The cookies collect and share information about you with third-parties to serve you with relevant advertisements and job recommendations based on your interactions with Amazon Jobs and third-party sites.  California residents may exercise their right to opt-out of the sharing of information for advertising purposes by clicking toggling the buttons below. You can also manage your cookie preferences through the"
+- link "Cookie Preference Center" [ref=e42]
+- text: ".For more information about how we use cookies and information of how we collect cookies, please visit our"
+- link "Candidate Cookie Notice" [ref=e43]
+- text: "and"
+- link "Candidate Privacy Notice" [ref=e44]
+- text: "and the"
+- link "California supplement notice" [ref=e45]
+- text: "."
+- button "Accept" [ref=e46]: "Accept all"
+- button "Reject" [ref=e47]: "Reject all"
+- button "Customize" [ref=e48]: "Customize cookies"
+</result>
+
+[4] thinking: **Searching for pharmacy jobs**
+
+I need to run a search for full-time pharmacy positions in the US, looking for the most recent listings. It seems like the search tools might have filters I can use. I also need to decide on the cookie policy while searching. I could just accept it since I’m not sure if blocking it will affect my results. So, I’ll proceed with the search using "pharmacy" in the United States as my keywords.
+
+[5] tool_call: repl("Searching full-time pharmacy jobs in US")
+<request>
+await page.locator('e47').click().catch(()=>{});
+await page.locator('e6').fill('pharmacy');
+await page.locator('e7').fill('United States');
+await page.locator('e8').click();
+const s2 = await snapshot(page);
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="158" elapsed_time="1342ms">
+@@ -7,4 +7,7 @@
+-- combobox "Search for jobs by title or keyword" [ref=e6] [placeholder="Search for jobs by title or keyword"]
+-- text: "h"
+-- combobox "search job by location" [ref=e7] [placeholder="Location"]
+-- button "Search jobs" [ref=e8]
++- form:
++  - combobox "Search for jobs by title or keyword" [ref=e6] [placeholder="Search for jobs by title or keyword"]: "pharmacy"
++  - text: "h"
++  - combobox "search job by location" [ref=e7] [placeholder="Location"]: "United States"
++  - button "Clear location search" [ref=e49]
++  - button "Search jobs" [ref=e8] [focused]
++- image "Impact the future of AI, today. Explore science and ML roles."
+@@ -33,4 +36,9 @@
+-- link "Join us on facebook" [ref=e18]: "b"
+-- link "Join us on linkedin" [ref=e19]: "d"
+-- link "Join us on instagram" [ref=e20]: "c"
+-- link "Join us on twitter" [ref=e21]: "j"
++- list:
++  - listitem "Join us on facebook" [ref=e50]:
++    - link "Join us on facebook" [ref=e18]: "b"
++  - listitem "Join us on linkedin" [ref=e51]:
++    - link "Join us on linkedin" [ref=e19]: "d"
++  - listitem "Join us on instagram" [ref=e52]:
++    - link "Join us on instagram" [ref=e20]: "c"
++  - listitem "Join us on twitter" [ref=e53]:
++    - link "Join us on twitter" [ref=e21]: "j"
+@@ -38,2 +46,5 @@
+-- link "Download Amazon A to Z from App Store" [ref=e22]
+-- link "Download Amazon A to Z from Google Play" [ref=e23]
++- list:
++  - listitem "Download Amazon A to Z from App Store" [ref=e54]:
++    - link "Download Amazon A to Z from App Store" [ref=e22]
++  - listitem "Download Amazon A to Z from Google Play" [ref=e55]:
++    - link "Download Amazon A to Z from Google Play" [ref=e23]
+@@ -41,5 +52,11 @@
+-- link "Job Categories" [ref=e24]
+-- link "Teams" [ref=e25]
+-- link "Locations" [ref=e26]
+-- link "Military careers" [ref=e27]
+-- link "Hourly" [ref=e28]
++- list:
++  - listitem "Job Categories" [ref=e56]:
++    - link "Job Categories" [ref=e24]
++  - listitem "Teams" [ref=e57]:
++    - link "Teams" [ref=e25]
++  - listitem "Locations" [ref=e58]:
++    - link "Locations" [ref=e26]
++  - listitem "Military careers" [ref=e59]:
++    - link "Military careers" [ref=e27]
++  - listitem "Hourly" [ref=e60]:
++    - link "Hourly" [ref=e28]
+@@ -47,5 +64,11 @@
+-- link "Culture" [ref=e29]
+-- link "Benefits" [ref=e30]
+-- link "Amazon Newsletter" [ref=e31]
+-- link "Inclusive experiences" [ref=e32]
+-- link "Leadership Principles" [ref=e33]
++- list:
++  - listitem "Culture" [ref=e61]:
++    - link "Culture" [ref=e29]
++  - listitem "Benefits" [ref=e62]:
++    - link "Benefits" [ref=e30]
++  - listitem "Amazon Newsletter" [ref=e63]:
++    - link "Amazon Newsletter" [ref=e31]
++  - listitem "Inclusive experiences" [ref=e64]:
++    - link "Inclusive experiences" [ref=e32]
++  - listitem "Leadership Principles" [ref=e65]:
++    - link "Leadership Principles" [ref=e33]
+@@ -53,5 +76,11 @@
+-- link "FAQ" [ref=e34]
+-- link "How We Hire" [ref=e35]
+-- link "Application status" [ref=e36]
+-- link "Accommodations" [ref=e37]
+-- link "Legal disclosures and notices" [ref=e38]
++- list:
++  - listitem "FAQ" [ref=e66]:
++    - link "FAQ" [ref=e34]
++  - listitem "How We Hire" [ref=e67]:
++    - link "How We Hire" [ref=e35]
++  - listitem "Application status" [ref=e68]:
++    - link "Application status" [ref=e36]
++  - listitem "Accommodations" [ref=e69]:
++    - link "Accommodations" [ref=e37]
++  - listitem "Legal disclosures and notices" [ref=e70]:
++    - link "Legal disclosures and notices" [ref=e38]
+@@ -63,13 +92 @@
+-- heading [level=3]: "Notice of Right to Opt-Out Sharing"
+-- text: "Amazon Jobs uses cookies and similar tools such as pixels (collectively, “cookies”) for advertising purposes.  The cookies collect and share information about you with third-parties to serve you with relevant advertisements and job recommendations based on your interactions with Amazon Jobs and third-party sites.  California residents may exercise their right to opt-out of the sharing of information for advertising purposes by clicking toggling the buttons below. You can also manage your cookie preferences through the"
+-- link "Cookie Preference Center" [ref=e42]
+-- text: ".For more information about how we use cookies and information of how we collect cookies, please visit our"
+-- link "Candidate Cookie Notice" [ref=e43]
+-- text: "and"
+-- link "Candidate Privacy Notice" [ref=e44]
+-- text: "and the"
+-- link "California supplement notice" [ref=e45]
+-- text: "."
+-- button "Accept" [ref=e46]: "Accept all"
+-- button "Reject" [ref=e47]: "Reject all"
+-- button "Customize" [ref=e48]: "Customize cookies"
++- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[6] thinking: **Evaluating navigation issues**
+
+I’m thinking that the click might not have worked because the fill location wasn’t auto-completed. It’s a bit unclear, so I should take a snapshot of the full current URL to analyze it better. Perhaps the click wasn’t properly focused, and maybe I need to press Enter to proceed? It’s definitely worth exploring these possibilities to figure out what’s going wrong with the navigation!
+
+[7] tool_call: repl("Submitting search")
+<request>
+console.log('url', page.url());
+await page.locator('e8').click();
+const s3 = await snapshot(page);
+console.log(s3.diff || s3.tree);
+</request>
+<result tokens_used="95" elapsed_time="1988ms">
+url https://www.amazon.jobs/en/
+- title: "Job search | Amazon.jobs" [url=https://www.amazon.jobs/en/search?base_query=pharmacy&loc_query=United+States&type=area&longitude=-77.03196&latitude=38.89036&co…]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - form:
+    - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]: "pharmacy"
+    - text: "h"
+    - combobox "search job by location" [ref=e5] [placeholder="Location"]: "United States"
+    - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- status [focused]:
+  - paragraph:
+    - text: "Set job alerts for your search and never miss an opportunity!"
+    - link "Login or create an account" [ref=e9]
+  - button "close" [ref=e10]
+- heading "Search results" [level=1]
+- heading "Filter by" [level=2]
+- link "Skip to job results" [ref=e11]
+- button "INDUSTRY EXPERIENCE (4 shown) filters" [ref=e12]: "INDUSTRY EXPERIENCE (4 shown)"
+- text: "INDUSTRY EXPERIENCE (4 shown) filters"
+- status
+- button "Less than 1 year" [ref=e13]
+- button "1-3 years" [ref=e14]
+- button "4-6 years" [ref=e15]
+- button "7+ years" [ref=e16]
+- link "Skip to job results" [ref=e17]
+- button "JOB TYPE (2 shown) filters" [ref=e18]: "JOB TYPE (2 shown)"
+- text: "JOB TYPE (2 shown) filters"
+- status
+- checkbox "Full Time 100 jobs" [ref=e19]
+- checkbox "Part Time 1 job" [ref=e20]
+- link "Skip to job results" [ref=e21]
+- button "JOB CATEGORY (10 shown) filters" [ref=e22]: "JOB CATEGORY (10 shown)"
+- text: "JOB CATEGORY (10 shown) filters"
+- status
+- checkbox "Medical, Health, & Safety 36 jobs" [ref=e23]
+- checkbox "Amazon Design 10 jobs" [ref=e24]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e25]
+- checkbox "Business & Merchant Development 2 jobs" [ref=e26]
+- checkbox "Facilities, Maintenance, & Real Estate 2 jobs" [ref=e27]
+- button "Show more filters for JOB CATEGORY" [ref=e28]: "more"
+- text: "Distance filters"
+- button "Switch distance unit between mile and kilometer, Miles selected" [ref=e29]
+- radiogroup "Select distance to filter":
+  - radio "5 Miles" [ref=e30]: "5"
+  - radio "15 Miles" [ref=e31] [checked]: "15"
+  - radio "25 Miles" [ref=e32]: "25"
+  - radio "35 Miles" [ref=e33]: "35"
+  - radio "50 Miles" [ref=e34]: "50"
+  - radio "Any Miles" [ref=e35]: "Any"
+- link "Skip to job results" [ref=e36]
+- button "Country/Region (1 shown) filters" [ref=e37]: "Country/Region (1 shown)"
+- textbox "Refine list of Country/Region (1 shown) filter options" [ref=e38] [placeholder="Country/Region"]
+- status
+- text: "Country/Region (1 shown) filters"
+- checkbox "United States 101 jobs" [ref=e39]
+- link "Skip to job results" [ref=e40]
+- button "State/Province (26 shown) filters" [ref=e41]: "State/Province (26 shown)"
+- textbox "Refine list of State/Province (26 shown) filter options" [ref=e42] [placeholder="State/Province"]
+- status
+- generic [ref=e43] [scrollable]:
+  - text: "State/Province (26 shown) filters"
+  - checkbox "Washington 35 jobs" [ref=e44]
+  - checkbox "Texas 25 jobs" [ref=e45]
+  - checkbox "Massachusetts 17 jobs" [ref=e46]
+  - checkbox "Tennessee 17 jobs" [ref=e47]
+  - checkbox "California 16 jobs" [ref=e48]
+  - checkbox "Virginia 14 jobs" [ref=e49]
+  - checkbox "Arizona 8 jobs" [ref=e50]
+  - checkbox "Florida 8 jobs" [ref=e51]
+  - checkbox "New York 6 jobs" [ref=e52]
+  - checkbox "Illinois 5 jobs" [ref=e53]
+  - checkbox "Ohio 5 jobs" [ref=e54]
+  - checkbox "Indiana 4 jobs" [ref=e55]
+  - checkbox "Nevada 3 jobs" [ref=e56]
+  - checkbox "New Hampshire 3 jobs" [ref=e57]
+  - checkbox "West Virginia 3 jobs" [ref=e58]
+  - checkbox "Georgia 2 jobs" [ref=e59]
+  - checkbox "Missouri 2 jobs" [ref=e60]
+  - checkbox "New Jersey 2 jobs" [ref=e61]
+  - checkbox "North Carolina 2 jobs" [ref=e62]
+  - checkbox "Pennsylvania 2 jobs" [ref=e63]
+  - checkbox "Alabama 1 job" [ref=e64]
+  - checkbox "Colorado 1 job" [ref=e65]
+  - checkbox "Hawaii 1 job" [ref=e66]
+  - checkbox "Iowa 1 job" [ref=e67]
+  - checkbox "Kentucky 1 job" [ref=e68]
+  - checkbox "Michigan 1 job" [ref=e69]
+- link "Skip to job results" [ref=e70]
+- button "City (56 shown) filters" [ref=e71]: "City (56 shown)"
+- textbox "Refine list of City (56 shown) filter options" [ref=e72] [placeholder="City"]
+- status
+- generic [ref=e73] [scrollable]:
+  - text: "City (56 shown) filters"
+  - checkbox "Bellevue 22 jobs" [ref=e74]
+  - checkbox "Austin 19 jobs" [ref=e75]
+  - checkbox "Nashville 17 jobs" [ref=e76]
+  - checkbox "Arlington 13 jobs" [ref=e77]
+  - checkbox "Boston 12 jobs" [ref=e78]
+  - checkbox "Seattle 9 jobs" [ref=e79]
+  - checkbox "New York 6 jobs" [ref=e80]
+  - checkbox "Phoenix 6 jobs" [ref=e81]
+  - checkbox "Kent 5 jobs" [ref=e82]
+  - checkbox "Dallas 4 jobs" [ref=e83]
+  - checkbox "Plainfield 4 jobs" [ref=e84]
+  - checkbox "Beaver 3 jobs" [ref=e85]
+  - checkbox "Daytona Beach 3 jobs" [ref=e86]
+  - checkbox "Las Vegas 3 jobs" [ref=e87]
+  - checkbox "Middleburg Heights 3 jobs" [ref=e88]
+  - checkbox "Modesto 3 jobs" [ref=e89]
+  - checkbox "Richmond 3 jobs" [ref=e90]
+  - checkbox "Sacramento 3 jobs" [ref=e91]
+  - checkbox "San Antonio 3 jobs" [ref=e92]
+  - checkbox "Sauget 3 jobs" [ref=e93]
+  - checkbox "Wilmington 3 jobs" [ref=e94]
+  - checkbox "Atlanta 2 jobs" [ref=e95]
+  - checkbox "Chicago 2 jobs" [ref=e96]
+  - checkbox "Irving 2 jobs" [ref=e97]
+  - checkbox "Lockbourne 2 jobs" [ref=e98]
+  - checkbox "Manchester 2 jobs" [ref=e99]
+  - checkbox "Miami 2 jobs" [ref=e100]
+  - checkbox "North Reading 2 jobs" [ref=e101]
+  - checkbox "Philadelphia 2 jobs" [ref=e102]
+  - checkbox "San Francisco 2 jobs" [ref=e103]
+  - checkbox "Arizona City 1 job" [ref=e104]
+  - checkbox "Birmingham 1 job" [ref=e105]
+  - checkbox "Brisbane 1 job" [ref=e106]
+  - checkbox "Burlington 1 job" [ref=e107]
+  - checkbox "Cleveland 1 job" [ref=e108]
+  - checkbox "Corona 1 job" [ref=e109]
+  - checkbox "Council Bluffs 1 job" [ref=e110]
+  - checkbox "Doral 1 job" [ref=e111]
+  - checkbox "Durham 1 job" [ref=e112]
+  - checkbox "Englewood 1 job" [ref=e113]
+  - checkbox "Fort Myers 1 job" [ref=e114]
+  - checkbox "Hampton 1 job" [ref=e115]
+  - checkbox "Honolulu 1 job" [ref=e116]
+  - checkbox "Houston 1 job" [ref=e117]
+  - checkbox "Jacksonville 1 job" [ref=e118]
+  - checkbox "Kannapolis 1 job" [ref=e119]
+  - checkbox "Kansas City 1 job" [ref=e120]
+  - checkbox "Los Angeles 1 job" [ref=e121]
+  - checkbox "Louisville 1 job" [ref=e122]
+  - checkbox "Loxley 1 job" [ref=e123]
+  - checkbox "Monroe Twp 1 job" [ref=e124]
+  - checkbox "San Diego 1 job" [ref=e125]
+  - checkbox "Seffner 1 job" [ref=e126]
+  - checkbox "Simi Valley 1 job" [ref=e127]
+  - checkbox "St Louis 1 job" [ref=e128]
+  - checkbox "Tempe 1 job" [ref=e129]
+- link "Skip to job results" [ref=e130]
+- generic [ref=e131]:
+  - text: "TEAM (5 shown)"
+  - button "More information about teams" [ref=e132]: ""
+  - button "TEAM (5 shown) filters" [ref=e133]
+- text: "TEAM (5 shown) filters"
+- status
+- checkbox "Amazon Health Services 71 jobs" [ref=e134]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e135]
+- checkbox "Transportation, Shipping & Logistics 8 jobs" [ref=e136]
+- checkbox "Amazonian Experience and Technology 1 job" [ref=e137]
+- checkbox "Amazon Operations 1 job" [ref=e138]
+- link "Skip to job results" [ref=e139]
+- button "ROLE TYPE (2 shown) filters" [ref=e140]: "ROLE TYPE (2 shown)"
+- text: "ROLE TYPE (2 shown) filters"
+- status
+- checkbox "Individual Contributor 93 jobs" [ref=e141]
+- checkbox "People Manager 8 jobs" [ref=e142]
+- link "Skip to job results" [ref=e143]
+- button "CATEGORY (3 shown) filters" [ref=e144]: "CATEGORY (3 shown)"
+- text: "CATEGORY (3 shown) filters"
+- status
+- button "Fulfillment Center 68 jobs" [ref=e145]
+- button "Corporate 32 jobs" [ref=e146]
+- button "Customer Service 1 job" [ref=e147]
+- heading "Results listed" [level=2]
+- text: "Sort by:"
+- listbox "Sort by:" [ref=e148]
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e149]
+- list:
+  - listitem "Las Vegas, NV, USA" [ref=e150]
+  - listitem "|" [ref=e151]
+  - listitem "Job ID: 3187622" [ref=e152]
+- text: "Posted February 24, 2026(Updated 2 days ago)Basic qualifications:"
+- list:
+  - listitem "Doctorate or Bachelor’s Degree in Pharmacy" [ref=e153]
+  - listitem "Active/Good Standing Pharmacist license in domicile state" [ref=e154]
+  - listitem "Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices" [ref=e155]
+  - listitem "Experience with performance metrics, process improvement and Lean techniques" [ref=e156]
+  - listitem "Strong in oral and written communication skills with the ability to think clearly, analyze quantitat" [ref=e157]
+  - listitem "Able to manage detail, establish root cause and be able to extract and manipulate data" [ref=e158]
+  - listitem "Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays." [ref=e159]
+  - listitem "1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)" [ref=e160]
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3187622" [ref=e161]: "...Read more"
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e162]
+- list:
+  - listitem "Sacramento, CA, USA" [ref=e163]
+  - listitem "|" [ref=e164]
+  - listitem "Job ID: 3187634" [ref=e165]
+- text: "Posted February 24, 2026(Updated 3 months ago)Basic qualifications:"
+- list:
+  - listitem "Doctorate or Bachelor’s Degree in Pharmacy" [ref=e166]
+  - listitem "Active/Good Standing Pharmacist license in domicile state" [ref=e167]
+  - listitem "Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices" [ref=e168]
+  - listitem "Experience with performance metrics, process improvement and Lean techniques" [ref=e169]
+  - listitem "Strong in oral and written communication skills with the ability to think clearly, analyze quantitat" [ref=e170]
+  - listitem "Able to manage detail, establish root cause and be able to extract and manipulate data" [ref=e171]
+  - listitem "Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays." [ref=e172]
+  - listitem "1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)" [ref=e173]
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3187634" [ref=e174]: "...Read more"
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e175]
+- list:
+  - listitem "Beaver, WV, USA" [ref=e176]
+  - listitem "|" [ref=e177]
+  - listitem "Job ID: 3180932" [ref=e178]
+- text: "Posted February 13, 2026(Updated about 2 months ago)Basic qualifications:"
+- list:
+  - listitem "Doctorate or Bachelor’s Degree in Pharmacy" [ref=e179]
+  - listitem "Active/Good Standing Pharmacist license in West Virginia" [ref=e180]
+  - listitem "Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices" [ref=e181]
+  - listitem "Able to manage detail, establish root cause and be able to extract and manipulate data" [ref=e182]
+  - listitem "Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays" [ref=e183]
+  - listitem "1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)" [ref=e184]
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3180932" [ref=e185]: "...Read more"
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e186]
+- list:
+  - listitem "San Antonio, TX, USA" [ref=e187]
+  - listitem "|" [ref=e188]
+  - listitem "Job ID: 3170556" [ref=e189]
+- text: "Posted January 30, 2026(Updated about 2 months ago)Basic qualifications:"
+- list:
+  - listitem "Doctorate or Bachelor’s Degree in Pharmacy" [ref=e190]
+  - listitem "Active/Good Standing Pharmacist license in domicile state" [ref=e191]
+  - listitem "Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices" [ref=e192]
+  - listitem "Strong in oral and written communication skills with the ability to think clearly, analyze quantitat" [ref=e193]
+  - listitem "Able to manage detail, establish root cause and be able to extract and manipulate data" [ref=e194]
+  - listitem "Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays." [ref=e195]
+  - listitem "1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)" [ref=e196]
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3170556" [ref=e197]: "...Read more"
+- heading "Certified Pharmacy Technician/Pharmacy Services, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician/Pharmacy Services, Amazon Pharmacy" [ref=e198]
+- list:
+  - listitem "Phoenix, AZ, USA" [ref=e199]
+  - listitem "|" [ref=e200]
+  - listitem "Job ID: 3163962" [ref=e201]
+- text: "Posted January 21, 2026(Updated about 1 month ago)Basic qualifications:"
+- list:
+  - listitem "Active and unrestricted in-State Board of Pharmacy License (This includes Pharmacy Technician, Train" [ref=e202]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e203]
+  - listitem "High school diploma or equivalent" [ref=e204]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e205]
+  - listitem "Ability to communicate effectively with coworkers and supervisor" [ref=e206]
+  - listitem "Ability to read and understand English language labelling on product cartons and prescription labels" [ref=e207]
+- link "Read more about the job Certified Pharmacy Technician/Pharmacy Services, Amazon Pharmacy, job Id 316" [ref=e208]: "...Read more"
+- heading "Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Technician, Amazon Pharmacy" [ref=e209]
+- list:
+  - listitem "Richmond, CA, USA" [ref=e210]
+  - listitem "|" [ref=e211]
+  - listitem "Job ID: 10419199" [ref=e212]
+- text: "Posted May 13, 2026(Updated about 4 hours ago)Basic qualifications:"
+- list:
+  - listitem "Active and unrestricted in-state Board of Pharmacy License" [ref=e213]
+  - listitem "High school diploma or equivalent" [ref=e214]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e215]
+  - listitem "Ability to communicate effectively with coworkers and supervisor." [ref=e216]
+  - listitem "Ability to read and understand English language labeling on product cartons and prescription labels." [ref=e217]
+  - listitem "Active and unrestricted in-state Driver’s License" [ref=e218]
+  - listitem "Clean driving record that passes Amazon’s Motor Vehicle Checks, to be rechecked annually. Driving pr" [ref=e219]
+  - listitem "Evading Responsibility" [ref=e220]
+  - listitem "Being at fault in a fatal accident" [ref=e221]
+  - listitem "Having two or more motor vehicle accidents in the last three years" [ref=e222]
+  - listitem "Having a motor vehicle accident resulting in greater than $5,000 in damages" [ref=e223]
+  - listitem "Driving under the influence or in any way impaired by alcohol or drugs" [ref=e224]
+  - listitem "Reckless Driving" [ref=e225]
+  - listitem "Recurrent speeding violations" [ref=e226]
+  - listitem "Recurrent driving suspensions" [ref=e227]
+  - listitem "Three or more driving violations within the last three years" [ref=e228]
+- link "Read more about the job Pharmacy Technician, Amazon Pharmacy, job Id 10419199" [ref=e229]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e230]
+- list:
+  - listitem "Hampton, VA, USA" [ref=e231]
+  - listitem "|" [ref=e232]
+  - listitem "Job ID: 3055009" [ref=e233]
+- text: "Posted August  8, 2025(Updated about 2 months ago)Basic qualifications:"
+- list:
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e234]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e235]
+  - listitem "High school diploma or equivalent" [ref=e236]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e237]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand" [ref=e238]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 3055009" [ref=e239]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e240]
+- list:
+  - listitem "Monroe Township, NJ, USA" [ref=e241]
+  - listitem "|" [ref=e242]
+  - listitem "Job ID: 3081014" [ref=e243]
+- text: "Posted September 11, 2025(Updated about 2 months ago)Basic qualifications:"
+- list:
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e244]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e245]
+  - listitem "High school diploma or equivalent" [ref=e246]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e247]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand" [ref=e248]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 3081014" [ref=e249]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e250]
+- list:
+  - listitem "Louisville, KY, USA" [ref=e251]
+  - listitem "|" [ref=e252]
+  - listitem "Job ID: 3081082" [ref=e253]
+- text: "Posted September 11, 2025(Updated about 2 months ago)Basic qualifications:"
+- list:
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e254]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e255]
+  - listitem "High school diploma or equivalent" [ref=e256]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e257]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand" [ref=e258]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 3081082" [ref=e259]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e260]
+- list:
+  - listitem "Wilmington, MA, USA" [ref=e261]
+  - listitem "|" [ref=e262]
+  - listitem "Job ID: 10419242" [ref=e263]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "high school diploma or equivalent" [ref=e264]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e265]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e266]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e267]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e268]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419242" [ref=e269]: "...Read more"
+- button "Previous page" [ref=e270] [disabled]
+- button "Page 1" [ref=e271] [disabled]: "1"
+- button "Page 2" [ref=e272]: "2"
+- button "Page 3" [ref=e273]: "3"
+- button "Page ..." [ref=e274] [disabled]: "..."
+- button "Page 11" [ref=e275]: "11"
+- button "Next page" [ref=e276]
+- text: "JOIN US ON"
+- list:
+  - listitem "Join us on facebook" [ref=e277]:
+    - link "Join us on facebook" [ref=e278]: "b"
+  - listitem "Join us on linkedin" [ref=e279]:
+    - link "Join us on linkedin" [ref=e280]: "d"
+  - listitem "Join us on instagram" [ref=e281]:
+    - link "Join us on instagram" [ref=e282]: "c"
+  - listitem "Join us on twitter" [ref=e283]:
+    - link "Join us on twitter" [ref=e284]: "j"
+- text: "DOWNLOAD OUR APP"
+- list:
+  - listitem "Download Amazon A to Z from App Store" [ref=e285]:
+    - link "Download Amazon A to Z from App Store" [ref=e286]
+  - listitem "Download Amazon A to Z from Google Play" [ref=e287]:
+    - link "Download Amazon A to Z from Google Play" [ref=e288]
+- text: "Find Careers"
+- list:
+  - listitem "Job Categories" [ref=e289]:
+    - link "Job Categories" [ref=e290]
+  - listitem "Teams" [ref=e291]:
+    - link "Teams" [ref=e292]
+  - listitem "Locations" [ref=e293]:
+    - link "Locations" [ref=e294]
+  - listitem "Military careers" [ref=e295]:
+    - link "Military careers" [ref=e296]
+  - listitem "Hourly" [ref=e297]:
+    - link "Hourly" [ref=e298]
+- text: "Working At Amazon"
+- list:
+  - listitem "Culture" [ref=e299]:
+    - link "Culture" [ref=e300]
+  - listitem "Benefits" [ref=e301]:
+    - link "Benefits" [ref=e302]
+  - listitem "Amazon Newsletter" [ref=e303]:
+    - link "Amazon Newsletter" [ref=e304]
+  - listitem "Inclusive experiences" [ref=e305]:
+    - link "Inclusive experiences" [ref=e306]
+  - listitem "Leadership Principles" [ref=e307]:
+    - link "Leadership Principles" [ref=e308]
+- text: "Help"
+- list:
+  - listitem "FAQ" [ref=e309]:
+    - link "FAQ" [ref=e310]
+  - listitem "How We Hire" [ref=e311]:
+    - link "How We Hire" [ref=e312]
+  - listitem "Application status" [ref=e313]:
+    - link "Application status" [ref=e314]
+  - listitem "Accommodations" [ref=e315]:
+    - link "Accommodations" [ref=e316]
+  - listitem "Legal disclosures and notices" [ref=e317]:
+    - link "Legal disclosures and notices" [ref=e318]
+- combobox "English" [ref=e319]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e320]
+- link "Impressum" [ref=e321]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[8] thinking: **Searching for pharmacy jobs**
+
+I need to find the most recent full-time pharmacy positions in the US. It looks like the search results might not be sorted by date. I want to set it to sort by the most recent postings and filter for full-time positions since there may be part-time jobs included. The results show dates like May 13, 2026. I’ll need to ensure I get the right postings and possibly check the sort and filter options.
+
+**Adjusting job search filters**
+
+I want to click the Full-Time checkbox and sort the job listings by the newest postings. I need to understand the options in the listbox for sorting. Should I use a locator to select it? I think it might be good to inspect the HTML or take a snapshot of the interactive elements around the sorting options. This way, I can accurately adjust the filters for the user’s job search.
+
+[9] tool_call: repl("Inspecting sort options")
+<request>
+const sortInfo1 = await page.locator('select').evaluateAll(sel => sel.map(s => ({name:s.getAttribute('name'), aria:s.getAttribute('aria-label'), value:s.value, options:[...s.options].map(o=>({text:o.textContent, value:o.value, selected:o.selected}))})));
+console.log(JSON.stringify(sortInfo1, null, 2));
+</request>
+<result tokens_used="339" elapsed_time="32ms">
+[
+  {
+    "name": null,
+    "aria": "language dropdown menu",
+    "value": "en",
+    "options": [
+      {
+        "text": "Čeština",
+        "value": "cs",
+        "selected": false
+      },
+      {
+        "text": "Deutsch",
+        "value": "de",
+        "selected": false
+      },
+      {
+        "text": "English",
+        "value": "en",
+        "selected": true
+      },
+      {
+        "text": "English, British",
+        "value": "en-gb",
+        "selected": false
+      },
+      {
+        "text": "Español",
+        "value": "es",
+        "selected": false
+      },
+      {
+        "text": "Français",
+        "value": "fr",
+        "selected": false
+      },
+      {
+        "text": "Italiano",
+        "value": "it",
+        "selected": false
+      },
+      {
+        "text": "日本語",
+        "value": "jp",
+        "selected": false
+      },
+      {
+        "text": "Polski",
+        "value": "pl",
+        "selected": false
+      },
+      {
+        "text": "Português, Brasil",
+        "value": "pt",
+        "selected": false
+      },
+      {
+        "text": "简体中文",
+        "value": "zh",
+        "selected": false
+      }
+    ]
+  }
+]
+</result>
+
+[10] tool_call: repl("Opening sort menu")
+<request>
+await page.locator('e148').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff || s4.tree);
+</request>
+<result tokens_used="78" elapsed_time="379ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Job search | Amazon.jobs" [url=https://www.amazon.jobs/en/search?base_query=pharmacy&loc_query=United+States&type=area&longitude=-77.03196&latitude=38.89036&co…]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]: "pharmacy"
+  - text: "h"
+  - combobox "search job by location" [ref=e5] [placeholder="Location"]: "United States"
+  - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- status:
+  - text: "Set job alerts for your search and never miss an opportunity!"
+  - link "Login or create an account" [ref=e9]
+  - button "close" [ref=e10]
+- heading "Search results" [level=1]
+- heading "Filter by" [level=2]
+- link "Skip to job results" [ref=e11]
+- button "INDUSTRY EXPERIENCE (4 shown) filters" [ref=e12]: "INDUSTRY EXPERIENCE (4 shown)"
+- text: "INDUSTRY EXPERIENCE (4 shown) filters"
+- status
+- button "Less than 1 year" [ref=e13]
+- button "1-3 years" [ref=e14]
+- button "4-6 years" [ref=e15]
+- button "7+ years" [ref=e16]
+- link "Skip to job results" [ref=e17]
+- button "JOB TYPE (2 shown) filters" [ref=e18]: "JOB TYPE (2 shown)"
+- text: "JOB TYPE (2 shown) filters"
+- status
+- checkbox "Full Time 100 jobs" [ref=e19]
+- checkbox "Part Time 1 job" [ref=e20]
+- link "Skip to job results" [ref=e21]
+- button "JOB CATEGORY (10 shown) filters" [ref=e22]: "JOB CATEGORY (10 shown)"
+- text: "JOB CATEGORY (10 shown) filters"
+- status
+- checkbox "Medical, Health, & Safety 36 jobs" [ref=e23]
+- checkbox "Amazon Design 10 jobs" [ref=e24]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e25]
+- checkbox "Business & Merchant Development 2 jobs" [ref=e26]
+- checkbox "Facilities, Maintenance, & Real Estate 2 jobs" [ref=e27]
+- button "Show more filters for JOB CATEGORY" [ref=e28]: "more"
+- text: "Distance filters"
+- button "Switch distance unit between mile and kilometer, Miles selected" [ref=e29]
+- radiogroup "Select distance to filter":
+  - radio "5 Miles" [ref=e30]: "5"
+  - radio "15 Miles" [ref=e31] [checked]: "15"
+  - radio "25 Miles" [ref=e32]: "25"
+  - radio "35 Miles" [ref=e33]: "35"
+  - radio "50 Miles" [ref=e34]: "50"
+  - radio "Any Miles" [ref=e35]: "Any"
+- link "Skip to job results" [ref=e36]
+- button "Country/Region (1 shown) filters" [ref=e37]: "Country/Region (1 shown)"
+- textbox "Refine list of Country/Region (1 shown) filter options" [ref=e38] [placeholder="Country/Region"]
+- status
+- text: "Country/Region (1 shown) filters"
+- checkbox "United States 101 jobs" [ref=e39]
+- link "Skip to job results" [ref=e40]
+- button "State/Province (26 shown) filters" [ref=e41]: "State/Province (26 shown)"
+- textbox "Refine list of State/Province (26 shown) filter options" [ref=e42] [placeholder="State/Province"]
+- status
+- generic [ref=e43] [scrollable]:
+  - text: "State/Province (26 shown) filters"
+  - checkbox "Washington 35 jobs" [ref=e44]
+  - checkbox "Texas 25 jobs" [ref=e45]
+  - checkbox "Massachusetts 17 jobs" [ref=e46]
+  - checkbox "Tennessee 17 jobs" [ref=e47]
+  - checkbox "California 16 jobs" [ref=e48]
+  - checkbox "Virginia 14 jobs" [ref=e49]
+  - checkbox "Arizona 8 jobs" [ref=e50]
+  - checkbox "Florida 8 jobs" [ref=e51]
+  - checkbox "New York 6 jobs" [ref=e52]
+  - checkbox "Illinois 5 jobs" [ref=e53]
+  - checkbox "Ohio 5 jobs" [ref=e54]
+  - checkbox "Indiana 4 jobs" [ref=e55]
+  - checkbox "Nevada 3 jobs" [ref=e56]
+  - checkbox "New Hampshire 3 jobs" [ref=e57]
+  - checkbox "West Virginia 3 jobs" [ref=e58]
+  - checkbox "Georgia 2 jobs" [ref=e59]
+  - checkbox "Missouri 2 jobs" [ref=e60]
+  - checkbox "New Jersey 2 jobs" [ref=e61]
+  - checkbox "North Carolina 2 jobs" [ref=e62]
+  - checkbox "Pennsylvania 2 jobs" [ref=e63]
+  - checkbox "Alabama 1 job" [ref=e64]
+  - checkbox "Colorado 1 job" [ref=e65]
+  - checkbox "Hawaii 1 job" [ref=e66]
+  - checkbox "Iowa 1 job" [ref=e67]
+  - checkbox "Kentucky 1 job" [ref=e68]
+  - checkbox "Michigan 1 job" [ref=e69]
+- link "Skip to job results" [ref=e70]
+- button "City (56 shown) filters" [ref=e71]: "City (56 shown)"
+- textbox "Refine list of City (56 shown) filter options" [ref=e72] [placeholder="City"]
+- status
+- generic [ref=e73] [scrollable]:
+  - text: "City (56 shown) filters"
+  - checkbox "Bellevue 22 jobs" [ref=e74]
+  - checkbox "Austin 19 jobs" [ref=e75]
+  - checkbox "Nashville 17 jobs" [ref=e76]
+  - checkbox "Arlington 13 jobs" [ref=e77]
+  - checkbox "Boston 12 jobs" [ref=e78]
+  - checkbox "Seattle 9 jobs" [ref=e79]
+  - checkbox "New York 6 jobs" [ref=e80]
+  - checkbox "Phoenix 6 jobs" [ref=e81]
+  - checkbox "Kent 5 jobs" [ref=e82]
+  - checkbox "Dallas 4 jobs" [ref=e83]
+  - checkbox "Plainfield 4 jobs" [ref=e84]
+  - checkbox "Beaver 3 jobs" [ref=e85]
+  - checkbox "Daytona Beach 3 jobs" [ref=e86]
+  - checkbox "Las Vegas 3 jobs" [ref=e87]
+  - checkbox "Middleburg Heights 3 jobs" [ref=e88]
+  - checkbox "Modesto 3 jobs" [ref=e89]
+  - checkbox "Richmond 3 jobs" [ref=e90]
+  - checkbox "Sacramento 3 jobs" [ref=e91]
+  - checkbox "San Antonio 3 jobs" [ref=e92]
+  - checkbox "Sauget 3 jobs" [ref=e93]
+  - checkbox "Wilmington 3 jobs" [ref=e94]
+  - checkbox "Atlanta 2 jobs" [ref=e95]
+  - checkbox "Chicago 2 jobs" [ref=e96]
+  - checkbox "Irving 2 jobs" [ref=e97]
+  - checkbox "Lockbourne 2 jobs" [ref=e98]
+  - checkbox "Manchester 2 jobs" [ref=e99]
+  - checkbox "Miami 2 jobs" [ref=e100]
+  - checkbox "North Reading 2 jobs" [ref=e101]
+  - checkbox "Philadelphia 2 jobs" [ref=e102]
+  - checkbox "San Francisco 2 jobs" [ref=e103]
+  - checkbox "Arizona City 1 job" [ref=e104]
+  - checkbox "Birmingham 1 job" [ref=e105]
+  - checkbox "Brisbane 1 job" [ref=e106]
+  - checkbox "Burlington 1 job" [ref=e107]
+  - checkbox "Cleveland 1 job" [ref=e108]
+  - checkbox "Corona 1 job" [ref=e109]
+  - checkbox "Council Bluffs 1 job" [ref=e110]
+  - checkbox "Doral 1 job" [ref=e111]
+  - checkbox "Durham 1 job" [ref=e112]
+  - checkbox "Englewood 1 job" [ref=e113]
+  - checkbox "Fort Myers 1 job" [ref=e114]
+  - checkbox "Hampton 1 job" [ref=e115]
+  - checkbox "Honolulu 1 job" [ref=e116]
+  - checkbox "Houston 1 job" [ref=e117]
+  - checkbox "Jacksonville 1 job" [ref=e118]
+  - checkbox "Kannapolis 1 job" [ref=e119]
+  - checkbox "Kansas City 1 job" [ref=e120]
+  - checkbox "Los Angeles 1 job" [ref=e121]
+  - checkbox "Louisville 1 job" [ref=e122]
+  - checkbox "Loxley 1 job" [ref=e123]
+  - checkbox "Monroe Twp 1 job" [ref=e124]
+  - checkbox "San Diego 1 job" [ref=e125]
+  - checkbox "Seffner 1 job" [ref=e126]
+  - checkbox "Simi Valley 1 job" [ref=e127]
+  - checkbox "St Louis 1 job" [ref=e128]
+  - checkbox "Tempe 1 job" [ref=e129]
+- link "Skip to job results" [ref=e130]
+- generic [ref=e131]:
+  - text: "TEAM (5 shown)"
+  - button "More information about teams" [ref=e132]: ""
+  - button "TEAM (5 shown) filters" [ref=e133]
+- text: "TEAM (5 shown) filters"
+- status
+- checkbox "Amazon Health Services 71 jobs" [ref=e134]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e135]
+- checkbox "Transportation, Shipping & Logistics 8 jobs" [ref=e136]
+- checkbox "Amazonian Experience and Technology 1 job" [ref=e137]
+- checkbox "Amazon Operations 1 job" [ref=e138]
+- link "Skip to job results" [ref=e139]
+- button "ROLE TYPE (2 shown) filters" [ref=e140]: "ROLE TYPE (2 shown)"
+- text: "ROLE TYPE (2 shown) filters"
+- status
+- checkbox "Individual Contributor 93 jobs" [ref=e141]
+- checkbox "People Manager 8 jobs" [ref=e142]
+- link "Skip to job results" [ref=e143]
+- button "CATEGORY (3 shown) filters" [ref=e144]: "CATEGORY (3 shown)"
+- text: "CATEGORY (3 shown) filters"
+- status
+- button "Fulfillment Center 68 jobs" [ref=e145]
+- button "Corporate 32 jobs" [ref=e146]
+- button "Customer Service 1 job" [ref=e147]
+- heading "Results listed" [level=2]
+- text: "Sort by:"
+- listbox "Sort by:" [ref=e148]:
+  - option "Most relevant" [ref=e322] [focused] [selected]
+  - option "Most recent" [ref=e323]
+  - option "Distance" [ref=e324]
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e149]
+- text: "Las Vegas, NV, USA|Job ID: 3187622 Posted February 24, 2026(Updated 2 days ago)Basic qualifications:Doctorate or Bachelor’s Degree in Pharmacy Active/Good Standing Pharmacist license in domicile state Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices and patient safety Experience with performance metrics, process improvement and Lean techniques Strong in oral and written communication skills with the ability to think clearly, analyze quantitatively, problem-solve, support scope of requirements and prioritize.Able to manage detail, establish root cause and be able to extract and manipulate data Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays.1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)"
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3187622" [ref=e161]: "...Read more"
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e162]
+- text: "Sacramento, CA, USA|Job ID: 3187634 Posted February 24, 2026(Updated 3 months ago)Basic qualifications:Doctorate or Bachelor’s Degree in Pharmacy Active/Good Standing Pharmacist license in domicile state Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices and patient safety Experience with performance metrics, process improvement and Lean techniques Strong in oral and written communication skills with the ability to think clearly, analyze quantitatively, problem-solve, support scope of requirements and prioritize.Able to manage detail, establish root cause and be able to extract and manipulate data Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays.1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)"
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3187634" [ref=e174]: "...Read more"
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e175]
+- text: "Beaver, WV, USA|Job ID: 3180932 Posted February 13, 2026(Updated about 2 months ago)Basic qualifications:Doctorate or Bachelor’s Degree in Pharmacy Active/Good Standing Pharmacist license in West Virginia Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices and patient safety Experience with performance metrics, process improvement and Lean techniques Strong in oral and written communication skills with the ability to think clearly, analyze quantitatively, problem-solve, support scope of requirements and prioritize.Able to manage detail, establish root cause and be able to extract and manipulate data Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays 1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)"
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3180932" [ref=e185]: "...Read more"
+- heading "Pharmacy Manager, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Manager, Amazon Pharmacy" [ref=e186]
+- text: "San Antonio, TX, USA|Job ID: 3170556 Posted January 30, 2026(Updated about 2 months ago)Basic qualifications:Doctorate or Bachelor’s Degree in Pharmacy Active/Good Standing Pharmacist license in domicile state Extensive knowledge of state and federal laws, rules, and regulations surrounding pharmacy practices and patient safety Experience with performance metrics, process improvement and Lean techniques Strong in oral and written communication skills with the ability to think clearly, analyze quantitatively, problem-solve, support scope of requirements and prioritize.Able to manage detail, establish root cause and be able to extract and manipulate data Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays.1 year Staff Pharmacist experience within Amazon Pharmacy (if currently an Amazon employee)"
+- link "Read more about the job Pharmacy Manager, Amazon Pharmacy, job Id 3170556" [ref=e197]: "...Read more"
+- heading "Certified Pharmacy Technician/Pharmacy Services, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician/Pharmacy Services, Amazon Pharmacy" [ref=e198]
+- text: "Phoenix, AZ, USA|Job ID: 3163962 Posted January 21, 2026(Updated about 1 month ago)Basic qualifications:Active and unrestricted in-State Board of Pharmacy License (This includes Pharmacy Technician, Trainee, and Assistant Licenses). Additional licenses may be required if domicile state differs from state of employment.National Pharmacy Technician Certification (PTCB or NHA)High school diploma or equivalent 6+ months of experience working with computer and web-based tools Ability to communicate effectively with coworkers and supervisor Ability to read and understand English language labelling on product cartons and prescription labels"
+- link "Read more about the job Certified Pharmacy Technician/Pharmacy Services, Amazon Pharmacy, job Id 316" [ref=e208]: "...Read more"
+- heading "Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Technician, Amazon Pharmacy" [ref=e209]
+- text: "Richmond, CA, USA|Job ID: 10419199 Posted May 13, 2026(Updated about 4 hours ago)Basic qualifications:Active and unrestricted in-state Board of Pharmacy License High school diploma or equivalent 6+ months of experience working with computer and web-based tools Ability to communicate effectively with coworkers and supervisor.Ability to read and understand English language labeling on product cartons and prescription labels.Active and unrestricted in-state Driver’s License Clean driving record that passes Amazon’s Motor Vehicle Checks, to be rechecked annually. Driving privileges’ will be revoked if your DMV reports indicates you have received a ticket for one or more of the following violations:Evading Responsibility Being at fault in a fatal accident Having two or more motor vehicle accidents in the last three years Having a motor vehicle accident resulting in greater than $5,000 in damages Driving under the influence or in any way impaired by alcohol or drugs Reckless Driving Recurrent speeding violations Recurrent driving suspensions Three or more driving violations within the last three years"
+- link "Read more about the job Pharmacy Technician, Amazon Pharmacy, job Id 10419199" [ref=e229]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e230]
+- text: "Hampton, VA, USA|Job ID: 3055009 Posted August  8, 2025(Updated about 2 months ago)Basic qualifications:Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)High school diploma or equivalent 6+ months of experience working with computer and web-based tools Ability to communicate effectively with coworkers and supervisor. Ability to read and understand"
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 3055009" [ref=e239]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e240]
+- text: "Monroe Township, NJ, USA|Job ID: 3081014 Posted September 11, 2025(Updated about 2 months ago)Basic qualifications:Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)High school diploma or equivalent 6+ months of experience working with computer and web-based tools Ability to communicate effectively with coworkers and supervisor. Ability to read and understand"
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 3081014" [ref=e249]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e250]
+- text: "Louisville, KY, USA|Job ID: 3081082 Posted September 11, 2025(Updated about 2 months ago)Basic qualifications:Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)High school diploma or equivalent 6+ months of experience working with computer and web-based tools Ability to communicate effectively with coworkers and supervisor. Ability to read and understand"
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 3081082" [ref=e259]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e260]
+- text: "Wilmington, MA, USA|Job ID: 10419242 Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:high school diploma or equivalent 6+ months of working with computer and web based tools experience Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)Ability to communicate effectively with coworkers and supervisor. Ability to read and understand English language labelling on product cartons and prescription labels."
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419242" [ref=e269]: "...Read more"
+- button "Previous page" [ref=e270] [disabled]
+- button "Page 1" [ref=e271] [disabled]: "1"
+- button "Page 2" [ref=e272]: "2"
+- button "Page 3" [ref=e273]: "3"
+- button "Page ..." [ref=e274] [disabled]: "..."
+- button "Page 11" [ref=e275]: "11"
+- button "Next page" [ref=e276]
+- text: "JOIN US ON"
+- link "Join us on facebook" [ref=e278]: "b"
+- link "Join us on linkedin" [ref=e280]: "d"
+- link "Join us on instagram" [ref=e282]: "c"
+- link "Join us on twitter" [ref=e284]: "j"
+- text: "DOWNLOAD OUR APP"
+- link "Download Amazon A to Z from App Store" [ref=e286]
+- link "Download Amazon A to Z from Google Play" [ref=e288]
+- text: "Find Careers"
+- link "Job Categories" [ref=e290]
+- link "Teams" [ref=e292]
+- link "Locations" [ref=e294]
+- link "Military careers" [ref=e296]
+- link "Hourly" [ref=e298]
+- text: "Working At Amazon"
+- link "Culture" [ref=e300]
+- link "Benefits" [ref=e302]
+- link "Amazon Newsletter" [ref=e304]
+- link "Inclusive experiences" [ref=e306]
+- link "Leadership Principles" [ref=e308]
+- text: "Help"
+- link "FAQ" [ref=e310]
+- link "How We Hire" [ref=e312]
+- link "Application status" [ref=e314]
+- link "Accommodations" [ref=e316]
+- link "Legal disclosures and notices" [ref=e318]
+- combobox "English" [ref=e319]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e320]
+- link "Impressum" [ref=e321]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[11] thinking: **Choosing recent options**
+
+I need to select the most recent option first, then filter for full-time roles. I think clicking on the "Full Time" filter and then selecting the most recent option could work. Maybe I should check e323 as well, but I realize that references are only valid after the snapshot. So, it might be best to just click on the most recent selection in the open menu now.
+
+[12] tool_call: repl("Sorting by most recent")
+<request>
+await page.locator('e323').click();
+const s5 = await snapshot(page);
+console.log(s5.diff || s5.tree);
+</request>
+<result tokens_used="102" elapsed_time="1394ms">
+- title: "Job search | Amazon.jobs" [url=https://www.amazon.jobs/en/search?base_query=pharmacy&loc_query=United+States&type=area&longitude=-77.03196&latitude=38.89036&co…]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - form:
+    - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]: "pharmacy"
+    - text: "h"
+    - combobox "search job by location" [ref=e5] [placeholder="Location"]: "United States"
+    - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- status:
+  - paragraph:
+    - text: "Set job alerts for your search and never miss an opportunity!"
+    - link "Login or create an account" [ref=e9]
+  - button "close" [ref=e10]
+- heading "Search results" [level=1]
+- heading "Filter by" [level=2]
+- button "Reset filters" [ref=e325]: "Reset"
+- link "Skip to job results" [ref=e11]
+- button "INDUSTRY EXPERIENCE (4 shown) filters" [ref=e12]: "INDUSTRY EXPERIENCE (4 shown)"
+- text: "INDUSTRY EXPERIENCE (4 shown) filters"
+- status
+- button "Less than 1 year" [ref=e13]
+- button "1-3 years" [ref=e14]
+- button "4-6 years" [ref=e15]
+- button "7+ years" [ref=e16]
+- link "Skip to job results" [ref=e17]
+- button "JOB TYPE (2 shown) filters" [ref=e18]: "JOB TYPE (2 shown)"
+- text: "JOB TYPE (2 shown) filters"
+- status
+- checkbox "Full Time 100 jobs" [ref=e19]
+- checkbox "Part Time 1 job" [ref=e20]
+- link "Skip to job results" [ref=e21]
+- button "JOB CATEGORY (10 shown) filters" [ref=e22]: "JOB CATEGORY (10 shown)"
+- text: "JOB CATEGORY (10 shown) filters"
+- status
+- checkbox "Medical, Health, & Safety 36 jobs" [ref=e23]
+- checkbox "Amazon Design 10 jobs" [ref=e24]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e25]
+- checkbox "Business & Merchant Development 2 jobs" [ref=e26]
+- checkbox "Facilities, Maintenance, & Real Estate 2 jobs" [ref=e27]
+- button "Show more filters for JOB CATEGORY" [ref=e28]: "more"
+- text: "Distance filters"
+- button "Switch distance unit between mile and kilometer, Miles selected" [ref=e29]
+- radiogroup "Select distance to filter":
+  - radio "5 Miles" [ref=e30]: "5"
+  - radio "15 Miles" [ref=e31] [checked]: "15"
+  - radio "25 Miles" [ref=e32]: "25"
+  - radio "35 Miles" [ref=e33]: "35"
+  - radio "50 Miles" [ref=e34]: "50"
+  - radio "Any Miles" [ref=e35]: "Any"
+- link "Skip to job results" [ref=e36]
+- button "Country/Region (1 shown) filters" [ref=e37]: "Country/Region (1 shown)"
+- textbox "Refine list of Country/Region (1 shown) filter options" [ref=e38] [placeholder="Country/Region"]
+- status
+- text: "Country/Region (1 shown) filters"
+- checkbox "United States 101 jobs" [ref=e39]
+- link "Skip to job results" [ref=e40]
+- button "State/Province (26 shown) filters" [ref=e41]: "State/Province (26 shown)"
+- textbox "Refine list of State/Province (26 shown) filter options" [ref=e42] [placeholder="State/Province"]
+- status
+- generic [ref=e43] [scrollable]:
+  - text: "State/Province (26 shown) filters"
+  - checkbox "Washington 35 jobs" [ref=e44]
+  - checkbox "Texas 25 jobs" [ref=e45]
+  - checkbox "Massachusetts 17 jobs" [ref=e46]
+  - checkbox "Tennessee 17 jobs" [ref=e47]
+  - checkbox "California 16 jobs" [ref=e48]
+  - checkbox "Virginia 14 jobs" [ref=e49]
+  - checkbox "Arizona 8 jobs" [ref=e50]
+  - checkbox "Florida 8 jobs" [ref=e51]
+  - checkbox "New York 6 jobs" [ref=e52]
+  - checkbox "Illinois 5 jobs" [ref=e53]
+  - checkbox "Ohio 5 jobs" [ref=e54]
+  - checkbox "Indiana 4 jobs" [ref=e55]
+  - checkbox "Nevada 3 jobs" [ref=e56]
+  - checkbox "New Hampshire 3 jobs" [ref=e57]
+  - checkbox "West Virginia 3 jobs" [ref=e58]
+  - checkbox "Georgia 2 jobs" [ref=e59]
+  - checkbox "Missouri 2 jobs" [ref=e60]
+  - checkbox "New Jersey 2 jobs" [ref=e61]
+  - checkbox "North Carolina 2 jobs" [ref=e62]
+  - checkbox "Pennsylvania 2 jobs" [ref=e63]
+  - checkbox "Alabama 1 job" [ref=e64]
+  - checkbox "Colorado 1 job" [ref=e65]
+  - checkbox "Hawaii 1 job" [ref=e66]
+  - checkbox "Iowa 1 job" [ref=e67]
+  - checkbox "Kentucky 1 job" [ref=e68]
+  - checkbox "Michigan 1 job" [ref=e69]
+- link "Skip to job results" [ref=e70]
+- button "City (56 shown) filters" [ref=e71]: "City (56 shown)"
+- textbox "Refine list of City (56 shown) filter options" [ref=e72] [placeholder="City"]
+- status
+- generic [ref=e73] [scrollable]:
+  - text: "City (56 shown) filters"
+  - checkbox "Bellevue 22 jobs" [ref=e74]
+  - checkbox "Austin 19 jobs" [ref=e75]
+  - checkbox "Nashville 17 jobs" [ref=e76]
+  - checkbox "Arlington 13 jobs" [ref=e77]
+  - checkbox "Boston 12 jobs" [ref=e78]
+  - checkbox "Seattle 9 jobs" [ref=e79]
+  - checkbox "New York 6 jobs" [ref=e80]
+  - checkbox "Phoenix 6 jobs" [ref=e81]
+  - checkbox "Kent 5 jobs" [ref=e82]
+  - checkbox "Dallas 4 jobs" [ref=e83]
+  - checkbox "Plainfield 4 jobs" [ref=e84]
+  - checkbox "Beaver 3 jobs" [ref=e85]
+  - checkbox "Daytona Beach 3 jobs" [ref=e86]
+  - checkbox "Las Vegas 3 jobs" [ref=e87]
+  - checkbox "Middleburg Heights 3 jobs" [ref=e88]
+  - checkbox "Modesto 3 jobs" [ref=e89]
+  - checkbox "Richmond 3 jobs" [ref=e90]
+  - checkbox "Sacramento 3 jobs" [ref=e91]
+  - checkbox "San Antonio 3 jobs" [ref=e92]
+  - checkbox "Sauget 3 jobs" [ref=e93]
+  - checkbox "Wilmington 3 jobs" [ref=e94]
+  - checkbox "Atlanta 2 jobs" [ref=e95]
+  - checkbox "Chicago 2 jobs" [ref=e96]
+  - checkbox "Irving 2 jobs" [ref=e97]
+  - checkbox "Lockbourne 2 jobs" [ref=e98]
+  - checkbox "Manchester 2 jobs" [ref=e99]
+  - checkbox "Miami 2 jobs" [ref=e100]
+  - checkbox "North Reading 2 jobs" [ref=e101]
+  - checkbox "Philadelphia 2 jobs" [ref=e102]
+  - checkbox "San Francisco 2 jobs" [ref=e103]
+  - checkbox "Arizona City 1 job" [ref=e104]
+  - checkbox "Birmingham 1 job" [ref=e105]
+  - checkbox "Brisbane 1 job" [ref=e106]
+  - checkbox "Burlington 1 job" [ref=e107]
+  - checkbox "Cleveland 1 job" [ref=e108]
+  - checkbox "Corona 1 job" [ref=e109]
+  - checkbox "Council Bluffs 1 job" [ref=e110]
+  - checkbox "Doral 1 job" [ref=e111]
+  - checkbox "Durham 1 job" [ref=e112]
+  - checkbox "Englewood 1 job" [ref=e113]
+  - checkbox "Fort Myers 1 job" [ref=e114]
+  - checkbox "Hampton 1 job" [ref=e115]
+  - checkbox "Honolulu 1 job" [ref=e116]
+  - checkbox "Houston 1 job" [ref=e117]
+  - checkbox "Jacksonville 1 job" [ref=e118]
+  - checkbox "Kannapolis 1 job" [ref=e119]
+  - checkbox "Kansas City 1 job" [ref=e120]
+  - checkbox "Los Angeles 1 job" [ref=e121]
+  - checkbox "Louisville 1 job" [ref=e122]
+  - checkbox "Loxley 1 job" [ref=e123]
+  - checkbox "Monroe Twp 1 job" [ref=e124]
+  - checkbox "San Diego 1 job" [ref=e125]
+  - checkbox "Seffner 1 job" [ref=e126]
+  - checkbox "Simi Valley 1 job" [ref=e127]
+  - checkbox "St Louis 1 job" [ref=e128]
+  - checkbox "Tempe 1 job" [ref=e129]
+- link "Skip to job results" [ref=e130]
+- generic [ref=e131]:
+  - text: "TEAM (5 shown)"
+  - button "More information about teams" [ref=e132]: ""
+  - button "TEAM (5 shown) filters" [ref=e133]
+- text: "TEAM (5 shown) filters"
+- status
+- checkbox "Amazon Health Services 71 jobs" [ref=e134]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e135]
+- checkbox "Transportation, Shipping & Logistics 8 jobs" [ref=e136]
+- checkbox "Amazonian Experience and Technology 1 job" [ref=e137]
+- checkbox "Amazon Operations 1 job" [ref=e138]
+- link "Skip to job results" [ref=e139]
+- button "ROLE TYPE (2 shown) filters" [ref=e140]: "ROLE TYPE (2 shown)"
+- text: "ROLE TYPE (2 shown) filters"
+- status
+- checkbox "Individual Contributor 93 jobs" [ref=e141]
+- checkbox "People Manager 8 jobs" [ref=e142]
+- link "Skip to job results" [ref=e143]
+- button "CATEGORY (3 shown) filters" [ref=e144]: "CATEGORY (3 shown)"
+- text: "CATEGORY (3 shown) filters"
+- status
+- button "Fulfillment Center 68 jobs" [ref=e145]
+- button "Corporate 32 jobs" [ref=e146]
+- button "Customer Service 1 job" [ref=e147]
+- heading "Results listed" [level=2]
+- text: "Sort by:"
+- listbox "Sort by:" [ref=e148]:
+  - option "Most relevant" [ref=e322]
+  - option "Most recent" [ref=e323] [selected]
+  - option "Distance" [ref=e324]
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e326]
+- list:
+  - listitem "Fort Myers, FL, USA" [ref=e327]
+  - listitem "|" [ref=e151]
+  - listitem "Job ID: 10419245" [ref=e328]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "High School diploma or equivalent" [ref=e329]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e330]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e331]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e332]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e333]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419245" [ref=e334]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e335]
+- list:
+  - listitem "Wilmington, MA, USA" [ref=e336]
+  - listitem "|" [ref=e164]
+  - listitem "Job ID: 10419242" [ref=e337]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "high school diploma or equivalent" [ref=e338]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e339]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e340]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e341]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e342]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419242" [ref=e343]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e344]
+- list:
+  - listitem "Jacksonville, FL, USA" [ref=e345]
+  - listitem "|" [ref=e177]
+  - listitem "Job ID: 10419239" [ref=e346]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "High School diploma or equivalent" [ref=e347]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e348]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e349]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e350]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e351]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419239" [ref=e352]: "...Read more"
+- heading "Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Technician, Amazon Pharmacy" [ref=e353]
+- list:
+  - listitem "Richmond, CA, USA" [ref=e354]
+  - listitem "|" [ref=e188]
+  - listitem "Job ID: 10419199" [ref=e355]
+- text: "Posted May 13, 2026(Updated about 4 hours ago)Basic qualifications:"
+- list:
+  - listitem "Active and unrestricted in-state Board of Pharmacy License" [ref=e356]
+  - listitem "High school diploma or equivalent" [ref=e357]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e358]
+  - listitem "Ability to communicate effectively with coworkers and supervisor." [ref=e359]
+  - listitem "Ability to read and understand English language labeling on product cartons and prescription labels." [ref=e360]
+  - listitem "Active and unrestricted in-state Driver’s License" [ref=e361]
+  - listitem "Clean driving record that passes Amazon’s Motor Vehicle Checks, to be rechecked annually. Driving pr" [ref=e362]
+  - listitem "Evading Responsibility" [ref=e363]
+  - listitem "Being at fault in a fatal accident" [ref=e364]
+  - listitem "Having two or more motor vehicle accidents in the last three years" [ref=e365]
+  - listitem "Having a motor vehicle accident resulting in greater than $5,000 in damages" [ref=e366]
+  - listitem "Driving under the influence or in any way impaired by alcohol or drugs" [ref=e367]
+  - listitem "Reckless Driving" [ref=e368]
+  - listitem "Recurrent speeding violations" [ref=e369]
+  - listitem "Recurrent driving suspensions" [ref=e370]
+  - listitem "Three or more driving violations within the last three years" [ref=e371]
+- link "Read more about the job Pharmacy Technician, Amazon Pharmacy, job Id 10419199" [ref=e372]: "...Read more"
+- heading "Overnight Staff Pharmacist, Amazon Pharmacy" [level=3]:
+  - link "Overnight Staff Pharmacist, Amazon Pharmacy" [ref=e373]
+- list:
+  - listitem "Lockbourne, OH, USA" [ref=e374]
+  - listitem "|" [ref=e200]
+  - listitem "Job ID: 10417920" [ref=e375]
+- text: "Posted May 12, 2026(Updated 1 day ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor of Science or PharmD Degree" [ref=e376]
+  - listitem "Active and unrestricted Pharmacist License in Ohio, and others upon request. Additional licenses may" [ref=e377]
+  - listitem "Knowledge of pharmacy laws, federal and state regulations concerning patient care" [ref=e378]
+  - listitem "Exemplary interpersonal communication skills including written and verbal communication." [ref=e379]
+  - listitem "Ability to perform basic computer functions." [ref=e380]
+  - listitem "Warehouse work, including the ability to lift 20lbs" [ref=e381]
+- link "Read more about the job Overnight Staff Pharmacist, Amazon Pharmacy, job Id 10417920" [ref=e382]: "...Read more"
+- heading "Senior Financial Analyst, Sub Same Day Operations Finance" [level=3]:
+  - link "Senior Financial Analyst, Sub Same Day Operations Finance" [ref=e383]
+- list:
+  - listitem "Arlington, VA, USA" [ref=e384]
+  - listitem "Bellevue, WA, USA" [ref=e385]
+  - listitem "Nashville, TN, USA" [ref=e386]
+  - listitem "|" [ref=e211]
+  - listitem "Job ID: 10409214" [ref=e387]
+- text: "Posted May  1, 2026(Updated 12 days ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor's degree in finance, accounting, business, economics, or a related analytical field (e.g., " [ref=e388]
+  - listitem "3+ years of finance or a related analytical field experience" [ref=e389]
+- link "Read more about the job Senior Financial Analyst, Sub Same Day Operations Finance, job Id 10409214" [ref=e390]: "...Read more"
+- heading "Senior Mechatronics & Robotics Technician, RME" [level=3]:
+  - link "Senior Mechatronics & Robotics Technician, RME" [ref=e391]
+- list:
+  - listitem "Kent, WA, USA" [ref=e392]
+  - listitem "|" [ref=e232]
+  - listitem "Job ID: 10416349" [ref=e393]
+- text: "Posted May 11, 2026(Updated about 6 hours ago)Basic qualifications:"
+- list:
+  - listitem "High school or equivalent diploma" [ref=e394]
+  - listitem "1+ years of Microsoft Office products and applications experience" [ref=e395]
+  - listitem "Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays" [ref=e396]
+  - listitem "4+ years of conducting predictive and preventative maintenance procedures experience" [ref=e397]
+  - listitem "4+ years of repairing material handling equipment (MHE), automated conveyor systems, or related mech" [ref=e398]
+  - listitem "4+ years of reading blueprints and electrical schematics experience" [ref=e399]
+  - listitem "4+ years of electrical and electronic principles experience" [ref=e400]
+  - listitem "4+ years of demonstrating safety standards experience" [ref=e401]
+  - listitem "4+ years of troubleshooting and diagnostics of material handling equipment (MHE) experience" [ref=e402]
+  - listitem "Currently hold's an active and unrestricted, or have the ability to obtain a pharmacy technician lic" [ref=e403]
+- link "Read more about the job Senior Mechatronics & Robotics Technician, RME, job Id 10416349" [ref=e404]: "...Read more"
+- heading "Architectural Designer I , Integrated Design Solutions- Operational Design" [level=3]:
+  - link "Architectural Designer I , Integrated Design Solutions- Operational Design" [ref=e405]
+- list:
+  - listitem "Arlington, VA, USA" [ref=e406]
+  - listitem "Atlanta, GA, USA" [ref=e407]
+  - listitem "Austin, TX, USA" [ref=e408]
+  - listitem:
+    - button "+7 other locations" [ref=e409]
+  - listitem "|" [ref=e242]
+  - listitem "Job ID: 10408877" [ref=e410]
+- text: "Posted May  1, 2026(Updated 3 days ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor's degree in Architecture, Construction Management, Engineering, or a related field" [ref=e411]
+  - listitem "Experience with AutoCAD and/or Building Information Modeling (BIM), as well as scheduling software (" [ref=e412]
+  - listitem "Experience using one or more of the following technologies (e.g., AutoCAD, Rhino, Revit, SolidWorks," [ref=e413]
+  - listitem "Experience completing complex tasks quickly with little to no guidance and react with appropriate ur" [ref=e414]
+  - listitem "Experience that includes strong analytical skills, attention to detail, and effective communication " [ref=e415]
+- link "Read more about the job Architectural Designer I , Integrated Design Solutions- Operational Design, " [ref=e416]: "...Read more"
+- heading "Architectural Design Lead, Integrated Design Solutions (IDS)" [level=3]:
+  - link "Architectural Design Lead, Integrated Design Solutions (IDS)" [ref=e417]
+- list:
+  - listitem "Arlington, VA, USA" [ref=e418]
+  - listitem "Atlanta, GA, USA" [ref=e419]
+  - listitem "Austin, TX, USA" [ref=e420]
+  - listitem:
+    - button "+7 other locations" [ref=e421]
+  - listitem "|" [ref=e252]
+  - listitem "Job ID: 10408876" [ref=e422]
+- text: "Posted May  1, 2026(Updated 3 days ago)Basic qualifications:"
+- list:
+  - listitem "Experience in Design/Innovation, research & development, manufacturing, process, industrial engineer" [ref=e423]
+  - listitem "Experience in management of engineering design projects" [ref=e424]
+  - listitem "Bachelor's degree or equivalent" [ref=e425]
+  - listitem "Experience using business/ technical software such as REVIT, AutoCAD, BIM 360, BlueBeam, Microsoft S" [ref=e426]
+- link "Read more about the job Architectural Design Lead, Integrated Design Solutions (IDS), job Id 1040887" [ref=e427]: "...Read more"
+- heading "Account Representative, B2B Sales and Account Services, Amazon Pharmacy" [level=3]:
+  - link "Account Representative, B2B Sales and Account Services, Amazon Pharmacy" [ref=e428]
+- list:
+  - listitem "Austin, TX, USA" [ref=e429]
+  - listitem "Boston, MA, USA" [ref=e430]
+  - listitem "Seattle, WA, USA" [ref=e431]
+  - listitem "|" [ref=e262]
+  - listitem "Job ID: 10416446" [ref=e432]
+- text: "Posted May 11, 2026(Updated 2 days ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor's degree or equivalent" [ref=e433]
+  - listitem "Experience understanding needs of business and end customers and translating them into right solutio" [ref=e434]
+  - listitem "Experience with end-to-end ownership of program deliverables in fast-paced, high-growth environments" [ref=e435]
+  - listitem "7+ years of experience in account management, business development, or strategic partnerships in a B" [ref=e436]
+  - listitem "Strong executive communication skills, both written and verbal, with experience presenting to senior" [ref=e437]
+  - listitem "Experience developing and executing strategic account or growth plans with measurable business outco" [ref=e438]
+- link "Read more about the job Account Representative, B2B Sales and Account Services, Amazon Pharmacy, job" [ref=e439]: "...Read more"
+- button "Previous page" [ref=e270] [disabled]
+- button "Page 1" [ref=e271] [disabled]: "1"
+- button "Page 2" [ref=e272]: "2"
+- button "Page 3" [ref=e273]: "3"
+- button "Page ..." [ref=e274] [disabled]: "..."
+- button "Page 11" [ref=e275]: "11"
+- button "Next page" [ref=e276]
+- text: "JOIN US ON"
+- list:
+  - listitem "Join us on facebook" [ref=e277]:
+    - link "Join us on facebook" [ref=e278]: "b"
+  - listitem "Join us on linkedin" [ref=e279]:
+    - link "Join us on linkedin" [ref=e280]: "d"
+  - listitem "Join us on instagram" [ref=e281]:
+    - link "Join us on instagram" [ref=e282]: "c"
+  - listitem "Join us on twitter" [ref=e283]:
+    - link "Join us on twitter" [ref=e284]: "j"
+- text: "DOWNLOAD OUR APP"
+- list:
+  - listitem "Download Amazon A to Z from App Store" [ref=e285]:
+    - link "Download Amazon A to Z from App Store" [ref=e286]
+  - listitem "Download Amazon A to Z from Google Play" [ref=e287]:
+    - link "Download Amazon A to Z from Google Play" [ref=e288]
+- text: "Find Careers"
+- list:
+  - listitem "Job Categories" [ref=e289]:
+    - link "Job Categories" [ref=e290]
+  - listitem "Teams" [ref=e291]:
+    - link "Teams" [ref=e292]
+  - listitem "Locations" [ref=e293]:
+    - link "Locations" [ref=e294]
+  - listitem "Military careers" [ref=e295]:
+    - link "Military careers" [ref=e296]
+  - listitem "Hourly" [ref=e297]:
+    - link "Hourly" [ref=e298]
+- text: "Working At Amazon"
+- list:
+  - listitem "Culture" [ref=e299]:
+    - link "Culture" [ref=e300]
+  - listitem "Benefits" [ref=e301]:
+    - link "Benefits" [ref=e302]
+  - listitem "Amazon Newsletter" [ref=e303]:
+    - link "Amazon Newsletter" [ref=e304]
+  - listitem "Inclusive experiences" [ref=e305]:
+    - link "Inclusive experiences" [ref=e306]
+  - listitem "Leadership Principles" [ref=e307]:
+    - link "Leadership Principles" [ref=e308]
+- text: "Help"
+- list:
+  - listitem "FAQ" [ref=e309]:
+    - link "FAQ" [ref=e310]
+  - listitem "How We Hire" [ref=e311]:
+    - link "How We Hire" [ref=e312]
+  - listitem "Application status" [ref=e313]:
+    - link "Application status" [ref=e314]
+  - listitem "Accommodations" [ref=e315]:
+    - link "Accommodations" [ref=e316]
+  - listitem "Legal disclosures and notices" [ref=e317]:
+    - link "Legal disclosures and notices" [ref=e318]
+- combobox "English" [ref=e319]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e320]
+- link "Impressum" [ref=e321]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[13] thinking: **Sorting job filter options**
+
+I'm focusing on applying the full-time filter and clicking on e19. I need to sort the listings, but right now, sorting by date is giving me the top Certified Pharmacy Technician position in Fort Myers. I need to check if that one is full-time. The filter isn't applied yet, but it seems likely that this position is full-time. There’s also a part-time position that's probably an hourly associate, so I’ll apply the filters accordingly to narrow it down.
+
+[14] tool_call: repl("Applying full-time filter")
+<request>
+await page.locator('e19').click();
+const s6 = await snapshot(page);
+console.log(s6.diff || s6.tree);
+</request>
+<result tokens_used="119" elapsed_time="1404ms">
+@@ -32 +32 @@
+-- checkbox "Full Time 100 jobs" [ref=e19]
++- checkbox "Full Time 100 jobs" [ref=e19] [checked] [focused]
+@@ -38 +38 @@
+-- checkbox "Medical, Health, & Safety 36 jobs" [ref=e23]
++- checkbox "Medical, Health, & Safety 35 jobs" [ref=e23]
+@@ -58 +58 @@
+-- checkbox "United States 101 jobs" [ref=e39]
++- checkbox "United States 100 jobs" [ref=e39]
+@@ -76 +76 @@
+-  - checkbox "Indiana 4 jobs" [ref=e55]
++  - checkbox "Indiana 3 jobs" [ref=e55]
+@@ -107,6 +107,6 @@
+-  - checkbox "Plainfield 4 jobs" [ref=e84]
+-  - checkbox "Beaver 3 jobs" [ref=e85]
+-  - checkbox "Daytona Beach 3 jobs" [ref=e86]
+-  - checkbox "Las Vegas 3 jobs" [ref=e87]
+-  - checkbox "Middleburg Heights 3 jobs" [ref=e88]
+-  - checkbox "Modesto 3 jobs" [ref=e89]
++  - checkbox "Beaver 3 jobs" [ref=e84]
++  - checkbox "Daytona Beach 3 jobs" [ref=e85]
++  - checkbox "Las Vegas 3 jobs" [ref=e86]
++  - checkbox "Middleburg Heights 3 jobs" [ref=e87]
++  - checkbox "Modesto 3 jobs" [ref=e88]
++  - checkbox "Plainfield 3 jobs" [ref=e89]
+@@ -160 +160 @@
+-- checkbox "Amazon Health Services 71 jobs" [ref=e134]
++- checkbox "Amazon Health Services 70 jobs" [ref=e134]
+@@ -169 +169 @@
+-- checkbox "Individual Contributor 93 jobs" [ref=e141]
++- checkbox "Individual Contributor 92 jobs" [ref=e141]
+@@ -175 +175 @@
+-- button "Fulfillment Center 68 jobs" [ref=e145]
++- button "Fulfillment Center 67 jobs" [ref=e145]
+@@ -180,4 +180 @@
+-- listbox "Sort by:" [ref=e148]:
+-  - option "Most relevant" [ref=e322]
+-  - option "Most recent" [ref=e323] [selected]
+-  - option "Distance" [ref=e324]
++- listbox "Sort by:" [ref=e148]
+@@ -355 +352 @@
+-- button "Page 11" [ref=e275]: "11"
++- button "Page 10" [ref=e440]: "10"
+</result>
+
+[15] thinking: **Reviewing references and snapshots**
+
+I need to use the current references, but it looks like the s6 diff didn't include the top part. However, the reference might still be from the previous one. Since the snapshot conceptually invalidates earlier references, Playwright's reference locators may remain intact. But according to the instructions, they shouldn't become stale. I think I should get a fresh tree, and maybe I'll take a snapshot that includes only interactive elements and relevant results links.
+
+[16] tool_call: repl("Confirming top filtered result")
+<request>
+const s7 = await snapshot(page, {interactive:true});
+console.log(s7.tree);
+</request>
+<result tokens_used="533" elapsed_time="81ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Job search | Amazon.jobs" [url=https://www.amazon.jobs/en/search?base_query=pharmacy&loc_query=United+States&type=area&longitude=-77.03196&latitude=38.89036&co…]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]: "pharmacy"
+  - text: "h"
+  - combobox "search job by location" [ref=e5] [placeholder="Location"]: "United States"
+  - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- status:
+  - text: "Set job alerts for your search and never miss an opportunity!"
+  - link "Login or create an account" [ref=e9]
+  - button "close" [ref=e10]
+- heading "Search results" [level=1]
+- heading "Filter by" [level=2]
+- button "Reset filters" [ref=e325]: "Reset"
+- link "Skip to job results" [ref=e11]
+- button "INDUSTRY EXPERIENCE (4 shown) filters" [ref=e12]: "INDUSTRY EXPERIENCE (4 shown)"
+- text: "INDUSTRY EXPERIENCE (4 shown) filters"
+- status
+- button "Less than 1 year" [ref=e13]
+- button "1-3 years" [ref=e14]
+- button "4-6 years" [ref=e15]
+- button "7+ years" [ref=e16]
+- link "Skip to job results" [ref=e17]
+- button "JOB TYPE (2 shown) filters" [ref=e18]: "JOB TYPE (2 shown)"
+- text: "JOB TYPE (2 shown) filters"
+- status
+- checkbox "Full Time 100 jobs" [ref=e19] [checked] [focused]
+- checkbox "Part Time 1 job" [ref=e20]
+- link "Skip to job results" [ref=e21]
+- button "JOB CATEGORY (10 shown) filters" [ref=e22]: "JOB CATEGORY (10 shown)"
+- text: "JOB CATEGORY (10 shown) filters"
+- status
+- checkbox "Medical, Health, & Safety 35 jobs" [ref=e23]
+- checkbox "Amazon Design 10 jobs" [ref=e24]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e25]
+- checkbox "Business & Merchant Development 2 jobs" [ref=e26]
+- checkbox "Facilities, Maintenance, & Real Estate 2 jobs" [ref=e27]
+- button "Show more filters for JOB CATEGORY" [ref=e28]: "more"
+- text: "Distance filters"
+- button "Switch distance unit between mile and kilometer, Miles selected" [ref=e29]
+- radiogroup "Select distance to filter":
+  - radio "5 Miles" [ref=e30]: "5"
+  - radio "15 Miles" [ref=e31] [checked]: "15"
+  - radio "25 Miles" [ref=e32]: "25"
+  - radio "35 Miles" [ref=e33]: "35"
+  - radio "50 Miles" [ref=e34]: "50"
+  - radio "Any Miles" [ref=e35]: "Any"
+- link "Skip to job results" [ref=e36]
+- button "Country/Region (1 shown) filters" [ref=e37]: "Country/Region (1 shown)"
+- textbox "Refine list of Country/Region (1 shown) filter options" [ref=e38] [placeholder="Country/Region"]
+- status
+- text: "Country/Region (1 shown) filters"
+- checkbox "United States 100 jobs" [ref=e39]
+- link "Skip to job results" [ref=e40]
+- button "State/Province (26 shown) filters" [ref=e41]: "State/Province (26 shown)"
+- textbox "Refine list of State/Province (26 shown) filter options" [ref=e42] [placeholder="State/Province"]
+- status
+- generic [ref=e43] [scrollable]:
+  - text: "State/Province (26 shown) filters"
+  - checkbox "Washington 35 jobs" [ref=e44]
+  - checkbox "Texas 25 jobs" [ref=e45]
+  - checkbox "Massachusetts 17 jobs" [ref=e46]
+  - checkbox "Tennessee 17 jobs" [ref=e47]
+  - checkbox "California 16 jobs" [ref=e48]
+  - checkbox "Virginia 14 jobs" [ref=e49]
+  - checkbox "Arizona 8 jobs" [ref=e50]
+  - checkbox "Florida 8 jobs" [ref=e51]
+  - checkbox "New York 6 jobs" [ref=e52]
+  - checkbox "Illinois 5 jobs" [ref=e53]
+  - checkbox "Ohio 5 jobs" [ref=e54]
+  - checkbox "Indiana 3 jobs" [ref=e55]
+  - checkbox "Nevada 3 jobs" [ref=e56]
+  - checkbox "New Hampshire 3 jobs" [ref=e57]
+  - checkbox "West Virginia 3 jobs" [ref=e58]
+  - checkbox "Georgia 2 jobs" [ref=e59]
+  - checkbox "Missouri 2 jobs" [ref=e60]
+  - checkbox "New Jersey 2 jobs" [ref=e61]
+  - checkbox "North Carolina 2 jobs" [ref=e62]
+  - checkbox "Pennsylvania 2 jobs" [ref=e63]
+  - checkbox "Alabama 1 job" [ref=e64]
+  - checkbox "Colorado 1 job" [ref=e65]
+  - checkbox "Hawaii 1 job" [ref=e66]
+  - checkbox "Iowa 1 job" [ref=e67]
+  - checkbox "Kentucky 1 job" [ref=e68]
+  - checkbox "Michigan 1 job" [ref=e69]
+- link "Skip to job results" [ref=e70]
+- button "City (56 shown) filters" [ref=e71]: "City (56 shown)"
+- textbox "Refine list of City (56 shown) filter options" [ref=e72] [placeholder="City"]
+- status
+- generic [ref=e73] [scrollable]:
+  - text: "City (56 shown) filters"
+  - checkbox "Bellevue 22 jobs" [ref=e74]
+  - checkbox "Austin 19 jobs" [ref=e75]
+  - checkbox "Nashville 17 jobs" [ref=e76]
+  - checkbox "Arlington 13 jobs" [ref=e77]
+  - checkbox "Boston 12 jobs" [ref=e78]
+  - checkbox "Seattle 9 jobs" [ref=e79]
+  - checkbox "New York 6 jobs" [ref=e80]
+  - checkbox "Phoenix 6 jobs" [ref=e81]
+  - checkbox "Kent 5 jobs" [ref=e82]
+  - checkbox "Dallas 4 jobs" [ref=e83]
+  - checkbox "Beaver 3 jobs" [ref=e84]
+  - checkbox "Daytona Beach 3 jobs" [ref=e85]
+  - checkbox "Las Vegas 3 jobs" [ref=e86]
+  - checkbox "Middleburg Heights 3 jobs" [ref=e87]
+  - checkbox "Modesto 3 jobs" [ref=e88]
+  - checkbox "Plainfield 3 jobs" [ref=e89]
+  - checkbox "Richmond 3 jobs" [ref=e90]
+  - checkbox "Sacramento 3 jobs" [ref=e91]
+  - checkbox "San Antonio 3 jobs" [ref=e92]
+  - checkbox "Sauget 3 jobs" [ref=e93]
+  - checkbox "Wilmington 3 jobs" [ref=e94]
+  - checkbox "Atlanta 2 jobs" [ref=e95]
+  - checkbox "Chicago 2 jobs" [ref=e96]
+  - checkbox "Irving 2 jobs" [ref=e97]
+  - checkbox "Lockbourne 2 jobs" [ref=e98]
+  - checkbox "Manchester 2 jobs" [ref=e99]
+  - checkbox "Miami 2 jobs" [ref=e100]
+  - checkbox "North Reading 2 jobs" [ref=e101]
+  - checkbox "Philadelphia 2 jobs" [ref=e102]
+  - checkbox "San Francisco 2 jobs" [ref=e103]
+  - checkbox "Arizona City 1 job" [ref=e104]
+  - checkbox "Birmingham 1 job" [ref=e105]
+  - checkbox "Brisbane 1 job" [ref=e106]
+  - checkbox "Burlington 1 job" [ref=e107]
+  - checkbox "Cleveland 1 job" [ref=e108]
+  - checkbox "Corona 1 job" [ref=e109]
+  - checkbox "Council Bluffs 1 job" [ref=e110]
+  - checkbox "Doral 1 job" [ref=e111]
+  - checkbox "Durham 1 job" [ref=e112]
+  - checkbox "Englewood 1 job" [ref=e113]
+  - checkbox "Fort Myers 1 job" [ref=e114]
+  - checkbox "Hampton 1 job" [ref=e115]
+  - checkbox "Honolulu 1 job" [ref=e116]
+  - checkbox "Houston 1 job" [ref=e117]
+  - checkbox "Jacksonville 1 job" [ref=e118]
+  - checkbox "Kannapolis 1 job" [ref=e119]
+  - checkbox "Kansas City 1 job" [ref=e120]
+  - checkbox "Los Angeles 1 job" [ref=e121]
+  - checkbox "Louisville 1 job" [ref=e122]
+  - checkbox "Loxley 1 job" [ref=e123]
+  - checkbox "Monroe Twp 1 job" [ref=e124]
+  - checkbox "San Diego 1 job" [ref=e125]
+  - checkbox "Seffner 1 job" [ref=e126]
+  - checkbox "Simi Valley 1 job" [ref=e127]
+  - checkbox "St Louis 1 job" [ref=e128]
+  - checkbox "Tempe 1 job" [ref=e129]
+- link "Skip to job results" [ref=e130]
+- generic [ref=e131]:
+  - text: "TEAM (5 shown)"
+  - button "More information about teams" [ref=e132]: ""
+  - button "TEAM (5 shown) filters" [ref=e133]
+- text: "TEAM (5 shown) filters"
+- status
+- checkbox "Amazon Health Services 70 jobs" [ref=e134]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e135]
+- checkbox "Transportation, Shipping & Logistics 8 jobs" [ref=e136]
+- checkbox "Amazonian Experience and Technology 1 job" [ref=e137]
+- checkbox "Amazon Operations 1 job" [ref=e138]
+- link "Skip to job results" [ref=e139]
+- button "ROLE TYPE (2 shown) filters" [ref=e140]: "ROLE TYPE (2 shown)"
+- text: "ROLE TYPE (2 shown) filters"
+- status
+- checkbox "Individual Contributor 92 jobs" [ref=e141]
+- checkbox "People Manager 8 jobs" [ref=e142]
+- link "Skip to job results" [ref=e143]
+- button "CATEGORY (3 shown) filters" [ref=e144]: "CATEGORY (3 shown)"
+- text: "CATEGORY (3 shown) filters"
+- status
+- button "Fulfillment Center 67 jobs" [ref=e145]
+- button "Corporate 32 jobs" [ref=e146]
+- button "Customer Service 1 job" [ref=e147]
+- heading "Results listed" [level=2]
+- text: "Sort by:"
+- listbox "Sort by:" [ref=e148]
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e326]
+- text: "Fort Myers, FL, USA|Job ID: 10419245 Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:High School diploma or equivalent 6+ months of working with computer and web based tools experience Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)Ability to communicate effectively with coworkers and supervisor. Ability to read and understand English language labelling on product cartons and prescription labels."
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419245" [ref=e334]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e335]
+- text: "Wilmington, MA, USA|Job ID: 10419242 Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:high school diploma or equivalent 6+ months of working with computer and web based tools experience Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)Ability to communicate effectively with coworkers and supervisor. Ability to read and understand English language labelling on product cartons and prescription labels."
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419242" [ref=e343]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e344]
+- text: "Jacksonville, FL, USA|Job ID: 10419239 Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:High School diploma or equivalent 6+ months of working with computer and web based tools experience Active unrestricted Pharmacy Technician license in state of employment National Pharmacy Technician Certification (PTCB or NHA)Ability to communicate effectively with coworkers and supervisor. Ability to read and understand English language labelling on product cartons and prescription labels."
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419239" [ref=e352]: "...Read more"
+- heading "Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Technician, Amazon Pharmacy" [ref=e353]
+- text: "Richmond, CA, USA|Job ID: 10419199 Posted May 13, 2026(Updated about 4 hours ago)Basic qualifications:Active and unrestricted in-state Board of Pharmacy License High school diploma or equivalent 6+ months of experience working with computer and web-based tools Ability to communicate effectively with coworkers and supervisor.Ability to read and understand English language labeling on product cartons and prescription labels.Active and unrestricted in-state Driver’s License Clean driving record that passes Amazon’s Motor Vehicle Checks, to be rechecked annually. Driving privileges’ will be revoked if your DMV reports indicates you have received a ticket for one or more of the following violations:Evading Responsibility Being at fault in a fatal accident Having two or more motor vehicle accidents in the last three years Having a motor vehicle accident resulting in greater than $5,000 in damages Driving under the influence or in any way impaired by alcohol or drugs Reckless Driving Recurrent speeding violations Recurrent driving suspensions Three or more driving violations within the last three years"
+- link "Read more about the job Pharmacy Technician, Amazon Pharmacy, job Id 10419199" [ref=e372]: "...Read more"
+- heading "Overnight Staff Pharmacist, Amazon Pharmacy" [level=3]:
+  - link "Overnight Staff Pharmacist, Amazon Pharmacy" [ref=e373]
+- text: "Lockbourne, OH, USA|Job ID: 10417920 Posted May 12, 2026(Updated 1 day ago)Basic qualifications:Bachelor of Science or PharmD Degree Active and unrestricted Pharmacist License in Ohio, and others upon request. Additional licenses may be required if domicile state differs from state of employment Knowledge of pharmacy laws, federal and state regulations concerning patient care Exemplary interpersonal communication skills including written and verbal communication.Ability to perform basic computer functions.Warehouse work, including the ability to lift 20lbs"
+- link "Read more about the job Overnight Staff Pharmacist, Amazon Pharmacy, job Id 10417920" [ref=e382]: "...Read more"
+- heading "Senior Financial Analyst, Sub Same Day Operations Finance" [level=3]:
+  - link "Senior Financial Analyst, Sub Same Day Operations Finance" [ref=e383]
+- text: "Arlington, VA, USA Bellevue, WA, USA Nashville, TN, USA|Job ID: 10409214 Posted May  1, 2026(Updated 12 days ago)Basic qualifications:Bachelor's degree in finance, accounting, business, economics, or a related analytical field (e.g., engineering, math, computer science)3+ years of finance or a related analytical field experience"
+- link "Read more about the job Senior Financial Analyst, Sub Same Day Operations Finance, job Id 10409214" [ref=e390]: "...Read more"
+- heading "Senior Mechatronics & Robotics Technician, RME" [level=3]:
+  - link "Senior Mechatronics & Robotics Technician, RME" [ref=e391]
+- text: "Kent, WA, USA|Job ID: 10416349 Posted May 11, 2026(Updated about 6 hours ago)Basic qualifications:High school or equivalent diploma 1+ years of Microsoft Office products and applications experience Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays 4+ years of conducting predictive and preventative maintenance procedures experience 4+ years of repairing material handling equipment (MHE), automated conveyor systems, or related mechanical/controls equipment experience 4+ years of reading blueprints and electrical schematics experience 4+ years of electrical and electronic principles experience 4+ years of demonstrating safety standards experience 4+ years of troubleshooting and diagnostics of material handling equipment (MHE) experience Currently hold's an active and unrestricted, or have the ability to obtain a pharmacy technician license in domicile state"
+- link "Read more about the job Senior Mechatronics & Robotics Technician, RME, job Id 10416349" [ref=e404]: "...Read more"
+- heading "Architectural Designer I , Integrated Design Solutions- Operational Design" [level=3]:
+  - link "Architectural Designer I , Integrated Design Solutions- Operational Design" [ref=e405]
+- text: "Arlington, VA, USA Atlanta, GA, USA Austin, TX, USA"
+- button "+7 other locations" [ref=e409]
+- text: "|Job ID: 10408877 Posted May  1, 2026(Updated 3 days ago)Basic qualifications:Bachelor's degree in Architecture, Construction Management, Engineering, or a related field Experience with AutoCAD and/or Building Information Modeling (BIM), as well as scheduling software (Primavera, MS Project, or similar)Experience using one or more of the following technologies (e.g., AutoCAD, Rhino, Revit, SolidWorks, CREO, SketchUp, KeyShot, etc.) to deliver high quality models and designs Experience completing complex tasks quickly with little to no guidance and react with appropriate urgency to situations that require a quick turnaround, or experience prioritizing and handling multiple assignments at any given time while maintaining commitment to deadlines Experience that includes strong analytical skills, attention to detail, and effective communication abilities"
+- link "Read more about the job Architectural Designer I , Integrated Design Solutions- Operational Design, " [ref=e416]: "...Read more"
+- heading "Architectural Design Lead, Integrated Design Solutions (IDS)" [level=3]:
+  - link "Architectural Design Lead, Integrated Design Solutions (IDS)" [ref=e417]
+- text: "Arlington, VA, USA Atlanta, GA, USA Austin, TX, USA"
+- button "+7 other locations" [ref=e421]
+- text: "|Job ID: 10408876 Posted May  1, 2026(Updated 3 days ago)Basic qualifications:Experience in Design/Innovation, research & development, manufacturing, process, industrial engineering, or related work Experience in management of engineering design projects Bachelor's degree or equivalent Experience using business/ technical software such as REVIT, AutoCAD, BIM 360, BlueBeam, Microsoft Suite."
+- link "Read more about the job Architectural Design Lead, Integrated Design Solutions (IDS), job Id 1040887" [ref=e427]: "...Read more"
+- heading "Account Representative, B2B Sales and Account Services, Amazon Pharmacy" [level=3]:
+  - link "Account Representative, B2B Sales and Account Services, Amazon Pharmacy" [ref=e428]
+- text: "Austin, TX, USA Boston, MA, USA Seattle, WA, USA|Job ID: 10416446 Posted May 11, 2026(Updated 2 days ago)Basic qualifications:Bachelor's degree or equivalent Experience understanding needs of business and end customers and translating them into right solutions Experience with end-to-end ownership of program deliverables in fast-paced, high-growth environments 7+ years of experience in account management, business development, or strategic partnerships in a B2B environment; 5+ years of experience managing complex client relationships and navigating ambiguous, cross-functional initiatives Strong executive communication skills, both written and verbal, with experience presenting to senior leadership Experience developing and executing strategic account or growth plans with measurable business outcomes"
+- link "Read more about the job Account Representative, B2B Sales and Account Services, Amazon Pharmacy, job" [ref=e439]: "...Read more"
+- button "Previous page" [ref=e270] [disabled]
+- button "Page 1" [ref=e271] [disabled]: "1"
+- button "Page 2" [ref=e272]: "2"
+- button "Page 3" [ref=e273]: "3"
+- button "Page ..." [ref=e274] [disabled]: "..."
+- button "Page 10" [ref=e440]: "10"
+- button "Next page" [ref=e276]
+- text: "JOIN US ON"
+- link "Join us on facebook" [ref=e278]: "b"
+- link "Join us on linkedin" [ref=e280]: "d"
+- link "Join us on instagram" [ref=e282]: "c"
+- link "Join us on twitter" [ref=e284]: "j"
+- text: "DOWNLOAD OUR APP"
+- link "Download Amazon A to Z from App Store" [ref=e286]
+- link "Download Amazon A to Z from Google Play" [ref=e288]
+- text: "Find Careers"
+- link "Job Categories" [ref=e290]
+- link "Teams" [ref=e292]
+- link "Locations" [ref=e294]
+- link "Military careers" [ref=e296]
+- link "Hourly" [ref=e298]
+- text: "Working At Amazon"
+- link "Culture" [ref=e300]
+- link "Benefits" [ref=e302]
+- link "Amazon Newsletter" [ref=e304]
+- link "Inclusive experiences" [ref=e306]
+- link "Leadership Principles" [ref=e308]
+- text: "Help"
+- link "FAQ" [ref=e310]
+- link "How We Hire" [ref=e312]
+- link "Application status" [ref=e314]
+- link "Accommodations" [ref=e316]
+- link "Legal disclosures and notices" [ref=e318]
+- combobox "English" [ref=e319]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e320]
+- link "Impressum" [ref=e321]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[17] tool_call: repl("Opening the most recent posting")
+<request>
+await page.locator('e326').click();
+const s8 = await snapshot(page);
+console.log(s8.diff || s8.tree);
+</request>
+<result tokens_used="65" elapsed_time="1291ms">
+- title: "Certified Pharmacy Technician, Amazon Pharmacy - Job ID: 10419245 | Amazon.jobs" [url=https://www.amazon.jobs/en/jobs/10419245/certified-pharmacy-technician-amazon-pharmacy]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - form:
+    - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]
+    - text: "h"
+    - combobox "search job by location" [ref=e5] [placeholder="Location"]
+    - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=1]
+- text: "Job ID: 10419245 | PillPack, LLC - H96"
+- link "Apply now for Certified Pharmacy Technician, Amazon Pharmacy" [ref=e9]: "Apply now"
+- heading "Description" [level=2]
+- text: "Innovation is at the core of what we do. We believe that by removing and reducing the barriers that prevent people from taking their medications, we can help customers conveniently get the medications they need, when they need them and take them as prescribed. We have provided customers with the ability to find transparent and simple pricing, receive 24/7 customer service support, and have their meds delivered to their doorsteps while creating programs and products that embody our mission and position ourselves in becoming the world’s safest and fastest online pharmacy. We are looking for a Pharmacy Technician to join us on our journey to make it drastically easier for customers to find, choose, afford, and engage with the services, products, and professionals they need to get and stay healthy! An active in-state pharmacy technician license is required to be considered.#everydaybetter Key job responsibilities Core Responsibilities:• Assist pharmacist in filling prescription items, as permitted by the state board of pharmacy• Maintain a safe and clean pharmacy by complying with procedures, rules, and regulations• Work daily with Leadership to ensure the right medications are put in the right packets• Run automated machinery required to pre-sort and package medications• Fill exception trays with appropriate medication• Transition orders through different workflow stages from initial dispense through quality control• Count and fill prescription vials and affix labels on bulk prescription items• Pack and ship completed orders including printing and affixing appropriate labels on dispenser, shipping boxes• Sort and triage the right boxes to ship at the right time• Aid the pharmacy manager and pharmacists with receiving, shipping, counting, and packing• Clean, and help maintain, equipment and work areas• Package medications for dispensing and for delivery• Work a flexible schedule - shifts will possibly start and end outside of normal business hours Physical Requirements:During Peak/high demand, shifts last up to 12 hours (standard full-time shifts are 8-10 hours)• Standing, bending, reaching above the head, kneeling, crouching and/or stretching• Lifting and moving products up to 49 lbs in weight• Manual dexterity of hands and wrists"
+- heading "Basic Qualifications" [level=2]
+- text: "- High School diploma or equivalent- 6+ months of working with computer and web based tools experience- Active unrestricted Pharmacy Technician license in state of employment- National Pharmacy Technician Certification (PTCB or NHA)- Ability to communicate effectively with coworkers and supervisor. Ability to read and understand English language labelling on product cartons and prescription labels."
+- heading "Preferred Qualifications" [level=2]
+- paragraph:
+  - text: "- Demonstrated ability to work as an effective team member- Demonstrated organization skills and attention to detail- Ability to recognize and identify patient medications- Experience working under pressure in a fast-paced work environment while consistently meeting- standards for productivity and quality Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.Our inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit"
+  - link "https://amazon.jobs/content/en/how-we-hire/accommodations" [ref=e10]
+  - text: "for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner."
+- paragraph:
+  - text: "The starting pay for this position is listed below including the base pay rate plus the highest available shift differential which applies depending on the shift you select. As a total compensation company, you are eligible for additional earnings including overtime pay and performance bonuses. Final pay will be based on factors including shift selection and location. Starting Day 1 of employment, Amazon offers EAP, Mental Health Support, Medical Advice Line, 401(k) matching. Learn more about our benefits at"
+  - link "https://hiring.amazon.com/why-amazon/benefits" [ref=e11]
+  - text: "."
+- text: "USA, FL, Fort Myers - 22.00 - 24.00 USD hourly"
+- heading "Job details" [level=2]
+- list:
+  - listitem:
+    - img "location"
+    - list:
+      - listitem "USA, FL, Fort Myers" [ref=e12]
+  - listitem:
+    - img "category"
+    - list:
+      - listitem "Fulfillment Associate" [ref=e13]
+- heading "Share this job" [level=2]
+- list:
+  - listitem "Share with facebook" [ref=e14]:
+    - link "Share with facebook" [ref=e15]: "b"
+  - listitem "Share with linkedin" [ref=e16]:
+    - link "Share with linkedin" [ref=e17]: "d"
+  - listitem "Share with twitter" [ref=e18]:
+    - link "Share with twitter" [ref=e19]: "j"
+  - listitem "Share with email" [ref=e20]:
+    - link "Share with email" [ref=e21]: "l"
+  - listitem "Print this job" [ref=e22]:
+    - link "Print this job" [ref=e23]: "m"
+- text: "JOIN US ON"
+- list:
+  - listitem "Join us on facebook" [ref=e24]:
+    - link "Join us on facebook" [ref=e25]: "b"
+  - listitem "Join us on linkedin" [ref=e26]:
+    - link "Join us on linkedin" [ref=e27]: "d"
+  - listitem "Join us on instagram" [ref=e28]:
+    - link "Join us on instagram" [ref=e29]: "c"
+  - listitem "Join us on twitter" [ref=e30]:
+    - link "Join us on twitter" [ref=e31]: "j"
+- text: "DOWNLOAD OUR APP"
+- list:
+  - listitem "Download Amazon A to Z from App Store" [ref=e32]:
+    - link "Download Amazon A to Z from App Store" [ref=e33]
+  - listitem "Download Amazon A to Z from Google Play" [ref=e34]:
+    - link "Download Amazon A to Z from Google Play" [ref=e35]
+- text: "Find Careers"
+- list:
+  - listitem "Job Categories" [ref=e36]:
+    - link "Job Categories" [ref=e37]
+  - listitem "Teams" [ref=e38]:
+    - link "Teams" [ref=e39]
+  - listitem "Locations" [ref=e40]:
+    - link "Locations" [ref=e41]
+  - listitem "Military careers" [ref=e42]:
+    - link "Military careers" [ref=e43]
+  - listitem "Hourly" [ref=e44]:
+    - link "Hourly" [ref=e45]
+- text: "Working At Amazon"
+- list:
+  - listitem "Culture" [ref=e46]:
+    - link "Culture" [ref=e47]
+  - listitem "Benefits" [ref=e48]:
+    - link "Benefits" [ref=e49]
+  - listitem "Amazon Newsletter" [ref=e50]:
+    - link "Amazon Newsletter" [ref=e51]
+  - listitem "Inclusive experiences" [ref=e52]:
+    - link "Inclusive experiences" [ref=e53]
+  - listitem "Leadership Principles" [ref=e54]:
+    - link "Leadership Principles" [ref=e55]
+- text: "Help"
+- list:
+  - listitem "FAQ" [ref=e56]:
+    - link "FAQ" [ref=e57]
+  - listitem "How We Hire" [ref=e58]:
+    - link "How We Hire" [ref=e59]
+  - listitem "Application status" [ref=e60]:
+    - link "Application status" [ref=e61]
+  - listitem "Accommodations" [ref=e62]:
+    - link "Accommodations" [ref=e63]
+  - listitem "Legal disclosures and notices" [ref=e64]:
+    - link "Legal disclosures and notices" [ref=e65]
+- combobox "English" [ref=e66]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e67]
+- link "Impressum" [ref=e68]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[18] system_message (background-consult):
+<system_message>
+The snapshot shows filters and navigation but not the actual job listing results. Extract the job listing links/titles from the page to identify the most recent one. Try:
+```js
+const jobs = await page.$$eval('a[href*="/en/jobs/"]', els => els.map(el => ({text: el.textContent.trim(), href: el.href})));
+console.log(JSON.stringify(jobs.slice(0, 10), null, 2));
+```
+This will reveal the job titles and links visible on the current sorted/filtered results page so you can click into the first (most recent) one.
+</system_message>
+
+[19] tool_call: repl("Verifying listing from results")
+<request>
+await page.goBack();
+const s9 = await snapshot(page);
+console.log(s9.diff || s9.tree);
+const jobs1 = await page.$$eval('a[href*="/en/jobs/"]', els => els.map(el => ({text: el.textContent.trim(), href: el.href})).filter(j => j.text));
+console.log(JSON.stringify(jobs1.slice(0, 10), null, 2));
+</request>
+<result tokens_used="479" elapsed_time="1008ms">
+- title: "Job search | Amazon.jobs" [url=https://www.amazon.jobs/en/search?offset=0&result_limit=10&sort=recent&job_type%5B%5D=Full-Time&distanceType=Mi&radius=24km&lati…]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - form:
+    - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]: "pharmacy"
+    - text: "h"
+    - combobox "search job by location" [ref=e5] [placeholder="Location"]: "United States"
+    - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- status [focused]:
+  - paragraph:
+    - text: "Set job alerts for your search and never miss an opportunity!"
+    - link "Login or create an account" [ref=e9]
+  - button "close" [ref=e10]
+- heading "Search results" [level=1]
+- heading "Filter by" [level=2]
+- button "Reset filters" [ref=e11]: "Reset"
+- link "Skip to job results" [ref=e12]
+- button "INDUSTRY EXPERIENCE (4 shown) filters" [ref=e13]: "INDUSTRY EXPERIENCE (4 shown)"
+- text: "INDUSTRY EXPERIENCE (4 shown) filters"
+- status
+- button "Less than 1 year" [ref=e14]
+- button "1-3 years" [ref=e15]
+- button "4-6 years" [ref=e16]
+- button "7+ years" [ref=e17]
+- link "Skip to job results" [ref=e18]
+- button "JOB TYPE (1 shown) filters" [ref=e19]: "JOB TYPE (1 shown)"
+- text: "JOB TYPE (1 shown) filters"
+- status
+- checkbox "Full Time 100 jobs" [ref=e20] [checked]
+- link "Skip to job results" [ref=e21]
+- button "JOB CATEGORY (10 shown) filters" [ref=e22]: "JOB CATEGORY (10 shown)"
+- text: "JOB CATEGORY (10 shown) filters"
+- status
+- checkbox "Medical, Health, & Safety 35 jobs" [ref=e23]
+- checkbox "Amazon Design 10 jobs" [ref=e24]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e25]
+- checkbox "Business & Merchant Development 2 jobs" [ref=e26]
+- checkbox "Facilities, Maintenance, & Real Estate 2 jobs" [ref=e27]
+- button "Show more filters for JOB CATEGORY" [ref=e28]: "more"
+- text: "Distance filters"
+- button "Switch distance unit between mile and kilometer, Miles selected" [ref=e29]
+- radiogroup "Select distance to filter":
+  - radio "5 Miles" [ref=e30]: "5"
+  - radio "15 Miles" [ref=e31] [checked]: "15"
+  - radio "25 Miles" [ref=e32]: "25"
+  - radio "35 Miles" [ref=e33]: "35"
+  - radio "50 Miles" [ref=e34]: "50"
+  - radio "Any Miles" [ref=e35]: "Any"
+- link "Skip to job results" [ref=e36]
+- button "Country/Region (1 shown) filters" [ref=e37]: "Country/Region (1 shown)"
+- textbox "Refine list of Country/Region (1 shown) filter options" [ref=e38] [placeholder="Country/Region"]
+- status
+- text: "Country/Region (1 shown) filters"
+- checkbox "United States 100 jobs" [ref=e39]
+- link "Skip to job results" [ref=e40]
+- button "State/Province (26 shown) filters" [ref=e41]: "State/Province (26 shown)"
+- textbox "Refine list of State/Province (26 shown) filter options" [ref=e42] [placeholder="State/Province"]
+- status
+- generic [ref=e43] [scrollable]:
+  - text: "State/Province (26 shown) filters"
+  - checkbox "Washington 35 jobs" [ref=e44]
+  - checkbox "Texas 25 jobs" [ref=e45]
+  - checkbox "Massachusetts 17 jobs" [ref=e46]
+  - checkbox "Tennessee 17 jobs" [ref=e47]
+  - checkbox "California 16 jobs" [ref=e48]
+  - checkbox "Virginia 14 jobs" [ref=e49]
+  - checkbox "Arizona 8 jobs" [ref=e50]
+  - checkbox "Florida 8 jobs" [ref=e51]
+  - checkbox "New York 6 jobs" [ref=e52]
+  - checkbox "Illinois 5 jobs" [ref=e53]
+  - checkbox "Ohio 5 jobs" [ref=e54]
+  - checkbox "Indiana 3 jobs" [ref=e55]
+  - checkbox "Nevada 3 jobs" [ref=e56]
+  - checkbox "New Hampshire 3 jobs" [ref=e57]
+  - checkbox "West Virginia 3 jobs" [ref=e58]
+  - checkbox "Georgia 2 jobs" [ref=e59]
+  - checkbox "Missouri 2 jobs" [ref=e60]
+  - checkbox "New Jersey 2 jobs" [ref=e61]
+  - checkbox "North Carolina 2 jobs" [ref=e62]
+  - checkbox "Pennsylvania 2 jobs" [ref=e63]
+  - checkbox "Alabama 1 job" [ref=e64]
+  - checkbox "Colorado 1 job" [ref=e65]
+  - checkbox "Hawaii 1 job" [ref=e66]
+  - checkbox "Iowa 1 job" [ref=e67]
+  - checkbox "Kentucky 1 job" [ref=e68]
+  - checkbox "Michigan 1 job" [ref=e69]
+- link "Skip to job results" [ref=e70]
+- button "City (56 shown) filters" [ref=e71]: "City (56 shown)"
+- textbox "Refine list of City (56 shown) filter options" [ref=e72] [placeholder="City"]
+- status
+- generic [ref=e73] [scrollable]:
+  - text: "City (56 shown) filters"
+  - checkbox "Bellevue 22 jobs" [ref=e74]
+  - checkbox "Austin 19 jobs" [ref=e75]
+  - checkbox "Nashville 17 jobs" [ref=e76]
+  - checkbox "Arlington 13 jobs" [ref=e77]
+  - checkbox "Boston 12 jobs" [ref=e78]
+  - checkbox "Seattle 9 jobs" [ref=e79]
+  - checkbox "New York 6 jobs" [ref=e80]
+  - checkbox "Phoenix 6 jobs" [ref=e81]
+  - checkbox "Kent 5 jobs" [ref=e82]
+  - checkbox "Dallas 4 jobs" [ref=e83]
+  - checkbox "Beaver 3 jobs" [ref=e84]
+  - checkbox "Daytona Beach 3 jobs" [ref=e85]
+  - checkbox "Las Vegas 3 jobs" [ref=e86]
+  - checkbox "Middleburg Heights 3 jobs" [ref=e87]
+  - checkbox "Modesto 3 jobs" [ref=e88]
+  - checkbox "Plainfield 3 jobs" [ref=e89]
+  - checkbox "Richmond 3 jobs" [ref=e90]
+  - checkbox "Sacramento 3 jobs" [ref=e91]
+  - checkbox "San Antonio 3 jobs" [ref=e92]
+  - checkbox "Sauget 3 jobs" [ref=e93]
+  - checkbox "Wilmington 3 jobs" [ref=e94]
+  - checkbox "Atlanta 2 jobs" [ref=e95]
+  - checkbox "Chicago 2 jobs" [ref=e96]
+  - checkbox "Irving 2 jobs" [ref=e97]
+  - checkbox "Lockbourne 2 jobs" [ref=e98]
+  - checkbox "Manchester 2 jobs" [ref=e99]
+  - checkbox "Miami 2 jobs" [ref=e100]
+  - checkbox "North Reading 2 jobs" [ref=e101]
+  - checkbox "Philadelphia 2 jobs" [ref=e102]
+  - checkbox "San Francisco 2 jobs" [ref=e103]
+  - checkbox "Arizona City 1 job" [ref=e104]
+  - checkbox "Birmingham 1 job" [ref=e105]
+  - checkbox "Brisbane 1 job" [ref=e106]
+  - checkbox "Burlington 1 job" [ref=e107]
+  - checkbox "Cleveland 1 job" [ref=e108]
+  - checkbox "Corona 1 job" [ref=e109]
+  - checkbox "Council Bluffs 1 job" [ref=e110]
+  - checkbox "Doral 1 job" [ref=e111]
+  - checkbox "Durham 1 job" [ref=e112]
+  - checkbox "Englewood 1 job" [ref=e113]
+  - checkbox "Fort Myers 1 job" [ref=e114]
+  - checkbox "Hampton 1 job" [ref=e115]
+  - checkbox "Honolulu 1 job" [ref=e116]
+  - checkbox "Houston 1 job" [ref=e117]
+  - checkbox "Jacksonville 1 job" [ref=e118]
+  - checkbox "Kannapolis 1 job" [ref=e119]
+  - checkbox "Kansas City 1 job" [ref=e120]
+  - checkbox "Los Angeles 1 job" [ref=e121]
+  - checkbox "Louisville 1 job" [ref=e122]
+  - checkbox "Loxley 1 job" [ref=e123]
+  - checkbox "Monroe Twp 1 job" [ref=e124]
+  - checkbox "San Diego 1 job" [ref=e125]
+  - checkbox "Seffner 1 job" [ref=e126]
+  - checkbox "Simi Valley 1 job" [ref=e127]
+  - checkbox "St Louis 1 job" [ref=e128]
+  - checkbox "Tempe 1 job" [ref=e129]
+- link "Skip to job results" [ref=e130]
+- generic [ref=e131]:
+  - text: "TEAM (5 shown)"
+  - button "More information about teams" [ref=e132]: ""
+  - button "TEAM (5 shown) filters" [ref=e133]
+- text: "TEAM (5 shown) filters"
+- status
+- checkbox "Amazon Health Services 70 jobs" [ref=e134]
+- checkbox "Finance and Global Business Services 8 jobs" [ref=e135]
+- checkbox "Transportation, Shipping & Logistics 8 jobs" [ref=e136]
+- checkbox "Amazonian Experience and Technology 1 job" [ref=e137]
+- checkbox "Amazon Operations 1 job" [ref=e138]
+- link "Skip to job results" [ref=e139]
+- button "ROLE TYPE (2 shown) filters" [ref=e140]: "ROLE TYPE (2 shown)"
+- text: "ROLE TYPE (2 shown) filters"
+- status
+- checkbox "Individual Contributor 92 jobs" [ref=e141]
+- checkbox "People Manager 8 jobs" [ref=e142]
+- link "Skip to job results" [ref=e143]
+- button "CATEGORY (3 shown) filters" [ref=e144]: "CATEGORY (3 shown)"
+- text: "CATEGORY (3 shown) filters"
+- status
+- button "Fulfillment Center 67 jobs" [ref=e145]
+- button "Corporate 32 jobs" [ref=e146]
+- button "Customer Service 1 job" [ref=e147]
+- heading "Results listed" [level=2]
+- text: "Sort by:"
+- listbox "Sort by:" [ref=e148]
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e149]
+- list:
+  - listitem "Fort Myers, FL, USA" [ref=e150]
+  - listitem "|" [ref=e151]
+  - listitem "Job ID: 10419245" [ref=e152]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "High School diploma or equivalent" [ref=e153]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e154]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e155]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e156]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e157]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419245" [ref=e158]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e159]
+- list:
+  - listitem "Wilmington, MA, USA" [ref=e160]
+  - listitem "|" [ref=e161]
+  - listitem "Job ID: 10419242" [ref=e162]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "high school diploma or equivalent" [ref=e163]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e164]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e165]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e166]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e167]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419242" [ref=e168]: "...Read more"
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Certified Pharmacy Technician, Amazon Pharmacy" [ref=e169]
+- list:
+  - listitem "Jacksonville, FL, USA" [ref=e170]
+  - listitem "|" [ref=e171]
+  - listitem "Job ID: 10419239" [ref=e172]
+- text: "Posted May 13, 2026(Updated about 3 hours ago)Basic qualifications:"
+- list:
+  - listitem "High School diploma or equivalent" [ref=e173]
+  - listitem "6+ months of working with computer and web based tools experience" [ref=e174]
+  - listitem "Active unrestricted Pharmacy Technician license in state of employment" [ref=e175]
+  - listitem "National Pharmacy Technician Certification (PTCB or NHA)" [ref=e176]
+  - listitem "Ability to communicate effectively with coworkers and supervisor. Ability to read and understand Eng" [ref=e177]
+- link "Read more about the job Certified Pharmacy Technician, Amazon Pharmacy, job Id 10419239" [ref=e178]: "...Read more"
+- heading "Pharmacy Technician, Amazon Pharmacy" [level=3]:
+  - link "Pharmacy Technician, Amazon Pharmacy" [ref=e179]
+- list:
+  - listitem "Richmond, CA, USA" [ref=e180]
+  - listitem "|" [ref=e181]
+  - listitem "Job ID: 10419199" [ref=e182]
+- text: "Posted May 13, 2026(Updated about 4 hours ago)Basic qualifications:"
+- list:
+  - listitem "Active and unrestricted in-state Board of Pharmacy License" [ref=e183]
+  - listitem "High school diploma or equivalent" [ref=e184]
+  - listitem "6+ months of experience working with computer and web-based tools" [ref=e185]
+  - listitem "Ability to communicate effectively with coworkers and supervisor." [ref=e186]
+  - listitem "Ability to read and understand English language labeling on product cartons and prescription labels." [ref=e187]
+  - listitem "Active and unrestricted in-state Driver’s License" [ref=e188]
+  - listitem "Clean driving record that passes Amazon’s Motor Vehicle Checks, to be rechecked annually. Driving pr" [ref=e189]
+  - listitem "Evading Responsibility" [ref=e190]
+  - listitem "Being at fault in a fatal accident" [ref=e191]
+  - listitem "Having two or more motor vehicle accidents in the last three years" [ref=e192]
+  - listitem "Having a motor vehicle accident resulting in greater than $5,000 in damages" [ref=e193]
+  - listitem "Driving under the influence or in any way impaired by alcohol or drugs" [ref=e194]
+  - listitem "Reckless Driving" [ref=e195]
+  - listitem "Recurrent speeding violations" [ref=e196]
+  - listitem "Recurrent driving suspensions" [ref=e197]
+  - listitem "Three or more driving violations within the last three years" [ref=e198]
+- link "Read more about the job Pharmacy Technician, Amazon Pharmacy, job Id 10419199" [ref=e199]: "...Read more"
+- heading "Overnight Staff Pharmacist, Amazon Pharmacy" [level=3]:
+  - link "Overnight Staff Pharmacist, Amazon Pharmacy" [ref=e200]
+- list:
+  - listitem "Lockbourne, OH, USA" [ref=e201]
+  - listitem "|" [ref=e202]
+  - listitem "Job ID: 10417920" [ref=e203]
+- text: "Posted May 12, 2026(Updated 1 day ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor of Science or PharmD Degree" [ref=e204]
+  - listitem "Active and unrestricted Pharmacist License in Ohio, and others upon request. Additional licenses may" [ref=e205]
+  - listitem "Knowledge of pharmacy laws, federal and state regulations concerning patient care" [ref=e206]
+  - listitem "Exemplary interpersonal communication skills including written and verbal communication." [ref=e207]
+  - listitem "Ability to perform basic computer functions." [ref=e208]
+  - listitem "Warehouse work, including the ability to lift 20lbs" [ref=e209]
+- link "Read more about the job Overnight Staff Pharmacist, Amazon Pharmacy, job Id 10417920" [ref=e210]: "...Read more"
+- heading "Senior Financial Analyst, Sub Same Day Operations Finance" [level=3]:
+  - link "Senior Financial Analyst, Sub Same Day Operations Finance" [ref=e211]
+- list:
+  - listitem "Arlington, VA, USA" [ref=e212]
+  - listitem "Bellevue, WA, USA" [ref=e213]
+  - listitem "Nashville, TN, USA" [ref=e214]
+  - listitem "|" [ref=e215]
+  - listitem "Job ID: 10409214" [ref=e216]
+- text: "Posted May  1, 2026(Updated 12 days ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor's degree in finance, accounting, business, economics, or a related analytical field (e.g., " [ref=e217]
+  - listitem "3+ years of finance or a related analytical field experience" [ref=e218]
+- link "Read more about the job Senior Financial Analyst, Sub Same Day Operations Finance, job Id 10409214" [ref=e219]: "...Read more"
+- heading "Senior Mechatronics & Robotics Technician, RME" [level=3]:
+  - link "Senior Mechatronics & Robotics Technician, RME" [ref=e220]
+- list:
+  - listitem "Kent, WA, USA" [ref=e221]
+  - listitem "|" [ref=e222]
+  - listitem "Job ID: 10416349" [ref=e223]
+- text: "Posted May 11, 2026(Updated about 6 hours ago)Basic qualifications:"
+- list:
+  - listitem "High school or equivalent diploma" [ref=e224]
+  - listitem "1+ years of Microsoft Office products and applications experience" [ref=e225]
+  - listitem "Work a flexible schedule/shift/work area, including weekends, nights, and/or holidays" [ref=e226]
+  - listitem "4+ years of conducting predictive and preventative maintenance procedures experience" [ref=e227]
+  - listitem "4+ years of repairing material handling equipment (MHE), automated conveyor systems, or related mech" [ref=e228]
+  - listitem "4+ years of reading blueprints and electrical schematics experience" [ref=e229]
+  - listitem "4+ years of electrical and electronic principles experience" [ref=e230]
+  - listitem "4+ years of demonstrating safety standards experience" [ref=e231]
+  - listitem "4+ years of troubleshooting and diagnostics of material handling equipment (MHE) experience" [ref=e232]
+  - listitem "Currently hold's an active and unrestricted, or have the ability to obtain a pharmacy technician lic" [ref=e233]
+- link "Read more about the job Senior Mechatronics & Robotics Technician, RME, job Id 10416349" [ref=e234]: "...Read more"
+- heading "Architectural Designer I , Integrated Design Solutions- Operational Design" [level=3]:
+  - link "Architectural Designer I , Integrated Design Solutions- Operational Design" [ref=e235]
+- list:
+  - listitem "Arlington, VA, USA" [ref=e236]
+  - listitem "Atlanta, GA, USA" [ref=e237]
+  - listitem "Austin, TX, USA" [ref=e238]
+  - listitem:
+    - button "+7 other locations" [ref=e239]
+  - listitem "|" [ref=e240]
+  - listitem "Job ID: 10408877" [ref=e241]
+- text: "Posted May  1, 2026(Updated 3 days ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor's degree in Architecture, Construction Management, Engineering, or a related field" [ref=e242]
+  - listitem "Experience with AutoCAD and/or Building Information Modeling (BIM), as well as scheduling software (" [ref=e243]
+  - listitem "Experience using one or more of the following technologies (e.g., AutoCAD, Rhino, Revit, SolidWorks," [ref=e244]
+  - listitem "Experience completing complex tasks quickly with little to no guidance and react with appropriate ur" [ref=e245]
+  - listitem "Experience that includes strong analytical skills, attention to detail, and effective communication " [ref=e246]
+- link "Read more about the job Architectural Designer I , Integrated Design Solutions- Operational Design, " [ref=e247]: "...Read more"
+- heading "Architectural Design Lead, Integrated Design Solutions (IDS)" [level=3]:
+  - link "Architectural Design Lead, Integrated Design Solutions (IDS)" [ref=e248]
+- list:
+  - listitem "Arlington, VA, USA" [ref=e249]
+  - listitem "Atlanta, GA, USA" [ref=e250]
+  - listitem "Austin, TX, USA" [ref=e251]
+  - listitem:
+    - button "+7 other locations" [ref=e252]
+  - listitem "|" [ref=e253]
+  - listitem "Job ID: 10408876" [ref=e254]
+- text: "Posted May  1, 2026(Updated 3 days ago)Basic qualifications:"
+- list:
+  - listitem "Experience in Design/Innovation, research & development, manufacturing, process, industrial engineer" [ref=e255]
+  - listitem "Experience in management of engineering design projects" [ref=e256]
+  - listitem "Bachelor's degree or equivalent" [ref=e257]
+  - listitem "Experience using business/ technical software such as REVIT, AutoCAD, BIM 360, BlueBeam, Microsoft S" [ref=e258]
+- link "Read more about the job Architectural Design Lead, Integrated Design Solutions (IDS), job Id 1040887" [ref=e259]: "...Read more"
+- heading "Account Representative, B2B Sales and Account Services, Amazon Pharmacy" [level=3]:
+  - link "Account Representative, B2B Sales and Account Services, Amazon Pharmacy" [ref=e260]
+- list:
+  - listitem "Austin, TX, USA" [ref=e261]
+  - listitem "Boston, MA, USA" [ref=e262]
+  - listitem "Seattle, WA, USA" [ref=e263]
+  - listitem "|" [ref=e264]
+  - listitem "Job ID: 10416446" [ref=e265]
+- text: "Posted May 11, 2026(Updated 2 days ago)Basic qualifications:"
+- list:
+  - listitem "Bachelor's degree or equivalent" [ref=e266]
+  - listitem "Experience understanding needs of business and end customers and translating them into right solutio" [ref=e267]
+  - listitem "Experience with end-to-end ownership of program deliverables in fast-paced, high-growth environments" [ref=e268]
+  - listitem "7+ years of experience in account management, business development, or strategic partnerships in a B" [ref=e269]
+  - listitem "Strong executive communication skills, both written and verbal, with experience presenting to senior" [ref=e270]
+  - listitem "Experience developing and executing strategic account or growth plans with measurable business outco" [ref=e271]
+- link "Read more about the job Account Representative, B2B Sales and Account Services, Amazon Pharmacy, job" [ref=e272]: "...Read more"
+- button "Previous page" [ref=e273] [disabled]
+- button "Page 1" [ref=e274] [disabled]: "1"
+- button "Page 2" [ref=e275]: "2"
+- button "Page 3" [ref=e276]: "3"
+- button "Page ..." [ref=e277] [disabled]: "..."
+- button "Page 10" [ref=e278]: "10"
+- button "Next page" [ref=e279]
+- text: "JOIN US ON"
+- list:
+  - listitem "Join us on facebook" [ref=e280]:
+    - link "Join us on facebook" [ref=e281]: "b"
+  - listitem "Join us on linkedin" [ref=e282]:
+    - link "Join us on linkedin" [ref=e283]: "d"
+  - listitem "Join us on instagram" [ref=e284]:
+    - link "Join us on instagram" [ref=e285]: "c"
+  - listitem "Join us on twitter" [ref=e286]:
+    - link "Join us on twitter" [ref=e287]: "j"
+- text: "DOWNLOAD OUR APP"
+- list:
+  - listitem "Download Amazon A to Z from App Store" [ref=e288]:
+    - link "Download Amazon A to Z from App Store" [ref=e289]
+  - listitem "Download Amazon A to Z from Google Play" [ref=e290]:
+    - link "Download Amazon A to Z from Google Play" [ref=e291]
+- text: "Find Careers"
+- list:
+  - listitem "Job Categories" [ref=e292]:
+    - link "Job Categories" [ref=e293]
+  - listitem "Teams" [ref=e294]:
+    - link "Teams" [ref=e295]
+  - listitem "Locations" [ref=e296]:
+    - link "Locations" [ref=e297]
+  - listitem "Military careers" [ref=e298]:
+    - link "Military careers" [ref=e299]
+  - listitem "Hourly" [ref=e300]:
+    - link "Hourly" [ref=e301]
+- text: "Working At Amazon"
+- list:
+  - listitem "Culture" [ref=e302]:
+    - link "Culture" [ref=e303]
+  - listitem "Benefits" [ref=e304]:
+    - link "Benefits" [ref=e305]
+  - listitem "Amazon Newsletter" [ref=e306]:
+    - link "Amazon Newsletter" [ref=e307]
+  - listitem "Inclusive experiences" [ref=e308]:
+    - link "Inclusive experiences" [ref=e309]
+  - listitem "Leadership Principles" [ref=e310]:
+    - link "Leadership Principles" [ref=e311]
+- text: "Help"
+- list:
+  - listitem "FAQ" [ref=e312]:
+    - link "FAQ" [ref=e313]
+  - listitem "How We Hire" [ref=e314]:
+    - link "How We Hire" [ref=e315]
+  - listitem "Application status" [ref=e316]:
+    - link "Application status" [ref=e317]
+  - listitem "Accommodations" [ref=e318]:
+    - link "Accommodations" [ref=e319]
+  - listitem "Legal disclosures and notices" [ref=e320]:
+    - link "Legal disclosures and notices" [ref=e321]
+- combobox "English" [ref=e322]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e323]
+- link "Impressum" [ref=e324]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+[
+  {
+    "text": "Certified Pharmacy Technician, Amazon Pharmacy",
+    "href": "https://www.amazon.jobs/en/jobs/10419245/certified-pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "...Read more",
+    "href": "https://www.amazon.jobs/en/jobs/10419245/certified-pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "Certified Pharmacy Technician, Amazon Pharmacy",
+    "href": "https://www.amazon.jobs/en/jobs/10419242/certified-pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "...Read more",
+    "href": "https://www.amazon.jobs/en/jobs/10419242/certified-pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "Certified Pharmacy Technician, Amazon Pharmacy",
+    "href": "https://www.amazon.jobs/en/jobs/10419239/certified-pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "...Read more",
+    "href": "https://www.amazon.jobs/en/jobs/10419239/certified-pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "Pharmacy Technician, Amazon Pharmacy",
+    "href": "https://www.amazon.jobs/en/jobs/10419199/pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "...Read more",
+    "href": "https://www.amazon.jobs/en/jobs/10419199/pharmacy-technician-amazon-pharmacy"
+  },
+  {
+    "text": "Overnight Staff Pharmacist, Amazon Pharmacy",
+    "href": "https://www.amazon.jobs/en/jobs/10417920/overnight-staff-pharmacist-amazon-pharmacy"
+  },
+  {
+    "text": "...Read more",
+    "href": "https://www.amazon.jobs/en/jobs/10417920/overnight-staff-pharmacist-amazon-pharmacy"
+  }
+]
+</result>
+
+[20] thinking: **Reviewing job postings**
+
+I think I need to say something like "View the most recent job posting" and maybe click to open it first. It's important for me to ensure that I'm capturing everything correctly. I might need to check the locator e149 first, or consider taking a snapshot again. I’m just trying to make sure I have all the details in order before I wrap up. Let’s keep everything organized!
+
+[21] tool_call: repl("Reopening most recent job posting")
+<request>
+await page.locator('e149').click();
+const s10 = await snapshot(page);
+console.log(s10.diff || s10.tree);
+</request>
+<result tokens_used="96" elapsed_time="1096ms">
+- title: "Certified Pharmacy Technician, Amazon Pharmacy - Job ID: 10419245 | Amazon.jobs" [url=https://www.amazon.jobs/en/jobs/10419245/certified-pharmacy-technician-amazon-pharmacy]
+- link "Skip to main content" [ref=e1]
+- navigation:
+  - button "menu" [ref=e2]
+  - link "Amazon Jobs home page" [ref=e3]
+  - form:
+    - combobox "Search for jobs by title or keyword" [ref=e4] [placeholder="Search for jobs by title or keyword"]
+    - text: "h"
+    - combobox "search job by location" [ref=e5] [placeholder="Location"]
+    - button "Search jobs" [ref=e6]
+  - menu "My career" [ref=e7]
+- link [ref=e8]
+- heading "Certified Pharmacy Technician, Amazon Pharmacy" [level=1]
+- text: "Job ID: 10419245 | PillPack, LLC - H96"
+- link "Apply now for Certified Pharmacy Technician, Amazon Pharmacy" [ref=e9]: "Apply now"
+- heading "Description" [level=2]
+- text: "Innovation is at the core of what we do. We believe that by removing and reducing the barriers that prevent people from taking their medications, we can help customers conveniently get the medications they need, when they need them and take them as prescribed. We have provided customers with the ability to find transparent and simple pricing, receive 24/7 customer service support, and have their meds delivered to their doorsteps while creating programs and products that embody our mission and position ourselves in becoming the world’s safest and fastest online pharmacy. We are looking for a Pharmacy Technician to join us on our journey to make it drastically easier for customers to find, choose, afford, and engage with the services, products, and professionals they need to get and stay healthy! An active in-state pharmacy technician license is required to be considered.#everydaybetter Key job responsibilities Core Responsibilities:• Assist pharmacist in filling prescription items, as permitted by the state board of pharmacy• Maintain a safe and clean pharmacy by complying with procedures, rules, and regulations• Work daily with Leadership to ensure the right medications are put in the right packets• Run automated machinery required to pre-sort and package medications• Fill exception trays with appropriate medication• Transition orders through different workflow stages from initial dispense through quality control• Count and fill prescription vials and affix labels on bulk prescription items• Pack and ship completed orders including printing and affixing appropriate labels on dispenser, shipping boxes• Sort and triage the right boxes to ship at the right time• Aid the pharmacy manager and pharmacists with receiving, shipping, counting, and packing• Clean, and help maintain, equipment and work areas• Package medications for dispensing and for delivery• Work a flexible schedule - shifts will possibly start and end outside of normal business hours Physical Requirements:During Peak/high demand, shifts last up to 12 hours (standard full-time shifts are 8-10 hours)• Standing, bending, reaching above the head, kneeling, crouching and/or stretching• Lifting and moving products up to 49 lbs in weight• Manual dexterity of hands and wrists"
+- heading "Basic Qualifications" [level=2]
+- text: "- High School diploma or equivalent- 6+ months of working with computer and web based tools experience- Active unrestricted Pharmacy Technician license in state of employment- National Pharmacy Technician Certification (PTCB or NHA)- Ability to communicate effectively with coworkers and supervisor. Ability to read and understand English language labelling on product cartons and prescription labels."
+- heading "Preferred Qualifications" [level=2]
+- paragraph:
+  - text: "- Demonstrated ability to work as an effective team member- Demonstrated organization skills and attention to detail- Ability to recognize and identify patient medications- Experience working under pressure in a fast-paced work environment while consistently meeting- standards for productivity and quality Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.Our inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit"
+  - link "https://amazon.jobs/content/en/how-we-hire/accommodations" [ref=e10]
+  - text: "for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner."
+- paragraph:
+  - text: "The starting pay for this position is listed below including the base pay rate plus the highest available shift differential which applies depending on the shift you select. As a total compensation company, you are eligible for additional earnings including overtime pay and performance bonuses. Final pay will be based on factors including shift selection and location. Starting Day 1 of employment, Amazon offers EAP, Mental Health Support, Medical Advice Line, 401(k) matching. Learn more about our benefits at"
+  - link "https://hiring.amazon.com/why-amazon/benefits" [ref=e11]
+  - text: "."
+- text: "USA, FL, Fort Myers - 22.00 - 24.00 USD hourly"
+- heading "Job details" [level=2]
+- list:
+  - listitem:
+    - img "location"
+    - list:
+      - listitem "USA, FL, Fort Myers" [ref=e12]
+  - listitem:
+    - img "category"
+    - list:
+      - listitem "Fulfillment Associate" [ref=e13]
+- heading "Related jobs" [level=2]
+- list:
+  - listitem "Machine Learning Compiler Engineer" [ref=e14]:
+    - link "Machine Learning Compiler Engineer" [ref=e15]
+    - text: "Location: USA, CA, Cupertino Posted: November 30, 2025 (Updated 5 minutes ago)"
+  - listitem "Ergonomics Specialist, Worldwide Ergonomics and Safety Experience" [ref=e16]:
+    - link "Ergonomics Specialist, Worldwide Ergonomics and Safety Experience" [ref=e17]
+    - text: "Location: USA, TN, Nashville Posted: May 13, 2026 (Updated 10 minutes ago)"
+  - listitem "Senior Machine Learning Compiler Engineer" [ref=e18]:
+    - link "Senior Machine Learning Compiler Engineer" [ref=e19]
+    - text: "Location: USA, WA, Seattle Posted: August  8, 2025 (Updated 13 minutes ago)"
+  - listitem "Senior Software Development Engineer - Generative AI, Neuron SDK" [ref=e20]:
+    - link "Senior Software Development Engineer - Generative AI, Neuron SDK" [ref=e21]
+    - text: "Location: USA, NY, New York Posted: July 23, 2025 (Updated 17 minutes ago)"
+  - listitem "Night Shift Engineering Operations Technician" [ref=e22]:
+    - link "Night Shift Engineering Operations Technician" [ref=e23]
+    - text: "Location: USA, CA, San Francisco Posted: March 23, 2026 (Updated 18 minutes ago)"
+- heading "Share this job" [level=2]
+- list:
+  - listitem "Share with facebook" [ref=e24]:
+    - link "Share with facebook" [ref=e25]: "b"
+  - listitem "Share with linkedin" [ref=e26]:
+    - link "Share with linkedin" [ref=e27]: "d"
+  - listitem "Share with twitter" [ref=e28]:
+    - link "Share with twitter" [ref=e29]: "j"
+  - listitem "Share with email" [ref=e30]:
+    - link "Share with email" [ref=e31]: "l"
+  - listitem "Print this job" [ref=e32]:
+    - link "Print this job" [ref=e33]: "m"
+- text: "JOIN US ON"
+- list:
+  - listitem "Join us on facebook" [ref=e34]:
+    - link "Join us on facebook" [ref=e35]: "b"
+  - listitem "Join us on linkedin" [ref=e36]:
+    - link "Join us on linkedin" [ref=e37]: "d"
+  - listitem "Join us on instagram" [ref=e38]:
+    - link "Join us on instagram" [ref=e39]: "c"
+  - listitem "Join us on twitter" [ref=e40]:
+    - link "Join us on twitter" [ref=e41]: "j"
+- text: "DOWNLOAD OUR APP"
+- list:
+  - listitem "Download Amazon A to Z from App Store" [ref=e42]:
+    - link "Download Amazon A to Z from App Store" [ref=e43]
+  - listitem "Download Amazon A to Z from Google Play" [ref=e44]:
+    - link "Download Amazon A to Z from Google Play" [ref=e45]
+- text: "Find Careers"
+- list:
+  - listitem "Job Categories" [ref=e46]:
+    - link "Job Categories" [ref=e47]
+  - listitem "Teams" [ref=e48]:
+    - link "Teams" [ref=e49]
+  - listitem "Locations" [ref=e50]:
+    - link "Locations" [ref=e51]
+  - listitem "Military careers" [ref=e52]:
+    - link "Military careers" [ref=e53]
+  - listitem "Hourly" [ref=e54]:
+    - link "Hourly" [ref=e55]
+- text: "Working At Amazon"
+- list:
+  - listitem "Culture" [ref=e56]:
+    - link "Culture" [ref=e57]
+  - listitem "Benefits" [ref=e58]:
+    - link "Benefits" [ref=e59]
+  - listitem "Amazon Newsletter" [ref=e60]:
+    - link "Amazon Newsletter" [ref=e61]
+  - listitem "Inclusive experiences" [ref=e62]:
+    - link "Inclusive experiences" [ref=e63]
+  - listitem "Leadership Principles" [ref=e64]:
+    - link "Leadership Principles" [ref=e65]
+- text: "Help"
+- list:
+  - listitem "FAQ" [ref=e66]:
+    - link "FAQ" [ref=e67]
+  - listitem "How We Hire" [ref=e68]:
+    - link "How We Hire" [ref=e69]
+  - listitem "Application status" [ref=e70]:
+    - link "Application status" [ref=e71]
+  - listitem "Accommodations" [ref=e72]:
+    - link "Accommodations" [ref=e73]
+  - listitem "Legal disclosures and notices" [ref=e74]:
+    - link "Legal disclosures and notices" [ref=e75]
+- combobox "English" [ref=e76]: "https://static.amazon.jobs/assets/icons/language-d17aaf6ff65f34438521c4c3028f4f9efcabfc072c692d08d7d737c9b5ec1af9.svg English"
+- text: "Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status."
+- link "Privacy and Data" [ref=e77]
+- link "Impressum" [ref=e78]
+- text: "© 1996-2026, Amazon.com, Inc. or its affiliates"
+</result>
+
+[22] assistant: Viewed the most recent full-time US pharmacy posting on Amazon Jobs:
+
+**Certified Pharmacy Technician, Amazon Pharmacy**  
+**Job ID:** 10419245  
+**Location:** Fort Myers, FL, USA  
+**Posted:** May 13, 2026  
+**Pay:** $22.00 to $24.00/hour  
+**Link:** https://www.amazon.jobs/en/jobs/10419245/certified-pharmacy-technician-amazon-pharmacy

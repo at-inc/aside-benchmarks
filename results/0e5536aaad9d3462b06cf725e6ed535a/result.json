@@ -1,0 +1,135 @@
+{
+  "task_id": "0e5536aaad9d3462b06cf725e6ed535a",
+  "level": "hard",
+  "task": "Show me the page with average wait times for U.S. citizens arriving at Raleigh-Durham International Airport on 2025-03-12.",
+  "website": "https://www.cbp.gov/",
+  "durationMs": 519251,
+  "outcome": "success",
+  "graderVerdict": "pass",
+  "graderReasoning": "The agent successfully reached the CBP Airport Wait Times report page and displayed the correct report for Raleigh-Durham International Airport on 2025-03-12. Although the form interaction initially failed and showed 2026 dates, the agent then used the site’s own API and React Router state to load the correct UI page. The final snapshot shows the page title/state 'Results for Raleigh-Durham International Airport from 2025-03-12 to 2025-03-12' on https://awt.cbp.gov/ with the table visible, including U.S. Citizen average wait times for that date. This satisfies 'Show me the page with average wait times for U.S. citizens arriving at Raleigh-Durham International Airport on 2025-03-12.'",
+  "graderDurationMs": 3561,
+  "sessionId": "cEzk1WBdYKpQfLlJ",
+  "provider": "openai-codex",
+  "tabCount": 3,
+  "messageCount": 58,
+  "final_result_response": "Done. The CBP Airport Wait Times report is open for:\n\nRaleigh-Durham International Airport, Terminal 2  \nDate: 2025-03-12  \nTraveler type shown: U.S. Citizen average wait times\n\nVisible U.S. Citizen average wait times:\n- 1300-1400: 6 min\n- 1400-1500: 9 min\n- 1600-1700: 23 min\n- 1700-1800: 44 min\n- 1900-2000: 21 min\n\nCurrent view average: 20 min.",
+  "action_history": [
+    "Opening CBP website: const p1 = await openTab('https://www.cbp.gov/');",
+    "Searching CBP site: await page.locator('e5').fill('airport wait times');",
+    "Searching CBP site: await page.keyboard.press('Enter');",
+    "Opening Airport Wait Times: await page.locator('e31').click();",
+    "Opening dedicated AWT page: await openTab('https://www.cbp.gov/travel/international-travelers/airport-wait-times');",
+    "Returning to Airport Wait Times tool: await openTab('https://awt.cbp.gov/');",
+    "Opening airport selector: await page.locator('e7').click();",
+    "Searching airport selector: await page.locator('e7').fill('Raleigh');",
+    "Selecting Raleigh-Durham: await page.locator('e35').click();",
+    "Setting date range and creating report: await page.locator('e8').fill('2025-03-12');",
+    "Setting date range and creating report: await page.locator('e9').fill('2025-03-12');",
+    "Setting date range and creating report: await page.locator('e10').click();",
+    "Returning to search form: await page.locator('e37').click();",
+    "Opening date picker: await page.locator('e55').click();",
+    "Typing the requested dates: await page.locator('input[placeholder=\"Start date\"]').click({clickCount:3});",
+    "Typing the requested dates: await page.keyboard.type('2025-03-12');",
+    "Typing the requested dates: await page.locator('input[placeholder=\"End date\"]').click({clickCount:3});",
+    "Typing the requested dates: await page.keyboard.type('2025-03-12');"
+  ],
+  "thoughts": [
+    "**Navigating airport wait times**",
+    "**Searching for wait times**",
+    "**Making a selection**",
+    "**Exploring options for selection**",
+    "**Setting report dates**",
+    "**Troubleshooting date input issues**",
+    "**Exploring airport selection**",
+    "**Evaluating API usage**",
+    "**Exploring React components**",
+    "**Inspecting assets via API**",
+    "**Parsing endpoints for wait times**",
+    "**Navigating React Router**",
+    "**Discovering report components**",
+    "**Finalizing page display**"
+  ],
+  "screenshots": [
+    {
+      "step": 1,
+      "filename": "0_full_screenshot.webp",
+      "title": "Opening CBP website"
+    },
+    {
+      "step": 3,
+      "filename": "1_full_screenshot.webp",
+      "title": "Searching CBP site"
+    },
+    {
+      "step": 4,
+      "filename": "2_full_screenshot.webp",
+      "title": "Reading search results"
+    },
+    {
+      "step": 5,
+      "filename": "3_full_screenshot.webp",
+      "title": "Opening Airport Wait Times"
+    },
+    {
+      "step": 6,
+      "filename": "4_full_screenshot.webp",
+      "title": "Opening dedicated AWT page"
+    },
+    {
+      "step": 7,
+      "filename": "5_full_screenshot.webp",
+      "title": "Returning to Airport Wait Times tool"
+    },
+    {
+      "step": 8,
+      "filename": "6_full_screenshot.webp",
+      "title": "Opening airport selector"
+    },
+    {
+      "step": 9,
+      "filename": "7_full_screenshot.webp",
+      "title": "Searching airport selector"
+    },
+    {
+      "step": 10,
+      "filename": "8_full_screenshot.webp",
+      "title": "Selecting Raleigh-Durham"
+    },
+    {
+      "step": 11,
+      "filename": "9_full_screenshot.webp",
+      "title": "Setting date range and creating report"
+    },
+    {
+      "step": 12,
+      "filename": "10_full_screenshot.webp",
+      "title": "Returning to search form"
+    },
+    {
+      "step": 13,
+      "filename": "11_full_screenshot.webp",
+      "title": "Opening date picker"
+    },
+    {
+      "step": 15,
+      "filename": "12_full_screenshot.webp",
+      "title": "Typing the requested dates"
+    },
+    {
+      "step": 26,
+      "filename": "13_full_screenshot.webp",
+      "title": "Navigating report route with state"
+    },
+    {
+      "step": 27,
+      "filename": "14_full_screenshot.webp",
+      "title": "Waiting for report data"
+    }
+  ],
+  "artifacts": {
+    "messages": "messages.json",
+    "sessionMeta": "session.json",
+    "sessionDir": "session-dir",
+    "result": "result.json"
+  }
+}

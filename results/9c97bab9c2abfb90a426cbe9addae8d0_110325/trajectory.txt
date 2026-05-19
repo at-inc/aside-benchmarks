@@ -1,0 +1,979 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-gmail" path="/Users/vista/.aside/u/0/agents/main/skills/google-gmail/SKILL.md">
+# Gmail
+
+Use the `gmail` global in the REPL tool. It uses direct HTTP against Gmail's internal sync API — no tab navigation needed.
+
+IMPORTANT: User may use multiple Google accounts (e.g. work email / personal email). ALWAYS CALL `await googleAccounts.print()` to print all logged-in google accounts and identify the correct `uid` before using Gmail.
+
+- Every `gmail` method takes `uid` (the `/u/{uid}/` index) as its first argument.
+  - Use browser history search and memory search to get hint about the account to use.
+- If intended search results are empty, consider trying a different `uid`. Use `Promise.all` for searching multiple accounts.
+- NOTE THAT threadId is different between accounts even if it refers to the same thread.
+
+## Quick Reference
+
+```js
+const uid = 1; // uid from Google Accounts list
+
+// Inbox and Search
+const inbox = await gmail.getInbox(uid); // shorthand for search(uid, 'in:inbox')
+const searchResults = await gmail.search(uid, 'from:alice@example.com subject:"meeting"');
+// → { results: GmailSearchResult[], hasMore, total, nextOffset }
+
+// Read thread (body is markdown by default)
+const thread1 = await gmail.getThread(uid, 'thread-f:123456');
+// → { threadId, subject, messages: GmailThreadMessage[] }
+
+// Compose (opens tab with pre-filled fields, returns Playwright Page)
+const cp1 = await gmail.openComposer(uid, { to: 'bob@example.com', subject: 'Hi', bodyHtml: '<b>Hello</b>' });
+
+// Reply (opens inline reply in thread detail page, returns Playwright Page)
+const rp1 = await gmail.openReplyComposer(uid, { threadId: 'thread-f:123456', bodyHtml: '<p>Thanks</p>' });
+
+// Download attachment
+await gmail.downloadAttachment(uid, attachment.url, 'report.pdf');
+```
+
+## Methods
+
+### `gmail.search(uid: number, query: string, opts?: { offset?: number }): Promise<GmailSearchResponse>`
+
+Search threads via Gmail search operators (`from:`, `to:`, `subject:`, `label:`, `before:`, `after:`, `is:`, `has:attachment`, etc.).
+
+- `uid` — Google account index (`/u/{uid}/`).
+- `query` — Gmail search query string.
+- `opts.offset` — Pagination offset (default `0`). Use `nextOffset` from previous response.
+
+Results are paginated, concise and already token-efficient; It's safe to call `console.log` to see all results.
+Call `gmail.getThread` to fetch the full thread.
+
+### `gmail.getInbox(uid: number, offset = 0): Promise<GmailSearchResponse>`
+
+Shorthand for `gmail.search(uid, 'in:inbox', { offset })`.
+
+### `gmail.getThread(uid: number, threadId: string, opts?: { bodyFormat?: 'raw' | 'markdown' }): Promise<GmailThread>`
+
+Fetch full thread with all messages, including body and attachments.
+
+- `opts.bodyFormat` — `'markdown'` (default): body converted to compact markdown. safe to read. (`'raw'`: original HTML)
+- Links in markdown body is indexed like `[Some Link][3]` then `[3]: https://example.com` at the bottom. use RegEx to capture the URL according to the index.
+
+### `gmail.openComposer(uid: number, opts: { to?: string, cc?: string, bcc?: string, subject?: string, bodyHtml?: string }): Promise<Page>`
+
+Open a Gmail compose tab with pre-filled fields. Returns the Playwright Page object for further interaction.
+
+- `uid` — Google account index.
+- `opts.to`, `opts.cc`, `opts.bcc` — Recipients.
+- `opts.subject` — Subject line.
+- `opts.bodyHtml` — HTML body to inject into the compose draft.
+
+### `gmail.openReplyComposer(uid: number, opts: { threadId: string, mode?: 'reply' | 'replyAll', bodyHtml?: string }): Promise<Page>`
+
+Open an inline reply composer within a thread detail page.
+
+- `uid` — Google account index.
+- `opts.threadId` — Thread to reply to.
+- `opts.mode` — `'reply'` (default) or `'replyAll'` (recommended for multi-party threads).
+
+### `gmail.openThreadDetailsPage(uid: number, threadId: string): Promise<Page>`
+
+Open the Gmail thread detail page in a new tab.
+
+### `gmail.downloadAttachment(uid: number, url: string, destPath: string): Promise<string>`
+
+Download an attachment to the dest path (relative path to the session directory). Returns the resolved file path.
+
+## Types
+
+```ts
+type Participant = { name: string; email: string; };
+
+interface GmailSearchResult {
+  threadId: string; // e.g. 'thread-f:123456'
+  subject: string;
+  snippet: string; // small preview text of the thread
+  timestamp: Date;
+  participants: Participant[];
+  isUnread: boolean;
+}
+
+interface GmailSearchResponse {
+  results: GmailSearchResult[];
+  hasMore: boolean;
+  total: number;
+  nextOffset: number;
+}
+
+
+interface GmailThread {
+  threadId: string;
+  subject: string;
+  messages: GmailThreadMessage[];
+  raw?: string; // raw JSON when heuristic parsing has low confidence
+}
+
+interface GmailThreadMessage {
+  messageId: string;      // e.g. 'msg-f:123456'
+  from: Participant;
+  to: Participant[];
+  cc: Participant[];
+  subject: string;
+  snippet: string;
+  timestamp: Date;
+  labels: string[];
+  body: string;           // HTML (raw) or markdown, depending on bodyFormat
+  attachments: Array<{
+    filename: string;
+    mimeType: string;
+    size: number;
+    url: string; // needs auth — don't download directly, use gmail.downloadAttachment()
+    inline: boolean; // true for inline images
+  }>;
+}
+```
+
+## Compose / Reply Interaction
+
+After `openComposer` or `openReplyComposer`, interact with the returned `Page`:
+
+```js
+// Send
+await page.locator('[data-tooltip*="Send"]').click();
+
+// Attach file
+await page.locator('input[type=file][name=Filedata]').setInputFiles('/path/to/file');
+
+// Discard draft
+await page.locator('[data-tooltip*="Discard"]').click();
+```
+</skill>
+</system_message>
+
+[2] user: Go to https://www.michaels.com/, Track the details of order 12345 with email 12345@gmail.com. My last name is Johnson.
+
+[3] tool_call: repl("Opening Michaels order tracking")
+<request>
+const m1 = await openTab('https://www.michaels.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="124" elapsed_time="3786ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Arts & Crafts, Frames, Seasonal Décor | DIY & Inspiration | Michaels (https://www.michaels.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Arts & Crafts, Frames, Seasonal Décor | DIY & Inspiration | Michaels" [url=https://www.michaels.com/]
+- dialog "cookieconsent":
+  - text: "This website uses cookies to enhance user experience and to analyze performance and traffic on our website. We also share information about your use of our site with our social media, advertising and analytics partners. To learn more click on Cookie Preferences. To accept our Privacy Policy and Terms & Conditions, click on Got It or close this message."
+  - link "Privacy Policy Terms & Conditions visit this link to learn more about cookies. Opens in new window" [ref=e1]: "Privacy Policy Terms & Conditions"
+  - button "Got it" [ref=e2]
+  - button "Cookie Preferences" [ref=e3]
+  - button "Close banner" [ref=e4]
+- main:
+  - banner:
+    - link "Custom Framing" [ref=e5]
+    - link "MakerPlace" [ref=e6]
+    - link "Digital Downloads" [ref=e7]
+    - link "Enterprise" [ref=e8]
+    - link "Education" [ref=e9]
+    - link "Logo Home" [ref=e10]:
+      - image "Logo Home" [ref=e11]
+    - generic [ref=e12]:
+      - button "Search Button" [ref=e13]
+      - textbox "Search Input" [ref=e14] [placeholder="Search Products"]
+    - generic [ref=e15]:
+      - button "Sign In" [ref=e16]
+      - button "Sign In" [ref=e17]
+    - link "Shopping cart icon Cart" [ref=e18]
+    - link "Shop menu Shop" [ref=e19]
+    - link "Services Services" [ref=e20]
+    - link "Savings Savings" [ref=e21]
+    - link "Buy Again Buy Again" [ref=e22]
+    - text: "|"
+    - link "The Knit & Sew Shop" [ref=e23]
+    - link "Art Supplies" [ref=e24]
+    - link "Balloon Bundles" [ref=e25]
+    - link "Kids" [ref=e26]
+    - link "Trending Decor" [ref=e27]
+    - link "Graduation" [ref=e28]
+    - link "Buy in Bulk" [ref=e29]
+    - link "Custom Framing" [ref=e30]
+    - region:
+      - link "20% Off All Regular Price Purchases Online only with code SAVE20MAY. Exclusions apply." [ref=e31]
+      - link "Helium Balloons Same-Day Delivery or Scheduled In-Store Pickup" [ref=e32]
+      - link "Parties from $149 Celebrate in a store near you." [ref=e33]
+    - button [ref=e34]:
+      - link "Feedback" [ref=e35]
+  - main:
+    - link [ref=e36]:
+      - text: "New Styles✨"
+      - heading "Classic design. Casual vibe." [level=2]
+      - text: "Bring a touch of chic to any space with our new, limited-edition décor collection from Jonathan Adler x Michaels. Get it while you can!"
+      - link "Shop Now" [ref=e37]:
+        - button "Shop Now" [ref=e38]
+      - link [ref=e39]
+    - button "Play/Pause button" [ref=e40]
+    - listitem [ref=e41]
+    - listitem [ref=e42]
+    - listitem [ref=e43]
+    - listitem [ref=e44]
+    - listitem [ref=e45]
+    - listitem [ref=e46]
+    - heading "New styles we're obsessed with!" [level=2]
+    - link "Shop All" [ref=e47]
+    - link "Jonathan Adler x Michaels 18\" Sun Soleil Beaded Embroidered Pillow 10813471$59.99 20% off every regu" [ref=e48]
+    - link "Jonathan Adler x Michaels 4.25\" Ceramic Apple 10812375$12.99 20% off every regular price purchase wi" [ref=e49]
+    - link "Jonathan Adler x Michaels 9\" Modernist Bird Ceramic Vase 10812361$29.99 20% off every regular price " [ref=e50]
+    - link "Jonathan Adler x Michaels 18\" Yellow & Brown Embroidered Pillow 10812380$49.99 20% off every regular" [ref=e51]
+    - link "Jonathan Adler x Michaels 12\" x 20\" Right On Pillow 10812365$39.99 20% off every regular price purch" [ref=e52]
+    - link "Jonathan Adler x Michaels 11.75\" Yellow & Pink Sun Glass Plate 10812382$39.99 20% off every regular " [ref=e53]
+    - link "Jonathan Adler x Michaels 18\" Geometric Beaded Embroidered Pillow by Ashland® 10812363$59.99 20% off" [ref=e54]
+    - heading "This Week's Top Deals" [level=2]
+    - link "Shop All" [ref=e56]
+    - link "Hothouse Décor Collection by Ashland™" [ref=e57]:
+      - text: "Hothouse Décor Collection by Ashland™60% OFF"
+      - heading "Hothouse Décor Collection by Ashland™" [level=3]
+    - link "Cosmetique Décor Collection by Ashland™" [ref=e58]:
+      - text: "Cosmetique Décor Collection by Ashland™60% OFF"
+      - heading "Cosmetique Décor Collection by Ashland™" [level=3]
+    - link "Modern Coast Décor Collection by Ashland™" [ref=e59]:
+      - text: "Modern Coast Décor Collection by Ashland™60% OFF"
+      - heading "Modern Coast Décor Collection by Ashland™" [level=3]
+      - text: "Excludes books."
+    - link "Into the West Décor Collection by Ashland®" [ref=e60]:
+      - text: "Into the West Décor Collection by Ashland®60% OFF"
+      - heading "Into the West Décor Collection by Ashland®" [level=3]
+    - link "ALL Artist's Loft® Back-Stapled & Gallery Wrapped Canvas" [ref=e61]:
+      - text: "ALL Artist's Loft® Back-Stapled & Gallery Wrapped Canvas 50% off online only BUY 2, GET 2 FREE*"
+      - heading "ALL Artist's Loft® Back-Stapled & Gallery Wrapped Canvas" [level=3]
+      - text: "*Buy two items at regular price & get the third and fourth of equal or lesser value free. Excludes clearance. Selection varies by store."
+    - link "Fine Art Marker, Pen & Pencil Sets" [ref=e62]:
+      - text: "Fine Art Marker, Pen & Pencil Sets 25% off online only BUY 1, GET 1 50% OFF*"
+      - heading "Fine Art Marker, Pen & Pencil Sets" [level=3]
+      - text: "*Buy one item at regular price & get the second of equal or lesser value 50% off. Excludes clearance."
+    - heading "Fresh takes on summer living" [level=2]
+    - heading [level=3]
+    - link "spring greenery on a chalice on a table NEW! Summer Outdoor Décor" [ref=e64]
+    - link "Kids outdoor toys and games by a pool NEW! Kids' Summer Toys & Games" [ref=e65]
+    - link "Summer hydrangea table garland across a party scape table NEW! Summer Floral" [ref=e66]
+    - link "Pink plastic storage bins in various sizes for pool toys and outdoor storage NEW! Summer Outdoor Fun" [ref=e67]
+    - button "Shop All Summer" [ref=e68]:
+      - link "Shop All Summer" [ref=e69]
+    - heading "Your one stop for every celebration" [level=2]
+    - link "Graduation Balloons Graduation Balloons" [ref=e70]
+    - link "Graduation party supplies & tumbler 2026 Graduation Party Décor" [ref=e71]
+    - link "Stars & stripes party tableware NEW! Red, White & Blue Celebrations" [ref=e72]
+    - link "Stars & stripes party tableware NEW! Party Accessories" [ref=e73]
+    - button "Shop All Party" [ref=e74]:
+      - link "Shop All Party" [ref=e75]
+    - heading "Make graduation day pop!" [level=2]
+    - link "Shop All" [ref=e76]
+    - link "31\" Black Graduation Cap Foil Balloon 10792643$9.99" [ref=e77]
+    - link "11\" Satin Luxe Latex Balloon 10787412+ 1$1.99 12/$12 Sale price applicable only when stated number o" [ref=e78]
+    - link "34\" Gold Number Foil Balloon 10734187+ 1$9.99" [ref=e79]
+    - link "34\" Black Number Foil Balloon 10795347+ 1$9.99" [ref=e80]
+    - link "Confetti Graduation Foil Balloon Bundle 10830389$24.99 - $39.99" [ref=e81]
+    - link "20\" Black, Silver & Gold Stars Congrats Grad Balloon 10784826$17.99" [ref=e82]
+    - link "19\" Metallic Star Foil Balloon 10712588+ 1$3.79 3/$9 Sale price applicable only when stated number o" [ref=e83]
+    - heading "Trending at Michaels" [level=3]
+    - link "Diamond art Diamond Art" [ref=e85]
+    - link "black frame Graduation Frames" [ref=e86]
+    - link "cotton fabric Cotton Fabric" [ref=e87]
+    - link "Bernat blanket Yarn Bernat Blanket Yarn" [ref=e88]
+    - link "Ohuhu markers set with a marker marking Ohuhu Markers" [ref=e89]
+    - link "Happy birthday balloon Birthday Balloons" [ref=e90]
+    - link "canvas Canvas" [ref=e91]
+    - text: "New Lower Prices✨"
+    - heading "We’ve sliced the prices on 100s of party supplies!" [level=3]
+    - text: "Explore 24/7 savings on tableware in a variety of colors and themes to fit all your celebrations.Prices vary by location and online."
+    - link "Shop Party Supplies" [ref=e93]:
+      - button "Shop Party Supplies" [ref=e94]
+    - heading "Shop the looks" [level=2]
+    - link "Shop all" [ref=e95]
+    - link "10\" Beige Seashell Embossed Ceramic Vase by Ashland® 10806115$11.99 Reg. $29.99" [ref=e96]
+    - link "11\" x 14\" Blue Spotted Shell Art Wall Décor by Ashland® 10806288$19.99 Reg. $49.99" [ref=e97]
+    - link "11\" x 14\" Blue Striped Shell Art Wall Décor by Ashland® 10806285$19.99 Reg. $49.99" [ref=e98]
+    - link "13.25\" Silver Shell Tabletop Décor by Ashland® 10806253$19.99 Reg. $49.99" [ref=e99]
+    - link "16.5\" Coastal Rope Tabletop Lamp by Ashland® 10806130$23.99 Reg. $59.99" [ref=e100]
+    - link "5.5\" Rope Ball Tabletop Décor by Ashland® 10806266$7.99 Reg. $19.99" [ref=e101]
+    - link "12.5\" Premade Green Grass Faux Plant by Ashland® 10806398$15.99 Reg. $39.99" [ref=e102]
+    - heading "The Knit & Sew Shop" [level=2]
+    - heading "Relax and enjoy a new hands-on craft project." [level=3]
+    - link "Yarn skeins Yarn in every style" [ref=e104]
+    - link "fabric in blue and white print Cross-stitch your way to happy" [ref=e105]
+    - link "pink pastels apparel fabric on table with measuring tape and scissors Fabric for every project" [ref=e106]
+    - link "Amigirumi yarn characters from watermelons to ice cream people NEW! Crochet kits to brighten your da" [ref=e107]
+    - button "Shop All Knit & Sew" [ref=e108]:
+      - link "Shop All Knit & Sew" [ref=e109]
+    - heading "See what's new from our extended assortment online✨" [level=2]
+    - link "More New Arrivals" [ref=e110]
+    - link [ref=e111]:
+      - text: "Cricut Joy™ 2 Jade + Ultimate Bundle D9017715S Cricut Joy™ 2 Jade + Ultimate Bundle 4.8 out of 5 stars. 86 reviews"
+      - button "Display a pop up to show review summary." [ref=e112]
+      - text: "$209.00"
+    - link "Colorbok® Sunshine Vibes Sand Art Kit D9001779S Colorbok® Sunshine Vibes Sand Art Kit$5.99 Reg. $9.9" [ref=e113]
+    - link "Small World Toys Wind Chime Bells DIY Craft Kit D9009684S Small World Toys Wind Chime Bells DIY Craf" [ref=e114]
+    - link "Small World Toys Crystal Art Workshop Kit D9009666S Small World Toys Crystal Art Workshop Kit$29.99 " [ref=e115]
+    - link "Arches® 140lb. Cold-Pressed Watercolor Block D9016932S New Arches® 140lb. Cold-Pressed Watercolor Bl" [ref=e116]
+    - link "Arches® 300lb. Cold Pressed Watercolor Block D9016951S New Arches® 300lb. Cold Pressed Watercolor Bl" [ref=e117]
+    - link "Arches® 140lb. Hot-Pressed Watercolor Pad D9016935S New Arches® 140lb. Hot-Pressed Watercolor Pad$33" [ref=e118]
+    - heading "Shop by category" [level=3]
+    - link "purple, pink and yellow tulips Spring" [ref=e120]
+    - link "pink flamingo inner tube Summer" [ref=e121]
+    - link "graduation cap Graduation" [ref=e122]
+    - link "red white and blue craft hat Red, White & Blue" [ref=e123]
+    - link "blue glue gun Crafts & Hobbies" [ref=e124]
+    - link "paint tubes in assorted colors Art Supplies" [ref=e125]
+    - link "rainbow drawers rolling cart Storage" [ref=e126]
+    - link "three skeins of yarn Yarn & Needlecraft" [ref=e127]
+    - link "stack of folded fabric in assorted patterns Fabric" [ref=e128]
+    - link "black frame with family photo Frames" [ref=e129]
+    - link "yellow t-shirt Apparel Crafts" [ref=e130]
+    - link "lion paper craft Kids" [ref=e131]
+    - link "balloon bouquet Balloons" [ref=e132]
+    - link "disco ball Party Supplies" [ref=e133]
+    - link "pencil paper craft Teacher Supplies" [ref=e134]
+    - link "bouquet of faux flowers Floral" [ref=e135]
+    - link "bead bracelet with stamped circle charm Beads & Jewelry" [ref=e136]
+    - link "two sheets and two rolls of vinyl Craft Machines & Vinyl" [ref=e137]
+    - link "sewing machine Sewing & Notions" [ref=e138]
+    - link "scissors with fanned colored paper Scrapbook & Papercraft" [ref=e139]
+    - link "muffin tin Baking & Kitchen" [ref=e140]
+    - link "welcome mat Home Décor" [ref=e141]
+    - heading "Top picks for you" [level=2]
+    - link [ref=e142]:
+      - text: "Level 3 Gallery Wrapped Heavy Duty Canvas by Artist's Loft® 10472532 Level 3 Gallery Wrapped Heavy Duty Canvas by Artist's Loft®4.8 out of 5 stars. 16258 reviews"
+      - button "Display a pop up to show review summary." [ref=e143]
+      - text: "$3.74 - $59.99 Reg. $7.49 - $119.99 50% Off Online or Buy Two Get Two Free mix & match in stores"
+    - link [ref=e144]:
+      - text: "Poster Frame by Studio Décor® 10212858 Poster Frame by Studio Décor®4.4 out of 5 stars. 6132 reviews"
+      - button "Display a pop up to show review summary." [ref=e145]
+      - text: "$12.49 - $19.99 Reg. $24.99 - $39.99 50% Off Online or Buy One Get One Free mix & match in stores"
+    - link "Floral Bouquet Wrapping Paper, 20ct. by Ashland® 10766570+ 1 Floral Bouquet Wrapping Paper, 20ct. by" [ref=e146]
+    - link [ref=e147]:
+      - text: "Bernat® Blanket Big™ Yarn 10750420+ 1 Bernat® Blanket Big™ Yarn 4.8 out of 5 stars. 20880 reviews"
+      - button "Display a pop up to show review summary." [ref=e148]
+      - text: "$9.79 - $19.99 Reg. $13.99 - $19.99 20% off every regular price purchase with code SAVE20MAY"
+    - link [ref=e149]:
+      - text: "Lion Brand® 24/7 Cotton® Yarn 10542175+ 1 Lion Brand® 24/7 Cotton® Yarn 4.7 out of 5 stars. 1213 reviews"
+      - button "Display a pop up to show review summary." [ref=e150]
+      - text: "$7.29 20% off every regular price purchase with code SAVE20MAY"
+    - link "10\" Floral Heart Stepping Stone Kit by Make Market® 10800915 10\" Floral Heart Stepping Stone Kit by " [ref=e151]
+    - heading "More at Michaels" [level=3]
+    - link "Michaels Pro logo Bulk Supplies" [ref=e153]
+    - link "New & Now New & Now" [ref=e154]
+    - link "Online Exclusives Online Exclusives" [ref=e155]
+    - link "sale Sale" [ref=e156]
+    - link "Clearance" [ref=e157]
+    - link "Makerplace by Michaels Makerplace" [ref=e158]
+    - text: "MakerPlace by Michaels"
+    - heading "Made for Milestones" [level=2]
+    - text: "From personalized keepsakes to party details, discover pieces that make graduation unforgettable."
+    - link "Shop Graduation" [ref=e159]:
+      - button "Shop Graduation" [ref=e160]
+    - link "Shop Sale" [ref=e161]:
+      - button "Shop Sale" [ref=e162]
+    - heading "Michaels brands & services" [level=3]
+    - link "Michaels birthday parties logo over party scene Starting at $149! Birthday Parties 100% fun. Zero st" [ref=e163]
+    - link "Michaels Pro pack logo overlay on stacks of construction paper MichaelsPRO™ Save when you buy suppli" [ref=e164]
+    - link "michaels custom framing logo overlay on frame corners Custom Framing Frame anything — in store, onli" [ref=e165]
+    - link "Michaels Rewards logo overlay on red craft supplies Michaels Rewards Get rewarded every time you sho" [ref=e166]
+    - link "Buy online Pick up in store or Same-day deliver balloons Balloons Order online and schedule a time f" [ref=e167]
+    - link "affirm logo in black text with white background and royal blue border Craft now and pay over time. S" [ref=e168]
+    - link "MichaelsPro Education MichaelsPro™ Education Your organization's education supply solution" [ref=e169]
+    - heading "Learn with Michaels" [level=2]
+    - link "Michaels Digital Downloads in white text over image of laptop with butterfly on screen Digital Downl" [ref=e171]
+    - link "hands knitting rainbow yarn with blue play button Videos on Demand" [ref=e172]
+    - link "hands adding white flowers to grapevine wreath Live Online Learning" [ref=e173]
+    - link "clear storage with yarn skeins and yarn decal on outside Projects" [ref=e174]
+    - paragraph "*Important Stuff We Have To Tell You" [ref=e175]
+    - paragraph "Foil and Latex Balloons: Sale price applicable only when stated number of items is purchased. This o" [ref=e176]
+    - paragraph "Offers, Savings & Promotions: Offers exclude items sold and shipped by third-party sellers, Michaels" [ref=e177]
+    - paragraph "Custom Framing: Excludes Aaron Brothers Essentials, Custom Frame Value Packages, Custom Frame Expres" [ref=e178]
+    - paragraph "Buy 1, Get 1 50% Off: Buy one item at regular price & get the second of equal or lesser value 50% of" [ref=e179]
+    - paragraph "Buy 1, Get 1 Free: Buy one item at regular price & get the second of equal or lesser value free. Exc" [ref=e180]
+    - paragraph "Buy 1, Get 2 Free: Buy one item at regular price & get the second and third of equal or lesser value" [ref=e181]
+    - paragraph "Buy 2, Get 1 Free: Buy two items at regular price & get the third of equal or lesser value free. Exc" [ref=e182]
+    - paragraph "Buy 2, Get 2 Free: Buy two items at regular price & get the third and fourth of equal or lesser valu" [ref=e183]
+    - paragraph "Buy 2, Get 3 Free: Buy two items at regular price & get the third, fourth and fifth of equal or less" [ref=e184]
+    - paragraph "5 Free Shipping: Limited to Standard Ground shipping. The following items are excluded from shipping" [ref=e185]
+    - paragraph "The Michaels Credit Card cannot be used on michaelscustomframing.com; michaelsphotogifts.com; educat" [ref=e186]
+    - paragraph [ref=e187]
+  - contentinfo:
+    - text: "Get the latest on trends, best deals and exclusive offers!By submitting your email, you are consenting to receive marketing emails from Michaels to get the latest trends, deals and promotions. Consent is not a condition of any purchase."
+    - textbox "Enter Your Email" [ref=e188] [placeholder="Enter your Email"]
+    - button "Sign up" [ref=e189]
+    - button "Resources" [ref=e190]
+    - button "Customer Care" [ref=e191]
+    - button "About Us" [ref=e192]
+    - button "Services" [ref=e193]
+    - button "Michaels Rewards & Credit Card" [ref=e194]
+    - button "Privacy Policy" [ref=e195]
+    - text: "© 2026  Michaels Stores. All rights reserved. |"
+    - link "Accessibility Statement" [ref=e196]
+    - link "Link to facebook" [ref=e197]: "twitter"
+    - link "Link to instagram" [ref=e198]: "twitter"
+    - link "Link to pinterest" [ref=e199]: "twitter"
+    - link "Link to twitter" [ref=e200]: "twitter"
+    - link "Link to youtube" [ref=e201]: "youtube"
+- region "Notifications-top" [ref=e202]
+- region "Notifications-top-left" [ref=e203]
+- region "Notifications-top-right" [ref=e204]
+- region "Notifications-bottom-left" [ref=e205]
+- region "Notifications-bottom" [ref=e206]
+- region "Notifications-bottom-right" [ref=e207]
+- iframe:
+  - heading "Explore our limited-edition collection of chic home décor and more." [level=2]
+  - link "Décor" [ref=f3e1]:
+    - text: "Decor"
+    - button "Décor" [ref=f3e2]
+  - link "Crafts" [ref=f3e3]:
+    - text: "Crafts"
+    - button "Crafts" [ref=f3e4]
+  - link "Party" [ref=f3e5]:
+    - text: "Party"
+    - button "Party" [ref=f3e6]
+  - link "Games" [ref=f3e7]:
+    - text: "Games"
+    - button "Games" [ref=f3e8]
+- iframe:
+  - region:
+    - text: "As Seen on Social"
+    - heading "60% Off Summer Collections" [level=2]
+    - text: "Explore these viral exclusive collections — get them before they're\n            gone!"
+    - link "Shop Modern Coast" [ref=f4e1]
+    - link "Shop Cosmetique" [ref=f4e2]
+    - link "Shop Hothouse" [ref=f4e3]
+- iframe:
+  - heading "Your Birthday Party Headquarters!" [level=2]
+  - text: "Find everything in one place with easy in-store pickup or same-day delivery!"
+  - link "Balloon Bundles" [ref=f5e1]
+  - link "Party Supplies" [ref=f5e2]
+  - link "Book a Party" [ref=f5e3]
+</result>
+
+[4] thinking: **Finding order tracking options**
+
+I need to figure out how to access the order tracking link. Maybe it will be in the footer under the Customer Care menu. I also think I should dismiss the cookies prompt first. Do I need to click "sign in" to see my order status? That might be in the account menu, but I could also search for it. Let's take a closer look at the sign in dropdown after dismissing the cookie message.
+
+[5] tool_call: repl("Looking for order tracking options")
+<request>
+await page.locator('e2').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff);
+</request>
+<result tokens_used="100" elapsed_time="1023ms">
+@@ -1,0 +1 @@
++- link "Enable accessibility" [ref=e208]
+@@ -4 +5 @@
+-  - button "Got it" [ref=e2]
++  - button "Got it" [ref=e2] [focused]
+@@ -43,7 +44,4 @@
+-    - link [ref=e36]:
+-      - text: "New Styles✨"
+-      - heading "Classic design. Casual vibe." [level=2]
+-      - text: "Bring a touch of chic to any space with our new, limited-edition décor collection from Jonathan Adler x Michaels. Get it while you can!"
+-      - link "Shop Now" [ref=e37]:
+-        - button "Shop Now" [ref=e38]
+-      - link [ref=e39]
++    - heading "Up to 50% off Summer" [level=2]
++    - text: "Turn up the heat with savings during The Big Summer Sale! Shop décor, floral and so much more."
++    - link "Shop Now" [ref=e209]:
++      - button "Shop Now" [ref=e210]
+@@ -211,0 +209,46 @@
++    - heading "Thoughtful Gifts, Lasting Memories." [level=2]
++    - text: "Unique, small business made finds help turn graduation into something truly special."
++    - link "Shop More" [ref=e211]
++    - link [ref=e212]:
++      - text: "Class of 2026 Graduation Vinyl Decal, Senior Backdrop Sticker, Graduation Party Decor, Class of 2026"
++      - button "Favorite" [ref=e213]
++      - text: "Class of 2026 Graduation Vinyl Decal, Senior Backdrop Sticker, Graduation Party Decor, Class of 2026 Wall Decal, Senior Photo Prop a071 4.8 out of 5 stars. 4 reviews"
++      - link "RDeco'Decals" [ref=e214]
++      - text: "$25.49+$29.99 Free Shipping"
++    - link [ref=e215]:
++      - text: "Handmade Graduation Lei Class of 2026 Braided necklace with Cap Charm | Customizable 2-Color Combos"
++      - button "Favorite" [ref=e216]
++      - text: "Handmade Graduation Lei Class of 2026 Braided necklace with Cap Charm | Customizable 2-Color Combos | 26inch Sustainable Gift | Butterflies 4.2 out of 5 stars. 5 reviews"
++      - link "jandbdesigns760" [ref=e217]
++      - text: "$12.00$15.00"
++    - link [ref=e218]:
++      - text: "Single Calendar - Fill Yourself Empty Graduation Gift Packaging, 12 Days of Graduation Surprises, Gr"
++      - button "Favorite" [ref=e219]
++      - text: "Single Calendar - Fill Yourself Empty Graduation Gift Packaging, 12 Days of Graduation Surprises, Graduation Countdown, Graduation Gift Box 5.0 out of 5 stars. 2 reviews"
++      - link "Miss Cookie Packaging" [ref=e220]
++      - text: "$8.00"
++    - link [ref=e221]:
++      - text: "2026 Graduation Lei Customizable Satin Ribbon Lei with Name and School | Handmade Soft Keepsake | Cl Personalized"
++      - button "Favorite" [ref=e222]
++      - text: "2026 Graduation Lei  Customizable Satin Ribbon Lei with Name and School | Handmade Soft Keepsake | Class of 2026 Personalized Gift 4.2 out of 5 stars. 5 reviews"
++      - link "jandbdesigns760" [ref=e223]
++      - text: "$30.00"
++    - link [ref=e224]:
++      - text: "2025 Graduation prop, Graduation picture, College Grad, Graduation gift, Grad Pary Backdrop Decor, S Personalized"
++      - button "Favorite" [ref=e225]
++      - text: "2025 Graduation prop, Graduation picture, College Grad, Graduation gift, Grad Pary Backdrop Decor, Senior Pictures, Personalized Graduation"
++      - link "Fabuless Crafts" [ref=e226]
++      - text: "$25.00+"
++    - link [ref=e227]:
++      - text: "2025 Custom Graduation Yard Sign Cutouts | Congratulations 2025 Grads Yard Décor | Personalized Yard Personalized"
++      - button "Favorite" [ref=e228]
++      - text: "2025 Custom Graduation Yard Sign Cutouts | Congratulations 2025 Grads Yard Décor | Personalized Yard Letters | 17\" Lawn Letters with Stakes"
++      - link "TotallyCustomPrinting" [ref=e229]
++      - text: "$89.00+Free Shipping"
++    - link [ref=e230]:
++      - text: "Graduation Pebble Art | Grad Gift | Class of 2025 | Rock Art | Unique Gift Idea | 8x10 | Spring Deco"
++      - button "Favorite" [ref=e231]
++      - text: "Graduation Pebble Art | Grad Gift | Class of 2025 | Rock Art | Unique Gift Idea | 8x10 | Spring Decor | High School | College| Diploma 4.7 out of 5 stars. 66 reviews"
++      - button "Display a pop up to show review summary." [ref=e232]
++      - link "Lakeshore Rock Art" [ref=e233]
++      - text: "$45.00+Free Shipping"
+</result>
+
+[6] tool_call: repl("Opening sign-in menu")
+<request>
+await page.locator('e16').click();
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff);
+</request>
+<result tokens_used="82" elapsed_time="1163ms">
+@@ -2,6 +2,0 @@
+-- dialog "cookieconsent":
+-  - text: "This website uses cookies to enhance user experience and to analyze performance and traffic on our website. We also share information about your use of our site with our social media, advertising and analytics partners. To learn more click on Cookie Preferences. To accept our Privacy Policy and Terms & Conditions, click on Got It or close this message."
+-  - link "Privacy Policy Terms & Conditions visit this link to learn more about cookies. Opens in new window" [ref=e1]: "Privacy Policy Terms & Conditions"
+-  - button "Got it" [ref=e2] [focused]
+-  - button "Cookie Preferences" [ref=e3]
+-  - button "Close banner" [ref=e4]
+@@ -23,0 +17,5 @@
++    - tooltip [focused]:
++      - link "Sign In" [ref=e235]
++      - link "Create an Account" [ref=e236]
++      - link "Track My OrdersTrack My Orders" [ref=e238]
++      - link "Michaels RewardsMichaels Rewards" [ref=e240]
+@@ -44,4 +43,7 @@
+-    - heading "Up to 50% off Summer" [level=2]
+-    - text: "Turn up the heat with savings during The Big Summer Sale! Shop décor, floral and so much more."
+-    - link "Shop Now" [ref=e209]:
+-      - button "Shop Now" [ref=e210]
++    - text: "We have helium!✨"
++    - heading "Don’t forget the balloons!" [level=2]
++    - text: "700+ styles. Priced to party. Easy pickup and delivery."
++    - link "Foil Balloons 3 for $9" [ref=e241]:
++      - button "Foil Balloons 3 for $9" [ref=e242]
++    - link "Latex Balloons 12 for $12" [ref=e243]:
++      - button "Latex Balloons 12 for $12" [ref=e244]
+@@ -89,4 +91,4 @@
+-    - link "spring greenery on a chalice on a table NEW! Summer Outdoor Décor" [ref=e64]
+-    - link "Kids outdoor toys and games by a pool NEW! Kids' Summer Toys & Games" [ref=e65]
+-    - link "Summer hydrangea table garland across a party scape table NEW! Summer Floral" [ref=e66]
+-    - link "Pink plastic storage bins in various sizes for pool toys and outdoor storage NEW! Summer Outdoor Fun" [ref=e67]
++    - link "spring greenery on a chalice on a table NEW! Summer Outdoor Décor" [ref=e245]
++    - link "Kids outdoor toys and games by a pool NEW! Kids' Summer Toys & Games" [ref=e246]
++    - link "Summer hydrangea table garland across a party scape table NEW! Summer Floral" [ref=e247]
++    - link "Pink plastic storage bins in various sizes for pool toys and outdoor storage NEW! Summer Outdoor Fun" [ref=e248]
+@@ -96,4 +98,4 @@
+-    - link "Graduation Balloons Graduation Balloons" [ref=e70]
+-    - link "Graduation party supplies & tumbler 2026 Graduation Party Décor" [ref=e71]
+-    - link "Stars & stripes party tableware NEW! Red, White & Blue Celebrations" [ref=e72]
+-    - link "Stars & stripes party tableware NEW! Party Accessories" [ref=e73]
++    - link "Graduation Balloons Graduation Balloons" [ref=e249]
++    - link "Graduation party supplies & tumbler 2026 Graduation Party Décor" [ref=e250]
++    - link "Stars & stripes party tableware NEW! Red, White & Blue Celebrations" [ref=e251]
++    - link "Stars & stripes party tableware NEW! Party Accessories" [ref=e252]
+@@ -135,4 +137,4 @@
+-    - link "Yarn skeins Yarn in every style" [ref=e104]
+-    - link "fabric in blue and white print Cross-stitch your way to happy" [ref=e105]
+-    - link "pink pastels apparel fabric on table with measuring tape and scissors Fabric for every project" [ref=e106]
+-    - link "Amigirumi yarn characters from watermelons to ice cream people NEW! Crochet kits to brighten your da" [ref=e107]
++    - link "Yarn skeins Yarn in every style" [ref=e254]
++    - link "fabric in blue and white print Cross-stitch your way to happy" [ref=e255]
++    - link "pink pastels apparel fabric on table with measuring tape and scissors Fabric for every project" [ref=e256]
++    - link "Amigirumi yarn characters from watermelons to ice cream people NEW! Crochet kits to brighten your da" [ref=e257]
+@@ -256,7 +258,7 @@
+-    - link "Michaels birthday parties logo over party scene Starting at $149! Birthday Parties 100% fun. Zero st" [ref=e163]
+-    - link "Michaels Pro pack logo overlay on stacks of construction paper MichaelsPRO™ Save when you buy suppli" [ref=e164]
+-    - link "michaels custom framing logo overlay on frame corners Custom Framing Frame anything — in store, onli" [ref=e165]
+-    - link "Michaels Rewards logo overlay on red craft supplies Michaels Rewards Get rewarded every time you sho" [ref=e166]
+-    - link "Buy online Pick up in store or Same-day deliver balloons Balloons Order online and schedule a time f" [ref=e167]
+-    - link "affirm logo in black text with white background and royal blue border Craft now and pay over time. S" [ref=e168]
+-    - link "MichaelsPro Education MichaelsPro™ Education Your organization's education supply solution" [ref=e169]
++    - link "Michaels birthday parties logo over party scene Starting at $149! Birthday Parties 100% fun. Zero st" [ref=e258]
++    - link "Michaels Pro pack logo overlay on stacks of construction paper MichaelsPRO™ Save when you buy suppli" [ref=e259]
++    - link "michaels custom framing logo overlay on frame corners Custom Framing Frame anything — in store, onli" [ref=e260]
++    - link "Michaels Rewards logo overlay on red craft supplies Michaels Rewards Get rewarded every time you sho" [ref=e261]
++    - link "Buy online Pick up in store or Same-day deliver balloons Balloons Order online and schedule a time f" [ref=e262]
++    - link "affirm logo in black text with white background and royal blue border Craft now and pay over time. S" [ref=e263]
++    - link "MichaelsPro Education MichaelsPro™ Education Your organization's education supply solution" [ref=e264]
+@@ -264,4 +266,4 @@
+-    - link "Michaels Digital Downloads in white text over image of laptop with butterfly on screen Digital Downl" [ref=e171]
+-    - link "hands knitting rainbow yarn with blue play button Videos on Demand" [ref=e172]
+-    - link "hands adding white flowers to grapevine wreath Live Online Learning" [ref=e173]
+-    - link "clear storage with yarn skeins and yarn decal on outside Projects" [ref=e174]
++    - link "Michaels Digital Downloads in white text over image of laptop with butterfly on screen Digital Downl" [ref=e265]
++    - link "hands knitting rainbow yarn with blue play button Videos on Demand" [ref=e266]
++    - link "hands adding white flowers to grapevine wreath Live Online Learning" [ref=e267]
++    - link "clear storage with yarn skeins and yarn decal on outside Projects" [ref=e268]
+</result>
+
+[7] tool_call: repl("Opening Track My Orders")
+<request>
+await page.locator('e238').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff);
+</request>
+<result tokens_used="67" elapsed_time="1487ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Track Order | Michaels" [url=https://www.michaels.com/track-my-order]
+- banner:
+  - link "Custom Framing" [ref=e1]
+  - link "MakerPlace" [ref=e2]
+  - link "Digital Downloads" [ref=e3]
+  - link "Enterprise" [ref=e4]
+  - link "Education" [ref=e5]
+  - link "Logo Home" [ref=e6]:
+    - image "Logo Home" [ref=e7]
+  - generic [ref=e8]:
+    - button "Search Button" [ref=e9]
+    - textbox "Search Input" [ref=e10] [placeholder="Search Products"]
+  - generic [ref=e11]:
+    - button "Sign In" [ref=e12]
+    - button "Sign In" [ref=e13]
+  - link "Shopping cart icon Cart" [ref=e14]
+  - link "Shop menu Shop" [ref=e15]
+  - link "Services Services" [ref=e16]
+  - link "Savings Savings" [ref=e17]
+  - link "Buy Again Buy Again" [ref=e18]
+  - text: "|"
+  - link "The Knit & Sew Shop" [ref=e19]
+  - link "Art Supplies" [ref=e20]
+  - link "Balloon Bundles" [ref=e21]
+  - link "Kids" [ref=e22]
+  - link "Trending Decor" [ref=e23]
+  - link "Graduation" [ref=e24]
+  - link "Buy in Bulk" [ref=e25]
+  - link "Custom Framing" [ref=e26]
+  - region:
+    - link "20% Off All Regular Price Purchases Online only with code SAVE20MAY. Exclusions apply." [ref=e27]
+    - link "Helium Balloons Same-Day Delivery or Scheduled In-Store Pickup" [ref=e28]
+    - link "Parties from $149 Celebrate in a store near you." [ref=e29]
+  - button [ref=e30]:
+    - link "Feedback" [ref=e31]
+- link "Home" [ref=e32]
+- text: ">"
+- link "Track My Order" [ref=e33]
+- text: "RESOURCES"
+- generic "Track My Order" [ref=e34]
+- generic "Michaels Supplier Portal" [ref=e35]
+- generic "Shipping Policy" [ref=e36]
+- generic "Return Policy" [ref=e37]
+- generic "Coupon Policy" [ref=e38]
+- generic "Product Policy" [ref=e39]
+- generic "Product Recalls" [ref=e40]
+- generic "Terms and Conditions" [ref=e41]
+- generic "Your Privacy Rights" [ref=e42]
+- generic "Web Accessibility Statement" [ref=e43]
+- heading "Track Order" [level=2]
+- heading "Log in to view order history and track your order." [level=4]
+- text: "Email Address *"
+- textbox "Email Address *" [ref=e44]
+- text: "Password*"
+- textbox "Password*" [ref=e45]
+- button "Keep me signed in" [ref=e46]
+- link "Forgot password?" [ref=e47]
+- button "Sign In" [ref=e48]
+- heading "Track Order by Order Number" [level=4]
+- text: "Order Number *"
+- textbox "Order Number *" [ref=e49]
+- text: "Last Name *"
+- textbox "Last Name *" [ref=e50]
+- text: "Email Address *"
+- textbox "Email Address *" [ref=e51]
+- button "Track Order" [ref=e52]
+- contentinfo:
+  - text: "Get the latest on trends, best deals and exclusive offers!By submitting your email, you are consenting to receive marketing emails from Michaels to get the latest trends, deals and promotions. Consent is not a condition of any purchase."
+  - textbox "Enter Your Email" [ref=e53] [placeholder="Enter your Email"]
+  - button "Sign up" [ref=e54]
+  - button "Resources" [ref=e55]
+  - button "Customer Care" [ref=e56]
+  - button "About Us" [ref=e57]
+  - button "Services" [ref=e58]
+  - button "Michaels Rewards & Credit Card" [ref=e59]
+  - button "Privacy Policy" [ref=e60]
+  - text: "© 2026  Michaels Stores. All rights reserved. |"
+  - link "Accessibility Statement" [ref=e61]
+  - link "Link to facebook" [ref=e62]: "twitter"
+  - link "Link to instagram" [ref=e63]: "twitter"
+  - link "Link to pinterest" [ref=e64]: "twitter"
+  - link "Link to twitter" [ref=e65]: "twitter"
+  - link "Link to youtube" [ref=e66]: "youtube"
+- region "Notifications-top" [ref=e67]
+- region "Notifications-top-left" [ref=e68]
+- region "Notifications-top-right" [ref=e69]
+- region "Notifications-bottom-left" [ref=e70]
+- region "Notifications-bottom" [ref=e71]
+- region "Notifications-bottom-right" [ref=e72]
+- region "Notifications-top" [ref=e73]
+- region "Notifications-top-left" [ref=e74]
+- region "Notifications-top-right" [ref=e75]
+- region "Notifications-bottom-left" [ref=e76]
+- region "Notifications-bottom" [ref=e77]
+- region "Notifications-bottom-right" [ref=e78]
+</result>
+
+[8] tool_call: repl("Submitting order tracking details")
+<request>
+await page.locator('e49').fill('12345');
+await page.locator('e50').fill('Johnson');
+await page.locator('e51').fill('12345@gmail.com');
+await page.locator('e52').click();
+const s5 = await snapshot(page);
+console.log(s5.diff);
+</request>
+<result tokens_used="122" elapsed_time="793ms">
+@@ -1,0 +1 @@
++- link "Enable accessibility" [ref=e79]
+@@ -13 +14,2 @@
+-    - button "Sign In" [ref=e12]
++    - button "Sign In" [ref=e12]:
++      - image "Sign In"
+@@ -15,5 +17,19 @@
+-  - link "Shopping cart icon Cart" [ref=e14]
+-  - link "Shop menu Shop" [ref=e15]
+-  - link "Services Services" [ref=e16]
+-  - link "Savings Savings" [ref=e17]
+-  - link "Buy Again Buy Again" [ref=e18]
++  - link [ref=e14]:
++    - image "Shopping cart icon"
++    - text: "Cart"
++  - link [ref=e15]:
++    - paragraph:
++      - image "Shop menu"
++      - text: "Shop"
++  - link [ref=e16]:
++    - paragraph:
++      - image "Services"
++      - text: "Services"
++  - link [ref=e17]:
++    - paragraph:
++      - image "Savings"
++      - text: "Savings"
++  - link [ref=e18]:
++    - paragraph:
++      - image "Buy Again"
++      - text: "Buy Again"
+@@ -49,17 +65,3 @@
+-- heading "Track Order" [level=2]
+-- heading "Log in to view order history and track your order." [level=4]
+-- text: "Email Address *"
+-- textbox "Email Address *" [ref=e44]
+-- text: "Password*"
+-- textbox "Password*" [ref=e45]
+-- button "Keep me signed in" [ref=e46]
+-- link "Forgot password?" [ref=e47]
+-- button "Sign In" [ref=e48]
+-- heading "Track Order by Order Number" [level=4]
+-- text: "Order Number *"
+-- textbox "Order Number *" [ref=e49]
+-- text: "Last Name *"
+-- textbox "Last Name *" [ref=e50]
+-- text: "Email Address *"
+-- textbox "Email Address *" [ref=e51]
+-- button "Track Order" [ref=e52]
++- heading "Not found" [level=2]
++- heading "Please search for another order number" [level=4]
++- button "Search Again" [ref=e80]
+@@ -68,2 +70,3 @@
+-  - textbox "Enter Your Email" [ref=e53] [placeholder="Enter your Email"]
+-  - button "Sign up" [ref=e54]
++  - form:
++    - textbox "Enter Your Email" [ref=e53] [placeholder="Enter your Email"]
++    - button "Sign up" [ref=e54]
+@@ -77,6 +80,12 @@
+-  - link "Accessibility Statement" [ref=e61]
+-  - link "Link to facebook" [ref=e62]: "twitter"
+-  - link "Link to instagram" [ref=e63]: "twitter"
+-  - link "Link to pinterest" [ref=e64]: "twitter"
+-  - link "Link to twitter" [ref=e65]: "twitter"
+-  - link "Link to youtube" [ref=e66]: "youtube"
++  - paragraph:
++    - link "Accessibility Statement" [ref=e61]
++  - link "Link to facebook" [ref=e62]:
++    - image "twitter"
++  - link "Link to instagram" [ref=e63]:
++    - image "twitter"
++  - link "Link to pinterest" [ref=e64]:
++    - image "twitter"
++  - link "Link to twitter" [ref=e65]:
++    - image "twitter"
++  - link "Link to youtube" [ref=e66]:
++    - image "youtube"
+@@ -95,0 +104,2 @@
++- iframe:
++  - text: "protected by  reCAPTCHA"
+</result>
+
+[9] thinking: **Checking order status**
+
+I need to report that no order was found, and I'm wondering if the order number must have more digits. The user asked for tracking details, but it's strange that we found nothing. Maybe there's an error, and I could try again? It says "not found," and maybe providing a specific order number like 12345 is unrealistic. I should finalize a concise statement, but for now, it seems like I can only report that no order was found.
+
+[10] assistant: I checked Michaels order tracking with:
+
+- Order number: 12345
+- Last name: Johnson
+- Email: 12345@gmail.com
+
+Result: Michaels says “Not found” and asks to search for another order number.
+
+[11] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-gmail" path="/Users/vista/.aside/u/0/agents/main/skills/google-gmail/SKILL.md">
+# Gmail
+
+Use the `gmail` global in the REPL tool. It uses direct HTTP against Gmail's internal sync API — no tab navigation needed.
+
+IMPORTANT: User may use multiple Google accounts (e.g. work email / personal email). ALWAYS CALL `await googleAccounts.print()` to print all logged-in google accounts and identify the correct `uid` before using Gmail.
+
+- Every `gmail` method takes `uid` (the `/u/{uid}/` index) as its first argument.
+  - Use browser history search and memory search to get hint about the account to use.
+- If intended search results are empty, consider trying a different `uid`. Use `Promise.all` for searching multiple accounts.
+- NOTE THAT threadId is different between accounts even if it refers to the same thread.
+
+## Quick Reference
+
+```js
+const uid = 1; // uid from Google Accounts list
+
+// Inbox and Search
+const inbox = await gmail.getInbox(uid); // shorthand for search(uid, 'in:inbox')
+const searchResults = await gmail.search(uid, 'from:alice@example.com subject:"meeting"');
+// → { results: GmailSearchResult[], hasMore, total, nextOffset }
+
+// Read thread (body is markdown by default)
+const thread1 = await gmail.getThread(uid, 'thread-f:123456');
+// → { threadId, subject, messages: GmailThreadMessage[] }
+
+// Compose (opens tab with pre-filled fields, returns Playwright Page)
+const cp1 = await gmail.openComposer(uid, { to: 'bob@example.com', subject: 'Hi', bodyHtml: '<b>Hello</b>' });
+
+// Reply (opens inline reply in thread detail page, returns Playwright Page)
+const rp1 = await gmail.openReplyComposer(uid, { threadId: 'thread-f:123456', bodyHtml: '<p>Thanks</p>' });
+
+// Download attachment
+await gmail.downloadAttachment(uid, attachment.url, 'report.pdf');
+```
+
+## Methods
+
+### `gmail.search(uid: number, query: string, opts?: { offset?: number }): Promise<GmailSearchResponse>`
+
+Search threads via Gmail search operators (`from:`, `to:`, `subject:`, `label:`, `before:`, `after:`, `is:`, `has:attachment`, etc.).
+
+- `uid` — Google account index (`/u/{uid}/`).
+- `query` — Gmail search query string.
+- `opts.offset` — Pagination offset (default `0`). Use `nextOffset` from previous response.
+
+Results are paginated, concise and already token-efficient; It's safe to call `console.log` to see all results.
+Call `gmail.getThread` to fetch the full thread.
+
+### `gmail.getInbox(uid: number, offset = 0): Promise<GmailSearchResponse>`
+
+Shorthand for `gmail.search(uid, 'in:inbox', { offset })`.
+
+### `gmail.getThread(uid: number, threadId: string, opts?: { bodyFormat?: 'raw' | 'markdown' }): Promise<GmailThread>`
+
+Fetch full thread with all messages, including body and attachments.
+
+- `opts.bodyFormat` — `'markdown'` (default): body converted to compact markdown. safe to read. (`'raw'`: original HTML)
+- Links in markdown body is indexed like `[Some Link][3]` then `[3]: https://example.com` at the bottom. use RegEx to capture the URL according to the index.
+
+### `gmail.openComposer(uid: number, opts: { to?: string, cc?: string, bcc?: string, subject?: string, bodyHtml?: string }): Promise<Page>`
+
+Open a Gmail compose tab with pre-filled fields. Returns the Playwright Page object for further interaction.
+
+- `uid` — Google account index.
+- `opts.to`, `opts.cc`, `opts.bcc` — Recipients.
+- `opts.subject` — Subject line.
+- `opts.bodyHtml` — HTML body to inject into the compose draft.
+
+### `gmail.openReplyComposer(uid: number, opts: { threadId: string, mode?: 'reply' | 'replyAll', bodyHtml?: string }): Promise<Page>`
+
+Open an inline reply composer within a thread detail page.
+
+- `uid` — Google account index.
+- `opts.threadId` — Thread to reply to.
+- `opts.mode` — `'reply'` (default) or `'replyAll'` (recommended for multi-party threads).
+
+### `gmail.openThreadDetailsPage(uid: number, threadId: string): Promise<Page>`
+
+Open the Gmail thread detail page in a new tab.
+
+### `gmail.downloadAttachment(uid: number, url: string, destPath: string): Promise<string>`
+
+Download an attachment to the dest path (relative path to the session directory). Returns the resolved file path.
+
+## Types
+
+```ts
+type Participant = { name: string; email: string; };
+
+interface GmailSearchResult {
+  threadId: string; // e.g. 'thread-f:123456'
+  subject: string;
+  snippet: string; // small preview text of the thread
+  timestamp: Date;
+  participants: Participant[];
+  isUnread: boolean;
+}
+
+interface GmailSearchResponse {
+  results: GmailSearchResult[];
+  hasMore: boolean;
+  total: number;
+  nextOffset: number;
+}
+
+
+interface GmailThread {
+  threadId: string;
+  subject: string;
+  messages: GmailThreadMessage[];
+  raw?: string; // raw JSON when heuristic parsing has low confidence
+}
+
+interface GmailThreadMessage {
+  messageId: string;      // e.g. 'msg-f:123456'
+  from: Participant;
+  to: Participant[];
+  cc: Participant[];
+  subject: string;
+  snippet: string;
+  timestamp: Date;
+  labels: string[];
+  body: string;           // HTML (raw) or markdown, depending on bodyFormat
+  attachments: Array<{
+    filename: string;
+    mimeType: string;
+    size: number;
+    url: string; // needs auth — don't download directly, use gmail.downloadAttachment()
+    inline: boolean; // true for inline images
+  }>;
+}
+```
+
+## Compose / Reply Interaction
+
+After `openComposer` or `openReplyComposer`, interact with the returned `Page`:
+
+```js
+// Send
+await page.locator('[data-tooltip*="Send"]').click();
+
+// Attach file
+await page.locator('input[type=file][name=Filedata]').setInputFiles('/path/to/file');
+
+// Discard draft
+await page.locator('[data-tooltip*="Discard"]').click();
+```
+</skill>
+</system_message>

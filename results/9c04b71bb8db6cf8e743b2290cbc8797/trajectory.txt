@@ -1,0 +1,439 @@
+[1] user: Go to https://www.ups.com/, Find a UPS drop-off point near Miami Florida.
+
+[2] thinking: **Searching for UPS drop-off locations**
+
+I'm figuring out how to help the user find a UPS drop-off near Miami, Florida. They probably want specific locations, so I’ll need to use the browser to navigate efficiently. It could be quicker to do a web search instead. Since they suggested going to UPS.com, I’ll start by opening the website and seeing if I can gather the location data from there. Let’s get started!
+
+[3] tool_call: repl("Opening UPS website")
+<request>
+const p1 = await openTab('https://www.ups.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="124" elapsed_time="5546ms">
+[system] `tabs[0]` navigated to: [UPS Global Shipping and Logistics Solutions | Ship and Track Online | UPS - United States](https://www.ups.com/us/en/home) 
+✔︎ Opened a new tab and set it active: tabs[0], page → UPS Global Shipping and Logistics Solutions | Ship and Track Online | UPS - United States (https://www.ups.com/us/en/home)
+# note: interactive (clickable / focusable) elements only.
+- title: "UPS Global Shipping and Logistics Solutions | Ship and Track Online | UPS - United States" [url=https://www.ups.com/us/en/home]
+- banner
+- main:
+  - text: "tracking"
+  - link "Tracking" [ref=e1]
+  - textbox "Tracking Number or InfoNotice®" [ref=e2]
+  - text: "Tracking Number or InfoNotice®"
+  - button "Track" [ref=e3]
+  - text: "Need help changing your delivery?"
+  - link "Get Help" [ref=e4]
+  - link "Set Up Alerts" [ref=e5]
+  - link "Change Delivery" [ref=e6]
+  - link "Get Support" [ref=e7]
+  - text: "shipping"
+  - link "Shipping" [ref=e8]
+  - text: "expand\n            \n              \n                \n                  \n                  \n                  \n                   ups dashboard"
+  - link "How Can We Help You?" [ref=e9]
+  - text: "expand"
+  - heading [level=2]: "Solutions for Everyone"
+  - switch "Schedule Package Pickups One-time or recurring, find an option that best fits your business.See Pick" [ref=e10] [checked]: "Business"
+  - switch "Take Control of Your Deliveries Know where your package is and when it will arrive with UPS My Choic" [ref=e11]: "Personal"
+  - text: "Schedule Package Pickups\n            \n            \n            \n            \n           One-time or recurring, find an option that best fits your business."
+  - link "See Pickup Options" [ref=e12]
+  - text: "Simplify Your Returns\n            \n            \n            \n            \n           By making the returns process easier, your customers can have more confidence to buy."
+  - link "Get Started" [ref=e13]
+  - text: "Order Shipping Supplies\n            \n            \n            \n            \n           Get boxes, envelopes, forms and labels just by logging in."
+  - link "Order Now" [ref=e14]
+  - text: "Chat with an Expert\n            \n            \n            \n            \n           Get personalized business advice by booking a free, 15-minute consultation."
+  - link "Book Now" [ref=e15]
+  - text: "Log In for Less Guessing and More Control\n             Personalized tools are ready to help you manage shipments, bills, claims and more."
+  - link "Log In" [ref=e16]
+  - heading "Delivering What Matters" [level=2]
+  - text: "8 Years\n               As an industry leader in on-time peak delivery\n            \n            \n          \n               200+\n              Countries and territories served\n            \n            \n          \n               20.8M\n               Packages delivered daily"
+  - tabpanel:
+    - text: "UPS’s next generation of brokerage services makes international shipping easier"
+    - button [ref=e17]
+  - tablist:
+    - button "Previous slide" [ref=e18]
+    - button "Toggle autoplay" [ref=e19]
+    - tab "Slide 1" [ref=e20] [selected]
+    - tab "Slide 2" [ref=e21]
+    - tab "Slide 3" [ref=e22]
+    - tab "Slide 4" [ref=e23]
+    - tab "Slide 5" [ref=e24]
+    - button "Next slide" [ref=e25]
+  - heading [level=2]: "Get Started with UPS"
+  - text: "UPS Payment Options\n              \n              \n             Quicker Checkout Give us your information once and we’ll save it for next time.\n          \n            \n              Discount Shopping Bag\n              \n              \n             Personalized Discounts Answer a few quick questions and we’ll find the best deal for your business.\n          \n            \n              UPS Warning\n              \n              \n             Custom Alerts Get the shipping notifications you want — and only the ones you want.\n          \n            \n              UPS Pickups Dropoff Dolly Boxes\n              \n              \n             On-Demand Pickups We’ll take your shipments on your schedule — every day or every now and then."
+  - link "Create a Profile" [ref=e26]
+  - heading [level=2]: "Important Updates"
+  - generic "Information about Flight 2976 Accident" [ref=e28]
+  - generic "Updated Rate and Service Guides" [ref=e30]
+  - generic "International Air Fuel Surcharge: Effective May 11, 2026" [ref=e32]
+  - generic "Paper Commercial Invoice Services Surcharge" [ref=e34]
+  - generic "Disbursement Fee" [ref=e36]
+  - generic "Surge Fees" [ref=e38]
+  - generic "Updated Tariff/Terms and Conditions of Service" [ref=e40]
+  - generic "Domestic Fuel Surcharge: Effective April 13, 2026" [ref=e42]
+  - generic "International Ground & Air Fuel Surcharge: Effective April 13, 2026" [ref=e44]
+  - generic "Ground Saver: Non-Compliant Label Fee" [ref=e46]
+  - generic "Customs Brokerage Partner Government Agency (PGA) Disclaimer Fee: Effective April 13, 2026" [ref=e48]
+  - generic "Learn More About Recent Trade Policy and Tariff Changes" [ref=e50]
+- contentinfo
+</result>
+
+[4] thinking: **Looking for drop-off location**
+
+I need to find the drop-off location and consider linking to it. It seems I might need a snapshot of the interactive main part while excluding the header and navigation elements. I want to capture a full snapshot for clarity. Let’s clarify the requirements to ensure I’m getting the right information! I’ll keep that in mind as I proceed with the task. It's all about getting everything just right!
+
+[5] tool_call: repl("Looking for locations link")
+<request>
+const s2 = await snapshot(page);
+console.log(s2.tree);
+</request>
+<result tokens_used="66" elapsed_time="180ms">
+- title: "UPS Global Shipping and Logistics Solutions | Ship and Track Online | UPS - United States" [url=https://www.ups.com/us/en/home]
+- button "Skip to Main Content" [ref=e51]
+- banner:
+  - paragraph:
+    - text: "IEEPA Tariff Refunds"
+    - link "Global Alert Modal Link" [ref=e52]
+  - region:
+    - button "Location Finder" [ref=e53]: "Find Closest UPS Location"
+    - button "1 Service Alerts" [ref=e54]
+    - button "United States - English" [ref=e55]
+    - paragraph:
+      - link "Support" [ref=e56]
+    - link "Home" [ref=e57]
+    - navigation:
+      - list:
+        - listitem "Shipping" [ref=e58]:
+          - button "Shipping" [ref=e59]
+        - listitem "Tracking" [ref=e60]:
+          - button "Tracking" [ref=e61]
+        - listitem "Products & Services" [ref=e62]:
+          - button "Products & Services" [ref=e63]
+        - listitem "The UPS Store" [ref=e64]:
+          - button "The UPS Store" [ref=e65]
+    - list:
+      - listitem "Search" [ref=e66]:
+        - button "Search" [ref=e67]
+      - listitem "Log In" [ref=e68]:
+        - button "Log In" [ref=e69]
+- main:
+  - paragraph:
+    - image "tracking"
+  - paragraph:
+    - link "Tracking" [ref=e1]
+  - form:
+    - textbox "Tracking Number or InfoNotice®" [ref=e2]
+    - label: "Tracking Number or InfoNotice®"
+    - button "Track" [ref=e3]
+  - paragraph:
+    - text: "Need help changing your delivery?"
+    - link "Get Help" [ref=e4]
+  - paragraph:
+    - link "Set Up Alerts" [ref=e5]
+  - paragraph:
+    - link "Change Delivery" [ref=e6]
+  - paragraph:
+    - link "Get Support" [ref=e7]
+  - paragraph:
+    - image "shipping"
+  - paragraph:
+    - link "Shipping" [ref=e8]
+  - image "expand"
+  - paragraph:
+    - image "ups dashboard"
+  - paragraph:
+    - link "How Can We Help You?" [ref=e9]
+  - image "expand"
+  - heading [level=2]: "Solutions for Everyone"
+  - paragraph:
+    - switch "Schedule Package Pickups One-time or recurring, find an option that best fits your business.See Pick" [ref=e10] [checked]: "Business"
+    - switch "Take Control of Your Deliveries Know where your package is and when it will arrive with UPS My Choic" [ref=e11]: "Personal"
+  - paragraph:
+    - text: "Schedule Package Pickups\n            \n            \n            \n            \n           One-time or recurring, find an option that best fits your business."
+    - paragraph:
+      - link "See Pickup Options" [ref=e12]
+    - text: "Simplify Your Returns\n            \n            \n            \n            \n           By making the returns process easier, your customers can have more confidence to buy."
+    - paragraph:
+      - link "Get Started" [ref=e13]
+    - text: "Order Shipping Supplies\n            \n            \n            \n            \n           Get boxes, envelopes, forms and labels just by logging in."
+    - paragraph:
+      - link "Order Now" [ref=e14]
+    - text: "Chat with an Expert\n            \n            \n            \n            \n           Get personalized business advice by booking a free, 15-minute consultation."
+    - paragraph:
+      - link "Book Now" [ref=e15]
+  - text: "Log In for Less Guessing and More Control\n             Personalized tools are ready to help you manage shipments, bills, claims and more."
+  - paragraph:
+    - link "Log In" [ref=e16]
+  - heading "Delivering What Matters" [level=2]
+  - text: "8 Years\n               As an industry leader in on-time peak delivery\n            \n            \n          \n               200+\n              Countries and territories served\n            \n            \n          \n               20.8M\n               Packages delivered daily"
+  - tabpanel:
+    - text: "UPS’s next generation of brokerage services makes international shipping easier"
+    - button [ref=e17]
+  - tablist:
+    - button "Previous slide" [ref=e18]
+    - button "Toggle autoplay" [ref=e19]
+    - tab "Slide 1" [ref=e20] [selected]
+    - tab "Slide 2" [ref=e21]
+    - tab "Slide 3" [ref=e22]
+    - tab "Slide 4" [ref=e23]
+    - tab "Slide 5" [ref=e24]
+    - button "Next slide" [ref=e25]
+  - heading [level=2]: "Get Started with UPS"
+  - paragraph:
+    - image "UPS Payment Options"
+  - text: "Quicker Checkout Give us your information once and we’ll save it for next time."
+  - paragraph:
+    - image "Discount Shopping Bag"
+  - text: "Personalized Discounts Answer a few quick questions and we’ll find the best deal for your business."
+  - paragraph:
+    - image "UPS Warning"
+  - text: "Custom Alerts Get the shipping notifications you want — and only the ones you want."
+  - paragraph:
+    - image "UPS Pickups Dropoff Dolly Boxes"
+  - text: "On-Demand Pickups We’ll take your shipments on your schedule — every day or every now and then."
+  - paragraph:
+    - link "Create a Profile" [ref=e26]
+  - heading [level=2]: "Important Updates"
+  - generic "Information about Flight 2976 Accident" [ref=e28]
+  - generic "Updated Rate and Service Guides" [ref=e30]
+  - generic "International Air Fuel Surcharge: Effective May 11, 2026" [ref=e32]
+  - generic "Paper Commercial Invoice Services Surcharge" [ref=e34]
+  - generic "Disbursement Fee" [ref=e36]
+  - generic "Surge Fees" [ref=e38]
+  - generic "Updated Tariff/Terms and Conditions of Service" [ref=e40]
+  - generic "Domestic Fuel Surcharge: Effective April 13, 2026" [ref=e42]
+  - generic "International Ground & Air Fuel Surcharge: Effective April 13, 2026" [ref=e44]
+  - generic "Ground Saver: Non-Compliant Label Fee" [ref=e46]
+  - generic "Customs Brokerage Partner Government Agency (PGA) Disclaimer Fee: Effective April 13, 2026" [ref=e48]
+  - generic "Learn More About Recent Trade Policy and Tariff Changes" [ref=e50]
+- contentinfo:
+  - list:
+    - listitem "Support" [ref=e70]:
+      - button "Support" [ref=e71]
+      - list:
+        - listitem "Help and Support Center" [ref=e72]:
+          - link "Help and Support Center" [ref=e73]
+        - listitem "Tracking Support" [ref=e74]:
+          - link "Tracking Support" [ref=e75]
+        - listitem "Where’s My Package" [ref=e76]:
+          - link "Where’s My Package" [ref=e77]
+        - listitem "Shipping Guides and Resources" [ref=e78]:
+          - link "Shipping Guides and Resources" [ref=e79]
+        - listitem "International Shipping Guides" [ref=e80]:
+          - link "International Shipping Guides" [ref=e81]
+        - listitem "Communication Preferences" [ref=e82]:
+          - link "Communication Preferences" [ref=e83]
+    - listitem "UPS Sites" [ref=e84]:
+      - button "UPS Sites" [ref=e85]
+      - list:
+        - listitem "About UPS" [ref=e86]:
+          - link "About UPS" [ref=e87]
+        - listitem "UPS Jobs" [ref=e88]:
+          - link "UPS Jobs" [ref=e89]
+        - listitem "UPS Healthcare" [ref=e90]:
+          - link "UPS Healthcare" [ref=e91]
+        - listitem "UPS Supply Chain Solutions" [ref=e92]:
+          - link "UPS Supply Chain Solutions" [ref=e93]
+        - listitem "The UPS Store" [ref=e94]:
+          - link "The UPS Store" [ref=e95]
+        - listitem "UPS Developer Portal" [ref=e96]:
+          - link "UPS Developer Portal" [ref=e97]
+    - listitem "UPS Companies" [ref=e98]:
+      - button "UPS Companies" [ref=e99]
+      - list:
+        - listitem "Happy Returns" [ref=e100]:
+          - link "Happy Returns" [ref=e101]
+        - listitem "Roadie" [ref=e102]:
+          - link "Roadie" [ref=e103]
+        - listitem "InsureShield Shipping Insurance" [ref=e104]:
+          - link "InsureShield Shipping Insurance" [ref=e105]: "InsureShield Shipping Insurance®"
+        - listitem "Parcel Pro" [ref=e106]:
+          - link "Parcel Pro" [ref=e107]: "Parcel Pro®"
+        - listitem "Delivery Solutions" [ref=e108]:
+          - link "Delivery Solutions" [ref=e109]
+    - listitem "Connect with Us" [ref=e110]:
+      - button "Connect with Us" [ref=e111]
+      - list:
+        - listitem "Facebook" [ref=e112]:
+          - link "Facebook" [ref=e113]
+        - listitem "X" [ref=e114]:
+          - link "X" [ref=e115]
+        - listitem "Instagram" [ref=e116]:
+          - link "Instagram" [ref=e117]
+        - listitem "LinkedIn" [ref=e118]:
+          - link "LinkedIn" [ref=e119]
+        - listitem "YouTube" [ref=e120]:
+          - link "YouTube" [ref=e121]
+  - list:
+    - listitem:
+      - list:
+        - listitem "Global Home" [ref=e122]:
+          - link "Global Home" [ref=e123]
+        - listitem "Protect Against Fraud" [ref=e124]:
+          - link "Protect Against Fraud" [ref=e125]
+        - listitem "Terms and Conditions" [ref=e126]:
+          - link "Terms and Conditions" [ref=e127]
+        - listitem "Website Terms of Use" [ref=e128]:
+          - link "Website Terms of Use" [ref=e129]
+        - listitem "Your California Privacy Rights" [ref=e130]:
+          - link "Your California Privacy Rights" [ref=e131]
+        - listitem "Privacy Notice" [ref=e132]:
+          - link "Privacy Notice" [ref=e133]
+        - listitem "Cookie Settings" [ref=e134]:
+          - link "Cookie Settings" [ref=e135]:
+            - button "Cookie Settings" [ref=e136]
+        - listitem "Do Not Sell or Share My Personal Information" [ref=e137]:
+          - link "Do Not Sell or Share My Personal Information" [ref=e138]
+  - text: "Copyright ©1994-2026  United Parcel Service of America, Inc. All rights reserved."
+</result>
+
+[6] tool_call: repl("Opening UPS location finder")
+<request>
+await page.locator('e53').click();
+const s3 = await snapshot(page);
+console.log(s3.diff || s3.tree);
+</request>
+<result tokens_used="65" elapsed_time="1048ms">
+@@ -7 +7 @@
+-    - button "Location Finder" [ref=e53]: "Find Closest UPS Location"
++    - button "Location Finder" [ref=e53] [focused]: "Find Closest UPS Location"
+@@ -197,0 +197,13 @@
++- dialog "Find a UPS Location":
++  - document:
++    - button "close" [ref=e139]: ""
++    - heading "Find a UPS Location" [level=2]
++    - button "Use My Current Location" [ref=e140]
++    - combobox "Enter Address" [ref=e141]
++    - label: "Enter Address"
++    - button "Look Up" [ref=e142]
++    - button "Filter By" [ref=e143]
++    - text: "Scan to download"
++    - heading [level=3]: "Get More From The UPS Store® With the UPS App"
++    - text: "Scan to download the UPS app and enhance your next visit at The UPS Store®."
++    - log: "No Results Found"
+</result>
+
+[7] thinking: **Searching for drop-off point**
+
+I need to enter Miami, Florida. It might be helpful to use a dropdown autocomplete feature for easier navigation. I should also focus on finding a drop-off point that's not necessarily the closest to the center of Miami. Maybe I can use filters for drop-off options, fill in the address, and look it up from there. Let’s make sure I find the best possible option for the user!
+
+[8] tool_call: repl("Searching Miami Florida in UPS locator")
+<request>
+await page.locator('e141').fill('Miami, FL');
+await page.locator('e142').click();
+const s4 = await snapshot(page);
+console.log(s4.diff || s4.tree);
+</request>
+<result tokens_used="112" elapsed_time="623ms">
+@@ -7 +7 @@
+-    - button "Location Finder" [ref=e53] [focused]: "Find Closest UPS Location"
++    - button "Location Finder" [ref=e53]: "Find Closest UPS Location"
+@@ -202 +202 @@
+-    - combobox "Enter Address" [ref=e141]
++    - combobox "Enter Address" [ref=e141]: "Miami, FL"
+@@ -204 +204,2 @@
+-    - button "Look Up" [ref=e142]
++    - button "clear search" [ref=e144]: ""
++    - button "Look Up" [ref=e142] [focused]
+@@ -210,0 +211 @@
++- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[9] tool_call: repl("Checking UPS locator results")
+<request>
+await sleep(2000);
+const s5 = await snapshot(page);
+console.log(s5.diff || s5.tree);
+</request>
+<result tokens_used="63" elapsed_time="2087ms">
+@@ -199,12 +199,58 @@
+-    - button "close" [ref=e139]: ""
+-    - heading "Find a UPS Location" [level=2]
+-    - button "Use My Current Location" [ref=e140]
+-    - combobox "Enter Address" [ref=e141]: "Miami, FL"
+-    - label: "Enter Address"
+-    - button "clear search" [ref=e144]: ""
+-    - button "Look Up" [ref=e142] [focused]
+-    - button "Filter By" [ref=e143]
+-    - text: "Scan to download"
+-    - heading [level=3]: "Get More From The UPS Store® With the UPS App"
+-    - text: "Scan to download the UPS app and enhance your next visit at The UPS Store®."
+-    - log: "No Results Found"
++    - generic [ref=e145] [scrollable]:
++      - button "close" [ref=e139]: ""
++      - heading "Find a UPS Location" [level=2]
++      - button "Use My Current Location" [ref=e140]
++      - combobox "Enter Address" [ref=e141]: "Miami, FL"
++      - label: "Enter Address"
++      - button "clear search" [ref=e144]: ""
++      - button "Look Up" [ref=e142]
++      - button "Filter By" [ref=e143]
++      - button "Keyboard shortcuts" [ref=e146]
++      - region "Map" [ref=e147]
++      - link "Open this area in Google Maps (opens a new window)" [ref=e148]:
++        - image "Google"
++      - button "Keyboard shortcuts" [ref=e149]
++      - text: "Map data ©2026"
++      - link "Terms (opens in new tab)" [ref=e150]: "Terms"
++      - link "Report a map error" [ref=e151]
++      - text: "Scan to download"
++      - heading [level=3]: "Get More From The UPS Store® With the UPS App"
++      - text: "Scan to download the UPS app and enhance your next visit at The UPS Store®."
++      - log:
++        - list:
++          - listitem:
++            - label: "0.3 mi"
++            - link "The UPS Store" [ref=e152] [focused]: "The UPS Store®"
++            - button "Action Menu, The UPS Store® in THE UPS STORE" [ref=e153]
++            - text: "936 SW 1ST AVE\n                                         \n                                        \n                                         MIAMI, FL 33130\n                                         Open\n                    • Closes 7:00pm\n                    • (305) 858-1221"
++            - link "Directions, Result 1, The UPS Store® in THE UPS STORE" [ref=e154]: "Directions"
++            - link "Call, Result 1, The UPS Store® in THE UPS STORE" [ref=e156]
++          - listitem:
++            - label: "0.0 mi"
++            - link "UPS Drop Box in 1221 Building" [ref=e158]
++            - button "Action Menu, UPS Drop Box in 1221 BUILDING" [ref=e159]
++            - text: "1221 BRICKELL AVE\n                                         \n                                        \n                                         MIAMI, FL 33131\n                                        (800) 742-5877"
++            - link "Directions, Result 2, UPS Drop Box in 1221 BUILDING" [ref=e160]: "Directions"
++            - link "Call, Result 2, UPS Drop Box in 1221 BUILDING" [ref=e162]
++          - listitem:
++            - label: "0.0 mi"
++            - link "UPS Drop Box in 1200 Brickell Office Bldg" [ref=e164]
++            - button "Action Menu, UPS Drop Box in 1200 BRICKELL OFFICE BLDG" [ref=e165]
++            - text: "1200 BRICKELL AVE\n                                         \n                                        \n                                         MIAMI, FL 33131\n                                        (800) 742-5877"
++            - link "Directions, Result 3, UPS Drop Box in 1200 BRICKELL OFFICE BLDG" [ref=e166]: "Directions"
++            - link "Call, Result 3, UPS Drop Box in 1200 BRICKELL OFFICE BLDG" [ref=e168]
++          - listitem:
++            - label: "0.1 mi"
++            - link "UPS Drop Box in Mellon Financial Center" [ref=e170]
++            - button "Action Menu, UPS Drop Box in MELLON FINANCIAL CENTER" [ref=e171]
++            - text: "1111 BRICKELL AVE\n                                         \n                                        \n                                         MIAMI, FL 33131\n                                        (800) 742-5877"
++            - link "Directions, Result 4, UPS Drop Box in MELLON FINANCIAL CENTER" [ref=e172]: "Directions"
++            - link "Call, Result 4, UPS Drop Box in MELLON FINANCIAL CENTER" [ref=e174]
++          - listitem:
++            - label: "0.1 mi"
++            - link "UPS Drop Box in Biv Building" [ref=e176]
++            - button "Action Menu, UPS Drop Box in BIV BUILDING" [ref=e177]
++            - text: "1101 BRICKELL AVE\n                                         \n                                        \n                                         MIAMI, FL 33131\n                                        (800) 742-5877"
++            - link "Directions, Result 5, UPS Drop Box in BIV BUILDING" [ref=e178]: "Directions"
++            - link "Call, Result 5, UPS Drop Box in BIV BUILDING" [ref=e180]
++        - link "show-more-locations" [ref=e182]: "Show More Locations"
+</result>
+
+[10] thinking: **Finding UPS drop-off points**
+
+I need to help find a UPS drop-off point near Miami, Florida. It's important to specify if it's a drop box or a store. The closest option is The UPS Store, just 0.3 miles away, while there's also a drop box at 0.0 miles. I should consider filtering results specifically for drop-off locations and ensure the user's location is set correctly. I can gather details like hours for the store but not necessary for the drop box. No citation is required since I'm not sourcing from a live website.
+
+**Finding UPS drop-off locations**
+
+I need to finalize a concise response for the user about UPS drop-off points near Miami, FL. I found a UPS Drop Box at 1221 Brickell Ave, Miami, FL 33131, with a phone number and it's very close at 0.0 miles. I should also include The UPS Store at 936 SW 1st Ave, open until 7 PM, as a staffed drop-off option. I don't need citations as long as I mention "from UPS.com" for context. Let's present these two options clearly.
+
+[11] assistant: I found UPS drop-off options near Miami, FL on UPS.com:
+
+- **UPS Drop Box in 1221 Building**  
+  **1221 Brickell Ave, Miami, FL 33131**  
+  Phone: **(800) 742-5877**
+
+- **The UPS Store**  
+  **936 SW 1st Ave, Miami, FL 33130**  
+  Phone: **(305) 858-1221**  
+  Status shown: **Open, closes at 7:00 PM**

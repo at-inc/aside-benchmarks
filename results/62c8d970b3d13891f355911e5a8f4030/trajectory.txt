@@ -1,0 +1,3737 @@
+[1] user: Go to https://store.steampowered.com/, Find the top game listed in the Steam Deck's top-played list over the past year. Then, browse reviews for that game from players who have played over 100 hours and primarily use a Steam Deck.
+
+[2] thinking: **Searching for top games**
+
+I need to perform a browser task. First, I should go to the Steam store and find the top game listed in the Steam Deck's top-played list over the past year. Then, I need to browse reviews for that game, specifically from players who have logged over 100 hours and primarily use the Steam Deck. I’m thinking I might need to summarize those reviews for clarity. Let's inspect and get started!
+
+[3] tool_call: write_todos:
+Todo list updated:
+- [in_progress] 1: Open Steam store and locate Steam Deck top-played list for past year
+- [pending] 2: Identify the top game in that list
+- [pending] 3: Browse reviews for that game from >100 hour Steam Deck-primary players
+- [pending] 4: Report the game and relevant review findings
+
+[4] assistant: I’ll use the Steam site directly to verify the Steam Deck top-played list and then filter/browse the relevant reviews.
+
+[5] tool_call: repl("Opening Steam store")
+<request>
+const p1 = await openTab('https://store.steampowered.com/');
+const s1 = await snapshot(page, {interactive: true});
+console.log(s1.tree);
+</request>
+<result tokens_used="96" elapsed_time="4313ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Welcome to Steam (https://store.steampowered.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Welcome to Steam" [url=https://store.steampowered.com/]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- navigation "Store menu" [ref=e11]:
+  - button "Browse" [ref=e12]
+  - button "Recommendations" [ref=e13]
+  - button "Categories" [ref=e14]
+  - button "Hardware" [ref=e15]
+  - button "Ways to Play" [ref=e16]
+  - button "Special Sections" [ref=e17]
+  - search:
+    - combobox "Search the store" [ref=e18] [placeholder="Search the store"]
+    - button "Search" [ref=e19]
+- main:
+  - heading "Featured & Recommended" [level=2]
+  - list "Featured & Recommended":
+    - link "Palia Now Available Top Seller Free To Play" [ref=e20]
+  - heading "Discounts & Events" [level=2]:
+    - text: "Discounts & Events"
+    - link "Browse More" [ref=e35]
+  - list "Discounts & Events":
+    - link [ref=e36]:
+      - link "Hell is Us" [ref=e37]
+      - text: "Midweek Deal\n							 Offer ends May 18 @ 10:00am."
+      - link "60% off. $49.99 normally, discounted to $19.99" [ref=e38]: "-60%$49.99$19.99"
+    - link [ref=e39]:
+      - link "Docked" [ref=e40]
+      - text: "Midweek Deal\n							 Offer ends May 18 @ 10:00am."
+      - link "20% off. $29.99 normally, discounted to $23.99" [ref=e41]: "-20%$29.99$23.99"
+    - link "40% off. $24.99 normally, discounted to $14.99" [ref=e42]:
+      - text: "Space Haven\n                                                     Today's deal!\n                                                Live"
+      - link "40% off. $24.99 normally, discounted to $14.99" [ref=e43]: "-40%$24.99$14.99"
+    - link "69% off. $21.99 normally, discounted to $6.81" [ref=e44]:
+      - text: "Gori: Cuddly Carnage\n                                                     Today's deal!\n                                                Live"
+      - link "69% off. $21.99 normally, discounted to $6.81" [ref=e45]: "-69%$21.99$6.81"
+  - text: "Browse by Category"
+  - list "Browse by Category":
+    - link "Rogue-Like" [ref=e52]
+    - link "Puzzle" [ref=e53]
+    - link "Visual Novel" [ref=e54]
+    - link "Role-Playing" [ref=e55]
+  - heading "Top Played on Steam Deck" [level=2]:
+    - text: "Top Played on Steam Deck"
+    - link "See More" [ref=e63]
+  - list "Top Played on Steam Deck":
+    - link "Balatro$14.99" [ref=e64]
+    - link "ARC Raiders$39.99" [ref=e65]
+    - link [ref=e66]:
+      - text: "Everything is Crab: The Animal Evolution Roguelite Live"
+      - link "10% off. $9.99 normally, discounted to $8.99" [ref=e67]: "-10%$9.99$8.99"
+      - text: "Live"
+    - link [ref=e68]:
+      - text: "Heroes of Might and Magic: Olden Era"
+      - link "25% off. $39.99 normally, discounted to $29.99" [ref=e69]: "-25%$39.99$29.99"
+  - link "Steam Deck" [ref=e78]
+  - text: "Sign in to view personalized recommendations"
+  - link "Sign In" [ref=e79]
+  - text: "Or"
+  - link "sign up" [ref=e80]
+  - text: "and join Steam for free"
+  - heading "Browse Steam" [level=2]
+  - list "Browse Steam":
+    - link "New Releases" [ref=e81]
+    - link "Specials" [ref=e82]
+    - link "Free Games" [ref=e83]
+    - link "By User Tags" [ref=e84]
+  - heading "Under $10" [level=2]:
+    - text: "Under $10"
+    - link "Under $10" [ref=e85]
+    - link "Under $5" [ref=e86]
+  - list "Under $10":
+    - link "Gamble With Your Friends$7.99" [ref=e87]
+    - link [ref=e88]:
+      - text: "Subnautica"
+      - link "75% off. $29.99 normally, discounted to $7.49" [ref=e89]: "-75%$29.99$7.49"
+    - link [ref=e90]:
+      - text: "Subnautica: Below Zero"
+      - link "75% off. $29.99 normally, discounted to $7.49" [ref=e91]: "-75%$29.99$7.49"
+    - link [ref=e92]:
+      - text: "Librarian: Tidy Up the Arcane Library!"
+      - link "15% off. $5.99 normally, discounted to $5.09" [ref=e93]: "-15%$5.99$5.09"
+  - tablist:
+    - tab "New & Trending" [ref=e101] [selected]
+    - tab "Top Sellers" [ref=e102]
+    - tab "Popular Upcoming" [ref=e103]
+    - tab "Specials" [ref=e104]
+    - tab "Trending Free" [ref=e105]
+  - tabpanel "New & Trending":
+    - list "New & Trending":
+      - link "40% off. $24.99 normally, discounted to $14.99" [ref=e106]:
+        - text: "Space Haven\n		\n					 May 13, 2026"
+        - link "40% off. $24.99 normally, discounted to $14.99" [ref=e107]: "-40%$24.99$14.99"
+        - text: "Space Haven\n			\n								 Colony Sim, Base Building, Survival, Strategy"
+      - link "10% off. $19.99 normally, discounted to $17.99" [ref=e108]:
+        - text: "Clockwork Ambrosia\n		\n					 May 12, 2026"
+        - link "10% off. $19.99 normally, discounted to $17.99" [ref=e109]: "-10%$19.99$17.99"
+        - text: "Clockwork Ambrosia\n			\n								 Exploration, Metroidvania, 2D Platformer, Platformer"
+      - link "20% off. $24.99 normally, discounted to $19.99" [ref=e110]:
+        - text: "Call of the Elder Gods\n		\n					 May 12, 2026"
+        - link "20% off. $24.99 normally, discounted to $19.99" [ref=e111]: "-20%$24.99$19.99"
+        - text: "Call of the Elder Gods\n			\n								 Puzzle, Story Rich, Lovecraftian, Adventure"
+      - link "15% off. $14.99 normally, discounted to $12.74" [ref=e112]:
+        - text: "Black Jacket\n		\n					 May 12, 2026"
+        - link "15% off. $14.99 normally, discounted to $12.74" [ref=e113]: "-15%$14.99$12.74"
+        - text: "Black Jacket\n			\n								 Card Game, Roguelike Deckbuilder, Roguelike, Deckbuilding"
+      - link "Directive 8020 May 12, 2026 $49.99 Directive 8020 Adventure, Survival Horror, Choices Matter, Horror" [ref=e114]
+      - link "10% off. $29.99 normally, discounted to $26.99" [ref=e115]:
+        - text: "NITRO GEN OMEGA\n		\n					 May 12, 2026"
+        - link "10% off. $29.99 normally, discounted to $26.99" [ref=e116]: "-10%$29.99$26.99"
+        - text: "NITRO GEN OMEGA\n			\n								 Strategy, RPG, Open World, Sandbox"
+      - link "20% off. $24.99 normally, discounted to $19.99" [ref=e117]:
+        - text: "Battlestar Galactica: Scattered Hopes\n		\n					 May 11, 2026"
+        - link "20% off. $24.99 normally, discounted to $19.99" [ref=e118]: "-20%$24.99$19.99"
+        - text: "Battlestar Galactica: Scattered Hopes\n			\n								 Strategy, RTS, Roguelite, Replay Value"
+      - link "10% off. $24.99 normally, discounted to $22.49" [ref=e119]:
+        - text: "Outbound\n		\n					 May 11, 2026"
+        - link "10% off. $24.99 normally, discounted to $22.49" [ref=e120]: "-10%$24.99$22.49"
+        - text: "Outbound\n			\n								 Cozy, Exploration, Base Building, Online Co-Op"
+      - link "20% off. $7.99 normally, discounted to $6.39" [ref=e121]:
+        - text: "Don't Panic! It is Just Turbulence\n		\n					 May 11, 2026"
+        - link "20% off. $7.99 normally, discounted to $6.39" [ref=e122]: "-20%$7.99$6.39"
+        - text: "Don't Panic! It is Just Turbulence\n			\n								 Co-op, Time Management, Puzzle, Casual"
+      - link "10% off. $9.99 normally, discounted to $8.99" [ref=e123]:
+        - text: "Everything is Crab: The Animal Evolution Roguelite\n		\n					 May 8, 2026"
+        - link "10% off. $9.99 normally, discounted to $8.99" [ref=e124]: "-10%$9.99$8.99"
+        - text: "Everything is Crab: The Animal Evolution Roguelite\n			\n								 Action Roguelike, Roguelite, Character Customization, Replay Value"
+    - text: "See more:"
+    - link "New Releases" [ref=e125]
+  - text: "Space Haven English Reviews Very Positive (5,268)"
+  - link "Colony Sim" [ref=e126]
+  - link "Base Building" [ref=e127]
+  - link "Survival" [ref=e128]
+  - link "Strategy" [ref=e129]
+  - link "Management" [ref=e130]
+  - heading "Virtual Reality" [level=2]:
+    - link "Browse All" [ref=e131]
+    - text: "Virtual Reality"
+  - list "Virtual Reality":
+    - link "Tactical Assault VR$19.99" [ref=e132]
+    - link "Into the Radius 2$39.99" [ref=e133]
+    - link "Hot Dogs, Horseshoes &amp; Hand Grenades$19.99" [ref=e134]
+    - link "Blade and Sorcery$29.99" [ref=e135]
+  - text: "Looking for recommendations?\n			\n			\n				\n					Sign in to view personalized recommendations"
+  - link "Sign In" [ref=e142]
+  - text: "Or"
+  - link "sign up" [ref=e143]
+  - text: "and join Steam for free"
+  - contentinfo:
+    - link [ref=e144]
+    - link [ref=e145]
+    - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+    - link [ref=e146]
+    - link [ref=e147]
+    - link [ref=e148]
+    - link [ref=e149]
+    - heading "STEAM" [level=3]
+    - link "About Steam" [ref=e150]
+    - link "Steam SSA" [ref=e151]
+    - link "Steamworks" [ref=e152]
+    - link "Steam Distribution" [ref=e153]
+    - link "Gift Cards" [ref=e154]
+    - heading "VALVE" [level=3]
+    - link "About Valve" [ref=e155]
+    - link "Jobs" [ref=e156]
+    - link "Hardware" [ref=e157]
+    - link "Recycling" [ref=e158]
+    - heading "LEGAL" [level=3]
+    - link "Privacy" [ref=e159]
+    - link "Accessibility" [ref=e160]
+    - link "Notices & Policies" [ref=e161]
+    - link "Cookies" [ref=e162]
+    - link "Refunds" [ref=e163]
+    - heading "MORE" [level=3]
+    - link "Get Steam" [ref=e164]
+    - link "Get Mobile Apps" [ref=e165]
+    - link "Get Support" [ref=e166]
+    - link "My Account" [ref=e167]
+</result>
+
+[6] thinking: **Searching for top games**
+
+I need to focus on finding the top games from the past year rather than what's currently featured on the homepage. It's all about checking what has gained popularity and recognition, and there might be more options to explore. Clicking through the right sections will help me gather that information efficiently. I’m curious to see which titles stood out!
+
+[7] tool_call: repl("Opening Top Played on Steam Deck list")
+<request>
+await page.locator('e63').click();
+const s2 = await snapshot(page, {interactive: true});
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="85" elapsed_time="6535ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Steam Deck Top Played" [url=https://store.steampowered.com/charts/steamdecktopplayed?snr=1_4_4__637]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- navigation "Store menu" [ref=e11]:
+  - button "Browse" [ref=e12]
+  - button "Recommendations" [ref=e13]
+  - button "Categories" [ref=e14]
+  - button "Hardware" [ref=e15]
+  - button "Ways to Play" [ref=e16]
+  - button "Special Sections" [ref=e17]
+  - search:
+    - combobox "Search the store" [ref=e18] [placeholder="Search the store"]
+    - button "Search" [ref=e19]
+- main:
+  - button "Charts Overview" [ref=e20]
+  - text: "Live Charts"
+  - button "Top Sellers" [ref=e21]
+  - button "Most Played" [ref=e22]
+  - button "Steam Deck" [ref=e23]
+  - text: "Weekly Charts"
+  - button "May 5, 2026" [ref=e24]
+  - button "Apr 28, 2026" [ref=e25]
+  - button "Apr 21, 2026" [ref=e26]
+  - text: "Monthly: Top Releases"
+  - button "March 2026" [ref=e27]
+  - button "February 2026" [ref=e28]
+  - button "January 2026" [ref=e29]
+  - text: "Best of Year"
+  - button "2025" [ref=e30]
+  - button "2024" [ref=e31]
+  - button "2023" [ref=e32]
+  - heading "Steam Deck Top Played" [level=1]
+  - text: "Top 100 played games on Steam Deck in the"
+  - combobox "past week" [ref=e33]
+  - text: "May 7 - 13"
+  - link "Steam Deck Your Games, Everywhere" [ref=e34]
+  - text: "Rank Price Change  Verified"
+  - generic [ref=e35]:
+    - text: "1"
+    - link "Slay the Spire 2" [ref=e36]
+    - text: "0"
+  - generic [ref=e37]:
+    - text: "2"
+    - link "Diablo® IV" [ref=e38]
+    - text: "▲ 1"
+  - generic [ref=e39]:
+    - text: "3"
+    - link "Vampire Crawlers: The Turbo Wildcard from Vampire Survivors" [ref=e40]
+    - text: "▼ 1"
+  - generic [ref=e41]:
+    - text: "4"
+    - link "Stardew Valley" [ref=e42]
+    - text: "0"
+  - generic [ref=e43]:
+    - text: "5"
+    - link "Baldur's Gate 3" [ref=e44]
+    - text: "0"
+  - generic [ref=e45]:
+    - text: "6"
+    - link "Balatro" [ref=e46]
+    - text: "▲ 1"
+  - generic [ref=e47]:
+    - text: "7"
+    - link "Hades II" [ref=e48]
+    - text: "▼ 1"
+  - generic [ref=e49]:
+    - text: "8"
+    - link "Slay the Spire" [ref=e50]
+    - text: "0"
+  - generic [ref=e51]:
+    - text: "9"
+    - link "The Binding of Isaac: Rebirth" [ref=e52]
+    - text: "0"
+  - generic [ref=e53]:
+    - text: "10"
+    - link "ELDEN RING" [ref=e54]
+    - text: "0"
+  - generic [ref=e55]:
+    - text: "11"
+    - link "Brotato" [ref=e56]
+    - text: "▲ 1"
+  - generic [ref=e57]:
+    - text: "12"
+    - link "Everything is Crab: The Animal Evolution Roguelite" [ref=e58]
+    - text: "New"
+  - generic [ref=e59]:
+    - text: "13"
+    - link "Cyberpunk 2077" [ref=e60]
+    - text: "▼ 2"
+  - generic [ref=e61]:
+    - text: "14"
+    - link "Librarian: Tidy Up the Arcane Library!" [ref=e62]
+    - text: "▲ 52"
+  - generic [ref=e63]:
+    - text: "15"
+    - link "Red Dead Redemption 2" [ref=e64]
+    - text: "▲ 1"
+  - generic [ref=e65]:
+    - text: "16"
+    - link "Hades" [ref=e66]
+    - text: "▼ 3"
+  - generic [ref=e67]:
+    - text: "17"
+    - link "Megabonk" [ref=e68]
+    - text: "0"
+  - generic [ref=e69]:
+    - text: "18"
+    - link "Mewgenics" [ref=e70]
+    - text: "▼ 3"
+  - generic [ref=e71]:
+    - text: "19"
+    - link "Vampire Survivors" [ref=e72]
+    - text: "▼ 5"
+  - generic [ref=e73]:
+    - text: "20"
+    - link "Deep Rock Galactic: Survivor" [ref=e74]
+    - text: "▼ 2"
+  - generic [ref=e75]:
+    - text: "21"
+    - link "The Elder Scrolls V: Skyrim Special Edition" [ref=e76]
+    - text: "▲ 2"
+  - generic [ref=e77]:
+    - text: "22"
+    - link "Fallout 4" [ref=e78]
+    - text: "▼ 1"
+  - generic [ref=e79]:
+    - text: "23"
+    - link "R.E.P.O." [ref=e80]
+    - text: "▲ 46"
+  - generic [ref=e81]:
+    - text: "24"
+    - link "The Witcher 3: Wild Hunt" [ref=e82]
+    - text: "▼ 4"
+  - generic [ref=e83]:
+    - text: "25"
+    - link "Warframe" [ref=e84]
+    - text: "▼ 3"
+  - generic [ref=e85]:
+    - text: "26"
+    - link "Disney Dreamlight Valley" [ref=e86]
+    - text: "▼ 2"
+  - generic [ref=e87]:
+    - text: "27"
+    - link "Persona 5 Royal" [ref=e88]
+    - text: "▼ 2"
+  - generic [ref=e89]:
+    - text: "28"
+    - link "Hollow Knight: Silksong" [ref=e90]
+    - text: "▲ 2"
+  - generic [ref=e91]:
+    - text: "29"
+    - link "ARC Raiders" [ref=e92]
+    - text: "▲ 4"
+  - generic [ref=e93]:
+    - text: "30"
+    - link "DAVE THE DIVER" [ref=e94]
+    - text: "▼ 2"
+  - generic [ref=e95]:
+    - text: "31"
+    - link "NBA 2K26" [ref=e96]
+    - text: "▲ 6"
+  - generic [ref=e97]:
+    - text: "32"
+    - link "BALL x PIT" [ref=e98]
+    - text: "▼ 6"
+  - generic [ref=e99]:
+    - text: "33"
+    - link "HELLDIVERS™ 2" [ref=e100]
+    - text: "▼ 1"
+  - generic [ref=e101]:
+    - text: "34"
+    - link "Far Far West" [ref=e102]
+    - text: "▼ 3"
+  - generic [ref=e103]:
+    - text: "35"
+    - link "Heroes of Might and Magic: Olden Era" [ref=e104]
+    - text: "▼ 16"
+  - generic [ref=e105]:
+    - text: "36"
+    - link "Hollow Knight" [ref=e106]
+    - text: "▼ 2"
+  - generic [ref=e107]:
+    - text: "37"
+    - link "Dead by Daylight" [ref=e108]
+    - text: "▼ 1"
+  - generic [ref=e109]:
+    - text: "38"
+    - link "Dead as Disco" [ref=e110]
+    - text: "New"
+  - generic [ref=e111]:
+    - text: "39"
+    - link "No Man's Sky" [ref=e112]
+    - text: "▼ 4"
+  - generic [ref=e113]:
+    - text: "40"
+    - link "Halo: The Master Chief Collection" [ref=e114]
+    - text: "▼ 1"
+  - generic [ref=e115]:
+    - text: "41"
+    - link "PRAGMATA" [ref=e116]
+    - text: "▼ 14"
+  - generic [ref=e117]:
+    - text: "42"
+    - link "Subnautica" [ref=e118]
+    - text: "▲ 37"
+  - generic [ref=e119]:
+    - text: "43"
+    - link "Hogwarts Legacy" [ref=e120]
+    - text: "▼ 2"
+  - generic [ref=e121]:
+    - text: "44"
+    - link "Resident Evil Requiem" [ref=e122]
+    - text: "▲ 45"
+  - generic [ref=e123]:
+    - text: "45"
+    - link "MOUSE: P.I. For Hire" [ref=e124]
+    - text: "▼ 16"
+  - generic [ref=e125]:
+    - text: "46"
+    - link "Graveyard Keeper" [ref=e126]
+    - text: "▼ 8"
+  - generic [ref=e127]:
+    - text: "47"
+    - link "Wuthering Waves" [ref=e128]
+    - text: "0"
+  - generic [ref=e129]:
+    - text: "48"
+    - link "PEAK" [ref=e130]
+    - text: "▼ 6"
+  - generic [ref=e131]:
+    - text: "49"
+    - link "Forza Horizon 5" [ref=e132]
+    - text: "▼ 6"
+  - generic [ref=e133]:
+    - text: "50"
+    - link "Windrose" [ref=e134]
+    - text: "▼ 10"
+  - generic [ref=e135]:
+    - text: "51"
+    - link "Cult of the Lamb" [ref=e136]
+    - text: "▼ 5"
+  - generic [ref=e137]:
+    - text: "52"
+    - link "Mixtape" [ref=e138]
+    - text: "New"
+  - generic [ref=e139]:
+    - text: "53"
+    - link "Marvel Rivals" [ref=e140]
+    - text: "▼ 9"
+  - generic [ref=e141]:
+    - text: "54"
+    - link "Overwatch®" [ref=e142]
+    - text: "▼ 3"
+  - generic [ref=e143]:
+    - text: "55"
+    - link "Grand Theft Auto IV: The Complete Edition" [ref=e144]
+    - text: "▼ 5"
+  - generic [ref=e145]:
+    - text: "56"
+    - link "Clair Obscur: Expedition 33" [ref=e146]
+    - text: "▼ 7"
+  - generic [ref=e147]:
+    - text: "57"
+    - link "Resident Evil 4" [ref=e148]
+    - text: "▼ 12"
+  - generic [ref=e149]:
+    - text: "58"
+    - link "Terraria" [ref=e150]
+    - text: "▼ 5"
+  - generic [ref=e151]:
+    - text: "59"
+    - link "Alabaster Dawn" [ref=e152]
+    - text: "New"
+  - generic [ref=e153]:
+    - text: "60"
+    - link "Project Zomboid" [ref=e154]
+    - text: "▲ 3"
+  - generic [ref=e155]:
+    - text: "61"
+    - link "Coral Island" [ref=e156]
+    - text: "▼ 7"
+  - generic [ref=e157]:
+    - text: "62"
+    - link "Fallout: New Vegas" [ref=e158]
+    - text: "▼ 1"
+  - generic [ref=e159]:
+    - text: "63"
+    - link "Dead Cells" [ref=e160]
+    - text: "▼ 11"
+  - generic [ref=e161]:
+    - text: "64"
+    - link "Hello Kitty Island Adventure" [ref=e162]
+    - text: "▼ 9"
+  - generic [ref=e163]:
+    - text: "65"
+    - link "Fields of Mistria" [ref=e164]
+    - text: "▼ 9"
+  - generic [ref=e165]:
+    - text: "66"
+    - link "Dispatch" [ref=e166]
+    - text: "▼ 18"
+  - generic [ref=e167]:
+    - text: "67"
+    - link "Counter-Strike 2" [ref=e168]
+    - text: "▼ 3"
+  - generic [ref=e169]:
+    - text: "68"
+    - link "Palia" [ref=e170]
+    - text: "▲ 13"
+  - generic [ref=e171]:
+    - text: "69"
+    - link "The Bazaar" [ref=e172]
+    - text: "▲ 25"
+  - generic [ref=e173]:
+    - text: "70"
+    - link "Satisfactory" [ref=e174]
+    - text: "▼ 8"
+  - generic [ref=e175]:
+    - text: "71"
+    - link "Valheim" [ref=e176]
+    - text: "▼ 14"
+  - generic [ref=e177]:
+    - text: "72"
+    - link "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-" [ref=e178]
+    - text: "▼ 2"
+  - generic [ref=e179]:
+    - text: "73"
+    - link "Grand Theft Auto V Enhanced" [ref=e180]
+    - text: "▼ 5"
+  - generic [ref=e181]:
+    - text: "74"
+    - link "Persona 3 Reload" [ref=e182]
+    - text: "▼ 7"
+  - generic [ref=e183]:
+    - text: "75"
+    - link "Euro Truck Simulator 2" [ref=e184]
+    - text: "▼ 2"
+  - generic [ref=e185]:
+    - text: "76"
+    - link "Palworld" [ref=e186]
+    - text: "▼ 16"
+  - generic [ref=e187]:
+    - text: "77"
+    - link "Left 4 Dead 2" [ref=e188]
+    - text: "▼ 1"
+  - generic [ref=e189]:
+    - text: "78"
+    - link "Gamble With Your Friends" [ref=e190]
+    - text: "New"
+  - generic [ref=e191]:
+    - text: "79"
+    - link "DARK SOULS™ III" [ref=e192]
+    - text: "▼ 7"
+  - generic [ref=e193]:
+    - text: "80"
+    - link "RimWorld" [ref=e194]
+    - text: "▼ 5"
+  - generic [ref=e195]:
+    - text: "81"
+    - link "War Thunder" [ref=e196]
+    - text: "▲ 1"
+  - generic [ref=e197]:
+    - text: "82"
+    - link "Diablo II: Resurrected – Infernal Edition" [ref=e198]
+    - text: "▼ 8"
+  - generic [ref=e199]:
+    - text: "83"
+    - link "Kingdom Come: Deliverance II" [ref=e200]
+    - text: "▼ 6"
+  - generic [ref=e201]:
+    - text: "84"
+    - link "Dome Keeper" [ref=e202]
+    - text: "▼ 26"
+  - generic [ref=e203]:
+    - text: "85"
+    - link "LEGO® Star Wars™: The Skywalker Saga" [ref=e204]
+    - text: "▲ 7"
+  - generic [ref=e205]:
+    - text: "86"
+    - link "BeamNG.drive" [ref=e206]
+    - text: "▼ 2"
+  - generic [ref=e207]:
+    - text: "87"
+    - link "RACCOIN: Coin Pusher Roguelike" [ref=e208]
+    - text: "▼ 22"
+  - generic [ref=e209]:
+    - text: "88"
+    - link "FINAL FANTASY XIV Online" [ref=e210]
+    - text: "▼ 3"
+  - generic [ref=e211]:
+    - text: "89"
+    - link "The Spell Brigade" [ref=e212]
+    - text: "▼ 18"
+  - generic [ref=e213]:
+    - text: "90"
+    - link "Call of Duty®: Black Ops III" [ref=e214]
+    - text: "New"
+  - generic [ref=e215]:
+    - text: "91"
+    - link "Monster Hunter: World" [ref=e216]
+    - text: "▼ 8"
+  - generic [ref=e217]:
+    - text: "92"
+    - link "DARK SOULS™: REMASTERED" [ref=e218]
+    - text: "▼ 12"
+  - generic [ref=e219]:
+    - text: "93"
+    - link "UNCHARTED™: Legacy of Thieves Collection" [ref=e220]
+    - text: "New"
+  - generic [ref=e221]:
+    - text: "94"
+    - link "REPLACED" [ref=e222]
+    - text: "▼ 35"
+  - generic [ref=e223]:
+    - text: "95"
+    - link "The Sims™ 4" [ref=e224]
+    - text: "New"
+  - generic [ref=e225]:
+    - text: "96"
+    - link "Sid Meier’s Civilization® VI" [ref=e226]
+    - text: "▲ 2"
+  - generic [ref=e227]:
+    - text: "97"
+    - link "Gambonanza" [ref=e228]
+    - text: "New"
+  - generic [ref=e229]:
+    - text: "98"
+    - link "Fallout 76" [ref=e230]
+    - text: "▼ 7"
+  - generic [ref=e231]:
+    - text: "99"
+    - link "Ghost of Tsushima DIRECTOR'S CUT" [ref=e232]
+    - text: "▼ 9"
+  - generic [ref=e233]:
+    - text: "100"
+    - link "Street Fighter™ 6" [ref=e234]
+    - text: "▼ 14"
+- contentinfo:
+  - link [ref=e235]
+  - link [ref=e236]
+  - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+  - link [ref=e237]
+  - link [ref=e238]
+  - link [ref=e239]
+  - link [ref=e240]
+  - heading "STEAM" [level=3]
+  - link "About Steam" [ref=e241]
+  - link "Steam SSA" [ref=e242]
+  - link "Steamworks" [ref=e243]
+  - link "Steam Distribution" [ref=e244]
+  - link "Gift Cards" [ref=e245]
+  - heading "VALVE" [level=3]
+  - link "About Valve" [ref=e246]
+  - link "Jobs" [ref=e247]
+  - link "Hardware" [ref=e248]
+  - link "Recycling" [ref=e249]
+  - heading "LEGAL" [level=3]
+  - link "Privacy" [ref=e250]
+  - link "Accessibility" [ref=e251]
+  - link "Notices & Policies" [ref=e252]
+  - link "Cookies" [ref=e253]
+  - link "Refunds" [ref=e254]
+  - heading "MORE" [level=3]
+  - link "Get Steam" [ref=e255]
+  - link "Get Mobile Apps" [ref=e256]
+  - link "Get Support" [ref=e257]
+  - link "My Account" [ref=e258]
+</result>
+
+[8] thinking: **Modifying the combobox options**
+
+I need to change the combobox from showing options for the past week to those for the past year. I'll want to take a snapshot of the current options in the combobox. Do I need to click or select something there? I’m thinking I might need to use `selectOption`. So, let me inspect the `select` element to ensure I'm making the right adjustments here.
+
+[9] tool_call: repl("Checking time-range options")
+<request>
+const options1 = await page.locator('select').evaluateAll(sels => sels.map(sel => ({label: sel.getAttribute('aria-label') || sel.name || sel.id, value: sel.value, options: Array.from(sel.options).map(o=>({text:o.textContent.trim(), value:o.value, selected:o.selected}))})));
+console.log(JSON.stringify(options1, null, 2));
+</request>
+<result tokens_used="141" elapsed_time="111ms">
+[]
+</result>
+
+[10] tool_call: repl("Opening time-range menu")
+<request>
+await page.locator('e33').click();
+const s3 = await snapshot(page, {interactive: true});
+console.log(s3.diff || s3.tree);
+</request>
+<result tokens_used="74" elapsed_time="2343ms">
+@@ -48,0 +48,2 @@
++    - button [ref=e259]:
++      - link [ref=e260]
+@@ -50 +52 @@
+-    - text: "0"
++    - text: "$24.99  0"
+@@ -52,0 +54,2 @@
++    - button [ref=e261]:
++      - link [ref=e262]
+@@ -54 +58 @@
+-    - text: "▲ 1"
++    - text: "-40%$49.99$29.99▲ 1"
+@@ -56,0 +60,2 @@
++    - button [ref=e263]:
++      - link [ref=e264]
+@@ -58 +64 @@
+-    - text: "▼ 1"
++    - text: "$9.99▼ 1"
+@@ -60,0 +66,2 @@
++    - button [ref=e265]:
++      - link [ref=e266]
+@@ -62 +70 @@
+-    - text: "0"
++    - text: "$14.99  0"
+@@ -64,0 +72,2 @@
++    - button [ref=e267]:
++      - link [ref=e268]
+@@ -66 +76 @@
+-    - text: "0"
++    - text: "$59.99  0"
+@@ -68,0 +78,2 @@
++    - button [ref=e269]:
++      - link [ref=e270]
+@@ -70 +82 @@
+-    - text: "▲ 1"
++    - text: "$14.99▲ 1"
+@@ -72,0 +84,2 @@
++    - button [ref=e271]:
++      - link [ref=e272]
+@@ -74 +88 @@
+-    - text: "▼ 1"
++    - text: "$29.99▼ 1"
+@@ -76,0 +90,2 @@
++    - button [ref=e273]:
++      - link [ref=e274]
+@@ -78 +94 @@
+-    - text: "0"
++    - text: "$24.99  0"
+@@ -80,0 +96,2 @@
++    - button [ref=e275]:
++      - link [ref=e276]
+@@ -82 +100 @@
+-    - text: "0"
++    - text: "$14.99  0"
+@@ -84,0 +102,2 @@
++    - button [ref=e277]:
++      - link [ref=e278]
+@@ -86 +106 @@
+-    - text: "0"
++    - text: "$59.99  0"
+@@ -88,0 +108,2 @@
++    - button [ref=e279]:
++      - link [ref=e280]
+@@ -90 +112 @@
+-    - text: "▲ 1"
++    - text: "$4.99▲ 1"
+@@ -92,0 +114,2 @@
++    - button [ref=e281]:
++      - link [ref=e282]
+@@ -94 +118 @@
+-    - text: "New"
++    - text: "New-10%$9.99$8.99 New"
+@@ -96,0 +120,2 @@
++    - button [ref=e283]:
++      - link [ref=e284]
+@@ -98 +124 @@
+-    - text: "▼ 2"
++    - text: "$59.99▼ 2"
+@@ -100,0 +126,2 @@
++    - button [ref=e285]:
++      - link [ref=e286]
+@@ -102 +130 @@
+-    - text: "▲ 52"
++    - text: "-15%$5.99$5.09▲ 52"
+@@ -104,0 +132,2 @@
++    - button [ref=e287]:
++      - link [ref=e288]
+@@ -106 +136 @@
+-    - text: "▲ 1"
++    - text: "-75%$59.99$14.99▲ 1"
+@@ -108,0 +138,2 @@
++    - button [ref=e289]:
++      - link [ref=e290]
+@@ -110 +142 @@
+-    - text: "▼ 3"
++    - text: "$24.99▼ 3"
+@@ -112,0 +144,2 @@
++    - button [ref=e291]:
++      - link [ref=e292]
+@@ -114 +148 @@
+-    - text: "0"
++    - text: "$9.99  0"
+@@ -116,0 +150,2 @@
++    - button [ref=e293]:
++      - link [ref=e294]
+@@ -118 +154 @@
+-    - text: "▼ 3"
++    - text: "$29.99▼ 3"
+@@ -120,0 +156,2 @@
++    - button [ref=e295]:
++      - link [ref=e296]
+@@ -122 +160 @@
+-    - text: "▼ 5"
++    - text: "$4.99▼ 5"
+@@ -124,0 +162,2 @@
++    - button [ref=e297]:
++      - link [ref=e298]
+@@ -126 +166 @@
+-    - text: "▼ 2"
++    - text: "$12.99▼ 2"
+@@ -128,0 +168,2 @@
++    - button [ref=e299]:
++      - link [ref=e300]
+@@ -130 +172 @@
+-    - text: "▲ 2"
++    - text: "$39.99▲ 2"
+@@ -132,0 +174,2 @@
++    - button [ref=e301]:
++      - link [ref=e302]
+@@ -134 +178 @@
+-    - text: "▼ 1"
++    - text: "$19.99▼ 1"
+@@ -136,0 +180,2 @@
++    - button [ref=e303]:
++      - link [ref=e304]
+@@ -138 +184 @@
+-    - text: "▲ 46"
++    - text: "$9.99▲ 46"
+@@ -140,0 +186,2 @@
++    - button [ref=e305]:
++      - link [ref=e306]
+@@ -142 +190 @@
+-    - text: "▼ 4"
++    - text: "$39.99▼ 4"
+@@ -144,0 +192,2 @@
++    - button [ref=e307]:
++      - link [ref=e308]
+@@ -146 +196 @@
+-    - text: "▼ 3"
++    - text: "Free To Play▼ 3"
+@@ -148,0 +198,2 @@
++    - button [ref=e309]:
++      - link [ref=e310]
+@@ -150 +202 @@
+-    - text: "▼ 2"
++    - text: "$39.99▼ 2"
+@@ -152,0 +204,2 @@
++    - button [ref=e311]:
++      - link [ref=e312]
+@@ -154 +208 @@
+-    - text: "▼ 2"
++    - text: "$59.99▼ 2"
+@@ -156,0 +210,2 @@
++    - button [ref=e313]:
++      - link [ref=e314]
+@@ -158 +214 @@
+-    - text: "▲ 2"
++    - text: "$19.99▲ 2"
+@@ -160,0 +216,2 @@
++    - button [ref=e315]:
++      - link [ref=e316]
+@@ -162 +220 @@
+-    - text: "▲ 4"
++    - text: "$39.99▲ 4"
+@@ -164,0 +222,2 @@
++    - button [ref=e317]:
++      - link [ref=e318]
+@@ -166 +226 @@
+-    - text: "▼ 2"
++    - text: "$19.99▼ 2"
+@@ -168,0 +228,2 @@
++    - button [ref=e319]:
++      - link [ref=e320]
+@@ -170 +232 @@
+-    - text: "▲ 6"
++    - text: "-86%$69.99$9.79▲ 6"
+@@ -172,0 +234,2 @@
++    - button [ref=e321]:
++      - link [ref=e322]
+@@ -174 +238 @@
+-    - text: "▼ 6"
++    - text: "$14.99▼ 6"
+@@ -176,0 +240,2 @@
++    - button [ref=e323]:
++      - link [ref=e324]
+@@ -178 +244 @@
+-    - text: "▼ 1"
++    - text: "$39.99▼ 1"
+@@ -180,0 +246,2 @@
++    - button [ref=e325]:
++      - link [ref=e326]
+@@ -182 +250 @@
+-    - text: "▼ 3"
++    - text: "$19.99▼ 3"
+@@ -184,0 +252,2 @@
++    - button [ref=e327]:
++      - link [ref=e328]
+@@ -186 +256 @@
+-    - text: "▼ 16"
++    - text: "-25%$39.99$29.99▼ 16"
+@@ -188,0 +258,2 @@
++    - button [ref=e329]:
++      - link [ref=e330]
+@@ -190 +262 @@
+-    - text: "▼ 2"
++    - text: "$14.99▼ 2"
+@@ -192,0 +264,2 @@
++    - button [ref=e331]:
++      - link [ref=e332]
+@@ -194 +268 @@
+-    - text: "▼ 1"
++    - text: "$19.99▼ 1"
+@@ -196,0 +270,2 @@
++    - button [ref=e333]:
++      - link [ref=e334]
+@@ -198 +274 @@
+-    - text: "New"
++    - text: "-20%$24.99$19.99 New"
+@@ -200,0 +276,2 @@
++    - button [ref=e335]:
++      - link [ref=e336]
+@@ -202 +280 @@
+-    - text: "▼ 4"
++    - text: "$59.99▼ 4"
+@@ -204,0 +282,2 @@
++    - button [ref=e337]:
++      - link [ref=e338]
+@@ -206 +286 @@
+-    - text: "▼ 1"
++    - text: "$39.99▼ 1"
+@@ -208,0 +288,2 @@
++    - button [ref=e339]:
++      - link [ref=e340]
+@@ -210 +292 @@
+-    - text: "▼ 14"
++    - text: "$59.99▼ 14"
+@@ -212,0 +294,2 @@
++    - button [ref=e341]:
++      - link [ref=e342]
+@@ -214 +298 @@
+-    - text: "▲ 37"
++    - text: "-75%$29.99$7.49▲ 37"
+@@ -216,0 +300,2 @@
++    - button [ref=e343]:
++      - link [ref=e344]
+@@ -218 +304 @@
+-    - text: "▼ 2"
++    - text: "$59.99▼ 2"
+@@ -220,0 +306,2 @@
++    - button [ref=e345]:
++      - link [ref=e346]
+@@ -222 +310 @@
+-    - text: "▲ 45"
++    - text: "$69.99▲ 45"
+@@ -224,0 +312,2 @@
++    - button [ref=e347]:
++      - link [ref=e348]
+@@ -226 +316 @@
+-    - text: "▼ 16"
++    - text: "$29.99▼ 16"
+@@ -228,0 +318,2 @@
++    - button [ref=e349]:
++      - link [ref=e350]
+@@ -230 +322 @@
+-    - text: "▼ 8"
++    - text: "$19.99▼ 8"
+@@ -232,0 +324,2 @@
++    - button [ref=e351]:
++      - link [ref=e352]
+@@ -234 +328 @@
+-    - text: "0"
++    - text: "Free To Play  0"
+@@ -236,0 +330,2 @@
++    - button [ref=e353]:
++      - link [ref=e354]
+@@ -238 +334 @@
+-    - text: "▼ 6"
++    - text: "$7.99▼ 6"
+@@ -240,0 +336,2 @@
++    - button [ref=e355]:
++      - link [ref=e356]
+@@ -242 +340 @@
+-    - text: "▼ 6"
++    - text: "$59.99▼ 6"
+@@ -244,0 +342,2 @@
++    - button [ref=e357]:
++      - link [ref=e358]
+@@ -246 +346 @@
+-    - text: "▼ 10"
++    - text: "$29.99▼ 10"
+@@ -248,0 +348,2 @@
++    - button [ref=e359]:
++      - link [ref=e360]
+@@ -250 +352 @@
+-    - text: "▼ 5"
++    - text: "$24.99▼ 5"
+@@ -252,0 +354,2 @@
++    - button [ref=e361]:
++      - link [ref=e362]
+@@ -254 +358 @@
+-    - text: "New"
++    - text: "New-10%$19.99$17.99 New"
+@@ -256,0 +360,2 @@
++    - button [ref=e363]:
++      - link [ref=e364]
+@@ -258 +364 @@
+-    - text: "▼ 9"
++    - text: "Free To Play▼ 9"
+@@ -260,0 +366,2 @@
++    - button [ref=e365]:
++      - link [ref=e366]
+@@ -262 +370 @@
+-    - text: "▼ 3"
++    - text: "Free To Play▼ 3"
+@@ -264,0 +372,2 @@
++    - button [ref=e367]:
++      - link [ref=e368]
+@@ -266 +376 @@
+-    - text: "▼ 5"
++    - text: "$19.99▼ 5"
+@@ -268,0 +378,2 @@
++    - button [ref=e369]:
++      - link [ref=e370]
+@@ -270 +382 @@
+-    - text: "▼ 7"
++    - text: "-20%$59.99$47.99▼ 7"
+@@ -272,0 +384,2 @@
++    - button [ref=e371]:
++      - link [ref=e372]
+@@ -274 +388 @@
+-    - text: "▼ 12"
++    - text: "$39.99▼ 12"
+@@ -276,0 +390,2 @@
++    - button [ref=e373]:
++      - link [ref=e374]
+@@ -278 +394 @@
+-    - text: "▼ 5"
++    - text: "$9.99▼ 5"
+@@ -280,0 +396,2 @@
++    - button [ref=e375]:
++      - link [ref=e376]
+@@ -282 +400 @@
+-    - text: "New"
++    - text: "New-15%$24.99$21.24 New"
+@@ -284,0 +402,2 @@
++    - button [ref=e377]:
++      - link [ref=e378]
+@@ -286 +406 @@
+-    - text: "▲ 3"
++    - text: "$19.99▲ 3"
+@@ -288,0 +408,2 @@
++    - button [ref=e379]:
++      - link [ref=e380]
+@@ -290 +412 @@
+-    - text: "▼ 7"
++    - text: "$29.99▼ 7"
+@@ -292,0 +414,2 @@
++    - button [ref=e381]:
++      - link [ref=e382]
+@@ -294 +418 @@
+-    - text: "▼ 1"
++    - text: "$9.99▼ 1"
+@@ -296,0 +420,2 @@
++    - button [ref=e383]:
++      - link [ref=e384]
+@@ -298 +424 @@
+-    - text: "▼ 11"
++    - text: "$24.99▼ 11"
+@@ -300,0 +426,2 @@
++    - button [ref=e385]:
++      - link [ref=e386]
+@@ -302 +430 @@
+-    - text: "▼ 9"
++    - text: "$39.99▼ 9"
+@@ -304,0 +432,2 @@
++    - button [ref=e387]:
++      - link [ref=e388]
+@@ -306 +436 @@
+-    - text: "▼ 9"
++    - text: "$13.99▼ 9"
+@@ -308,0 +438,2 @@
++    - button [ref=e389]:
++      - link [ref=e390]
+@@ -310 +442 @@
+-    - text: "▼ 18"
++    - text: "$29.99▼ 18"
+@@ -312,0 +444,2 @@
++    - button [ref=e391]:
++      - link [ref=e392]
+@@ -314 +448 @@
+-    - text: "▼ 3"
++    - text: "Free To Play▼ 3"
+@@ -316,0 +450,2 @@
++    - button [ref=e393]:
++      - link [ref=e394]
+@@ -318 +454 @@
+-    - text: "▲ 13"
++    - text: "Free To Play▲ 13"
+@@ -320,0 +456,2 @@
++    - button [ref=e395]:
++      - link [ref=e396]
+@@ -322 +460 @@
+-    - text: "▲ 25"
++    - text: "-50%$19.99$9.99▲ 25"
+@@ -324,0 +462,2 @@
++    - button [ref=e397]:
++      - link [ref=e398]
+@@ -326 +466 @@
+-    - text: "▼ 8"
++    - text: "$39.99▼ 8"
+@@ -328,0 +468,2 @@
++    - button [ref=e399]:
++      - link [ref=e400]
+@@ -330 +472 @@
+-    - text: "▼ 14"
++    - text: "$19.99▼ 14"
+@@ -332,0 +474,2 @@
++    - button [ref=e401]:
++      - link [ref=e402]
+@@ -334 +478 @@
+-    - text: "▼ 2"
++    - text: "$49.99▼ 2"
+@@ -336,0 +480,2 @@
++    - button [ref=e403]:
++      - link [ref=e404]
+@@ -338 +484 @@
+-    - text: "▼ 5"
++    - text: "$29.99▼ 5"
+@@ -340,0 +486,2 @@
++    - button [ref=e405]:
++      - link [ref=e406]
+@@ -342 +490 @@
+-    - text: "▼ 7"
++    - text: "$59.99▼ 7"
+@@ -344,0 +492,2 @@
++    - button [ref=e407]:
++      - link [ref=e408]
+@@ -346 +496 @@
+-    - text: "▼ 2"
++    - text: "$19.99▼ 2"
+@@ -348,0 +498,2 @@
++    - button [ref=e409]:
++      - link [ref=e410]
+@@ -350 +502 @@
+-    - text: "▼ 16"
++    - text: "$29.99▼ 16"
+@@ -352,0 +504,2 @@
++    - button [ref=e411]:
++      - link [ref=e412]
+@@ -354 +508 @@
+-    - text: "▼ 1"
++    - text: "$9.99▼ 1"
+@@ -356,0 +510,2 @@
++    - button [ref=e413]:
++      - link [ref=e414]
+@@ -358 +514 @@
+-    - text: "New"
++    - text: "$7.99 New"
+@@ -360,0 +516,2 @@
++    - button [ref=e415]:
++      - link [ref=e416]
+@@ -362 +520 @@
+-    - text: "▼ 7"
++    - text: "$59.99▼ 7"
+@@ -364,0 +522,2 @@
++    - button [ref=e417]:
++      - link [ref=e418]
+@@ -366 +526 @@
+-    - text: "▼ 5"
++    - text: "$34.99▼ 5"
+@@ -368,0 +528,2 @@
++    - button [ref=e419]:
++      - link [ref=e420]
+@@ -370 +532 @@
+-    - text: "▲ 1"
++    - text: "Free To Play▲ 1"
+@@ -372,0 +534,2 @@
++    - button [ref=e421]:
++      - link [ref=e422]
+@@ -374 +538 @@
+-    - text: "▼ 8"
++    - text: "$39.99▼ 8"
+@@ -376,0 +540,2 @@
++    - button [ref=e423]:
++      - link [ref=e424]
+@@ -378 +544 @@
+-    - text: "▼ 6"
++    - text: "-50%$79.99$39.99▼ 6"
+@@ -380,0 +546,2 @@
++    - button [ref=e425]:
++      - link [ref=e426]
+@@ -382 +550 @@
+-    - text: "▼ 26"
++    - text: "$17.99▼ 26"
+@@ -384,0 +552,2 @@
++    - button [ref=e427]:
++      - link [ref=e428]
+@@ -386 +556 @@
+-    - text: "▲ 7"
++    - text: "$49.99▲ 7"
+@@ -388,0 +558,2 @@
++    - button [ref=e429]:
++      - link [ref=e430]
+@@ -390 +562 @@
+-    - text: "▼ 2"
++    - text: "$24.99▼ 2"
+@@ -392,0 +564,2 @@
++    - button [ref=e431]:
++      - link [ref=e432]
+@@ -394 +568 @@
+-    - text: "▼ 22"
++    - text: "$11.99▼ 22"
+@@ -396,0 +570,2 @@
++    - button [ref=e433]:
++      - link [ref=e434]
+@@ -398 +574 @@
+-    - text: "▼ 3"
++    - text: "$19.99▼ 3"
+@@ -400,0 +576,2 @@
++    - button [ref=e435]:
++      - link [ref=e436]
+@@ -402 +580 @@
+-    - text: "▼ 18"
++    - text: "$12.99▼ 18"
+@@ -404,0 +582,2 @@
++    - button [ref=e437]:
++      - link [ref=e438]
+@@ -406 +586 @@
+-    - text: "New"
++    - text: "-67%$59.99$19.79 New"
+@@ -408,0 +588,2 @@
++    - button [ref=e439]:
++      - link [ref=e440]
+@@ -410 +592 @@
+-    - text: "▼ 8"
++    - text: "$29.99▼ 8"
+@@ -412,0 +594,2 @@
++    - button [ref=e441]:
++      - link [ref=e442]
+@@ -414 +598 @@
+-    - text: "▼ 12"
++    - text: "$39.99▼ 12"
+@@ -416,0 +600,2 @@
++    - button [ref=e443]:
++      - link [ref=e444]
+@@ -418 +604 @@
+-    - text: "New"
++    - text: "-67%$49.99$16.49 New"
+@@ -420,0 +606,2 @@
++    - button [ref=e445]:
++      - link [ref=e446]
+@@ -422 +610 @@
+-    - text: "▼ 35"
++    - text: "$19.99▼ 35"
+@@ -424,0 +612,2 @@
++    - button [ref=e447]:
++      - link [ref=e448]
+@@ -426 +616 @@
+-    - text: "New"
++    - text: "Free To Play New"
+@@ -428,0 +618,2 @@
++    - button [ref=e449]:
++      - link [ref=e450]
+@@ -430 +622 @@
+-    - text: "▲ 2"
++    - text: "-90%$59.99$5.99▲ 2"
+@@ -432,0 +624,2 @@
++    - button [ref=e451]:
++      - link [ref=e452]
+@@ -434 +628 @@
+-    - text: "New"
++    - text: "-35%$14.99$9.74 New"
+@@ -436,0 +630,2 @@
++    - button [ref=e453]:
++      - link [ref=e454]
+@@ -438 +634 @@
+-    - text: "▼ 7"
++    - text: "$39.99▼ 7"
+@@ -440,0 +636,2 @@
++    - button [ref=e455]:
++      - link [ref=e456]
+@@ -442 +640 @@
+-    - text: "▼ 9"
++    - text: "$59.99▼ 9"
+@@ -444,0 +642,2 @@
++    - button [ref=e457]:
++      - link [ref=e458]
+@@ -446 +646 @@
+-    - text: "▼ 14"
++    - text: "$39.99▼ 14"
+@@ -477,0 +677,4 @@
++- generic [ref=e459]:
++  - option "past week" [ref=e460] [focused] [selected]
++  - option "past month" [ref=e461]
++  - option "past year" [ref=e462]
+</result>
+
+[11] tool_call: repl("Switching to past year")
+<request>
+await page.locator('e462').click();
+const s4 = await snapshot(page, {interactive: true});
+console.log(s4.diff || s4.tree);
+</request>
+<result tokens_used="73" elapsed_time="4084ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Steam Deck Top Played" [url=https://store.steampowered.com/charts/steamdecktopplayed?snr=1_4_4__637]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- navigation "Store menu" [ref=e11]:
+  - button "Browse" [ref=e463]
+  - button "Recommendations" [ref=e464]
+  - button "Categories" [ref=e465]
+  - button "Hardware" [ref=e466]
+  - button "Ways to Play" [ref=e467]
+  - button "Special Sections" [ref=e468]
+  - search:
+    - combobox "Search the store" [ref=e469] [placeholder="Search the store"]
+    - button "Search" [ref=e470]
+- main:
+  - button "Charts Overview" [ref=e20]
+  - text: "Live Charts"
+  - button "Top Sellers" [ref=e21]
+  - button "Most Played" [ref=e22]
+  - button "Steam Deck" [ref=e23]
+  - text: "Weekly Charts"
+  - button "May 5, 2026" [ref=e24]
+  - button "Apr 28, 2026" [ref=e25]
+  - button "Apr 21, 2026" [ref=e26]
+  - text: "Monthly: Top Releases"
+  - button "March 2026" [ref=e27]
+  - button "February 2026" [ref=e28]
+  - button "January 2026" [ref=e29]
+  - text: "Best of Year"
+  - button "2025" [ref=e30]
+  - button "2024" [ref=e31]
+  - button "2023" [ref=e32]
+  - heading "Steam Deck Top Played" [level=1]
+  - text: "Top 100 played games on Steam Deck in the"
+  - combobox "past year" [ref=e33] [focused]
+  - text: "May 14, 2025 - May 13, 2026"
+  - link "Steam Deck Your Games, Everywhere" [ref=e34]
+  - text: "Rank Price Change  Verified"
+  - generic [ref=e471]:
+    - button [ref=e472]:
+      - link [ref=e473]
+    - text: "1"
+    - link "Stardew Valley" [ref=e474]
+    - text: "$14.99▲ 2"
+  - generic [ref=e475]:
+    - button [ref=e476]:
+      - link [ref=e477]
+    - text: "2"
+    - link "Slay the Spire 2" [ref=e478]
+    - text: "$24.99 New"
+  - generic [ref=e479]:
+    - button [ref=e480]:
+      - link [ref=e481]
+    - text: "3"
+    - link "Hades II" [ref=e482]
+    - text: "$29.99▲ 8"
+  - generic [ref=e483]:
+    - button [ref=e484]:
+      - link [ref=e485]
+    - text: "4"
+    - link "Hollow Knight: Silksong" [ref=e486]
+    - text: "$19.99 New"
+  - generic [ref=e487]:
+    - button [ref=e488]:
+      - link [ref=e489]
+    - text: "5"
+    - link "Megabonk" [ref=e490]
+    - text: "$9.99 New"
+  - generic [ref=e491]:
+    - button [ref=e492]:
+      - link [ref=e493]
+    - text: "6"
+    - link "Baldur's Gate 3" [ref=e494]
+    - text: "$59.99▼ 2"
+  - generic [ref=e495]:
+    - button [ref=e496]:
+      - link [ref=e497]
+    - text: "7"
+    - link "Hollow Knight" [ref=e498]
+    - text: "$14.99▲ 21"
+  - generic [ref=e499]:
+    - button [ref=e500]:
+      - link [ref=e501]
+    - text: "8"
+    - link "Balatro" [ref=e502]
+    - text: "$14.99▼ 7"
+  - generic [ref=e503]:
+    - button [ref=e504]:
+      - link [ref=e505]
+    - text: "9"
+    - link "Cyberpunk 2077" [ref=e506]
+    - text: "$59.99▼ 3"
+  - generic [ref=e507]:
+    - button [ref=e508]:
+      - link [ref=e509]
+    - text: "10"
+    - link "Hades" [ref=e510]
+    - text: "$24.99▼ 3"
+  - generic [ref=e511]:
+    - button [ref=e512]:
+      - link [ref=e513]
+    - text: "11"
+    - link "Slay the Spire" [ref=e514]
+    - text: "$24.99▲ 4"
+  - generic [ref=e515]:
+    - button [ref=e516]:
+      - link [ref=e517]
+    - text: "12"
+    - link "Red Dead Redemption 2" [ref=e518]
+    - text: "-75%$59.99$14.99▼ 3"
+  - generic [ref=e519]:
+    - button [ref=e520]:
+      - link [ref=e521]
+    - text: "13"
+    - link "Hogwarts Legacy" [ref=e522]
+    - text: "$59.99▼ 5"
+  - generic [ref=e523]:
+    - button [ref=e524]:
+      - link [ref=e525]
+    - text: "14"
+    - link "ELDEN RING" [ref=e526]
+    - text: "$59.99▼ 12"
+  - generic [ref=e527]:
+    - button [ref=e528]:
+      - link [ref=e529]
+    - text: "15"
+    - link "Fallout 4" [ref=e530]
+    - text: "$19.99▼ 2"
+  - generic [ref=e531]:
+    - button [ref=e532]:
+      - link [ref=e533]
+    - text: "16"
+    - link "Vampire Survivors" [ref=e534]
+    - text: "$4.99▼ 11"
+  - generic [ref=e535]:
+    - button [ref=e536]:
+      - link [ref=e537]
+    - text: "17"
+    - link "BALL x PIT" [ref=e538]
+    - text: "$14.99 New"
+  - generic [ref=e539]:
+    - button [ref=e540]:
+      - link [ref=e541]
+    - text: "18"
+    - link "Brotato" [ref=e542]
+    - text: "$4.99▼ 4"
+  - generic [ref=e543]:
+    - button [ref=e544]:
+      - link [ref=e545]
+    - text: "19"
+    - link "The Witcher 3: Wild Hunt" [ref=e546]
+    - text: "$39.99▼ 2"
+  - generic [ref=e547]:
+    - button [ref=e548]:
+      - link [ref=e549]
+    - text: "20"
+    - link "Dispatch" [ref=e550]
+    - text: "$29.99 New"
+  - generic [ref=e551]:
+    - button [ref=e552]:
+      - link [ref=e553]
+    - text: "21"
+    - link "DAVE THE DIVER" [ref=e554]
+    - text: "$19.99▼ 11"
+  - generic [ref=e555]:
+    - button [ref=e556]:
+      - link [ref=e557]
+    - text: "22"
+    - link "The Elder Scrolls V: Skyrim Special Edition" [ref=e558]
+    - text: "$39.99▼ 10"
+  - generic [ref=e559]:
+    - button [ref=e560]:
+      - link [ref=e561]
+    - text: "23"
+    - link "Clair Obscur: Expedition 33" [ref=e562]
+    - text: "-20%$59.99$47.99 New"
+  - generic [ref=e563]:
+    - button [ref=e564]:
+      - link [ref=e565]
+    - text: "24"
+    - link "PEAK" [ref=e566]
+    - text: "$7.99 New"
+  - generic [ref=e567]:
+    - button [ref=e568]:
+      - link [ref=e569]
+    - text: "25"
+    - link "The Binding of Isaac: Rebirth" [ref=e570]
+    - text: "$14.99▼ 4"
+  - generic [ref=e571]:
+    - button [ref=e572]:
+      - link [ref=e573]
+    - text: "26"
+    - link "Mewgenics" [ref=e574]
+    - text: "$29.99 New"
+  - generic [ref=e575]:
+    - button [ref=e576]:
+      - link [ref=e577]
+    - text: "27"
+    - link "No Man's Sky" [ref=e578]
+    - text: "$59.99▼ 5"
+  - generic [ref=e579]:
+    - button [ref=e580]:
+      - link [ref=e581]
+    - text: "28"
+    - link "Diablo® IV" [ref=e582]
+    - text: "-40%$49.99$29.99▼ 12"
+  - generic [ref=e583]:
+    - button [ref=e584]:
+      - link [ref=e585]
+    - text: "29"
+    - link "Cult of the Lamb" [ref=e586]
+    - text: "$24.99▼ 6"
+  - generic [ref=e587]:
+    - button [ref=e588]:
+      - link [ref=e589]
+    - text: "30"
+    - link "Deep Rock Galactic: Survivor" [ref=e590]
+    - text: "$12.99▼ 10"
+  - generic [ref=e591]:
+    - button [ref=e592]:
+      - link [ref=e593]
+    - text: "31"
+    - link "ARC Raiders" [ref=e594]
+    - text: "$39.99 New"
+  - generic [ref=e595]:
+    - button [ref=e596]:
+      - link [ref=e597]
+    - text: "32"
+    - link "Fallout: New Vegas" [ref=e598]
+    - text: "$9.99▲ 7"
+  - generic [ref=e599]:
+    - button [ref=e600]:
+      - link [ref=e601]
+    - text: "33"
+    - link "FANTASY LIFE i: The Girl Who Steals Time" [ref=e602]
+    - text: "$59.99 New"
+  - generic [ref=e603]:
+    - button [ref=e604]:
+      - link [ref=e605]
+    - text: "34"
+    - link "Palworld" [ref=e606]
+    - text: "$29.99▼ 1"
+  - generic [ref=e607]:
+    - button [ref=e608]:
+      - link [ref=e609]
+    - text: "35"
+    - link "Persona 5 Royal" [ref=e610]
+    - text: "$59.99▼ 6"
+  - generic [ref=e611]:
+    - button [ref=e612]:
+      - link [ref=e613]
+    - text: "36"
+    - link "Warframe" [ref=e614]
+    - text: "Free To Play  0"
+  - generic [ref=e615]:
+    - button [ref=e616]:
+      - link [ref=e617]
+    - text: "37"
+    - link "Halo: The Master Chief Collection" [ref=e618]
+    - text: "$39.99▲ 1"
+  - generic [ref=e619]:
+    - button [ref=e620]:
+      - link [ref=e621]
+    - text: "38"
+    - link "HELLDIVERS™ 2" [ref=e622]
+    - text: "$39.99▼ 8"
+  - generic [ref=e623]:
+    - button [ref=e624]:
+      - link [ref=e625]
+    - text: "39"
+    - link "Terraria" [ref=e626]
+    - text: "$9.99▲ 7"
+  - generic [ref=e627]:
+    - button [ref=e628]:
+      - link [ref=e629]
+    - text: "40"
+    - link "Fields of Mistria" [ref=e630]
+    - text: "$13.99▼ 8"
+  - generic [ref=e631]:
+    - button [ref=e632]:
+      - link [ref=e633]
+    - text: "41"
+    - link "Digimon Story Time Stranger" [ref=e634]
+    - text: "-30%$69.99$48.99 New"
+  - generic [ref=e635]:
+    - button [ref=e636]:
+      - link [ref=e637]
+    - text: "42"
+    - link "Grand Theft Auto IV: The Complete Edition" [ref=e638]
+    - text: "$19.99▼ 2"
+  - generic [ref=e639]:
+    - button [ref=e640]:
+      - link [ref=e641]
+    - text: "43"
+    - link "Forza Horizon 5" [ref=e642]
+    - text: "$59.99▼ 6"
+  - generic [ref=e643]:
+    - button [ref=e644]:
+      - link [ref=e645]
+    - text: "44"
+    - link "Dead Cells" [ref=e646]
+    - text: "$24.99▼ 13"
+  - generic [ref=e647]:
+    - button [ref=e648]:
+      - link [ref=e649]
+    - text: "45"
+    - link "ELDEN RING NIGHTREIGN" [ref=e650]
+    - text: "$39.99 New"
+  - generic [ref=e651]:
+    - button [ref=e652]:
+      - link [ref=e653]
+    - text: "46"
+    - link "Marvel’s Spider-Man Remastered" [ref=e654]
+    - text: "$59.99▼ 3"
+  - generic [ref=e655]:
+    - button [ref=e656]:
+      - link [ref=e657]
+    - text: "47"
+    - link "DEATH STRANDING DIRECTOR'S CUT" [ref=e658]
+    - text: "$39.99 New"
+  - generic [ref=e659]:
+    - button [ref=e660]:
+      - link [ref=e661]
+    - text: "48"
+    - link "Euro Truck Simulator 2" [ref=e662]
+    - text: "$19.99▼ 4"
+  - generic [ref=e663]:
+    - button [ref=e664]:
+      - link [ref=e665]
+    - text: "49"
+    - link "Resident Evil 4" [ref=e666]
+    - text: "$39.99▲ 18"
+  - generic [ref=e667]:
+    - button [ref=e668]:
+      - link [ref=e669]
+    - text: "50"
+    - link "Dead by Daylight" [ref=e670]
+    - text: "$19.99▲ 20"
+  - generic [ref=e671]:
+    - button [ref=e672]:
+      - link [ref=e673]
+    - text: "51"
+    - link "Grand Theft Auto V Enhanced" [ref=e674]
+    - text: "$29.99 New"
+  - generic [ref=e675]:
+    - button [ref=e676]:
+      - link [ref=e677]
+    - text: "52"
+    - link "Marvel Rivals" [ref=e678]
+    - text: "Free To Play▼ 27"
+  - generic [ref=e679]:
+    - button [ref=e680]:
+      - link [ref=e681]
+    - text: "53"
+    - link "Ghost of Tsushima DIRECTOR'S CUT" [ref=e682]
+    - text: "$59.99▼ 4"
+  - generic [ref=e683]:
+    - button [ref=e684]:
+      - link [ref=e685]
+    - text: "54"
+    - link "Detroit: Become Human" [ref=e686]
+    - text: "$39.99▲ 34"
+  - generic [ref=e687]:
+    - button [ref=e688]:
+      - link [ref=e689]
+    - text: "55"
+    - link "Disney Dreamlight Valley" [ref=e690]
+    - text: "$39.99▲ 9"
+  - generic [ref=e691]:
+    - button [ref=e692]:
+      - link [ref=e693]
+    - text: "56"
+    - link "Project Zomboid" [ref=e694]
+    - text: "$19.99▼ 5"
+  - generic [ref=e695]:
+    - button [ref=e696]:
+      - link [ref=e697]
+    - text: "57"
+    - link "DELTARUNE" [ref=e698]
+    - text: "$24.99 New"
+  - generic [ref=e699]:
+    - button [ref=e700]:
+      - link [ref=e701]
+    - text: "58"
+    - link "DREDGE" [ref=e702]
+    - text: "$24.99▼ 16"
+  - generic [ref=e703]:
+    - button [ref=e704]:
+      - link [ref=e705]
+    - text: "59"
+    - link "Valheim" [ref=e706]
+    - text: "$19.99▼ 5"
+  - generic [ref=e707]:
+    - button [ref=e708]:
+      - link [ref=e709]
+    - text: "60"
+    - link "CloverPit" [ref=e710]
+    - text: "$9.99 New"
+  - generic [ref=e711]:
+    - button [ref=e712]:
+      - link [ref=e713]
+    - text: "61"
+    - link "R.E.P.O." [ref=e714]
+    - text: "$9.99▲ 35"
+  - generic [ref=e715]:
+    - button [ref=e716]:
+      - link [ref=e717]
+    - text: "62"
+    - link "The Elder Scrolls IV: Oblivion Remastered" [ref=e718]
+    - text: "$49.99▼ 14"
+  - generic [ref=e719]:
+    - button [ref=e720]:
+      - link [ref=e721]
+    - text: "63"
+    - link "Persona 3 Reload" [ref=e722]
+    - text: "$59.99▼ 16"
+  - generic [ref=e723]:
+    - button [ref=e724]:
+      - link [ref=e725]
+    - text: "64"
+    - link "Disco Elysium - The Final Cut" [ref=e726]
+    - text: "$39.99▼ 11"
+  - generic [ref=e727]:
+    - button [ref=e728]:
+      - link [ref=e729]
+    - text: "65"
+    - link "RimWorld" [ref=e730]
+    - text: "$34.99▲ 26"
+  - generic [ref=e731]:
+    - button [ref=e732]:
+      - link [ref=e733]
+    - text: "66"
+    - link "Kingdom Come: Deliverance II" [ref=e734]
+    - text: "-50%$79.99$39.99▲ 8"
+  - generic [ref=e735]:
+    - button [ref=e736]:
+      - link [ref=e737]
+    - text: "67"
+    - link "Counter-Strike 2" [ref=e738]
+    - text: "Free To Play▼ 5"
+  - generic [ref=e739]:
+    - button [ref=e740]:
+      - link [ref=e741]
+    - text: "68"
+    - link "DARK SOULS™ III" [ref=e742]
+    - text: "$59.99▼ 16"
+  - generic [ref=e743]:
+    - button [ref=e744]:
+      - link [ref=e745]
+    - text: "69"
+    - link "Vampire Crawlers: The Turbo Wildcard from Vampire Survivors" [ref=e746]
+    - text: "$9.99 New"
+  - generic [ref=e747]:
+    - button [ref=e748]:
+      - link [ref=e749]
+    - text: "70"
+    - link "Coral Island" [ref=e750]
+    - text: "$29.99▼ 12"
+  - generic [ref=e751]:
+    - button [ref=e752]:
+      - link [ref=e753]
+    - text: "71"
+    - link "It Takes Two" [ref=e754]
+    - text: "$39.99▼ 8"
+  - generic [ref=e755]:
+    - button [ref=e756]:
+      - link [ref=e757]
+    - text: "72"
+    - link "No Rest for the Wicked" [ref=e758]
+    - text: "$39.99 New"
+  - generic [ref=e759]:
+    - button [ref=e760]:
+      - link [ref=e761]
+    - text: "73"
+    - link "Resident Evil 2" [ref=e762]
+    - text: "$39.99 New"
+  - generic [ref=e763]:
+    - button [ref=e764]:
+      - link [ref=e765]
+    - text: "74"
+    - link "Risk of Rain 2" [ref=e766]
+    - text: "$24.99▼ 3"
+  - generic [ref=e767]:
+    - button [ref=e768]:
+      - link [ref=e769]
+    - text: "75"
+    - link "Schedule I" [ref=e770]
+    - text: "$19.99▼ 18"
+  - generic [ref=e771]:
+    - button [ref=e772]:
+      - link [ref=e773]
+    - text: "76"
+    - link "FINAL FANTASY TACTICS - The Ivalice Chronicles" [ref=e774]
+    - text: "$49.99 New"
+  - generic [ref=e775]:
+    - button [ref=e776]:
+      - link [ref=e777]
+    - text: "77"
+    - link "Grand Theft Auto V Legacy" [ref=e778]
+    - text: "▼ 59"
+  - generic [ref=e779]:
+    - button [ref=e780]:
+      - link [ref=e781]
+    - text: "78"
+    - link "Left 4 Dead 2" [ref=e782]
+    - text: "$9.99▼ 10"
+  - generic [ref=e783]:
+    - button [ref=e784]:
+      - link [ref=e785]
+    - text: "79"
+    - link "War Thunder" [ref=e786]
+    - text: "Free To Play▼ 20"
+  - generic [ref=e787]:
+    - button [ref=e788]:
+      - link [ref=e789]
+    - text: "80"
+    - link "Stellar Blade™" [ref=e790]
+    - text: "$59.99 New"
+  - generic [ref=e791]:
+    - button [ref=e792]:
+      - link [ref=e793]
+    - text: "81"
+    - link "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-" [ref=e794]
+    - text: "$49.99▼ 40"
+  - generic [ref=e795]:
+    - button [ref=e796]:
+      - link [ref=e797]
+    - text: "82"
+    - link "Blue Prince" [ref=e798]
+    - text: "$29.99 New"
+  - generic [ref=e799]:
+    - button [ref=e800]:
+      - link [ref=e801]
+    - text: "83"
+    - link "Portal 2" [ref=e802]
+    - text: "$9.99▼ 17"
+  - generic [ref=e803]:
+    - button [ref=e804]:
+      - link [ref=e805]
+    - text: "84"
+    - link "Path of Exile 2" [ref=e806]
+    - text: "$29.99▼ 57"
+  - generic [ref=e807]:
+    - button [ref=e808]:
+      - link [ref=e809]
+    - text: "85"
+    - link "Monster Train 2" [ref=e810]
+    - text: "$24.99 New"
+  - generic [ref=e811]:
+    - button [ref=e812]:
+      - link [ref=e813]
+    - text: "86"
+    - link "Monster Hunter: World" [ref=e814]
+    - text: "$29.99▼ 62"
+  - generic [ref=e815]:
+    - button [ref=e816]:
+      - link [ref=e817]
+    - text: "87"
+    - link "Satisfactory" [ref=e818]
+    - text: "$39.99 New"
+  - generic [ref=e819]:
+    - button [ref=e820]:
+      - link [ref=e821]
+    - text: "88"
+    - link "Batman™: Arkham Knight" [ref=e822]
+    - text: "$19.99▼ 28"
+  - generic [ref=e823]:
+    - button [ref=e824]:
+      - link [ref=e825]
+    - text: "89"
+    - link "God of War" [ref=e826]
+    - text: "$49.99▼ 28"
+  - generic [ref=e827]:
+    - button [ref=e828]:
+      - link [ref=e829]
+    - text: "90"
+    - link "Subnautica" [ref=e830]
+    - text: "-75%$29.99$7.49▼ 7"
+  - generic [ref=e831]:
+    - button [ref=e832]:
+      - link [ref=e833]
+    - text: "91"
+    - link "PowerWash Simulator" [ref=e834]
+    - text: "$24.99▼ 6"
+  - generic [ref=e835]:
+    - button [ref=e836]:
+      - link [ref=e837]
+    - text: "92"
+    - link "DARK SOULS™: REMASTERED" [ref=e838]
+    - text: "$39.99▼ 17"
+  - generic [ref=e839]:
+    - button [ref=e840]:
+      - link [ref=e841]
+    - text: "93"
+    - link "MONSTER HUNTER RISE" [ref=e842]
+    - text: "$39.99▼ 58"
+  - generic [ref=e843]:
+    - button [ref=e844]:
+      - link [ref=e845]
+    - text: "94"
+    - link "The Sims™ 4" [ref=e846]
+    - text: "Free To Play▼ 29"
+  - generic [ref=e847]:
+    - button [ref=e848]:
+      - link [ref=e849]
+    - text: "95"
+    - link "Sekiro™: Shadows Die Twice - GOTY Edition" [ref=e850]
+    - text: "$59.99▼ 40"
+  - generic [ref=e851]:
+    - button [ref=e852]:
+      - link [ref=e853]
+    - text: "96"
+    - link "NBA 2K25" [ref=e854]
+    - text: "$69.99▼ 17"
+  - generic [ref=e855]:
+    - button [ref=e856]:
+      - link [ref=e857]
+    - text: "97"
+    - link "Street Fighter™ 6" [ref=e858]
+    - text: "$39.99▼ 25"
+  - generic [ref=e859]:
+    - button [ref=e860]:
+      - link [ref=e861]
+    - text: "98"
+    - link "Divinity: Original Sin 2 - Definitive Edition" [ref=e862]
+    - text: "$44.99 New"
+  - generic [ref=e863]:
+    - button [ref=e864]:
+      - link [ref=e865]
+    - text: "99"
+    - link "Wuthering Waves" [ref=e866]
+    - text: "Free To Play New"
+  - generic [ref=e867]:
+    - button [ref=e868]:
+      - link [ref=e869]
+    - text: "100"
+    - link "Split Fiction" [ref=e870]
+    - text: "$49.99 New"
+- contentinfo:
+  - link [ref=e235]
+  - link [ref=e236]
+  - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+  - link [ref=e237]
+  - link [ref=e238]
+  - link [ref=e239]
+  - link [ref=e240]
+  - heading "STEAM" [level=3]
+  - link "About Steam" [ref=e241]
+  - link "Steam SSA" [ref=e242]
+  - link "Steamworks" [ref=e243]
+  - link "Steam Distribution" [ref=e244]
+  - link "Gift Cards" [ref=e245]
+  - heading "VALVE" [level=3]
+  - link "About Valve" [ref=e246]
+  - link "Jobs" [ref=e247]
+  - link "Hardware" [ref=e248]
+  - link "Recycling" [ref=e249]
+  - heading "LEGAL" [level=3]
+  - link "Privacy" [ref=e250]
+  - link "Accessibility" [ref=e251]
+  - link "Notices & Policies" [ref=e252]
+  - link "Cookies" [ref=e253]
+  - link "Refunds" [ref=e254]
+  - heading "MORE" [level=3]
+  - link "Get Steam" [ref=e255]
+  - link "Get Mobile Apps" [ref=e256]
+  - link "Get Support" [ref=e257]
+  - link "My Account" [ref=e258]
+</result>
+
+[12] thinking: **Searching for Stardew Valley reviews**
+
+I need to find reviews for Stardew Valley, specifically from players who have logged over 100 hours and mostly use the Steam Deck. My first step is to click on the Stardew page and then filter the reviews to focus on those who have played primarily on Steam Deck. Once I apply the hours filter, I can discover more about their experiences! Let's see what I can find.
+
+[13] tool_call: write_todos:
+Todo list updated:
+- [completed] 1: Open Steam store and locate Steam Deck top-played list for past year
+- [completed] 2: Identify the top game in that list
+- [in_progress] 3: Browse reviews for that game from >100 hour Steam Deck-primary players
+- [pending] 4: Report the game and relevant review findings
+
+[14] tool_call: repl("Opening Stardew Valley page")
+<request>
+await page.locator('e474').click();
+const s5 = await snapshot(page, {interactive: true});
+console.log(s5.diff || s5.tree);
+</request>
+<result tokens_used="62" elapsed_time="2458ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Stardew Valley on Steam" [url=https://store.steampowered.com/app/413150/Stardew_Valley?snr=1_7001_mostplayedondeck__7003]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- navigation "Store menu" [ref=e11]:
+  - button "Browse" [ref=e12]
+  - button "Recommendations" [ref=e13]
+  - button "Categories" [ref=e14]
+  - button "Hardware" [ref=e15]
+  - button "Ways to Play" [ref=e16]
+  - button "Special Sections" [ref=e17]
+  - search:
+    - combobox "Search the store" [ref=e18] [placeholder="Search the store"]
+    - button "Search" [ref=e19]
+- main:
+  - generic "Open in Desktop App" [ref=e20]
+  - text: "You're not signed in!Open this page in the Steam App to wishlist, follow, purchase and see recommendations"
+  - generic [ref=e21] [scrollable]:
+    - link "All Games" [ref=e22]
+    - text: ">"
+    - link "Indie Games" [ref=e23]
+    - text: ">"
+    - link "Stardew Valley" [ref=e24]
+    - link "Community Hub" [ref=e25]
+    - heading "Stardew Valley" [level=1]
+    - text: "You've inherited your grandfather's old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home?"
+    - link "Recent Reviews: Overwhelmingly Positive (7,238)" [ref=e26]
+    - link "English Reviews: Overwhelmingly Positive (384,949)" [ref=e27]
+    - text: "Release Date:\n									Feb 26, 2016\n								\n							\n																						\n									 Developer:"
+    - link "ConcernedApe" [ref=e28]
+    - text: "Publisher:"
+    - link "ConcernedApe" [ref=e29]
+    - text: "Popular user-defined tags for this product:"
+    - link "Farming Sim" [ref=e30]
+    - link "Pixel Graphics" [ref=e31]
+    - link "Multiplayer" [ref=e32]
+    - link "Life Sim" [ref=e33]
+    - link "RPG" [ref=e34]
+    - button "+" [ref=e35]
+    - generic "0:00/0:00" [ref=e37]
+  - link "Sign in" [ref=e64]
+  - text: "to add this item to your wishlist, follow it, or mark it as ignored"
+  - link [ref=e65]
+  - link "Single-player" [ref=e66]
+  - link "Online Co-op" [ref=e67]
+  - link "LAN Co-op" [ref=e68]
+  - link "Shared/Split Screen Co-op" [ref=e69]
+  - link "Shared/Split Screen" [ref=e70]
+  - link "Steam Achievements" [ref=e71]
+  - link "Steam Trading Cards" [ref=e72]
+  - link "Steam Cloud" [ref=e73]
+  - link "Remote Play on Phone" [ref=e74]
+  - link "Remote Play on Tablet" [ref=e75]
+  - link "Remote Play Together" [ref=e76]
+  - link "Family Sharing" [ref=e77]
+  - text: "Full Controller Support"
+  - link "Xbox Controllers" [ref=e78]
+  - text: "Support for other devices is not known\n							\n							\n							\n							\n							\n							\n													\n																\n							 \n								Languages:\n							\n\n							\n\n\n\n\n	\n		\n				Interface\n		 Full Audio\n		 Subtitles\n	\n\n			\n			 \n				English			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n				German			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n				Spanish - Spain			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n				Japanese			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n				Portuguese - Brazil			\n							\n					 ✔"
+  - link "See all 12 supported languages" [ref=e79]
+  - group "Steam Deck Compatibility":
+    - text: "Steam Deck Compatibility Verified"
+    - button "Learn more" [ref=e80]
+  - text: "E10+ - Everyone (10+)\n									\n\n				\n											\n															Fantasy Violence \nMild Blood \nMild Language \nUse of Alcohol and Tobacco \nSimulated Gambling\n																				\n					\n									\n			\n									 Age rating for: ESRB\n		\n								\n										\n					\n					\n													\n						\n						\n							 \n								Includes 49 Steam Achievements							\n							\n																	\n										 Well-Read\n									\n																		\n										 A Big Help\n									\n																		\n										 Living Large\n									\n																		\n										 Gofer"
+  - link "Viewall 49" [ref=e81]
+  - text: "Points Shop Items Available"
+  - link ":brownchicken:" [ref=e82]
+  - link "Stardew Valley Portrait -- 8 hearts" [ref=e83]
+  - link ":tabbycat:" [ref=e84]
+  - link ":stardrop:" [ref=e85]
+  - link "Viewall 9" [ref=e86]
+  - text: "Title: Stardew Valley\n	\n				 Genre:"
+  - link "Indie" [ref=e87]
+  - text: ","
+  - link "RPG" [ref=e88]
+  - text: ","
+  - link "Simulation" [ref=e89]
+  - text: "Developer:"
+  - link "ConcernedApe" [ref=e90]
+  - text: "Publisher:"
+  - link "ConcernedApe" [ref=e91]
+  - text: "Release Date: Feb 26, 2016"
+  - link "Visit the website External" [ref=e92]
+  - link "External" [ref=e93]: "X\n					 External"
+  - link "External" [ref=e94]: "YouTube\n					 External"
+  - link "View update history" [ref=e95]
+  - link "Read related news" [ref=e96]
+  - link "View discussions" [ref=e97]
+  - link "Find Community Groups" [ref=e98]
+  - link "Embed" [ref=e99]
+  - link "Report this Product" [ref=e100]
+  - text: "89									\n									\n									\n										 metacritic"
+  - link "Read Critic Reviews" [ref=e101]
+  - text: "Awards"
+  - region "Buy Stardew Valley" [ref=e102]:
+    - heading "Buy Stardew Valley" [level=2]
+    - text: "$14.99"
+    - button "Add to Cart" [ref=e103]
+  - heading "Content For This Game" [level=2]:
+    - text: "Content For This Game"
+    - link "Browse all" [ref=e104]: "Browse all (1)"
+  - link "Stardew Valley Soundtrack $4.99" [ref=e105]
+  - text: "$4.99"
+  - link "Add all DLC to Cart" [ref=e106]
+  - text: "Steam Deck Top Played"
+  - link "Take this game anywhere!Stardew Valley is one of the top played games on Steam Deck!" [ref=e107]
+  - heading "Reviews" [level=2]
+  - text: "“Far more than just a farming game, this one-man labor of love is filled with seemingly endless content and heart.”5/5 –"
+  - link "Giant Bomb" [ref=e108]
+  - text: "“The core mechanics and relaxing aesthetic merge so well together that players will sink in to the experience and never want to leave.”95 –"
+  - link "Destructoid" [ref=e109]
+  - text: "“Stardew Valley has been the most rich and heartwarming experience I’ve had in a game in years.”95 –"
+  - link "CGMagazine" [ref=e110]
+  - heading "About This Game" [level=2]
+  - text: "Stardew Valley is an open-ended country-life RPG!  You've inherited your grandfather's old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home? It won't be easy. Ever since Joja Corporation came to town, the old ways of life have all but disappeared. The community center, once the town's most vibrant hub of activity, now lies in shambles. But the valley seems full of opportunity. With a little dedication, you might just be the one to restore Stardew Valley to greatness!Features  Turn your overgrown field into a lively farm!   Raise animals, grow crops, start an orchard, craft useful machines, and more! You'll have plenty of space to create the farm of your dreams. 8 Player Farming! Invite 1-7 players to join you in the valley online! Players can work together to build a thriving farm, share resources, and improve the local community.  As more hands are better than one, players have the option to scale profit margin on produce sold for a more challenging experience.Improve your skills over time.  As you make your way from a struggling greenhorn to a master farmer, you'll level up in 5 different areas: farming, mining, combat, fishing, and foraging. As you progress, you'll learn new cooking and crafting recipes, unlock new areas to explore, and customize your skills by choosing from a variety of professions. Become part of the local community.  With over 30 unique characters living in Stardew Valley, you won't have a problem finding new friends! Each person has their own daily schedule, birthday, unique mini-cutscenes, and new things to say throughout the week and year. As you make friends with them, they will open up to you, ask you for help with their personal troubles, or tell you their secrets! Take part in seasonal festivals such as the luau, haunted maze, and feast of the winter star. Explore a vast, mysterious cave.  As you travel deeper underground, you'll encounter new and dangerous monsters, powerful weapons, new environments, valuable gemstones, raw materials for crafting and upgrading tools, and mysteries to be uncovered. Breathe new life into the valley. Since JojaMart opened, the old way of life in Stardew Valley has changed. Much of the town's infrastructure has fallen into disrepair. Help restore Stardew Valley to it's former glory by repairing the old community center, or take the alternate route and join forces with Joja Corporation.Court and marry a partner to share your life on the farm with.  There are 12 available bachelors and bachelorettes to woo, each with unique character progression cutscenes. Once married, your partner will live on the farm with you. Who knows, maybe you'll have kids and start a family?Spend a relaxing afternoon at one of the local fishing spots.  The waters are teeming with seasonal varieties of delicious fish. Craft bait, bobbers, and crab pots to help you in your journey toward catching every fish and becoming a local legend! Donate artifacts and minerals to the local museum. Cook delicious meals and craft useful items to help you out.  With over 100 cooking and crafting recipes, you'll have a wide variety of items to create. Some dishes you cook will even give you temporary boosts to skills, running speed, or combat prowess. Craft useful objects like scarecrows, oil makers, furnaces, or even the rare and expensive crystalarium. Customize the appearance of your character and house.  With hundreds of decorative items to choose from, you'll have no trouble creating the home of your dreams!Xbox controller support (with rumble)! (Keyboard still required for text input) Over two hours of original music."
+  - generic "READ MORE" [ref=e111]
+  - heading "System Requirements" [level=2]
+  - generic "Windows" [ref=e112]
+  - generic "macOS" [ref=e113]
+  - generic "SteamOS + Linux" [ref=e114]
+  - text: "Minimum:OS *: Windows Vista or greater Processor: 2 Ghz Memory: 2 GB RAM Graphics: 256 mb video memory, shader model 3.0+DirectX: Version 10 Storage: 500 MB available space							\n						\n															\n\n											\n							*\n							Starting January 1st, 2024, the Steam Client will only support Windows 10 and later versions.						\n									\n							\n							\n					\n	\n	\n\n				\n								\n				\n\n			\n		\n\n		\n			\n				\n				\n				\n				More like this"
+  - link "See All" [ref=e115]
+  - button "Previous" [ref=e116]
+  - list "slider":
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+  - button "Next" [ref=e117]
+  - button "previous" [ref=e118]
+  - button "next" [ref=e119]
+  - link "View all" [ref=e120]
+  - heading "What Curators Say" [level=2]
+  - text: "3,189 Curators have reviewed this product. Click"
+  - link "here" [ref=e121]
+  - text: "to see them."
+  - heading "Customer reviews for Stardew Valley" [level=2]:
+    - text: "Customer reviews for Stardew Valley"
+    - link "See language breakdown" [ref=e122]
+    - link "About user reviews" [ref=e123]
+    - link "Your preferences" [ref=e124]
+  - text: "English Reviews:					\n					Overwhelmingly Positive\n											(384,949 reviews)\n									\n\n			\n			\n\n			\n							\n										\n						\n							Total reviews in all languages: 862,317  Overwhelmingly Positive						\n					\n											 \n														Recent Reviews in all languages: 7,238							 Overwhelmingly Positive"
+  - list "Filter options":
+    - listitem "Review Type" [ref=e125]:
+      - button "Review Type" [ref=e126]
+    - listitem "Purchase Type" [ref=e127]:
+      - button "Purchase Type" [ref=e128]
+    - listitem "Language" [ref=e129]:
+      - button "Language" [ref=e130]
+    - listitem "Date Range" [ref=e131]:
+      - button "Date Range" [ref=e132]
+    - listitem "Playtime" [ref=e133]:
+      - button "Playtime" [ref=e134]
+    - listitem "Display" [ref=e135]:
+      - button "Display" [ref=e136]
+    - button "Show graph" [ref=e137]
+  - group [ref=e138]:
+    - text: "Filters"
+    - button [ref=e139]
+    - button [ref=e140]
+    - button [ref=e141]
+    - button [ref=e142]
+    - button "Excluding Off-topic Review Activity" [ref=e143]
+    - button "Playtime:" [ref=e144]
+    - button "Played Mostly on Steam Deck" [ref=e145]
+    - button "Operating System:" [ref=e146]
+    - button "CPU:" [ref=e147]
+    - button "GPU:" [ref=e148]
+    - button "Device Type:" [ref=e149]
+- contentinfo:
+  - link [ref=e150]
+  - link [ref=e151]
+  - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+  - link [ref=e152]
+  - link [ref=e153]
+  - link [ref=e154]
+  - link [ref=e155]
+  - heading "STEAM" [level=3]
+  - link "About Steam" [ref=e156]
+  - link "Steam SSA" [ref=e157]
+  - link "Steamworks" [ref=e158]
+  - link "Steam Distribution" [ref=e159]
+  - link "Gift Cards" [ref=e160]
+  - heading "VALVE" [level=3]
+  - link "About Valve" [ref=e161]
+  - link "Jobs" [ref=e162]
+  - link "Hardware" [ref=e163]
+  - link "Recycling" [ref=e164]
+  - heading "LEGAL" [level=3]
+  - link "Privacy" [ref=e165]
+  - link "Accessibility" [ref=e166]
+  - link "Notices & Policies" [ref=e167]
+  - link "Cookies" [ref=e168]
+  - link "Refunds" [ref=e169]
+  - heading "MORE" [level=3]
+  - link "Get Steam" [ref=e170]
+  - link "Get Mobile Apps" [ref=e171]
+  - link "Get Support" [ref=e172]
+  - link "My Account" [ref=e173]
+</result>
+
+[15] thinking: **Filtering reviews for Steam Deck**
+
+I need to apply some filters to find the right reviews. First, I’m thinking about snapshots for sections that may not have interactive elements hidden away. I should also set playtime greater than 100 hours. I’ll click on button e134 and e145. Then, it seems like I need to choose the filter for “Played Mostly on Steam Deck.” Once I do that, I can look into reviews based on playtime.
+
+[16] tool_call: repl("Applying Steam Deck-primary review filter")
+<request>
+await page.locator('e145').click();
+const s6 = await snapshot(page, {interactive: true});
+console.log(s6.diff || s6.tree);
+</request>
+<result tokens_used="121" elapsed_time="630ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Stardew Valley on Steam" [url=https://store.steampowered.com/app/413150/Stardew_Valley?snr=1_7001_mostplayedondeck__7003]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- navigation "Store menu" [ref=e11]:
+  - button "Browse" [ref=e12]
+  - button "Recommendations" [ref=e13]
+  - button "Categories" [ref=e14]
+  - button "Hardware" [ref=e15]
+  - button "Ways to Play" [ref=e16]
+  - button "Special Sections" [ref=e17]
+  - search:
+    - combobox "Search the store" [ref=e18] [placeholder="Search the store"]
+    - button "Search" [ref=e19]
+- main:
+  - generic "Open in Desktop App" [ref=e20]
+  - text: "You're not signed in!Open this page in the Steam App to wishlist, follow, purchase and see recommendations"
+  - link "Sign in" [ref=e64]
+  - text: "to add this item to your wishlist, follow it, or mark it as ignored"
+  - link [ref=e65]
+  - link "Single-player" [ref=e66]
+  - link "Online Co-op" [ref=e67]
+  - link "LAN Co-op" [ref=e68]
+  - link "Shared/Split Screen Co-op" [ref=e69]
+  - link "Shared/Split Screen" [ref=e70]
+  - link "Steam Achievements" [ref=e71]
+  - link "Steam Trading Cards" [ref=e72]
+  - link "Steam Cloud" [ref=e73]
+  - link "Remote Play on Phone" [ref=e74]
+  - link "Remote Play on Tablet" [ref=e75]
+  - link "Remote Play Together" [ref=e76]
+  - link "Family Sharing" [ref=e77]
+  - text: "Full Controller Support"
+  - link "Xbox Controllers" [ref=e78]
+  - text: "Support for other devices is not known\n							\n							\n							\n							\n							\n							\n													\n																\n							 \n								Languages:\n							\n\n							\n\n\n\n\n	\n		\n				Interface\n		 Full Audio\n		 Subtitles\n	\n\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔"
+  - link "See all 12 supported languages" [ref=e79]
+  - group "Steam Deck Compatibility":
+    - text: "Steam Deck Compatibility Verified"
+    - button "Learn more" [ref=e80]
+  - text: "Fantasy Violence \nMild Blood \nMild Language \nUse of Alcohol and Tobacco \nSimulated Gambling\n																				\n					\n									\n			\n									 Age rating for: ESRB\n		\n								\n										\n					\n					\n													\n						\n						\n							 \n								Includes 49 Steam Achievements							\n							\n						\n					\n					\n													\n						\n						\n							 \n								Points Shop Items Available							\n							\n						\n					\n					\n						\n							\n								\n\n			 Title: Stardew Valley\n	\n				 Genre:"
+  - link "Indie" [ref=e87]
+  - text: ","
+  - link "RPG" [ref=e88]
+  - text: ","
+  - link "Simulation" [ref=e89]
+  - text: "Developer:"
+  - link "ConcernedApe" [ref=e90]
+  - text: "Publisher:"
+  - link "ConcernedApe" [ref=e91]
+  - text: "Release Date: Feb 26, 2016"
+  - link "Visit the website External" [ref=e92]: "Visit the website"
+  - link "External" [ref=e93]
+  - link "External" [ref=e94]
+  - link "View update history" [ref=e95]
+  - link "Read related news" [ref=e96]
+  - link "View discussions" [ref=e97]
+  - link "Find Community Groups" [ref=e98]
+  - link "Embed" [ref=e99]
+  - link "Report this Product" [ref=e100]
+  - text: "89									\n									\n									\n										 metacritic"
+  - link "Read Critic Reviews" [ref=e101]
+  - text: "Awards"
+  - region "Buy Stardew Valley" [ref=e102]:
+    - heading "Buy Stardew Valley" [level=2]
+    - text: "$14.99"
+    - button "Add to Cart" [ref=e103]
+  - heading "Content For This Game" [level=2]:
+    - text: "Content For This Game"
+    - link "Browse all" [ref=e104]: "Browse all (1)"
+  - link "Stardew Valley Soundtrack $4.99" [ref=e105]
+  - text: "$4.99"
+  - link "Add all DLC to Cart" [ref=e106]
+  - text: "Steam Deck Top Played"
+  - link "Take this game anywhere!Stardew Valley is one of the top played games on Steam Deck!" [ref=e107]
+  - heading "Recent Events & Announcements" [level=2]
+  - button "View All" [ref=e174]
+  - generic "READ MORE" [ref=e111]
+  - heading "System Requirements" [level=2]
+  - generic "Windows" [ref=e112]
+  - generic "macOS" [ref=e113]
+  - generic "SteamOS + Linux" [ref=e114]
+  - text: "Minimum:OS *: Windows Vista or greater Processor: 2 Ghz Memory: 2 GB RAM Graphics: 256 mb video memory, shader model 3.0+DirectX: Version 10 Storage: 500 MB available space							\n						\n															\n\n											\n							*\n							Starting January 1st, 2024, the Steam Client will only support Windows 10 and later versions.						\n									\n							\n							\n					\n	\n	\n\n				\n								\n				\n\n			\n		\n\n		\n			\n				\n				\n				\n				More like this"
+  - link "See All" [ref=e115]
+  - button "Previous" [ref=e116]
+  - list "slider":
+    - listitem:
+      - button [ref=e175]:
+        - link [ref=e176]:
+          - button "Infinity Nikki" [ref=e177]
+          - text: "Free To Play"
+    - listitem:
+      - button [ref=e178]:
+        - link [ref=e179]:
+          - button "Terraria" [ref=e180]
+          - text: "$9.99"
+    - listitem:
+      - button [ref=e181]:
+        - link [ref=e182]:
+          - button "Palia" [ref=e183]
+          - text: "Free To Play"
+    - listitem:
+      - button [ref=e184]:
+        - link [ref=e185]:
+          - button "Rust" [ref=e186]
+          - text: "$39.99"
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+  - button "Next" [ref=e117]
+  - button "previous" [ref=e118]
+  - button "next" [ref=e119]
+  - link "View all" [ref=e120]
+  - heading "What Curators Say" [level=2]
+  - text: "3,189 Curators have reviewed this product. Click"
+  - link "here" [ref=e121]
+  - text: "to see them."
+  - heading "Customer reviews for Stardew Valley" [level=2]:
+    - text: "Customer reviews for Stardew Valley"
+    - link "See language breakdown" [ref=e122]
+    - link "About user reviews" [ref=e123]
+    - link "Your preferences" [ref=e124]
+  - text: "English Reviews:					\n					Overwhelmingly Positive\n											(384,949 reviews)\n									\n\n			\n			\n\n			\n							\n										\n						\n							Total reviews in all languages: 862,317  Overwhelmingly Positive						\n					\n											 \n														Recent Reviews in all languages: 7,238							 Overwhelmingly Positive"
+  - list "Filter options":
+    - listitem "Review Type" [ref=e125]:
+      - button "Review Type" [ref=e126]
+    - listitem "Purchase Type" [ref=e127]:
+      - button "Purchase Type" [ref=e128]
+    - listitem "Language" [ref=e129]:
+      - button "Language" [ref=e130]
+    - listitem "Date Range" [ref=e131]:
+      - button "Date Range" [ref=e132]
+    - listitem "Playtime" [ref=e133]:
+      - button "Playtime" [ref=e134]
+    - listitem "Display" [ref=e135]:
+      - button "Display" [ref=e136]
+    - button "Show graph" [ref=e137]
+  - group [ref=e138]:
+    - text: "Filters"
+    - button "Your Languages" [ref=e187]
+  - text: "Showing  455,876  reviews that match the filters above ( Overwhelmingly Positive )Most Helpful Reviews"
+  - list "Most Helpful Reviews":
+    - button [ref=e188]:
+      - link "Yujito" [ref=e189]
+      - link "Yujito" [ref=e190]
+      - link "129 games" [ref=e191]
+      - link "54 reviews" [ref=e192]
+      - link "Recommended 60.7 hrs on record" [ref=e193]
+      - text: "Posted: April 21 Initially, I wasn't interested in playing it. My friends highly recommended it and basically forced me to give it a try. The result? I am completely hooked. It really reminds me of Harvest Moon: Back to Nature, giving me a great sense of nostalgia. On top of that, the game doesn't just focus on farming. You can actually go on adventures and fight monsters in the mines and other areas.​I also enjoy the plot twists included in the game. The NPCs actually go about their daily routines, which makes the world feel incredibly alive. I love that you get to choose between restoring the Community Center or buying a JojaMart membership, since this choice actually impacts the storyline.​Overall, I absolutely love this game. I really hope they release a sequel someday with fresh plot twists, along with new monsters and crops to discover🤍Was this review helpful?"
+      - button "Yes" [ref=e194]
+      - button "No" [ref=e195]
+      - button "Funny" [ref=e196]
+      - button "Award" [ref=e197]
+      - text: "214 people found this review helpful 4 people found this review funny"
+      - link "4" [ref=e198]
+      - button "Beautiful" [ref=e199]: "Beautiful 3"
+      - button "Helpful" [ref=e200]: "Helpful 3"
+      - button "Winner" [ref=e201]: "Winner 2"
+      - button "9 Community Awards" [ref=e202]: "9 Community Awards 9"
+    - button [ref=e203]:
+      - link "NEGI - 09" [ref=e204]
+      - link "NEGI - 09" [ref=e205]
+      - link "95 games" [ref=e206]
+      - link "10 reviews" [ref=e207]
+      - link "Recommended 160.4 hrs on record (131.9 hrs at review time)" [ref=e208]
+      - text: "Posted: April 14 Stardew Valley is one of those rare games that feels like a second home. From farming and fishing to building relationships with villagers, every moment is relaxing yet meaningful. The freedom to play your way—whether you focus on making money, completing goals, or just enjoying the calm life—is what makes it special.The pixel art style is charming, and the music perfectly matches the peaceful vibe. There’s always something new to discover, so it never feels boring, even after many hours. The sense of progress is incredibly satisfying, especially when you see your farm grow from nothing into something amazing.Overall, it’s a wholesome and addictive experience that balances fun and relaxation perfectly. A must-play game for anyone looking to escape stress and enjoy a cozy adventure.Was this review helpful?"
+      - button "Yes" [ref=e209]
+      - button "No" [ref=e210]
+      - button "Funny" [ref=e211]
+      - button "Award" [ref=e212]
+      - text: "27 people found this review helpful"
+    - button [ref=e213]:
+      - link "September" [ref=e214]
+      - link "September" [ref=e215]
+      - link "64 games" [ref=e216]
+      - link "21 reviews" [ref=e217]
+      - link "Recommended 37.5 hrs on record (30.5 hrs at review time)" [ref=e218]
+      - text: "Posted: April 15 After a long day of work or school, Stardew Valley is the kind of game you open and instantly feel your stress disappear. No pressure, no chaos, just pure peaceful vibes. This is what games are meant to feel like.You can farm, fish, mine, talk to villagers, or just exist and chill. There’s no “right” way to play, and that’s exactly what makes it special.It’s not overpriced, it respects your time, and it actually gives you a complete experience instead of recycling the same old FPS formula (yeah, COD, I’m looking at you).One developer, Eric Barone, spent 4.5 years building this masterpiece alone. No corporate shortcuts, just pure passion.Honestly? This isn’t just a game you buy. It’s one you’re glad exists."
+      - button "Read More" [ref=e219]
+      - text: "Reviewer's PC Specs:Windows 10         Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz - RAM: 4 GB Intel(R) HD Graphics - VRAM: 32 MB Was this review helpful?"
+      - button "Yes" [ref=e220]
+      - button "No" [ref=e221]
+      - button "Funny" [ref=e222]
+      - button "Award" [ref=e223]
+      - text: "13 people found this review helpful 1 person found this review funny"
+      - link "5" [ref=e224]
+      - button "Beautiful" [ref=e225]
+      - button "Perfect" [ref=e226]
+    - button [ref=e227]:
+      - link "Yrza" [ref=e228]
+      - link "Yrza" [ref=e229]
+      - link "1 reviews" [ref=e230]
+      - link "Recommended 1,042.9 hrs on record (1,035.6 hrs at review time)" [ref=e231]
+      - text: "Posted: April 27 Definitely worth spending 1k hours in. It's calming, with a hint of panic when you run out of time while in the mines. The cozy vibe is therapeutic and really heals the inner OCD in me. It's fun playing by yourself and even more fun playing with friends, just don't bomb their crops too often <3 Was this review helpful?"
+      - button "Yes" [ref=e232]
+      - button "No" [ref=e233]
+      - button "Funny" [ref=e234]
+      - button "Award" [ref=e235]
+      - text: "12 people found this review helpful 2 people found this review funny"
+      - button "Winner" [ref=e236]
+    - button [ref=e237]:
+      - link "Fairy" [ref=e238]
+      - link "Fairy" [ref=e239]
+      - link "148 games" [ref=e240]
+      - link "34 reviews" [ref=e241]
+      - link "Recommended 86.3 hrs on record" [ref=e242]
+      - text: "Posted: May 8 Spent the first 2 years trying to do everything and never having enough time. Days upon days of constantly running around trying to find the town folk who asked for help and celebrating every festival/birthday only to pass out at 2am and have my pockets molested.Things are way different in the DPRK.Thanks to the Glorious Leaders Immaculate Initiative to stop crime we don't deal with things like this.I knew I beat the game when I gifted enough alcohol and cake to give the whole town liver failure and diabetes so the Racoon family could invade."
+      - button "Read More" [ref=e243]
+      - text: "Was this review helpful?"
+      - button "Yes" [ref=e244]
+      - button "No" [ref=e245]
+      - button "Funny" [ref=e246]
+      - button "Award" [ref=e247]
+      - text: "7 people found this review helpful 3 people found this review funny"
+      - link "1" [ref=e248]
+    - button [ref=e249]:
+      - link "n e k" [ref=e250]
+      - link "n e k" [ref=e251]
+      - link "42 reviews" [ref=e252]
+      - link "Recommended 203.3 hrs on record" [ref=e253]
+      - text: "Posted: April 18 It's a good day for fishing, ain't it? Or in this case, a good day for farming, fishing, spelunking, adventuring AND romancing the locals!On a serious note, I'm recommending the game to those who love to chill and relax.. Okay no, that's a partial lie. If you like to strive for the perfect gameplay, you won't get to relax. BUT! If you don't care about other things and just like to farm or rear animals, you'll be chilling. It's a good and cozy game for everyone. The perfectionist, the strategist, the romanticist and the one who gets distracted easi-Reviewer's PC Specs:Windows 11 13th Gen Intel(R) Core(TM) i7-13700F - RAM: 64 GB NVIDIA GeForce RTX 3060 - VRAM: 12 GB Was this review helpful?"
+      - button "Yes" [ref=e254]
+      - button "No" [ref=e255]
+      - button "Funny" [ref=e256]
+      - button "Award" [ref=e257]
+      - text: "7 people found this review helpful 5 people found this review funny"
+    - button [ref=e258]:
+      - link "dragonfly10526" [ref=e259]
+      - link "dragonfly10526" [ref=e260]
+      - link "104 games" [ref=e261]
+      - link "2 reviews" [ref=e262]
+      - link "Recommended 378.1 hrs on record (361.8 hrs at review time)" [ref=e263]
+      - text: "Posted: April 28 i love to play this all the time i enjoy modding it and finding new ways to play constantly and the game soundtrack and ambiance is nice and peaceful i sometimes use the game music to help me sleep Was this review helpful?"
+      - button "Yes" [ref=e264]
+      - button "No" [ref=e265]
+      - button "Funny" [ref=e266]
+      - button "Award" [ref=e267]
+      - text: "3 people found this review helpful"
+    - button [ref=e268]:
+      - link "rococo.valolo" [ref=e269]
+      - link "rococo.valolo" [ref=e270]
+      - link "5 games" [ref=e271]
+      - link "5 reviews" [ref=e272]
+      - link "Recommended 367.3 hrs on record (359.7 hrs at review time)" [ref=e273]
+      - text: "Posted: April 28 I love this game! i play around 2-4 hours a day, and been playing it for YEARS and i think its worth the money, all my friends have it and its cozy, fun, and energetic! i recommend it a lot Was this review helpful?"
+      - button "Yes" [ref=e274]
+      - button "No" [ref=e275]
+      - button "Funny" [ref=e276]
+      - button "Award" [ref=e277]
+      - text: "3 people found this review helpful"
+      - button "Winner" [ref=e278]
+      - button "Helpful" [ref=e279]
+      - button "Funny" [ref=e280]
+      - button "2 Community Awards" [ref=e281]: "2 Community Awards 2"
+    - button [ref=e282]:
+      - link "veni" [ref=e283]
+      - link "veni" [ref=e284]
+      - link "13 games" [ref=e285]
+      - link "1 reviews" [ref=e286]
+      - link "Recommended 69.8 hrs on record (69.7 hrs at review time)" [ref=e287]
+      - text: "Posted: April 25 beautiful graphics and a nice game to play with friends! i love games where you can harvest collect and craft things so this is perfect. especially the customizable features too. i also like that we have options to choose from and form relationships with the citizens of stardew. LOVE THIS GAME!Was this review helpful?"
+      - button "Yes" [ref=e288]
+      - button "No" [ref=e289]
+      - button "Funny" [ref=e290]
+      - button "Award" [ref=e291]
+      - text: "3 people found this review helpful"
+      - link "1" [ref=e292]
+    - button [ref=e293]:
+      - link "Hamburger_3081" [ref=e294]
+      - link "Hamburger_3081" [ref=e295]
+      - link "24 games" [ref=e296]
+      - link "4 reviews" [ref=e297]
+      - link "Recommended 131.4 hrs on record (129.2 hrs at review time)" [ref=e298]
+      - text: "Posted: April 15 Stardew Valley is an absolute masterpiece that completely redefines what a relaxing and rewarding game can be. From the moment you step onto your overgrown farm, there's a magical sense of possibility. Every day feels like a  fresh start, filled with small victories and meaningful progress.The charm of the game lies in its simplicity paired with incredible depth. Wether you're planting crops, raising animals, fishing by the river or exploring the mines, everything feels satisfying and purposeful. The pixel art is beautiful and full of personality, and the soundtrack perfectly complements the peaceful, nostalgic atmosphere.What truly sets Stardew Valley apart is its heart. The town is alive with memorable characters, each with their own stories, struggles and growth. Building relationships feels genuine and rewarding int an emotional and immersive experience. It's also incredibly flexible-you can play at your own pace, set your own goals, and create your own goals, and create your own version of success. Wethe you want to optimize your farn for maximum profit or just spend your days decorating and chatting with villagers, the game supports it all. Stardew Valley isn't just a game-it's a place you can return to again and again, a comforting escape that never loses it's magic. It's relaxing, engaging, and full of warmth. Truly one of the most delightful gaming experiences ever created."
+      - button "Read More" [ref=e299]
+      - text: "Was this review helpful?"
+      - button "Yes" [ref=e300]
+      - button "No" [ref=e301]
+      - button "Funny" [ref=e302]
+      - button "Award" [ref=e303]
+      - text: "2 people found this review helpful"
+      - link "1" [ref=e304]
+  - link "Browse all 1,003,992 reviews" [ref=e305]
+  - text: "Recently Posted"
+  - list "Recently Posted":
+    - button [ref=e306]:
+      - link "rePete_the_Latter 34.9 hrs" [ref=e307]
+      - text: "Posted: Today Peaceful Was this review helpful?"
+      - button "Yes" [ref=e308]
+      - button "No" [ref=e309]
+      - button "Funny" [ref=e310]
+      - button "Award" [ref=e311]
+    - button [ref=e312]:
+      - link "moocow 97.1 hrs" [ref=e313]
+      - text: "Posted: Today farming is pretty fun actually Was this review helpful?"
+      - button "Yes" [ref=e314]
+      - button "No" [ref=e315]
+      - button "Funny" [ref=e316]
+      - button "Award" [ref=e317]
+    - button [ref=e318]:
+      - link "Karl's Little Helper 53.7 hrs" [ref=e319]
+      - text: "Posted: Today A rare gem that actively lowers my cortisol levels.Was this review helpful?"
+      - button "Yes" [ref=e320]
+      - button "No" [ref=e321]
+      - button "Funny" [ref=e322]
+      - button "Award" [ref=e323]
+    - button [ref=e324]:
+      - link "bilbo bolseiro 22.6 hrs" [ref=e325]
+      - text: "Posted: Today PErfeição Was this review helpful?"
+      - button "Yes" [ref=e326]
+      - button "No" [ref=e327]
+      - button "Funny" [ref=e328]
+      - button "Award" [ref=e329]
+    - button [ref=e330]:
+      - link "Tomie Kawakami 267.3 hrs" [ref=e331]
+      - text: "Posted: Today everyone and their grandmothers should play this game :D Was this review helpful?"
+      - button "Yes" [ref=e332]
+      - button "No" [ref=e333]
+      - button "Funny" [ref=e334]
+      - button "Award" [ref=e335]
+    - button [ref=e336]:
+      - link "j1mattera 6.2 hrs" [ref=e337]
+      - text: "Posted: Today I love this game especially if you want to play something with sand box style gameplay Was this review helpful?"
+      - button "Yes" [ref=e338]
+      - button "No" [ref=e339]
+      - button "Funny" [ref=e340]
+      - button "Award" [ref=e341]
+    - button [ref=e342]:
+      - link "Phyph 100.4 hrs" [ref=e343]
+      - text: "Posted: Today I dont want cheating in my farming game Was this review helpful?"
+      - button "Yes" [ref=e344]
+      - button "No" [ref=e345]
+      - button "Funny" [ref=e346]
+      - button "Award" [ref=e347]
+    - button [ref=e348]:
+      - link "Clix 4.8 hrs" [ref=e349]
+      - text: "Posted: Today its fun and relaxing, cozy game.Was this review helpful?"
+      - button "Yes" [ref=e350]
+      - button "No" [ref=e351]
+      - button "Funny" [ref=e352]
+      - button "Award" [ref=e353]
+    - button [ref=e354]:
+      - link "Maxymacosie 7.2 hrs" [ref=e355]
+      - text: "Posted: Today very relaxing Was this review helpful?"
+      - button "Yes" [ref=e356]
+      - button "No" [ref=e357]
+      - button "Funny" [ref=e358]
+      - button "Award" [ref=e359]
+    - button [ref=e360]:
+      - link "juanjacobs219 99.1 hrs" [ref=e361]
+      - text: "Posted: Today an absolute adventure from marrying samoene who maked you aee stuff or are intrested in space to slaying monsters or playing a song te a mermaid there is always something to do Was this review helpful?"
+      - button "Yes" [ref=e362]
+      - button "No" [ref=e363]
+      - button "Funny" [ref=e364]
+      - button "Award" [ref=e365]
+- contentinfo:
+  - link [ref=e150]
+  - link [ref=e151]
+  - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+  - link [ref=e152]
+  - link [ref=e153]
+  - link [ref=e154]
+  - link [ref=e155]
+  - heading "STEAM" [level=3]
+  - link "About Steam" [ref=e156]
+  - link "Steam SSA" [ref=e157]
+  - link "Steamworks" [ref=e158]
+  - link "Steam Distribution" [ref=e159]
+  - link "Gift Cards" [ref=e160]
+  - heading "VALVE" [level=3]
+  - link "About Valve" [ref=e161]
+  - link "Jobs" [ref=e162]
+  - link "Hardware" [ref=e163]
+  - link "Recycling" [ref=e164]
+  - heading "LEGAL" [level=3]
+  - link "Privacy" [ref=e165]
+  - link "Accessibility" [ref=e166]
+  - link "Notices & Policies" [ref=e167]
+  - link "Cookies" [ref=e168]
+  - link "Refunds" [ref=e169]
+  - heading "MORE" [level=3]
+  - link "Get Steam" [ref=e170]
+  - link "Get Mobile Apps" [ref=e171]
+  - link "Get Support" [ref=e172]
+  - link "My Account" [ref=e173]
+</result>
+
+[17] thinking: **Inspecting filter settings**
+
+It looks like the “Click didn’t apply” message may be because I'm only viewing "Your Languages.” That could hide the deck filter based on the settings. The URL might not have changed, and it's showing reviews with a default view—no "Mostly on Steam Deck" filter active. I’m wondering if button e145 was a label for the filter and not toggled because of the new review system. I should check the page state and the reviews filter options, especially clicking on Playtime.
+
+[18] tool_call: repl("Opening playtime filter menu")
+<request>
+await page.locator('e134').click();
+const s7 = await snapshot(page, {interactive: true});
+console.log(s7.diff || s7.tree);
+</request>
+<result tokens_used="142" elapsed_time="3522ms">
+@@ -165,0 +165,16 @@
++      - text: "Filter reviews by the user's playtime when the review was written:"
++      - radio "No Minimum" [ref=e366] [checked] [focused]
++      - text: "No Minimum"
++      - radio "Over 1 hour" [ref=e367]
++      - text: "Over 1 hour"
++      - radio "Over 10 hours" [ref=e368]
++      - text: "Over 10 hours"
++      - radio "Over 100 hours" [ref=e369]
++      - text: "Over 100 hours\n							\n						\n							 No minimum  to  No maximum"
++      - generic [ref=e370]:
++        - slider "Minimum hours played" [ref=e371]
++        - slider "Maximum hours played" [ref=e372]
++      - radio "Played across all devices" [ref=e373] [checked]
++      - text: "Played across all devices"
++      - radio "Played mostly on Steam Deck" [ref=e374]
++      - text: "Played mostly on Steam Deck"
+</result>
+
+[19] tool_call: repl("Selecting >100 hours and Steam Deck-primary filters")
+<request>
+await page.locator('e369').click();
+let s8 = await snapshot(page, {interactive: true});
+console.log('after >100 hours diff:\n' + (s8.diff || s8.tree));
+await page.locator('e374').click();
+let s9 = await snapshot(page, {interactive: true});
+console.log('after deck-primary diff:\n' + (s9.diff || s9.tree));
+</request>
+<result tokens_used="143" elapsed_time="1423ms">
+after >100 hours diff:
+@@ -166 +166 @@
+-      - radio "No Minimum" [ref=e366] [checked] [focused]
++      - radio "No Minimum" [ref=e366]
+@@ -172,2 +172,2 @@
+-      - radio "Over 100 hours" [ref=e369]
+-      - text: "Over 100 hours\n							\n						\n							 No minimum  to  No maximum"
++      - radio "Over 100 hours" [ref=e369] [checked] [focused]
++      - text: "Over 100 hours\n							\n						\n							 100 hour(s) to  No maximum"
+@@ -187 +187,2 @@
+-  - text: "Showing  455,876  reviews that match the filters above ( Overwhelmingly Positive )Most Helpful Reviews"
++    - button "Playtime:" [ref=e144]: "Playtime: Over 100 hours"
++  - text: "Showing  151,391  reviews that match the filters above ( Overwhelmingly Positive )Most Helpful Reviews"
+@@ -189,17 +190,0 @@
+-    - button [ref=e188]:
+-      - link "Yujito" [ref=e189]
+-      - link "Yujito" [ref=e190]
+-      - link "129 games" [ref=e191]
+-      - link "54 reviews" [ref=e192]
+-      - link "Recommended 60.7 hrs on record" [ref=e193]
+-      - text: "Posted: April 21 Initially, I wasn't interested in playing it. My friends highly recommended it and basically forced me to give it a try. The result? I am completely hooked. It really reminds me of Harvest Moon: Back to Nature, giving me a great sense of nostalgia. On top of that, the game doesn't just focus on farming. You can actually go on adventures and fight monsters in the mines and other areas.​I also enjoy the plot twists included in the game. The NPCs actually go about their daily routines, which makes the world feel incredibly alive. I love that you get to choose between restoring the Community Center or buying a JojaMart membership, since this choice actually impacts the storyline.​Overall, I absolutely love this game. I really hope they release a sequel someday with fresh plot twists, along with new monsters and crops to discover🤍Was this review helpful?"
+-      - button "Yes" [ref=e194]
+-      - button "No" [ref=e195]
+-      - button "Funny" [ref=e196]
+-      - button "Award" [ref=e197]
+-      - text: "214 people found this review helpful 4 people found this review funny"
+-      - link "4" [ref=e198]
+-      - button "Beautiful" [ref=e199]: "Beautiful 3"
+-      - button "Helpful" [ref=e200]: "Helpful 3"
+-      - button "Winner" [ref=e201]: "Winner 2"
+-      - button "9 Community Awards" [ref=e202]: "9 Community Awards 9"
+@@ -218,17 +202,0 @@
+-    - button [ref=e213]:
+-      - link "September" [ref=e214]
+-      - link "September" [ref=e215]
+-      - link "64 games" [ref=e216]
+-      - link "21 reviews" [ref=e217]
+-      - link "Recommended 37.5 hrs on record (30.5 hrs at review time)" [ref=e218]
+-      - text: "Posted: April 15 After a long day of work or school, Stardew Valley is the kind of game you open and instantly feel your stress disappear. No pressure, no chaos, just pure peaceful vibes. This is what games are meant to feel like.You can farm, fish, mine, talk to villagers, or just exist and chill. There’s no “right” way to play, and that’s exactly what makes it special.It’s not overpriced, it respects your time, and it actually gives you a complete experience instead of recycling the same old FPS formula (yeah, COD, I’m looking at you).One developer, Eric Barone, spent 4.5 years building this masterpiece alone. No corporate shortcuts, just pure passion.Honestly? This isn’t just a game you buy. It’s one you’re glad exists."
+-      - button "Read More" [ref=e219]
+-      - text: "Reviewer's PC Specs:Windows 10         Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz - RAM: 4 GB Intel(R) HD Graphics - VRAM: 32 MB Was this review helpful?"
+-      - button "Yes" [ref=e220]
+-      - button "No" [ref=e221]
+-      - button "Funny" [ref=e222]
+-      - button "Award" [ref=e223]
+-      - text: "13 people found this review helpful 1 person found this review funny"
+-      - link "5" [ref=e224]
+-      - button "Beautiful" [ref=e225]
+-      - button "Perfect" [ref=e226]
+@@ -247,15 +214,0 @@
+-    - button [ref=e237]:
+-      - link "Fairy" [ref=e238]
+-      - link "Fairy" [ref=e239]
+-      - link "148 games" [ref=e240]
+-      - link "34 reviews" [ref=e241]
+-      - link "Recommended 86.3 hrs on record" [ref=e242]
+-      - text: "Posted: May 8 Spent the first 2 years trying to do everything and never having enough time. Days upon days of constantly running around trying to find the town folk who asked for help and celebrating every festival/birthday only to pass out at 2am and have my pockets molested.Things are way different in the DPRK.Thanks to the Glorious Leaders Immaculate Initiative to stop crime we don't deal with things like this.I knew I beat the game when I gifted enough alcohol and cake to give the whole town liver failure and diabetes so the Racoon family could invade."
+-      - button "Read More" [ref=e243]
+-      - text: "Was this review helpful?"
+-      - button "Yes" [ref=e244]
+-      - button "No" [ref=e245]
+-      - button "Funny" [ref=e246]
+-      - button "Award" [ref=e247]
+-      - text: "7 people found this review helpful 3 people found this review funny"
+-      - link "1" [ref=e248]
+@@ -273,0 +225,12 @@
++    - button [ref=e375]:
++      - link "Big Jordan" [ref=e376]
++      - link "Big Jordan" [ref=e377]
++      - link "287 games" [ref=e378]
++      - link "92 reviews" [ref=e379]
++      - link "Recommended 250.9 hrs on record" [ref=e380]
++      - text: "Posted: May 5 Best farming simulator around and the pixel graphics look Incredible. I also really love the fishing Was this review helpful?"
++      - button "Yes" [ref=e381]
++      - button "No" [ref=e382]
++      - button "Funny" [ref=e383]
++      - button "Award" [ref=e384]
++      - text: "4 people found this review helpful"
+@@ -301,13 +265,0 @@
+-    - button [ref=e282]:
+-      - link "veni" [ref=e283]
+-      - link "veni" [ref=e284]
+-      - link "13 games" [ref=e285]
+-      - link "1 reviews" [ref=e286]
+-      - link "Recommended 69.8 hrs on record (69.7 hrs at review time)" [ref=e287]
+-      - text: "Posted: April 25 beautiful graphics and a nice game to play with friends! i love games where you can harvest collect and craft things so this is perfect. especially the customizable features too. i also like that we have options to choose from and form relationships with the citizens of stardew. LOVE THIS GAME!Was this review helpful?"
+-      - button "Yes" [ref=e288]
+-      - button "No" [ref=e289]
+-      - button "Funny" [ref=e290]
+-      - button "Award" [ref=e291]
+-      - text: "3 people found this review helpful"
+-      - link "1" [ref=e292]
+@@ -329,0 +280,33 @@
++    - button [ref=e385]:
++      - link "jsklsian" [ref=e386]
++      - link "jsklsian" [ref=e387]
++      - link "2 reviews" [ref=e388]
++      - link "Recommended 307.3 hrs on record (307.2 hrs at review time)" [ref=e389]
++      - text: "Posted: May 8 I love this game so much that I bought it 5 times: XBOX, Steam, Switch, Phone, Ipad.Was this review helpful?"
++      - button "Yes" [ref=e390]
++      - button "No" [ref=e391]
++      - button "Funny" [ref=e392]
++      - button "Award" [ref=e393]
++      - text: "2 people found this review helpful"
++    - button [ref=e394]:
++      - link "moonbeam100108" [ref=e395]
++      - link "moonbeam100108" [ref=e396]
++      - link "1 reviews" [ref=e397]
++      - link "Recommended 463.7 hrs on record (443.5 hrs at review time)" [ref=e398]
++      - text: "Posted: May 10 This is my all time favorite game due to the variety it gives of things to do while playing.  All the goals are easily obtainable but not too easy, the scenery and ambient noise are relaxing and you could play forever due to it's how it is set up.  The things i feel it could add is an elevator in the Skull Caverns if only because I would love to see how far I could get, oodles of challenges on the post in front of the mayors office because I can never have too many, more variety of the ocean, river and lake fish, recipes are always good to add on to, crops and animals basically lots more to collect while playing.  Thank you so much for making this game it really has helped in a time of need.Was this review helpful?"
++      - button "Yes" [ref=e399]
++      - button "No" [ref=e400]
++      - button "Funny" [ref=e401]
++      - button "Award" [ref=e402]
++      - text: "1 person found this review helpful"
++    - button [ref=e403]:
++      - link "KitTeaFilter" [ref=e404]
++      - link "KitTeaFilter" [ref=e405]
++      - link "1 reviews" [ref=e406]
++      - link "Recommended 535.8 hrs on record (535 hrs at review time)" [ref=e407]
++      - text: "Posted: May 8 Been playing it for a while, and still not bored! (spent 700 hours in game total)Was this review helpful?"
++      - button "Yes" [ref=e408]
++      - button "No" [ref=e409]
++      - button "Funny" [ref=e410]
++      - button "Award" [ref=e411]
++      - text: "1 person found this review helpful"
+@@ -332,28 +316,0 @@
+-    - button [ref=e306]:
+-      - link "rePete_the_Latter 34.9 hrs" [ref=e307]
+-      - text: "Posted: Today Peaceful Was this review helpful?"
+-      - button "Yes" [ref=e308]
+-      - button "No" [ref=e309]
+-      - button "Funny" [ref=e310]
+-      - button "Award" [ref=e311]
+-    - button [ref=e312]:
+-      - link "moocow 97.1 hrs" [ref=e313]
+-      - text: "Posted: Today farming is pretty fun actually Was this review helpful?"
+-      - button "Yes" [ref=e314]
+-      - button "No" [ref=e315]
+-      - button "Funny" [ref=e316]
+-      - button "Award" [ref=e317]
+-    - button [ref=e318]:
+-      - link "Karl's Little Helper 53.7 hrs" [ref=e319]
+-      - text: "Posted: Today A rare gem that actively lowers my cortisol levels.Was this review helpful?"
+-      - button "Yes" [ref=e320]
+-      - button "No" [ref=e321]
+-      - button "Funny" [ref=e322]
+-      - button "Award" [ref=e323]
+-    - button [ref=e324]:
+-      - link "bilbo bolseiro 22.6 hrs" [ref=e325]
+-      - text: "Posted: Today PErfeição Was this review helpful?"
+-      - button "Yes" [ref=e326]
+-      - button "No" [ref=e327]
+-      - button "Funny" [ref=e328]
+-      - button "Award" [ref=e329]
+@@ -367,7 +323,0 @@
+-    - button [ref=e336]:
+-      - link "j1mattera 6.2 hrs" [ref=e337]
+-      - text: "Posted: Today I love this game especially if you want to play something with sand box style gameplay Was this review helpful?"
+-      - button "Yes" [ref=e338]
+-      - button "No" [ref=e339]
+-      - button "Funny" [ref=e340]
+-      - button "Award" [ref=e341]
+@@ -381,21 +330,56 @@
+-    - button [ref=e348]:
+-      - link "Clix 4.8 hrs" [ref=e349]
+-      - text: "Posted: Today its fun and relaxing, cozy game.Was this review helpful?"
+-      - button "Yes" [ref=e350]
+-      - button "No" [ref=e351]
+-      - button "Funny" [ref=e352]
+-      - button "Award" [ref=e353]
+-    - button [ref=e354]:
+-      - link "Maxymacosie 7.2 hrs" [ref=e355]
+-      - text: "Posted: Today very relaxing Was this review helpful?"
+-      - button "Yes" [ref=e356]
+-      - button "No" [ref=e357]
+-      - button "Funny" [ref=e358]
+-      - button "Award" [ref=e359]
+-    - button [ref=e360]:
+-      - link "juanjacobs219 99.1 hrs" [ref=e361]
+-      - text: "Posted: Today an absolute adventure from marrying samoene who maked you aee stuff or are intrested in space to slaying monsters or playing a song te a mermaid there is always something to do Was this review helpful?"
+-      - button "Yes" [ref=e362]
+-      - button "No" [ref=e363]
+-      - button "Funny" [ref=e364]
+-      - button "Award" [ref=e365]
++    - button [ref=e412]:
++      - link "SR.Irfan 259.2 hrs" [ref=e413]
++      - text: "Posted: Today A Cool Game Reviewer's PC Specs:Windows 11 AMD Ryzen 5 7520U with Radeon Graphics          - RAM: 7 GB AMD Radeon(TM) Graphics - VRAM: 486 MB Was this review helpful?"
++      - button "Yes" [ref=e414]
++      - button "No" [ref=e415]
++      - button "Funny" [ref=e416]
++      - button "Award" [ref=e417]
++    - button [ref=e418]:
++      - link "squid 291.8 hrs" [ref=e419]
++      - text: "Posted: Today more krobus content when Reviewer's PC Specs:Windows 10 Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz - RAM: 32 GB NVIDIA GeForce RTX 3060 - VRAM: 12 GB Was this review helpful?"
++      - button "Yes" [ref=e420]
++      - button "No" [ref=e421]
++      - button "Funny" [ref=e422]
++      - button "Award" [ref=e423]
++    - button [ref=e424]:
++      - link "DazySoChill 168.3 hrs" [ref=e425]
++      - text: "Posted: Today Just only 1 word: 🌟 PEAK 🌟Reviewer's PC Specs:Windows 11 13th Gen Intel(R) Core(TM) i7-13650HX - RAM: 24 GB NVIDIA GeForce RTX 4060 Laptop GPU - VRAM: 8 GB Was this review helpful?"
++      - button "Yes" [ref=e426]
++      - button "No" [ref=e427]
++      - button "Funny" [ref=e428]
++      - button "Award" [ref=e429]
++    - button [ref=e430]:
++      - link "dhyrapotter 341.3 hrs" [ref=e431]
++      - text: "Posted: Today i like this game bcs its fun, its good, it has a lot of things to do, but its not so stressing, u can still enjoy it.Was this review helpful?"
++      - button "Yes" [ref=e432]
++      - button "No" [ref=e433]
++      - button "Funny" [ref=e434]
++      - button "Award" [ref=e435]
++    - button [ref=e436]:
++      - link "Semen Demon 104.1 hrs" [ref=e437]
++      - text: "Posted: Today Peak Was this review helpful?"
++      - button "Yes" [ref=e438]
++      - button "No" [ref=e439]
++      - button "Funny" [ref=e440]
++      - button "Award" [ref=e441]
++    - button [ref=e442]:
++      - link "FaeoriLiu 163.5 hrs" [ref=e443]
++      - text: "Posted: Today niice Was this review helpful?"
++      - button "Yes" [ref=e444]
++      - button "No" [ref=e445]
++      - button "Funny" [ref=e446]
++      - button "Award" [ref=e447]
++    - button [ref=e448]:
++      - link "PizzaChu 763.3 hrs" [ref=e449]
++      - text: "Posted: Today I LOVE this game. It's cute, charming and heart warming. I always come back to it when I need a good game to play. Plus the developer of the game seems like a genuinely good guy. 10/10 highly recommend Was this review helpful?"
++      - button "Yes" [ref=e450]
++      - button "No" [ref=e451]
++      - button "Funny" [ref=e452]
++      - button "Award" [ref=e453]
++    - button [ref=e454]:
++      - link "KunKod 140.4 hrs" [ref=e455]
++      - text: "Posted: Yesterday De los mejores juegos que he jugado.Relaxante y coop local de 10. Nada mas que decir.Was this review helpful?"
++      - button "Yes" [ref=e456]
++      - button "No" [ref=e457]
++      - button "Funny" [ref=e458]
++      - button "Award" [ref=e459]
+
+after deck-primary diff:
+# note: interactive (clickable / focusable) elements only.
+- title: "Stardew Valley on Steam" [url=https://store.steampowered.com/app/413150/Stardew_Valley?snr=1_7001_mostplayedondeck__7003]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- navigation "Store menu" [ref=e11]:
+  - button "Browse" [ref=e12]
+  - button "Recommendations" [ref=e13]
+  - button "Categories" [ref=e14]
+  - button "Hardware" [ref=e15]
+  - button "Ways to Play" [ref=e16]
+  - button "Special Sections" [ref=e17]
+  - search:
+    - combobox "Search the store" [ref=e18] [placeholder="Search the store"]
+    - button "Search" [ref=e19]
+- main:
+  - generic "Open in Desktop App" [ref=e20]
+  - text: "You're not signed in!Open this page in the Steam App to wishlist, follow, purchase and see recommendations"
+  - link "Sign in" [ref=e64]
+  - text: "to add this item to your wishlist, follow it, or mark it as ignored"
+  - link [ref=e65]
+  - link "Single-player" [ref=e66]
+  - link "Online Co-op" [ref=e67]
+  - link "LAN Co-op" [ref=e68]
+  - link "Shared/Split Screen Co-op" [ref=e69]
+  - link "Shared/Split Screen" [ref=e70]
+  - link "Steam Achievements" [ref=e71]
+  - link "Steam Trading Cards" [ref=e72]
+  - link "Steam Cloud" [ref=e73]
+  - link "Remote Play on Phone" [ref=e74]
+  - link "Remote Play on Tablet" [ref=e75]
+  - link "Remote Play Together" [ref=e76]
+  - link "Family Sharing" [ref=e77]
+  - text: "Full Controller Support"
+  - link "Xbox Controllers" [ref=e78]
+  - text: "Support for other devices is not known\n							\n							\n							\n							\n							\n							\n													\n																\n							 \n								Languages:\n							\n\n							\n\n\n\n\n	\n		\n				Interface\n		 Full Audio\n		 Subtitles\n	\n\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔"
+  - link "See all 12 supported languages" [ref=e79]
+  - group "Steam Deck Compatibility":
+    - text: "Steam Deck Compatibility Verified"
+    - button "Learn more" [ref=e80]
+  - text: "Fantasy Violence \nMild Blood \nMild Language \nUse of Alcohol and Tobacco \nSimulated Gambling\n																				\n					\n									\n			\n									 Age rating for: ESRB\n		\n								\n										\n					\n					\n													\n						\n						\n							 \n								Includes 49 Steam Achievements							\n							\n						\n					\n					\n													\n						\n						\n							 \n								Points Shop Items Available							\n							\n						\n					\n					\n						\n							\n								\n\n			 Title: Stardew Valley\n	\n				 Genre:"
+  - link "Indie" [ref=e87]
+  - text: ","
+  - link "RPG" [ref=e88]
+  - text: ","
+  - link "Simulation" [ref=e89]
+  - text: "Developer:"
+  - link "ConcernedApe" [ref=e90]
+  - text: "Publisher:"
+  - link "ConcernedApe" [ref=e91]
+  - text: "Release Date: Feb 26, 2016"
+  - link "Visit the website External" [ref=e92]: "Visit the website"
+  - link "External" [ref=e93]
+  - link "External" [ref=e94]
+  - link "View update history" [ref=e95]
+  - link "Read related news" [ref=e96]
+  - link "View discussions" [ref=e97]
+  - link "Find Community Groups" [ref=e98]
+  - link "Embed" [ref=e99]
+  - link "Report this Product" [ref=e100]
+  - text: "89									\n									\n									\n										 metacritic"
+  - link "Read Critic Reviews" [ref=e101]
+  - text: "Awards"
+  - region "Buy Stardew Valley" [ref=e102]:
+    - heading "Buy Stardew Valley" [level=2]
+    - text: "$14.99"
+    - button "Add to Cart" [ref=e103]
+  - heading "Content For This Game" [level=2]:
+    - text: "Content For This Game"
+    - link "Browse all" [ref=e104]: "Browse all (1)"
+  - link "Stardew Valley Soundtrack $4.99" [ref=e105]
+  - text: "$4.99"
+  - link "Add all DLC to Cart" [ref=e106]
+  - text: "Steam Deck Top Played"
+  - link "Take this game anywhere!Stardew Valley is one of the top played games on Steam Deck!" [ref=e107]
+  - heading "Recent Events & Announcements" [level=2]
+  - button "View All" [ref=e174]
+  - generic "READ MORE" [ref=e111]
+  - heading "System Requirements" [level=2]
+  - generic "Windows" [ref=e112]
+  - generic "macOS" [ref=e113]
+  - generic "SteamOS + Linux" [ref=e114]
+  - text: "Minimum:OS *: Windows Vista or greater Processor: 2 Ghz Memory: 2 GB RAM Graphics: 256 mb video memory, shader model 3.0+DirectX: Version 10 Storage: 500 MB available space							\n						\n															\n\n											\n							*\n							Starting January 1st, 2024, the Steam Client will only support Windows 10 and later versions.						\n									\n							\n							\n					\n	\n	\n\n				\n								\n				\n\n			\n		\n\n		\n			\n				\n				\n				\n				More like this"
+  - link "See All" [ref=e115]
+  - button "Previous" [ref=e116]
+  - list "slider":
+    - listitem:
+      - button [ref=e175]:
+        - link [ref=e176]:
+          - button "Infinity Nikki" [ref=e177]
+          - text: "Free To Play"
+    - listitem:
+      - button [ref=e178]:
+        - link [ref=e179]:
+          - button "Terraria" [ref=e180]
+          - text: "$9.99"
+    - listitem:
+      - button [ref=e181]:
+        - link [ref=e182]:
+          - button "Palia" [ref=e183]
+          - text: "Free To Play"
+    - listitem:
+      - button [ref=e184]:
+        - link [ref=e185]:
+          - button "Rust" [ref=e186]
+          - text: "$39.99"
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+  - button "Next" [ref=e117]
+  - button "previous" [ref=e118]
+  - button "next" [ref=e119]
+  - link "View all" [ref=e120]
+  - heading "What Curators Say" [level=2]
+  - text: "3,189 Curators have reviewed this product. Click"
+  - link "here" [ref=e121]
+  - text: "to see them."
+  - heading "Customer reviews for Stardew Valley" [level=2]:
+    - text: "Customer reviews for Stardew Valley"
+    - link "See language breakdown" [ref=e122]
+    - link "About user reviews" [ref=e123]
+    - link "Your preferences" [ref=e124]
+  - text: "English Reviews:					\n					Overwhelmingly Positive\n											(384,949 reviews)\n									\n\n			\n			\n\n			\n							\n										\n						\n							Total reviews in all languages: 862,317  Overwhelmingly Positive						\n					\n											 \n														Recent Reviews in all languages: 7,238							 Overwhelmingly Positive"
+  - list "Filter options":
+    - listitem "Review Type" [ref=e125]:
+      - button "Review Type" [ref=e126]
+    - listitem "Purchase Type" [ref=e127]:
+      - button "Purchase Type" [ref=e128]
+    - listitem "Language" [ref=e129]:
+      - button "Language" [ref=e130]
+    - listitem "Date Range" [ref=e131]:
+      - button "Date Range" [ref=e132]
+    - listitem "Playtime" [ref=e133]:
+      - button "Playtime" [ref=e134]
+      - text: "Filter reviews by the user's playtime when the review was written:"
+      - radio "No Minimum" [ref=e366]
+      - text: "No Minimum"
+      - radio "Over 1 hour" [ref=e367]
+      - text: "Over 1 hour"
+      - radio "Over 10 hours" [ref=e368]
+      - text: "Over 10 hours"
+      - radio "Over 100 hours" [ref=e369] [checked]
+      - text: "Over 100 hours\n							\n						\n							 100 hour(s) to  No maximum"
+      - generic [ref=e370]:
+        - slider "Minimum hours played" [ref=e371]
+        - slider "Maximum hours played" [ref=e372]
+      - radio "Played across all devices" [ref=e373]
+      - text: "Played across all devices"
+      - radio "Played mostly on Steam Deck" [ref=e374] [checked] [focused]
+      - text: "Played mostly on Steam Deck"
+    - listitem "Display" [ref=e135]:
+      - button "Display" [ref=e136]
+    - button "Show graph" [ref=e137]
+  - group [ref=e138]:
+    - text: "Filters"
+    - button "Your Languages" [ref=e187]
+    - button "Playtime:" [ref=e144]: "Playtime: Over 100 hours"
+    - button "Played Mostly on Steam Deck" [ref=e145]
+  - text: "Showing  827  reviews that match the filters above ( Overwhelmingly Positive )Most Helpful Reviews"
+  - list "Most Helpful Reviews":
+    - button [ref=e385]:
+      - link "jsklsian" [ref=e386]
+      - link "jsklsian" [ref=e387]
+      - link "2 reviews" [ref=e388]
+      - link "Recommended 307.3 hrs on record (307.2 hrs at review time)" [ref=e389]
+      - text: "Posted: May 8 I love this game so much that I bought it 5 times: XBOX, Steam, Switch, Phone, Ipad.Was this review helpful?"
+      - button "Yes" [ref=e390]
+      - button "No" [ref=e391]
+      - button "Funny" [ref=e392]
+      - button "Award" [ref=e393]
+      - text: "2 people found this review helpful"
+    - button [ref=e460]:
+      - link "meganniluachra" [ref=e461]
+      - link "meganniluachra" [ref=e462]
+      - link "1 reviews" [ref=e463]
+      - link "Recommended 274.3 hrs on record (260.2 hrs at review time)" [ref=e464]
+      - text: "Posted: Yesterday Genuinely one of the best indie games out there. Concerned Ape has put everything into Stardew and you can feel how much it means to him. Full of heart and emotion Was this review helpful?"
+      - button "Yes" [ref=e465]
+      - button "No" [ref=e466]
+      - button "Funny" [ref=e467]
+      - button "Award" [ref=e468]
+      - text: "1 person found this review helpful"
+    - button [ref=e469]:
+      - link "APointyCactus" [ref=e470]
+      - link "APointyCactus" [ref=e471]
+      - link "1 reviews" [ref=e472]
+      - link "Recommended 368 hrs on record (367.2 hrs at review time)" [ref=e473]
+      - text: "Posted: May 8 best game ever. I'm addicted, I've always been addicted. I can stop whenever I want to, but I won't and you can't make me.Was this review helpful?"
+      - button "Yes" [ref=e474]
+      - button "No" [ref=e475]
+      - button "Funny" [ref=e476]
+      - button "Award" [ref=e477]
+    - button [ref=e478]:
+      - link "✨Aurora🎇" [ref=e479]
+      - link "✨Aurora🎇" [ref=e480]
+      - link "226 games" [ref=e481]
+      - link "18 reviews" [ref=e482]
+      - link "Recommended 459.6 hrs on record (456.1 hrs at review time)" [ref=e483]
+      - text: "Posted: May 1 it's a really fun and addicting game Was this review helpful?"
+      - button "Yes" [ref=e484]
+      - button "No" [ref=e485]
+      - button "Funny" [ref=e486]
+      - button "Award" [ref=e487]
+    - button [ref=e488]:
+      - link "treewizard33" [ref=e489]
+      - link "treewizard33" [ref=e490]
+      - link "5 reviews" [ref=e491]
+      - link "Recommended 237 hrs on record (228 hrs at review time)" [ref=e492]
+      - text: "Posted: April 28 This game is creative genius, made by one man. its a labor of love and it shows. one of my favorites ever.Was this review helpful?"
+      - button "Yes" [ref=e493]
+      - button "No" [ref=e494]
+      - button "Funny" [ref=e495]
+      - button "Award" [ref=e496]
+    - button [ref=e497]:
+      - link "ARES" [ref=e498]
+      - link "ARES" [ref=e499]
+      - link "24 reviews" [ref=e500]
+      - link "Recommended 103.1 hrs on record" [ref=e501]
+      - text: "Posted: April 23 Great story and fun calm visuals. Perfect for Steam deck!Was this review helpful?"
+      - button "Yes" [ref=e502]
+      - button "No" [ref=e503]
+      - button "Funny" [ref=e504]
+      - button "Award" [ref=e505]
+    - button [ref=e506]:
+      - link "SamLikesHam" [ref=e507]
+      - link "SamLikesHam" [ref=e508]
+      - link "1 reviews" [ref=e509]
+      - link "Recommended 343.7 hrs on record (343.7 hrs at review time)" [ref=e510]
+      - text: "Posted: April 22 After loving this game and playing it for a long time, I cannot do anything but recommend this. Everything in this game is amazing.Was this review helpful?"
+      - button "Yes" [ref=e511]
+      - button "No" [ref=e512]
+      - button "Funny" [ref=e513]
+      - button "Award" [ref=e514]
+    - button [ref=e515]:
+      - link "Bigredcrunch" [ref=e516]
+      - link "Bigredcrunch" [ref=e517]
+      - link "1 reviews" [ref=e518]
+      - link "Recommended 672.6 hrs on record (655.1 hrs at review time)" [ref=e519]
+      - text: "Posted: April 20 very relaxing and fun, the game is more complicated than it seems though 10/10 Was this review helpful?"
+      - button "Yes" [ref=e520]
+      - button "No" [ref=e521]
+      - button "Funny" [ref=e522]
+      - button "Award" [ref=e523]
+    - button [ref=e524]:
+      - link "꧁💙⃤Katz∑尺 ꧂" [ref=e525]
+      - link "꧁💙⃤Katz∑尺 ꧂" [ref=e526]
+      - link "75 games" [ref=e527]
+      - link "14 reviews" [ref=e528]
+      - link "Recommended 136.7 hrs on record" [ref=e529]
+      - text: "Posted: April 20 I think at this point it goes without saying the people who buy this game enjoy it.It's not the most realistic farming sim, it's not the best game in the world but it is enjoyable to play.The premise is really simple you (the player character) is burned by real life so you choose to go on a farm you got from you grandpa. You farm,care take of animals,mine and weirdly become the emotional anchor for almost everyone in the valley. The visuals and vibe of the game is for me probably the strongest part of the experience when different seasons change almost every texture and the first crop rotation happens in fall you feel it,it's not just oh wow everything is Orange now it really has a character that is capable of making you feel something when you stop and focus on the small things.Now,to the more poorly made things.I hate the villagers. Yes I said it I'm a jojo quest line enjoyer. I simply cannot get over how needy and fake half of the villagers are, Pierre being simply the worst of them all and the reason I choose to marry Abigail for the achievements,I felt physically sorry for her I felt sorry what horrible father she has. Also the major is also pretty iffy personality but I won't get into that area. I'm not even talking about the writing what wasn't the worst under the sun even if a little cliche,the reason I started to hate them is the fakeness or free speech. If you want full hearts with everyone you need to tell everyone what they want to hear because if you would be a decent person or realistic you lose hearts with them meaning you just lost weeks if not months of progress with them.The only two people I never felt any negativity towards are Marnie and Willy, and eventually I started to like Abigail too but my first expression of her was really poor.Overall I would say the game is good. The farming mechanic way look simple but if you have 1500 tiles of blue berries it becomes a blessing in disguise rather than poor game design.Other activities like exploring, mining etc have their own skill trees I really enjoyed and the volcano island was nice bonus too, I would figure out it would be a DLC but nope it was free after reaching a specific point in the game.So even if I yet didn't 100% the game i got to the end game and I made 60 000 000 millions in total so I would say I know the game fair bit to be able to say I  recommend this game."
+      - button "Read More" [ref=e530]
+      - text: "Was this review helpful?"
+      - button "Yes" [ref=e531]
+      - button "No" [ref=e532]
+      - button "Funny" [ref=e533]
+      - button "Award" [ref=e534]
+    - button [ref=e535]:
+      - link "autumnskye94" [ref=e536]
+      - link "autumnskye94" [ref=e537]
+      - link "286 games" [ref=e538]
+      - link "15 reviews" [ref=e539]
+      - link "Recommended 166.2 hrs on record (150.2 hrs at review time)" [ref=e540]
+      - text: "Posted: April 15 Stardew valley is more than what it seems. I cannot recommend this game enough and I wish I hadn't waited so long to give it a chance.Was this review helpful?"
+      - button "Yes" [ref=e541]
+      - button "No" [ref=e542]
+      - button "Funny" [ref=e543]
+      - button "Award" [ref=e544]
+  - link "Browse all 1,003,992 reviews" [ref=e305]
+  - text: "Recently Posted"
+  - list "Recently Posted":
+    - button [ref=e545]:
+      - link "lbible2028 115.7 hrs" [ref=e546]
+      - text: "Posted: May 11 Scratches that cozy itch.Was this review helpful?"
+      - button "Yes" [ref=e547]
+      - button "No" [ref=e548]
+      - button "Funny" [ref=e549]
+      - button "Award" [ref=e550]
+    - button [ref=e551]:
+      - link "Gerardybo 166.4 hrs" [ref=e552]
+      - text: "Posted: May 11 chimken Was this review helpful?"
+      - button "Yes" [ref=e553]
+      - button "No" [ref=e554]
+      - button "Funny" [ref=e555]
+      - button "Award" [ref=e556]
+    - button [ref=e557]:
+      - link "Jolly Cooperator 118 hrs" [ref=e558]
+      - text: "Posted: May 9 is kinda goooood bruh Was this review helpful?"
+      - button "Yes" [ref=e559]
+      - button "No" [ref=e560]
+      - button "Funny" [ref=e561]
+      - button "Award" [ref=e562]
+    - button [ref=e563]:
+      - link "Rocket_BonBon 446.3 hrs" [ref=e564]
+      - text: "Posted: May 7 So much fun. I'm able to wind down after long work day playing Stardew. <3 Was this review helpful?"
+      - button "Yes" [ref=e565]
+      - button "No" [ref=e566]
+      - button "Funny" [ref=e567]
+      - button "Award" [ref=e568]
+    - button [ref=e569]:
+      - link "HeeHoo 155.5 hrs" [ref=e570]
+      - text: "Posted: May 4 It's chill Was this review helpful?"
+      - button "Yes" [ref=e571]
+      - button "No" [ref=e572]
+      - button "Funny" [ref=e573]
+      - button "Award" [ref=e574]
+    - button [ref=e575]:
+      - link "Dekaus 113.4 hrs" [ref=e576]
+      - text: "Posted: May 4 love it havent completed it though...Was this review helpful?"
+      - button "Yes" [ref=e577]
+      - button "No" [ref=e578]
+      - button "Funny" [ref=e579]
+      - button "Award" [ref=e580]
+    - button [ref=e581]:
+      - link "Turkey 237.9 hrs" [ref=e582]
+      - text: "Posted: May 3 is very good and fun. I love clocking into my second full time job Was this review helpful?"
+      - button "Yes" [ref=e583]
+      - button "No" [ref=e584]
+      - button "Funny" [ref=e585]
+      - button "Award" [ref=e586]
+- contentinfo:
+  - link [ref=e150]
+  - link [ref=e151]
+  - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+  - link [ref=e152]
+  - link [ref=e153]
+  - link [ref=e154]
+  - link [ref=e155]
+  - heading "STEAM" [level=3]
+  - link "About Steam" [ref=e156]
+  - link "Steam SSA" [ref=e157]
+  - link "Steamworks" [ref=e158]
+  - link "Steam Distribution" [ref=e159]
+  - link "Gift Cards" [ref=e160]
+  - heading "VALVE" [level=3]
+  - link "About Valve" [ref=e161]
+  - link "Jobs" [ref=e162]
+  - link "Hardware" [ref=e163]
+  - link "Recycling" [ref=e164]
+  - heading "LEGAL" [level=3]
+  - link "Privacy" [ref=e165]
+  - link "Accessibility" [ref=e166]
+  - link "Notices & Policies" [ref=e167]
+  - link "Cookies" [ref=e168]
+  - link "Refunds" [ref=e169]
+  - heading "MORE" [level=3]
+  - link "Get Steam" [ref=e170]
+  - link "Get Mobile Apps" [ref=e171]
+  - link "Get Support" [ref=e172]
+  - link "My Account" [ref=e173]
+</result>
+
+[20] thinking: **Evaluating review filtering**
+
+I think "players who have played over 100 hours and primarily use a Steam Deck" implies specific filtering for reviews. I wonder if I should identify any negative aspects and consider displaying all reviews. The current summary states "Overwhelmingly Positive" with about 827 reviews, so maybe checking for negative ones isn't strictly necessary.
+
+I might want to explore the URL parameters or the Steam reviews API for more precise filtered reviews, especially since Steam doesn't expose "deck" in app reviews. But, it seems that page URL may not reflect current filters, so I'll need to inspect that.
+
+**Exploring review filtering options**
+
+I’m considering whether there’s an internal XHR query with a filter on the reviews. Maybe we don’t need that, and instead, a complete page snapshot might suffice. If I click "Browse all 1,003,992 reviews," it could lead to the community app with filters. However, that shows all reviews, not just the current 827.
+
+Should I test the negative filter to see if there are complaints among users with over 100 hours on a Steam Deck? Including negative opinions might provide a balanced summary, especially since the default "Most Helpful" filter might show overwhelmingly positive reviews. I’ll need to inspect the counts for a complete picture.
+
+[21] tool_call: repl("Checking review type options for balance")
+<request>
+await page.locator('e126').click();
+const s10 = await snapshot(page, {interactive: true});
+console.log(s10.diff || s10.tree);
+</request>
+<result tokens_used="581" elapsed_time="684ms">
+@@ -13,10 +13,0 @@
+-- navigation "Store menu" [ref=e11]:
+-  - button "Browse" [ref=e12]
+-  - button "Recommendations" [ref=e13]
+-  - button "Categories" [ref=e14]
+-  - button "Hardware" [ref=e15]
+-  - button "Ways to Play" [ref=e16]
+-  - button "Special Sections" [ref=e17]
+-  - search:
+-    - combobox "Search the store" [ref=e18] [placeholder="Search the store"]
+-    - button "Search" [ref=e19]
+@@ -29,42 +19,0 @@
+-  - link "Single-player" [ref=e66]
+-  - link "Online Co-op" [ref=e67]
+-  - link "LAN Co-op" [ref=e68]
+-  - link "Shared/Split Screen Co-op" [ref=e69]
+-  - link "Shared/Split Screen" [ref=e70]
+-  - link "Steam Achievements" [ref=e71]
+-  - link "Steam Trading Cards" [ref=e72]
+-  - link "Steam Cloud" [ref=e73]
+-  - link "Remote Play on Phone" [ref=e74]
+-  - link "Remote Play on Tablet" [ref=e75]
+-  - link "Remote Play Together" [ref=e76]
+-  - link "Family Sharing" [ref=e77]
+-  - text: "Full Controller Support"
+-  - link "Xbox Controllers" [ref=e78]
+-  - text: "Support for other devices is not known\n							\n							\n							\n							\n							\n							\n													\n																\n							 \n								Languages:\n							\n\n							\n\n\n\n\n	\n		\n				Interface\n		 Full Audio\n		 Subtitles\n	\n\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔ 				\n				\n									\n				\n									\n					\n			\n			\n							\n					 ✔"
+-  - link "See all 12 supported languages" [ref=e79]
+-  - group "Steam Deck Compatibility":
+-    - text: "Steam Deck Compatibility Verified"
+-    - button "Learn more" [ref=e80]
+-  - text: "Fantasy Violence \nMild Blood \nMild Language \nUse of Alcohol and Tobacco \nSimulated Gambling\n																				\n					\n									\n			\n									 Age rating for: ESRB\n		\n								\n										\n					\n					\n													\n						\n						\n							 \n								Includes 49 Steam Achievements							\n							\n						\n					\n					\n													\n						\n						\n							 \n								Points Shop Items Available							\n							\n						\n					\n					\n						\n							\n								\n\n			 Title: Stardew Valley\n	\n				 Genre:"
+-  - link "Indie" [ref=e87]
+-  - text: ","
+-  - link "RPG" [ref=e88]
+-  - text: ","
+-  - link "Simulation" [ref=e89]
+-  - text: "Developer:"
+-  - link "ConcernedApe" [ref=e90]
+-  - text: "Publisher:"
+-  - link "ConcernedApe" [ref=e91]
+-  - text: "Release Date: Feb 26, 2016"
+-  - link "Visit the website External" [ref=e92]: "Visit the website"
+-  - link "External" [ref=e93]
+-  - link "External" [ref=e94]
+-  - link "View update history" [ref=e95]
+-  - link "Read related news" [ref=e96]
+-  - link "View discussions" [ref=e97]
+-  - link "Find Community Groups" [ref=e98]
+-  - link "Embed" [ref=e99]
+-  - link "Report this Product" [ref=e100]
+-  - text: "89									\n									\n									\n										 metacritic"
+-  - link "Read Critic Reviews" [ref=e101]
+-  - text: "Awards"
+@@ -86,5 +34 @@
+-  - heading "System Requirements" [level=2]
+-  - generic "Windows" [ref=e112]
+-  - generic "macOS" [ref=e113]
+-  - generic "SteamOS + Linux" [ref=e114]
+-  - text: "Minimum:OS *: Windows Vista or greater Processor: 2 Ghz Memory: 2 GB RAM Graphics: 256 mb video memory, shader model 3.0+DirectX: Version 10 Storage: 500 MB available space							\n						\n															\n\n											\n							*\n							Starting January 1st, 2024, the Steam Client will only support Windows 10 and later versions.						\n									\n							\n							\n					\n	\n	\n\n				\n								\n				\n\n			\n		\n\n		\n			\n				\n				\n				\n				More like this"
++  - text: "More like this"
+@@ -157,0 +101,6 @@
++      - radio "All (1,003,992)" [ref=e587] [checked] [focused]
++      - text: "All (1,003,992)"
++      - radio "Positive (988,678)" [ref=e588]
++      - text: "Positive (988,678)"
++      - radio "Negative (15,314)" [ref=e589]
++      - text: "Negative (15,314)"
+@@ -165,16 +115,0 @@
+-      - text: "Filter reviews by the user's playtime when the review was written:"
+-      - radio "No Minimum" [ref=e366]
+-      - text: "No Minimum"
+-      - radio "Over 1 hour" [ref=e367]
+-      - text: "Over 1 hour"
+-      - radio "Over 10 hours" [ref=e368]
+-      - text: "Over 10 hours"
+-      - radio "Over 100 hours" [ref=e369] [checked]
+-      - text: "Over 100 hours\n							\n						\n							 100 hour(s) to  No maximum"
+-      - generic [ref=e370]:
+-        - slider "Minimum hours played" [ref=e371]
+-        - slider "Maximum hours played" [ref=e372]
+-      - radio "Played across all devices" [ref=e373]
+-      - text: "Played across all devices"
+-      - radio "Played mostly on Steam Deck" [ref=e374] [checked] [focused]
+-      - text: "Played mostly on Steam Deck"
+</result>
+
+[22] thinking: **Considering menu options**
+
+I’m noticing that the counts in the menu aren't filtered. I think I might need to select the negative options with deck or hours to see how many there are. Once I do that, perhaps I can restore everything? That seems like a useful approach to getting the information I need. I'll look into how to go about that!
+
+[23] tool_call: repl("Sampling negative reviews with the same filters")
+<request>
+await page.locator('e589').click();
+const s11 = await snapshot(page, {interactive: true});
+console.log(s11.diff || s11.tree);
+</request>
+<result tokens_used="99" elapsed_time="521ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Stardew Valley on Steam" [url=https://store.steampowered.com/app/413150/Stardew_Valley?snr=1_7001_mostplayedondeck__7003]
+- banner:
+  - link "Link to the Steam Homepage" [ref=e1]
+  - navigation "Global Menu" [ref=e2]:
+    - link "STORE" [ref=e3]
+    - link "COMMUNITY" [ref=e4]
+    - link "About" [ref=e5]
+    - link "SUPPORT" [ref=e6]
+  - navigation "Account Menu" [ref=e7]:
+    - link "Install Steam" [ref=e8]
+    - link "sign in" [ref=e9]
+    - text: "|"
+    - generic "language" [ref=e10]
+- main:
+  - generic "Open in Desktop App" [ref=e20]
+  - text: "You're not signed in!Open this page in the Steam App to wishlist, follow, purchase and see recommendations"
+  - link "Sign in" [ref=e64]
+  - text: "to add this item to your wishlist, follow it, or mark it as ignored"
+  - link [ref=e65]
+  - region "Buy Stardew Valley" [ref=e102]:
+    - heading "Buy Stardew Valley" [level=2]
+    - text: "$14.99"
+    - button "Add to Cart" [ref=e103]
+  - heading "Content For This Game" [level=2]:
+    - text: "Content For This Game"
+    - link "Browse all" [ref=e104]: "Browse all (1)"
+  - link "Stardew Valley Soundtrack $4.99" [ref=e105]
+  - text: "$4.99"
+  - link "Add all DLC to Cart" [ref=e106]
+  - text: "Steam Deck Top Played"
+  - link "Take this game anywhere!Stardew Valley is one of the top played games on Steam Deck!" [ref=e107]
+  - heading "Recent Events & Announcements" [level=2]
+  - button "View All" [ref=e174]
+  - generic "READ MORE" [ref=e111]
+  - text: "More like this"
+  - link "See All" [ref=e115]
+  - button "Previous" [ref=e116]
+  - list "slider":
+    - listitem:
+      - button [ref=e175]:
+        - link [ref=e176]:
+          - button "Infinity Nikki" [ref=e177]
+          - text: "Free To Play"
+    - listitem:
+      - button [ref=e178]:
+        - link [ref=e179]:
+          - button "Terraria" [ref=e180]
+          - text: "$9.99"
+    - listitem:
+      - button [ref=e181]:
+        - link [ref=e182]:
+          - button "Palia" [ref=e183]
+          - text: "Free To Play"
+    - listitem:
+      - button [ref=e184]:
+        - link [ref=e185]:
+          - button "Rust" [ref=e186]
+          - text: "$39.99"
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+    - listitem
+  - button "Next" [ref=e117]
+  - button "previous" [ref=e118]
+  - button "next" [ref=e119]
+  - link "View all" [ref=e120]
+  - heading "What Curators Say" [level=2]
+  - text: "3,189 Curators have reviewed this product. Click"
+  - link "here" [ref=e121]
+  - text: "to see them."
+  - heading "Customer reviews for Stardew Valley" [level=2]:
+    - text: "Customer reviews for Stardew Valley"
+    - link "See language breakdown" [ref=e122]
+    - link "About user reviews" [ref=e123]
+    - link "Your preferences" [ref=e124]
+  - text: "English Reviews:					\n					Overwhelmingly Positive\n											(384,949 reviews)\n									\n\n			\n			\n\n			\n							\n										\n						\n							Total reviews in all languages: 862,317  Overwhelmingly Positive						\n					\n											 \n														Recent Reviews in all languages: 7,238							 Overwhelmingly Positive"
+  - list "Filter options":
+    - listitem "Review Type" [ref=e125]:
+      - button "Review Type" [ref=e126]
+      - radio "All (1,003,992)" [ref=e587]
+      - text: "All (1,003,992)"
+      - radio "Positive (988,678)" [ref=e588]
+      - text: "Positive (988,678)"
+      - radio "Negative (15,314)" [ref=e589] [checked] [focused]
+      - text: "Negative (15,314)"
+    - listitem "Purchase Type" [ref=e127]:
+      - button "Purchase Type" [ref=e128]
+    - listitem "Language" [ref=e129]:
+      - button "Language" [ref=e130]
+    - listitem "Date Range" [ref=e131]:
+      - button "Date Range" [ref=e132]
+    - listitem "Playtime" [ref=e133]:
+      - button "Playtime" [ref=e134]
+    - listitem "Display" [ref=e135]:
+      - button "Display" [ref=e136]
+    - button "Show graph" [ref=e137]
+  - group [ref=e138]:
+    - text: "Filters"
+    - button "Negative" [ref=e590]
+    - button "Your Languages" [ref=e187]
+    - button "Playtime:" [ref=e144]: "Playtime: Over 100 hours"
+    - button "Played Mostly on Steam Deck" [ref=e145]
+  - text: "Most Helpful Reviews"
+  - list "Most Helpful Reviews":
+    - button [ref=e591]:
+      - link "Daga" [ref=e592]
+      - link "Daga" [ref=e593]
+      - link "186 games" [ref=e594]
+      - link "1 reviews" [ref=e595]
+      - link "Not Recommended 210.9 hrs on record (201.5 hrs at review time)" [ref=e596]
+      - text: "Posted: April 20​Stardew Valley is, at its core, a masterpiece of the cozy-farming genre. Whether you’re meticulously planning your crop rotations, delving into the mines, or wooing the local villagers, the game offers a level of charm and depth that is rarely matched. It shines brightest when played with a partner or friends—sharing the workload of a growing farm makes the experience feel truly collaborative and rewarding.​The Breaking Point: \"Connecting to Online Services...\"However, the current technical state of the game has made it nearly impossible to recommend for those looking for that specific multiplayer magic. Recently, many players (myself included) have hit a literal brick wall: the co-op menu often hangs indefinitely on the message \"connecting to online services.\" This isn't just a minor lag spike; it’s a total service failure that prevents the multiplayer menu from even loading, effectively stripping away the game’s best feature. While the single-player experience remains intact, the lack of a reliable fix for these server-side handshake issues makes the \"Co-op\" button feel like a decorative ornament rather than a functional feature.Was this review helpful?"
+      - button "Yes" [ref=e597]
+      - button "No" [ref=e598]
+      - button "Funny" [ref=e599]
+      - button "Award" [ref=e600]
+      - text: "3 people found this review helpful 2 people found this review funny"
+      - link "3" [ref=e601]
+    - button [ref=e602]:
+      - link "Serious Table" [ref=e603]
+      - link "Serious Table" [ref=e604]
+      - link "576 games" [ref=e605]
+      - link "54 reviews" [ref=e606]
+      - link "Not Recommended 257.1 hrs on record (101.3 hrs at review time)" [ref=e607]
+      - text: "Posted: January 21, 2025 Stardew Valley is an incredible game and absolutely deserves every ounce of praise that it gets. It is a modern-day classic. That said, I offer a warning for a certain type of person. Stardew Valley is intended to be slow-paced, cozy, and quiet. There aren’t a lot of optimization options for the gameplay, deeply engaging combat, or NPCs with a sort of incredible depth. It’s a game you’re wholly intended to detach from the real world and just soak in the cozy vibes presented. If, like me, you struggle with that, you’ll find yourself frustrated as you grind through day after day for the next pay off some 4-12 in-game days away just to repeat the process again. If interacting with a small community and just tending to your farm doesn’t vibe well enough with you, it genuinely might be worth a second guess. I don’t regret the 100 hours I’ve put into the game, but I never got past year 1 because of that itch of “there has to be a better way to do this” that I simply couldn’t shake.Was this review helpful?"
+      - button "Yes" [ref=e608]
+      - button "No" [ref=e609]
+      - button "Funny" [ref=e610]
+      - button "Award" [ref=e611]
+      - text: "13 people found this review helpful"
+      - button "2 Community Awards" [ref=e612]: "2 Community Awards 2"
+    - button [ref=e613]:
+      - link "Itohiro" [ref=e614]
+      - link "Itohiro" [ref=e615]
+      - link "544 games" [ref=e616]
+      - link "210 reviews" [ref=e617]
+      - link "Not Recommended 175.3 hrs on record" [ref=e618]
+      - text: "Posted: April 19, 2025 I can almost recommend this game, as it feels amazing for the first dozens of hours. It is clearly a product of love, but this led to overextending its stay through luck-based goals. There is a huge variety of tasks, but many of them rely on an RNG grind, or just take way too many days to complete, so the days end up being quite repetitive.The combat system is incredibly annoying: sure, you may have a hard time when you first encounter a certain monster type, but once you understand how to overcome it, it becomes a very frequent chore. There should be a way to not have to bother killing monsters once you reach a certain point (e.g., with a repel).The minigames are boring, and the kart minigame is incredibly bad. I understand adding them to the game, but adding achievements/tasks related to them is, IMHO, a poor design decision - the demographics of a farming simulator and a shoot-em-up do not fully overlap.Finally, it is supposed to be a chill game, but you have a fixed deadline to sleep. This is incredibly inconvenient, as you are always looking at the clock. Suggestions:- There should be a way to permanently disable the prompt to have a baby, as otherwise you may end up accidentally clicking yes.- If the deadline to sleep must exist, then I think that there should be instead an alarm-clock system, along with the energy-recovery solution, as it would give a little bit more control to the players:-- You must sleep at least X (e.g. 4h, as it is currently implemented) hours per night, but ideally you would sleep at least Y hours (e.g., 6h, as it is currently implemented);-- You select every day how much time you want to sleep (i.e., you are not forced to wake at 6am);-- If you sleep less than Y, you recover less energy.-- You can only stay awake for at most 24h"
+      - button "Read More" [ref=e619]
+      - text: "Was this review helpful?"
+      - button "Yes" [ref=e620]
+      - button "No" [ref=e621]
+      - button "Funny" [ref=e622]
+      - button "Award" [ref=e623]
+      - text: "4 people found this review helpful"
+    - button [ref=e624]:
+      - link "evanga2so" [ref=e625]
+      - link "evanga2so" [ref=e626]
+      - link "152 games" [ref=e627]
+      - link "14 reviews" [ref=e628]
+      - link "Not Recommended 120.6 hrs on record" [ref=e629]
+      - text: "Posted: November 9, 2025 two demoralizing bugs (disappearing pet with no option of getting new one and bundle inventory screen locked inventory with rare item) have snapped me out of this addicting loop. If not for the characters i would have wasted over 100 hours of my life.Was this review helpful?"
+      - button "Yes" [ref=e630]
+      - button "No" [ref=e631]
+      - button "Funny" [ref=e632]
+      - button "Award" [ref=e633]
+      - text: "1 person found this review helpful 1 person found this review funny"
+    - button [ref=e634]:
+      - link "Bastienroy" [ref=e635]
+      - link "Bastienroy" [ref=e636]
+      - link "15 reviews" [ref=e637]
+      - link "Not Recommended 107.8 hrs on record" [ref=e638]
+      - text: "Posted: April 18, 2025 Remove the ouija board and we will come back to this game Was this review helpful?"
+      - button "Yes" [ref=e639]
+      - button "No" [ref=e640]
+      - button "Funny" [ref=e641]
+      - button "Award" [ref=e642]
+      - text: "1 person found this review helpful"
+  - link "Browse all 1,003,992 reviews" [ref=e305]
+- contentinfo:
+  - link [ref=e150]
+  - link [ref=e151]
+  - text: "© 2026 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.VAT included in all prices where applicable."
+  - link [ref=e152]
+  - link [ref=e153]
+  - link [ref=e154]
+  - link [ref=e155]
+  - heading "STEAM" [level=3]
+  - link "About Steam" [ref=e156]
+  - link "Steam SSA" [ref=e157]
+  - link "Steamworks" [ref=e158]
+  - link "Steam Distribution" [ref=e159]
+  - link "Gift Cards" [ref=e160]
+  - heading "VALVE" [level=3]
+  - link "About Valve" [ref=e161]
+  - link "Jobs" [ref=e162]
+  - link "Hardware" [ref=e163]
+  - link "Recycling" [ref=e164]
+  - heading "LEGAL" [level=3]
+  - link "Privacy" [ref=e165]
+  - link "Accessibility" [ref=e166]
+  - link "Notices & Policies" [ref=e167]
+  - link "Cookies" [ref=e168]
+  - link "Refunds" [ref=e169]
+  - heading "MORE" [level=3]
+  - link "Get Steam" [ref=e170]
+  - link "Get Mobile Apps" [ref=e171]
+  - link "Get Support" [ref=e172]
+  - link "My Account" [ref=e173]
+</result>
+
+[24] thinking: **Summarizing player reviews**
+
+I need to summarize positive and recent reviews, potentially including sample quotes from players. It seems I don't need source tags since I'm not using web search. I can mention that "I found this on Steam." Also, I should clarify that I browsed the reviews without clicking on everything, and I'll aim to keep things concise. I've got to make a list of updates and to-dos too!
+
+[25] tool_call: write_todos:
+Todo list updated:
+- [completed] 3: Browse reviews for that game from >100 hour Steam Deck-primary players
+- [completed] 4: Report the game and relevant review findings
+
+[26] assistant: I found it on Steam’s “Steam Deck Top Played” chart set to “past year”:
+
+**Top game:** Stardew Valley  
+**Period shown:** May 14, 2025 to May 13, 2026
+
+I then filtered Stardew Valley reviews to:
+
+- **Playtime:** Over 100 hours
+- **Device usage:** Played mostly on Steam Deck
+
+Steam showed **827 matching reviews**, rated **Overwhelmingly Positive**.
+
+What stood out from those reviews:
+
+- Most high-hour Steam Deck players call it relaxing, addictive, cozy, and a great fit for handheld play.
+- Several reviewers had 250 to 600+ hours and still described it as one of their favorite games.
+- One review specifically said it has “great story and fun calm visuals” and is “Perfect for Steam Deck.”
+- The negative filtered reviews were mostly about co-op connection issues, repetitive late-game grind, RNG-heavy goals, bugs, or the game not matching the reviewer’s preferred pacing.
+
+Bottom line: among 100+ hour players who mostly play on Steam Deck, Stardew Valley is still very strongly recommended.

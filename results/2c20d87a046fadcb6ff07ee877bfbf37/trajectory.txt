@@ -1,0 +1,1330 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="tax" path="/Users/vista/.aside/u/0/agents/main/skills/tax/SKILL.md">
+# Federal Income Tax Reference (Tax Year 2025)
+
+This skill is a Tax Year 2025 reference library for federal income tax guidance, official instructions, and fillable PDF forms.
+
+All paths below are relative to the `dir` value in this skill's metadata header. Use `read_file` with absolute paths (e.g. `{dir}/references/quick-reference.md`) and `rg` for searching.
+
+## Contents
+
+- `forms/`: blank IRS PDF forms and schedules.
+- `irs-instructions/`: Tax Year 2025 IRS instruction excerpts organized by form.
+- `references/`: concise lookup guides and topical notes that point back to the IRS materials.
+
+## Reading and Filling PDF Forms
+
+For **reading** fillable PDFs (W-2, 1040, schedules, etc.), use `extract_form_field_info.py` instead of `read_file`. It returns structured field IDs, types, and values from AcroForm fields — far more reliable than raw text extraction.
+
+```sh
+python3 {dir}/../pdf/scripts/extract_form_field_info.py <path-to-pdf>
+```
+
+For **filling** PDF forms, use the fill script which writes values into AcroForm fields:
+
+```sh
+python3 {dir}/../pdf/scripts/fill_fillable_fields.py <input.pdf> <output.pdf> --fields '{"field_name": "value", ...}'
+```
+
+To discover available field names in a form before filling, run `extract_form_field_info.py` first.
+
+## Navigation
+
+- Start with `references/lookup-guide/overview.md` to find the right instruction set.
+- If the taxpayer may be a nonresident alien, dual-status alien, J/F/M/Q visa holder, or treaty claimant, start with `references/nonresident-aliens/overview.md` before using the resident-style 1040 guides.
+- Use `references/quick-reference.md` for a short list of common Tax Year 2025 thresholds.
+- Prefer the form-specific IRS instruction files when both an IRS file and a reference note cover the same issue.
+
+## Search Efficiently
+
+```sh
+rg -n "<term>" {dir}/irs-instructions {dir}/references
+rg -n "Line 16|qualified dividends" {dir}/irs-instructions/f1040 {dir}/references
+```
+
+## Proactively Solicit Documents
+
+If fulfilling the user's request requires certain tax forms or source documents, first ask them to upload the relevant materials they already have. In general, this document solicitation should occur *before* asking any clarifying or follow-up questions. No tool call is necessary; a plaintext request suffices.
+
+## Always Use IRS Forms
+
+When generating draft return or filing documents, always proceed by using the forms in `forms/` (or the official IRS site, if the relevant form does not exist in `forms/`). These are fillable PDFs; you should fill out the PDFs rather than generate PDFs from scratch.
+
+## Outside Resources
+
+Although this skill contains a very comprehensive set of resources, you are permitted to use the means available to you to consult (fetch, search, research, etc) any resources that are **not** contained herein.
+
+## Privacy Protocol
+
+To protect user privacy, do not include full SSNs, EINs, or other tax identifiers in text outputs. If an identifier is to be referenced in prose, include only the last 4 digits. Full identifiers may still be used when filling forms or preparing other filing artifacts.
+
+## Offer Assistance Liberally, with Appropriate Disclaimers
+
+If this skill is invoked, the user is requesting your assistance on a tax-related request and you should offer it liberally (up to and including generating return documents). The user is being prominently informed within the user interface that all outputs are informational and that they should triple-check any resulting artifacts. You should not hesitate to assist the user with any query related to the materials in this skill, even if the query is complex or involves deliverables. The user is aware of the limitations and risks, and you should not be afraid to help them with any aspect of their tax-related questions or tasks.
+
+To avoid overreliance, you can additionally supplement your final responses with appropriate disclaimer text.
+
+For instance, for a purely informational query, you might say:
+
+> Please note that this is for reference purposes only and should not be considered tax advice. For personalized guidance, please consult a qualified tax professional.
+
+For a more complex query involving deliverables (e.g., "do my tax return and give me the filled-out IRS PDFs"), you should faithfully service the user's request, then end with a disclaimer resembling the following (adapted as needed):
+
+> Please note that these draft documents are provided for reference purposes only and should not be considered tax advice. Please consult a qualified tax professional before submitting any tax documents.
+</skill>
+</system_message>
+
+[2] user: Go to https://www.irs.gov/, Open the form 8843 for tax year 2022.
+
+[3] assistant: I’ll use the tax reference context only to make sure I’m opening the right IRS form/year.
+
+[4] tool_call: repl("Opening IRS website")
+<request>
+const irsPage1 = await openTab('https://www.irs.gov/');
+const s1 = await snapshot(page, { interactive: true });
+console.log(s1.tree);
+</request>
+<result tokens_used="266" elapsed_time="1083ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Internal Revenue Service | An official website of the United States government (https://www.irs.gov/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Internal Revenue Service | An official website of the United States government" [url=https://www.irs.gov/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - region "Official website of the United States government" [ref=e2]:
+    - banner:
+      - button "Here's how you know" [ref=e3]
+  - link "Home" [ref=e4]
+  - navigation "Information Menu" [ref=e5]:
+    - heading "Information Menu" [level=2]
+    - link "Help" [ref=e6]
+    - link "News" [ref=e7]
+    - button "English" [ref=e8]: "English\n      "
+    - link "Tax Pros" [ref=e9]
+    - generic "Sign in " [ref=e10]
+  - navigation "Main navigation" [ref=e11]:
+    - heading "Main navigation" [level=2]
+    - application "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e12]: "File"
+    - application "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e13]: "Pay"
+    - application "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e14]: "Refunds"
+    - application "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e15]: "Credits & Deductions"
+    - application "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e16]: "Forms"
+    - application "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e17]: "Report Fraud"
+  - textbox "Search" [ref=e18] [placeholder="Search"]
+  - button "Search" [ref=e19]
+- main:
+  - region:
+    - region:
+      - img "Info alert": ""
+      - text: "IRS Free File  is open until Oct. 15th. Explore your free filing options."
+      - link "E-file your taxes for free" [ref=e20]
+      - text: "."
+    - article:
+      - heading "Do more with an IRS account" [level=2]
+      - text: "Access your tax information with an Individual, Business or Tax Pro Account\n      \n      \n              \n           \n          Refund status\n          \n              \n           \n          Tax records\n          \n              \n           \n          Payments\n          \n              \n           \n          Notifications"
+      - link "Create account" [ref=e21]
+      - heading "Where’s my refund?" [level=2]
+      - text: "Check two ways"
+      - heading "IRS account" [level=3]
+      - text: "Check your refund and opt in for refund status email notifications."
+      - link "Sign in" [ref=e22]
+      - heading "Refund tracker" [level=3]
+      - text: "Enter your SSN, filing status and refund amount on your return. No sign in."
+      - link "Use refund tracker" [ref=e23]
+      - link "Refund help" [ref=e24]
+      - region:
+        - region "Homepage alert" [ref=e25]:
+          - heading "Get refund status updates by email" [level=2]: "Get refund status \n        updates by email"
+          - text: "We'll notify you when your latest tax year refund status changes. Opt in to email notifications through your online account."
+          - link "Sign in or create account" [ref=e26]
+      - heading "How can we help you?" [level=2]
+      - link "Get your tax records and transcripts" [ref=e27]
+      - link "Make a payment" [ref=e28]
+      - link "Explore free filing options" [ref=e29]
+      - link "Find forms & instructions" [ref=e30]
+      - link "Get an identity protection PIN" [ref=e31]
+      - link "Check Your Federal Tax Withholding" [ref=e32]
+      - link "Apply for an Employer ID Number (EIN)" [ref=e33]
+      - link "Check your amended return status" [ref=e34]
+      - link "Use our tax help tools" [ref=e35]
+      - heading "Tools & applications" [level=2]
+      - region "carousel" [ref=e36]:
+        - text: "Please use the Previous and Next buttons to navigate the interactive carousel."
+        - button "Previous" [ref=e37]
+        - group "slide 1":
+          - link "IRS Free File IRS Free File Prepare and file your federal income taxes online for free. Try IRS Free" [ref=e38]
+        - group "slide 2":
+          - link "View Your Account Information Your Account Access your individual, business or tax pro account. Go t" [ref=e39]
+        - button "Next" [ref=e40]
+        - button "Go to slide 1 : IRS Free File" [ref=e41]
+        - button "Go to slide 2 : Your Account" [ref=e42]
+        - button "Go to slide 3 : Where's My Refund?" [ref=e43]
+        - button "Go to slide 4 : Document Upload Tool" [ref=e44]
+        - button "Go to slide 5 : Taxpayer Assistance Center Locator" [ref=e45]
+      - heading "News & announcements" [level=2]
+      - region "carousel" [ref=e46]:
+        - text: "Please use the Previous and Next buttons to navigate the interactive carousel."
+        - group "slide 1":
+          - link "Working Families Tax Cuts permits Trump Accounts to be established for American children. Trump Acco" [ref=e47]
+        - group "slide 2":
+          - link "The One, Big, Beautiful Bill has a significant effect on federal taxes, credits and deductions. One," [ref=e48]
+        - group "slide 3":
+          - link "Free tax preparation Get free one-on-one tax preparation help nationwide if you qualify Find a site " [ref=e49]
+        - group "slide 4":
+          - link "Find the latest information on trending scams and schemes Scams and schemes alerts Find the latest i" [ref=e50]
+- contentinfo "footer":
+  - navigation "Footer Navigation" [ref=e51]:
+    - heading [level=2]: "Our Agency"
+    - link "About IRS" [ref=e52]
+    - link "Careers" [ref=e53]
+    - link "Operations and Budget" [ref=e54]
+    - link "Tax Statistics" [ref=e55]
+    - link "Help" [ref=e56]
+    - link "Find a Local Office" [ref=e57]
+    - heading [level=2]: "Know Your Rights"
+    - link "Taxpayer Bill of Rights" [ref=e58]
+    - link "Taxpayer Advocate Service" [ref=e59]
+    - link "Independent Office of Appeals" [ref=e60]
+    - link "Civil Rights" [ref=e61]
+    - link "FOIA" [ref=e62]
+    - link "No FEAR Act Data(link is external)" [ref=e63]:
+      - text: "No FEAR Act Data"
+      - img "(link is external)": ""
+    - link "Reliance on Guidance" [ref=e64]
+    - heading [level=2]: "Resolve an Issue"
+    - link "IRS Notices and Letters" [ref=e65]
+    - link "Identity Theft" [ref=e66]
+    - link "Tax scams" [ref=e67]
+    - link "Tax Fraud" [ref=e68]
+    - link "Criminal Investigation" [ref=e69]
+    - link "Whistleblower Office" [ref=e70]
+    - heading [level=2]: "Languages"
+    - link "Español" [ref=e71]
+    - link "中文 (简体)" [ref=e72]
+    - link "中文 (繁體)" [ref=e73]
+    - link "한국어" [ref=e74]
+    - link "Pусский" [ref=e75]
+    - link "Tiếng Việt" [ref=e76]
+    - link "Kreyòl ayisyen" [ref=e77]
+    - link "English" [ref=e78]
+    - heading [level=2]: "Related Sites"
+    - link "U.S. Treasury(link is external)" [ref=e79]:
+      - text: "U.S. Treasury"
+      - img "(link is external)": ""
+    - link "Treasury Inspector General for Tax Administration(link is external)" [ref=e80]:
+      - text: "Treasury Inspector General for Tax Administration"
+      - img "(link is external)": ""
+    - link "USA.gov(link is external)" [ref=e81]:
+      - text: "USA.gov"
+      - img "(link is external)": ""
+    - link "USAspending.gov(link is external)" [ref=e82]:
+      - text: "USAspending.gov"
+      - img "(link is external)": ""
+    - link "Vote.gov(link is external)" [ref=e83]:
+      - text: "Vote.gov"
+      - img "(link is external)": ""
+  - region:
+    - link "IRS Facebook" [ref=e84]
+    - link "IRS Twitter" [ref=e85]
+    - link "Instagram" [ref=e86]
+    - link "IRS LinkedIn" [ref=e87]
+    - link "IRS Youtube" [ref=e88]
+  - link "Home" [ref=e89]
+  - navigation "Subfooter" [ref=e90]:
+    - link "Privacy Policy" [ref=e91]
+    - link "Accessibility" [ref=e92]
+</result>
+
+[5] thinking: **Searching for Form 8843**
+
+I need to find Form 8843 for 2022. The plan is to use the search field. Alternatively, I could look for a simpler way to click "Find forms." I think after searching, I should be able to locate what I need quickly. If it doesn’t work out, I might need to explore other options to ensure I can get the form. Let’s see how it goes!
+
+[6] tool_call: repl("Searching IRS for 2022 Form 8843")
+<request>
+await page.locator('e18').fill('2022 Form 8843');
+await page.locator('e19').click();
+const s2 = await snapshot(page);
+console.log(s2.diff);
+</request>
+<result tokens_used="106" elapsed_time="1608ms">
+- title: "Site Index Search | Internal Revenue Service" [url=https://www.irs.gov/site-index-search?search=2022+Form+8843&field_pup_historical_1=1&field_pup_historical=1]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - region "Official website of the United States government" [ref=e2]:
+    - banner:
+      - button "Here's how you know" [ref=e3]
+  - link "Home" [ref=e4]:
+    - image "Home"
+  - navigation "Information Menu" [ref=e5]:
+    - heading "Information Menu" [level=2]
+    - list:
+      - listitem "Help" [ref=e6]:
+        - link "Help" [ref=e7]
+      - listitem "News" [ref=e8]:
+        - link "News" [ref=e9]
+      - listitem:
+        - button "English" [ref=e10]: "English\n      "
+      - listitem "Tax Pros" [ref=e11]:
+        - link "Tax Pros" [ref=e12]
+      - listitem:
+        - generic "Sign in " [ref=e13]
+  - navigation "Main navigation" [ref=e14]:
+    - heading "Main navigation" [level=2]
+    - list:
+      - listitem "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e15]:
+        - application "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e16]: "File"
+      - listitem "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e17]:
+        - application "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e18]: "Pay"
+      - listitem "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e19]:
+        - application "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e20]: "Refunds"
+      - listitem "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e21]:
+        - application "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e22]: "Credits & Deductions"
+      - listitem "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e23]:
+        - application "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e24]: "Forms"
+      - listitem "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e25]:
+        - application "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e26]: "Report Fraud"
+  - form:
+    - textbox "Search" [ref=e27] [placeholder="Search"]: "2022 Form 8843"
+    - button "Search" [ref=e28]
+- navigation "Breadcrumbs" [ref=e29]:
+  - list:
+    - listitem "Home" [ref=e30]:
+      - link "Home" [ref=e31]
+    - listitem "/ Site Index Search" [ref=e32]
+- heading "Search Results" [level=1]
+- form:
+  - textbox "Search" [ref=e33] [placeholder="Search"]: "2022 Form 8843"
+  - button "Search" [ref=e34]
+- list:
+  - listitem "Relevance " [ref=e35]:
+    - label: "Sort By:"
+    - combobox "Relevance" [ref=e36]:
+      - option "Relevance" (selected)
+      - option "Date"
+    - text: ""
+- main:
+  - complementary:
+    - checkbox "Include Archived Content" [ref=e37] [hidden]
+    - label: "Include Archived Content"
+  - region:
+    - list:
+      - listitem "All" [ref=e38]:
+        - link "All" [ref=e39]
+      - listitem "Forms" [ref=e40]:
+        - link "Forms" [ref=e41]
+      - listitem "Guides" [ref=e42]:
+        - link "Guides" [ref=e43]
+      - listitem "News" [ref=e44]:
+        - link "News" [ref=e45]
+      - listitem "Notices" [ref=e46]:
+        - link "Notices" [ref=e47]
+      - listitem "FAQs" [ref=e48]:
+        - link "FAQs" [ref=e49]
+      - listitem "Statistics" [ref=e50]:
+        - link "Statistics" [ref=e51]
+    - heading "Please try the search suggestions below, or try searching all of IRS.gov." [level=2]:
+      - text: "Your search did not return any results. \n    Please try the search suggestions below, or try"
+      - link "searching all of IRS.gov" [ref=e52]
+      - text: "."
+    - text: "Tips for searching\n  \n  •    Check the spelling of your search\n  •    Try a different search\n  •    Try using more general words in your search\n  •    Alternatively, you can try using the menus to find what you’re looking for"
+- contentinfo "footer":
+  - navigation "Footer Navigation" [ref=e53]:
+    - list:
+      - listitem:
+        - heading [level=2]: "Our Agency"
+        - list:
+          - listitem "About IRS" [ref=e54]:
+            - link "About IRS" [ref=e55]
+          - listitem "Careers" [ref=e56]:
+            - link "Careers" [ref=e57]
+          - listitem "Operations and Budget" [ref=e58]:
+            - link "Operations and Budget" [ref=e59]
+          - listitem "Tax Statistics" [ref=e60]:
+            - link "Tax Statistics" [ref=e61]
+          - listitem "Help" [ref=e62]:
+            - link "Help" [ref=e63]
+          - listitem "Find a Local Office" [ref=e64]:
+            - link "Find a Local Office" [ref=e65]
+      - listitem:
+        - heading [level=2]: "Know Your Rights"
+        - list:
+          - listitem "Taxpayer Bill of Rights" [ref=e66]:
+            - link "Taxpayer Bill of Rights" [ref=e67]
+          - listitem "Taxpayer Advocate Service" [ref=e68]:
+            - link "Taxpayer Advocate Service" [ref=e69]
+          - listitem "Independent Office of Appeals" [ref=e70]:
+            - link "Independent Office of Appeals" [ref=e71]
+          - listitem "Civil Rights" [ref=e72]:
+            - link "Civil Rights" [ref=e73]
+          - listitem "FOIA" [ref=e74]:
+            - link "FOIA" [ref=e75]
+          - listitem "No FEAR Act Data(link is external)" [ref=e76]:
+            - link "No FEAR Act Data(link is external)" [ref=e77]:
+              - text: "No FEAR Act Data"
+              - img "(link is external)": ""
+          - listitem "Reliance on Guidance" [ref=e78]:
+            - link "Reliance on Guidance" [ref=e79]
+      - listitem:
+        - heading [level=2]: "Resolve an Issue"
+        - list:
+          - listitem "IRS Notices and Letters" [ref=e80]:
+            - link "IRS Notices and Letters" [ref=e81]
+          - listitem "Identity Theft" [ref=e82]:
+            - link "Identity Theft" [ref=e83]
+          - listitem "Tax scams" [ref=e84]:
+            - link "Tax scams" [ref=e85]
+          - listitem "Tax Fraud" [ref=e86]:
+            - link "Tax Fraud" [ref=e87]
+          - listitem "Criminal Investigation" [ref=e88]:
+            - link "Criminal Investigation" [ref=e89]
+          - listitem "Whistleblower Office" [ref=e90]:
+            - link "Whistleblower Office" [ref=e91]
+      - listitem:
+        - heading [level=2]: "Languages"
+        - list:
+          - listitem "Español" [ref=e92]:
+            - link "Español" [ref=e93]
+          - listitem "中文 (简体)" [ref=e94]:
+            - link "中文 (简体)" [ref=e95]
+          - listitem "中文 (繁體)" [ref=e96]:
+            - link "中文 (繁體)" [ref=e97]
+          - listitem "한국어" [ref=e98]:
+            - link "한국어" [ref=e99]
+          - listitem "Pусский" [ref=e100]:
+            - link "Pусский" [ref=e101]
+          - listitem "Tiếng Việt" [ref=e102]:
+            - link "Tiếng Việt" [ref=e103]
+          - listitem "Kreyòl ayisyen" [ref=e104]:
+            - link "Kreyòl ayisyen" [ref=e105]
+          - listitem "English" [ref=e106]:
+            - link "English" [ref=e107]
+      - listitem:
+        - heading [level=2]: "Related Sites"
+        - list:
+          - listitem "U.S. Treasury(link is external)" [ref=e108]:
+            - link "U.S. Treasury(link is external)" [ref=e109]:
+              - text: "U.S. Treasury"
+              - img "(link is external)": ""
+          - listitem "Treasury Inspector General for Tax Administration(link is external)" [ref=e110]:
+            - link "Treasury Inspector General for Tax Administration(link is external)" [ref=e111]:
+              - text: "Treasury Inspector General for Tax Administration"
+              - img "(link is external)": ""
+          - listitem "USA.gov(link is external)" [ref=e112]:
+            - link "USA.gov(link is external)" [ref=e113]:
+              - text: "USA.gov"
+              - img "(link is external)": ""
+          - listitem "USAspending.gov(link is external)" [ref=e114]:
+            - link "USAspending.gov(link is external)" [ref=e115]:
+              - text: "USAspending.gov"
+              - img "(link is external)": ""
+          - listitem "Vote.gov(link is external)" [ref=e116]:
+            - link "Vote.gov(link is external)" [ref=e117]:
+              - text: "Vote.gov"
+              - img "(link is external)": ""
+  - region:
+    - link "IRS Facebook" [ref=e118]
+    - link "IRS Twitter" [ref=e119]
+    - link "Instagram" [ref=e120]
+    - link "IRS LinkedIn" [ref=e121]
+    - link "IRS Youtube" [ref=e122]
+  - link "Home" [ref=e123]:
+    - image "Home"
+  - navigation "Subfooter" [ref=e124]:
+    - list:
+      - listitem "Privacy Policy" [ref=e125]:
+        - link "Privacy Policy" [ref=e126]
+      - listitem "Accessibility" [ref=e127]:
+        - link "Accessibility" [ref=e128]
+</result>
+
+[7] tool_call: repl("Expanding IRS search")
+<request>
+await page.locator('e52').click();
+const s3 = await snapshot(page);
+console.log(s3.diff);
+</request>
+<result tokens_used="72" elapsed_time="998ms">
+No changes detected
+</result>
+
+[8] tool_call: repl("Checking IRS search page")
+<request>
+const s4 = await snapshot(page, { interactive: true });
+console.log(s4.tree);
+</request>
+<result tokens_used="60" elapsed_time="42ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Site Index Search | Internal Revenue Service" [url=https://www.irs.gov/site-index-search?search=2022%20Form%208843]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - region "Official website of the United States government" [ref=e2]:
+    - banner:
+      - button "Here's how you know" [ref=e3]
+  - link "Home" [ref=e4]
+  - navigation "Information Menu" [ref=e5]:
+    - heading "Information Menu" [level=2]
+    - link "Help" [ref=e7]
+    - link "News" [ref=e9]
+    - button "English" [ref=e10]: "English\n      "
+    - link "Tax Pros" [ref=e12]
+    - generic "Sign in " [ref=e13]
+  - navigation "Main navigation" [ref=e14]:
+    - heading "Main navigation" [level=2]
+    - application "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e16]: "File"
+    - application "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e18]: "Pay"
+    - application "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e20]: "Refunds"
+    - application "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e22]: "Credits & Deductions"
+    - application "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e24]: "Forms"
+    - application "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e26]: "Report Fraud"
+  - textbox "Search" [ref=e27] [placeholder="Search"]: "2022 Form 8843"
+  - button "Search" [ref=e28]
+- navigation "Breadcrumbs" [ref=e29]:
+  - link "Home" [ref=e31]
+  - text: "/            Site Index Search"
+- heading "Search Results" [level=1]
+- textbox "Search" [ref=e33] [placeholder="Search"]: "2022 Form 8843"
+- button "Search" [ref=e34]
+- text: "Sort By:"
+- combobox "Relevance" [ref=e36]:
+  - option "Relevance" (selected)
+  - option "Date"
+- text: ""
+- main:
+  - complementary:
+    - checkbox "Include Archived Content" [ref=e37] [hidden]
+    - text: "Include Archived Content"
+  - region:
+    - link "All" [ref=e39]
+    - link "Forms" [ref=e41]
+    - link "Guides" [ref=e43]
+    - link "News" [ref=e45]
+    - link "Notices" [ref=e47]
+    - link "FAQs" [ref=e49]
+    - link "Statistics" [ref=e51]
+    - heading "Please try the search suggestions below, or try searching all of IRS.gov." [level=2]:
+      - text: "Your search did not return any results. \n    Please try the search suggestions below, or try"
+      - link "searching all of IRS.gov" [ref=e52]
+      - text: "."
+    - text: "Tips for searching\n  \n  •    Check the spelling of your search\n  •    Try a different search\n  •    Try using more general words in your search\n  •    Alternatively, you can try using the menus to find what you’re looking for"
+- contentinfo "footer":
+  - navigation "Footer Navigation" [ref=e53]:
+    - heading [level=2]: "Our Agency"
+    - link "About IRS" [ref=e55]
+    - link "Careers" [ref=e57]
+    - link "Operations and Budget" [ref=e59]
+    - link "Tax Statistics" [ref=e61]
+    - link "Help" [ref=e63]
+    - link "Find a Local Office" [ref=e65]
+    - heading [level=2]: "Know Your Rights"
+    - link "Taxpayer Bill of Rights" [ref=e67]
+    - link "Taxpayer Advocate Service" [ref=e69]
+    - link "Independent Office of Appeals" [ref=e71]
+    - link "Civil Rights" [ref=e73]
+    - link "FOIA" [ref=e75]
+    - link "No FEAR Act Data(link is external)" [ref=e77]:
+      - text: "No FEAR Act Data"
+      - img "(link is external)": ""
+    - link "Reliance on Guidance" [ref=e79]
+    - heading [level=2]: "Resolve an Issue"
+    - link "IRS Notices and Letters" [ref=e81]
+    - link "Identity Theft" [ref=e83]
+    - link "Tax scams" [ref=e85]
+    - link "Tax Fraud" [ref=e87]
+    - link "Criminal Investigation" [ref=e89]
+    - link "Whistleblower Office" [ref=e91]
+    - heading [level=2]: "Languages"
+    - link "Español" [ref=e93]
+    - link "中文 (简体)" [ref=e95]
+    - link "中文 (繁體)" [ref=e97]
+    - link "한국어" [ref=e99]
+    - link "Pусский" [ref=e101]
+    - link "Tiếng Việt" [ref=e103]
+    - link "Kreyòl ayisyen" [ref=e105]
+    - link "English" [ref=e107]
+    - heading [level=2]: "Related Sites"
+    - link "U.S. Treasury(link is external)" [ref=e109]:
+      - text: "U.S. Treasury"
+      - img "(link is external)": ""
+    - link "Treasury Inspector General for Tax Administration(link is external)" [ref=e111]:
+      - text: "Treasury Inspector General for Tax Administration"
+      - img "(link is external)": ""
+    - link "USA.gov(link is external)" [ref=e113]:
+      - text: "USA.gov"
+      - img "(link is external)": ""
+    - link "USAspending.gov(link is external)" [ref=e115]:
+      - text: "USAspending.gov"
+      - img "(link is external)": ""
+    - link "Vote.gov(link is external)" [ref=e117]:
+      - text: "Vote.gov"
+      - img "(link is external)": ""
+  - region:
+    - link "IRS Facebook" [ref=e118]
+    - link "IRS Twitter" [ref=e119]
+    - link "Instagram" [ref=e120]
+    - link "IRS LinkedIn" [ref=e121]
+    - link "IRS Youtube" [ref=e122]
+  - link "Home" [ref=e123]
+  - navigation "Subfooter" [ref=e124]:
+    - link "Privacy Policy" [ref=e126]
+    - link "Accessibility" [ref=e128]
+</result>
+
+[9] thinking: **Navigating IRS Forms**
+
+I'm considering how to directly open the PDF URL after verification. I need the exact URL, which for IRS forms is usually something like "https://www.irs.gov/pub/irs-prior/f8843--2022.pdf." But is that just a guess? I could use a web search to find the correct link or look for prior year forms and instructions on the IRS site. Maybe the IRS has a "Prior Year Forms and Instructions" section I can navigate. Let's check that out!
+
+[10] tool_call: repl("Opening IRS forms search")
+<request>
+await page.locator('e41').click();
+const s5 = await snapshot(page);
+console.log(s5.diff);
+</request>
+<result tokens_used="159" elapsed_time="1105ms">
+- title: "Forms and Pubs Index Search | Internal Revenue Service" [url=https://www.irs.gov/forms-pubs-search?search=2022%20Form%208843]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - region "Official website of the United States government" [ref=e2]:
+    - banner:
+      - button "Here's how you know" [ref=e3]
+  - link "Home" [ref=e4]:
+    - image "Home"
+  - navigation "Information Menu" [ref=e5]:
+    - heading "Information Menu" [level=2]
+    - list:
+      - listitem "Help" [ref=e6]:
+        - link "Help" [ref=e7]
+      - listitem "News" [ref=e8]:
+        - link "News" [ref=e9]
+      - listitem:
+        - button "English" [ref=e10]: "English\n      "
+      - listitem "Tax Pros" [ref=e11]:
+        - link "Tax Pros" [ref=e12]
+      - listitem:
+        - generic "Sign in " [ref=e13]
+  - navigation "Main navigation" [ref=e14]:
+    - heading "Main navigation" [level=2]
+    - list:
+      - listitem "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e15]:
+        - application "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e16]: "File"
+      - listitem "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e17]:
+        - application "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e18]: "Pay"
+      - listitem "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e19]:
+        - application "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e20]: "Refunds"
+      - listitem "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e21]:
+        - application "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e22]: "Credits & Deductions"
+      - listitem "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e23]:
+        - application "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e24]: "Forms"
+      - listitem "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e25]:
+        - application "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e26]: "Report Fraud"
+  - form:
+    - textbox "Search" [ref=e27] [placeholder="Search"]: "2022 Form 8843"
+    - button "Search" [ref=e28]
+- navigation "Breadcrumbs" [ref=e29]:
+  - list:
+    - listitem "Home" [ref=e30]:
+      - link "Home" [ref=e31]
+    - listitem "/ Forms and Pubs Index Search" [ref=e32]
+- region:
+  - form:
+    - label:
+      - heading "Forms and Publications Search Results" [level=1]
+    - textbox "Search" [ref=e33] [placeholder="Search"]: "2022 Form 8843"
+    - button "Search" [ref=e34]
+    - button "Reset" [ref=e35]
+- list:
+  - listitem "Select Filter: " [ref=e36]:
+    - label: "Select Filter:"
+    - combobox "Select Filter:" [ref=e37]:
+      - option "Current" (selected)
+      - option "Prior"
+      - option "Accessible"
+      - option "All"
+    - text: ""
+- main:
+  - region:
+    - navigation "Search Indices" [ref=e38]:
+      - heading "Search Indices" [level=2]
+      - list:
+        - listitem "All" [ref=e39]:
+          - link "All" [ref=e40]
+        - listitem "Forms" [ref=e41]:
+          - link "Forms" [ref=e42]
+        - listitem "Guides" [ref=e43]:
+          - link "Guides" [ref=e44]
+        - listitem "News" [ref=e45]:
+          - link "News" [ref=e46]
+        - listitem "Notices" [ref=e47]:
+          - link "Notices" [ref=e48]
+        - listitem "FAQs" [ref=e49]:
+          - link "FAQs" [ref=e50]
+        - listitem "Statistics" [ref=e51]:
+          - link "Statistics" [ref=e52]
+    - region
+    - heading "searching all of IRS.gov." [level=2]:
+      - text: "Your search did not return any results."
+      - alert: "Please try the search suggestions below, or try"
+      - link "searching all of IRS.gov" [ref=e53]
+      - text: "."
+    - text: "Tips for searching"
+    - list:
+      - listitem "Check the spelling of your search" [ref=e54]
+      - listitem "Try a different search" [ref=e55]
+      - listitem "Try using more general words in your search" [ref=e56]
+      - listitem "Alternatively, you can try using the menus to find what you’re looking for" [ref=e57]
+- contentinfo "footer":
+  - navigation "Footer Navigation" [ref=e58]:
+    - list:
+      - listitem:
+        - heading [level=2]: "Our Agency"
+        - list:
+          - listitem "About IRS" [ref=e59]:
+            - link "About IRS" [ref=e60]
+          - listitem "Careers" [ref=e61]:
+            - link "Careers" [ref=e62]
+          - listitem "Operations and Budget" [ref=e63]:
+            - link "Operations and Budget" [ref=e64]
+          - listitem "Tax Statistics" [ref=e65]:
+            - link "Tax Statistics" [ref=e66]
+          - listitem "Help" [ref=e67]:
+            - link "Help" [ref=e68]
+          - listitem "Find a Local Office" [ref=e69]:
+            - link "Find a Local Office" [ref=e70]
+      - listitem:
+        - heading [level=2]: "Know Your Rights"
+        - list:
+          - listitem "Taxpayer Bill of Rights" [ref=e71]:
+            - link "Taxpayer Bill of Rights" [ref=e72]
+          - listitem "Taxpayer Advocate Service" [ref=e73]:
+            - link "Taxpayer Advocate Service" [ref=e74]
+          - listitem "Independent Office of Appeals" [ref=e75]:
+            - link "Independent Office of Appeals" [ref=e76]
+          - listitem "Civil Rights" [ref=e77]:
+            - link "Civil Rights" [ref=e78]
+          - listitem "FOIA" [ref=e79]:
+            - link "FOIA" [ref=e80]
+          - listitem "No FEAR Act Data(link is external)" [ref=e81]:
+            - link "No FEAR Act Data(link is external)" [ref=e82]:
+              - text: "No FEAR Act Data"
+              - img "(link is external)": ""
+          - listitem "Reliance on Guidance" [ref=e83]:
+            - link "Reliance on Guidance" [ref=e84]
+      - listitem:
+        - heading [level=2]: "Resolve an Issue"
+        - list:
+          - listitem "IRS Notices and Letters" [ref=e85]:
+            - link "IRS Notices and Letters" [ref=e86]
+          - listitem "Identity Theft" [ref=e87]:
+            - link "Identity Theft" [ref=e88]
+          - listitem "Tax scams" [ref=e89]:
+            - link "Tax scams" [ref=e90]
+          - listitem "Tax Fraud" [ref=e91]:
+            - link "Tax Fraud" [ref=e92]
+          - listitem "Criminal Investigation" [ref=e93]:
+            - link "Criminal Investigation" [ref=e94]
+          - listitem "Whistleblower Office" [ref=e95]:
+            - link "Whistleblower Office" [ref=e96]
+      - listitem:
+        - heading [level=2]: "Languages"
+        - list:
+          - listitem "Español" [ref=e97]:
+            - link "Español" [ref=e98]
+          - listitem "中文 (简体)" [ref=e99]:
+            - link "中文 (简体)" [ref=e100]
+          - listitem "中文 (繁體)" [ref=e101]:
+            - link "中文 (繁體)" [ref=e102]
+          - listitem "한국어" [ref=e103]:
+            - link "한국어" [ref=e104]
+          - listitem "Pусский" [ref=e105]:
+            - link "Pусский" [ref=e106]
+          - listitem "Tiếng Việt" [ref=e107]:
+            - link "Tiếng Việt" [ref=e108]
+          - listitem "Kreyòl ayisyen" [ref=e109]:
+            - link "Kreyòl ayisyen" [ref=e110]
+          - listitem "English" [ref=e111]:
+            - link "English" [ref=e112]
+      - listitem:
+        - heading [level=2]: "Related Sites"
+        - list:
+          - listitem "U.S. Treasury(link is external)" [ref=e113]:
+            - link "U.S. Treasury(link is external)" [ref=e114]:
+              - text: "U.S. Treasury"
+              - img "(link is external)": ""
+          - listitem "Treasury Inspector General for Tax Administration(link is external)" [ref=e115]:
+            - link "Treasury Inspector General for Tax Administration(link is external)" [ref=e116]:
+              - text: "Treasury Inspector General for Tax Administration"
+              - img "(link is external)": ""
+          - listitem "USA.gov(link is external)" [ref=e117]:
+            - link "USA.gov(link is external)" [ref=e118]:
+              - text: "USA.gov"
+              - img "(link is external)": ""
+          - listitem "USAspending.gov(link is external)" [ref=e119]:
+            - link "USAspending.gov(link is external)" [ref=e120]:
+              - text: "USAspending.gov"
+              - img "(link is external)": ""
+          - listitem "Vote.gov(link is external)" [ref=e121]:
+            - link "Vote.gov(link is external)" [ref=e122]:
+              - text: "Vote.gov"
+              - img "(link is external)": ""
+  - region:
+    - link "IRS Facebook" [ref=e123]
+    - link "IRS Twitter" [ref=e124]
+    - link "Instagram" [ref=e125]
+    - link "IRS LinkedIn" [ref=e126]
+    - link "IRS Youtube" [ref=e127]
+  - link "Home" [ref=e128]:
+    - image "Home"
+  - navigation "Subfooter" [ref=e129]:
+    - list:
+      - listitem "Privacy Policy" [ref=e130]:
+        - link "Privacy Policy" [ref=e131]
+      - listitem "Accessibility" [ref=e132]:
+        - link "Accessibility" [ref=e133]
+</result>
+
+[11] tool_call: repl("Searching prior IRS forms")
+<request>
+await page.locator('e37').selectOption({ label: 'Prior' });
+await page.locator('e33').fill('8843');
+await page.locator('e34').click();
+const s6 = await snapshot(page);
+console.log(s6.diff);
+</request>
+<result tokens_used="101" elapsed_time="1101ms">
+Error: RefStaleError: Ref "e33" is stale — the element was removed or the page changed. Take a new snapshot and retry.
+    at Locator.#deref (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/locator.ts:855:11)
+    at async Locator.#resolve (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/locator.ts:138:14)
+    at async Locator.fill (/Users/vista/projects/bro/apps/daemon/src/browser-v3/asidewright/locator.ts:156:22)
+    at async repl.js:2:1
+</result>
+
+[12] tool_call: repl("Checking updated prior forms search")
+<request>
+const s7 = await snapshot(page, { interactive: true });
+console.log(s7.tree);
+</request>
+<result tokens_used="60" elapsed_time="22ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Forms and Pubs Index Search | Internal Revenue Service" [url=https://www.irs.gov/forms-pubs-prior-search?search=2022%20Form%208843]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - region "Official website of the United States government" [ref=e2]:
+    - banner:
+      - button "Here's how you know" [ref=e3]
+  - link "Home" [ref=e4]
+  - navigation "Information Menu" [ref=e5]:
+    - heading "Information Menu" [level=2]
+    - link "Help" [ref=e6]
+    - link "News" [ref=e7]
+    - button "English" [ref=e8]: "English\n      "
+    - link "Tax Pros" [ref=e9]
+    - generic "Sign in " [ref=e10]
+  - navigation "Main navigation" [ref=e11]:
+    - heading "Main navigation" [level=2]
+    - application "File menu has additional options. Use the spacebar to open the File sub menu or enter to navigate to" [ref=e12]: "File"
+    - application "Pay menu has additional options. Use the spacebar to open the Pay sub menu or enter to navigate to t" [ref=e13]: "Pay"
+    - application "Refunds menu has additional options. Use the spacebar to open the Refunds sub menu or enter to navig" [ref=e14]: "Refunds"
+    - application "Credits & Deductions menu has additional options. Use the spacebar to open the Credits & Deductions " [ref=e15]: "Credits & Deductions"
+    - application "Forms menu has additional options. Use the spacebar to open the Forms sub menu or enter to navigate " [ref=e16]: "Forms"
+    - application "Report Fraud menu has additional options. Use the spacebar to open the Report Fraud sub menu or ente" [ref=e17]: "Report Fraud"
+  - textbox "Search" [ref=e18] [placeholder="Search"]: "2022 Form 8843"
+  - button "Search" [ref=e19]
+- navigation "Breadcrumbs" [ref=e20]:
+  - link "Home" [ref=e21]
+  - text: "/            Forms and Pubs Index Search"
+- region:
+  - heading "Forms and Publications Search Results" [level=1]
+  - textbox "Search" [ref=e22] [placeholder="Search"]: "2022 Form 8843"
+  - button "Search" [ref=e23]
+  - button "Reset" [ref=e24]
+- text: "Select Filter:"
+- combobox "Select Filter:" [ref=e25]:
+  - option "Current"
+  - option "Prior" (selected)
+  - option "Accessible"
+  - option "All"
+- text: ""
+- main:
+  - region:
+    - navigation "Search Indices" [ref=e26]:
+      - heading "Search Indices" [level=2]
+      - link "All" [ref=e27]
+      - link "Forms" [ref=e28]
+      - link "Guides" [ref=e29]
+      - link "News" [ref=e30]
+      - link "Notices" [ref=e31]
+      - link "FAQs" [ref=e32]
+      - link "Statistics" [ref=e33]
+    - region
+    - alert: "Found 1 Matching Items; Displaying 1 - 1."
+    - heading "2022 Form 8843, Statement for Exempt Individuals and Individuals with a Medical Condition PDF" [level=3]:
+      - link "2022 Form 8843, Statement for Exempt Individuals and Individuals with a Medical Condition" [ref=e34]
+      - img "PDF": ""
+    - text: "Form 8843, Statement for Exempt Individuals and Individuals with a Medical Condition"
+- contentinfo "footer":
+  - navigation "Footer Navigation" [ref=e35]:
+    - heading [level=2]: "Our Agency"
+    - link "About IRS" [ref=e36]
+    - link "Careers" [ref=e37]
+    - link "Operations and Budget" [ref=e38]
+    - link "Tax Statistics" [ref=e39]
+    - link "Help" [ref=e40]
+    - link "Find a Local Office" [ref=e41]
+    - heading [level=2]: "Know Your Rights"
+    - link "Taxpayer Bill of Rights" [ref=e42]
+    - link "Taxpayer Advocate Service" [ref=e43]
+    - link "Independent Office of Appeals" [ref=e44]
+    - link "Civil Rights" [ref=e45]
+    - link "FOIA" [ref=e46]
+    - link "No FEAR Act Data(link is external)" [ref=e47]:
+      - text: "No FEAR Act Data"
+      - img "(link is external)": ""
+    - link "Reliance on Guidance" [ref=e48]
+    - heading [level=2]: "Resolve an Issue"
+    - link "IRS Notices and Letters" [ref=e49]
+    - link "Identity Theft" [ref=e50]
+    - link "Tax scams" [ref=e51]
+    - link "Tax Fraud" [ref=e52]
+    - link "Criminal Investigation" [ref=e53]
+    - link "Whistleblower Office" [ref=e54]
+    - heading [level=2]: "Languages"
+    - link "Español" [ref=e55]
+    - link "中文 (简体)" [ref=e56]
+    - link "中文 (繁體)" [ref=e57]
+    - link "한국어" [ref=e58]
+    - link "Pусский" [ref=e59]
+    - link "Tiếng Việt" [ref=e60]
+    - link "Kreyòl ayisyen" [ref=e61]
+    - link "English" [ref=e62]
+    - heading [level=2]: "Related Sites"
+    - link "U.S. Treasury(link is external)" [ref=e63]:
+      - text: "U.S. Treasury"
+      - img "(link is external)": ""
+    - link "Treasury Inspector General for Tax Administration(link is external)" [ref=e64]:
+      - text: "Treasury Inspector General for Tax Administration"
+      - img "(link is external)": ""
+    - link "USA.gov(link is external)" [ref=e65]:
+      - text: "USA.gov"
+      - img "(link is external)": ""
+    - link "USAspending.gov(link is external)" [ref=e66]:
+      - text: "USAspending.gov"
+      - img "(link is external)": ""
+    - link "Vote.gov(link is external)" [ref=e67]:
+      - text: "Vote.gov"
+      - img "(link is external)": ""
+  - region:
+    - link "IRS Facebook" [ref=e68]
+    - link "IRS Twitter" [ref=e69]
+    - link "Instagram" [ref=e70]
+    - link "IRS LinkedIn" [ref=e71]
+    - link "IRS Youtube" [ref=e72]
+  - link "Home" [ref=e73]
+  - navigation "Subfooter" [ref=e74]:
+    - link "Privacy Policy" [ref=e75]
+    - link "Accessibility" [ref=e76]
+</result>
+
+[13] tool_call: repl("Opening 2022 Form 8843 PDF")
+<request>
+await page.locator('e34').click();
+const s8 = await snapshot(page);
+console.log(s8.diff);
+</request>
+<result tokens_used="75" elapsed_time="489ms">
+- title: "" [url=https://www.irs.gov/pub/irs-prior/f8843--2022.pdf]
+
+- iframe:
+  - button "Toggle sidebar" [ref=f2e1]:
+    - image [ref=f2e3]
+  - text: "f8843--2022.pdf"
+  - progressbar
+  - generic [ref=f2e4]:
+    - tablist
+</result>
+
+[14] thinking: **Considering snapshot verification**
+
+I think I need to verify the loaded snapshot after waiting to check if the PDF isn’t text. Do I need to include a redundant sleep? It seems the progress bar is there, so I might just need to wait a bit and then take a snapshot. It feels like I’m making sure I don’t miss anything—it's all about confirming that the document is ready for the next steps!
+
+[15] tool_call: repl("Verifying the form opened")
+<request>
+await sleep(1500);
+const s9 = await snapshot(page);
+console.log(s9.diff);
+</request>
+<result tokens_used="82" elapsed_time="1543ms">
+@@ -4,2 +4,26 @@
+-  - text: "f8843--2022.pdf"
+-  - progressbar
++  - text: "2022 Form 8843"
++  - textbox "Page number" [ref=f2e5]: "1"
++  - text: "/\n  4"
++  - button "Zoom out" [ref=f2e6]:
++    - image [ref=f2e8]
++  - textbox "Zoom level" [ref=f2e9]: "100%"
++  - button "Zoom in" [ref=f2e10]:
++    - image [ref=f2e12]
++  - button "Fit to page" [ref=f2e13]:
++    - image [ref=f2e15]
++  - button "Rotate counterclockwise" [ref=f2e16]:
++    - image [ref=f2e18]
++  - button "Draw" [ref=f2e19]:
++    - image [ref=f2e21]
++  - button "Undo" [ref=f2e22] [disabled]
++  - button "Redo" [ref=f2e23] [disabled]
++  - button "Save to Google Drive" [ref=f2e24]:
++    - image [ref=f2e26]
++  - button "Download" [ref=f2e27]:
++    - image [ref=f2e29]
++  - menuitem "With your changes" [ref=f2e30]
++  - menuitem "Without your changes" [ref=f2e31]
++  - button "Print" [ref=f2e32]:
++    - image [ref=f2e34]
++  - button "More actions" [ref=f2e35]:
++    - image [ref=f2e37]
+@@ -7 +31,17 @@
+-    - tablist
++    - tablist:
++      - tab "Thumbnail for page 1" [ref=f2e38] [selected]:
++        - button [ref=f2e39]:
++          - canvas [ref=f2e40] [size=108x140]
++        - text: "1"
++      - tab "Thumbnail for page 2" [ref=f2e41]:
++        - button [ref=f2e42]:
++          - canvas [ref=f2e43] [size=108x140]
++        - text: "2"
++      - tab "Thumbnail for page 3" [ref=f2e44]:
++        - button [ref=f2e45]:
++          - canvas [ref=f2e46] [size=108x140]
++        - text: "3"
++      - tab "Thumbnail for page 4" [ref=f2e47]:
++        - button [ref=f2e48]:
++          - canvas [ref=f2e49] [size=108x140]
++        - text: "4"
+</result>
+
+[16] assistant: Done. I opened the IRS 2022 Form 8843 PDF.
+
+[17] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="pdf" path="/Users/vista/.aside/u/0/agents/main/skills/pdf/SKILL.md">
+# PDF Processing Guide
+
+## Overview
+
+This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see REFERENCE.md. If you need to fill out a PDF form, read FORMS.md and follow its instructions.
+
+## Exact Reading Workflow
+
+Prefer file-based Python scripts for reading or filling PDFs.
+
+- Prefer file-based Python extraction or form-field scripts over generic file reads.
+- For deeper PDF processing, use the `bash` tool with Python commands.
+- When exactness matters, do not rely on a single extraction method.
+- When exactness matters, first read rendered PDF pages to understand visible structure and values, then use text extraction or form-field extraction to refine and verify them.
+
+## Quick Start
+
+```python
+from pypdf import PdfReader, PdfWriter
+
+# Read a PDF
+reader = PdfReader("document.pdf")
+print(f"Pages: {len(reader.pages)}")
+
+# Extract text
+text = ""
+for page in reader.pages:
+    text += page.extract_text()
+```
+
+## Python Libraries
+
+### pypdf - Basic Operations
+
+#### Merge PDFs
+```python
+from pypdf import PdfWriter, PdfReader
+
+writer = PdfWriter()
+for pdf_file in ["doc1.pdf", "doc2.pdf", "doc3.pdf"]:
+    reader = PdfReader(pdf_file)
+    for page in reader.pages:
+        writer.add_page(page)
+
+with open("merged.pdf", "wb") as output:
+    writer.write(output)
+```
+
+#### Split PDF
+```python
+reader = PdfReader("input.pdf")
+for i, page in enumerate(reader.pages):
+    writer = PdfWriter()
+    writer.add_page(page)
+    with open(f"page_{i+1}.pdf", "wb") as output:
+        writer.write(output)
+```
+
+#### Extract Metadata
+```python
+reader = PdfReader("document.pdf")
+meta = reader.metadata
+print(f"Title: {meta.title}")
+print(f"Author: {meta.author}")
+print(f"Subject: {meta.subject}")
+print(f"Creator: {meta.creator}")
+```
+
+#### Rotate Pages
+```python
+reader = PdfReader("input.pdf")
+writer = PdfWriter()
+
+page = reader.pages[0]
+page.rotate(90)  # Rotate 90 degrees clockwise
+writer.add_page(page)
+
+with open("rotated.pdf", "wb") as output:
+    writer.write(output)
+```
+
+### pdfplumber - Text and Table Extraction
+
+#### Extract Text with Layout
+```python
+import pdfplumber
+
+with pdfplumber.open("document.pdf") as pdf:
+    for page in pdf.pages:
+        text = page.extract_text()
+        print(text)
+```
+
+#### Extract Tables
+```python
+with pdfplumber.open("document.pdf") as pdf:
+    for i, page in enumerate(pdf.pages):
+        tables = page.extract_tables()
+        for j, table in enumerate(tables):
+            print(f"Table {j+1} on page {i+1}:")
+            for row in table:
+                print(row)
+```
+
+#### Advanced Table Extraction
+```python
+import pandas as pd
+
+with pdfplumber.open("document.pdf") as pdf:
+    all_tables = []
+    for page in pdf.pages:
+        tables = page.extract_tables()
+        for table in tables:
+            if table:  # Check if table is not empty
+                df = pd.DataFrame(table[1:], columns=table[0])
+                all_tables.append(df)
+
+# Combine all tables
+if all_tables:
+    combined_df = pd.concat(all_tables, ignore_index=True)
+    combined_df.to_excel("extracted_tables.xlsx", index=False)
+```
+
+### reportlab - Create PDFs
+
+#### Basic PDF Creation
+```python
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+
+c = canvas.Canvas("hello.pdf", pagesize=letter)
+width, height = letter
+
+# Add text
+c.drawString(100, height - 100, "Hello World!")
+c.drawString(100, height - 120, "This is a PDF created with reportlab")
+
+# Add a line
+c.line(100, height - 140, 400, height - 140)
+
+# Save
+c.save()
+```
+
+#### Create PDF with Multiple Pages
+```python
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.lib.styles import getSampleStyleSheet
+
+doc = SimpleDocTemplate("report.pdf", pagesize=letter)
+styles = getSampleStyleSheet()
+story = []
+
+# Add content
+title = Paragraph("Report Title", styles['Title'])
+story.append(title)
+story.append(Spacer(1, 12))
+
+body = Paragraph("This is the body of the report. " * 20, styles['Normal'])
+story.append(body)
+story.append(PageBreak())
+
+# Page 2
+story.append(Paragraph("Page 2", styles['Heading1']))
+story.append(Paragraph("Content for page 2", styles['Normal']))
+
+# Build PDF
+doc.build(story)
+```
+
+#### Subscripts and Superscripts
+
+**IMPORTANT**: Never use Unicode subscript/superscript characters (₀₁₂₃₄₅₆₇₈₉, ⁰¹²³⁴⁵⁶⁷⁸⁹) in ReportLab PDFs. The built-in fonts do not include these glyphs, causing them to render as solid black boxes.
+
+Instead, use ReportLab's XML markup tags in Paragraph objects:
+```python
+from reportlab.platypus import Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+
+styles = getSampleStyleSheet()
+
+# Subscripts: use <sub> tag
+chemical = Paragraph("H<sub>2</sub>O", styles['Normal'])
+
+# Superscripts: use <super> tag
+squared = Paragraph("x<super>2</super> + y<super>2</super>", styles['Normal'])
+```
+
+For canvas-drawn text (not Paragraph objects), manually adjust font the size and position rather than using Unicode subscripts/superscripts.
+
+## Command-Line Tools
+
+### pdftotext (poppler-utils)
+```bash
+# Extract text
+pdftotext input.pdf output.txt
+
+# Extract text preserving layout
+pdftotext -layout input.pdf output.txt
+
+# Extract specific pages
+pdftotext -f 1 -l 5 input.pdf output.txt  # Pages 1-5
+```
+
+### qpdf
+```bash
+# Merge PDFs
+qpdf --empty --pages file1.pdf file2.pdf -- merged.pdf
+
+# Split pages
+qpdf input.pdf --pages . 1-5 -- pages1-5.pdf
+qpdf input.pdf --pages . 6-10 -- pages6-10.pdf
+
+# Rotate pages
+qpdf input.pdf output.pdf --rotate=+90:1  # Rotate page 1 by 90 degrees
+
+# Remove password
+qpdf --password=mypassword --decrypt encrypted.pdf decrypted.pdf
+```
+
+### pdftk (if available)
+```bash
+# Merge
+pdftk file1.pdf file2.pdf cat output merged.pdf
+
+# Split
+pdftk input.pdf burst
+
+# Rotate
+pdftk input.pdf rotate 1east output rotated.pdf
+```
+
+## Common Tasks
+
+### Extract Text from Scanned PDFs
+```python
+# Requires: pip install pytesseract pdf2image
+import pytesseract
+from pdf2image import convert_from_path
+
+# Convert PDF to images
+images = convert_from_path('scanned.pdf')
+
+# OCR each page
+text = ""
+for i, image in enumerate(images):
+    text += f"Page {i+1}:\n"
+    text += pytesseract.image_to_string(image)
+    text += "\n\n"
+
+print(text)
+```
+
+### Add Watermark
+```python
+from pypdf import PdfReader, PdfWriter
+
+# Create watermark (or load existing)
+watermark = PdfReader("watermark.pdf").pages[0]
+
+# Apply to all pages
+reader = PdfReader("document.pdf")
+writer = PdfWriter()
+
+for page in reader.pages:
+    page.merge_page(watermark)
+    writer.add_page(page)
+
+with open("watermarked.pdf", "wb") as output:
+    writer.write(output)
+```
+
+### Extract Images
+```bash
+# Using pdfimages (poppler-utils)
+pdfimages -j input.pdf output_prefix
+
+# This extracts all images as output_prefix-000.jpg, output_prefix-001.jpg, etc.
+```
+
+### Password Protection
+```python
+from pypdf import PdfReader, PdfWriter
+
+reader = PdfReader("input.pdf")
+writer = PdfWriter()
+
+for page in reader.pages:
+    writer.add_page(page)
+
+# Add password
+writer.encrypt("userpassword", "ownerpassword")
+
+with open("encrypted.pdf", "wb") as output:
+    writer.write(output)
+```
+
+## Quick Reference
+
+| Task | Best Tool | Command/Code |
+|------|-----------|--------------|
+| Merge PDFs | pypdf | `writer.add_page(page)` |
+| Split PDFs | pypdf | One page per file |
+| Extract text | pdfplumber | `page.extract_text()` |
+| Extract tables | pdfplumber | `page.extract_tables()` |
+| Create PDFs | reportlab | Canvas or Platypus |
+| Command line merge | qpdf | `qpdf --empty --pages ...` |
+| OCR scanned PDFs | pytesseract | Convert to image first |
+| Fill PDF forms | pdf-lib or pypdf (see FORMS.md) | See FORMS.md |
+
+## Next Steps
+
+- For advanced pypdfium2 usage, see REFERENCE.md
+- For JavaScript libraries (pdf-lib), see REFERENCE.md
+- If you need to fill out a PDF form, follow the instructions in FORMS.md
+- For troubleshooting guides, see REFERENCE.md
+</skill>
+</system_message>

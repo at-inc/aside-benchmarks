@@ -1,0 +1,3493 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>
+
+[2] user: Go to https://www.google.com/shopping?udm=28, Find the lowest 27"-32" Samsung or LG computer monitors nearby which have 4k, IPS display.
+
+[3] assistant: I’ll check Google Shopping directly and use its filters/results to identify the cheapest nearby qualifying monitor.
+
+[4] tool_call: repl("Opening Google Shopping")
+<request>
+const p1 = await openTab('https://www.google.com/shopping?udm=28');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="228" elapsed_time="6480ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Google Shopping - Shop Online, Compare Prices & Where to Buy (https://www.google.com/shopping?udm=28)
+# note: interactive (clickable / focusable) elements only.
+- title: "Google Shopping - Shop Online, Compare Prices & Where to Buy" [url=https://www.google.com/shopping?udm=28]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [focused] [placeholder="Shop for anything"]
+    - button "Search by voice" [ref=e5]
+    - button "Search by image" [ref=e6]
+    - button "Search" [ref=e7]
+  - button "Google apps" [ref=e8]
+  - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e9]
+  - link [ref=e10]
+  - link [ref=e11]:
+    - link "Search" [ref=e12]
+  - link [ref=e13]:
+    - link "Nearby" [ref=e14]
+  - link [ref=e15]:
+    - link "Deals" [ref=e16]
+  - link [ref=e17]:
+    - link "For you" [ref=e18]
+  - heading "Accessibility Links" [level=2]
+- main:
+  - heading "Continue shopping" [level=3]
+  - list:
+    - listitem:
+      - link "SALE" [ref=e19]
+      - link "Ray-Ban" [ref=e20]
+      - link "Up to 50% off sitewide" [ref=e21]
+    - listitem:
+      - link "DEALS" [ref=e22]
+      - link "Anon Helmet" [ref=e23]
+      - link "Up to 68% off" [ref=e24]
+    - listitem:
+      - link "SALE" [ref=e25]
+      - link "Giro Sport Design" [ref=e26]
+      - link "Up to 70% off sitewide" [ref=e27]
+    - listitem:
+      - link "DEALS" [ref=e28]
+      - link "Poc Helmets" [ref=e29]
+      - link "Up to 64% off" [ref=e30]
+    - listitem:
+      - link "DEALS" [ref=e31]
+      - link "Apple Glasses" [ref=e32]
+      - link "Up to 62% off" [ref=e33]
+    - listitem:
+      - link "DEALS" [ref=e34]
+      - link "Ruroc Snow Goggles" [ref=e35]
+      - link "Up to 50% off" [ref=e36]
+    - listitem:
+      - link "DEALS" [ref=e37]
+      - link "16e Phone Case" [ref=e38]
+      - link "Up to 50% off" [ref=e39]
+  - text: "Who do you shop for?"
+  - list:
+    - listitem:
+      - generic [ref=e40]:
+        - button "Men" [ref=e41]
+        - text: "Men"
+    - listitem:
+      - generic [ref=e42]:
+        - button "Women" [ref=e43]
+        - text: "Women"
+    - listitem:
+      - generic [ref=e44]:
+        - button "Kids" [ref=e45]
+        - text: "Kids"
+    - listitem:
+      - generic [ref=e46]:
+        - button "Baby" [ref=e47]
+        - text: "Baby"
+    - listitem:
+      - generic [ref=e48]:
+        - button "Dog" [ref=e49]
+        - text: "Dog"
+    - listitem:
+      - generic [ref=e50]:
+        - button "Cat" [ref=e51]
+        - text: "Cat"
+  - button "Next" [ref=e52] [disabled]
+  - article:
+    - heading "HJC Helmets for the Ride" [level=2]
+    - button "Like" [ref=e53]
+    - button "Dislike" [ref=e54]
+    - button "Explore more HJC bicycle helmets" [ref=e55]: "Explore"
+    - heading "Top deals" [level=2]
+    - button [ref=e56]:
+      - button [ref=e58]:
+        - img "41% OFF.": "41% OFF"
+        - img "HJC Calido Plus Helmet"
+        - text: "HJC Calido Plus Helmet Bikeinn.com·"
+        - group "Current Price: $105.99. Was $183."
+    - button [ref=e59]:
+      - button [ref=e61]:
+        - img "41% OFF.": "41% OFF"
+        - img "HJC Ibex 2.0 Helmet"
+        - text: "HJC Ibex 2.0 Helmet All4cycling·"
+        - group "Current Price: $148.56. Was $256."
+    - button [ref=e62]:
+      - button [ref=e64]:
+        - img "14% OFF.": "14% OFF"
+        - img "HJC Furion 3 Cycling Helmet"
+        - text: "HJC Furion 3 Cycling Helmet AlexFactory.it·"
+        - group "Current Price: $167.06. Was $196."
+    - button [ref=e65]:
+      - button [ref=e67]:
+        - img "31% OFF.": "31% OFF"
+        - img "HJC Ibex 2.0 Israel Start-Up Nation Helmet"
+        - text: "HJC Ibex 2.0 Israel Start-Up Nation Helmet Bikeinn.com·"
+        - group "Current Price: $165.99. Was $241."
+    - button [ref=e68]:
+      - button [ref=e70]:
+        - img "14% OFF.": "14% OFF"
+        - img "HJC Valeco 2 Helmet"
+        - text: "HJC Valeco 2 Helmet Motostorm·"
+        - group "Current Price: $115.73. Was $136."
+    - button [ref=e71]:
+      - button [ref=e73]:
+        - img "Hjc Bellus Cycling Helmet S Matt Gloss Black - Cycling Helmets"
+        - text: "Hjc Bellus Cycling Helmet S Matt Gloss Black - Cycling Helmets AlexFactory.it·"
+        - group "Current Price: $143.05. Was $169."
+    - button [ref=e74]:
+      - button [ref=e76]:
+        - img "17% OFF.": "17% OFF"
+        - img "HJC Furion 2.0 Helmet"
+        - text: "HJC Furion 2.0 Helmet Bikeinn.com·"
+        - group "Current Price: $117.99. Was $144."
+    - button [ref=e77]:
+      - button [ref=e79]:
+        - img "14% OFF.": "14% OFF"
+        - img "HJC Bellus Helmet"
+        - text: "HJC Bellus Helmet Motostorm·"
+        - group "Current Price: $149.02. Was $175."
+  - article:
+    - heading "Backpacks for your adventures with Rimowa" [level=2]
+    - button "Like" [ref=e80]
+    - button "Dislike" [ref=e81]
+    - button "Explore more Rimowa backpacks" [ref=e82]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e83]:
+      - button [ref=e85]:
+        - img "Rimowa Never Still Canvas Flap Backpack"
+        - text: "Rimowa Never Still Canvas Flap Backpack rimowa.com/us/en·"
+        - group "Current Price: $1,750.00."
+    - button [ref=e86]:
+      - button [ref=e88]:
+        - img "Rimowa Never Still Zipped Backpack"
+        - text: "Rimowa Never Still Zipped Backpack rimowa.com/us/en·"
+        - group "Current Price: $1,200.00."
+    - button [ref=e89]:
+      - button [ref=e91]:
+        - img "Rimowa Backpack"
+        - text: "Rimowa Backpack StockX·"
+        - group "Current Price: $2,867.00."
+    - button [ref=e92]:
+      - button [ref=e94]:
+        - img "Rimowa Never Still Nylon Flap Backpack"
+        - text: "Rimowa Never Still Nylon Flap Backpack rimowa.com/us/en·"
+        - group "Current Price: $1,590.00."
+    - button [ref=e95]
+  - article:
+    - heading "Bye bye blue light" [level=2]
+    - button "Like" [ref=e96]
+    - button "Dislike" [ref=e97]
+    - button "Explore more Blue-light glasses" [ref=e98]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e99]:
+      - button [ref=e101]:
+        - img "Gunnar Vertex Gaming Glasses"
+        - text: "Gunnar Vertex Gaming Glasses Gunnar Optiks·"
+        - group "Current Price: $49.99."
+    - button [ref=e102]:
+      - button [ref=e104]:
+        - img "Warby Parker Blue Light Anti-Fatigue Eyeglasses"
+        - text: "Warby Parker Blue Light Anti-Fatigue Eyeglasses Warby Parker·"
+        - group "Current Price: $95.00."
+    - button [ref=e105]:
+      - button [ref=e107]:
+        - img "Oakley Hex Jector Eyeglasses"
+        - text: "Oakley Hex Jector Eyeglasses Target Optical·"
+        - group "Current Price: $187.00."
+    - button [ref=e108]:
+      - button [ref=e110]:
+        - img "Tom Ford TF5634-B Blue Light Glasses Black Square Unisex"
+        - text: "Tom Ford TF5634-B Blue Light Glasses Black Square Unisex Fashion Eyewear·"
+        - group "Current Price: $430.00."
+    - button [ref=e111]:
+      - button [ref=e113]:
+        - img "25% OFF.": "25% OFF"
+        - img "Ray-Ban Meta Skyler"
+        - text: "Ray-Ban Meta Skyler Ray-Ban·"
+        - group "Current Price: $284.25. Was $379."
+    - button [ref=e114]:
+      - button [ref=e116]:
+        - img "Low price.": "LOW PRICE"
+        - img "Balenciaga BB0113O Eyeglasses"
+        - text: "Balenciaga BB0113O Eyeglasses opticabassol.com·"
+        - group "Current Price: $260.00. Usually $385."
+    - button [ref=e117]:
+      - button [ref=e119]:
+        - img "Cartier Signature C Eyeglasses"
+        - text: "Cartier Signature C Eyeglasses Arts of Optics·"
+        - group "Current Price: $1,245.00."
+    - button [ref=e120]:
+      - button [ref=e122]:
+        - img "Gunnar Intercept Gaming Glasses"
+        - text: "Gunnar Intercept Gaming Glasses Best Buy·"
+        - group "Current Price: $69.99."
+  - article:
+    - heading "Chelsea boots for every day" [level=2]
+    - button "Like" [ref=e123]
+    - button "Dislike" [ref=e124]
+    - button "Explore more Chelsea boots" [ref=e125]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e126]:
+      - button [ref=e128]:
+        - img "42% OFF.": "42% OFF"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e129]:
+          - img
+        - text: "Dr. Martens Embury Chelsea Boot Famous Footwear·"
+        - group "Current Price: $79.99. Was $140."
+    - button [ref=e130]:
+      - button [ref=e132]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e133]:
+          - img
+        - text: "Florsheim Men's Chalet Wide Chelsea Boots Nordstrom Rack·"
+        - group "Current Price: $69.96."
+    - button [ref=e134]:
+      - button [ref=e136]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e137]:
+          - img
+        - text: "Mix No. 6 Men's Aleder Chelsea Boot DSW·"
+        - group "Current Price: $59.99."
+    - button [ref=e138]:
+      - button [ref=e140]:
+        - img "Zara Men's Pointed Chelsea Boots"
+        - text: "Zara Men's Pointed Chelsea Boots Zara USA·"
+        - group "Current Price: $79.90."
+    - button [ref=e141]
+  - article:
+    - heading "Newest iPhones for you" [level=2]
+    - button "Like" [ref=e142]
+    - button "Dislike" [ref=e143]
+    - button "Explore more Newest iPhones" [ref=e144]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e145]:
+      - button [ref=e147]:
+        - img "Apple iPhone 17 Pro Max"
+        - text: "Apple iPhone 17 Pro Max Apple·"
+        - group ". $49.95 per month for 24 months."
+    - button [ref=e148]:
+      - button [ref=e150]:
+        - img "Apple iPhone 17 Pro"
+        - text: "Apple iPhone 17 Pro Apple·"
+        - group ". $62.45 per month for 24 months."
+    - button [ref=e151]:
+      - button [ref=e153]:
+        - img "Apple iPhone 15 - Black - 128GB (with 24 monthly payments + plan)"
+        - text: "Apple iPhone 15 - Black - 128GB (with 24 monthly payments + plan)T-Mobile·"
+        - group ". $26.25 per month for 24 months."
+    - button [ref=e154]:
+      - button [ref=e156]:
+        - img "Restored Apple iPhone 16 Pro Max"
+        - text: "Restored Apple iPhone 16 Pro Max Visible·"
+        - group "$1,199.00 now. $33.31 per month for 36 months."
+    - button [ref=e157]
+    - generic [ref=e158] [scrollable]:
+      - list:
+        - listitem:
+          - button "Apple's NEW iPhone 17e is INSANE - Top 6 Upgrades by Max Tech on YouTube. Play on Google. 6:45" [ref=e159]
+          - button [ref=e160]:
+            - heading [level=3]: "Apple's NEW iPhone 17e is INSANE - Top 6 Upgrades"
+            - text: "Max Tech · YouTube  ·  2mo"
+        - listitem:
+          - button "I Didn't Expect the iPhone 17e to Be This Good | Top Features ... by 9to5Mac on YouTube. Play on Goo" [ref=e161]
+          - button [ref=e162]:
+            - heading [level=3]: "I Didn't Expect the iPhone 17e to Be This Good | Top Features ..."
+            - text: "9to5Mac · YouTube  ·  2mo"
+        - listitem:
+          - button "iPhone 17e - really worth it? by 91Tech on YouTube. Play on Google. 13:20" [ref=e163]
+          - button [ref=e164]:
+            - heading [level=3]: "iPhone 17e - really worth it?"
+            - text: "91Tech · YouTube  ·  2mo"
+        - listitem:
+          - button "The iPhone Most People Should Actually Buy by Tausif Hussain on YouTube. Play on Google. 15:54" [ref=e165]
+          - button [ref=e166]:
+            - heading [level=3]: "The iPhone Most People Should Actually Buy"
+            - text: "Tausif Hussain · YouTube  ·  1mo"
+  - article:
+    - heading "Jewelry cases for travel" [level=2]
+    - button "Like" [ref=e167]
+    - button "Dislike" [ref=e168]
+    - button "Explore more Rimowa jewelry cases" [ref=e169]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e170]:
+      - button [ref=e172]:
+        - img "Rimowa x Tiffany & Co. Jewelry Case Silver"
+        - text: "Rimowa x Tiffany & Co. Jewelry Case Silver StockX·"
+        - group "Current Price: $47,531.00."
+    - button [ref=e173]:
+      - button [ref=e175]:
+        - img "Tiffany & Co. × RIMOWA Jewelry Case"
+        - text: "Tiffany & Co. × RIMOWA Jewelry Case snkrdunk.com/en·"
+        - group "Current Price: $6,662.00."
+    - button [ref=e176]:
+      - button [ref=e178]:
+        - img "Rimowa X Tiffany Jewelry Personal Tiffany"
+        - text: "Rimowa X Tiffany Jewelry Personal Tiffany eBay·"
+        - group "Current Price: $7,377.00."
+    - button [ref=e179]:
+      - button [ref=e181]:
+        - img "Rimowa x Tiffany & Co. Jewelry Personal Tiffany Blue"
+        - text: "Rimowa x Tiffany & Co. Jewelry Personal Tiffany Blue StockX·"
+        - group "Current Price: $4,568.00."
+    - button [ref=e182]
+  - article:
+    - heading "Gloves for the Ride with Alpinestars" [level=2]
+    - button "Like" [ref=e183]
+    - button "Dislike" [ref=e184]
+    - button "Explore more Alpinestars cycling gloves" [ref=e185]: "Explore"
+    - heading "Top deals" [level=2]
+    - button [ref=e186]:
+      - button [ref=e188]:
+        - img "40% OFF.": "40% OFF"
+        - img "Alpinestars Drop 4.0 Gloves"
+        - text: "Alpinestars Drop 4.0 Gloves Alpinestars·"
+        - group "Current Price: $20.97. Was $35."
+    - button [ref=e189]:
+      - button [ref=e191]:
+        - img "20% OFF.": "20% OFF"
+        - img "Alpinestars Alpinestar Alps gloves"
+        - text: "Alpinestars Alpinestar Alps gloves Alpinestars·"
+        - group "Current Price: $27.96. Was $35."
+    - button [ref=e192]:
+      - button [ref=e194]:
+        - img "40% OFF.": "40% OFF"
+        - img "Alpinestars Alps V2 Gloves"
+        - text: "Alpinestars Alps V2 Gloves Alpinestars·"
+        - group "Current Price: $20.97. Was $35."
+    - button [ref=e195]:
+      - button [ref=e197]:
+        - img "40% OFF.": "40% OFF"
+        - img "ALPINESTARS Aspen Pro Lite Gloves"
+        - text: "ALPINESTARS Aspen Pro Lite Gloves Alpinestars·"
+        - group "Current Price: $19.77. Was $33."
+    - button [ref=e198]:
+      - button [ref=e200]:
+        - img "40% OFF.": "40% OFF"
+        - img "Alpinestars US Women Stella Alps V2 Gloves"
+        - text: "Alpinestars US Women Stella Alps V2 Gloves Alpinestars·"
+        - group "Current Price: $20.97. Was $35."
+    - button [ref=e201]:
+      - button [ref=e203]:
+        - img "20% OFF.": "20% OFF"
+        - img "Alpinestars Drop 6.0 Gloves"
+        - text: "Alpinestars Drop 6.0 Gloves Alpinestars·"
+        - group "Current Price: $31.96. Was $40."
+    - button [ref=e204]:
+      - button [ref=e206]:
+        - img "24% OFF.": "24% OFF"
+        - img "Alpinestars Faster Gloves"
+        - text: "Alpinestars Faster Gloves Alpinestars·"
+        - group "Current Price: $75.96. Was $100."
+    - button [ref=e207]:
+      - button [ref=e209]:
+        - img "44% OFF.": "44% OFF"
+        - img "Teton Plus Gloves"
+        - text: "Teton Plus Gloves All4cycling·"
+        - group "Current Price: $17.03. Was $31."
+  - article:
+    - heading "Sidi's stylish steps" [level=2]
+    - button "Like" [ref=e210]
+    - button "Dislike" [ref=e211]
+    - button "Explore more Sidi sneakers" [ref=e212]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e213]:
+      - button [ref=e215]:
+        - img "Sidi Sport - NUCLEUS"
+        - text: "Sidi Sport - NUCLEUS Sidi Sport·"
+        - group "Current Price: $189.99."
+    - button [ref=e216]:
+      - button [ref=e218]:
+        - img "Sidi Nucleus Air Motorcycle Shoes"
+        - text: "Sidi Nucleus Air Motorcycle Shoes Sidi Sport·"
+        - group "Current Price: $189.99."
+    - button [ref=e219]:
+      - button [ref=e221]:
+        - img "Sidi Sport Fluxx Low"
+        - text: "Sidi Sport Fluxx Low Sidi Sport·"
+        - group "Current Price: $129.99."
+    - button [ref=e222]:
+      - button [ref=e224]:
+        - img "Sidi Men's T-5 Air"
+        - text: "Sidi Men's T-5 Air Sidi Sport·"
+        - group "Current Price: $249.99."
+    - button [ref=e225]
+  - article:
+    - heading "Weekend Travel Essentials" [level=2]
+    - button "Like" [ref=e226]
+    - button "Dislike" [ref=e227]
+    - button "Explore more Luggage for Memorial Day weekend" [ref=e228]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e229]:
+      - button [ref=e231]:
+        - img "15% OFF.": "15% OFF"
+        - img "Samsonite Better Than Basic 14-inch Weekender Carry-On Duffel Bag"
+        - text: "Samsonite Better Than Basic 14-inch Weekender Carry-On Duffel Bag Kohl's·"
+        - group "Current Price: $84.99. Was $100."
+    - button [ref=e232]:
+      - button [ref=e234]:
+        - img "Away The Everywhere Bag"
+        - text: "Away The Everywhere Bag Nordstrom·"
+        - group "Current Price: $198.00."
+    - button [ref=e235]:
+      - button [ref=e237]:
+        - img "Travelpro Maxlite 5 Drop Bottom Weekender"
+        - text: "Travelpro Maxlite 5 Drop Bottom Weekender Travelpro·"
+        - group "Current Price: $110.00."
+    - button [ref=e238]:
+      - button [ref=e240]:
+        - img "TUMI Voyageur Weekender"
+        - text: "TUMI Voyageur Weekender Macy's·"
+        - group "Current Price: $595.00."
+    - button [ref=e241]:
+      - button [ref=e243]:
+        - img "Low price.": "LOW PRICE"
+        - img "Delsey Weekender Duffel Bag"
+        - text: "Delsey Weekender Duffel Bag Best Buy·"
+        - group "Current Price: $160.00. Usually $168."
+    - button [ref=e244]:
+      - button [ref=e246]:
+        - img "Low price.": "LOW PRICE"
+        - img "Bric's Ulisse Expandable Spinner"
+        - text: "Bric's Ulisse Expandable Spinner bagdUp·"
+        - group "Current Price: $246.50. Usually $287."
+    - button [ref=e247]:
+      - button [ref=e249]:
+        - img "15% OFF.": "15% OFF"
+        - img "Samsonite Better Than Basic Drop Bottom Weekender"
+        - text: "Samsonite Better Than Basic Drop Bottom Weekender Kohl's·"
+        - group "Current Price: $84.99. Was $100."
+    - button [ref=e250]:
+      - button [ref=e252]:
+        - img "20% OFF.": "20% OFF"
+        - img "Samsonite Virtuosa Weekender Tote"
+        - text: "Samsonite Virtuosa Weekender Tote Samsonite·"
+        - group "Current Price: $91.99. Was $115."
+  - article:
+    - heading "Summer Skin Radiance" [level=2]
+    - button "Like" [ref=e253]
+    - button "Dislike" [ref=e254]
+    - button "Explore more Summer skincare products" [ref=e255]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e256]:
+      - button [ref=e258]:
+        - img "Summer Fridays Jet Lag Essentials Set"
+        - text: "Summer Fridays Jet Lag Essentials Set Kohl's·"
+        - group "Current Price: $34.00."
+    - button [ref=e259]:
+      - button [ref=e261]:
+        - img "Bubble Cruise Control Travel Kit"
+        - text: "Bubble Cruise Control Travel Kit Ulta Beauty·"
+        - group "Current Price: $27.99."
+    - button [ref=e262]:
+      - button [ref=e264]:
+        - img "E.l.f. Hydrated Ever After Skincare Mini Kit"
+        - text: "E.l.f. Hydrated Ever After Skincare Mini Kit Walmart·"
+        - group "Current Price: $21.00."
+    - button [ref=e265]:
+      - button [ref=e267]:
+        - img "Low price.": "LOW PRICE"
+        - img "Supergoop! Glowscreen Soft-Radiance Drops Mineral SPF 40"
+        - text: "Supergoop! Glowscreen Soft-Radiance Drops Mineral SPF 40 Supergoop!·"
+        - group "Current Price: $32.00. Usually $39."
+    - button [ref=e268]
+    - generic [ref=e269] [scrollable]:
+      - list:
+        - listitem:
+          - button "GREATEST SKINCARE PRODUCTS 2026 - Skincare Awards 2026 ... by Mad About Skin on YouTube. Play on Goo" [ref=e270]
+          - button [ref=e271]:
+            - heading [level=3]: "GREATEST SKINCARE PRODUCTS 2026 - Skincare Awards 2026 ..."
+            - text: "Mad About Skin · YouTube  ·  1mo"
+        - listitem:
+          - button "The ONLY Summer Essentials You Need from Nykaa Pink Summer ... by Arpita Ghoshal on YouTube. Play on" [ref=e272]
+          - button [ref=e273]:
+            - heading [level=3]: "The ONLY Summer Essentials You Need from Nykaa Pink Summer ..."
+            - text: "Arpita Ghoshal · YouTube  ·  6d"
+        - listitem:
+          - button "PLUMP IT UP! Hydrating Korean Skincare for Warm Weather! by Kelly Driscoll on YouTube. Play on Googl" [ref=e274]
+          - button [ref=e275]:
+            - heading [level=3]: "PLUMP IT UP! Hydrating Korean Skincare for Warm Weather!"
+            - text: "Kelly Driscoll · YouTube  ·  4w"
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - button "94105, San Francisco, CA - Based on your places (Home)" [ref=e276]
+  - text: "-"
+  - button "Update location" [ref=e278]
+  - link "Help" [ref=e279]
+  - link "Send feedback" [ref=e280]
+  - link "Privacy" [ref=e281]
+  - link "Terms" [ref=e282]
+  - link "Information for Merchants" [ref=e283]
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[5] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>
+
+[6] thinking: **Searching for monitors**
+
+I need to find the lowest-priced nearby 27-32 inch Samsung or LG monitors that are 4K and IPS. I should use Google Shopping for this, setting my location to 94105 in San Francisco to get local results. I might have to filter by price and screen type. Since I can use the browser, I won’t need citations unless I’m using specific web tools. It makes sense to compare results after searching for "Samsung LG 27 32 4K IPS monitor."
+
+[7] tool_call: repl("Searching monitor criteria")
+<request>
+await page.locator('e3').fill('Samsung LG 27 32 4k IPS monitor');
+await page.locator('e7').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff);
+</request>
+<result tokens_used="281" elapsed_time="3565ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Samsung LG 27 32 4k IPS monitor - Google Shopping" [url=https://www.google.com/search?q=Samsung+LG+27+32+4k+IPS+monitor&sca_esv=1ff17551be336d16&udm=28&sxsrf=ANbL-n7VqSvQjAHgkiNkzTMB_G…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "Samsung LG 27 32 4k IPS monitor Samsung LG 27 32 4k IPS monitor"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "On sale filter. Not selected." [ref=e22]: "On sale"
+    - link "Get it tomorrow filter. Not selected." [ref=e23]: "Get it tomorrow"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Maximum Refresh Rate" [ref=e27]
+    - link "Under 60 Hz filter. Not selected." [ref=e28]: "Under 60 Hz"
+    - link "60 – 100 Hz filter. Not selected." [ref=e29]: "60 – 100 Hz"
+    - link "100 – 144 Hz filter. Not selected." [ref=e30]: "100 – 144 Hz"
+    - link "144 – 240 Hz filter. Not selected." [ref=e31]: "144 – 240 Hz"
+    - link "Over 240 Hz filter. Not selected." [ref=e32]: "Over 240 Hz"
+    - button "Features" [ref=e33]
+    - link "Gaming filter. Not selected." [ref=e34]: "Gaming"
+    - link "Curved filter. Not selected." [ref=e35]: "Curved"
+    - button "Connector Type" [ref=e36]
+    - link "HDMI filter. Not selected." [ref=e37]: "HDMI"
+    - link "USB-C filter. Not selected." [ref=e38]: "USB-C"
+    - link "DisplayPort filter. Not selected." [ref=e39]: "DisplayPort"
+    - link "Mini DisplayPort filter. Not selected." [ref=e40]: "Mini DisplayPort"
+    - link "Micro HDMI filter. Not selected." [ref=e41]: "Micro HDMI"
+    - button "Display Type" [ref=e42]
+    - link "LED filter. Not selected." [ref=e43]: "LED"
+    - link "OLED filter. Not selected." [ref=e44]: "OLED"
+    - button "Category" [ref=e45]
+    - link "Computer Monitors filter. Not selected." [ref=e46]: "Computer Monitors"
+    - link "TVs filter. Not selected." [ref=e47]: "TVs"
+    - link "Power Adapters & Chargers filter. Not selected." [ref=e48]: "Power Adapters & Chargers"
+    - button "Product Rating" [ref=e49]
+    - link "Four stars and up filter. Not selected." [ref=e50]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Stores" [ref=e51]
+    - link "Micro Center filter. Not selected." [ref=e52]: "Micro Center"
+    - link "Best Buy filter. Not selected." [ref=e53]: "Best Buy"
+    - link "B&H Photo Video Audio filter. Not selected." [ref=e54]: "B&H Photo Video Audio"
+    - link "Target filter. Not selected." [ref=e55]: "Target"
+    - button "See more" [ref=e56]
+    - button "Price" [ref=e57]
+    - link "Under $300 filter. Not selected." [ref=e58]: "Under $300"
+    - link "$300 to $700 filter. Not selected." [ref=e59]: "$300 - $700"
+    - link "Over $700 filter. Not selected." [ref=e60]: "Over $700"
+    - textbox "Minimum price ($)" [ref=e61]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e62]
+    - text: "Max"
+    - button "Go" [ref=e63] [disabled]
+    - button "Brightness" [ref=e64]
+    - link "Under 250 cd/m² filter. Not selected." [ref=e65]: "Under 250 cd/m²"
+    - link "250 – 300 cd/m² filter. Not selected." [ref=e66]: "250 – 300 cd/m²"
+    - link "300 – 350 cd/m² filter. Not selected." [ref=e67]: "300 – 350 cd/m²"
+    - link "350 – 400 cd/m² filter. Not selected." [ref=e68]: "350 – 400 cd/m²"
+    - link "Over 400 cd/m² filter. Not selected." [ref=e69]: "Over 400 cd/m²"
+    - button "Weight" [ref=e70]
+    - link "Under 10.6 lb weight filter. Not selected." [ref=e71]: "Under 10.6 lb weight"
+    - link "10.6 – 13 lb weight filter. Not selected." [ref=e72]: "10.6 – 13 lb weight"
+    - link "13 – 15.7 lb weight filter. Not selected." [ref=e73]: "13 – 15.7 lb weight"
+    - link "15.7 – 19 lb weight filter. Not selected." [ref=e74]: "15.7 – 19 lb weight"
+    - link "Over 19 lb weight filter. Not selected." [ref=e75]: "Over 19 lb weight"
+    - button "Samsung Product Line" [ref=e76]
+    - link "Samsung Odyssey filter. Not selected." [ref=e77]: "Samsung Odyssey"
+    - link "ViewFinity S filter. Not selected." [ref=e78]: "ViewFinity S"
+    - link "ViewFinity filter. Not selected." [ref=e79]: "ViewFinity"
+    - button "LG Product Line" [ref=e80]
+    - link "UltraFine filter. Not selected." [ref=e81]: "UltraFine"
+    - link "UltraWide filter. Not selected." [ref=e82]: "UltraWide"
+    - button "Free shipping" [ref=e83]
+    - link "Free shipping filter. Not selected." [ref=e84]: "Free shipping"
+- navigation "Refinement" [ref=e85]:
+  - generic [ref=e86] [scrollable]:
+    - list:
+      - button "All filters." [ref=e87]
+      - listitem [ref=e88]:
+        - link "3840 x 2160 filter. Not selected." [ref=e89]: "3840 x 2160"
+      - listitem [ref=e90]:
+        - link "60 – 100 Hz filter. Not selected." [ref=e91]: "60 – 100 Hz"
+      - listitem [ref=e92]:
+        - link "144 – 240 Hz filter. Not selected." [ref=e93]: "144 – 240 Hz"
+      - listitem [ref=e94]:
+        - link "Over 240 Hz filter. Not selected." [ref=e95]: "Over 240 Hz"
+      - listitem [ref=e96]:
+        - link "100 – 144 Hz filter. Not selected." [ref=e97]: "100 – 144 Hz"
+      - listitem [ref=e98]:
+        - link "Gaming filter. Not selected." [ref=e99]: "Gaming"
+      - listitem [ref=e100]:
+        - link "On sale filter. Not selected." [ref=e101]: "On sale"
+      - listitem [ref=e102]:
+        - link "Under 60 Hz filter. Not selected." [ref=e103]: "Under 60 Hz"
+      - listitem [ref=e104]:
+        - link "Curved filter. Not selected." [ref=e105]: "Curved"
+      - listitem [ref=e106]:
+        - link "HDMI filter. Not selected." [ref=e107]: "HDMI"
+      - listitem [ref=e108]:
+        - link "USB-C filter. Not selected." [ref=e109]: "USB-C"
+      - listitem [ref=e110]:
+        - link "DisplayPort filter. Not selected." [ref=e111]: "DisplayPort"
+      - listitem [ref=e112]:
+        - link "LED filter. Not selected." [ref=e113]: "LED"
+      - listitem [ref=e114]:
+        - link "Get it tomorrow filter. Not selected." [ref=e115]: "Get it tomorrow"
+      - listitem [ref=e116]:
+        - link "OLED filter. Not selected." [ref=e117]: "OLED"
+      - listitem [ref=e118]:
+        - link "Computer Monitors filter. Not selected." [ref=e119]: "Computer Monitors"
+      - listitem [ref=e120]:
+        - link "New filter. Not selected." [ref=e121]: "New"
+      - listitem [ref=e122]:
+        - link "Used filter. Not selected." [ref=e123]: "Used"
+      - listitem [ref=e124]:
+        - link "Under $300 filter. Not selected." [ref=e125]: "Under $300"
+      - listitem [ref=e126]:
+        - link "TVs filter. Not selected." [ref=e127]: "TVs"
+      - listitem [ref=e128]:
+        - link "Over 400 cd/m² filter. Not selected." [ref=e129]: "Over 400 cd/m²"
+      - listitem [ref=e130]:
+        - link "Power Adapters & Chargers filter. Not selected." [ref=e131]: "Power Adapters & Chargers"
+      - listitem [ref=e132]:
+        - link "350 – 400 cd/m² filter. Not selected." [ref=e133]: "350 – 400 cd/m²"
+      - listitem [ref=e134]:
+        - link "300 – 350 cd/m² filter. Not selected." [ref=e135]: "300 – 350 cd/m²"
+  - combobox "Sort by:Relevance" [ref=e136]
+- main:
+  - region "Ads" [ref=e137]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e138]
+    - generic [ref=e139] [scrollable]:
+      - link "for was $270 from Samsung" [ref=e140]:
+        - link "for was $270 from Samsung" [ref=e141]
+      - text: "Sale"
+      - link [ref=e142]:
+        - link [ref=e143]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M5 M50F FHD in White (LS32FM503ENXZA)"
+      - text: "$219.99$270 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 10.4 lb · Bluetooth, Wi-Fi, USB, HDMI · 1920 x 1080 · 1080p · Flat"
+      - link "for was $270 from Samsung" [ref=e144]:
+        - link "for was $270 from Samsung" [ref=e145]
+      - text: "Sale"
+      - link [ref=e146]:
+        - link [ref=e147]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M5 M50F FHD in Black(LS32FM502ENXZA)"
+      - text: "$219.99$270 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - link "for was $450 from B&H Photo-Video-Audio" [ref=e148]:
+        - link "for was $450 from B&H Photo-Video-Audio" [ref=e149]
+      - text: "Sale"
+      - link [ref=e150]:
+        - link "Free 2-day" [ref=e151]
+      - heading [level=3]: "Samsung ViewFinity S70D 32\" 4K HDR Monitor with Integrated Speakers (Black)"
+      - text: "$379.99$450 B&H Photo-Video-Audio"
+      - img "Rated 4.6 out of 5, (893) user reviews"
+      - text: "IPS · 60 Hz · HDMI, DisplayPort · 5 milliseconds · 350 cd/m² · 3840 x 2160 · LED · 32 in · 11.9 lb weight"
+      - link "for was $220 from Staples" [ref=e152]:
+        - link "for was $220 from Staples" [ref=e153]
+      - text: "Sale"
+      - link [ref=e154]:
+        - link [ref=e155]
+      - heading [level=3]: "Samsung 32\" Curved 100Hz LED Monitor, Built-in Speakers, Black (LS32D396GANXZA)"
+      - text: "$199.99$220 Staples"
+      - img "Rated 4.4 out of 5, (2k+) user reviews"
+      - text: "VA · 100 Hz · HDMI, VGA, DisplayPort · 4 milliseconds · 250 cd/m² · 1920 x 1080 · LED · 32 in"
+      - link "for was $300 from Best Buy" [ref=e156]:
+        - link "for was $300 from Best Buy" [ref=e157]
+      - text: "Sale"
+      - link [ref=e158]:
+        - link "Mission District" [ref=e159]
+      - heading [level=3]: "LG - 32\" UltraGear G6 IPS QHD 200Hz 1ms G-SYNC Compatible FreeSync Premium Gaming Monitor with HDR10 (HDMI, DisplayPort) - Black"
+      - text: "$249.99$300 Best Buy"
+      - img "Rated 5.0 out of 5, (3) user reviews"
+      - text: "IPS · 200 Hz · HDMI, DisplayPort · 1 millisecond · 2560 x 1440 · 32 in"
+      - link "for from ViewSonic" [ref=e160]:
+        - link "for from ViewSonic" [ref=e161]
+      - link [ref=e162]:
+        - link [ref=e163]
+      - heading [level=3]: "32\"4K UHD IPS Docking Monitor with Thunderbolt 4"
+      - text: "$799.99 ViewSonic Free IPS · 75 Hz · HDMI, DisplayPort, USB-C · 6 milliseconds · 400 cd/m² · 3840 x 2160 · LED · 32 in"
+      - link "for from Samsung" [ref=e164]:
+        - link "for from Samsung" [ref=e165]
+      - link [ref=e166]:
+        - link [ref=e167]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M7 M70F 4K Samsung Vision AI in White (LS32FM703UNXZA)"
+      - text: "$399.99 Samsung"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 14.2 lb · Bluetooth, Wi-Fi, USB, HDMI · 3840 x 2160 · 4K · Flat"
+      - link "for was $700 from Samsung" [ref=e168]:
+        - link "for was $700 from Samsung" [ref=e169]
+      - text: "Sale"
+      - link [ref=e170]:
+        - link [ref=e171]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI(LS32FM803UNXZA)"
+      - text: "$429.99$700 Samsung"
+      - img "Rated 4.6 out of 5, (119) user reviews"
+      - text: "1 in deep · 1 HDMI port · 15.4 lb · Bluetooth, Wi-Fi, USB, HDMI · 3840 x 2160 · 4K · Flat"
+      - link "for from Staples" [ref=e172]:
+        - link "for from Staples" [ref=e173]
+      - link [ref=e174]:
+        - link [ref=e175]
+      - heading [level=3]: "Samsung ViewFinity S8 27\" 4K Ultra HD 60 Hz LCD Monitor, Black (LS27D802EANXGO)"
+      - text: "$411.12 Staples"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "IPS · 60 Hz · HDMI, DisplayPort, USB-C · 6 milliseconds · 350 cd/m² · 3840 x 2160 · LED · 27 in"
+      - link "for was $450 from B&H Photo-Video-Audio" [ref=e176]:
+        - link "for was $450 from B&H Photo-Video-Audio" [ref=e177]
+      - text: "Sale"
+      - link [ref=e178]:
+        - link "Free 2-day" [ref=e179]
+      - heading [level=3]: "Samsung ViewFinity S80UD 27\" 4K HDR Monitor"
+      - text: "$349.99$450 B&H Photo-Video-Audio"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "IPS · 60 Hz · HDMI, DisplayPort, USB-C · 5 milliseconds · 350 cd/m² · 3840 x 2160 · LED · 27 in"
+  - heading "Browse products" [level=2]
+  - button [ref=e180]:
+    - generic [ref=e181]:
+      - img "7% OFF.": "7% OFF"
+      - img "LG UltraFine 27US500-W 27\" 4K HDR Monitor"
+      - text: "LG UltraFine 27US500-W 27\" 4K HDR Monitor"
+      - group "Current Price: $229.95. Was $249."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 404 reviews.":
+        - img "Rated 4.6 out of 5, 404 user reviews"
+  - button [ref=e182]:
+    - generic [ref=e183]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e184]:
+        - img
+      - text: "Samsung u32j590uqn Monitor"
+      - group "Current Price: $339.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.4 out of 5. 2.7K reviews.":
+        - img "Rated 4.4 out of 5, 2.7K user reviews"
+  - button [ref=e185]:
+    - generic [ref=e186]:
+      - img "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - text: "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - group "Current Price: $399.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 2.4K reviews.":
+        - img "Rated 4.5 out of 5, 2.4K user reviews"
+  - button [ref=e187]:
+    - generic [ref=e188]:
+      - img "LG 27u731sa-w 27 4K IPS Led Monitor"
+      - text: "Nearby, 15 mi LG 27u731sa-w 27 4K IPS Led Monitor"
+      - group "Current Price: $379.99."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 178 reviews.":
+        - img "Rated 4.4 out of 5, 178 user reviews"
+  - button [ref=e189]:
+    - generic [ref=e190]:
+      - img "25% OFF.": "25% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e191]:
+        - img
+      - text: "Samsung LED computer Gaming Monitor"
+      - group "Current Price: $259.99. Was $350."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.7 out of 5. 1.8K reviews.":
+        - img "Rated 4.7 out of 5, 1.8K user reviews"
+  - button [ref=e192]:
+    - generic [ref=e193]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e194]:
+        - img
+      - text: "Samsung Odyssey G7 G70F 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $599.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 33 reviews.":
+        - img "Rated 4.5 out of 5, 33 user reviews"
+  - button [ref=e195]:
+    - generic [ref=e196]:
+      - img "41% OFF.": "41% OFF"
+      - img "LG 27G810A-B.AUS UltraGear 27\" 4K UHD 180Hz Gaming Monitor"
+      - text: "LG 27G810A-B.AUS UltraGear 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $349.99. Was $600."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.5 out of 5. 192 reviews.":
+        - img "Rated 4.5 out of 5, 192 user reviews"
+  - button [ref=e197]:
+    - generic [ref=e198]:
+      - img "Samsung 4K UHD ViewFinity Monitor"
+      - text: "Samsung 4K UHD ViewFinity Monitor"
+      - group "Current Price: $569.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 135 reviews.":
+        - img "Rated 4.5 out of 5, 135 user reviews"
+  - button [ref=e199]:
+    - generic [ref=e200]:
+      - img "LG 27\" 4K UHD Led Monitor"
+      - text: "LG 27\" 4K UHD Led Monitor"
+      - group "Current Price: $89.99. Pre-owned."
+      - text: "eBay & more"
+      - img "Rated 4.7 out of 5. 617 reviews.":
+        - img "Rated 4.7 out of 5, 617 user reviews"
+  - button [ref=e201]:
+    - generic [ref=e202]:
+      - img "LG 27\" IPS Smart Monitor with WebOS"
+      - text: "Nearby, 16 mi LG 27\" IPS Smart Monitor with WebOS"
+      - group "Current Price: $184.00."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.5 out of 5. 299 reviews.":
+        - img "Rated 4.5 out of 5, 299 user reviews"
+  - button [ref=e203]:
+    - generic [ref=e204]:
+      - img "12% OFF.": "12% OFF"
+      - img "LG UltraFine 32UR550K 32 4K Va Led Monitor"
+      - text: "LG UltraFine 32UR550K 32 4K Va Led Monitor"
+      - group "Current Price: $349.95. Was $400."
+      - text: "Best Buy & more"
+      - img "Rated 4.3 out of 5. 146 reviews.":
+        - img "Rated 4.3 out of 5, 146 user reviews"
+  - button [ref=e205]:
+    - generic [ref=e206]:
+      - img "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - text: "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - group "Current Price: $1,099.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.3 out of 5. 806 reviews.":
+        - img "Rated 4.3 out of 5, 806 user reviews"
+  - button [ref=e207]:
+    - generic [ref=e208]:
+      - img "Gaming Monitor LG 27G411A-B 27\" Full HD"
+      - text: "Nearby, 22 mi Gaming Monitor LG 27G411A-B 27\" Full HD"
+      - group "Current Price: $109.00."
+      - text: "Walmart & more Free delivery by Sun"
+      - img "Rated 4.5 out of 5. 730 reviews.":
+        - img "Rated 4.5 out of 5, 730 user reviews"
+  - button [ref=e209]:
+    - generic [ref=e210]:
+      - img "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - text: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - group "Current Price: $429.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 119 reviews.":
+        - img "Rated 4.6 out of 5, 119 user reviews"
+  - button [ref=e211]:
+    - generic [ref=e212]:
+      - img "LG 27LQ625S-PU 27\" Full HD IPS LED TV Monitor"
+      - text: "LG 27LQ625S-PU 27\" Full HD IPS LED TV Monitor"
+      - group "Current Price: $199.99."
+      - text: "PC Richard & Son & more"
+      - img "Rated 4.6 out of 5. 1.4K reviews.":
+        - img "Rated 4.6 out of 5, 1.4K user reviews"
+  - button [ref=e213]:
+    - generic [ref=e214]:
+      - img "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - text: "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - group "Current Price: $249.99. Pre-owned."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 893 reviews.":
+        - img "Rated 4.6 out of 5, 893 user reviews"
+  - button [ref=e215]:
+    - generic [ref=e216]:
+      - img "LG UltraGear 27\" FHD 1080p 180Hz Gaming Monitor"
+      - text: "Nearby, 22 mi LG UltraGear 27\" FHD 1080p 180Hz Gaming Monitor"
+      - group "Current Price: $169.00."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.1 out of 5. 319 reviews.":
+        - img "Rated 4.1 out of 5, 319 user reviews"
+  - button [ref=e217]:
+    - generic [ref=e218]:
+      - img "28% OFF.": "28% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e219]:
+        - img
+      - text: "Samsung Odyssey G7 G70D 4K UHD 144Hz Gaming Monitor"
+      - group "Current Price: $499.99. Was $700."
+      - text: "Best Buy & more"
+      - img "Rated 4.2 out of 5. 213 reviews.":
+        - img "Rated 4.2 out of 5, 213 user reviews"
+  - button [ref=e220]:
+    - generic [ref=e221]:
+      - img "LG 27UP600-W 27\" Class 4K UHD LCD Monitor"
+      - text: "LG 27UP600-W 27\" Class 4K UHD LCD Monitor"
+      - group "Current Price: $129.99. Pre-owned."
+      - text: "eBay - thirdwavediscounts & more Free delivery by Mon"
+      - img "Rated 4.5 out of 5. 921 reviews.":
+        - img "Rated 4.5 out of 5, 921 user reviews"
+  - button [ref=e222]:
+    - generic [ref=e223]:
+      - img "10% OFF.": "10% OFF"
+      - img "LG 27BA45U-B 27\" Class LCD Monitor"
+      - text: "LG 27BA45U-B 27\" Class LCD Monitor"
+      - group "Current Price: $259.99. Was $290."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 89 reviews.":
+        - img "Rated 4.4 out of 5, 89 user reviews"
+  - button [ref=e224]:
+    - generic [ref=e225]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e226]:
+        - img
+      - text: "Nearby, 9 mi LG UltraGear 27\" QHD Gaming Monitor"
+      - group "Current Price: $249.99."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.6 out of 5. 783 reviews.":
+        - img "Rated 4.6 out of 5, 783 user reviews"
+  - button [ref=e227]:
+    - generic [ref=e228]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e229]:
+        - img
+      - text: "LG 32UR500K-B 32\" UltraFine 4K UHD HDR10 Monitor with Built-In Speakers"
+      - group "Current Price: $328.60."
+      - text: "Walmart - Happy Ranger & more Free delivery"
+      - img "Rated 4.5 out of 5. 215 reviews.":
+        - img "Rated 4.5 out of 5, 215 user reviews"
+  - button [ref=e230]:
+    - generic [ref=e231]:
+      - img "Samsung Odyssey OLED G8 G81SF 4K 240Hz Gaming Monitor"
+      - text: "Samsung Odyssey OLED G8 G81SF 4K 240Hz Gaming Monitor"
+      - group "Current Price: $1,299.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 547 reviews.":
+        - img "Rated 4.6 out of 5, 547 user reviews"
+  - button [ref=e232]:
+    - generic [ref=e233]:
+      - img "LG 32GQ950-B 32\" UltraGear UHD Nano IPS Monitor with 1ms 144Hz sync"
+      - text: "LG 32GQ950-B 32\" UltraGear UHD Nano IPS Monitor with 1ms 144Hz sync"
+      - group "Current Price: $400.00. Pre-owned."
+      - text: "eBay & more"
+      - img "Rated 4.4 out of 5. 377 reviews.":
+        - img "Rated 4.4 out of 5, 377 user reviews"
+  - button [ref=e234]:
+    - generic [ref=e235]:
+      - img "40% OFF.": "40% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e236]:
+        - img
+      - text: "LG 27\" UltraFine 4K UHD HDR10 IPS Monitor"
+      - group "Current Price: $204.99. Was $342."
+      - text: "Techinn.com & more"
+      - img "Rated 4.5 out of 5. 187 reviews.":
+        - img "Rated 4.5 out of 5, 187 user reviews"
+  - button [ref=e237]:
+    - generic [ref=e238]:
+      - img "24% OFF.": "24% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e239]:
+        - img
+      - text: "Nearby, 9 mi Dell 27 Plus 4K USB-C Monitor"
+      - group "Current Price: $279.99. Was $370."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.6 out of 5. 786 reviews.":
+        - img "Rated 4.6 out of 5, 786 user reviews"
+  - button [ref=e240]:
+    - generic [ref=e241]:
+      - img "LG 27UP650K-W 27-inch UltraFine 4K UHD IPS Monitor"
+      - text: "LG 27UP650K-W 27-inch UltraFine 4K UHD IPS Monitor"
+      - group "Current Price: $268.75."
+      - text: "Walmart - Focus Camera & more Free delivery"
+      - img "Rated 4.4 out of 5. 173 reviews.":
+        - img "Rated 4.4 out of 5, 173 user reviews"
+  - button [ref=e242]:
+    - generic [ref=e243]:
+      - img "LG 37\" 4K UHD IPS Smart Monitor with webOS"
+      - text: "LG 37\" 4K UHD IPS Smart Monitor with webOS"
+      - group "Current Price: $379.99."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.6 out of 5. 240 reviews.":
+        - img "Rated 4.6 out of 5, 240 user reviews"
+  - button [ref=e244]:
+    - generic [ref=e245]:
+      - img "Lg Electronics 27uk670-b 27\" 4k 3840x2160 5ms 300 Cd/m² Usb-c Hdmi Dp Usb3.0 Ips Adjustable Stand Mo"
+      - text: "Lg Electronics 27uk670-b 27\" 4k 3840x2160 5ms 300 Cd/m² Usb-c Hdmi Dp Usb3.0 Ips Adjustable Stand Monitor Black"
+      - group "Current Price: $169.00. Pre-owned."
+      - text: "eBay & more"
+      - img "Rated 4.5 out of 5. 58 reviews.":
+        - img "Rated 4.5 out of 5, 58 user reviews"
+  - button [ref=e246]:
+    - generic [ref=e247]:
+      - img "LG 27\" 4K IPS Monitor"
+      - text: "LG 27\" 4K IPS Monitor"
+      - group "Current Price: $399.99."
+      - text: "Best Buy & more"
+      - img "Rated 1.0 out of 5. 1 reviews.":
+        - img "Rated 1.0 out of 5, 1 user review"
+  - button [ref=e248]:
+    - generic [ref=e249]:
+      - img "15% OFF.": "15% OFF"
+      - img "LG 32UN650-W 32\" Class 4K UHD LCD Monitor"
+      - text: "LG 32UN650-W 32\" Class 4K UHD LCD Monitor"
+      - group "Current Price: $505.00. Refurbished."
+      - text: "Back Market & more"
+      - img "Rated 4.6 out of 5. 168 reviews.":
+        - img "Rated 4.6 out of 5, 168 user reviews"
+  - button [ref=e250]:
+    - generic [ref=e251]:
+      - img "Samsung 4K UHD Monitor"
+      - text: "Samsung 4K UHD Monitor"
+      - group "Current Price: $411.12."
+      - text: "Staples & more Free delivery by Mon"
+      - img "Rated 4.3 out of 5. 1.4K reviews.":
+        - img "Rated 4.3 out of 5, 1.4K user reviews"
+  - button [ref=e252]:
+    - generic [ref=e253]:
+      - img "LG 27un850-w 27 inch Ultrafine UHD (3840 x 2160) IPS Display with VESA DisplayHDR 400, USB Type-C an"
+      - text: "LG 27un850-w 27 inch Ultrafine UHD (3840 x 2160) IPS Display with VESA DisplayHDR 400, USB Type-C and 3-Side Virtually Border.."
+      - group "Current Price: $150.00. Pre-owned."
+      - text: "eBay & more"
+      - img "Rated 4.4 out of 5. 171 reviews.":
+        - img "Rated 4.4 out of 5, 171 user reviews"
+  - button [ref=e254]:
+    - generic [ref=e255]:
+      - img "LG 32 Inch 4K UHD IPS Touchscreen Smart Monitor Swing with Rolling Stand"
+      - text: "LG 32 Inch 4K UHD IPS Touchscreen Smart Monitor Swing with Rolling Stand"
+      - group "Current Price: $799.99."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.3 out of 5. 215 reviews.":
+        - img "Rated 4.3 out of 5, 215 user reviews"
+  - button [ref=e256]:
+    - generic [ref=e257]:
+      - img "Samsung - 32\" 4K UHD , Anti-Glare, Flicker-Free, VESA Mount (100mm), Displayport, HDMI & DKZ Hub, Co"
+      - text: "Samsung - 32\" 4K UHD , Anti-Glare, Flicker-Free, VESA Mount (100mm), Displayport, HDMI & DKZ Hub, Color - Black"
+      - group "Current Price: $429.99."
+      - text: "Best Buy"
+  - button [ref=e258]:
+    - generic [ref=e259]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e260]:
+        - img
+      - text: "Gaming Monitor Samsung Odyssey G3 180Hz"
+      - group "Current Price: $224.99."
+      - text: "Target Free delivery"
+      - img "Rated 4.7 out of 5. 2.7K reviews.":
+        - img "Rated 4.7 out of 5, 2.7K user reviews"
+  - button [ref=e261]:
+    - generic [ref=e262]:
+      - img "10% OFF.": "10% OFF"
+      - img "LG 27BL55U-B 27\" 4K Monitor"
+      - text: "Also nearby LG 27BL55U-B 27\" 4K Monitor"
+      - group "Current Price: $244.79. Pre-owned."
+      - text: "eBay - txs_corp & more"
+      - img "Rated 5.0 out of 5. 2 reviews.":
+        - img "Rated 5.0 out of 5, 2 user reviews"
+  - button [ref=e263]:
+    - generic [ref=e264]:
+      - img "5% OFF.": "5% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e265]:
+        - img
+      - text: "LG 32BN50U-B 32 inch 4K UHD LCD Monitor"
+      - group "Current Price: $349.00. Was $369."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.2 out of 5. 23 reviews.":
+        - img "Rated 4.2 out of 5, 23 user reviews"
+  - button [ref=e266]:
+    - generic [ref=e267]:
+      - img "180.": "180"
+      - button "An interactive autorotating 180 image showing the item from different angles" [ref=e268]:
+        - img
+      - text: "Samsung Odyssey Curved Gaming Monitor"
+      - group "Current Price: $229.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 1K reviews.":
+        - img "Rated 4.6 out of 5, 1K user reviews"
+  - button [ref=e269]:
+    - generic [ref=e270]:
+      - img "31% OFF.": "31% OFF"
+      - img "Samsung 27\" S3 S32gf FHD IPS 120Hz Monitor"
+      - text: "Samsung 27\" S3 S32gf FHD IPS 120Hz Monitor"
+      - group "Current Price: $109.99. Was $160."
+      - text: "Walmart & more Free delivery by Sat"
+      - img "Rated 4.5 out of 5. 3.2K reviews.":
+        - img "Rated 4.5 out of 5, 3.2K user reviews"
+  - heading "Page Navigation" [level=1]
+  - button "More results" [ref=e272]
+  - navigation
+</result>
+
+[8] thinking: **Sorting monitor searches**
+
+It looks like I've duplicated the input in my search, but that's okay! I'm focusing on finding nearby monitors. I need to filter for IPS displays, but the results show IPS when they shouldn't. Google lists options already; I want specific nearby products. I should check filters for computer monitors, resolution, and price, sorting from low to high. I’ll apply the necessary filters, inspect options, and take it step by step to keep things organized.
+
+[9] tool_call: repl("Applying 4K filter")
+<request>
+await page.locator('e89').click();
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff);
+</request>
+<result tokens_used="276" elapsed_time="1275ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "3840 x 2160 samsung lg 27 32 4k ips monitor - Google Shopping" [url=https://www.google.com/search?q=3840+x+2160+samsung+lg+27+32+4k+ips+monitor&udm=28&shopmd=1&shoprs=CAEYASofc2Ftc3VuZyBsZyAyNyAzM…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "3840 x 2160 samsung lg 27 32 4k ips monitor 3840 x 2160 samsung lg 27 32 4k ips monitor"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "On sale filter. Not selected." [ref=e22]: "On sale"
+    - link "Get it tomorrow filter. Not selected." [ref=e23]: "Get it tomorrow"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Resolution" [ref=e27]
+    - link "Remove 3840 x 2160 filter. Selected." [ref=e28]: "3840 x 2160"
+    - link "2560 x 1440 filter. Not selected." [ref=e29]: "2560 x 1440"
+    - link "1920 x 1080 filter. Not selected." [ref=e30]: "1920 x 1080"
+    - link "5120 x 2880 filter. Not selected." [ref=e31]: "5120 x 2880"
+    - button "Maximum Refresh Rate" [ref=e32]
+    - link "Under 60 Hz filter. Not selected." [ref=e33]: "Under 60 Hz"
+    - link "60 – 144 Hz filter. Not selected." [ref=e34]: "60 – 144 Hz"
+    - link "144 – 240 Hz filter. Not selected." [ref=e35]: "144 – 240 Hz"
+    - link "Over 240 Hz filter. Not selected." [ref=e36]: "Over 240 Hz"
+    - button "Features" [ref=e37]
+    - link "Gaming filter. Not selected." [ref=e38]: "Gaming"
+    - link "With Speakers filter. Not selected." [ref=e39]: "With Speakers"
+    - link "Curved filter. Not selected." [ref=e40]: "Curved"
+    - button "Connector Type" [ref=e41]
+    - link "HDMI filter. Not selected." [ref=e42]: "HDMI"
+    - link "DisplayPort filter. Not selected." [ref=e43]: "DisplayPort"
+    - link "USB-C filter. Not selected." [ref=e44]: "USB-C"
+    - link "Thunderbolt 3 filter. Not selected." [ref=e45]: "Thunderbolt 3"
+    - button "Display Type" [ref=e46]
+    - link "OLED filter. Not selected." [ref=e47]: "OLED"
+    - link "LED filter. Not selected." [ref=e48]: "LED"
+    - link "QLED filter. Not selected." [ref=e49]: "QLED"
+    - button "Brightness" [ref=e50]
+    - link "Under 300 cd/m² filter. Not selected." [ref=e51]: "Under 300 cd/m²"
+    - link "300 – 350 cd/m² filter. Not selected." [ref=e52]: "300 – 350 cd/m²"
+    - link "350 – 400 cd/m² filter. Not selected." [ref=e53]: "350 – 400 cd/m²"
+    - link "400 – 450 cd/m² filter. Not selected." [ref=e54]: "400 – 450 cd/m²"
+    - link "Over 450 cd/m² filter. Not selected." [ref=e55]: "Over 450 cd/m²"
+    - button "Product Rating" [ref=e56]
+    - link "Four stars and up filter. Not selected." [ref=e57]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Weight" [ref=e58]
+    - link "Under 11.7 lb weight filter. Not selected." [ref=e59]: "Under 11.7 lb weight"
+    - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e60]: "11.7 – 15.7 lb weight"
+    - link "15.7 – 22 lb weight filter. Not selected." [ref=e61]: "15.7 – 22 lb weight"
+    - link "Over 22 lb weight filter. Not selected." [ref=e62]: "Over 22 lb weight"
+    - button "Price" [ref=e63]
+    - link "Under $350 filter. Not selected." [ref=e64]: "Under $350"
+    - link "$350 to $700 filter. Not selected." [ref=e65]: "$350 - $700"
+    - link "Over $700 filter. Not selected." [ref=e66]: "Over $700"
+    - textbox "Minimum price ($)" [ref=e67]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e68]
+    - text: "Max"
+    - button "Go" [ref=e69] [disabled]
+    - button "Connectivity" [ref=e70]
+    - link "USB filter. Not selected." [ref=e71]: "USB"
+    - link "Bluetooth filter. Not selected." [ref=e72]: "Bluetooth"
+    - link "Optical Audio filter. Not selected." [ref=e73]: "Optical Audio"
+    - button "Stores" [ref=e74]
+    - link "Adorama filter. Not selected." [ref=e75]: "Adorama"
+    - link "Target filter. Not selected." [ref=e76]: "Target"
+    - link "eBay filter. Not selected." [ref=e77]: "eBay"
+    - link "Best Buy filter. Not selected." [ref=e78]: "Best Buy"
+    - button "See more" [ref=e79]
+    - button "LG Product Line" [ref=e80]
+    - link "UltraFine filter. Not selected." [ref=e81]: "UltraFine"
+    - link "UltraWide filter. Not selected." [ref=e82]: "UltraWide"
+    - button "Samsung Product Line" [ref=e83]
+    - link "Samsung Odyssey filter. Not selected." [ref=e84]: "Samsung Odyssey"
+    - link "ViewFinity S filter. Not selected." [ref=e85]: "ViewFinity S"
+    - link "ViewFinity filter. Not selected." [ref=e86]: "ViewFinity"
+    - button "Free shipping" [ref=e87]
+    - link "Free shipping filter. Not selected." [ref=e88]: "Free shipping"
+- navigation "Refinement" [ref=e89]:
+  - generic [ref=e90] [scrollable]:
+    - list:
+      - button "All filters." [ref=e91]
+      - listitem [ref=e92]:
+        - link "Remove 3840 x 2160 filter. Selected." [ref=e93]: "3840 x 2160"
+      - listitem [ref=e94]:
+        - link "60 – 144 Hz filter. Not selected." [ref=e95]: "60 – 144 Hz"
+      - listitem [ref=e96]:
+        - link "144 – 240 Hz filter. Not selected." [ref=e97]: "144 – 240 Hz"
+      - listitem [ref=e98]:
+        - link "Gaming filter. Not selected." [ref=e99]: "Gaming"
+      - listitem [ref=e100]:
+        - link "Over 240 Hz filter. Not selected." [ref=e101]: "Over 240 Hz"
+      - listitem [ref=e102]:
+        - link "HDMI filter. Not selected." [ref=e103]: "HDMI"
+      - listitem [ref=e104]:
+        - link "DisplayPort filter. Not selected." [ref=e105]: "DisplayPort"
+      - listitem [ref=e106]:
+        - link "USB-C filter. Not selected." [ref=e107]: "USB-C"
+      - listitem [ref=e108]:
+        - link "Under 60 Hz filter. Not selected." [ref=e109]: "Under 60 Hz"
+      - listitem [ref=e110]:
+        - link "OLED filter. Not selected." [ref=e111]: "OLED"
+      - listitem [ref=e112]:
+        - link "LED filter. Not selected." [ref=e113]: "LED"
+      - listitem [ref=e114]:
+        - link "On sale filter. Not selected." [ref=e115]: "On sale"
+      - listitem [ref=e116]:
+        - link "With Speakers filter. Not selected." [ref=e117]: "With Speakers"
+      - listitem [ref=e118]:
+        - link "Get it tomorrow filter. Not selected." [ref=e119]: "Get it tomorrow"
+      - listitem [ref=e120]:
+        - link "350 – 400 cd/m² filter. Not selected." [ref=e121]: "350 – 400 cd/m²"
+      - listitem [ref=e122]:
+        - link "QLED filter. Not selected." [ref=e123]: "QLED"
+      - listitem [ref=e124]:
+        - link "400 – 450 cd/m² filter. Not selected." [ref=e125]: "400 – 450 cd/m²"
+      - listitem [ref=e126]:
+        - link "Curved filter. Not selected." [ref=e127]: "Curved"
+      - listitem [ref=e128]:
+        - link "Computer Monitors filter. Not selected." [ref=e129]: "Computer Monitors"
+      - listitem [ref=e130]:
+        - link "300 – 350 cd/m² filter. Not selected." [ref=e131]: "300 – 350 cd/m²"
+      - listitem [ref=e132]:
+        - link "Over 450 cd/m² filter. Not selected." [ref=e133]: "Over 450 cd/m²"
+      - listitem [ref=e134]:
+        - link "Under 300 cd/m² filter. Not selected." [ref=e135]: "Under 300 cd/m²"
+      - listitem [ref=e136]:
+        - link "1080p filter. Not selected." [ref=e137]: "1080p"
+      - listitem [ref=e138]:
+        - link "TVs filter. Not selected." [ref=e139]: "TVs"
+      - listitem [ref=e140]:
+        - link "Thunderbolt 3 filter. Not selected." [ref=e141]: "Thunderbolt 3"
+      - listitem [ref=e142]:
+        - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e143]: "11.7 – 15.7 lb weight"
+      - listitem [ref=e144]:
+        - link "Under $350 filter. Not selected." [ref=e145]: "Under $350"
+  - combobox "Sort by:Relevance" [ref=e146]
+- main:
+  - heading "Browse products" [level=2]
+  - button [ref=e147]:
+    - generic [ref=e148]:
+      - img "7% OFF.": "7% OFF"
+      - img "LG UltraFine 27US500-W 27\" 4K HDR Monitor"
+      - text: "LG UltraFine 27US500-W 27\" 4K HDR Monitor"
+      - group "Current Price: $229.95. Was $249."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 404 reviews.":
+        - img "Rated 4.6 out of 5, 404 user reviews"
+  - button [ref=e149]:
+    - generic [ref=e150]:
+      - img "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - text: "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - group "Current Price: $399.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 2.4K reviews.":
+        - img "Rated 4.5 out of 5, 2.4K user reviews"
+  - button [ref=e151]:
+    - generic [ref=e152]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e153]:
+        - img
+      - text: "Samsung u32j590uqn Monitor"
+      - group "Current Price: $339.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.4 out of 5. 2.7K reviews.":
+        - img "Rated 4.4 out of 5, 2.7K user reviews"
+  - button [ref=e154]:
+    - generic [ref=e155]:
+      - img "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - text: "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - group "Current Price: $429.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 893 reviews.":
+        - img "Rated 4.6 out of 5, 893 user reviews"
+  - button [ref=e156]:
+    - generic [ref=e157]:
+      - img "LG 27u731sa-w 27 4K IPS Led Monitor"
+      - text: "Nearby, 15 mi LG 27u731sa-w 27 4K IPS Led Monitor"
+      - group "Current Price: $379.99."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 178 reviews.":
+        - img "Rated 4.4 out of 5, 178 user reviews"
+  - button [ref=e158]:
+    - generic [ref=e159]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e160]:
+        - img
+      - text: "Samsung Odyssey G7 G70F 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $599.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 33 reviews.":
+        - img "Rated 4.5 out of 5, 33 user reviews"
+  - button [ref=e161]:
+    - generic [ref=e162]:
+      - img "41% OFF.": "41% OFF"
+      - img "LG 27G810A-B.AUS UltraGear 27\" 4K UHD 180Hz Gaming Monitor"
+      - text: "LG 27G810A-B.AUS UltraGear 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $349.99. Was $600."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.5 out of 5. 192 reviews.":
+        - img "Rated 4.5 out of 5, 192 user reviews"
+  - button [ref=e163]:
+    - generic [ref=e164]:
+      - img "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - text: "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - group "Current Price: $1,099.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.3 out of 5. 806 reviews.":
+        - img "Rated 4.3 out of 5, 806 user reviews"
+  - button [ref=e165]:
+    - generic [ref=e166]:
+      - img "Samsung 4K UHD ViewFinity Monitor"
+      - text: "Samsung 4K UHD ViewFinity Monitor"
+      - group "Current Price: $569.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 135 reviews.":
+        - img "Rated 4.5 out of 5, 135 user reviews"
+  - button [ref=e167]:
+    - generic [ref=e168]:
+      - img "12% OFF.": "12% OFF"
+      - img "LG UltraFine 32UR550K 32 4K Va Led Monitor"
+      - text: "LG UltraFine 32UR550K 32 4K Va Led Monitor"
+      - group "Current Price: $349.95. Was $400."
+      - text: "Best Buy & more"
+      - img "Rated 4.3 out of 5. 146 reviews.":
+        - img "Rated 4.3 out of 5, 146 user reviews"
+  - button [ref=e169]:
+    - generic [ref=e170]:
+      - img "38% OFF.": "38% OFF"
+      - img "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - text: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - group "Current Price: $429.99. Was $700."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 119 reviews.":
+        - img "Rated 4.6 out of 5, 119 user reviews"
+  - button [ref=e171]:
+    - generic [ref=e172]:
+      - img "LG 27\" 4K UHD Led Monitor"
+      - text: "LG 27\" 4K UHD Led Monitor"
+      - group "Current Price: $378.99."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.7 out of 5. 617 reviews.":
+        - img "Rated 4.7 out of 5, 617 user reviews"
+  - button [ref=e173]:
+    - generic [ref=e174]:
+      - img "14% OFF.": "14% OFF"
+      - img "LG 27UP650K-W 27-inch UltraFine 4K UHD IPS Monitor"
+      - text: "LG 27UP650K-W 27-inch UltraFine 4K UHD IPS Monitor"
+      - group "Current Price: $239.99. Was $280."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 173 reviews.":
+        - img "Rated 4.4 out of 5, 173 user reviews"
+  - button [ref=e175]:
+    - generic [ref=e176]:
+      - img "LG 27LQ625S-PU 27\" Full HD IPS LED TV Monitor"
+      - text: "LG 27LQ625S-PU 27\" Full HD IPS LED TV Monitor"
+      - group "Current Price: $199.99."
+      - text: "PC Richard & Son & more"
+      - img "Rated 4.6 out of 5. 1.4K reviews.":
+        - img "Rated 4.6 out of 5, 1.4K user reviews"
+  - button [ref=e177]:
+    - generic [ref=e178]:
+      - img "28% OFF.": "28% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e179]:
+        - img
+      - text: "Samsung Odyssey G7 G70D 4K UHD 144Hz Gaming Monitor"
+      - group "Current Price: $499.99. Was $700."
+      - text: "Best Buy & more"
+      - img "Rated 4.2 out of 5. 213 reviews.":
+        - img "Rated 4.2 out of 5, 213 user reviews"
+  - button [ref=e180]:
+    - generic [ref=e181]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e182]:
+        - img
+      - text: "LG 32UR500K-B 32\" UltraFine 4K UHD HDR10 Monitor with Built-In Speakers"
+      - group "Current Price: $328.60."
+      - text: "Walmart - Happy Ranger & more Free delivery"
+      - img "Rated 4.5 out of 5. 215 reviews.":
+        - img "Rated 4.5 out of 5, 215 user reviews"
+  - button [ref=e183]:
+    - generic [ref=e184]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e185]:
+        - img
+      - text: "Gaming Monitor Samsung Odyssey G3 180Hz"
+      - group "Current Price: $224.99."
+      - text: "Target Free delivery"
+      - img "Rated 4.7 out of 5. 2.7K reviews.":
+        - img "Rated 4.7 out of 5, 2.7K user reviews"
+  - button [ref=e186]:
+    - generic [ref=e187]:
+      - img "24% OFF.": "24% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e188]:
+        - img
+      - text: "Nearby, 9 mi Dell 27 Plus 4K USB-C Monitor"
+      - group "Current Price: $279.99. Was $370."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.6 out of 5. 786 reviews.":
+        - img "Rated 4.6 out of 5, 786 user reviews"
+  - button [ref=e189]:
+    - generic [ref=e190]:
+      - img "40% OFF.": "40% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e191]:
+        - img
+      - text: "LG 27\" UltraFine 4K UHD HDR10 IPS Monitor"
+      - group "Current Price: $204.99. Was $342."
+      - text: "Techinn.com & more"
+      - img "Rated 4.5 out of 5. 187 reviews.":
+        - img "Rated 4.5 out of 5, 187 user reviews"
+  - button [ref=e192]:
+    - generic [ref=e193]:
+      - img "10% OFF.": "10% OFF"
+      - img "LG 27BA45U-B 27\" Class LCD Monitor"
+      - text: "LG 27BA45U-B 27\" Class LCD Monitor"
+      - group "Current Price: $259.99. Was $290."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 89 reviews.":
+        - img "Rated 4.4 out of 5, 89 user reviews"
+  - button [ref=e194]:
+    - generic [ref=e195]:
+      - img "15% OFF.": "15% OFF"
+      - img "LG 37\" 4K UHD IPS Smart Monitor with webOS"
+      - text: "LG 37\" 4K UHD IPS Smart Monitor with webOS"
+      - group "Current Price: $322.99. Pre-owned."
+      - text: "Newegg.com & more Free delivery"
+      - img "Rated 4.6 out of 5. 240 reviews.":
+        - img "Rated 4.6 out of 5, 240 user reviews"
+  - button [ref=e196]:
+    - generic [ref=e197]:
+      - img "LG 32UN650-W 32\" Class 4K UHD LCD Monitor"
+      - text: "LG 32UN650-W 32\" Class 4K UHD LCD Monitor"
+      - group "Current Price: $559.99."
+      - text: "Walmart - PhoNecessity & more Free delivery"
+      - img "Rated 4.6 out of 5. 168 reviews.":
+        - img "Rated 4.6 out of 5, 168 user reviews"
+  - button [ref=e198]:
+    - generic [ref=e199]:
+      - img "Samsung Series 4K UHD Monitor"
+      - text: "Samsung Series 4K UHD Monitor"
+      - group "Current Price: $150.00. Pre-owned."
+      - text: "DougDeals.com & more"
+      - img "Rated 4.5 out of 5. 816 reviews.":
+        - img "Rated 4.5 out of 5, 816 user reviews"
+  - button [ref=e200]:
+    - generic [ref=e201]:
+      - img "Samsung - 32\" 4K UHD , Anti-Glare, Flicker-Free, VESA Mount (100mm), Displayport, HDMI & DKZ Hub, Co"
+      - text: "Samsung - 32\" 4K UHD , Anti-Glare, Flicker-Free, VESA Mount (100mm), Displayport, HDMI & DKZ Hub, Color - Black"
+      - group "Current Price: $429.99."
+      - text: "Best Buy"
+  - button [ref=e202]:
+    - generic [ref=e203]:
+      - img "LG 27\" 4K IPS Monitor"
+      - text: "LG 27\" 4K IPS Monitor"
+      - group "Current Price: $470.84."
+      - text: "Target & more Free delivery"
+      - img "Rated 1.0 out of 5. 1 reviews.":
+        - img "Rated 1.0 out of 5, 1 user review"
+  - button [ref=e204]:
+    - generic [ref=e205]:
+      - img "LG 27BL55U-B 27\" 4K Monitor"
+      - text: "Nearby, 28 mi LG 27BL55U-B 27\" 4K Monitor"
+      - group "Current Price: $332.92."
+      - text: "Dataknox.io & more"
+      - img "Rated 5.0 out of 5. 2 reviews.":
+        - img "Rated 5.0 out of 5, 2 user reviews"
+  - button [ref=e206]:
+    - generic [ref=e207]:
+      - img "57% OFF.": "57% OFF"
+      - img "Samsung 32\" ViewFinity UJ59 Series 4K UHD LED Monitor 60Hz 4ms"
+      - text: "Samsung 32\" ViewFinity UJ59 Series 4K UHD LED Monitor 60Hz 4ms"
+      - group "Current Price: $169.99. Pre-owned."
+      - text: "Quick Ship Electronics & more Free delivery by Fri"
+      - img "Rated 4.2 out of 5. 414 reviews.":
+        - img "Rated 4.2 out of 5, 414 user reviews"
+  - button [ref=e208]:
+    - generic [ref=e209]:
+      - img "Samsung ViewFinity S8 4K 60Hz Monitor"
+      - text: "Samsung ViewFinity S8 4K 60Hz Monitor"
+      - group "Current Price: $419.99."
+      - text: "CDW & more"
+      - img "Rated 4.5 out of 5. 486 reviews.":
+        - img "Rated 4.5 out of 5, 486 user reviews"
+  - button [ref=e210]:
+    - generic [ref=e211]:
+      - img "5% OFF.": "5% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e212]:
+        - img
+      - text: "LG 32BN50U-B 32 inch 4K UHD LCD Monitor"
+      - group "Current Price: $349.00. Was $369."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.2 out of 5. 23 reviews.":
+        - img "Rated 4.2 out of 5, 23 user reviews"
+  - button [ref=e213]:
+    - generic [ref=e214]:
+      - img "LG 27' 4K UHD IPS 350 cd/m sRGB 99%"
+      - text: "LG 27' 4K UHD IPS 350 cd/m sRGB 99%"
+      - group "Current Price: $559.90."
+      - text: "Newegg.com - Slava computers & more Free delivery"
+      - img "Rated 4.6 out of 5. 243 reviews.":
+        - img "Rated 4.6 out of 5, 243 user reviews"
+  - button [ref=e215]:
+    - generic [ref=e216]:
+      - img "Samsung 27” ViewFinity S70A 4K Monitor"
+      - text: "Samsung 27” ViewFinity S70A 4K Monitor"
+      - group "Current Price: $350.00."
+      - text: "ExcelDisc"
+      - img "Rated 4.0 out of 5. 173 reviews.":
+        - img "Rated 4.0 out of 5, 173 user reviews"
+  - button [ref=e217]:
+    - generic [ref=e218]:
+      - img "18% OFF.": "18% OFF"
+      - img "LG 32U850SA-W 32 4K Ips Led Monitor"
+      - text: "LG 32U850SA-W 32 4K Ips Led Monitor"
+      - group "Current Price: $515.99. Was $637."
+      - text: "Techinn.com & more"
+      - img "Rated 4.3 out of 5. 215 reviews.":
+        - img "Rated 4.3 out of 5, 215 user reviews"
+  - button [ref=e219]:
+    - generic [ref=e220]:
+      - img "25% OFF.": "25% OFF"
+      - img "Z-EDGE S274K 4K IPS Monitor"
+      - text: "Z-EDGE S274K 4K IPS Monitor"
+      - group "Current Price: $199.99. Was $270."
+      - text: "Target & more Free delivery"
+      - img "Rated 4.9 out of 5. 75 reviews.":
+        - img "Rated 4.9 out of 5, 75 user reviews"
+  - button [ref=e221]:
+    - generic [ref=e222]:
+      - img "Samsung 27\" 4K UHD IPS Panel Monitor"
+      - text: "Samsung 27\" 4K UHD IPS Panel Monitor"
+      - group "Current Price: $535.39."
+      - text: "Office Depot & more Free delivery"
+      - img "Rated 4.8 out of 5. 10 reviews.":
+        - img "Rated 4.8 out of 5, 10 user reviews"
+  - button [ref=e223]:
+    - generic [ref=e224]:
+      - img "32BN67U-B LG LED Monitor"
+      - text: "32BN67U-B LG LED Monitor"
+      - group "Current Price: $519.99."
+      - text: "CDW & more"
+      - img "Rated 4.5 out of 5. 4 reviews.":
+        - img "Rated 4.5 out of 5, 4 user reviews"
+  - button [ref=e225]:
+    - generic [ref=e226]:
+      - img "LG 32-Inch 4K HDR Monitor"
+      - text: "LG 32-Inch 4K HDR Monitor"
+      - group "Current Price: $439.99."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+  - button [ref=e227]:
+    - generic [ref=e228]:
+      - img "Samsung ViewFinity S7 4K UHD Computer Monitor"
+      - text: "Samsung ViewFinity S7 4K UHD Computer Monitor"
+      - group "Current Price: $290.00."
+      - text: "ExcelDisc & more"
+      - img "Rated 4.6 out of 5. 893 reviews.":
+        - img "Rated 4.6 out of 5, 893 user reviews"
+  - button [ref=e229]:
+    - generic [ref=e230]:
+      - img "Samsung Odyssey OLED G8 G81SF 4K 240Hz Gaming Monitor"
+      - text: "Samsung Odyssey OLED G8 G81SF 4K 240Hz Gaming Monitor"
+      - group "Current Price: $1,229.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 547 reviews.":
+        - img "Rated 4.6 out of 5, 547 user reviews"
+  - button [ref=e231]:
+    - generic [ref=e232]:
+      - img "LG 32 Inch 4K UHD IPS Touchscreen Smart Monitor Swing with Rolling Stand"
+      - text: "LG 32 Inch 4K UHD IPS Touchscreen Smart Monitor Swing with Rolling Stand"
+      - group "Current Price: $799.99."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.3 out of 5. 215 reviews.":
+        - img "Rated 4.3 out of 5, 215 user reviews"
+  - button [ref=e233]:
+    - generic [ref=e234]:
+      - img "28% OFF.": "28% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e235]:
+        - img
+      - text: "LG 32\" UltraGear OLED Dual Mode 4K UHD G-Sync Compatible Gaming Monitor"
+      - group "Current Price: $999.99. Was $1,400."
+      - text: "Target & more Free delivery"
+      - img "Rated 4.5 out of 5. 363 reviews.":
+        - img "Rated 4.5 out of 5, 363 user reviews"
+  - heading "Page Navigation" [level=1]
+  - button "More results" [ref=e237]
+  - navigation
+</result>
+
+[10] thinking: **Searching for nearby options**
+
+I need to find the nearby lowest option. It seems like I have a straightforward path: I could click on the Nearby tab after I set my filters. This approach should help pinpoint what’s closest to me. I wonder if I need any particular filters or if the basic ones will do the trick. Let’s keep it simple and effective!
+
+[11] tool_call: repl("Switching to nearby results")
+<request>
+await page.locator('e16').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff);
+</request>
+<result tokens_used="75" elapsed_time="5111ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "3840 x 2160 samsung lg 27 32 4k ips monitor - Google Shopping" [url=https://www.google.com/search?q=3840+x+2160+samsung+lg+27+32+4k+ips+monitor&udm=28&shopmd=4&shoprs=CAEYAyorMzg0MCB4IDIxNjAgc2Ftc…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "3840 x 2160 samsung lg 27 32 4k ips monitor 3840 x 2160 samsung lg 27 32 4k ips monitor"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "On sale filter. Not selected." [ref=e22]: "On sale"
+    - link "Get it tomorrow filter. Not selected." [ref=e23]: "Get it tomorrow"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Resolution" [ref=e27]
+    - link "Remove 3840 x 2160 filter. Selected." [ref=e28]: "3840 x 2160"
+    - link "2560 x 1440 filter. Not selected." [ref=e29]: "2560 x 1440"
+    - link "1920 x 1080 filter. Not selected." [ref=e30]: "1920 x 1080"
+    - link "5120 x 2880 filter. Not selected." [ref=e31]: "5120 x 2880"
+    - button "Connector Type" [ref=e32]
+    - link "USB-C filter. Not selected." [ref=e33]: "USB-C"
+    - link "HDMI filter. Not selected." [ref=e34]: "HDMI"
+    - link "DisplayPort filter. Not selected." [ref=e35]: "DisplayPort"
+    - link "Thunderbolt 3 filter. Not selected." [ref=e36]: "Thunderbolt 3"
+    - button "Maximum Refresh Rate" [ref=e37]
+    - link "Under 60 Hz filter. Not selected." [ref=e38]: "Under 60 Hz"
+    - link "60 – 144 Hz filter. Not selected." [ref=e39]: "60 – 144 Hz"
+    - link "144 – 240 Hz filter. Not selected." [ref=e40]: "144 – 240 Hz"
+    - link "Over 240 Hz filter. Not selected." [ref=e41]: "Over 240 Hz"
+    - button "Features" [ref=e42]
+    - link "Gaming filter. Not selected." [ref=e43]: "Gaming"
+    - link "With Speakers filter. Not selected." [ref=e44]: "With Speakers"
+    - link "Curved filter. Not selected." [ref=e45]: "Curved"
+    - button "Price" [ref=e46]
+    - link "Under $150 filter. Not selected." [ref=e47]: "Under $150"
+    - link "$150 to $350 filter. Not selected." [ref=e48]: "$150 - $350"
+    - link "$350 to $700 filter. Not selected." [ref=e49]: "$350 - $700"
+    - link "Over $700 filter. Not selected." [ref=e50]: "Over $700"
+    - textbox "Minimum price ($)" [ref=e51]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e52]
+    - text: "Max"
+    - button "Go" [ref=e53] [disabled]
+    - button "Display Type" [ref=e54]
+    - link "OLED filter. Not selected." [ref=e55]: "OLED"
+    - link "LED filter. Not selected." [ref=e56]: "LED"
+    - link "QLED filter. Not selected." [ref=e57]: "QLED"
+    - button "Brightness" [ref=e58]
+    - link "Under 300 cd/m² filter. Not selected." [ref=e59]: "Under 300 cd/m²"
+    - link "300 – 350 cd/m² filter. Not selected." [ref=e60]: "300 – 350 cd/m²"
+    - link "350 – 400 cd/m² filter. Not selected." [ref=e61]: "350 – 400 cd/m²"
+    - link "400 – 450 cd/m² filter. Not selected." [ref=e62]: "400 – 450 cd/m²"
+    - link "Over 450 cd/m² filter. Not selected." [ref=e63]: "Over 450 cd/m²"
+    - button "Product Rating" [ref=e64]
+    - link "Four stars and up filter. Not selected." [ref=e65]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Weight" [ref=e66]
+    - link "Under 11.7 lb weight filter. Not selected." [ref=e67]: "Under 11.7 lb weight"
+    - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e68]: "11.7 – 15.7 lb weight"
+    - link "15.7 – 22 lb weight filter. Not selected." [ref=e69]: "15.7 – 22 lb weight"
+    - link "Over 22 lb weight filter. Not selected." [ref=e70]: "Over 22 lb weight"
+    - button "Stores" [ref=e71]
+    - link "Adorama filter. Not selected." [ref=e72]: "Adorama"
+    - link "Target filter. Not selected." [ref=e73]: "Target"
+    - link "Best Buy filter. Not selected." [ref=e74]: "Best Buy"
+    - link "eBay filter. Not selected." [ref=e75]: "eBay"
+    - button "See more" [ref=e76]
+    - button "LG Product Line" [ref=e77]
+    - link "UltraFine filter. Not selected." [ref=e78]: "UltraFine"
+    - link "UltraWide filter. Not selected." [ref=e79]: "UltraWide"
+    - button "Samsung Product Line" [ref=e80]
+    - link "Samsung Odyssey filter. Not selected." [ref=e81]: "Samsung Odyssey"
+    - link "ViewFinity S filter. Not selected." [ref=e82]: "ViewFinity S"
+    - link "ViewFinity filter. Not selected." [ref=e83]: "ViewFinity"
+    - button "Free shipping" [ref=e84]
+    - link "Free shipping filter. Not selected." [ref=e85]: "Free shipping"
+- navigation "Refinement" [ref=e86]:
+  - generic [ref=e87] [scrollable]:
+    - list:
+      - button "All filters." [ref=e88]
+      - listitem [ref=e89]:
+        - link "Remove 3840 x 2160 filter. Selected." [ref=e90]: "3840 x 2160"
+      - listitem [ref=e91]:
+        - link "Remove Nearby filter. Selected." [ref=e92]: "Nearby"
+      - listitem [ref=e93]:
+        - link "On sale filter. Not selected." [ref=e94]: "On sale"
+      - listitem [ref=e95]:
+        - link "USB-C filter. Not selected." [ref=e96]: "USB-C"
+      - listitem [ref=e97]:
+        - link "60 – 144 Hz filter. Not selected." [ref=e98]: "60 – 144 Hz"
+      - listitem [ref=e99]:
+        - link "HDMI filter. Not selected." [ref=e100]: "HDMI"
+      - listitem [ref=e101]:
+        - link "144 – 240 Hz filter. Not selected." [ref=e102]: "144 – 240 Hz"
+      - listitem [ref=e103]:
+        - link "Over 240 Hz filter. Not selected." [ref=e104]: "Over 240 Hz"
+      - listitem [ref=e105]:
+        - link "Gaming filter. Not selected." [ref=e106]: "Gaming"
+      - listitem [ref=e107]:
+        - link "DisplayPort filter. Not selected." [ref=e108]: "DisplayPort"
+      - listitem [ref=e109]:
+        - link "Under 60 Hz filter. Not selected." [ref=e110]: "Under 60 Hz"
+      - listitem [ref=e111]:
+        - link "Under $150 filter. Not selected." [ref=e112]: "Under $150"
+      - listitem [ref=e113]:
+        - link "With Speakers filter. Not selected." [ref=e114]: "With Speakers"
+      - listitem [ref=e115]:
+        - link "Get it tomorrow filter. Not selected." [ref=e116]: "Get it tomorrow"
+      - listitem [ref=e117]:
+        - link "OLED filter. Not selected." [ref=e118]: "OLED"
+      - listitem [ref=e119]:
+        - link "LED filter. Not selected." [ref=e120]: "LED"
+      - listitem [ref=e121]:
+        - link "QLED filter. Not selected." [ref=e122]: "QLED"
+      - listitem [ref=e123]:
+        - link "350 – 400 cd/m² filter. Not selected." [ref=e124]: "350 – 400 cd/m²"
+      - listitem [ref=e125]:
+        - link "Curved filter. Not selected." [ref=e126]: "Curved"
+      - listitem [ref=e127]:
+        - link "400 – 450 cd/m² filter. Not selected." [ref=e128]: "400 – 450 cd/m²"
+      - listitem [ref=e129]:
+        - link "300 – 350 cd/m² filter. Not selected." [ref=e130]: "300 – 350 cd/m²"
+      - listitem [ref=e131]:
+        - link "Over 450 cd/m² filter. Not selected." [ref=e132]: "Over 450 cd/m²"
+      - listitem [ref=e133]:
+        - link "Under 300 cd/m² filter. Not selected." [ref=e134]: "Under 300 cd/m²"
+      - listitem [ref=e135]:
+        - link "New filter. Not selected." [ref=e136]: "New"
+      - listitem [ref=e137]:
+        - link "Used filter. Not selected." [ref=e138]: "Used"
+      - listitem [ref=e139]:
+        - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e140]: "11.7 – 15.7 lb weight"
+      - listitem [ref=e141]:
+        - link "15.7 – 22 lb weight filter. Not selected." [ref=e142]: "15.7 – 22 lb weight"
+      - listitem [ref=e143]:
+        - link "Thunderbolt 3 filter. Not selected." [ref=e144]: "Thunderbolt 3"
+  - combobox "Sort by:Relevance" [ref=e145]
+- main:
+  - heading "Browse products" [level=2]
+  - button [ref=e146]:
+    - generic [ref=e147]:
+      - img "7% OFF.": "7% OFF"
+      - img "LG UltraFine 27US500-W 27\" 4K HDR Monitor"
+      - text: "LG UltraFine 27US500-W 27\" 4K HDR Monitor"
+      - group "Current Price: $229.95. Was $249."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 404 reviews.":
+        - img "Rated 4.6 out of 5, 404 user reviews"
+  - button [ref=e148]:
+    - generic [ref=e149]:
+      - img "LG 27\" UltraFine 4K UHD HDR10 IPS Monitor"
+      - text: "LG 27\" UltraFine 4K UHD HDR10 IPS Monitor"
+      - group "Current Price: $299.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.5 out of 5. 187 reviews.":
+        - img "Rated 4.5 out of 5, 187 user reviews"
+  - button [ref=e150]:
+    - generic [ref=e151]:
+      - img "LG UltraGear 27\" FHD 1080p 180Hz Gaming Monitor"
+      - text: "Nearby, 22 mi LG UltraGear 27\" FHD 1080p 180Hz Gaming Monitor"
+      - group "Current Price: $169.00."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.1 out of 5. 319 reviews.":
+        - img "Rated 4.1 out of 5, 319 user reviews"
+  - button [ref=e152]:
+    - generic [ref=e153]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e154]:
+        - img
+      - text: "Samsung u32j590uqn Monitor"
+      - group "Current Price: $339.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.4 out of 5. 2.7K reviews.":
+        - img "Rated 4.4 out of 5, 2.7K user reviews"
+  - button [ref=e155]:
+    - generic [ref=e156]:
+      - img "LG 27u731sa-w 27 4K IPS Led Monitor"
+      - text: "Nearby, 15 mi LG 27u731sa-w 27 4K IPS Led Monitor"
+      - group "Current Price: $379.99."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 178 reviews.":
+        - img "Rated 4.4 out of 5, 178 user reviews"
+  - button [ref=e157]:
+    - generic [ref=e158]:
+      - img "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - text: "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - group "Current Price: $429.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 893 reviews.":
+        - img "Rated 4.6 out of 5, 893 user reviews"
+  - button [ref=e159]:
+    - generic [ref=e160]:
+      - img "24% OFF.": "24% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e161]:
+        - img
+      - text: "Nearby, 9 mi Dell 27 Plus 4K USB-C Monitor"
+      - group "Current Price: $279.99. Was $370."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.6 out of 5. 786 reviews.":
+        - img "Rated 4.6 out of 5, 786 user reviews"
+  - button [ref=e162]:
+    - generic [ref=e163]:
+      - img "LG 27\" 4K UHD Led Monitor"
+      - text: "LG 27\" 4K UHD Led Monitor"
+      - group "Current Price: $378.99."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.7 out of 5. 617 reviews.":
+        - img "Rated 4.7 out of 5, 617 user reviews"
+  - button [ref=e164]:
+    - generic [ref=e165]:
+      - img "12% OFF.": "12% OFF"
+      - img "LG UltraFine 32UR550K 32 4K Va Led Monitor"
+      - text: "LG UltraFine 32UR550K 32 4K Va Led Monitor"
+      - group "Current Price: $349.95. Was $400."
+      - text: "Best Buy & more"
+      - img "Rated 4.3 out of 5. 146 reviews.":
+        - img "Rated 4.3 out of 5, 146 user reviews"
+  - button [ref=e166]:
+    - generic [ref=e167]:
+      - img "LG 27G810A-B.AUS UltraGear 27\" 4K UHD 180Hz Gaming Monitor"
+      - text: "LG 27G810A-B.AUS UltraGear 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $349.99."
+      - text: "Micro Center & more"
+      - img "Rated 4.5 out of 5. 192 reviews.":
+        - img "Rated 4.5 out of 5, 192 user reviews"
+  - button [ref=e168]:
+    - generic [ref=e169]:
+      - img "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - text: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - group "Current Price: $429.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 119 reviews.":
+        - img "Rated 4.6 out of 5, 119 user reviews"
+  - button [ref=e170]:
+    - generic [ref=e171]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e172]:
+        - img
+      - text: "Samsung Odyssey G7 G70F 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $599.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 33 reviews.":
+        - img "Rated 4.5 out of 5, 33 user reviews"
+  - button [ref=e173]:
+    - generic [ref=e174]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e175]:
+        - img
+      - text: "Gaming Monitor Samsung Odyssey G3 180Hz"
+      - group "Current Price: $224.99."
+      - text: "Target Free delivery"
+      - img "Rated 4.7 out of 5. 2.7K reviews.":
+        - img "Rated 4.7 out of 5, 2.7K user reviews"
+  - button [ref=e176]:
+    - generic [ref=e177]:
+      - img "28% OFF.": "28% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e178]:
+        - img
+      - text: "Samsung Odyssey G7 G70D 4K UHD 144Hz Gaming Monitor"
+      - group "Current Price: $499.99. Was $700."
+      - text: "Best Buy & more"
+      - img "Rated 4.2 out of 5. 213 reviews.":
+        - img "Rated 4.2 out of 5, 213 user reviews"
+  - button [ref=e179]:
+    - generic [ref=e180]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e181]:
+        - img
+      - text: "LG 32UR500K-B 32\" UltraFine 4K UHD HDR10 Monitor with Built-In Speakers"
+      - group "Current Price: $328.60."
+      - text: "Walmart - Happy Ranger & more Free delivery"
+      - img "Rated 4.5 out of 5. 215 reviews.":
+        - img "Rated 4.5 out of 5, 215 user reviews"
+  - button [ref=e182]:
+    - generic [ref=e183]:
+      - img "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - text: "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - group "Current Price: $1,099.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.3 out of 5. 806 reviews.":
+        - img "Rated 4.3 out of 5, 806 user reviews"
+  - button [ref=e184]:
+    - generic [ref=e185]:
+      - img "32BN67U-B LG LED Monitor"
+      - text: "Nearby, 28 mi 32BN67U-B LG LED Monitor"
+      - group "Current Price: $513.64."
+      - text: "Dataknox.io & more"
+      - img "Rated 4.5 out of 5. 4 reviews.":
+        - img "Rated 4.5 out of 5, 4 user reviews"
+  - button [ref=e186]:
+    - generic [ref=e187]:
+      - img "180.": "180"
+      - button "An interactive autorotating 180 image showing the item from different angles" [ref=e188]:
+        - img
+      - text: "Samsung Odyssey Curved Gaming Monitor"
+      - group "Current Price: $229.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.6 out of 5. 1K reviews.":
+        - img "Rated 4.6 out of 5, 1K user reviews"
+  - button [ref=e189]:
+    - generic [ref=e190]:
+      - img "14% OFF.": "14% OFF"
+      - img "LG 27UP650K-W 27-inch UltraFine 4K UHD IPS Monitor"
+      - text: "LG 27UP650K-W 27-inch UltraFine 4K UHD IPS Monitor"
+      - group "Current Price: $239.99. Was $280."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 173 reviews.":
+        - img "Rated 4.4 out of 5, 173 user reviews"
+  - button [ref=e191]:
+    - generic [ref=e192]:
+      - img "LG 27LQ625S-PU 27\" Full HD IPS LED TV Monitor"
+      - text: "LG 27LQ625S-PU 27\" Full HD IPS LED TV Monitor"
+      - group "Current Price: $199.99."
+      - text: "PC Richard & Son & more"
+      - img "Rated 4.6 out of 5. 1.4K reviews.":
+        - img "Rated 4.6 out of 5, 1.4K user reviews"
+  - button [ref=e193]:
+    - generic [ref=e194]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e195]:
+        - img
+      - text: "Nearby, 9 mi Alienware AW2725Q 27\" 4K QD-OLED Gaming Monitor"
+      - group "Current Price: $899.99."
+      - text: "Best Buy & more Free delivery by Fri"
+      - img "Rated 4.7 out of 5. 761 reviews.":
+        - img "Rated 4.7 out of 5, 761 user reviews"
+  - button [ref=e196]:
+    - generic [ref=e197]:
+      - img "LG 24 Inch UltraFine 4K UHD IPS Monitor With macOS Compatibility"
+      - text: "Nearby, 30 mi LG 24 Inch UltraFine 4K UHD IPS Monitor With macOS Compatibility"
+      - group "Current Price: $169.00."
+      - text: "eSaitech"
+      - img "Rated 5.0 out of 5. 1 reviews.":
+        - img "Rated 5.0 out of 5, 1 user review"
+  - button [ref=e198]:
+    - generic [ref=e199]:
+      - img "LG 27BL55U-B 27\" 4K Monitor"
+      - text: "Nearby, 28 mi LG 27BL55U-B 27\" 4K Monitor"
+      - group "Current Price: $332.92."
+      - text: "Dataknox.io & more"
+      - img "Rated 5.0 out of 5. 2 reviews.":
+        - img "Rated 5.0 out of 5, 2 user reviews"
+  - button [ref=e200]:
+    - generic [ref=e201]:
+      - img "LG 37\" 4K UHD IPS Smart Monitor with webOS"
+      - text: "LG 37\" 4K UHD IPS Smart Monitor with webOS"
+      - group "Current Price: $379.99."
+      - text: "Newegg.com & more Free delivery"
+      - img "Rated 4.6 out of 5. 240 reviews.":
+        - img "Rated 4.6 out of 5, 240 user reviews"
+  - button [ref=e202]:
+    - generic [ref=e203]:
+      - img "LG 27\" 4K IPS Monitor"
+      - text: "LG 27\" 4K IPS Monitor"
+      - group "Current Price: $470.84."
+      - text: "Target & more Free delivery"
+      - img "Rated 1.0 out of 5. 1 reviews.":
+        - img "Rated 1.0 out of 5, 1 user review"
+  - button [ref=e204]:
+    - generic [ref=e205]:
+      - img "31% OFF.": "31% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e206]:
+        - img
+      - text: "LG UltraGear QHD 180Hz 1ms AMD FreeSync Gaming Monitor"
+      - group "Current Price: $169.99. Was $249."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.5 out of 5. 866 reviews.":
+        - img "Rated 4.5 out of 5, 866 user reviews"
+  - button [ref=e207]:
+    - generic [ref=e208]:
+      - img "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - text: "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - group "Current Price: $303.95. Pre-owned."
+      - text: "B&H Used Store & more Free delivery by Fri"
+      - img "Rated 4.5 out of 5. 2.4K reviews.":
+        - img "Rated 4.5 out of 5, 2.4K user reviews"
+  - button [ref=e209]:
+    - generic [ref=e210]:
+      - img "Samsung - 32\" 4K UHD , Anti-Glare, Flicker-Free, VESA Mount (100mm), Displayport, HDMI & DKZ Hub, Co"
+      - text: "Samsung - 32\" 4K UHD , Anti-Glare, Flicker-Free, VESA Mount (100mm), Displayport, HDMI & DKZ Hub, Color - Black"
+      - group "Current Price: $429.99."
+      - text: "Best Buy"
+  - button [ref=e211]:
+    - generic [ref=e212]:
+      - img "Samsung 27\" 4K UHD IPS Panel Monitor"
+      - text: "Samsung 27\" 4K UHD IPS Panel Monitor"
+      - group "Current Price: $535.39."
+      - text: "Office Depot & more Free delivery"
+      - img "Rated 4.8 out of 5. 10 reviews.":
+        - img "Rated 4.8 out of 5, 10 user reviews"
+  - button [ref=e213]:
+    - generic [ref=e214]:
+      - img "Samsung 4K UHD Monitor"
+      - text: "Samsung 4K UHD Monitor"
+      - group "Current Price: $411.12."
+      - text: "Staples & more Free delivery by Mon"
+      - img "Rated 4.3 out of 5. 1.4K reviews.":
+        - img "Rated 4.3 out of 5, 1.4K user reviews"
+  - button [ref=e215]:
+    - generic [ref=e216]:
+      - img "LG 32UN650-W 32\" Class 4K UHD LCD Monitor"
+      - text: "LG 32UN650-W 32\" Class 4K UHD LCD Monitor"
+      - group "Current Price: $559.99."
+      - text: "Walmart - PhoNecessity & more Free delivery"
+      - img "Rated 4.6 out of 5. 168 reviews.":
+        - img "Rated 4.6 out of 5, 168 user reviews"
+  - button [ref=e217]:
+    - generic [ref=e218]:
+      - img "ASUS - ROG Strix 27\" 4K OLED 240Hz 0.03ms Gaming Monitor with FreeSync Premium Pro and HDR (DisplayP"
+      - text: "Nearby, 2 mi ASUS - ROG Strix 27\" 4K OLED 240Hz 0.03ms Gaming Monitor with FreeSync Premium Pro and HDR (DisplayPort, HDMI) - Black"
+      - group "Current Price: $799.99."
+      - text: "Best Buy Free delivery by Fri"
+      - img "Rated 4.8 out of 5. 374 reviews.":
+        - img "Rated 4.8 out of 5, 374 user reviews"
+  - button [ref=e219]:
+    - generic [ref=e220]:
+      - img "Dell 27 Plus 4K Monitor"
+      - text: "Dell 27 Plus 4K Monitor"
+      - group "Current Price: $279.99."
+      - text: "Micro Center & more"
+      - img "Rated 4.7 out of 5. 471 reviews.":
+        - img "Rated 4.7 out of 5, 471 user reviews"
+  - button [ref=e221]:
+    - generic [ref=e222]:
+      - img "28% OFF.": "28% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e223]:
+        - img
+      - text: "LG 32\" UltraGear OLED Dual Mode 4K UHD G-Sync Compatible Gaming Monitor"
+      - group "Current Price: $999.99. Was $1,400."
+      - text: "Target & more Free delivery"
+      - img "Rated 4.5 out of 5. 363 reviews.":
+        - img "Rated 4.5 out of 5, 363 user reviews"
+  - button [ref=e224]:
+    - generic [ref=e225]:
+      - img "5% OFF.": "5% OFF"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e226]:
+        - img
+      - text: "LG 32BN50U-B 32 inch 4K UHD LCD Monitor"
+      - group "Current Price: $349.00. Was $369."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.2 out of 5. 23 reviews.":
+        - img "Rated 4.2 out of 5, 23 user reviews"
+  - button [ref=e227]:
+    - generic [ref=e228]:
+      - img "Samsung F32TU874VN 31.5\" 4K UHD LCD Monitor"
+      - text: "Samsung F32TU874VN 31.5\" 4K UHD LCD Monitor"
+      - group "Current Price: $559.99."
+      - text: "Best Buy & more"
+      - img "Rated 4.5 out of 5. 16 reviews.":
+        - img "Rated 4.5 out of 5, 16 user reviews"
+  - button [ref=e229]:
+    - generic [ref=e230]:
+      - img "LG 32 Inch 4K UHD IPS Touchscreen Smart Monitor Swing with Rolling Stand"
+      - text: "LG 32 Inch 4K UHD IPS Touchscreen Smart Monitor Swing with Rolling Stand"
+      - group "Current Price: $799.99."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.3 out of 5. 215 reviews.":
+        - img "Rated 4.3 out of 5, 215 user reviews"
+  - button [ref=e231]:
+    - generic [ref=e232]:
+      - img "LG 4K HDR IPS Gaming Monitor"
+      - text: "LG 4K HDR IPS Gaming Monitor"
+      - group "Current Price: $340.00."
+      - text: "ExcelDisc & more"
+      - img "Rated 4.6 out of 5. 285 reviews.":
+        - img "Rated 4.6 out of 5, 285 user reviews"
+  - button [ref=e233]:
+    - generic [ref=e234]:
+      - img "3D.": "3D"
+      - button "An interactive autorotating 3D image showing the item from different angles. Use Alt or Option + rig" [ref=e235]:
+        - img
+      - text: "Dell 32 Plus 4K Monitor s3225qs UHD"
+      - group "Current Price: $329.99."
+      - text: "Micro Center & more"
+      - img "Rated 4.5 out of 5. 448 reviews.":
+        - img "Rated 4.5 out of 5, 448 user reviews"
+  - button [ref=e236]:
+    - generic [ref=e237]:
+      - img "10% OFF.": "10% OFF"
+      - img "LG 27BA45U-B 27\" Class LCD Monitor"
+      - text: "LG 27BA45U-B 27\" Class LCD Monitor"
+      - group "Current Price: $259.99. Was $290."
+      - text: "B&H Photo-Video-Audio & more Free delivery by Fri"
+      - img "Rated 4.4 out of 5. 89 reviews.":
+        - img "Rated 4.4 out of 5, 89 user reviews"
+  - heading "Local Results" [level=2]
+  - heading "Places" [level=2]
+  - button [ref=e238]:
+    - button [ref=e239]
+  - heading "Map" [level=3]
+  - link "Map" [ref=e240]
+  - button [ref=e241]:
+    - generic [ref=e242]:
+      - heading [level=3]: "Central Computers"
+      - img "Rated 4.4 out of 5, 557 user reviews"
+      - text: "· Computer store 837 Howard St · (415) 495-5888 Open · Closes 5 PM   \"It wasted my time, and my computer looks beautiful after the replacement.\""
+  - button [ref=e243]:
+    - generic [ref=e244]:
+      - heading [level=3]: "Best Buy"
+      - img "Rated 4.1 out of 5, 8K user reviews"
+      - text: "· Computer store 1717 Harrison St · (415) 626-9682 Open · Closes 8 PM   \"Price is less compared to market for dji cam and others\""
+  - heading [level=3]:
+    - link "More places" [ref=e246]
+  - heading "Page Navigation" [level=1]
+  - button "More results" [ref=e248]
+  - navigation
+</result>
+
+[12] thinking: **Evaluating monitor options**
+
+I’m considering the lowest-priced monitors. For instance, the Samsung U32J590UQN at $339.99 is a 32" 4K but likely has VA panel technology, not IPS. Another contender is the Samsung Odyssey G3 at $224.99, though it probably offers FHD, not 4K. The LG 27LQ625S doesn't meet the resolution, and the 24" LG is too small. I found a pre-owned Samsung M7 for $303.95, but it might be a Smart monitor with a VA panel. I need to sort options by price low to high and look for nearby choices.
+
+[13] tool_call: repl("Checking sort options")
+<request>
+await page.locator('e145').click();
+const s5 = await snapshot(page, {interactive:true});
+console.log(s5.diff);
+</request>
+<result tokens_used="392" elapsed_time="1804ms">
+@@ -157,0 +157,5 @@
++  - listbox "Sort by:Relevance" [ref=e249]:
++    - option "Relevance (Default)" [ref=e250] [focused] [selected]
++    - option "Price low to high" [ref=e251]
++    - option "Price high to low" [ref=e252]
++    - option "Rating high to low" [ref=e253]
+</result>
+
+[14] tool_call: repl("Sorting low to high")
+<request>
+await page.locator('e251').click();
+const s6 = await snapshot(page, {interactive:true});
+console.log(s6.diff);
+</request>
+<result tokens_used="56" elapsed_time="5663ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "3840 x 2160 samsung lg 27 32 4k ips monitor nearby - Google Shopping" [url=https://www.google.com/search?q=3840+x+2160+samsung+lg+27+32+4k+ips+monitor+nearby&udm=28&shopmd=4&shoprs=CAEYFyorMzg0MCB4IDIxNj…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "3840 x 2160 samsung lg 27 32 4k ips monitor nearby 3840 x 2160 samsung lg 27 32 4k ips monitor nearby"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "On sale filter. Not selected." [ref=e22]: "On sale"
+    - link "Get it tomorrow filter. Not selected." [ref=e23]: "Get it tomorrow"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Resolution" [ref=e27]
+    - link "Remove 3840 x 2160 filter. Selected." [ref=e28]: "3840 x 2160"
+    - link "2560 x 1440 filter. Not selected." [ref=e29]: "2560 x 1440"
+    - link "1920 x 1080 filter. Not selected." [ref=e30]: "1920 x 1080"
+    - link "5120 x 2880 filter. Not selected." [ref=e31]: "5120 x 2880"
+    - button "Connector Type" [ref=e32]
+    - link "USB-C filter. Not selected." [ref=e33]: "USB-C"
+    - link "HDMI filter. Not selected." [ref=e34]: "HDMI"
+    - link "DisplayPort filter. Not selected." [ref=e35]: "DisplayPort"
+    - link "Thunderbolt 3 filter. Not selected." [ref=e36]: "Thunderbolt 3"
+    - button "Maximum Refresh Rate" [ref=e37]
+    - link "Under 60 Hz filter. Not selected." [ref=e38]: "Under 60 Hz"
+    - link "60 – 144 Hz filter. Not selected." [ref=e39]: "60 – 144 Hz"
+    - link "144 – 240 Hz filter. Not selected." [ref=e40]: "144 – 240 Hz"
+    - link "Over 240 Hz filter. Not selected." [ref=e41]: "Over 240 Hz"
+    - button "Features" [ref=e42]
+    - link "Gaming filter. Not selected." [ref=e43]: "Gaming"
+    - link "With Speakers filter. Not selected." [ref=e44]: "With Speakers"
+    - link "Curved filter. Not selected." [ref=e45]: "Curved"
+    - button "Price" [ref=e46]
+    - link "Under $150 filter. Not selected." [ref=e47]: "Under $150"
+    - link "$150 to $350 filter. Not selected." [ref=e48]: "$150 - $350"
+    - link "$350 to $700 filter. Not selected." [ref=e49]: "$350 - $700"
+    - link "Over $700 filter. Not selected." [ref=e50]: "Over $700"
+    - textbox "Minimum price ($)" [ref=e51]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e52]
+    - text: "Max"
+    - button "Go" [ref=e53] [disabled]
+    - button "Display Type" [ref=e54]
+    - link "OLED filter. Not selected." [ref=e55]: "OLED"
+    - link "LED filter. Not selected." [ref=e56]: "LED"
+    - link "QLED filter. Not selected." [ref=e57]: "QLED"
+    - button "Brightness" [ref=e58]
+    - link "Under 300 cd/m² filter. Not selected." [ref=e59]: "Under 300 cd/m²"
+    - link "300 – 350 cd/m² filter. Not selected." [ref=e60]: "300 – 350 cd/m²"
+    - link "350 – 400 cd/m² filter. Not selected." [ref=e61]: "350 – 400 cd/m²"
+    - link "400 – 450 cd/m² filter. Not selected." [ref=e62]: "400 – 450 cd/m²"
+    - link "Over 450 cd/m² filter. Not selected." [ref=e63]: "Over 450 cd/m²"
+    - button "Product Rating" [ref=e64]
+    - link "Four stars and up filter. Not selected." [ref=e65]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Weight" [ref=e66]
+    - link "Under 11.7 lb weight filter. Not selected." [ref=e67]: "Under 11.7 lb weight"
+    - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e68]: "11.7 – 15.7 lb weight"
+    - link "15.7 – 22 lb weight filter. Not selected." [ref=e69]: "15.7 – 22 lb weight"
+    - link "Over 22 lb weight filter. Not selected." [ref=e70]: "Over 22 lb weight"
+    - button "Stores" [ref=e71]
+    - link "Adorama filter. Not selected." [ref=e72]: "Adorama"
+    - link "Target filter. Not selected." [ref=e73]: "Target"
+    - link "Best Buy filter. Not selected." [ref=e74]: "Best Buy"
+    - link "eBay filter. Not selected." [ref=e75]: "eBay"
+    - button "See more" [ref=e76]
+    - button "LG Product Line" [ref=e77]
+    - link "UltraFine filter. Not selected." [ref=e78]: "UltraFine"
+    - link "UltraWide filter. Not selected." [ref=e79]: "UltraWide"
+    - button "Samsung Product Line" [ref=e80]
+    - link "Samsung Odyssey filter. Not selected." [ref=e81]: "Samsung Odyssey"
+    - link "ViewFinity S filter. Not selected." [ref=e82]: "ViewFinity S"
+    - link "ViewFinity filter. Not selected." [ref=e83]: "ViewFinity"
+    - button "Free shipping" [ref=e84]
+    - link "Free shipping filter. Not selected." [ref=e85]: "Free shipping"
+- navigation "Refinement" [ref=e86]:
+  - generic [ref=e87] [scrollable]:
+    - list:
+      - button "All filters." [ref=e88]
+      - listitem [ref=e89]:
+        - link "Remove 3840 x 2160 filter. Selected." [ref=e90]: "3840 x 2160"
+      - listitem [ref=e91]:
+        - link "Remove Nearby filter. Selected." [ref=e92]: "Nearby"
+      - listitem [ref=e93]:
+        - link "On sale filter. Not selected." [ref=e94]: "On sale"
+      - listitem [ref=e95]:
+        - link "USB-C filter. Not selected." [ref=e96]: "USB-C"
+      - listitem [ref=e97]:
+        - link "60 – 144 Hz filter. Not selected." [ref=e98]: "60 – 144 Hz"
+      - listitem [ref=e99]:
+        - link "HDMI filter. Not selected." [ref=e100]: "HDMI"
+      - listitem [ref=e101]:
+        - link "144 – 240 Hz filter. Not selected." [ref=e102]: "144 – 240 Hz"
+      - listitem [ref=e103]:
+        - link "Over 240 Hz filter. Not selected." [ref=e104]: "Over 240 Hz"
+      - listitem [ref=e105]:
+        - link "Gaming filter. Not selected." [ref=e106]: "Gaming"
+      - listitem [ref=e107]:
+        - link "DisplayPort filter. Not selected." [ref=e108]: "DisplayPort"
+      - listitem [ref=e109]:
+        - link "Under 60 Hz filter. Not selected." [ref=e110]: "Under 60 Hz"
+      - listitem [ref=e111]:
+        - link "Under $150 filter. Not selected." [ref=e112]: "Under $150"
+      - listitem [ref=e113]:
+        - link "With Speakers filter. Not selected." [ref=e114]: "With Speakers"
+      - listitem [ref=e115]:
+        - link "Get it tomorrow filter. Not selected." [ref=e116]: "Get it tomorrow"
+      - listitem [ref=e117]:
+        - link "OLED filter. Not selected." [ref=e118]: "OLED"
+      - listitem [ref=e119]:
+        - link "LED filter. Not selected." [ref=e120]: "LED"
+      - listitem [ref=e121]:
+        - link "QLED filter. Not selected." [ref=e122]: "QLED"
+      - listitem [ref=e123]:
+        - link "350 – 400 cd/m² filter. Not selected." [ref=e124]: "350 – 400 cd/m²"
+      - listitem [ref=e125]:
+        - link "Curved filter. Not selected." [ref=e126]: "Curved"
+      - listitem [ref=e127]:
+        - link "400 – 450 cd/m² filter. Not selected." [ref=e128]: "400 – 450 cd/m²"
+      - listitem [ref=e129]:
+        - link "300 – 350 cd/m² filter. Not selected." [ref=e130]: "300 – 350 cd/m²"
+      - listitem [ref=e131]:
+        - link "Over 450 cd/m² filter. Not selected." [ref=e132]: "Over 450 cd/m²"
+      - listitem [ref=e133]:
+        - link "Under 300 cd/m² filter. Not selected." [ref=e134]: "Under 300 cd/m²"
+      - listitem [ref=e135]:
+        - link "New filter. Not selected." [ref=e136]: "New"
+      - listitem [ref=e137]:
+        - link "Used filter. Not selected." [ref=e138]: "Used"
+      - listitem [ref=e139]:
+        - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e140]: "11.7 – 15.7 lb weight"
+      - listitem [ref=e141]:
+        - link "15.7 – 22 lb weight filter. Not selected." [ref=e142]: "15.7 – 22 lb weight"
+      - listitem [ref=e143]:
+        - link "Thunderbolt 3 filter. Not selected." [ref=e144]: "Thunderbolt 3"
+  - combobox "Sort by:Price low to high" [ref=e145]
+- main:
+  - region "Ads" [ref=e146]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e147]
+    - generic [ref=e148] [scrollable]:
+      - link "for was $600 from Best Buy" [ref=e149]:
+        - link "for was $600 from Best Buy" [ref=e150]
+      - text: "Sale"
+      - link [ref=e151]:
+        - link "Antioch" [ref=e152]
+      - heading [level=3]: "LG - UltraGear 27\" IPS Dual Mode (4K UHD 180Hz, FHD 360Hz), 1ms, NVIDIA G-SYNC, AMD Freesync Gaming Monitor (HDMI, DP, USB-C) - Black"
+      - text: "$349.99$600 Best Buy"
+      - img "Rated 4.5 out of 5, (192) user reviews"
+      - text: "3840 x 2160 · IPS · 180 Hz · 1 millisecond · HDMI, DisplayPort, USB-C · 400 cd/m² · LCD · 27 in"
+      - link "for was $370 from Best Buy" [ref=e153]:
+        - link "for was $370 from Best Buy" [ref=e154]
+      - text: "Sale"
+      - link [ref=e155]:
+        - link "Colma" [ref=e156]
+      - heading [level=3]: "Dell - S2725QC 27\" IPS LED 4K UHD 120Hz FreeSync Premium Monitor (USB-C, HDMI) - Ash White"
+      - text: "$279.99$370 Best Buy"
+      - img "Rated 4.6 out of 5, (786) user reviews"
+      - text: "3840 x 2160 · IPS · 120 Hz · 8 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for was $300 from Best Buy" [ref=e157]:
+        - link "for was $300 from Best Buy" [ref=e158]
+      - text: "Sale"
+      - link [ref=e159]:
+        - link "Mission District" [ref=e160]
+      - heading [level=3]: "LG - 32\" UltraGear G6 IPS QHD 200Hz 1ms G-SYNC Compatible FreeSync Premium Gaming Monitor with HDR10 (HDMI, DisplayPort) - Black"
+      - text: "$249.99$300 Best Buy"
+      - img "Rated 5.0 out of 5, (3) user reviews"
+      - text: "2560 x 1440 · IPS · 200 Hz · 1 millisecond · HDMI, DisplayPort · 32 in"
+      - link "for was $150 from Reperch - Bay Area" [ref=e161]:
+        - link "for was $150 from Reperch - Bay Area" [ref=e162]
+      - text: "Sale"
+      - link [ref=e163]:
+        - link [ref=e164]
+      - heading [level=3]: "Dell S2721QS Monitor 27 Inch 4K UHD IPS Monitor with AMD FreeSync"
+      - text: "$141.00$150 Reperch - Bay Area Used 3840 x 2160 · IPS · 60 Hz · 8 milliseconds · HDMI, DisplayPort · 350 cd/m² · 27 in"
+      - link "for from Samsung" [ref=e165]:
+        - link "for from Samsung" [ref=e166]
+      - link [ref=e167]:
+        - link [ref=e168]
+      - heading [level=3]: "Samsung 27\" Smart Monitor M5 M50F FHD in White (LS27FM503ENXZA)"
+      - text: "$229.99 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 8.4 lb · 27 inches · Bluetooth, Wi-Fi, USB, HDMI · 1080p · 1920 x 1080"
+      - link "for from ViewSonic" [ref=e169]:
+        - link "for from ViewSonic" [ref=e170]
+      - link [ref=e171]:
+        - link [ref=e172]
+      - heading [level=3]: "27\" 4K UHD IPS Monitor w/ Pantone Validated, USB C, HDMI 2.1, and DP"
+      - text: "$699.99 ViewSonic"
+      - img "Rated 3.3 out of 5, (20) user reviews"
+      - text: "3840 x 2160 · IPS · 75 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 27 in"
+      - link "for from PCLiquidations.com" [ref=e173]:
+        - link "for from PCLiquidations.com" [ref=e174]
+      - link [ref=e175]:
+        - link [ref=e176]
+      - heading [level=3]: "LG 27UK500-B 27\" 4K UHD IPS HDR10 Monitor - Grade A"
+      - text: "$307.99 PCLiquidations.com Refurbished 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 27 in · 4K"
+      - link "for from Samsung" [ref=e177]:
+        - link "for from Samsung" [ref=e178]
+      - link [ref=e179]:
+        - link [ref=e180]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M7 M70F 4K Samsung Vision AI in White (LS32FM703UNXZA)"
+      - text: "$399.99 Samsung"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 14.2 lb · 32 inches · 28.2 in wide · Bluetooth, Wi-Fi, USB, HDMI · 4K"
+      - link "for was $380 from B&H Photo-Video-Audio" [ref=e181]:
+        - link "for was $380 from B&H Photo-Video-Audio" [ref=e182]
+      - text: "Sale"
+      - link [ref=e183]:
+        - link "Free 2-day" [ref=e184]
+      - heading [level=3]: "LG UltraFine 27UP850K-W 27\" 4K HDR Monitor"
+      - text: "$329.99$380 B&H Photo-Video-Audio"
+      - img "Rated 4.7 out of 5, (617) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 27 in"
+      - link "for from eCommerce Business Prime" [ref=e185]:
+        - link "for from eCommerce Business Prime" [ref=e186]
+      - link [ref=e187]:
+        - link [ref=e188]
+      - heading [level=3]: "LG 31.5” IPS HDR 4K Ultra HD Monitor with Ergonomic Design - 32BN67U-B"
+      - text: "$581.99 eCommerce Business Prime Free 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · LCD · 31.5 in · 4K"
+      - link "for from Samsung" [ref=e189]:
+        - link "for from Samsung" [ref=e190]
+      - link [ref=e191]:
+        - link [ref=e192]
+      - heading [level=3]: "Samsung 27\" Smart Monitor M5 M50F FHD in Black(LS27FM502ENXZA)"
+      - text: "$229.99 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - link "for from Alogic" [ref=e193]:
+        - link "for from Alogic" [ref=e194]
+      - link [ref=e195]:
+        - link [ref=e196]
+      - heading [level=3]: "CLARITY 27” UHD 4K Monitor"
+      - text: "$539.99 Alogic"
+      - img "Rated 3.9 out of 5, (85) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 4 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 27 in"
+      - link "for from Walmart" [ref=e197]:
+        - link "for from Walmart" [ref=e198]
+      - link [ref=e199]:
+        - link [ref=e200]
+      - heading [level=3]: "Lg 27'' 4K (3840 x 2160) IPS Monitor with USB Type-C | AMD FreeSync | HDR 400, Dci-p3 95% | Built-in Speaker | 60Hz, 5ms | Compact Bezel (hdmi,"
+      - text: "$429.99 Walmart Free 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, USB-C · 27 in · 4K"
+      - link "for was $430 from Samsung" [ref=e201]:
+        - link "for was $430 from Samsung" [ref=e202]
+      - text: "Sale"
+      - link [ref=e203]:
+        - link [ref=e204]
+      - heading [level=3]: "Samsung 32 Inch Odyssey G5 G50D(LS32DG502ENXZA)"
+      - text: "$299.99$430 Samsung"
+      - img "Rated 4.5 out of 5, (73) user reviews"
+      - text: "2560 x 1440 · IPS · 180 Hz · HDMI, DisplayPort · 27 in · Odyssey G"
+      - link "for was $900 from Best Buy" [ref=e205]:
+        - link "for was $900 from Best Buy" [ref=e206]
+      - text: "Sale"
+      - link [ref=e207]:
+        - link [ref=e208]
+      - heading [level=3]: "LG - UltraGear 27\" IPS Dual Mode (4K UHD 240Hz or FHD 480Hz) 1ms G-Sync Gaming Monitor with DisplayHDR 600 (DisplayPort 2.1) - Black"
+      - text: "$599.99$900 Best Buy"
+      - img "Rated 4.4 out of 5, (78) user reviews"
+      - text: "3840 x 2160 · IPS · 240 Hz · 1 millisecond · HDMI, DisplayPort, USB-C · 600 cd/m² · LCD · 27 in"
+      - link "for was $270 from Samsung" [ref=e209]:
+        - link "for was $270 from Samsung" [ref=e210]
+      - text: "Sale"
+      - link [ref=e211]:
+        - link [ref=e212]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M5 M50F FHD in Black(LS32FM502ENXZA)"
+      - text: "$219.99$270 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - link "for from ViewSonic" [ref=e213]:
+        - link "for from ViewSonic" [ref=e214]
+      - link [ref=e215]:
+        - link [ref=e216]
+      - heading [level=3]: "32\"4K UHD IPS Docking Monitor with Thunderbolt 4"
+      - text: "$799.99 ViewSonic Free 3840 x 2160 · IPS · 75 Hz · 6 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 32 in"
+      - link "for from eBay" [ref=e217]:
+        - link "for from eBay" [ref=e218]
+      - link [ref=e219]:
+        - link [ref=e220]
+      - heading [level=3]: "Lg 32un880k Ultra Hd Monitor 32\" (80 Cm) 4k Uhd Ips Monitor"
+      - text: "$725.00 eBay 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, USB-C · 32 in"
+      - link "for was $700 from Samsung" [ref=e221]:
+        - link "for was $700 from Samsung" [ref=e222]
+      - text: "Sale"
+      - link [ref=e223]:
+        - link [ref=e224]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI(LS32FM803UNXZA)"
+      - text: "$429.99$700 Samsung"
+      - img "Rated 4.6 out of 5, (119) user reviews"
+      - text: "1 in deep · 1 HDMI port · 15.4 lb · 32 inches · 28.1 in wide · Bluetooth, Wi-Fi, USB, HDMI · 4K"
+      - link "for was $2,000 from Best Buy" [ref=e225]:
+        - link "for was $2,000 from Best Buy" [ref=e226]
+      - text: "Sale"
+      - link [ref=e227]:
+        - link [ref=e228]
+      - heading [level=3]: "LG - 32” UltraFine evo 6K Nano IPS Black Professional Monitor with DisplayHDR 600 (Thunderbolt 5, HDMI, DisplayPort, USB-C) - Silver"
+      - text: "$1,499.99 2,000 Best Buy"
+      - img "Rated 4.3 out of 5, (101) user reviews"
+      - text: "IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 450 cd/m² · 32 in · 20.9 lb weight · UltraFine"
+      - link "for was $450 from Samsung" [ref=e229]:
+        - link "for was $450 from Samsung" [ref=e230]
+      - text: "Sale"
+      - link [ref=e231]:
+        - link [ref=e232]
+      - heading [level=3]: "Samsung 32 Inch View Finity S7 S70D(LS32D708EBNXGO), carbon/silver"
+      - text: "$379.99$450 Samsung"
+      - img "Rated 4.6 out of 5, (893) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 350 cd/m² · LED · 32 in · 11.9 lb weight"
+      - link "for was $480 from Samsung" [ref=e233]:
+        - link "for was $480 from Samsung" [ref=e234]
+      - text: "Sale"
+      - link [ref=e235]:
+        - link [ref=e236]
+      - heading [level=3]: "Samsung 32 Inch View Finity S8 S80UD(LS32D800UBNXGO), carbon/gold"
+      - text: "$379.99$480 Samsung"
+      - img "Rated 4.5 out of 5, (486) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LCD · 32 in"
+      - link "for from Samsung" [ref=e237]:
+        - link "for from Samsung" [ref=e238]
+      - link [ref=e239]:
+        - link [ref=e240]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M7 M70F 4K Samsung Vision AI in Black(LS32FM702UNXZA)"
+      - text: "$399.99 Samsung"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 14.2 lb · 32 inches · Bluetooth, Wi-Fi, USB, HDMI · 4K · 3840 x 2160"
+      - link "for was $450 from B&H Photo-Video-Audio" [ref=e241]:
+        - link "for was $450 from B&H Photo-Video-Audio" [ref=e242]
+      - text: "Sale"
+      - link [ref=e243]:
+        - link "Free 2-day" [ref=e244]
+      - heading [level=3]: "Samsung ViewFinity S80UD 27\" 4K HDR Monitor"
+      - text: "$349.99$450 B&H Photo-Video-Audio"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for from Best Buy" [ref=e245]:
+        - link "for from Best Buy" [ref=e246]
+      - link [ref=e247]:
+        - link [ref=e248]
+      - heading [level=3]: "LG - 27\" IPS UHD 60Hz 5ms Smart Monitor with HDR10 (HDMI, USB-C) - White"
+      - text: "$379.99 Best Buy"
+      - img "Rated 4.4 out of 5, (178) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · LCD · 27 in · 12.9 lb weight"
+      - link "for was $450 from Samsung" [ref=e249]:
+        - link "for was $450 from Samsung" [ref=e250]
+      - text: "Sale"
+      - link [ref=e251]:
+        - link [ref=e252]
+      - heading [level=3]: "Samsung 27 Inch View Finity S8 S80UD(LS27D802UANXGO), carbon/silver"
+      - text: "$349.99$450 Samsung"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for was $480 from B&H Photo-Video-Audio" [ref=e253]:
+        - link "for was $480 from B&H Photo-Video-Audio" [ref=e254]
+      - text: "Sale"
+      - link [ref=e255]:
+        - link "Free 2-day" [ref=e256]
+      - heading [level=3]: "Samsung ViewFinity S80UD 32\" 4K HDR Monitor"
+      - text: "$379.99$480 B&H Photo-Video-Audio"
+      - img "Rated 4.5 out of 5, (486) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LCD · 32 in"
+      - link "for was $700 from Samsung" [ref=e257]:
+        - link "for was $700 from Samsung" [ref=e258]
+      - text: "Sale"
+      - link [ref=e259]:
+        - link [ref=e260]
+      - heading [level=3]: "Samsung 27 Inch Odyssey G7 G70D(LS27DG702ENXZA)"
+      - text: "$499.99$700 Samsung"
+      - generic "Special offer" [ref=e261]
+      - text: "3840 x 2160 · IPS · 144 Hz · 1 millisecond · HDMI, DisplayPort · 350 cd/m² · LCD · 27 in · 15.7 lb weight"
+      - link "for from Hard Disk Direct" [ref=e262]:
+        - link "for from Hard Disk Direct" [ref=e263]
+      - link [ref=e264]:
+        - link [ref=e265]
+      - heading [level=3]: "32BN67U-B - LG LED monitor 4K 32\""
+      - text: "$608.00 Hard Disk Direct Free 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · LCD · 31.5 in · 4K"
+      - link "for from eCommerce Business Prime" [ref=e266]:
+        - link "for from eCommerce Business Prime" [ref=e267]
+      - link [ref=e268]:
+        - link [ref=e269]
+      - heading [level=3]: "LG 27” IPS HDR Ultra HD 4K Monitor with USB Type-C and Built-in Speakers - 27BN85UN-B"
+      - text: "$476.21 eCommerce Business Prime Free 3840 x 2160 · IPS · HDMI, DisplayPort, USB-C · LED · 27 in · 4K"
+      - link "for was $1,300 from Best Buy" [ref=e270]:
+        - link "for was $1,300 from Best Buy" [ref=e271]
+      - text: "Sale"
+      - link [ref=e272]:
+        - link [ref=e273]
+      - heading [level=3]: "LG - UltraGear 32\" OLED Dual Mode (4K UHD 165Hz, FHD 330Hz) 0.03ms G-Sync/FreeSync Premium Pro Gaming Monitor with - Black"
+      - text: "$799.99 1,300 Best Buy"
+      - img "Rated 4.4 out of 5, (217) user reviews"
+      - text: "3840 x 2160 · 165 Hz · 0 milliseconds · HDMI, DisplayPort · 1,300 cd/m² · OLED · 32 in · 1080p"
+      - link "for was $307 from Best Buy" [ref=e274]:
+        - link "for was $307 from Best Buy" [ref=e275]
+      - text: "Sale"
+      - link [ref=e276]:
+        - link [ref=e277]
+      - heading [level=3]: "LG - UltraFine 27US500-W 27\" 4K UHD (3840×2160) Monitor (White) | IPS, HDR10, 60Hz + More"
+      - text: "$283.95$307 Best Buy"
+      - img "Rated 4.6 out of 5, (404) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · HDMI, DisplayPort · LCD · 27 in · UltraFine"
+      - link "for from Back Market" [ref=e278]:
+        - link "for from Back Market" [ref=e279]
+      - link [ref=e280]:
+        - link [ref=e281]
+      - heading [level=3]: "Samsung 28-inch Monitor 3840 x 2160 LED (LS28BG700ENXGO)"
+      - text: "$256.99 Back Market Refurbished 3840 x 2160 · IPS · 144 Hz · 1 millisecond · HDMI, DisplayPort · LED · 28 in · 4K · Odyssey G"
+      - link "for was $625 from eCommerce Business Prime" [ref=e282]:
+        - link "for was $625 from eCommerce Business Prime" [ref=e283]
+      - text: "Sale"
+      - link [ref=e284]:
+        - link [ref=e285]
+      - heading [level=3]: "Samsung F32TU874VN computer monitor 80 cm (31.5\") 3840 x 2160 pixels"
+      - text: "$396.00$625 eCommerce Business Prime Free 3840 x 2160 · VA · 60 Hz · 6 milliseconds · HDMI, DisplayPort, USB-C, Thunderbolt 3 · 250 cd/m² · LCD"
+      - link "for was $350 from Samsung" [ref=e286]:
+        - link "for was $350 from Samsung" [ref=e287]
+      - text: "Sale"
+      - link [ref=e288]:
+        - link [ref=e289]
+      - heading [level=3]: "Samsung 27 Inch Odyssey G5 G50D(LS27DG500ENXZA)"
+      - text: "$259.99$350 Samsung"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "2560 x 1440 · IPS · 180 Hz · 1 millisecond · HDMI, DisplayPort · 350 cd/m² · LED · 27 in · Odyssey G"
+      - link "for was $450 from B&H Photo-Video-Audio" [ref=e290]:
+        - link "for was $450 from B&H Photo-Video-Audio" [ref=e291]
+      - text: "Sale"
+      - link [ref=e292]:
+        - link "Free 2-day" [ref=e293]
+      - heading [level=3]: "Samsung ViewFinity S70D 32\" 4K HDR Monitor with Integrated Speakers (Black)"
+      - text: "$379.99$450 B&H Photo-Video-Audio"
+      - img "Rated 4.6 out of 5, (893) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 350 cd/m² · LED · 32 in · 11.9 lb weight"
+      - link "for was $350 from Dell" [ref=e294]:
+        - link "for was $350 from Dell" [ref=e295]
+      - text: "Sale"
+      - link [ref=e296]:
+        - link [ref=e297]
+      - heading [level=3]: "Dell 27 Plus 4K Usb-C Monitor - S2725Qc - W2FG2 - 210-brnc"
+      - text: "$279.99$350 Dell"
+      - img "Rated 4.6 out of 5, (786) user reviews"
+      - text: "3840 x 2160 · IPS · 120 Hz · 8 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for from Tech For Less" [ref=e298]:
+        - link "for from Tech For Less" [ref=e299]
+      - link [ref=e300]:
+        - link [ref=e301]
+      - heading [level=3]: "Samsung ViewFinity 27-inch Monitor - 3840 x 2160 - 1000:1 - IPS - Tilt - Swivel - Rotate to Portrait - Black"
+      - text: "$367.97 Tech For Less"
+      - img "Rated 4.5 out of 5, (135) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · LED · 27 in · ViewFinity S"
+      - link "for from Walmart" [ref=e302]:
+        - link "for from Walmart" [ref=e303]
+      - link [ref=e304]:
+        - link [ref=e305]
+      - heading [level=3]: "Lg UltraFine 27up650-w 27 Inch 4K UHD Monitor 3840 x 2160 IPS Hdr400 Adjustable Stand Silver (International Model), Black"
+      - text: "$248.99 Walmart"
+      - img "Rated 4.4 out of 5, (173) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 400 cd/m² · LCD · 27 in · 18 lb weight"
+      - link "for was $300 from Dell" [ref=e306]:
+        - link "for was $300 from Dell" [ref=e307]
+      - text: "Sale"
+      - link [ref=e308]:
+        - link [ref=e309]
+      - heading [level=3]: "Dell 27 Plus 4K Monitor - S2725Qs - T4CNF - 210-brnd"
+      - text: "$279.99$300 Dell"
+      - img "Rated 4.7 out of 5, (471) user reviews"
+      - text: "3840 x 2160 · IPS · 120 Hz · 8 milliseconds · HDMI, DisplayPort · 350 cd/m² · LED · 27 in · 10.1 lb weight"
+  - heading "Popular options" [level=2]
+  - button [ref=e310]:
+    - generic [ref=e311]:
+      - img "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - text: "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - group "Current Price: $429.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 893 reviews.":
+        - img "Rated 4.6 out of 5, 893 user reviews"
+  - button [ref=e312]:
+    - generic [ref=e313]:
+      - img "38% OFF.": "38% OFF"
+      - img "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - text: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - group "Current Price: $429.99. Was $700."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 119 reviews.":
+        - img "Rated 4.6 out of 5, 119 user reviews"
+  - button [ref=e314]:
+    - generic [ref=e315]:
+      - img "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - text: "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - group "Current Price: $499.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 2.4K reviews.":
+        - img "Rated 4.5 out of 5, 2.4K user reviews"
+  - button [ref=e316]:
+    - generic [ref=e317]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e318]:
+        - img
+      - text: "Samsung Odyssey G7 G70F 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $599.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 33 reviews.":
+        - img "Rated 4.5 out of 5, 33 user reviews"
+  - button [ref=e319]:
+    - generic [ref=e320]:
+      - img "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - text: "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - group "Current Price: $1,099.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.3 out of 5. 806 reviews.":
+        - img "Rated 4.3 out of 5, 806 user reviews"
+  - heading "Local Results" [level=2]
+  - heading "Places" [level=2]
+  - button [ref=e321]:
+    - button [ref=e322]
+  - heading "Map" [level=3]
+  - link "Map" [ref=e323]
+  - button [ref=e324]:
+    - generic [ref=e325]:
+      - heading [level=3]: "Central Computers"
+      - img "Rated 4.4 out of 5, 557 user reviews"
+      - text: "· Computer store 837 Howard St · (415) 495-5888 Open · Closes 5 PM   \"It wasted my time, and my computer looks beautiful after the replacement.\""
+  - button [ref=e326]:
+    - generic [ref=e327]:
+      - heading [level=3]: "Best Buy"
+      - img "Rated 4.1 out of 5, 8K user reviews"
+      - text: "· Computer store 1717 Harrison St · (415) 626-9682 Open · Closes 8 PM   \"Price is less compared to market for dji cam and others\""
+  - heading [level=3]:
+    - link "More places" [ref=e329]
+  - navigation
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - button "94105, San Francisco, CA - Based on your places (Home)" [ref=e330]
+  - text: "-"
+  - button "Update location" [ref=e332]
+  - link "Help" [ref=e333]
+  - link "Send feedback" [ref=e334]
+  - link "Privacy" [ref=e335]
+  - link "Terms" [ref=e336]
+</result>
+
+[15] thinking: **Evaluating product availability**
+
+I'm noticing that ads include many nearby options, but I'm not seeing all of them sorted properly. It seems I need actual browsing results rather than just sponsored ads. A direct query to check for nearby availability of the LG UltraFine 27US500-W at Best Buy could help. I need to compare prices, particularly the $229.95 and $283.95 offers, and check for potential shipping or pickup options to find the best deal. It may require a more specific search to confirm availability.
+
+**Navigating product options**
+
+I'm trying to decide whether to click on a product from the main Browse products section or from an ad. It looks like the original link e146 is no longer valid. In the sorted results, the only link for the LG 27US500 is e274, which seems to be from the ad. I’ll consider clicking that offer link to see if it provides the information I need about the product.
+
+[16] tool_call: repl("Opening likely cheapest LG option")
+<request>
+await page.locator('e274').click();
+const s7 = await snapshot(page, {interactive:true});
+console.log(s7.diff);
+</request>
+<result tokens_used="342" elapsed_time="6387ms">
+Error: Error: CDP command timeout: Page.captureScreenshot
+</result>
+
+[17] tool_call: repl("Reading current page after click")
+<request>
+const s8 = await snapshot(page, {interactive:true});
+console.log(s8.tree);
+</request>
+<result tokens_used="69" elapsed_time="578ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "3840 x 2160 samsung lg 27 32 4k ips monitor nearby - Google Shopping" [url=https://www.google.com/search?q=3840+x+2160+samsung+lg+27+32+4k+ips+monitor+nearby&udm=28&shopmd=4&shoprs=CAEYFyorMzg0MCB4IDIxNj…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "3840 x 2160 samsung lg 27 32 4k ips monitor nearby 3840 x 2160 samsung lg 27 32 4k ips monitor nearby"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "On sale filter. Not selected." [ref=e22]: "On sale"
+    - link "Get it tomorrow filter. Not selected." [ref=e23]: "Get it tomorrow"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Resolution" [ref=e27]
+    - link "Remove 3840 x 2160 filter. Selected." [ref=e28]: "3840 x 2160"
+    - link "2560 x 1440 filter. Not selected." [ref=e29]: "2560 x 1440"
+    - link "1920 x 1080 filter. Not selected." [ref=e30]: "1920 x 1080"
+    - link "5120 x 2880 filter. Not selected." [ref=e31]: "5120 x 2880"
+    - button "Connector Type" [ref=e32]
+    - link "USB-C filter. Not selected." [ref=e33]: "USB-C"
+    - link "HDMI filter. Not selected." [ref=e34]: "HDMI"
+    - link "DisplayPort filter. Not selected." [ref=e35]: "DisplayPort"
+    - link "Thunderbolt 3 filter. Not selected." [ref=e36]: "Thunderbolt 3"
+    - button "Maximum Refresh Rate" [ref=e37]
+    - link "Under 60 Hz filter. Not selected." [ref=e38]: "Under 60 Hz"
+    - link "60 – 144 Hz filter. Not selected." [ref=e39]: "60 – 144 Hz"
+    - link "144 – 240 Hz filter. Not selected." [ref=e40]: "144 – 240 Hz"
+    - link "Over 240 Hz filter. Not selected." [ref=e41]: "Over 240 Hz"
+    - button "Features" [ref=e42]
+    - link "Gaming filter. Not selected." [ref=e43]: "Gaming"
+    - link "With Speakers filter. Not selected." [ref=e44]: "With Speakers"
+    - link "Curved filter. Not selected." [ref=e45]: "Curved"
+    - button "Price" [ref=e46]
+    - link "Under $150 filter. Not selected." [ref=e47]: "Under $150"
+    - link "$150 to $350 filter. Not selected." [ref=e48]: "$150 - $350"
+    - link "$350 to $700 filter. Not selected." [ref=e49]: "$350 - $700"
+    - link "Over $700 filter. Not selected." [ref=e50]: "Over $700"
+    - textbox "Minimum price ($)" [ref=e51]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e52]
+    - text: "Max"
+    - button "Go" [ref=e53] [disabled]
+    - button "Display Type" [ref=e54]
+    - link "OLED filter. Not selected." [ref=e55]: "OLED"
+    - link "LED filter. Not selected." [ref=e56]: "LED"
+    - link "QLED filter. Not selected." [ref=e57]: "QLED"
+    - button "Brightness" [ref=e58]
+    - link "Under 300 cd/m² filter. Not selected." [ref=e59]: "Under 300 cd/m²"
+    - link "300 – 350 cd/m² filter. Not selected." [ref=e60]: "300 – 350 cd/m²"
+    - link "350 – 400 cd/m² filter. Not selected." [ref=e61]: "350 – 400 cd/m²"
+    - link "400 – 450 cd/m² filter. Not selected." [ref=e62]: "400 – 450 cd/m²"
+    - link "Over 450 cd/m² filter. Not selected." [ref=e63]: "Over 450 cd/m²"
+    - button "Product Rating" [ref=e64]
+    - link "Four stars and up filter. Not selected." [ref=e65]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Weight" [ref=e66]
+    - link "Under 11.7 lb weight filter. Not selected." [ref=e67]: "Under 11.7 lb weight"
+    - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e68]: "11.7 – 15.7 lb weight"
+    - link "15.7 – 22 lb weight filter. Not selected." [ref=e69]: "15.7 – 22 lb weight"
+    - link "Over 22 lb weight filter. Not selected." [ref=e70]: "Over 22 lb weight"
+    - button "Stores" [ref=e71]
+    - link "Adorama filter. Not selected." [ref=e72]: "Adorama"
+    - link "Target filter. Not selected." [ref=e73]: "Target"
+    - link "Best Buy filter. Not selected." [ref=e74]: "Best Buy"
+    - link "eBay filter. Not selected." [ref=e75]: "eBay"
+    - button "See more" [ref=e76]
+    - button "LG Product Line" [ref=e77]
+    - link "UltraFine filter. Not selected." [ref=e78]: "UltraFine"
+    - link "UltraWide filter. Not selected." [ref=e79]: "UltraWide"
+    - button "Samsung Product Line" [ref=e80]
+    - link "Samsung Odyssey filter. Not selected." [ref=e81]: "Samsung Odyssey"
+    - link "ViewFinity S filter. Not selected." [ref=e82]: "ViewFinity S"
+    - link "ViewFinity filter. Not selected." [ref=e83]: "ViewFinity"
+    - button "Free shipping" [ref=e84]
+    - link "Free shipping filter. Not selected." [ref=e85]: "Free shipping"
+- navigation "Refinement" [ref=e86]:
+  - generic [ref=e87] [scrollable]:
+    - list:
+      - button "All filters." [ref=e88]
+      - listitem [ref=e89]:
+        - link "Remove 3840 x 2160 filter. Selected." [ref=e90]: "3840 x 2160"
+      - listitem [ref=e91]:
+        - link "Remove Nearby filter. Selected." [ref=e92]: "Nearby"
+      - listitem [ref=e93]:
+        - link "On sale filter. Not selected." [ref=e94]: "On sale"
+      - listitem [ref=e95]:
+        - link "USB-C filter. Not selected." [ref=e96]: "USB-C"
+      - listitem [ref=e97]:
+        - link "60 – 144 Hz filter. Not selected." [ref=e98]: "60 – 144 Hz"
+      - listitem [ref=e99]:
+        - link "HDMI filter. Not selected." [ref=e100]: "HDMI"
+      - listitem [ref=e101]:
+        - link "144 – 240 Hz filter. Not selected." [ref=e102]: "144 – 240 Hz"
+      - listitem [ref=e103]:
+        - link "Over 240 Hz filter. Not selected." [ref=e104]: "Over 240 Hz"
+      - listitem [ref=e105]:
+        - link "Gaming filter. Not selected." [ref=e106]: "Gaming"
+      - listitem [ref=e107]:
+        - link "DisplayPort filter. Not selected." [ref=e108]: "DisplayPort"
+      - listitem [ref=e109]:
+        - link "Under 60 Hz filter. Not selected." [ref=e110]: "Under 60 Hz"
+      - listitem [ref=e111]:
+        - link "Under $150 filter. Not selected." [ref=e112]: "Under $150"
+      - listitem [ref=e113]:
+        - link "With Speakers filter. Not selected." [ref=e114]: "With Speakers"
+      - listitem [ref=e115]:
+        - link "Get it tomorrow filter. Not selected." [ref=e116]: "Get it tomorrow"
+      - listitem [ref=e117]:
+        - link "OLED filter. Not selected." [ref=e118]: "OLED"
+      - listitem [ref=e119]:
+        - link "LED filter. Not selected." [ref=e120]: "LED"
+      - listitem [ref=e121]:
+        - link "QLED filter. Not selected." [ref=e122]: "QLED"
+      - listitem [ref=e123]:
+        - link "350 – 400 cd/m² filter. Not selected." [ref=e124]: "350 – 400 cd/m²"
+      - listitem [ref=e125]:
+        - link "Curved filter. Not selected." [ref=e126]: "Curved"
+      - listitem [ref=e127]:
+        - link "400 – 450 cd/m² filter. Not selected." [ref=e128]: "400 – 450 cd/m²"
+      - listitem [ref=e129]:
+        - link "300 – 350 cd/m² filter. Not selected." [ref=e130]: "300 – 350 cd/m²"
+      - listitem [ref=e131]:
+        - link "Over 450 cd/m² filter. Not selected." [ref=e132]: "Over 450 cd/m²"
+      - listitem [ref=e133]:
+        - link "Under 300 cd/m² filter. Not selected." [ref=e134]: "Under 300 cd/m²"
+      - listitem [ref=e135]:
+        - link "New filter. Not selected." [ref=e136]: "New"
+      - listitem [ref=e137]:
+        - link "Used filter. Not selected." [ref=e138]: "Used"
+      - listitem [ref=e139]:
+        - link "11.7 – 15.7 lb weight filter. Not selected." [ref=e140]: "11.7 – 15.7 lb weight"
+      - listitem [ref=e141]:
+        - link "15.7 – 22 lb weight filter. Not selected." [ref=e142]: "15.7 – 22 lb weight"
+      - listitem [ref=e143]:
+        - link "Thunderbolt 3 filter. Not selected." [ref=e144]: "Thunderbolt 3"
+  - combobox "Sort by:Price low to high" [ref=e145]
+- main:
+  - region "Ads" [ref=e146]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e147]
+    - generic [ref=e148] [scrollable]:
+      - link "for was $600 from Best Buy" [ref=e149]:
+        - link "for was $600 from Best Buy" [ref=e150]
+      - text: "Sale"
+      - link [ref=e151]:
+        - link "Antioch" [ref=e152]
+      - heading [level=3]: "LG - UltraGear 27\" IPS Dual Mode (4K UHD 180Hz, FHD 360Hz), 1ms, NVIDIA G-SYNC, AMD Freesync Gaming Monitor (HDMI, DP, USB-C) - Black"
+      - text: "$349.99$600 Best Buy"
+      - img "Rated 4.5 out of 5, (192) user reviews"
+      - text: "3840 x 2160 · IPS · 180 Hz · 1 millisecond · HDMI, DisplayPort, USB-C · 400 cd/m² · LCD · 27 in"
+      - link "for was $370 from Best Buy" [ref=e153]:
+        - link "for was $370 from Best Buy" [ref=e154]
+      - text: "Sale"
+      - link [ref=e155]:
+        - link "Colma" [ref=e156]
+      - heading [level=3]: "Dell - S2725QC 27\" IPS LED 4K UHD 120Hz FreeSync Premium Monitor (USB-C, HDMI) - Ash White"
+      - text: "$279.99$370 Best Buy"
+      - img "Rated 4.6 out of 5, (786) user reviews"
+      - text: "3840 x 2160 · IPS · 120 Hz · 8 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for was $300 from Best Buy" [ref=e157]:
+        - link "for was $300 from Best Buy" [ref=e158]
+      - text: "Sale"
+      - link [ref=e159]:
+        - link "Mission District" [ref=e160]
+      - heading [level=3]: "LG - 32\" UltraGear G6 IPS QHD 200Hz 1ms G-SYNC Compatible FreeSync Premium Gaming Monitor with HDR10 (HDMI, DisplayPort) - Black"
+      - text: "$249.99$300 Best Buy"
+      - img "Rated 5.0 out of 5, (3) user reviews"
+      - text: "2560 x 1440 · IPS · 200 Hz · 1 millisecond · HDMI, DisplayPort · 32 in"
+      - link "for was $150 from Reperch - Bay Area" [ref=e161]:
+        - link "for was $150 from Reperch - Bay Area" [ref=e162]
+      - text: "Sale"
+      - link [ref=e163]:
+        - link [ref=e164]
+      - heading [level=3]: "Dell S2721QS Monitor 27 Inch 4K UHD IPS Monitor with AMD FreeSync"
+      - text: "$141.00$150 Reperch - Bay Area Used 3840 x 2160 · IPS · 60 Hz · 8 milliseconds · HDMI, DisplayPort · 350 cd/m² · 27 in"
+      - link "for from Samsung" [ref=e165]:
+        - link "for from Samsung" [ref=e166]
+      - link [ref=e167]:
+        - link [ref=e168]
+      - heading [level=3]: "Samsung 27\" Smart Monitor M5 M50F FHD in White (LS27FM503ENXZA)"
+      - text: "$229.99 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 8.4 lb · 27 inches · Bluetooth, Wi-Fi, USB, HDMI · 1080p · 1920 x 1080"
+      - link "for from ViewSonic" [ref=e169]:
+        - link "for from ViewSonic" [ref=e170]
+      - link [ref=e171]:
+        - link [ref=e172]
+      - heading [level=3]: "27\" 4K UHD IPS Monitor w/ Pantone Validated, USB C, HDMI 2.1, and DP"
+      - text: "$699.99 ViewSonic"
+      - img "Rated 3.3 out of 5, (20) user reviews"
+      - text: "3840 x 2160 · IPS · 75 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 27 in"
+      - link "for from PCLiquidations.com" [ref=e173]:
+        - link "for from PCLiquidations.com" [ref=e174]
+      - link [ref=e175]:
+        - link [ref=e176]
+      - heading [level=3]: "LG 27UK500-B 27\" 4K UHD IPS HDR10 Monitor - Grade A"
+      - text: "$307.99 PCLiquidations.com Refurbished 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 27 in · 4K"
+      - link "for from Samsung" [ref=e177]:
+        - link "for from Samsung" [ref=e178]
+      - link [ref=e179]:
+        - link [ref=e180]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M7 M70F 4K Samsung Vision AI in White (LS32FM703UNXZA)"
+      - text: "$399.99 Samsung"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 14.2 lb · 32 inches · 28.2 in wide · Bluetooth, Wi-Fi, USB, HDMI · 4K"
+      - link "for was $380 from B&H Photo-Video-Audio" [ref=e181]:
+        - link "for was $380 from B&H Photo-Video-Audio" [ref=e182]
+      - text: "Sale"
+      - link [ref=e183]:
+        - link "Free 2-day" [ref=e184]
+      - heading [level=3]: "LG UltraFine 27UP850K-W 27\" 4K HDR Monitor"
+      - text: "$329.99$380 B&H Photo-Video-Audio"
+      - img "Rated 4.7 out of 5, (617) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 27 in"
+      - link "for from eCommerce Business Prime" [ref=e185]:
+        - link "for from eCommerce Business Prime" [ref=e186]
+      - link [ref=e187]:
+        - link [ref=e188]
+      - heading [level=3]: "LG 31.5” IPS HDR 4K Ultra HD Monitor with Ergonomic Design - 32BN67U-B"
+      - text: "$581.99 eCommerce Business Prime Free 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · LCD · 31.5 in · 4K"
+      - link "for from Samsung" [ref=e189]:
+        - link "for from Samsung" [ref=e190]
+      - link [ref=e191]:
+        - link [ref=e192]
+      - heading [level=3]: "Samsung 27\" Smart Monitor M5 M50F FHD in Black(LS27FM502ENXZA)"
+      - text: "$229.99 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - link "for from Alogic" [ref=e193]:
+        - link "for from Alogic" [ref=e194]
+      - link [ref=e195]:
+        - link [ref=e196]
+      - heading [level=3]: "CLARITY 27” UHD 4K Monitor"
+      - text: "$539.99 Alogic"
+      - img "Rated 3.9 out of 5, (85) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 4 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 27 in"
+      - link "for from Walmart" [ref=e197]:
+        - link "for from Walmart" [ref=e198]
+      - link [ref=e199]:
+        - link [ref=e200]
+      - heading [level=3]: "Lg 27'' 4K (3840 x 2160) IPS Monitor with USB Type-C | AMD FreeSync | HDR 400, Dci-p3 95% | Built-in Speaker | 60Hz, 5ms | Compact Bezel (hdmi,"
+      - text: "$429.99 Walmart Free 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, USB-C · 27 in · 4K"
+      - link "for was $430 from Samsung" [ref=e201]:
+        - link "for was $430 from Samsung" [ref=e202]
+      - text: "Sale"
+      - link [ref=e203]:
+        - link [ref=e204]
+      - heading [level=3]: "Samsung 32 Inch Odyssey G5 G50D(LS32DG502ENXZA)"
+      - text: "$299.99$430 Samsung"
+      - img "Rated 4.5 out of 5, (73) user reviews"
+      - text: "2560 x 1440 · IPS · 180 Hz · HDMI, DisplayPort · 27 in · Odyssey G"
+      - link "for was $900 from Best Buy" [ref=e205]:
+        - link "for was $900 from Best Buy" [ref=e206]
+      - text: "Sale"
+      - link [ref=e207]:
+        - link [ref=e208]
+      - heading [level=3]: "LG - UltraGear 27\" IPS Dual Mode (4K UHD 240Hz or FHD 480Hz) 1ms G-Sync Gaming Monitor with DisplayHDR 600 (DisplayPort 2.1) - Black"
+      - text: "$599.99$900 Best Buy"
+      - img "Rated 4.4 out of 5, (78) user reviews"
+      - text: "3840 x 2160 · IPS · 240 Hz · 1 millisecond · HDMI, DisplayPort, USB-C · 600 cd/m² · LCD · 27 in"
+      - link "for was $270 from Samsung" [ref=e209]:
+        - link "for was $270 from Samsung" [ref=e210]
+      - text: "Sale"
+      - link [ref=e211]:
+        - link [ref=e212]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M5 M50F FHD in Black(LS32FM502ENXZA)"
+      - text: "$219.99$270 Samsung"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - link "for from ViewSonic" [ref=e213]:
+        - link "for from ViewSonic" [ref=e214]
+      - link [ref=e215]:
+        - link [ref=e216]
+      - heading [level=3]: "32\"4K UHD IPS Docking Monitor with Thunderbolt 4"
+      - text: "$799.99 ViewSonic Free 3840 x 2160 · IPS · 75 Hz · 6 milliseconds · HDMI, DisplayPort, USB-C · 400 cd/m² · LED · 32 in"
+      - link "for from eBay" [ref=e217]:
+        - link "for from eBay" [ref=e218]
+      - link [ref=e219]:
+        - link [ref=e220]
+      - heading [level=3]: "Lg 32un880k Ultra Hd Monitor 32\" (80 Cm) 4k Uhd Ips Monitor"
+      - text: "$725.00 eBay 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, USB-C · 32 in"
+      - link "for was $700 from Samsung" [ref=e221]:
+        - link "for was $700 from Samsung" [ref=e222]
+      - text: "Sale"
+      - link [ref=e223]:
+        - link [ref=e224]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI(LS32FM803UNXZA)"
+      - text: "$429.99$700 Samsung"
+      - img "Rated 4.6 out of 5, (119) user reviews"
+      - text: "1 in deep · 1 HDMI port · 15.4 lb · 32 inches · 28.1 in wide · Bluetooth, Wi-Fi, USB, HDMI · 4K"
+      - link "for was $2,000 from Best Buy" [ref=e225]:
+        - link "for was $2,000 from Best Buy" [ref=e226]
+      - text: "Sale"
+      - link [ref=e227]:
+        - link [ref=e228]
+      - heading [level=3]: "LG - 32” UltraFine evo 6K Nano IPS Black Professional Monitor with DisplayHDR 600 (Thunderbolt 5, HDMI, DisplayPort, USB-C) - Silver"
+      - text: "$1,499.99 2,000 Best Buy"
+      - img "Rated 4.3 out of 5, (101) user reviews"
+      - text: "IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 450 cd/m² · 32 in · 20.9 lb weight · UltraFine"
+      - link "for was $450 from Samsung" [ref=e229]:
+        - link "for was $450 from Samsung" [ref=e230]
+      - text: "Sale"
+      - link [ref=e231]:
+        - link [ref=e232]
+      - heading [level=3]: "Samsung 32 Inch View Finity S7 S70D(LS32D708EBNXGO), carbon/silver"
+      - text: "$379.99$450 Samsung"
+      - img "Rated 4.6 out of 5, (893) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 350 cd/m² · LED · 32 in · 11.9 lb weight"
+      - link "for was $480 from Samsung" [ref=e233]:
+        - link "for was $480 from Samsung" [ref=e234]
+      - text: "Sale"
+      - link [ref=e235]:
+        - link [ref=e236]
+      - heading [level=3]: "Samsung 32 Inch View Finity S8 S80UD(LS32D800UBNXGO), carbon/gold"
+      - text: "$379.99$480 Samsung"
+      - img "Rated 4.5 out of 5, (486) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LCD · 32 in"
+      - link "for from Samsung" [ref=e237]:
+        - link "for from Samsung" [ref=e238]
+      - link [ref=e239]:
+        - link [ref=e240]
+      - heading [level=3]: "Samsung 32\" Smart Monitor M7 M70F 4K Samsung Vision AI in Black(LS32FM702UNXZA)"
+      - text: "$399.99 Samsung"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "1.6 in deep · 2 HDMI ports · 14.2 lb · 32 inches · Bluetooth, Wi-Fi, USB, HDMI · 4K · 3840 x 2160"
+      - link "for was $450 from B&H Photo-Video-Audio" [ref=e241]:
+        - link "for was $450 from B&H Photo-Video-Audio" [ref=e242]
+      - text: "Sale"
+      - link [ref=e243]:
+        - link "Free 2-day" [ref=e244]
+      - heading [level=3]: "Samsung ViewFinity S80UD 27\" 4K HDR Monitor"
+      - text: "$349.99$450 B&H Photo-Video-Audio"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for from Best Buy" [ref=e245]:
+        - link "for from Best Buy" [ref=e246]
+      - link [ref=e247]:
+        - link [ref=e248]
+      - heading [level=3]: "LG - 27\" IPS UHD 60Hz 5ms Smart Monitor with HDR10 (HDMI, USB-C) - White"
+      - text: "$379.99 Best Buy"
+      - img "Rated 4.4 out of 5, (178) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · LCD · 27 in · 12.9 lb weight"
+      - link "for was $450 from Samsung" [ref=e249]:
+        - link "for was $450 from Samsung" [ref=e250]
+      - text: "Sale"
+      - link [ref=e251]:
+        - link [ref=e252]
+      - heading [level=3]: "Samsung 27 Inch View Finity S8 S80UD(LS27D802UANXGO), carbon/silver"
+      - text: "$349.99$450 Samsung"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for was $480 from B&H Photo-Video-Audio" [ref=e253]:
+        - link "for was $480 from B&H Photo-Video-Audio" [ref=e254]
+      - text: "Sale"
+      - link [ref=e255]:
+        - link "Free 2-day" [ref=e256]
+      - heading [level=3]: "Samsung ViewFinity S80UD 32\" 4K HDR Monitor"
+      - text: "$379.99$480 B&H Photo-Video-Audio"
+      - img "Rated 4.5 out of 5, (486) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LCD · 32 in"
+      - link "for was $700 from Samsung" [ref=e257]:
+        - link "for was $700 from Samsung" [ref=e258]
+      - text: "Sale"
+      - link [ref=e259]:
+        - link [ref=e260]
+      - heading [level=3]: "Samsung 27 Inch Odyssey G7 G70D(LS27DG702ENXZA)"
+      - text: "$499.99$700 Samsung"
+      - generic "Special offer" [ref=e261]
+      - text: "3840 x 2160 · IPS · 144 Hz · 1 millisecond · HDMI, DisplayPort · 350 cd/m² · LCD · 27 in · 15.7 lb weight"
+      - link "for from Hard Disk Direct" [ref=e262]:
+        - link "for from Hard Disk Direct" [ref=e263]
+      - link [ref=e264]:
+        - link [ref=e265]
+      - heading [level=3]: "32BN67U-B - LG LED monitor 4K 32\""
+      - text: "$608.00 Hard Disk Direct Free 3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · LCD · 31.5 in · 4K"
+      - link "for from eCommerce Business Prime" [ref=e266]:
+        - link "for from eCommerce Business Prime" [ref=e267]
+      - link [ref=e268]:
+        - link [ref=e269]
+      - heading [level=3]: "LG 27” IPS HDR Ultra HD 4K Monitor with USB Type-C and Built-in Speakers - 27BN85UN-B"
+      - text: "$476.21 eCommerce Business Prime Free 3840 x 2160 · IPS · HDMI, DisplayPort, USB-C · LED · 27 in · 4K"
+      - link "for was $1,300 from Best Buy" [ref=e270]:
+        - link "for was $1,300 from Best Buy" [ref=e271]
+      - text: "Sale"
+      - link [ref=e272]:
+        - link [ref=e273]
+      - heading [level=3]: "LG - UltraGear 32\" OLED Dual Mode (4K UHD 165Hz, FHD 330Hz) 0.03ms G-Sync/FreeSync Premium Pro Gaming Monitor with - Black"
+      - text: "$799.99 1,300 Best Buy"
+      - img "Rated 4.4 out of 5, (217) user reviews"
+      - text: "3840 x 2160 · 165 Hz · 0 milliseconds · HDMI, DisplayPort · 1,300 cd/m² · OLED · 32 in · 1080p"
+      - link "for was $307 from Best Buy" [ref=e274]:
+        - link "for was $307 from Best Buy" [ref=e275]
+      - text: "Sale"
+      - link [ref=e276]:
+        - link [ref=e277]
+      - heading [level=3]: "LG - UltraFine 27US500-W 27\" 4K UHD (3840×2160) Monitor (White) | IPS, HDR10, 60Hz + More"
+      - text: "$283.95$307 Best Buy"
+      - img "Rated 4.6 out of 5, (404) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · HDMI, DisplayPort · LCD · 27 in · UltraFine"
+      - link "for from Back Market" [ref=e278]:
+        - link "for from Back Market" [ref=e279]
+      - link [ref=e280]:
+        - link [ref=e281]
+      - heading [level=3]: "Samsung 28-inch Monitor 3840 x 2160 LED (LS28BG700ENXGO)"
+      - text: "$256.99 Back Market Refurbished 3840 x 2160 · IPS · 144 Hz · 1 millisecond · HDMI, DisplayPort · LED · 28 in · 4K · Odyssey G"
+      - link "for was $625 from eCommerce Business Prime" [ref=e282]:
+        - link "for was $625 from eCommerce Business Prime" [ref=e283]
+      - text: "Sale"
+      - link [ref=e284]:
+        - link [ref=e285]
+      - heading [level=3]: "Samsung F32TU874VN computer monitor 80 cm (31.5\") 3840 x 2160 pixels"
+      - text: "$396.00$625 eCommerce Business Prime Free 3840 x 2160 · VA · 60 Hz · 6 milliseconds · HDMI, DisplayPort, USB-C, Thunderbolt 3 · 250 cd/m² · LCD"
+      - link "for was $350 from Samsung" [ref=e286]:
+        - link "for was $350 from Samsung" [ref=e287]
+      - text: "Sale"
+      - link [ref=e288]:
+        - link [ref=e289]
+      - heading [level=3]: "Samsung 27 Inch Odyssey G5 G50D(LS27DG500ENXZA)"
+      - text: "$259.99$350 Samsung"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "2560 x 1440 · IPS · 180 Hz · 1 millisecond · HDMI, DisplayPort · 350 cd/m² · LED · 27 in · Odyssey G"
+      - link "for was $450 from B&H Photo-Video-Audio" [ref=e290]:
+        - link "for was $450 from B&H Photo-Video-Audio" [ref=e291]
+      - text: "Sale"
+      - link [ref=e292]:
+        - link "Free 2-day" [ref=e293]
+      - heading [level=3]: "Samsung ViewFinity S70D 32\" 4K HDR Monitor with Integrated Speakers (Black)"
+      - text: "$379.99$450 B&H Photo-Video-Audio"
+      - img "Rated 4.6 out of 5, (893) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 350 cd/m² · LED · 32 in · 11.9 lb weight"
+      - link "for was $350 from Dell" [ref=e294]:
+        - link "for was $350 from Dell" [ref=e295]
+      - text: "Sale"
+      - link [ref=e296]:
+        - link [ref=e297]
+      - heading [level=3]: "Dell 27 Plus 4K Usb-C Monitor - S2725Qc - W2FG2 - 210-brnc"
+      - text: "$279.99$350 Dell"
+      - img "Rated 4.6 out of 5, (786) user reviews"
+      - text: "3840 x 2160 · IPS · 120 Hz · 8 milliseconds · HDMI, DisplayPort, USB-C · 350 cd/m² · LED · 27 in"
+      - link "for from Tech For Less" [ref=e298]:
+        - link "for from Tech For Less" [ref=e299]
+      - link [ref=e300]:
+        - link [ref=e301]
+      - heading [level=3]: "Samsung ViewFinity 27-inch Monitor - 3840 x 2160 - 1000:1 - IPS - Tilt - Swivel - Rotate to Portrait - Black"
+      - text: "$367.97 Tech For Less"
+      - img "Rated 4.5 out of 5, (135) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort, USB-C · LED · 27 in · ViewFinity S"
+      - link "for from Walmart" [ref=e302]:
+        - link "for from Walmart" [ref=e303]
+      - link [ref=e304]:
+        - link [ref=e305]
+      - heading [level=3]: "Lg UltraFine 27up650-w 27 Inch 4K UHD Monitor 3840 x 2160 IPS Hdr400 Adjustable Stand Silver (International Model), Black"
+      - text: "$248.99 Walmart"
+      - img "Rated 4.4 out of 5, (173) user reviews"
+      - text: "3840 x 2160 · IPS · 60 Hz · 5 milliseconds · HDMI, DisplayPort · 400 cd/m² · LCD · 27 in · 18 lb weight"
+      - link "for was $300 from Dell" [ref=e306]:
+        - link "for was $300 from Dell" [ref=e307]
+      - text: "Sale"
+      - link [ref=e308]:
+        - link [ref=e309]
+      - heading [level=3]: "Dell 27 Plus 4K Monitor - S2725Qs - T4CNF - 210-brnd"
+      - text: "$279.99$300 Dell"
+      - img "Rated 4.7 out of 5, (471) user reviews"
+      - text: "3840 x 2160 · IPS · 120 Hz · 8 milliseconds · HDMI, DisplayPort · 350 cd/m² · LED · 27 in · 10.1 lb weight"
+  - heading "Popular options" [level=2]
+  - button [ref=e310]:
+    - generic [ref=e311]:
+      - img "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - text: "Samsung ViewFinity S7 4K UHD High Resolution Monitor"
+      - group "Current Price: $429.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 893 reviews.":
+        - img "Rated 4.6 out of 5, 893 user reviews"
+  - button [ref=e312]:
+    - generic [ref=e313]:
+      - img "38% OFF.": "38% OFF"
+      - img "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - text: "Samsung 32\" Smart Monitor M8 M80F 4K Samsung Vision AI"
+      - group "Current Price: $429.99. Was $700."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.6 out of 5. 119 reviews.":
+        - img "Rated 4.6 out of 5, 119 user reviews"
+  - button [ref=e314]:
+    - generic [ref=e315]:
+      - img "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - text: "Samsung M7 M70F 32\" 4K HDR Smart Monitor"
+      - group "Current Price: $499.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 2.4K reviews.":
+        - img "Rated 4.5 out of 5, 2.4K user reviews"
+  - button [ref=e316]:
+    - generic [ref=e317]:
+      - img "360.": "360"
+      - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e318]:
+        - img
+      - text: "Samsung Odyssey G7 G70F 27\" 4K UHD 180Hz Gaming Monitor"
+      - group "Current Price: $599.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.5 out of 5. 33 reviews.":
+        - img "Rated 4.5 out of 5, 33 user reviews"
+  - button [ref=e319]:
+    - generic [ref=e320]:
+      - img "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - text: "Samsung Odyssey Neo G7 4K UHD Gaming Monitor"
+      - group "Current Price: $1,099.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.3 out of 5. 806 reviews.":
+        - img "Rated 4.3 out of 5, 806 user reviews"
+  - heading "Local Results" [level=2]
+  - heading "Places" [level=2]
+  - button [ref=e321]:
+    - button [ref=e322]
+  - heading "Map" [level=3]
+  - link "Map" [ref=e323]
+  - button [ref=e324]:
+    - generic [ref=e325]:
+      - heading [level=3]: "Central Computers"
+      - img "Rated 4.4 out of 5, 557 user reviews"
+      - text: "· Computer store 837 Howard St · (415) 495-5888 Open · Closes 5 PM   \"It wasted my time, and my computer looks beautiful after the replacement.\""
+  - button [ref=e326]:
+    - generic [ref=e327]:
+      - heading [level=3]: "Best Buy"
+      - img "Rated 4.1 out of 5, 8K user reviews"
+      - text: "· Computer store 1717 Harrison St · (415) 626-9682 Open · Closes 8 PM   \"Price is less compared to market for dji cam and others\""
+  - heading [level=3]:
+    - link "More places" [ref=e329]
+  - navigation
+- contentinfo:
+  - heading "Footer Links" [level=1]
+  - button "94105, San Francisco, CA - Based on your places (Home)" [ref=e330]
+  - text: "-"
+  - button "Update location" [ref=e332]
+  - link "Help" [ref=e333]
+  - link "Send feedback" [ref=e334]
+  - link "Privacy" [ref=e335]
+  - link "Terms" [ref=e336]
+</result>
+
+[18] system_message (background-consult):
+<system_message>
+The page timed out opening that product. Instead of clicking individual product refs, take a fresh snapshot of the current results page and read the product names + prices directly from the tree to identify the lowest-priced Samsung or LG 27"–32" 4K IPS monitor shown in the nearby sorted list — then report those details without navigating away.
+</system_message>
+
+[19] thinking: **Identifying monitor options**
+
+I need to find the lowest-priced Samsung or LG 27-32 4K IPS monitor from the current results snapshot. The products are sorted by price from low to high, and I must consider whether to include ads in this product list. I should read the product names and prices directly from the tree while excluding brands like Dell or ViewSonic, and also any non-4K or non-IPS options. I want to make sure the results come from the nearby filter.
+
+**Evaluating monitor eligibility**
+
+I’ve identified a few eligible monitors. The LG UltraGear 27" IPS is priced at $349.99, and its specs look good for a 4K option. There's also the LG 27UK500-B for $307.99; it's 4K and IPS, but I need to check if the seller, PCLiquidations, is actually local since the user requested nearby options. LG UltraFine at $329.99 seems like a solid pick too. However, there's the Samsung M7 32" listed without IPS, so it doesn't qualify. I’ll focus on the lowest-priced good options.
+
+**Analyzing monitor prices**
+
+I’m checking the prices of various refurbished monitors to find the lowest eligible option. The LG UltraFine 27UP650-W at $248.99 is the best deal I found, lower than the Samsung options. I noticed some other models, like the Samsung ViewFinity and several others, also had prices listed. However, there was another LG UltraFine model, the 27US500-W, at $229.95, which seems eligible and might need further investigation. I want to ensure I have the best option!
+
+**Considering monitor specs**
+
+I'm noticing that the specifications for the monitor don’t mention "IPS," and the title doesn't include it either. This seems important since "IPS" panels generally offer better color accuracy and viewing angles. So, I need to be cautious about making a decision without confirmed specs. It's crucial to ensure that I'm getting a quality display, especially if that's something I'm looking for! I should keep searching for models that explicitly mention this feature.
+
+**Clarifying pricing details**
+
+I see the current snapshot for the LG UltraFine 27UP650-W shows $283.95 at Best Buy instead of $229.95. The user specifically wants the lowest price reported in a sorted list. I noticed Walmart has it for $248.99, which is included in the ads list. I should mention that I’ve excluded non-qualifying lower-priced items and that no web citations are needed since I'm basing this on the current Google Shopping page. I'll include specific details and mention the nearby filter for location 94105 in San Francisco.
+
+**Clarifying monitor pricing and listings**
+
+I need to mention that the store distance isn’t explicitly shown in the snapshot, but the Nearby filter is selected. It seems like the monitor I'm looking at might not be the cheapest overall, since lower-priced entries are Dell or non-4K models. If I focus only on non-ad listings, the snapshot shows ads and popular options without a "Browse products" heading. The Samsung ViewFinity S7 at $429.99 is the lowest in popular options, but it doesn't seem to be sorted. I’ll ensure the answer is direct without overdoing it.
+
+[20] assistant: Lowest matching result shown:
+
+**LG UltraFine 27UP650-W 27-inch 4K UHD Monitor**  
+- **Price:** **$248.99**
+- **Seller:** Walmart
+- **Specs shown:** 3840 × 2160, **IPS**, 60 Hz, HDMI/DisplayPort, **27 in**
+- **Nearby filter:** selected for the current Google Shopping results
+
+I excluded cheaper shown items that were Dell, not Samsung/LG, not 4K, or not IPS.
+
+[21] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>

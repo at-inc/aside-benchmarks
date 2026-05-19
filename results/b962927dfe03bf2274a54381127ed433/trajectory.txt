@@ -1,0 +1,3019 @@
+[1] user: Go to https://bandcamp.com/, Find the best-selling vinyl record by an artist from New York City in the classical music genre.
+
+[2] thinking: **Searching for vinyl records**
+
+I need to use a browser to navigate Bandcamp and find the best-selling vinyl records by an artist from New York City in the classical genre. I think I'll use Bandcamp's discovery filters for the classical genre, specify the format as vinyl, and set the location to New York. Then I can sort for the best-selling options. I definitely have to inspect the results to determine which record I want. Let’s get started!
+
+[3] tool_call: repl("Opening Bandcamp")
+<request>
+const p1 = await openTab('https://bandcamp.com/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="122" elapsed_time="900ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Bandcamp (https://bandcamp.com/)
+# note: interactive (clickable / focusable) elements only.
+- title: "Bandcamp" [url=https://bandcamp.com/]
+- link "Skip to content" [ref=e1]
+- banner:
+  - navigation "Bandcamp" [ref=e2]:
+    - menubar "Main menu":
+      - menuitem "Bandcamp home" [ref=e3]
+      - menuitem [ref=e4]:
+        - search:
+          - text: "Search for artist, album or track"
+          - textbox "Search for artist, album or track (optional)" [ref=e5] [placeholder="Search and discover music"]
+          - button "Search" [ref=e6]
+        - region
+      - menuitem "Sign up" [ref=e7]
+      - menuitem "Log in" [ref=e8]
+  - navigation:
+    - menubar "Page navigation":
+      - menuitem "Digital music" [ref=e9]
+      - menuitem "Vinyl" [ref=e10]
+      - menuitem "Compact discs" [ref=e11]
+      - menuitem "Cassettes" [ref=e12]
+      - menuitem "T-shirts" [ref=e13]
+      - menuitem "Gift cards" [ref=e14]
+      - menuitem "Editorial" [ref=e15]
+      - menuitem "Radio" [ref=e16]
+      - menuitem "Clubs" [ref=e17]
+- main:
+  - region:
+    - heading "Fans have paid artists using Bandcamp, and yesterday alone bought records." [level=1]: "Fans have paid artists $1.73 billion  using Bandcamp, and yesterday alone bought  68,227  records."
+  - region:
+    - region:
+      - text: "selling right now"
+      - button "pause" [ref=e18]
+      - link "UNDERTALE 10th Anniversary Stream Soundtrack Sold for $2 ·7 seconds ago" [ref=e19]
+      - link "Kaidan Sold for €1.50 ·11 seconds ago" [ref=e20]
+      - link "America Dream Reserve Sold for $10 ·15 seconds ago" [ref=e21]
+      - link "Let The Dominoes Fall Sold for $8 ·17 seconds ago" [ref=e22]
+      - link "Blue Prince - The Original Soundtrack Sold for €10 ·20 seconds ago" [ref=e23]
+      - link "Ltd Edition Black LP Sold for €25 ·21 seconds ago" [ref=e24]
+      - link "The Universe in a Nutshell Sold for €0.99 ·27 seconds ago" [ref=e25]
+      - link "Live At CFUV Apr 13th, 2018 Sold for $1 CAD ·40 seconds ago" [ref=e26]
+      - link "O Pato Unisex T-Shirt Sold for $30 ·41 seconds ago" [ref=e27]
+      - link "Etienne-Wrong Sold for €2 ·41 seconds ago" [ref=e28]
+  - region "Bandcamp Daily" [ref=e29]:
+    - banner:
+      - heading "Bandcamp Daily" [level=2]
+      - text: "Read articles on the latest releases, learn about niche genres, and explore global music scenes."
+      - link "Explore more editorial" [ref=e30]
+    - text: "May 13, 2026"
+    - link "On Her Latest Album, KJADE Moves From Grief to Joy" [ref=e31]
+    - text: "The sun emerges from behind the clouds on the Phoenix rapper's latest.by Dash Lewis"
+    - link "Nothing Pick Their Bandcamp Favorites" [ref=e32]
+    - link "The Polish Composers Pushing the Boundaries of Classical Music" [ref=e33]
+    - link "Nagoya’s Electronic Scene Is Hiding in Plain Sight" [ref=e34]
+  - region "Bandcamp Radio" [ref=e35]:
+    - banner:
+      - heading "Bandcamp Radio" [level=2]
+      - text: "Tune in weekly to hear new music and artist interviews."
+      - link "View all shows" [ref=e36]
+    - link "The Lemon Twigs The Indie Show May 13, 2026" [ref=e37]
+    - button "Play" [ref=e38]
+    - text: "It's a '60s hit parade when The Lemon Twigs stop by The Indie Show. Satisfaction guaranteed!Hosted by"
+    - link "Mariana Timony" [ref=e39]
+    - text: ". Featuring"
+    - link "The Lemon Twigs" [ref=e40]
+    - text: "."
+  - region "New and Notable" [ref=e41]:
+    - banner:
+      - heading "New and Notable" [level=2]
+      - button "Prev" [ref=e42] [disabled]
+      - button "Next" [ref=e43]
+      - text: "Explore the latest music releases, hand-selected by the Bandcamp editorial team."
+    - list [ref=e44] [scrollable]:
+      - text: "Electronic"
+      - button "You are out of free plays" [ref=e45]
+      - link "Tricklemore Sea by Calibre" [ref=e46]
+      - text: "The Northern Irish electronic whiz weaves bass music, shoegaze, folk, blues, and various other genres into introspective sonic tapestries.Metal"
+      - button "You are out of free plays" [ref=e47]
+      - link "Isthmos by THE PRESTIGE (FR)" [ref=e48]
+      - text: "Smoldering alternative hardcore bolstered by polished production from this Parisian outfit, recommended for fans of Architects and Gojira.Hip-Hop/Rap"
+      - button "You are out of free plays" [ref=e49]
+      - link "Mazaloth 13 by Wormhole X Lxor" [ref=e50]
+      - text: "Killer San Diego hip-hop label M25 strikes again with an incredibly dark and imposing EP full of industrial, apocalyptic rap.Electronic"
+      - button "You are out of free plays" [ref=e51]
+      - link "Loud Bloom by Olof Dreijer" [ref=e52]
+      - text: "The Knife’s Olof Dreijer unveils a banger—driving dance music powered by pulverizing beats.Experimental"
+      - button "You are out of free plays" [ref=e53]
+      - link "notes 001 by Bex Burch" [ref=e54]
+      - text: "Hushed and murmuring music, electronic tones that babble softly like water over stones in a brook.Electronic"
+      - button "You are out of free plays" [ref=e55]
+      - link "Feeling Is Structure by Max Cooper" [ref=e56]
+      - text: "Alternately dazzling and jittery, the latest from Max Cooper is a spiraling constellation of electronic sound.Alternative"
+      - button "You are out of free plays" [ref=e57]
+      - link "Otterson by diana darby" [ref=e58]
+      - text: "Twelve years since her last record, diana darby is back with stirring folk-inspired songs that are whisper light.Rock"
+      - button "You are out of free plays" [ref=e59]
+      - link "Dysphoria Ritual by Aziola Cry feat. Jason Blake" [ref=e60]
+      - text: "Churning instrumentals built around the Warr Guitar, a rarely heard variant of the 12-string that's like a bass and guitar melded into one.Hip-Hop/Rap"
+      - button "You are out of free plays" [ref=e61]
+      - link "Communicate! Beat Tape by Communicate!" [ref=e62]
+      - text: "An assortment of heady, downtempo instrumentals from UK beatsmith Lee Jardine, with arrangements that nod to 2010's indie and hip-hop.Experimental"
+      - button "You are out of free plays" [ref=e63]
+      - link "Dim Sum & Then Some by Chinese American Bear" [ref=e64]
+      - text: "Filtering pop hooks through quirky electronics, the Seattle duo pen uplifting anthems inspired by fairy tales and Chinese-American culture."
+  - region:
+    - region "Album of the Day" [ref=e65]:
+      - banner:
+        - heading "Album of the Day" [level=2]
+        - button "Prev" [ref=e66] [disabled]
+        - button "Next" [ref=e67]
+        - text: "A deeper dive on an album we love."
+        - link "View more albums" [ref=e68]
+      - list [ref=e69] [scrollable]:
+        - text: "Electronic"
+        - link "Loraine James, “Detached From The Rest Of You” Written by Marshall Gu May 13, 2026" [ref=e70]
+        - button "You are out of free plays" [ref=e71]
+        - text: "On her stunning latest LP, James instills IDM with palpable emotion.Hip-Hop/Rap"
+        - link "Black Milk, “CEREMONIAL” Written by Dylan Green May 12, 2026" [ref=e72]
+        - button "You are out of free plays" [ref=e73]
+        - text: "The Detroit rapper expertly bridges the gap between the rap, soul, and dance music that raised him.Experimental"
+        - link "Dumama, “Towards An Expanse” Written by April Clare Welsh May 11, 2026" [ref=e74]
+        - button "You are out of free plays" [ref=e75]
+        - text: "The South African-born, Berlin-based artist blends cutting edge electro-acoustic music with Xhosa storytelling.Alternative"
+        - link "Aldous Harding, “Train On The Island” Written by Elle Carroll May 8, 2026" [ref=e76]
+        - button "You are out of free plays" [ref=e77]
+        - text: "The New Zealand artist achieves total harmony between the mastery of her craft and the eccentricities of her artistry.Hip-Hop/Rap"
+        - link "Stik Figa & Heather Grey, “Cold Comfort” Written by Dash Lewis May 7, 2026" [ref=e78]
+        - button "You are out of free plays" [ref=e79]
+        - text: "The Texas-based MC and Salt Lake City producer serve up a suite of lush, honey-hued tracks.Pop"
+        - link "Ana Roxanne, “Poem 1” Written by Matthew Blackwell May 6, 2026" [ref=e80]
+        - button "You are out of free plays" [ref=e81]
+        - text: "Vocals come to the fore on the gorgeous new record from Ana Roxanne.World"
+        - link "Wesenyeleh Mebreku, “Resonance of Time (የጊዜ ቃና)” Written by Dean Van Nguyen May 5, 2026" [ref=e82]
+        - button "You are out of free plays" [ref=e83]
+        - text: "Applying Casio keyboards to traditional Ethiopian folk, this lo-fi curio from 1986 is fresher than ever.Hip-Hop/Rap"
+        - link "Kneecap, “FENIAN” Written by Sarah O'Neal May 4, 2026" [ref=e84]
+        - button "You are out of free plays" [ref=e85]
+        - text: "The Irish rap trio level up lyrically, sonically, and emotionally on their defiant sophomore album.Alternative"
+        - link "OOIOO / Lightning Bolt, “The Horizon Spirals / The Horizon Viral” Written by Erick Bradshaw May 1, 2" [ref=e86]
+        - button "You are out of free plays" [ref=e87]
+        - text: "This split single showcases two groups who are not only contemporaries but perfect complements.Metal"
+        - link "Pure Wrath, “Bleak Days Ahead” Written by Luke Jackson April 30, 2026" [ref=e88]
+        - button "You are out of free plays" [ref=e89]
+        - text: "A boldly genre-breaking metal album reckons with our dark present."
+    - region "Get the best of Bandcamp Daily" [ref=e90]:
+      - banner:
+        - heading "Get the best of Bandcamp Daily" [level=2]
+        - text: "Delivered every Friday."
+      - text: "Email address"
+      - textbox "Email address" [ref=e91] [placeholder="Email address"]
+      - button "Sign up" [ref=e92]
+  - region "Discover music by genre and location" [ref=e93]:
+    - banner:
+      - heading "Discover music by genre and location" [level=2]
+      - text: "Dig into genres, sub-genres and scenes from around the world."
+      - link "Explore more genres" [ref=e94]
+    - button "prev" [ref=e95]
+    - generic [ref=e96] [scrollable]:
+      - link "electronic" [ref=e97]
+      - link "experimental" [ref=e98]
+      - link "alternative" [ref=e99]
+      - link "rock" [ref=e100]
+      - link "ambient" [ref=e101]
+      - link "hip-hop/rap" [ref=e102]
+      - link "metal" [ref=e103]
+      - link "punk" [ref=e104]
+      - link "techno" [ref=e105]
+      - link "noise" [ref=e106]
+      - link "indie" [ref=e107]
+      - link "jazz" [ref=e108]
+      - link "instrumental" [ref=e109]
+      - link "folk" [ref=e110]
+      - link "pop" [ref=e111]
+      - link "techno" [ref=e112]
+      - link "funk" [ref=e113]
+      - link "post-rock" [ref=e114]
+      - link "house" [ref=e115]
+      - link "lo-fi" [ref=e116]
+      - link "indie pop" [ref=e117]
+      - link "shoegaze" [ref=e118]
+      - link "synthwave" [ref=e119]
+      - link "underground hip hop" [ref=e120]
+      - link "dream pop" [ref=e121]
+      - link "breakcore" [ref=e122]
+      - link "bedroom pop" [ref=e123]
+      - link "ambient + field recordings" [ref=e124]
+      - link "beat tape" [ref=e125]
+      - link "afrobeats" [ref=e126]
+      - link "future funk" [ref=e127]
+      - link "broken beat" [ref=e128]
+      - link "Los Angeles" [ref=e129]
+      - link "Berlin" [ref=e130]
+      - link "Paris" [ref=e131]
+      - link "Tokyo" [ref=e132]
+      - link "San Francisco" [ref=e133]
+      - link "Detroit" [ref=e134]
+      - link "São Paulo" [ref=e135]
+      - link "Hamburg" [ref=e136]
+      - link "Lisbon" [ref=e137]
+      - link "Singapore" [ref=e138]
+      - link "Buenos Aires" [ref=e139]
+      - link "Barcelona" [ref=e140]
+      - link "Vietnam" [ref=e141]
+      - link "Mexico City" [ref=e142]
+      - link "Lima" [ref=e143]
+      - link "Egypt" [ref=e144]
+    - button "next" [ref=e145]
+  - region "Discover merch" [ref=e146]:
+    - banner:
+      - heading "Discover merch" [level=2]
+    - link "Vinyl" [ref=e147]
+    - link "CDs" [ref=e148]
+    - link "Cassettes" [ref=e149]
+    - link "T-Shirts" [ref=e150]
+  - region "Listening Parties & Live Streams" [ref=e151]:
+    - banner:
+      - heading "Listening Parties & Live Streams" [level=2]
+      - button "Prev" [ref=e152] [disabled]
+      - button "Next" [ref=e153]
+      - text: "Catch your favorite artist’s Live Stream or join a Listening Party to celebrate their latest release."
+      - link "View more events" [ref=e154]
+    - list [ref=e155] [scrollable]:
+      - link "Held.GREY Listening Party" [ref=e156]
+      - text: "Listening Party May 14, 2026  9:00 AM PDT Free"
+      - link "Atjazz & Fred Everything 8 Days Listening Party" [ref=e157]
+      - text: "Listening Party May 14, 2026  9:00 AM PDT Free"
+      - link "Home Normal michael scott dawson & anthéne 'broadcast colours' Listening Party" [ref=e158]
+      - text: "Listening Party May 14, 2026  11:00 AM PDT Free"
+      - link "The Deslondes The Deslondes - Don’t Let It Die: Vol. 1 Listening Party" [ref=e159]
+      - text: "Listening Party May 14, 2026  1:00 PM PDT Free"
+      - link "Federico Durand La Manzana Mágica Listening Party" [ref=e160]
+      - text: "Listening Party May 15, 2026  11:00 AM PDT Free"
+      - link "Volker Lankow Drone With Me Listening Party" [ref=e161]
+      - text: "Listening Party May 16, 2026  1:00 PM PDT Free"
+      - link "Geo Jordan Revive EP Listening Party" [ref=e162]
+      - text: "Listening Party May 18, 2026  10:30 AM PDT Free"
+      - link "Gazelle Twin Summerwater - Gazelle Twin's Ivor Novello-nominated Television Score - Listening Party" [ref=e163]
+      - text: "Listening Party May 19, 2026  1:00 PM PDT Free"
+      - link "A PRANG Listening Party" [ref=e164]
+      - text: "Listening Party May 21, 2026  11:00 AM PDT Free"
+      - link "The Outer Edge Don't Look Back Listening Party" [ref=e165]
+      - text: "Listening Party May 21, 2026  1:30 PM PDT Free"
+- region "Player" [ref=e166]:
+  - banner:
+    - heading "Player" [level=2]
+- contentinfo:
+  - heading "Bandcamp Daily" [level=3]:
+    - link "Bandcamp Daily" [ref=e167]
+    - text: "your guide to the world of Bandcamp"
+  - link "On Her Latest Album, KJADE Moves From Grief to Joy" [ref=e168]
+  - link "Nothing Pick Their Bandcamp Favorites" [ref=e169]
+  - link "The Polish Composers Pushing the Boundaries of Classical Music" [ref=e170]
+  - heading "On Bandcamp Radio" [level=3]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e171]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e172]
+  - link "Listen now" [ref=e173]
+  - navigation:
+    - link "About" [ref=e174]
+    - link "Buttons/Logos" [ref=e175]
+    - link "Bandcamp Daily" [ref=e176]
+    - link "Gift Cards" [ref=e177]
+    - link "Bandcamp Merch" [ref=e178]
+    - link "Help" [ref=e179]
+    - link "Jobs" [ref=e180]
+    - link "Press" [ref=e181]
+    - link "Facebook" [ref=e182]
+    - link "Instagram" [ref=e183]
+    - link "TikTok" [ref=e184]
+    - link "Twitter" [ref=e185]
+    - link "Acceptable Use & Moderation Policy" [ref=e186]
+    - link "Fair Trade Music Policy" [ref=e187]
+    - link "Copyright" [ref=e188]
+    - link "Privacy" [ref=e189]
+    - link "Terms of Use" [ref=e190]
+    - button "Cookie Settings" [ref=e191]
+    - link "Bandcamp for Artists" [ref=e192]
+    - link "Bandcamp for Fans" [ref=e193]
+    - link "Bandcamp for Labels" [ref=e194]
+    - text: "Apps:"
+    - link "Android" [ref=e195]
+    - link "iOS" [ref=e196]
+    - button "Language: English" [ref=e197]
+  - link "Bandcamp home" [ref=e198]
+</result>
+
+[4] thinking: **Searching for vinyl records**
+
+I need to find the best-selling vinyl record by a classical music artist from New York City. I should probably check out the Bandcamp discover page with the right filters to narrow it down. I'll look for the vinyl section there to see what I can discover! There’s a lot to consider, but it seems like a fun exploration. Let’s see what’s out there and what catches my eye!
+
+[5] tool_call: repl("Opening vinyl discovery")
+<request>
+await page.locator('e10').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff || s2.tree);
+</request>
+<result tokens_used="106" elapsed_time="741ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Vinyl on Bandcamp" [url=https://bandcamp.com/discover/all/vinyl?from=menubar&ui_context=subnav]
+- link "Skip to content" [ref=e1]
+- banner:
+  - navigation "Bandcamp" [ref=e2]:
+    - menubar "Main menu":
+      - menuitem "Bandcamp home" [ref=e3]
+      - menuitem [ref=e4]:
+        - search:
+          - text: "Search for artist, album or track"
+          - textbox "Search for artist, album or track (optional)" [ref=e5] [placeholder="Search and discover music"]
+          - button "Search" [ref=e6]
+        - region
+      - menuitem "Sign up" [ref=e7]
+      - menuitem "Log in" [ref=e8]
+- banner:
+  - button "Follow" [ref=e9]
+  - button "clear all filters" [ref=e10]
+  - text: "240,000+ results"
+- main:
+  - text: "Tag search (optional)"
+  - textbox "Tag search (optional)" [ref=e11] [placeholder="Add a genre, location, or tag"]
+  - button "Follow" [ref=e12]
+  - generic [ref=e13] [scrollable]:
+    - button "all genres" [ref=e14]
+    - text: "Genres"
+    - listbox "Genres" [ref=e15]:
+      - option "electronic" [ref=e16]
+      - option "rock" [ref=e17]
+      - option "metal" [ref=e18]
+      - option "alternative" [ref=e19]
+      - option "hip-hop/rap" [ref=e20]
+      - option "experimental" [ref=e21]
+      - option "punk" [ref=e22]
+      - option "folk" [ref=e23]
+      - option "pop" [ref=e24]
+      - option "ambient" [ref=e25]
+      - option "soundtrack" [ref=e26]
+      - option "world" [ref=e27]
+      - option "jazz" [ref=e28]
+      - option "acoustic" [ref=e29]
+      - option "funk" [ref=e30]
+      - option "r&b/soul" [ref=e31]
+      - option "devotional" [ref=e32]
+      - option "classical" [ref=e33]
+      - option "reggae" [ref=e34]
+      - option "podcasts" [ref=e35]
+      - option "country" [ref=e36]
+      - option "spoken word" [ref=e37]
+      - option "comedy" [ref=e38]
+      - option "blues" [ref=e39]
+      - option "kids" [ref=e40]
+      - option "audiobooks" [ref=e41]
+      - option "latin" [ref=e42]
+  - button "next" [ref=e43]
+  - text: "Categories"
+  - radiogroup:
+    - radio "all categories" [ref=e44]
+    - radio "digital" [ref=e45]
+    - radio "vinyl" [ref=e46] [checked]
+    - radio "compact discs" [ref=e47]
+    - radio "cassettes" [ref=e48]
+    - radio "t-shirts" [ref=e49]
+  - button "best-selling" [ref=e50]
+  - button "artists from anywhere" [ref=e51]
+  - button "fresh" [ref=e52]
+  - button "clear all filters" [ref=e53]
+  - group "Images for Pure Devotion":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e54] [selected]
+      - tab "View slide 2" [ref=e55]
+      - tab "View slide 3" [ref=e56]
+      - tab "View slide 4" [ref=e57]
+      - tab "View slide 5" [ref=e58]
+    - generic [ref=e59] [scrollable]:
+      - tabpanel "1 of 5": "Pure Devotion"
+      - tabpanel "2 of 5": "Pure Devotion"
+      - tabpanel "3 of 5": "Pure Devotion"
+      - tabpanel "4 of 5": "Pure Devotion"
+      - tabpanel "5 of 5": "Pure Devotion"
+  - link "Pure Devotion by Overmono" [ref=e60]
+  - text: "electronic"
+  - group "Images for FENIAN":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e61] [selected]
+      - tab "View slide 2" [ref=e62]
+      - tab "View slide 3" [ref=e63]
+      - tab "View slide 4" [ref=e64]
+      - tab "View slide 5" [ref=e65]
+    - generic [ref=e66] [scrollable]:
+      - tabpanel "1 of 5": "FENIAN"
+      - tabpanel "2 of 5": "FENIAN"
+      - tabpanel "3 of 5": "FENIAN"
+      - tabpanel "4 of 5": "FENIAN"
+      - tabpanel "5 of 5": "FENIAN"
+  - link "FENIAN by KNEECAP" [ref=e67]
+  - text: "hip-hop/rap"
+  - group "Images for Inferno":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e68] [selected]
+      - tab "View slide 2" [ref=e69]
+      - tab "View slide 3" [ref=e70]
+      - tab "View slide 4" [ref=e71]
+    - generic [ref=e72] [scrollable]:
+      - tabpanel "1 of 4": "Inferno"
+      - tabpanel "2 of 4": "Inferno"
+      - tabpanel "3 of 4": "Inferno"
+      - tabpanel "4 of 4": "Inferno"
+  - link "Inferno by Boards of Canada" [ref=e73]
+  - text: "alternative"
+  - group "Images for False LP A - Topdown Dialectic":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e74] [selected]
+      - tab "View slide 2" [ref=e75]
+      - tab "View slide 3" [ref=e76]
+    - generic [ref=e77] [scrollable]:
+      - tabpanel "1 of 3": "False LP A - Topdown Dialectic"
+      - tabpanel "2 of 3": "False LP A - Topdown Dialectic"
+      - tabpanel "3 of 3": "False LP A - Topdown Dialectic"
+  - link "False LP A - Topdown Dialectic by Topdown Dialectic" [ref=e78]
+  - group "Images for Days":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e79] [selected]
+      - tab "View slide 2" [ref=e80]
+      - tab "View slide 3" [ref=e81]
+      - tab "View slide 4" [ref=e82]
+    - generic [ref=e83] [scrollable]:
+      - tabpanel "1 of 4": "Days"
+      - tabpanel "2 of 4": "Days"
+      - tabpanel "3 of 4": "Days"
+      - tabpanel "4 of 4": "Days"
+  - link "Days by the Mountain Goats" [ref=e84]
+  - text: "alternative"
+  - group "Images for Headphones (Deluxe 20th Anniversary Edition)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e85] [selected]
+      - tab "View slide 2" [ref=e86]
+      - tab "View slide 3" [ref=e87]
+    - generic [ref=e88] [scrollable]:
+      - tabpanel "1 of 3": "Headphones (Deluxe 20th Anniversary Edition)"
+      - tabpanel "2 of 3": "Headphones (Deluxe 20th Anniversary Edition)"
+      - tabpanel "3 of 3": "Headphones (Deluxe 20th Anniversary Edition)"
+  - link "Headphones (Deluxe 20th Anniversary Edition)by Headphones" [ref=e89]
+  - text: "electronic"
+  - group "Images for ELLROY vs L.A. (OST)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e90] [selected]
+      - tab "View slide 2" [ref=e91]
+      - tab "View slide 3" [ref=e92]
+      - tab "View slide 4" [ref=e93]
+    - generic [ref=e94] [scrollable]:
+      - tabpanel "1 of 4": "ELLROY vs L.A. (OST)"
+      - tabpanel "2 of 4": "ELLROY vs L.A. (OST)"
+      - tabpanel "3 of 4": "ELLROY vs L.A. (OST)"
+      - tabpanel "4 of 4": "ELLROY vs L.A. (OST)"
+  - link "ELLROY vs L.A. (OST)by Calibro 35" [ref=e95]
+  - text: "soundtrack"
+  - group "Images for Train on the Island":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e96] [selected]
+      - tab "View slide 2" [ref=e97]
+      - tab "View slide 3" [ref=e98]
+      - tab "View slide 4" [ref=e99]
+      - tab "View slide 5" [ref=e100]
+    - generic [ref=e101] [scrollable]:
+      - tabpanel "1 of 5": "Train on the Island"
+      - tabpanel "2 of 5": "Train on the Island"
+      - tabpanel "3 of 5": "Train on the Island"
+      - tabpanel "4 of 5": "Train on the Island"
+      - tabpanel "5 of 5": "Train on the Island"
+  - link "Train on the Island by Aldous Harding" [ref=e102]
+  - text: "folk"
+  - group "Images for A Different Arrangement":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e103] [selected]
+      - tab "View slide 2" [ref=e104]
+    - generic [ref=e105] [scrollable]:
+      - tabpanel "1 of 2": "A Different Arrangement"
+      - tabpanel "2 of 2": "A Different Arrangement"
+  - link "A Different Arrangement by Black Marble" [ref=e106]
+  - text: "punk"
+  - group "Images for Into The Realm":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e107] [selected]
+      - tab "View slide 2" [ref=e108]
+      - tab "View slide 3" [ref=e109]
+      - tab "View slide 4" [ref=e110]
+      - tab "View slide 5" [ref=e111]
+    - generic [ref=e112] [scrollable]:
+      - tabpanel "1 of 5": "Into The Realm"
+      - tabpanel "2 of 5": "Into The Realm"
+      - tabpanel "3 of 5": "Into The Realm"
+      - tabpanel "4 of 5": "Into The Realm"
+      - tabpanel "5 of 5": "Into The Realm"
+  - link "Into The Realm by Castle Rat" [ref=e113]
+  - text: "rock"
+  - group "Images for Plumtree - The Boxset":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e114] [selected]
+      - tab "View slide 2" [ref=e115]
+    - generic [ref=e116] [scrollable]:
+      - tabpanel "1 of 2": "Plumtree - The Boxset"
+      - tabpanel "2 of 2": "Plumtree - The Boxset"
+  - link "Plumtree - The Boxset by Plumtree" [ref=e117]
+  - group "Images for Pause The Rain":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e118] [selected]
+      - tab "View slide 2" [ref=e119]
+    - generic [ref=e120] [scrollable]:
+      - tabpanel "1 of 2": "Pause The Rain"
+      - tabpanel "2 of 2": "Pause The Rain"
+  - link "Pause The Rain by Masal & Emma Anderson" [ref=e121]
+  - text: "electronic"
+  - group "Images for HAUSDOGS02":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e122] [selected]
+      - tab "View slide 2" [ref=e123]
+    - generic [ref=e124] [scrollable]:
+      - tabpanel "1 of 2": "HAUSDOGS02"
+      - tabpanel "2 of 2": "HAUSDOGS02"
+  - link "HAUSDOGS02 by Soul Mass Transit System" [ref=e125]
+  - text: "electronic"
+  - group "Images for Shadow Of A Doubt EP":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e126] [selected]
+      - tab "View slide 2" [ref=e127]
+    - generic [ref=e128] [scrollable]:
+      - tabpanel "1 of 2": "Shadow Of A Doubt EP"
+      - tabpanel "2 of 2": "Shadow Of A Doubt EP"
+  - link "Shadow Of A Doubt EP by Overlook" [ref=e129]
+  - group "Images for Bouteille à la mer":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e130] [selected]
+      - tab "View slide 2" [ref=e131]
+      - tab "View slide 3" [ref=e132]
+    - generic [ref=e133] [scrollable]:
+      - tabpanel "1 of 3": "Bouteille à la mer"
+      - tabpanel "2 of 3": "Bouteille à la mer"
+      - tabpanel "3 of 3": "Bouteille à la mer"
+  - link "Bouteille à la mer by Cozik" [ref=e134]
+  - text: "reggae"
+  - group "Images for Boatshoes":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e135] [selected]
+      - tab "View slide 2" [ref=e136]
+    - generic [ref=e137] [scrollable]:
+      - tabpanel "1 of 2": "Boatshoes"
+      - tabpanel "2 of 2": "Boatshoes"
+  - link "Boatshoes by Brian Ennals & Blockhead" [ref=e138]
+  - text: "hip-hop/rap"
+  - group "Images for Alone Together":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e139] [selected]
+      - tab "View slide 2" [ref=e140]
+      - tab "View slide 3" [ref=e141]
+      - tab "View slide 4" [ref=e142]
+      - tab "View slide 5" [ref=e143]
+    - generic [ref=e144] [scrollable]:
+      - tabpanel "1 of 5": "Alone Together"
+      - tabpanel "2 of 5": "Alone Together"
+      - tabpanel "3 of 5": "Alone Together"
+      - tabpanel "4 of 5": "Alone Together"
+      - tabpanel "5 of 5": "Alone Together"
+  - link "Alone Together by Show Me The Body" [ref=e145]
+  - text: "punk"
+  - group "Images for Love Stories":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e146] [selected]
+      - tab "View slide 2" [ref=e147]
+      - tab "View slide 3" [ref=e148]
+      - tab "View slide 4" [ref=e149]
+      - tab "View slide 5" [ref=e150]
+    - generic [ref=e151] [scrollable]:
+      - tabpanel "1 of 5": "Love Stories"
+      - tabpanel "2 of 5": "Love Stories"
+      - tabpanel "3 of 5": "Love Stories"
+      - tabpanel "4 of 5": "Love Stories"
+      - tabpanel "5 of 5": "Love Stories"
+  - link "Love Stories by Thee Sinseers" [ref=e152]
+  - text: "r&b/soul"
+  - group "Images for Complete B Sides: 1988-97 (Remaster)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e153] [selected]
+      - tab "View slide 2" [ref=e154]
+      - tab "View slide 3" [ref=e155]
+      - tab "View slide 4" [ref=e156]
+    - generic [ref=e157] [scrollable]:
+      - tabpanel "1 of 4": "Complete B Sides: 1988-97 (Remaster)"
+      - tabpanel "2 of 4": "Complete B Sides: 1988-97 (Remaster)"
+      - tabpanel "3 of 4": "Complete B Sides: 1988-97 (Remaster)"
+      - tabpanel "4 of 4": "Complete B Sides: 1988-97 (Remaster)"
+  - link "Complete B Sides: 1988-97 (Remaster)by Pixies" [ref=e158]
+  - text: "alternative"
+  - group "Images for Peace Must Prevail":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e159] [selected]
+      - tab "View slide 2" [ref=e160]
+    - generic [ref=e161] [scrollable]:
+      - tabpanel "1 of 2": "Peace Must Prevail"
+      - tabpanel "2 of 2": "Peace Must Prevail"
+  - link "Peace Must Prevail by Indica Dubs, Morgana Souljah" [ref=e162]
+  - text: "reggae"
+  - group "Images for Nightrun":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e163] [selected]
+      - tab "View slide 2" [ref=e164]
+    - generic [ref=e165] [scrollable]:
+      - tabpanel "1 of 2": "Nightrun"
+      - tabpanel "2 of 2": "Nightrun"
+  - link "Nightrun by Disguised" [ref=e166]
+  - text: "electronic"
+  - group "Images for Ultramarine":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e167] [selected]
+      - tab "View slide 2" [ref=e168]
+    - generic [ref=e169] [scrollable]:
+      - tabpanel "1 of 2": "Ultramarine"
+      - tabpanel "2 of 2": "Ultramarine"
+  - link "Ultramarine by Allah-Las" [ref=e170]
+  - text: "rock"
+  - group "Images for Insomniac Doze - Anniversary Edition":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e171] [selected]
+      - tab "View slide 2" [ref=e172]
+      - tab "View slide 3" [ref=e173]
+      - tab "View slide 4" [ref=e174]
+      - tab "View slide 5" [ref=e175]
+    - generic [ref=e176] [scrollable]:
+      - tabpanel "1 of 5": "Insomniac Doze - Anniversary Edition"
+      - tabpanel "2 of 5": "Insomniac Doze - Anniversary Edition"
+      - tabpanel "3 of 5": "Insomniac Doze - Anniversary Edition"
+      - tabpanel "4 of 5": "Insomniac Doze - Anniversary Edition"
+      - tabpanel "5 of 5": "Insomniac Doze - Anniversary Edition"
+  - link "Insomniac Doze - Anniversary Edition by Envy" [ref=e177]
+  - text: "rock"
+  - group "Images for Look For Your Mind!":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e178] [selected]
+      - tab "View slide 2" [ref=e179]
+      - tab "View slide 3" [ref=e180]
+    - generic [ref=e181] [scrollable]:
+      - tabpanel "1 of 3": "Look For Your Mind!"
+      - tabpanel "2 of 3": "Look For Your Mind!"
+      - tabpanel "3 of 3": "Look For Your Mind!"
+  - link "Look For Your Mind!by The Lemon Twigs" [ref=e182]
+  - text: "rock"
+  - group "Images for Happy Today":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e183] [selected]
+      - tab "View slide 2" [ref=e184]
+      - tab "View slide 3" [ref=e185]
+      - tab "View slide 4" [ref=e186]
+    - generic [ref=e187] [scrollable]:
+      - tabpanel "1 of 4": "Happy Today"
+      - tabpanel "2 of 4": "Happy Today"
+      - tabpanel "3 of 4": "Happy Today"
+      - tabpanel "4 of 4": "Happy Today"
+  - link "Happy Today by Jeff Parker ETA IVtet" [ref=e188]
+  - text: "jazz"
+  - group "Images for Mutually Assured Distraction":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e189] [selected]
+      - tab "View slide 2" [ref=e190]
+    - generic [ref=e191] [scrollable]:
+      - tabpanel "1 of 2": "Mutually Assured Distraction"
+      - tabpanel "2 of 2": "Mutually Assured Distraction"
+  - link "Mutually Assured Distraction by Younger Brother" [ref=e192]
+  - text: "electronic"
+  - group "Images for Dancing On The Wall":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e193] [selected]
+      - tab "View slide 2" [ref=e194]
+      - tab "View slide 3" [ref=e195]
+      - tab "View slide 4" [ref=e196]
+    - generic [ref=e197] [scrollable]:
+      - tabpanel "1 of 4": "Dancing On The Wall"
+      - tabpanel "2 of 4": "Dancing On The Wall"
+      - tabpanel "3 of 4": "Dancing On The Wall"
+      - tabpanel "4 of 4": "Dancing On The Wall"
+  - link "Dancing On The Wall by MUNA" [ref=e198]
+  - text: "pop"
+  - group "Images for Boots on the Ground":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e199] [selected]
+      - tab "View slide 2" [ref=e200]
+      - tab "View slide 3" [ref=e201]
+    - generic [ref=e202] [scrollable]:
+      - tabpanel "1 of 3": "Boots on the Ground"
+      - tabpanel "2 of 3": "Boots on the Ground"
+      - tabpanel "3 of 3": "Boots on the Ground"
+  - link "Boots on the Ground by Massive Attack, Tom Waits" [ref=e203]
+  - text: "alternative"
+  - group "Images for Pre-Order All The Beauty (album)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e204] [selected]
+      - tab "View slide 2" [ref=e205]
+      - tab "View slide 3" [ref=e206]
+      - tab "View slide 4" [ref=e207]
+      - tab "View slide 5" [ref=e208]
+    - generic [ref=e209] [scrollable]:
+      - tabpanel "1 of 5": "Pre-Order All The Beauty (album)"
+      - tabpanel "2 of 5": "Pre-Order All The Beauty (album)"
+      - tabpanel "3 of 5": "Pre-Order All The Beauty (album)"
+      - tabpanel "4 of 5": "Pre-Order All The Beauty (album)"
+      - tabpanel "5 of 5": "Pre-Order All The Beauty (album)"
+  - link "Pre-Order All The Beauty (album)by Pete Yorn" [ref=e210]
+  - text: "alternative"
+  - group "Images for CEREMONIAL":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e211] [selected]
+      - tab "View slide 2" [ref=e212]
+      - tab "View slide 3" [ref=e213]
+      - tab "View slide 4" [ref=e214]
+      - tab "View slide 5" [ref=e215]
+    - generic [ref=e216] [scrollable]:
+      - tabpanel "1 of 5": "CEREMONIAL"
+      - tabpanel "2 of 5": "CEREMONIAL"
+      - tabpanel "3 of 5": "CEREMONIAL"
+      - tabpanel "4 of 5": "CEREMONIAL"
+      - tabpanel "5 of 5": "CEREMONIAL"
+  - link "CEREMONIAL by Black Milk" [ref=e217]
+  - text: "hip-hop/rap"
+  - group "Images for Paradise Metal":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e218] [selected]
+      - tab "View slide 2" [ref=e219]
+    - generic [ref=e220] [scrollable]:
+      - tabpanel "1 of 2": "Paradise Metal"
+      - tabpanel "2 of 2": "Paradise Metal"
+  - link "Paradise Metal by π. Διονύσιος Ταμπάκης" [ref=e221]
+  - text: "electronic"
+  - group "Images for Lift Your Skinny Fists Like Antennas To Heaven":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e222] [selected]
+      - tab "View slide 2" [ref=e223]
+      - tab "View slide 3" [ref=e224]
+    - generic [ref=e225] [scrollable]:
+      - tabpanel "1 of 3": "Lift Your Skinny Fists Like Antennas To Heaven"
+      - tabpanel "2 of 3": "Lift Your Skinny Fists Like Antennas To Heaven"
+      - tabpanel "3 of 3": "Lift Your Skinny Fists Like Antennas To Heaven"
+  - link "Lift Your Skinny Fists Like Antennas To Heaven by Godspeed You Black Emperor!" [ref=e226]
+  - text: "rock"
+  - group "Images for Remember The Humans":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e227] [selected]
+      - tab "View slide 2" [ref=e228]
+      - tab "View slide 3" [ref=e229]
+      - tab "View slide 4" [ref=e230]
+    - generic [ref=e231] [scrollable]:
+      - tabpanel "1 of 4": "Remember The Humans"
+      - tabpanel "2 of 4": "Remember The Humans"
+      - tabpanel "3 of 4": "Remember The Humans"
+      - tabpanel "4 of 4": "Remember The Humans"
+  - link "Remember The Humans by Broken Social Scene" [ref=e232]
+  - text: "alternative"
+  - group "Images for The Bestiary":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e233] [selected]
+      - tab "View slide 2" [ref=e234]
+      - tab "View slide 3" [ref=e235]
+      - tab "View slide 4" [ref=e236]
+      - tab "View slide 5" [ref=e237]
+    - generic [ref=e238] [scrollable]:
+      - tabpanel "1 of 5": "The Bestiary"
+      - tabpanel "2 of 5": "The Bestiary"
+      - tabpanel "3 of 5": "The Bestiary"
+      - tabpanel "4 of 5": "The Bestiary"
+      - tabpanel "5 of 5": "The Bestiary"
+  - link "The Bestiary by Castle Rat" [ref=e239]
+  - text: "rock"
+  - group "Images for Darling…It's Too Late":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e240] [selected]
+      - tab "View slide 2" [ref=e241]
+      - tab "View slide 3" [ref=e242]
+    - generic [ref=e243] [scrollable]:
+      - tabpanel "1 of 3": "Darling…It's Too Late"
+      - tabpanel "2 of 3": "Darling…It's Too Late"
+      - tabpanel "3 of 3": "Darling…It's Too Late"
+  - link "Darling…It's Too Late by Guantanamo Baywatch" [ref=e244]
+  - text: "punk"
+  - group "Images for Too Fast to Die":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e245] [selected]
+      - tab "View slide 2" [ref=e246]
+      - tab "View slide 3" [ref=e247]
+      - tab "View slide 4" [ref=e248]
+    - generic [ref=e249] [scrollable]:
+      - tabpanel "1 of 4": "Too Fast to Die"
+      - tabpanel "2 of 4": "Too Fast to Die"
+      - tabpanel "3 of 4": "Too Fast to Die"
+      - tabpanel "4 of 4": "Too Fast to Die"
+  - link "Too Fast to Die by Archspire" [ref=e250]
+  - text: "metal"
+  - group "Images for An Undying Love For A Burning World":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e251] [selected]
+      - tab "View slide 2" [ref=e252]
+      - tab "View slide 3" [ref=e253]
+    - generic [ref=e254] [scrollable]:
+      - tabpanel "1 of 3": "An Undying Love For A Burning World"
+      - tabpanel "2 of 3": "An Undying Love For A Burning World"
+      - tabpanel "3 of 3": "An Undying Love For A Burning World"
+  - link "An Undying Love For A Burning World by Neurosis" [ref=e255]
+  - text: "metal"
+  - group "Images for A Wave That Will Never Break":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e256] [selected]
+      - tab "View slide 2" [ref=e257]
+      - tab "View slide 3" [ref=e258]
+      - tab "View slide 4" [ref=e259]
+    - generic [ref=e260] [scrollable]:
+      - tabpanel "1 of 4": "A Wave That Will Never Break"
+      - tabpanel "2 of 4": "A Wave That Will Never Break"
+      - tabpanel "3 of 4": "A Wave That Will Never Break"
+      - tabpanel "4 of 4": "A Wave That Will Never Break"
+  - link "A Wave That Will Never Break by WU LYF" [ref=e261]
+  - text: "alternative"
+  - group "Images for American Football (LP4)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e262] [selected]
+      - tab "View slide 2" [ref=e263]
+      - tab "View slide 3" [ref=e264]
+      - tab "View slide 4" [ref=e265]
+      - tab "View slide 5" [ref=e266]
+    - generic [ref=e267] [scrollable]:
+      - tabpanel "1 of 5": "American Football (LP4)"
+      - tabpanel "2 of 5": "American Football (LP4)"
+      - tabpanel "3 of 5": "American Football (LP4)"
+      - tabpanel "4 of 5": "American Football (LP4)"
+      - tabpanel "5 of 5": "American Football (LP4)"
+  - link "American Football (LP4)by American Football" [ref=e268]
+  - text: "rock"
+  - group "Images for Demonstration Disc":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e269] [selected]
+      - tab "View slide 2" [ref=e270]
+    - generic [ref=e271] [scrollable]:
+      - tabpanel "1 of 2": "Demonstration Disc"
+      - tabpanel "2 of 2": "Demonstration Disc"
+  - link "Demonstration Disc by Love Hultén" [ref=e272]
+  - text: "ambient"
+  - group "Images for low sunday ghost machine black ep":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e273] [selected]
+      - tab "View slide 2" [ref=e274]
+    - generic [ref=e275] [scrollable]:
+      - tabpanel "1 of 2": "low sunday ghost machine black ep"
+      - tabpanel "2 of 2": "low sunday ghost machine black ep"
+  - link "low sunday ghost machine black ep by lowsunday" [ref=e276]
+  - text: "ambient"
+  - group "Images for Skin":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e277] [selected]
+      - tab "View slide 2" [ref=e278]
+      - tab "View slide 3" [ref=e279]
+    - generic [ref=e280] [scrollable]:
+      - tabpanel "1 of 3": "Skin"
+      - tabpanel "2 of 3": "Skin"
+      - tabpanel "3 of 3": "Skin"
+  - link "Skin by 16volt" [ref=e281]
+  - text: "alternative"
+  - group "Images for WIRED":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e282] [selected]
+      - tab "View slide 2" [ref=e283]
+      - tab "View slide 3" [ref=e284]
+      - tab "View slide 4" [ref=e285]
+      - tab "View slide 5" [ref=e286]
+    - generic [ref=e287] [scrollable]:
+      - tabpanel "1 of 5": "WIRED"
+      - tabpanel "2 of 5": "WIRED"
+      - tabpanel "3 of 5": "WIRED"
+      - tabpanel "4 of 5": "WIRED"
+      - tabpanel "5 of 5": "WIRED"
+  - link "WIRED by Basement" [ref=e288]
+  - text: "alternative"
+  - group "Images for People of the Moon":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e289] [selected]
+      - tab "View slide 2" [ref=e290]
+      - tab "View slide 3" [ref=e291]
+      - tab "View slide 4" [ref=e292]
+    - generic [ref=e293] [scrollable]:
+      - tabpanel "1 of 4": "People of the Moon"
+      - tabpanel "2 of 4": "People of the Moon"
+      - tabpanel "3 of 4": "People of the Moon"
+      - tabpanel "4 of 4": "People of the Moon"
+  - link "People of the Moon by Nu Genea" [ref=e294]
+  - text: "funk"
+  - group "Images for Exit":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e295] [selected]
+      - tab "View slide 2" [ref=e296]
+    - generic [ref=e297] [scrollable]:
+      - tabpanel "1 of 2": "Exit"
+      - tabpanel "2 of 2": "Exit"
+  - link "Exit by Eustress" [ref=e298]
+  - text: "ambient"
+  - group "Images for Poem 1":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e299] [selected]
+      - tab "View slide 2" [ref=e300]
+      - tab "View slide 3" [ref=e301]
+    - generic [ref=e302] [scrollable]:
+      - tabpanel "1 of 3": "Poem 1"
+      - tabpanel "2 of 3": "Poem 1"
+      - tabpanel "3 of 3": "Poem 1"
+  - link "Poem 1 by Ana Roxanne" [ref=e303]
+  - text: "ambient"
+  - group "Images for Diamond Jubilee":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e304] [selected]
+      - tab "View slide 2" [ref=e305]
+      - tab "View slide 3" [ref=e306]
+    - generic [ref=e307] [scrollable]:
+      - tabpanel "1 of 3": "Diamond Jubilee"
+      - tabpanel "2 of 3": "Diamond Jubilee"
+      - tabpanel "3 of 3": "Diamond Jubilee"
+  - link "Diamond Jubilee by Cindy Lee" [ref=e308]
+  - text: "rock"
+  - group "Images for Hope":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e309] [selected]
+      - tab "View slide 2" [ref=e310]
+      - tab "View slide 3" [ref=e311]
+    - generic [ref=e312] [scrollable]:
+      - tabpanel "1 of 3": "Hope"
+      - tabpanel "2 of 3": "Hope"
+      - tabpanel "3 of 3": "Hope"
+  - link "Hope by Sync24" [ref=e313]
+  - text: "ambient"
+  - group "Images for Versus 002":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e314] [selected]
+      - tab "View slide 2" [ref=e315]
+    - generic [ref=e316] [scrollable]:
+      - tabpanel "1 of 2": "Versus 002"
+      - tabpanel "2 of 2": "Versus 002"
+  - link "Versus 002 by Klint vs. Hemka" [ref=e317]
+  - text: "electronic"
+  - group "Images for CALM DOWN":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e318] [selected]
+      - tab "View slide 2" [ref=e319]
+      - tab "View slide 3" [ref=e320]
+    - generic [ref=e321] [scrollable]:
+      - tabpanel "1 of 3": "CALM DOWN"
+      - tabpanel "2 of 3": "CALM DOWN"
+      - tabpanel "3 of 3": "CALM DOWN"
+  - link "CALM DOWN by CALM DOWN" [ref=e322]
+  - text: "experimental"
+  - group "Images for Party Tools 2.0 [PT201]":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e323] [selected]
+      - tab "View slide 2" [ref=e324]
+    - generic [ref=e325] [scrollable]:
+      - tabpanel "1 of 2": "Party Tools 2.0 [PT201]"
+      - tabpanel "2 of 2": "Party Tools 2.0 [PT201]"
+  - link "Party Tools 2.0 [PT201]by Unknown Artist" [ref=e326]
+  - text: "electronic"
+  - group "Images for No Place Of Warmth (24-bit HD audio)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e327] [selected]
+      - tab "View slide 2" [ref=e328]
+    - generic [ref=e329] [scrollable]:
+      - tabpanel "1 of 2": "No Place Of Warmth (24-bit HD audio)"
+      - tabpanel "2 of 2": "No Place Of Warmth (24-bit HD audio)"
+  - link "No Place Of Warmth (24-bit HD audio)by Frozen Soul" [ref=e330]
+  - text: "metal"
+  - group "Images for Let X=X (Live)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e331] [selected]
+      - tab "View slide 2" [ref=e332]
+      - tab "View slide 3" [ref=e333]
+    - generic [ref=e334] [scrollable]:
+      - tabpanel "1 of 3": "Let X=X (Live)"
+      - tabpanel "2 of 3": "Let X=X (Live)"
+      - tabpanel "3 of 3": "Let X=X (Live)"
+  - link "Let X=X (Live)by Laurie Anderson" [ref=e335]
+  - text: "experimental"
+  - group "Images for A Gigantic Globular Burst Of Antistatic":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e336] [selected]
+      - tab "View slide 2" [ref=e337]
+      - tab "View slide 3" [ref=e338]
+    - generic [ref=e339] [scrollable]:
+      - tabpanel "1 of 3": "A Gigantic Globular Burst Of Antistatic"
+      - tabpanel "2 of 3": "A Gigantic Globular Burst Of Antistatic"
+      - tabpanel "3 of 3": "A Gigantic Globular Burst Of Antistatic"
+  - link "A Gigantic Globular Burst Of Antistatic by THE FUTURE SOUND OF LONDON" [ref=e340]
+  - text: "electronic"
+  - group "Images for Paling Trax 6":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e341] [selected]
+      - tab "View slide 2" [ref=e342]
+    - generic [ref=e343] [scrollable]:
+      - tabpanel "1 of 2": "Paling Trax 6"
+      - tabpanel "2 of 2": "Paling Trax 6"
+  - link "Paling Trax 6 by TAFKAMP / Dylan Fogarty" [ref=e344]
+  - group "Images for The Hidden Hand":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e345] [selected]
+      - tab "View slide 2" [ref=e346]
+      - tab "View slide 3" [ref=e347]
+      - tab "View slide 4" [ref=e348]
+      - tab "View slide 5" [ref=e349]
+    - generic [ref=e350] [scrollable]:
+      - tabpanel "1 of 5": "The Hidden Hand"
+      - tabpanel "2 of 5": "The Hidden Hand"
+      - tabpanel "3 of 5": "The Hidden Hand"
+      - tabpanel "4 of 5": "The Hidden Hand"
+      - tabpanel "5 of 5": "The Hidden Hand"
+  - link "The Hidden Hand by If These Trees Could Talk" [ref=e351]
+  - text: "rock"
+  - group "Images for Stephen Cogle w/Peter Stapleton-An Afternoon With Victor Dimisich":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e352] [selected]
+      - tab "View slide 2" [ref=e353]
+    - generic [ref=e354] [scrollable]:
+      - tabpanel "1 of 2": "Stephen Cogle w/Peter Stapleton-An Afternoon With Victor Dimisich"
+      - tabpanel "2 of 2": "Stephen Cogle w/Peter Stapleton-An Afternoon With Victor Dimisich"
+  - link "Stephen Cogle w/Peter Stapleton-An Afternoon With Victor Dimisich by Siltbreeze Records" [ref=e355]
+  - group "Images for Where Light Settles":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e356] [selected]
+      - tab "View slide 2" [ref=e357]
+      - tab "View slide 3" [ref=e358]
+    - generic [ref=e359] [scrollable]:
+      - tabpanel "1 of 3": "Where Light Settles"
+      - tabpanel "2 of 3": "Where Light Settles"
+      - tabpanel "3 of 3": "Where Light Settles"
+  - link "Where Light Settles by Jasmine Myra" [ref=e360]
+  - text: "jazz"
+  - group "Images for Life's a Bitch Mixtape":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e361] [selected]
+      - tab "View slide 2" [ref=e362]
+      - tab "View slide 3" [ref=e363]
+    - generic [ref=e364] [scrollable]:
+      - tabpanel "1 of 3": "Life's a Bitch Mixtape"
+      - tabpanel "2 of 3": "Life's a Bitch Mixtape"
+      - tabpanel "3 of 3": "Life's a Bitch Mixtape"
+  - link "Life's a Bitch Mixtape by SpaceAcre" [ref=e365]
+  - text: "alternative"
+  - group "Images for Motorslice OST":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e366] [selected]
+      - tab "View slide 2" [ref=e367]
+    - generic [ref=e368] [scrollable]:
+      - tabpanel "1 of 2": "Motorslice OST"
+      - tabpanel "2 of 2": "Motorslice OST"
+  - link "Motorslice OST by Pizza Hotline" [ref=e369]
+  - text: "electronic"
+  - status: "60 results found."
+  - button "View more results" [ref=e370]
+  - button "View Pure Devotion" [ref=e371]
+  - button "View Standard Black Vinyl LP" [ref=e372]
+  - button "View Limited Edition White Label Vinyl LP" [ref=e373]
+  - button "View Limited Edition Deluxe 2xLP + Signed Print" [ref=e374]
+  - button "View Compact Disc" [ref=e375]
+  - button "Play" [ref=e376]
+  - text: "Lockup"
+  - link "from Pure Devotion" [ref=e377]
+  - link "by Overmono" [ref=e378]
+  - link "Go to album" [ref=e379]
+  - button "Wishlist" [ref=e380]
+  - text: "11 tracks, 40 minutes releases August 07, 2026"
+  - generic "Profile image for Overmono" [ref=e381]
+  - link "Overmono" [ref=e382]
+  - text: "London, UK"
+  - button "Follow" [ref=e383]
+- link "Artist index" [ref=e384]
+- link "New releases" [ref=e385]
+- contentinfo:
+  - heading "Bandcamp Daily" [level=3]:
+    - link "Bandcamp Daily" [ref=e386]
+    - text: "your guide to the world of Bandcamp"
+  - link "On Her Latest Album, KJADE Moves From Grief to Joy" [ref=e387]
+  - link "Nothing Pick Their Bandcamp Favorites" [ref=e388]
+  - link "The Polish Composers Pushing the Boundaries of Classical Music" [ref=e389]
+  - heading "On Bandcamp Radio" [level=3]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e390]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e391]
+  - link "Listen now" [ref=e392]
+  - navigation:
+    - link "About" [ref=e393]
+    - link "Buttons/Logos" [ref=e394]
+    - link "Bandcamp Daily" [ref=e395]
+    - link "Gift Cards" [ref=e396]
+    - link "Bandcamp Merch" [ref=e397]
+    - link "Help" [ref=e398]
+    - link "Jobs" [ref=e399]
+    - link "Press" [ref=e400]
+    - link "Facebook" [ref=e401]
+    - link "Instagram" [ref=e402]
+    - link "TikTok" [ref=e403]
+    - link "Twitter" [ref=e404]
+    - link "Acceptable Use & Moderation Policy" [ref=e405]
+    - link "Fair Trade Music Policy" [ref=e406]
+    - link "Copyright" [ref=e407]
+    - link "Privacy" [ref=e408]
+    - link "Terms of Use" [ref=e409]
+    - button "Cookie Settings" [ref=e410]
+    - link "Bandcamp for Artists" [ref=e411]
+    - link "Bandcamp for Fans" [ref=e412]
+    - link "Bandcamp for Labels" [ref=e413]
+    - text: "Apps:"
+    - link "Android" [ref=e414]
+    - link "iOS" [ref=e415]
+    - button "Language: English" [ref=e416]
+  - link "Bandcamp home" [ref=e417]
+</result>
+
+[6] thinking: **Setting filters for music**
+
+I need to set some filters for my music search. I want to explore classical genre, maybe focusing on artists from New York City. So, I’ll look for an option like "anywhere" but narrow it down to classical and NYC specifically. Then, I can just click to apply those filters! This way, I’ll get the most relevant results for what I’m looking for. It sounds like a good plan!
+
+[7] tool_call: repl("Selecting classical genre")
+<request>
+await page.locator('e33').click();
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff || s3.tree);
+</request>
+<result tokens_used="91" elapsed_time="1335ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Classical vinyl on Bandcamp" [url=https://bandcamp.com/discover/all/vinyl?from=menubar&ui_context=subnav]
+- link "Skip to content" [ref=e1]
+- banner:
+  - navigation "Bandcamp" [ref=e2]:
+    - menubar "Main menu":
+      - menuitem "Bandcamp home" [ref=e3]
+      - menuitem [ref=e4]:
+        - search:
+          - text: "Search for artist, album or track"
+          - textbox "Search for artist, album or track (optional)" [ref=e5] [placeholder="Search and discover music"]
+          - button "Search" [ref=e6]
+        - region
+      - menuitem "Sign up" [ref=e7]
+      - menuitem "Log in" [ref=e8]
+- banner:
+  - button "Follow" [ref=e418]
+  - button "clear all filters" [ref=e10]
+  - text: "2,100+ results"
+- main:
+  - text: "Tag search (optional)"
+  - textbox "Tag search (optional)" [ref=e11] [placeholder="Add a genre, location, or tag"]
+  - button "Follow" [ref=e419]
+  - button "prev" [ref=e420]
+  - generic [ref=e13] [scrollable]:
+    - button "classical" [ref=e421]
+    - text: "Genres"
+    - listbox "Genres" [ref=e15] [focused]:
+      - option "electronic" [ref=e16]
+      - option "rock" [ref=e17]
+      - option "metal" [ref=e18]
+      - option "alternative" [ref=e19]
+      - option "hip-hop/rap" [ref=e20]
+      - option "experimental" [ref=e21]
+      - option "punk" [ref=e22]
+      - option "folk" [ref=e23]
+      - option "pop" [ref=e24]
+      - option "ambient" [ref=e25]
+      - option "soundtrack" [ref=e26]
+      - option "world" [ref=e27]
+      - option "jazz" [ref=e28]
+      - option "acoustic" [ref=e29]
+      - option "funk" [ref=e30]
+      - option "r&b/soul" [ref=e31]
+      - option "devotional" [ref=e32]
+      - option "reggae" [ref=e34]
+      - option "podcasts" [ref=e35]
+      - option "country" [ref=e36]
+      - option "spoken word" [ref=e37]
+      - option "comedy" [ref=e38]
+      - option "blues" [ref=e39]
+      - option "kids" [ref=e40]
+      - option "audiobooks" [ref=e41]
+      - option "latin" [ref=e42]
+  - button "next" [ref=e43]
+  - text: "Subgenres"
+  - listbox "Subgenres" [ref=e422]:
+    - option "orchestral" [ref=e423]
+    - option "neo-classical" [ref=e424]
+    - option "chamber music" [ref=e425]
+    - option "classical piano" [ref=e426]
+    - option "contemporary classical" [ref=e427]
+    - option "baroque" [ref=e428]
+    - option "opera" [ref=e429]
+    - option "choral" [ref=e430]
+    - option "modern classical" [ref=e431]
+    - option "avant garde" [ref=e432]
+  - text: "Categories"
+  - radiogroup:
+    - radio "all categories" [ref=e44]
+    - radio "digital" [ref=e45]
+    - radio "vinyl" [ref=e46] [checked]
+    - radio "compact discs" [ref=e47]
+    - radio "cassettes" [ref=e48]
+    - radio "t-shirts" [ref=e49]
+  - button "best-selling" [ref=e50]
+  - button "artists from anywhere" [ref=e51]
+  - button "fresh" [ref=e52]
+  - button "clear all filters" [ref=e53]
+  - group "Images for A Gigantic Globular Burst Of Antistatic":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e433] [selected]
+      - tab "View slide 2" [ref=e434]
+      - tab "View slide 3" [ref=e435]
+    - generic [ref=e436] [scrollable]:
+      - tabpanel "1 of 3": "A Gigantic Globular Burst Of Antistatic"
+      - tabpanel "2 of 3": "A Gigantic Globular Burst Of Antistatic"
+      - tabpanel "3 of 3": "A Gigantic Globular Burst Of Antistatic"
+  - link "A Gigantic Globular Burst Of Antistatic by THE FUTURE SOUND OF LONDON" [ref=e437]
+  - group "Images for Sentimental Value":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e438] [selected]
+      - tab "View slide 2" [ref=e439]
+      - tab "View slide 3" [ref=e440]
+    - generic [ref=e441] [scrollable]:
+      - tabpanel "1 of 3": "Sentimental Value"
+      - tabpanel "2 of 3": "Sentimental Value"
+      - tabpanel "3 of 3": "Sentimental Value"
+  - link "Sentimental Value by Hania Rani" [ref=e442]
+  - group "Images for rain music":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e443] [selected]
+      - tab "View slide 2" [ref=e444]
+    - generic [ref=e445] [scrollable]:
+      - tabpanel "1 of 2": "rain music"
+      - tabpanel "2 of 2": "rain music"
+  - link "rain music by Duval Timothy & Carlos Niño" [ref=e446]
+  - group "Images for Nel Nome Del Codice":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e447] [selected]
+      - tab "View slide 2" [ref=e448]
+      - tab "View slide 3" [ref=e449]
+      - tab "View slide 4" [ref=e450]
+      - tab "View slide 5" [ref=e451]
+    - generic [ref=e452] [scrollable]:
+      - tabpanel "1 of 5": "Nel Nome Del Codice"
+      - tabpanel "2 of 5": "Nel Nome Del Codice"
+      - tabpanel "3 of 5": "Nel Nome Del Codice"
+      - tabpanel "4 of 5": "Nel Nome Del Codice"
+      - tabpanel "5 of 5": "Nel Nome Del Codice"
+  - link "Nel Nome Del Codice by KEYGEN CHURCH" [ref=e453]
+  - group "Images for AVTT/PTTN":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e454] [selected]
+      - tab "View slide 2" [ref=e455]
+    - generic [ref=e456] [scrollable]:
+      - tabpanel "1 of 2": "AVTT/PTTN"
+      - tabpanel "2 of 2": "AVTT/PTTN"
+  - link "AVTT/PTTN by AVTT/PTTN (The Avett Brothers & Mike Patton)" [ref=e457]
+  - group "Images for Seeing Is Forgetting":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e458] [selected]
+      - tab "View slide 2" [ref=e459]
+    - generic [ref=e460] [scrollable]:
+      - tabpanel "1 of 2": "Seeing Is Forgetting"
+      - tabpanel "2 of 2": "Seeing Is Forgetting"
+  - link "Seeing Is Forgetting by Elori Saxl & Henry Solomon" [ref=e461]
+  - group "Images for Tenebre Rosso Sangue":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e462] [selected]
+      - tab "View slide 2" [ref=e463]
+      - tab "View slide 3" [ref=e464]
+    - generic [ref=e465] [scrollable]:
+      - tabpanel "1 of 3": "Tenebre Rosso Sangue"
+      - tabpanel "2 of 3": "Tenebre Rosso Sangue"
+      - tabpanel "3 of 3": "Tenebre Rosso Sangue"
+  - link "Tenebre Rosso Sangue by KEYGEN CHURCH" [ref=e466]
+  - group "Images for Film Scores for Films That Don’t Exist":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e467] [selected]
+      - tab "View slide 2" [ref=e468]
+      - tab "View slide 3" [ref=e469]
+    - generic [ref=e470] [scrollable]:
+      - tabpanel "1 of 3": "Film Scores for Films That Don’t Exist"
+      - tabpanel "2 of 3": "Film Scores for Films That Don’t Exist"
+      - tabpanel "3 of 3": "Film Scores for Films That Don’t Exist"
+  - link "Film Scores for Films That Don’t Exist by BLARF" [ref=e471]
+  - group "Images for C:\>CHKDSK /F":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e472] [selected]
+      - tab "View slide 2" [ref=e473]
+      - tab "View slide 3" [ref=e474]
+      - tab "View slide 4" [ref=e475]
+      - tab "View slide 5" [ref=e476]
+    - generic [ref=e477] [scrollable]:
+      - tabpanel "1 of 5": "C:\>CHKDSK /F"
+      - tabpanel "2 of 5": "C:\>CHKDSK /F"
+      - tabpanel "3 of 5": "C:\>CHKDSK /F"
+      - tabpanel "4 of 5": "C:\>CHKDSK /F"
+      - tabpanel "5 of 5": "C:\>CHKDSK /F"
+  - link "C:\>CHKDSK /F by MASTER BOOT RECORD" [ref=e478]
+  - group "Images for PERSONAL COMPUTER":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e479] [selected]
+      - tab "View slide 2" [ref=e480]
+      - tab "View slide 3" [ref=e481]
+    - generic [ref=e482] [scrollable]:
+      - tabpanel "1 of 3": "PERSONAL COMPUTER"
+      - tabpanel "2 of 3": "PERSONAL COMPUTER"
+      - tabpanel "3 of 3": "PERSONAL COMPUTER"
+  - link "PERSONAL COMPUTER by MASTER BOOT RECORD" [ref=e483]
+  - group "Images for Shade Zero":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e484] [selected]
+      - tab "View slide 2" [ref=e485]
+      - tab "View slide 3" [ref=e486]
+      - tab "View slide 4" [ref=e487]
+    - generic [ref=e488] [scrollable]:
+      - tabpanel "1 of 4": "Shade Zero"
+      - tabpanel "2 of 4": "Shade Zero"
+      - tabpanel "3 of 4": "Shade Zero"
+      - tabpanel "4 of 4": "Shade Zero"
+  - link "Shade Zero by Taiga Ultan" [ref=e489]
+  - group "Images for INTERRUPT REQUEST":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e490] [selected]
+      - tab "View slide 2" [ref=e491]
+      - tab "View slide 3" [ref=e492]
+      - tab "View slide 4" [ref=e493]
+      - tab "View slide 5" [ref=e494]
+    - generic [ref=e495] [scrollable]:
+      - tabpanel "1 of 5": "INTERRUPT REQUEST"
+      - tabpanel "2 of 5": "INTERRUPT REQUEST"
+      - tabpanel "3 of 5": "INTERRUPT REQUEST"
+      - tabpanel "4 of 5": "INTERRUPT REQUEST"
+      - tabpanel "5 of 5": "INTERRUPT REQUEST"
+  - link "INTERRUPT REQUEST by MASTER BOOT RECORD" [ref=e496]
+  - group "Images for The Machine is burning and now everyone knows it could happen again":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e497] [selected]
+      - tab "View slide 2" [ref=e498]
+      - tab "View slide 3" [ref=e499]
+      - tab "View slide 4" [ref=e500]
+    - generic [ref=e501] [scrollable]:
+      - tabpanel "1 of 4": "The Machine is burning and now everyone knows it could happen again"
+      - tabpanel "2 of 4": "The Machine is burning and now everyone knows it could happen again"
+      - tabpanel "3 of 4": "The Machine is burning and now everyone knows it could happen again"
+      - tabpanel "4 of 4": "The Machine is burning and now everyone knows it could happen again"
+  - link "The Machine is burning and now everyone knows it could happen again by BRUIT ≤" [ref=e502]
+  - group "Images for INTERNET PROTOCOL":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e503] [selected]
+      - tab "View slide 2" [ref=e504]
+      - tab "View slide 3" [ref=e505]
+    - generic [ref=e506] [scrollable]:
+      - tabpanel "1 of 3": "INTERNET PROTOCOL"
+      - tabpanel "2 of 3": "INTERNET PROTOCOL"
+      - tabpanel "3 of 3": "INTERNET PROTOCOL"
+  - link "INTERNET PROTOCOL by MASTER BOOT RECORD" [ref=e507]
+  - group "Images for Selected Organ Works":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e508] [selected]
+      - tab "View slide 2" [ref=e509]
+    - generic [ref=e510] [scrollable]:
+      - tabpanel "1 of 2": "Selected Organ Works"
+      - tabpanel "2 of 2": "Selected Organ Works"
+  - link "Selected Organ Works by øjeRum" [ref=e511]
+  - group "Images for Cantus for Winter in Six Parts":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e512] [selected]
+      - tab "View slide 2" [ref=e513]
+      - tab "View slide 3" [ref=e514]
+      - tab "View slide 4" [ref=e515]
+      - tab "View slide 5" [ref=e516]
+    - generic [ref=e517] [scrollable]:
+      - tabpanel "1 of 5": "Cantus for Winter in Six Parts"
+      - tabpanel "2 of 5": "Cantus for Winter in Six Parts"
+      - tabpanel "3 of 5": "Cantus for Winter in Six Parts"
+      - tabpanel "4 of 5": "Cantus for Winter in Six Parts"
+      - tabpanel "5 of 5": "Cantus for Winter in Six Parts"
+  - link "Cantus for Winter in Six Parts by zakè" [ref=e518]
+  - group "Images for FLOPPY DISK OVERDRIVE":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e519] [selected]
+      - tab "View slide 2" [ref=e520]
+      - tab "View slide 3" [ref=e521]
+      - tab "View slide 4" [ref=e522]
+    - generic [ref=e523] [scrollable]:
+      - tabpanel "1 of 4": "FLOPPY DISK OVERDRIVE"
+      - tabpanel "2 of 4": "FLOPPY DISK OVERDRIVE"
+      - tabpanel "3 of 4": "FLOPPY DISK OVERDRIVE"
+      - tabpanel "4 of 4": "FLOPPY DISK OVERDRIVE"
+  - link "FLOPPY DISK OVERDRIVE by MASTER BOOT RECORD" [ref=e524]
+  - group "Images for Fables":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e525] [selected]
+      - tab "View slide 2" [ref=e526]
+      - tab "View slide 3" [ref=e527]
+    - generic [ref=e528] [scrollable]:
+      - tabpanel "1 of 3": "Fables"
+      - tabpanel "2 of 3": "Fables"
+      - tabpanel "3 of 3": "Fables"
+  - link "Fables by Isabel Pine" [ref=e529]
+  - group "Images for Untitled":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e530] [selected]
+      - tab "View slide 2" [ref=e531]
+    - generic [ref=e532] [scrollable]:
+      - tabpanel "1 of 2": "Untitled"
+      - tabpanel "2 of 2": "Untitled"
+  - link "Untitled by EMIKA" [ref=e533]
+  - group "Images for Elevator Songs":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e534] [selected]
+      - tab "View slide 2" [ref=e535]
+      - tab "View slide 3" [ref=e536]
+      - tab "View slide 4" [ref=e537]
+      - tab "View slide 5" [ref=e538]
+    - generic [ref=e539] [scrollable]:
+      - tabpanel "1 of 5": "Elevator Songs"
+      - tabpanel "2 of 5": "Elevator Songs"
+      - tabpanel "3 of 5": "Elevator Songs"
+      - tabpanel "4 of 5": "Elevator Songs"
+      - tabpanel "5 of 5": "Elevator Songs"
+  - link "Elevator Songs by Gabriel Kahane, Roomful of Teeth" [ref=e540]
+  - group "Images for C:\>COPY *.* A: /V":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e541] [selected]
+      - tab "View slide 2" [ref=e542]
+      - tab "View slide 3" [ref=e543]
+      - tab "View slide 4" [ref=e544]
+      - tab "View slide 5" [ref=e545]
+    - generic [ref=e546] [scrollable]:
+      - tabpanel "1 of 5": "C:\>COPY *.* A: /V"
+      - tabpanel "2 of 5": "C:\>COPY *.* A: /V"
+      - tabpanel "3 of 5": "C:\>COPY *.* A: /V"
+      - tabpanel "4 of 5": "C:\>COPY *.* A: /V"
+      - tabpanel "5 of 5": "C:\>COPY *.* A: /V"
+  - link "C:\>COPY *.* A: /V by MASTER BOOT RECORD" [ref=e547]
+  - group "Images for Looks Far Woman":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e548] [selected]
+      - tab "View slide 2" [ref=e549]
+      - tab "View slide 3" [ref=e550]
+      - tab "View slide 4" [ref=e551]
+    - generic [ref=e552] [scrollable]:
+      - tabpanel "1 of 4": "Looks Far Woman"
+      - tabpanel "2 of 4": "Looks Far Woman"
+      - tabpanel "3 of 4": "Looks Far Woman"
+      - tabpanel "4 of 4": "Looks Far Woman"
+  - link "Looks Far Woman by Aliya Ultan" [ref=e553]
+  - group "Images for v2.0 (Deluxe Edition)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e554] [selected]
+      - tab "View slide 2" [ref=e555]
+      - tab "View slide 3" [ref=e556]
+      - tab "View slide 4" [ref=e557]
+      - tab "View slide 5" [ref=e558]
+    - generic [ref=e559] [scrollable]:
+      - tabpanel "1 of 5": "v2.0 (Deluxe Edition)"
+      - tabpanel "2 of 5": "v2.0 (Deluxe Edition)"
+      - tabpanel "3 of 5": "v2.0 (Deluxe Edition)"
+      - tabpanel "4 of 5": "v2.0 (Deluxe Edition)"
+      - tabpanel "5 of 5": "v2.0 (Deluxe Edition)"
+  - link "v2.0 (Deluxe Edition)by GoGo Penguin" [ref=e560]
+  - group "Images for Volume III":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e561] [selected]
+      - tab "View slide 2" [ref=e562]
+      - tab "View slide 3" [ref=e563]
+    - generic [ref=e564] [scrollable]:
+      - tabpanel "1 of 3": "Volume III"
+      - tabpanel "2 of 3": "Volume III"
+      - tabpanel "3 of 3": "Volume III"
+  - link "Volume III by Flore Laurentienne" [ref=e565]
+  - group "Images for MONOLITH":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e566] [selected]
+      - tab "View slide 2" [ref=e567]
+      - tab "View slide 3" [ref=e568]
+    - generic [ref=e569] [scrollable]:
+      - tabpanel "1 of 3": "MONOLITH"
+      - tabpanel "2 of 3": "MONOLITH"
+      - tabpanel "3 of 3": "MONOLITH"
+  - link "MONOLITH by BRUIT ≤" [ref=e570]
+  - group "Images for Nostalgia":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e571] [selected]
+      - tab "View slide 2" [ref=e572]
+      - tab "View slide 3" [ref=e573]
+    - generic [ref=e574] [scrollable]:
+      - tabpanel "1 of 3": "Nostalgia"
+      - tabpanel "2 of 3": "Nostalgia"
+      - tabpanel "3 of 3": "Nostalgia"
+  - link "Nostalgia by Hania Rani" [ref=e575]
+  - group "Images for C:\>DEFRAG":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e576] [selected]
+      - tab "View slide 2" [ref=e577]
+      - tab "View slide 3" [ref=e578]
+      - tab "View slide 4" [ref=e579]
+      - tab "View slide 5" [ref=e580]
+    - generic [ref=e581] [scrollable]:
+      - tabpanel "1 of 5": "C:\>DEFRAG"
+      - tabpanel "2 of 5": "C:\>DEFRAG"
+      - tabpanel "3 of 5": "C:\>DEFRAG"
+      - tabpanel "4 of 5": "C:\>DEFRAG"
+      - tabpanel "5 of 5": "C:\>DEFRAG"
+  - link "C:\>DEFRAG by MASTER BOOT RECORD" [ref=e582]
+  - group "Images for The Spinning Wheel":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e583] [selected]
+      - tab "View slide 2" [ref=e584]
+      - tab "View slide 3" [ref=e585]
+      - tab "View slide 4" [ref=e586]
+      - tab "View slide 5" [ref=e587]
+    - generic [ref=e588] [scrollable]:
+      - tabpanel "1 of 5": "The Spinning Wheel"
+      - tabpanel "2 of 5": "The Spinning Wheel"
+      - tabpanel "3 of 5": "The Spinning Wheel"
+      - tabpanel "4 of 5": "The Spinning Wheel"
+      - tabpanel "5 of 5": "The Spinning Wheel"
+  - link "The Spinning Wheel by Mediæval Bæbes" [ref=e589]
+  - group "Images for Ghosts":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e590] [selected]
+      - tab "View slide 2" [ref=e591]
+      - tab "View slide 3" [ref=e592]
+      - tab "View slide 4" [ref=e593]
+      - tab "View slide 5" [ref=e594]
+    - generic [ref=e595] [scrollable]:
+      - tabpanel "1 of 5": "Ghosts"
+      - tabpanel "2 of 5": "Ghosts"
+      - tabpanel "3 of 5": "Ghosts"
+      - tabpanel "4 of 5": "Ghosts"
+      - tabpanel "5 of 5": "Ghosts"
+  - link "Ghosts by Hania Rani" [ref=e596]
+  - group "Images for caroline":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e597] [selected]
+      - tab "View slide 2" [ref=e598]
+      - tab "View slide 3" [ref=e599]
+    - generic [ref=e600] [scrollable]:
+      - tabpanel "1 of 3": "caroline"
+      - tabpanel "2 of 3": "caroline"
+      - tabpanel "3 of 3": "caroline"
+  - link "caroline by caroline" [ref=e601]
+  - group "Images for Infinity Gradient":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e602] [selected]
+      - tab "View slide 2" [ref=e603]
+      - tab "View slide 3" [ref=e604]
+    - generic [ref=e605] [scrollable]:
+      - tabpanel "1 of 3": "Infinity Gradient"
+      - tabpanel "2 of 3": "Infinity Gradient"
+      - tabpanel "3 of 3": "Infinity Gradient"
+  - link "Infinity Gradient by Tristan Perich & James McVinnie" [ref=e606]
+  - group "Images for Górecki: Symphony No. 3":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e607] [selected]
+      - tab "View slide 2" [ref=e608]
+    - generic [ref=e609] [scrollable]:
+      - tabpanel "1 of 2": "Górecki: Symphony No. 3"
+      - tabpanel "2 of 2": "Górecki: Symphony No. 3"
+  - link "Górecki: Symphony No. 3 by Dawn Upshaw, London Sinfonietta, David Zinman" [ref=e610]
+  - group "Images for Canto Ostinato":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e611] [selected]
+      - tab "View slide 2" [ref=e612]
+      - tab "View slide 3" [ref=e613]
+    - generic [ref=e614] [scrollable]:
+      - tabpanel "1 of 3": "Canto Ostinato"
+      - tabpanel "2 of 3": "Canto Ostinato"
+      - tabpanel "3 of 3": "Canto Ostinato"
+  - link "Canto Ostinato by Metropolis Ensemble, Erik Hall, Sandbox Percussion" [ref=e615]
+  - group "Images for Music For 18 Musicians":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e616] [selected]
+      - tab "View slide 2" [ref=e617]
+    - generic [ref=e618] [scrollable]:
+      - tabpanel "1 of 2": "Music For 18 Musicians"
+      - tabpanel "2 of 2": "Music For 18 Musicians"
+  - link "Music For 18 Musicians by Steve Reich" [ref=e619]
+  - group "Images for Therapy":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e620] [selected]
+      - tab "View slide 2" [ref=e621]
+      - tab "View slide 3" [ref=e622]
+      - tab "View slide 4" [ref=e623]
+      - tab "View slide 5" [ref=e624]
+    - generic [ref=e625] [scrollable]:
+      - tabpanel "1 of 5": "Therapy"
+      - tabpanel "2 of 5": "Therapy"
+      - tabpanel "3 of 5": "Therapy"
+      - tabpanel "4 of 5": "Therapy"
+      - tabpanel "5 of 5": "Therapy"
+  - link "Therapy by Brendan Eder Ensemble" [ref=e626]
+  - group "Images for Deuce":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e627] [selected]
+      - tab "View slide 2" [ref=e628]
+      - tab "View slide 3" [ref=e629]
+    - generic [ref=e630] [scrollable]:
+      - tabpanel "1 of 3": "Deuce"
+      - tabpanel "2 of 3": "Deuce"
+      - tabpanel "3 of 3": "Deuce"
+  - link "Deuce by Manu Delago & Max ZT" [ref=e631]
+  - group "Images for Conceive the Sea":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e632] [selected]
+      - tab "View slide 2" [ref=e633]
+    - generic [ref=e634] [scrollable]:
+      - tabpanel "1 of 2": "Conceive the Sea"
+      - tabpanel "2 of 2": "Conceive the Sea"
+  - link "Conceive the Sea by marucoporoporo" [ref=e635]
+  - group "Images for The Endless Dance":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e636] [selected]
+      - tab "View slide 2" [ref=e637]
+      - tab "View slide 3" [ref=e638]
+    - generic [ref=e639] [scrollable]:
+      - tabpanel "1 of 3": "The Endless Dance"
+      - tabpanel "2 of 3": "The Endless Dance"
+      - tabpanel "3 of 3": "The Endless Dance"
+  - link "The Endless Dance by Hannah Peel" [ref=e640]
+  - group "Images for Colour Yes (Special Edition)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e641] [selected]
+      - tab "View slide 2" [ref=e642]
+      - tab "View slide 3" [ref=e643]
+    - generic [ref=e644] [scrollable]:
+      - tabpanel "1 of 3": "Colour Yes (Special Edition)"
+      - tabpanel "2 of 3": "Colour Yes (Special Edition)"
+      - tabpanel "3 of 3": "Colour Yes (Special Edition)"
+  - link "Colour Yes (Special Edition)by Matthew Halsall" [ref=e645]
+  - group "Images for Liminal":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e646] [selected]
+      - tab "View slide 2" [ref=e647]
+      - tab "View slide 3" [ref=e648]
+    - generic [ref=e649] [scrollable]:
+      - tabpanel "1 of 3": "Liminal"
+      - tabpanel "2 of 3": "Liminal"
+      - tabpanel "3 of 3": "Liminal"
+  - link "Liminal by Poppy Ackroyd" [ref=e650]
+  - group "Images for Great Doubt":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e651] [selected]
+      - tab "View slide 2" [ref=e652]
+      - tab "View slide 3" [ref=e653]
+    - generic [ref=e654] [scrollable]:
+      - tabpanel "1 of 3": "Great Doubt"
+      - tabpanel "2 of 3": "Great Doubt"
+      - tabpanel "3 of 3": "Great Doubt"
+  - link "Great Doubt by Astrid Sonne" [ref=e655]
+  - group "Images for Everything Is Stolen Anyway":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e656] [selected]
+      - tab "View slide 2" [ref=e657]
+    - generic [ref=e658] [scrollable]:
+      - tabpanel "1 of 2": "Everything Is Stolen Anyway"
+      - tabpanel "2 of 2": "Everything Is Stolen Anyway"
+  - link "Everything Is Stolen Anyway by SHOLTO" [ref=e659]
+  - group "Images for Interlude":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e660] [selected]
+      - tab "View slide 2" [ref=e661]
+      - tab "View slide 3" [ref=e662]
+      - tab "View slide 4" [ref=e663]
+      - tab "View slide 5" [ref=e664]
+    - generic [ref=e665] [scrollable]:
+      - tabpanel "1 of 5": "Interlude"
+      - tabpanel "2 of 5": "Interlude"
+      - tabpanel "3 of 5": "Interlude"
+      - tabpanel "4 of 5": "Interlude"
+      - tabpanel "5 of 5": "Interlude"
+  - link "Interlude by Hanakiv" [ref=e666]
+  - group "Images for playing piano for dad":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e667] [selected]
+      - tab "View slide 2" [ref=e668]
+    - generic [ref=e669] [scrollable]:
+      - tabpanel "1 of 2": "playing piano for dad"
+      - tabpanel "2 of 2": "playing piano for dad"
+  - link "playing piano for dad by h hunt" [ref=e670]
+  - group "Images for So Let Us Melt":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e671] [selected]
+      - tab "View slide 2" [ref=e672]
+      - tab "View slide 3" [ref=e673]
+    - generic [ref=e674] [scrollable]:
+      - tabpanel "1 of 3": "So Let Us Melt"
+      - tabpanel "2 of 3": "So Let Us Melt"
+      - tabpanel "3 of 3": "So Let Us Melt"
+  - link "So Let Us Melt by Jessica Curry" [ref=e675]
+  - group "Images for Crime 101 (Original Motion Picture Soundtrack)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e676] [selected]
+      - tab "View slide 2" [ref=e677]
+    - generic [ref=e678] [scrollable]:
+      - tabpanel "1 of 2": "Crime 101 (Original Motion Picture Soundtrack)"
+      - tabpanel "2 of 2": "Crime 101 (Original Motion Picture Soundtrack)"
+  - link "Crime 101 (Original Motion Picture Soundtrack)by Blanck Mass" [ref=e679]
+  - group "Images for Volume I":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e680] [selected]
+      - tab "View slide 2" [ref=e681]
+      - tab "View slide 3" [ref=e682]
+    - generic [ref=e683] [scrollable]:
+      - tabpanel "1 of 3": "Volume I"
+      - tabpanel "2 of 3": "Volume I"
+      - tabpanel "3 of 3": "Volume I"
+  - link "Volume I by Flore Laurentienne" [ref=e684]
+  - group "Images for Fanfares":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e685] [selected]
+      - tab "View slide 2" [ref=e686]
+    - generic [ref=e687] [scrollable]:
+      - tabpanel "1 of 2": "Fanfares"
+      - tabpanel "2 of 2": "Fanfares"
+  - link "Fanfares by GoGo Penguin" [ref=e688]
+  - group "Images for Old Friends New Friends":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e689] [selected]
+      - tab "View slide 2" [ref=e690]
+      - tab "View slide 3" [ref=e691]
+    - generic [ref=e692] [scrollable]:
+      - tabpanel "1 of 3": "Old Friends New Friends"
+      - tabpanel "2 of 3": "Old Friends New Friends"
+      - tabpanel "3 of 3": "Old Friends New Friends"
+  - link "Old Friends New Friends by Nils Frahm" [ref=e693]
+  - group "Images for Le piano et le torrent":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e694] [selected]
+      - tab "View slide 2" [ref=e695]
+      - tab "View slide 3" [ref=e696]
+    - generic [ref=e697] [scrollable]:
+      - tabpanel "1 of 3": "Le piano et le torrent"
+      - tabpanel "2 of 3": "Le piano et le torrent"
+      - tabpanel "3 of 3": "Le piano et le torrent"
+  - link "Le piano et le torrent by Viviane Audet" [ref=e698]
+  - group "Images for On Giacometti":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e699] [selected]
+      - tab "View slide 2" [ref=e700]
+      - tab "View slide 3" [ref=e701]
+      - tab "View slide 4" [ref=e702]
+      - tab "View slide 5" [ref=e703]
+    - generic [ref=e704] [scrollable]:
+      - tabpanel "1 of 5": "On Giacometti"
+      - tabpanel "2 of 5": "On Giacometti"
+      - tabpanel "3 of 5": "On Giacometti"
+      - tabpanel "4 of 5": "On Giacometti"
+      - tabpanel "5 of 5": "On Giacometti"
+  - link "On Giacometti by Hania Rani" [ref=e705]
+  - group "Images for TRIP MAPS 3":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e706] [selected]
+      - tab "View slide 2" [ref=e707]
+      - tab "View slide 3" [ref=e708]
+    - generic [ref=e709] [scrollable]:
+      - tabpanel "1 of 3": "TRIP MAPS 3"
+      - tabpanel "2 of 3": "TRIP MAPS 3"
+      - tabpanel "3 of 3": "TRIP MAPS 3"
+  - link "TRIP MAPS 3 by THE FUTURE SOUND OF LONDON" [ref=e710]
+  - group "Images for Spanish Breakfast":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e711] [selected]
+      - tab "View slide 2" [ref=e712]
+      - tab "View slide 3" [ref=e713]
+      - tab "View slide 4" [ref=e714]
+    - generic [ref=e715] [scrollable]:
+      - tabpanel "1 of 4": "Spanish Breakfast"
+      - tabpanel "2 of 4": "Spanish Breakfast"
+      - tabpanel "3 of 4": "Spanish Breakfast"
+      - tabpanel "4 of 4": "Spanish Breakfast"
+  - link "Spanish Breakfast by Rone" [ref=e716]
+  - group "Images for Protected":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e717] [selected]
+      - tab "View slide 2" [ref=e718]
+      - tab "View slide 3" [ref=e719]
+      - tab "View slide 4" [ref=e720]
+    - generic [ref=e721] [scrollable]:
+      - tabpanel "1 of 4": "Protected"
+      - tabpanel "2 of 4": "Protected"
+      - tabpanel "3 of 4": "Protected"
+      - tabpanel "4 of 4": "Protected"
+  - link "Protected by Daniela Mars" [ref=e722]
+  - group "Images for Souvenirs":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e723] [selected]
+      - tab "View slide 2" [ref=e724]
+      - tab "View slide 3" [ref=e725]
+      - tab "View slide 4" [ref=e726]
+    - generic [ref=e727] [scrollable]:
+      - tabpanel "1 of 4": "Souvenirs"
+      - tabpanel "2 of 4": "Souvenirs"
+      - tabpanel "3 of 4": "Souvenirs"
+      - tabpanel "4 of 4": "Souvenirs"
+  - link "Souvenirs by Emahoy Tsege Mariam Gebru" [ref=e728]
+  - group "Images for Beyond the Past • Live in London with the Platinum Anniversary Orchestra":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e729] [selected]
+      - tab "View slide 2" [ref=e730]
+      - tab "View slide 3" [ref=e731]
+      - tab "View slide 4" [ref=e732]
+    - generic [ref=e733] [scrollable]:
+      - tabpanel "1 of 4": "Beyond the Past • Live in London with the Platinum Anniversary Orchestra"
+      - tabpanel "2 of 4": "Beyond the Past • Live in London with the Platinum Anniversary Orchestra"
+      - tabpanel "3 of 4": "Beyond the Past • Live in London with the Platinum Anniversary Orchestra"
+      - tabpanel "4 of 4": "Beyond the Past • Live in London with the Platinum Anniversary Orchestra"
+  - link "Beyond the Past • Live in London with the Platinum Anniversary Orchestra by MONO" [ref=e734]
+  - group "Images for UNDERTALE Piano Collections, Vol. 1":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e735] [selected]
+      - tab "View slide 2" [ref=e736]
+      - tab "View slide 3" [ref=e737]
+    - generic [ref=e738] [scrollable]:
+      - tabpanel "1 of 3": "UNDERTALE Piano Collections, Vol. 1"
+      - tabpanel "2 of 3": "UNDERTALE Piano Collections, Vol. 1"
+      - tabpanel "3 of 3": "UNDERTALE Piano Collections, Vol. 1"
+  - link "UNDERTALE Piano Collections, Vol. 1 by David Peacock & Augustine Mayuga Gonzales" [ref=e739]
+  - group "Images for There's a Yearnin'":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e740] [selected]
+      - tab "View slide 2" [ref=e741]
+      - tab "View slide 3" [ref=e742]
+    - generic [ref=e743] [scrollable]:
+      - tabpanel "1 of 3": "There's a Yearnin'"
+      - tabpanel "2 of 3": "There's a Yearnin'"
+      - tabpanel "3 of 3": "There's a Yearnin'"
+  - link "There's a Yearnin'by Jeff Lederer" [ref=e744]
+  - group "Images for Purpose / Advent":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e745] [selected]
+      - tab "View slide 2" [ref=e746]
+      - tab "View slide 3" [ref=e747]
+    - generic [ref=e748] [scrollable]:
+      - tabpanel "1 of 3": "Purpose / Advent"
+      - tabpanel "2 of 3": "Purpose / Advent"
+      - tabpanel "3 of 3": "Purpose / Advent"
+  - link "Purpose / Advent by Flub" [ref=e749]
+  - group "Images for One Step More and You Die":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e750] [selected]
+      - tab "View slide 2" [ref=e751]
+      - tab "View slide 3" [ref=e752]
+    - generic [ref=e753] [scrollable]:
+      - tabpanel "1 of 3": "One Step More and You Die"
+      - tabpanel "2 of 3": "One Step More and You Die"
+      - tabpanel "3 of 3": "One Step More and You Die"
+  - link "One Step More and You Die by MONO" [ref=e754]
+  - status: "60 results found."
+  - button "View more results" [ref=e755]
+  - button "View Pure Devotion" [ref=e371]
+  - button "View Standard Black Vinyl LP" [ref=e372]
+  - button "View Limited Edition White Label Vinyl LP" [ref=e373]
+  - button "View Limited Edition Deluxe 2xLP + Signed Print" [ref=e374]
+  - button "View Compact Disc" [ref=e375]
+  - button "Play" [ref=e376]
+  - text: "Lockup"
+  - link "from Pure Devotion" [ref=e377]
+  - link "by Overmono" [ref=e378]
+  - link "Go to album" [ref=e379]
+  - button "Wishlist" [ref=e380]
+  - text: "11 tracks, 40 minutes releases August 07, 2026"
+  - generic "Profile image for Overmono" [ref=e381]
+  - link "Overmono" [ref=e382]
+  - text: "London, UK"
+  - button "Follow" [ref=e383]
+- link "Artist index" [ref=e384]
+- link "New releases" [ref=e385]
+- contentinfo:
+  - heading "Bandcamp Daily" [level=3]:
+    - link "Bandcamp Daily" [ref=e386]
+    - text: "your guide to the world of Bandcamp"
+  - link "On Her Latest Album, KJADE Moves From Grief to Joy" [ref=e387]
+  - link "Nothing Pick Their Bandcamp Favorites" [ref=e388]
+  - link "The Polish Composers Pushing the Boundaries of Classical Music" [ref=e389]
+  - heading "On Bandcamp Radio" [level=3]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e390]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e391]
+  - link "Listen now" [ref=e392]
+  - navigation:
+    - link "About" [ref=e393]
+    - link "Buttons/Logos" [ref=e394]
+    - link "Bandcamp Daily" [ref=e395]
+    - link "Gift Cards" [ref=e396]
+    - link "Bandcamp Merch" [ref=e397]
+    - link "Help" [ref=e398]
+    - link "Jobs" [ref=e399]
+    - link "Press" [ref=e400]
+    - link "Facebook" [ref=e401]
+    - link "Instagram" [ref=e402]
+    - link "TikTok" [ref=e403]
+    - link "Twitter" [ref=e404]
+    - link "Acceptable Use & Moderation Policy" [ref=e405]
+    - link "Fair Trade Music Policy" [ref=e406]
+    - link "Copyright" [ref=e407]
+    - link "Privacy" [ref=e408]
+    - link "Terms of Use" [ref=e409]
+    - button "Cookie Settings" [ref=e410]
+    - link "Bandcamp for Artists" [ref=e411]
+    - link "Bandcamp for Fans" [ref=e412]
+    - link "Bandcamp for Labels" [ref=e413]
+    - text: "Apps:"
+    - link "Android" [ref=e414]
+    - link "iOS" [ref=e415]
+    - button "Language: English" [ref=e416]
+  - link "Bandcamp home" [ref=e417]
+</result>
+
+[8] tool_call: repl("Opening location filter")
+<request>
+await page.locator('e51').click();
+const s4 = await snapshot(page, {interactive:true});
+console.log(s4.diff || s4.tree);
+</request>
+<result tokens_used="73" elapsed_time="749ms">
+@@ -26 +26 @@
+-    - listbox "Genres" [ref=e15] [focused]:
++    - listbox "Genres" [ref=e15]:
+@@ -76,0 +76,42 @@
++  - dialog:
++    - text: "Artist locations"
++    - textbox "Artist locations (optional)" [ref=e756] [focused] [placeholder="Search by city, region, or country"]
++    - generic [ref=e757] [scrollable]:
++      - text: "Top locations"
++      - radiogroup:
++        - radio "from anywhere" [ref=e758] [checked]
++        - radio "amsterdam" [ref=e759]
++        - radio "atlanta" [ref=e760]
++        - radio "austin" [ref=e761]
++        - radio "baltimore" [ref=e762]
++        - radio "berlin" [ref=e763]
++        - radio "boston" [ref=e764]
++        - radio "brooklyn" [ref=e765]
++        - radio "buenos aires" [ref=e766]
++        - radio "chicago" [ref=e767]
++        - radio "denver" [ref=e768]
++        - radio "detroit" [ref=e769]
++        - radio "dublin" [ref=e770]
++        - radio "glasgow" [ref=e771]
++        - radio "london" [ref=e772]
++        - radio "los angeles" [ref=e773]
++        - radio "madrid" [ref=e774]
++        - radio "manchester" [ref=e775]
++        - radio "melbourne" [ref=e776]
++        - radio "mexico city" [ref=e777]
++        - radio "miami" [ref=e778]
++        - radio "minneapolis" [ref=e779]
++        - radio "montreal" [ref=e780]
++        - radio "nashville" [ref=e781]
++        - radio "new orleans" [ref=e782]
++        - radio "new york city" [ref=e783]
++        - radio "oakland" [ref=e784]
++        - radio "paris" [ref=e785]
++        - radio "philadelphia" [ref=e786]
++        - radio "portland" [ref=e787]
++        - radio "san francisco" [ref=e788]
++        - radio "seattle" [ref=e789]
++        - radio "sydney" [ref=e790]
++        - radio "toronto" [ref=e791]
++        - radio "vancouver" [ref=e792]
++        - radio "washington, dc" [ref=e793]
+@@ -780,0 +822 @@
++- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[9] tool_call: repl("Selecting New York City location")
+<request>
+await page.locator('e783').click();
+const s5 = await snapshot(page, {interactive:true});
+console.log(s5.diff || s5.tree);
+</request>
+<result tokens_used="61" elapsed_time="1383ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Classical vinyl on Bandcamp" [url=https://bandcamp.com/discover/all/vinyl?from=menubar&ui_context=subnav]
+- link "Skip to content" [ref=e1]
+- banner:
+  - navigation "Bandcamp" [ref=e2]:
+    - menubar "Main menu":
+      - menuitem "Bandcamp home" [ref=e3]
+      - menuitem [ref=e4]:
+        - search:
+          - text: "Search for artist, album or track"
+          - textbox "Search for artist, album or track (optional)" [ref=e5] [placeholder="Search and discover music"]
+          - button "Search" [ref=e6]
+        - region
+      - menuitem "Sign up" [ref=e7]
+      - menuitem "Log in" [ref=e8]
+- banner:
+  - button "Follow" [ref=e794]
+  - button "clear all filters" [ref=e10]
+  - text: "130+ results"
+- main:
+  - text: "Tag search (optional)"
+  - textbox "Tag search (optional)" [ref=e11] [placeholder="Add a genre, location, or tag"]
+  - button "Follow" [ref=e795]
+  - button "prev" [ref=e420]
+  - generic [ref=e13] [scrollable]:
+    - button "classical" [ref=e421]
+    - text: "Genres"
+    - listbox "Genres" [ref=e15]:
+      - option "electronic" [ref=e16]
+      - option "rock" [ref=e17]
+      - option "metal" [ref=e18]
+      - option "alternative" [ref=e19]
+      - option "hip-hop/rap" [ref=e20]
+      - option "experimental" [ref=e21]
+      - option "punk" [ref=e22]
+      - option "folk" [ref=e23]
+      - option "pop" [ref=e24]
+      - option "ambient" [ref=e25]
+      - option "soundtrack" [ref=e26]
+      - option "world" [ref=e27]
+      - option "jazz" [ref=e28]
+      - option "acoustic" [ref=e29]
+      - option "funk" [ref=e30]
+      - option "r&b/soul" [ref=e31]
+      - option "devotional" [ref=e32]
+      - option "reggae" [ref=e34]
+      - option "podcasts" [ref=e35]
+      - option "country" [ref=e36]
+      - option "spoken word" [ref=e37]
+      - option "comedy" [ref=e38]
+      - option "blues" [ref=e39]
+      - option "kids" [ref=e40]
+      - option "audiobooks" [ref=e41]
+      - option "latin" [ref=e42]
+  - button "next" [ref=e43]
+  - text: "Subgenres"
+  - listbox "Subgenres" [ref=e422]:
+    - option "orchestral" [ref=e423]
+    - option "neo-classical" [ref=e424]
+    - option "chamber music" [ref=e425]
+    - option "classical piano" [ref=e426]
+    - option "contemporary classical" [ref=e427]
+    - option "baroque" [ref=e428]
+    - option "opera" [ref=e429]
+    - option "choral" [ref=e430]
+    - option "modern classical" [ref=e431]
+    - option "avant garde" [ref=e432]
+  - text: "Categories"
+  - radiogroup:
+    - radio "all categories" [ref=e44]
+    - radio "digital" [ref=e45]
+    - radio "vinyl" [ref=e46] [checked]
+    - radio "compact discs" [ref=e47]
+    - radio "cassettes" [ref=e48]
+    - radio "t-shirts" [ref=e49]
+  - button "best-selling" [ref=e50]
+  - button "artists from new york city" [ref=e796]
+  - button "fresh" [ref=e52]
+  - button "clear all filters" [ref=e53]
+  - group "Images for Seeing Is Forgetting":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e797] [selected]
+      - tab "View slide 2" [ref=e798]
+    - generic [ref=e799] [scrollable]:
+      - tabpanel "1 of 2": "Seeing Is Forgetting"
+      - tabpanel "2 of 2": "Seeing Is Forgetting"
+  - link "Seeing Is Forgetting by Elori Saxl & Henry Solomon" [ref=e800]
+  - group "Images for Shade Zero":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e801] [selected]
+      - tab "View slide 2" [ref=e802]
+      - tab "View slide 3" [ref=e803]
+      - tab "View slide 4" [ref=e804]
+    - button "prev" [ref=e805]
+    - generic [ref=e806] [scrollable]:
+      - tabpanel "1 of 4": "Shade Zero"
+      - tabpanel "2 of 4": "Shade Zero"
+      - tabpanel "3 of 4": "Shade Zero"
+      - tabpanel "4 of 4": "Shade Zero"
+    - button "Play" [ref=e807]
+    - button "Next" [ref=e808]
+  - link "Shade Zero by Taiga Ultan" [ref=e809]
+  - group "Images for Music For 18 Musicians":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e810] [selected]
+      - tab "View slide 2" [ref=e811]
+    - generic [ref=e812] [scrollable]:
+      - tabpanel "1 of 2": "Music For 18 Musicians"
+      - tabpanel "2 of 2": "Music For 18 Musicians"
+  - link "Music For 18 Musicians by Steve Reich" [ref=e813]
+  - group "Images for Górecki: Symphony No. 3":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e814] [selected]
+      - tab "View slide 2" [ref=e815]
+    - generic [ref=e816] [scrollable]:
+      - tabpanel "1 of 2": "Górecki: Symphony No. 3"
+      - tabpanel "2 of 2": "Górecki: Symphony No. 3"
+  - link "Górecki: Symphony No. 3 by Dawn Upshaw, London Sinfonietta, David Zinman" [ref=e817]
+  - group "Images for Blue Abstraction: Prepared Piano Project 1985–1987":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e818] [selected]
+      - tab "View slide 2" [ref=e819]
+      - tab "View slide 3" [ref=e820]
+    - generic [ref=e821] [scrollable]:
+      - tabpanel "1 of 3": "Blue Abstraction: Prepared Piano Project 1985–1987"
+      - tabpanel "2 of 3": "Blue Abstraction: Prepared Piano Project 1985–1987"
+      - tabpanel "3 of 3": "Blue Abstraction: Prepared Piano Project 1985–1987"
+  - link "Blue Abstraction: Prepared Piano Project 1985–1987 by Jessica Williams" [ref=e822]
+  - group "Images for Infinity Gradient":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e823] [selected]
+      - tab "View slide 2" [ref=e824]
+      - tab "View slide 3" [ref=e825]
+    - generic [ref=e826] [scrollable]:
+      - tabpanel "1 of 3": "Infinity Gradient"
+      - tabpanel "2 of 3": "Infinity Gradient"
+      - tabpanel "3 of 3": "Infinity Gradient"
+  - link "Infinity Gradient by Tristan Perich & James McVinnie" [ref=e827]
+  - group "Images for Out of the Blue":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e828] [selected]
+      - tab "View slide 2" [ref=e829]
+      - tab "View slide 3" [ref=e830]
+      - tab "View slide 4" [ref=e831]
+      - tab "View slide 5" [ref=e832]
+    - generic [ref=e833] [scrollable]:
+      - tabpanel "1 of 5": "Out of the Blue"
+      - tabpanel "2 of 5": "Out of the Blue"
+      - tabpanel "3 of 5": "Out of the Blue"
+      - tabpanel "4 of 5": "Out of the Blue"
+      - tabpanel "5 of 5": "Out of the Blue"
+  - link "Out of the Blue by \"Blue\" Gene Tyranny" [ref=e834]
+  - group "Images for H'art Songs":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e835] [selected]
+      - tab "View slide 2" [ref=e836]
+      - tab "View slide 3" [ref=e837]
+    - generic [ref=e838] [scrollable]:
+      - tabpanel "1 of 3": "H'art Songs"
+      - tabpanel "2 of 3": "H'art Songs"
+      - tabpanel "3 of 3": "H'art Songs"
+  - link "H'art Songs by Moondog" [ref=e839]
+  - group "Images for Pivotal Arc":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e840] [selected]
+      - tab "View slide 2" [ref=e841]
+      - tab "View slide 3" [ref=e842]
+    - generic [ref=e843] [scrollable]:
+      - tabpanel "1 of 3": "Pivotal Arc"
+      - tabpanel "2 of 3": "Pivotal Arc"
+      - tabpanel "3 of 3": "Pivotal Arc"
+  - link "Pivotal Arc by Quinsin Nachoff" [ref=e844]
+  - group "Images for Don't Trust Mirrors":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e845] [selected]
+      - tab "View slide 2" [ref=e846]
+      - tab "View slide 3" [ref=e847]
+    - generic [ref=e848] [scrollable]:
+      - tabpanel "1 of 3": "Don't Trust Mirrors"
+      - tabpanel "2 of 3": "Don't Trust Mirrors"
+      - tabpanel "3 of 3": "Don't Trust Mirrors"
+  - link "Don't Trust Mirrors by kelly moran" [ref=e849]
+  - group "Images for (un)common thread: exploring improvisation from mozart to macedonia":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e850] [selected]
+      - tab "View slide 2" [ref=e851]
+      - tab "View slide 3" [ref=e852]
+    - generic [ref=e853] [scrollable]:
+      - tabpanel "1 of 3": "(un)common thread: exploring improvisation from mozart to macedonia"
+      - tabpanel "2 of 3": "(un)common thread: exploring improvisation from mozart to macedonia"
+      - tabpanel "3 of 3": "(un)common thread: exploring improvisation from mozart to macedonia"
+  - link "(un)common thread: exploring improvisation from mozart to macedonia by Ariana Kim" [ref=e854]
+  - group "Images for Silentium":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e855] [selected]
+      - tab "View slide 2" [ref=e856]
+      - tab "View slide 3" [ref=e857]
+    - generic [ref=e858] [scrollable]:
+      - tabpanel "1 of 3": "Silentium"
+      - tabpanel "2 of 3": "Silentium"
+      - tabpanel "3 of 3": "Silentium"
+  - link "Silentium by Arvo Pärt" [ref=e859]
+  - group "Images for Brightside":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e860] [selected]
+      - tab "View slide 2" [ref=e861]
+      - tab "View slide 3" [ref=e862]
+    - generic [ref=e863] [scrollable]:
+      - tabpanel "1 of 3": "Brightside"
+      - tabpanel "2 of 3": "Brightside"
+      - tabpanel "3 of 3": "Brightside"
+  - link "Brightside by ARKAI" [ref=e864]
+  - group "Images for Listen Ship":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e865] [selected]
+      - tab "View slide 2" [ref=e866]
+      - tab "View slide 3" [ref=e867]
+    - generic [ref=e868] [scrollable]:
+      - tabpanel "1 of 3": "Listen Ship"
+      - tabpanel "2 of 3": "Listen Ship"
+      - tabpanel "3 of 3": "Listen Ship"
+  - link "Listen Ship by Henry Threadgill" [ref=e869]
+  - group "Images for Imprints of Man":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e870] [selected]
+      - tab "View slide 2" [ref=e871]
+    - generic [ref=e872] [scrollable]:
+      - tabpanel "1 of 2": "Imprints of Man"
+      - tabpanel "2 of 2": "Imprints of Man"
+  - link "Imprints of Man by Steve Blanco" [ref=e873]
+  - group "Images for Moves in the Field":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e874] [selected]
+      - tab "View slide 2" [ref=e875]
+      - tab "View slide 3" [ref=e876]
+    - generic [ref=e877] [scrollable]:
+      - tabpanel "1 of 3": "Moves in the Field"
+      - tabpanel "2 of 3": "Moves in the Field"
+      - tabpanel "3 of 3": "Moves in the Field"
+  - link "Moves in the Field by kelly moran" [ref=e878]
+  - group "Images for Amiture Music":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e879] [selected]
+      - tab "View slide 2" [ref=e880]
+      - tab "View slide 3" [ref=e881]
+    - generic [ref=e882] [scrollable]:
+      - tabpanel "1 of 3": "Amiture Music"
+      - tabpanel "2 of 3": "Amiture Music"
+      - tabpanel "3 of 3": "Amiture Music"
+  - link "Amiture Music by Amiture" [ref=e883]
+  - group "Images for The Oracle":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e884] [selected]
+      - tab "View slide 2" [ref=e885]
+    - generic [ref=e886] [scrollable]:
+      - tabpanel "1 of 2": "The Oracle"
+      - tabpanel "2 of 2": "The Oracle"
+  - link "The Oracle by Lea Bertucci" [ref=e887]
+  - group "Images for The Blue of Distance":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e888] [selected]
+      - tab "View slide 2" [ref=e889]
+      - tab "View slide 3" [ref=e890]
+    - generic [ref=e891] [scrollable]:
+      - tabpanel "1 of 3": "The Blue of Distance"
+      - tabpanel "2 of 3": "The Blue of Distance"
+      - tabpanel "3 of 3": "The Blue of Distance"
+  - link "The Blue of Distance by Elori Saxl" [ref=e892]
+  - group "Images for Different Trains / Electric Counterpoint":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e893] [selected]
+      - tab "View slide 2" [ref=e894]
+    - generic [ref=e895] [scrollable]:
+      - tabpanel "1 of 2": "Different Trains / Electric Counterpoint"
+      - tabpanel "2 of 2": "Different Trains / Electric Counterpoint"
+  - link "Different Trains / Electric Counterpoint by Steve Reich" [ref=e896]
+  - group "Images for Piano Studies 337":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e897] [selected]
+      - tab "View slide 2" [ref=e898]
+      - tab "View slide 3" [ref=e899]
+    - generic [ref=e900] [scrollable]:
+      - tabpanel "1 of 3": "Piano Studies 337"
+      - tabpanel "2 of 3": "Piano Studies 337"
+      - tabpanel "3 of 3": "Piano Studies 337"
+  - link "Piano Studies 337 by Willem Nyland" [ref=e901]
+  - group "Images for Steve Reich: Runner / Music for Ensemble and Orchestra":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e902] [selected]
+      - tab "View slide 2" [ref=e903]
+      - tab "View slide 3" [ref=e904]
+    - generic [ref=e905] [scrollable]:
+      - tabpanel "1 of 3": "Steve Reich: Runner / Music for Ensemble and Orchestra"
+      - tabpanel "2 of 3": "Steve Reich: Runner / Music for Ensemble and Orchestra"
+      - tabpanel "3 of 3": "Steve Reich: Runner / Music for Ensemble and Orchestra"
+  - link "Steve Reich: Runner / Music for Ensemble and Orchestra by Steve Reich" [ref=e906]
+  - group "Images for Of Shadow and Substance":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e907] [selected]
+      - tab "View slide 2" [ref=e908]
+    - generic [ref=e909] [scrollable]:
+      - tabpanel "1 of 2": "Of Shadow and Substance"
+      - tabpanel "2 of 2": "Of Shadow and Substance"
+  - link "Of Shadow and Substance by Lea Bertucci" [ref=e910]
+  - group "Images for Reich/Richter":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e911] [selected]
+      - tab "View slide 2" [ref=e912]
+      - tab "View slide 3" [ref=e913]
+    - generic [ref=e914] [scrollable]:
+      - tabpanel "1 of 3": "Reich/Richter"
+      - tabpanel "2 of 3": "Reich/Richter"
+      - tabpanel "3 of 3": "Reich/Richter"
+  - link "Reich/Richter by Steve Reich, Ensemble intercontemporain" [ref=e915]
+  - group "Images for This Brings Us To, Volume I":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e916] [selected]
+      - tab "View slide 2" [ref=e917]
+    - generic [ref=e918] [scrollable]:
+      - tabpanel "1 of 2": "This Brings Us To, Volume I"
+      - tabpanel "2 of 2": "This Brings Us To, Volume I"
+  - link "This Brings Us To, Volume I by Henry Threadgill" [ref=e919]
+  - group "Images for Being & Becoming":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e920] [selected]
+      - tab "View slide 2" [ref=e921]
+    - generic [ref=e922] [scrollable]:
+      - tabpanel "1 of 2": "Being & Becoming"
+      - tabpanel "2 of 2": "Being & Becoming"
+  - link "Being & Becoming by Peter Evans, Being & Becoming" [ref=e923]
+  - group "Images for There's a Yearnin'":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e924] [selected]
+      - tab "View slide 2" [ref=e925]
+      - tab "View slide 3" [ref=e926]
+    - generic [ref=e927] [scrollable]:
+      - tabpanel "1 of 3": "There's a Yearnin'"
+      - tabpanel "2 of 3": "There's a Yearnin'"
+      - tabpanel "3 of 3": "There's a Yearnin'"
+  - link "There's a Yearnin'by Jeff Lederer" [ref=e928]
+  - group "Images for Ars Memoria":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e929] [selected]
+      - tab "View slide 2" [ref=e930]
+      - tab "View slide 3" [ref=e931]
+    - generic [ref=e932] [scrollable]:
+      - tabpanel "1 of 3": "Ars Memoria"
+      - tabpanel "2 of 3": "Ars Memoria"
+      - tabpanel "3 of 3": "Ars Memoria"
+  - link "Ars Memoria by Peter Evans, Being & Becoming" [ref=e933]
+  - group "Images for Drifts and Surfaces":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e934] [selected]
+      - tab "View slide 2" [ref=e935]
+      - tab "View slide 3" [ref=e936]
+    - generic [ref=e937] [scrollable]:
+      - tabpanel "1 of 3": "Drifts and Surfaces"
+      - tabpanel "2 of 3": "Drifts and Surfaces"
+      - tabpanel "3 of 3": "Drifts and Surfaces"
+  - link "Drifts and Surfaces by Elori Saxl" [ref=e938]
+  - group "Images for Ballads":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e939] [selected]
+      - tab "View slide 2" [ref=e940]
+      - tab "View slide 3" [ref=e941]
+      - tab "View slide 4" [ref=e942]
+      - tab "View slide 5" [ref=e943]
+    - generic [ref=e944] [scrollable]:
+      - tabpanel "1 of 5": "Ballads"
+      - tabpanel "2 of 5": "Ballads"
+      - tabpanel "3 of 5": "Ballads"
+      - tabpanel "4 of 5": "Ballads"
+      - tabpanel "5 of 5": "Ballads"
+  - link "Ballads by Noah Preminger" [ref=e945]
+  - group "Images for Marc Ribot Plays Solo Guitar Works of Frantz Casseus":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e946] [selected]
+      - tab "View slide 2" [ref=e947]
+      - tab "View slide 3" [ref=e948]
+    - generic [ref=e949] [scrollable]:
+      - tabpanel "1 of 3": "Marc Ribot Plays Solo Guitar Works of Frantz Casseus"
+      - tabpanel "2 of 3": "Marc Ribot Plays Solo Guitar Works of Frantz Casseus"
+      - tabpanel "3 of 3": "Marc Ribot Plays Solo Guitar Works of Frantz Casseus"
+  - link "Marc Ribot Plays Solo Guitar Works of Frantz Casseus by Marc Ribot" [ref=e950]
+  - group "Images for AUTOGENESIS":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e951] [selected]
+      - tab "View slide 2" [ref=e952]
+    - generic [ref=e953] [scrollable]:
+      - tabpanel "1 of 2": "AUTOGENESIS"
+      - tabpanel "2 of 2": "AUTOGENESIS"
+  - link "AUTOGENESIS by N to The Power" [ref=e954]
+  - group "Images for ad tendo":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e955] [selected]
+      - tab "View slide 2" [ref=e956]
+      - tab "View slide 3" [ref=e957]
+    - generic [ref=e958] [scrollable]:
+      - tabpanel "1 of 3": "ad tendo"
+      - tabpanel "2 of 3": "ad tendo"
+      - tabpanel "3 of 3": "ad tendo"
+  - link "ad tendo by Simone Porter" [ref=e959]
+  - group "Images for MORE POWER":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e960] [selected]
+      - tab "View slide 2" [ref=e961]
+      - tab "View slide 3" [ref=e962]
+    - generic [ref=e963] [scrollable]:
+      - tabpanel "1 of 3": "MORE POWER"
+      - tabpanel "2 of 3": "MORE POWER"
+      - tabpanel "3 of 3": "MORE POWER"
+  - link "MORE POWER by N to The Power" [ref=e964]
+  - group "Images for Codex":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e965] [selected]
+      - tab "View slide 2" [ref=e966]
+      - tab "View slide 3" [ref=e967]
+    - generic [ref=e968] [scrollable]:
+      - tabpanel "1 of 3": "Codex"
+      - tabpanel "2 of 3": "Codex"
+      - tabpanel "3 of 3": "Codex"
+  - link "Codex by Bruce Brubaker" [ref=e969]
+  - group "Images for Asperities":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e970] [selected]
+      - tab "View slide 2" [ref=e971]
+      - tab "View slide 3" [ref=e972]
+    - generic [ref=e973] [scrollable]:
+      - tabpanel "1 of 3": "Asperities"
+      - tabpanel "2 of 3": "Asperities"
+      - tabpanel "3 of 3": "Asperities"
+  - link "Asperities by Julia Kent" [ref=e974]
+  - group "Images for Pulse Music":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e975] [selected]
+      - tab "View slide 2" [ref=e976]
+      - tab "View slide 3" [ref=e977]
+    - generic [ref=e978] [scrollable]:
+      - tabpanel "1 of 3": "Pulse Music"
+      - tabpanel "2 of 3": "Pulse Music"
+      - tabpanel "3 of 3": "Pulse Music"
+  - link "Pulse Music by John McGuire" [ref=e979]
+  - group "Images for Eno Piano":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e980] [selected]
+      - tab "View slide 2" [ref=e981]
+      - tab "View slide 3" [ref=e982]
+    - generic [ref=e983] [scrollable]:
+      - tabpanel "1 of 3": "Eno Piano"
+      - tabpanel "2 of 3": "Eno Piano"
+      - tabpanel "3 of 3": "Eno Piano"
+  - link "Eno Piano by Bruce Brubaker" [ref=e984]
+  - group "Images for Ecstatic Science":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e985] [selected]
+      - tab "View slide 2" [ref=e986]
+    - generic [ref=e987] [scrollable]:
+      - tabpanel "1 of 2": "Ecstatic Science"
+      - tabpanel "2 of 2": "Ecstatic Science"
+  - link "Ecstatic Science by yMusic" [ref=e988]
+  - group "Images for Ultraviolet":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e989] [selected]
+      - tab "View slide 2" [ref=e990]
+      - tab "View slide 3" [ref=e991]
+    - generic [ref=e992] [scrollable]:
+      - tabpanel "1 of 3": "Ultraviolet"
+      - tabpanel "2 of 3": "Ultraviolet"
+      - tabpanel "3 of 3": "Ultraviolet"
+  - link "Ultraviolet by kelly moran" [ref=e993]
+  - group "Images for The Divine Punishment (2022 Remaster)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e994] [selected]
+      - tab "View slide 2" [ref=e995]
+      - tab "View slide 3" [ref=e996]
+    - generic [ref=e997] [scrollable]:
+      - tabpanel "1 of 3": "The Divine Punishment (2022 Remaster)"
+      - tabpanel "2 of 3": "The Divine Punishment (2022 Remaster)"
+      - tabpanel "3 of 3": "The Divine Punishment (2022 Remaster)"
+  - link "The Divine Punishment (2022 Remaster)by Diamanda Galás" [ref=e998]
+  - group "Images for Leonardo da Vinci (Original Score)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e999] [selected]
+      - tab "View slide 2" [ref=e1000]
+      - tab "View slide 3" [ref=e1001]
+    - generic [ref=e1002] [scrollable]:
+      - tabpanel "1 of 3": "Leonardo da Vinci (Original Score)"
+      - tabpanel "2 of 3": "Leonardo da Vinci (Original Score)"
+      - tabpanel "3 of 3": "Leonardo da Vinci (Original Score)"
+  - link "Leonardo da Vinci (Original Score)by Caroline Shaw" [ref=e1003]
+  - group "Images for Diamanda Galás In Concert":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1004] [selected]
+      - tab "View slide 2" [ref=e1005]
+      - tab "View slide 3" [ref=e1006]
+    - generic [ref=e1007] [scrollable]:
+      - tabpanel "1 of 3": "Diamanda Galás In Concert"
+      - tabpanel "2 of 3": "Diamanda Galás In Concert"
+      - tabpanel "3 of 3": "Diamanda Galás In Concert"
+  - link "Diamanda Galás In Concert by Diamanda Galás" [ref=e1008]
+  - group "Images for Temporal":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1009] [selected]
+      - tab "View slide 2" [ref=e1010]
+      - tab "View slide 3" [ref=e1011]
+      - tab "View slide 4" [ref=e1012]
+      - tab "View slide 5" [ref=e1013]
+    - generic [ref=e1014] [scrollable]:
+      - tabpanel "1 of 5": "Temporal"
+      - tabpanel "2 of 5": "Temporal"
+      - tabpanel "3 of 5": "Temporal"
+      - tabpanel "4 of 5": "Temporal"
+      - tabpanel "5 of 5": "Temporal"
+  - link "Temporal by Julia Kent" [ref=e1015]
+  - group "Images for Crossroads":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1016] [selected]
+      - tab "View slide 2" [ref=e1017]
+    - generic [ref=e1018] [scrollable]:
+      - tabpanel "1 of 2": "Crossroads"
+      - tabpanel "2 of 2": "Crossroads"
+  - link "Crossroads by ARKAI" [ref=e1019]
+  - group "Images for Murmurations":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1020] [selected]
+      - tab "View slide 2" [ref=e1021]
+    - generic [ref=e1022] [scrollable]:
+      - tabpanel "1 of 2": "Murmurations"
+      - tabpanel "2 of 2": "Murmurations"
+  - link "Murmurations by Ben Vida + Lea Bertucci" [ref=e1023]
+  - group "Images for Vanishing Points / A Cappella":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1024] [selected]
+      - tab "View slide 2" [ref=e1025]
+      - tab "View slide 3" [ref=e1026]
+      - tab "View slide 4" [ref=e1027]
+      - tab "View slide 5" [ref=e1028]
+    - generic [ref=e1029] [scrollable]:
+      - tabpanel "1 of 5": "Vanishing Points / A Cappella"
+      - tabpanel "2 of 5": "Vanishing Points / A Cappella"
+      - tabpanel "3 of 5": "Vanishing Points / A Cappella"
+      - tabpanel "4 of 5": "Vanishing Points / A Cappella"
+      - tabpanel "5 of 5": "Vanishing Points / A Cappella"
+  - link "Vanishing Points / A Cappella by John McGuire" [ref=e1030]
+  - group "Images for optimist":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1031] [selected]
+      - tab "View slide 2" [ref=e1032]
+      - tab "View slide 3" [ref=e1033]
+    - generic [ref=e1034] [scrollable]:
+      - tabpanel "1 of 3": "optimist"
+      - tabpanel "2 of 3": "optimist"
+      - tabpanel "3 of 3": "optimist"
+  - link "optimist by kelly moran" [ref=e1035]
+  - group "Images for The Hours (Music From The Motion Picture Soundtrack)":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1036] [selected]
+      - tab "View slide 2" [ref=e1037]
+    - generic [ref=e1038] [scrollable]:
+      - tabpanel "1 of 2": "The Hours (Music From The Motion Picture Soundtrack)"
+      - tabpanel "2 of 2": "The Hours (Music From The Motion Picture Soundtrack)"
+  - link "The Hours (Music From The Motion Picture Soundtrack)by Philip Glass" [ref=e1039]
+  - group "Images for Eno Piano 2":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1040] [selected]
+      - tab "View slide 2" [ref=e1041]
+    - generic [ref=e1042] [scrollable]:
+      - tabpanel "1 of 2": "Eno Piano 2"
+      - tabpanel "2 of 2": "Eno Piano 2"
+  - link "Eno Piano 2 by Bruce Brubaker" [ref=e1043]
+  - group "Images for MAN ON MAN":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1044] [selected]
+      - tab "View slide 2" [ref=e1045]
+      - tab "View slide 3" [ref=e1046]
+    - generic [ref=e1047] [scrollable]:
+      - tabpanel "1 of 3": "MAN ON MAN"
+      - tabpanel "2 of 3": "MAN ON MAN"
+      - tabpanel "3 of 3": "MAN ON MAN"
+  - link "MAN ON MAN by MAN ON MAN" [ref=e1048]
+  - group "Images for Character":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1049] [selected]
+      - tab "View slide 2" [ref=e1050]
+      - tab "View slide 3" [ref=e1051]
+    - generic [ref=e1052] [scrollable]:
+      - tabpanel "1 of 3": "Character"
+      - tabpanel "2 of 3": "Character"
+      - tabpanel "3 of 3": "Character"
+  - link "Character by Julia Kent" [ref=e1053]
+  - group "Images for Provincetown":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1054] [selected]
+      - tab "View slide 2" [ref=e1055]
+      - tab "View slide 3" [ref=e1056]
+    - generic [ref=e1057] [scrollable]:
+      - tabpanel "1 of 3": "Provincetown"
+      - tabpanel "2 of 3": "Provincetown"
+      - tabpanel "3 of 3": "Provincetown"
+  - link "Provincetown by MAN ON MAN" [ref=e1058]
+  - group "Images for Glass Piano":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1059] [selected]
+      - tab "View slide 2" [ref=e1060]
+    - generic [ref=e1061] [scrollable]:
+      - tabpanel "1 of 2": "Glass Piano"
+      - tabpanel "2 of 2": "Glass Piano"
+  - link "Glass Piano by Bruce Brubaker" [ref=e1062]
+  - group "Images for Mother Engine":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1063] [selected]
+      - tab "View slide 2" [ref=e1064]
+    - generic [ref=e1065] [scrollable]:
+      - tabpanel "1 of 2": "Mother Engine"
+      - tabpanel "2 of 2": "Mother Engine"
+  - link "Mother Engine by Amiture" [ref=e1066]
+  - group "Images for Resonant Field":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1067] [selected]
+      - tab "View slide 2" [ref=e1068]
+    - generic [ref=e1069] [scrollable]:
+      - tabpanel "1 of 2": "Resonant Field"
+      - tabpanel "2 of 2": "Resonant Field"
+  - link "Resonant Field by Lea Bertucci" [ref=e1070]
+  - group "Images for Blueprinting":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1071] [selected]
+      - tab "View slide 2" [ref=e1072]
+      - tab "View slide 3" [ref=e1073]
+    - generic [ref=e1074] [scrollable]:
+      - tabpanel "1 of 3": "Blueprinting"
+      - tabpanel "2 of 3": "Blueprinting"
+      - tabpanel "3 of 3": "Blueprinting"
+  - link "Blueprinting by Aizuri Quartet" [ref=e1075]
+  - group "Images for Cantata No. 1: An Island Seen and Felt":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1076] [selected]
+      - tab "View slide 2" [ref=e1077]
+      - tab "View slide 3" [ref=e1078]
+    - generic [ref=e1079] [scrollable]:
+      - tabpanel "1 of 3": "Cantata No. 1: An Island Seen and Felt"
+      - tabpanel "2 of 3": "Cantata No. 1: An Island Seen and Felt"
+      - tabpanel "3 of 3": "Cantata No. 1: An Island Seen and Felt"
+  - link "Cantata No. 1: An Island Seen and Felt by Jonathon Crompton" [ref=e1080]
+  - group "Images for Diaries: Schumann":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1081] [selected]
+      - tab "View slide 2" [ref=e1082]
+      - tab "View slide 3" [ref=e1083]
+    - generic [ref=e1084] [scrollable]:
+      - tabpanel "1 of 3": "Diaries: Schumann"
+      - tabpanel "2 of 3": "Diaries: Schumann"
+      - tabpanel "3 of 3": "Diaries: Schumann"
+  - link "Diaries: Schumann by Tiffany Poon" [ref=e1085]
+  - group "Images for Skylighght":
+    - tablist "Slides":
+      - tab "View slide 1" [ref=e1086] [selected]
+      - tab "View slide 2" [ref=e1087]
+      - tab "View slide 3" [ref=e1088]
+      - tab "View slide 4" [ref=e1089]
+    - generic [ref=e1090] [scrollable]:
+      - tabpanel "1 of 4": "Skylighght"
+      - tabpanel "2 of 4": "Skylighght"
+      - tabpanel "3 of 4": "Skylighght"
+      - tabpanel "4 of 4": "Skylighght"
+  - link "Skylighght by Gelsey Bell & Erin Rogers" [ref=e1091]
+  - status: "60 results found."
+  - button "View more results" [ref=e1092]
+  - button "View Pure Devotion" [ref=e371]
+  - button "View Standard Black Vinyl LP" [ref=e372]
+  - button "View Limited Edition White Label Vinyl LP" [ref=e373]
+  - button "View Limited Edition Deluxe 2xLP + Signed Print" [ref=e374]
+  - button "View Compact Disc" [ref=e375]
+  - button "Play" [ref=e376]
+  - text: "Lockup"
+  - link "from Pure Devotion" [ref=e377]
+  - link "by Overmono" [ref=e378]
+  - link "Go to album" [ref=e379]
+  - button "Wishlist" [ref=e380]
+  - text: "11 tracks, 40 minutes releases August 07, 2026"
+  - generic "Profile image for Overmono" [ref=e381]
+  - link "Overmono" [ref=e382]
+  - text: "London, UK"
+  - button "Follow" [ref=e383]
+- link "Artist index" [ref=e384]
+- link "New releases" [ref=e385]
+- contentinfo:
+  - heading "Bandcamp Daily" [level=3]:
+    - link "Bandcamp Daily" [ref=e386]
+    - text: "your guide to the world of Bandcamp"
+  - link "On Her Latest Album, KJADE Moves From Grief to Joy" [ref=e387]
+  - link "Nothing Pick Their Bandcamp Favorites" [ref=e388]
+  - link "The Polish Composers Pushing the Boundaries of Classical Music" [ref=e389]
+  - heading "On Bandcamp Radio" [level=3]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e390]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e391]
+  - link "Listen now" [ref=e392]
+  - navigation:
+    - link "About" [ref=e393]
+    - link "Buttons/Logos" [ref=e394]
+    - link "Bandcamp Daily" [ref=e395]
+    - link "Gift Cards" [ref=e396]
+    - link "Bandcamp Merch" [ref=e397]
+    - link "Help" [ref=e398]
+    - link "Jobs" [ref=e399]
+    - link "Press" [ref=e400]
+    - link "Facebook" [ref=e401]
+    - link "Instagram" [ref=e402]
+    - link "TikTok" [ref=e403]
+    - link "Twitter" [ref=e404]
+    - link "Acceptable Use & Moderation Policy" [ref=e405]
+    - link "Fair Trade Music Policy" [ref=e406]
+    - link "Copyright" [ref=e407]
+    - link "Privacy" [ref=e408]
+    - link "Terms of Use" [ref=e409]
+    - button "Cookie Settings" [ref=e410]
+    - link "Bandcamp for Artists" [ref=e411]
+    - link "Bandcamp for Fans" [ref=e412]
+    - link "Bandcamp for Labels" [ref=e413]
+    - text: "Apps:"
+    - link "Android" [ref=e414]
+    - link "iOS" [ref=e415]
+    - button "Language: English" [ref=e416]
+  - link "Bandcamp home" [ref=e417]
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[10] thinking: **Verifying best-selling vinyl**
+
+I’m checking the top result for best-selling vinyl, which is "Seeing Is Forgetting" by Elori Saxl & Henry Solomon. I need to confirm if it’s a physical vinyl record or just an album title. So, I’ll filter for best-selling vinyl records, perhaps by artists from NYC. Clicking on the first result should help verify the artist's location, genre, and whether the vinyl is available. Gathering evidence is key!
+
+[11] tool_call: repl("Opening top result")
+<request>
+await page.locator('e800').click();
+const s6 = await snapshot(page, {interactive:true});
+console.log(s6.diff || s6.tree);
+</request>
+<result tokens_used="164" elapsed_time="1268ms">
+[system] popup opened: Seeing Is Forgetting | Elori Saxl & Henry Solomon | Elori Saxl (https://elorisaxl.bandcamp.com/album/seeing-is-forgetting?from=discover_page)
+         to use, explicitly access it via `tabs[1]` or switch it with `page = tabs[1];`
+No changes detected
+</result>
+
+[12] tool_call: repl("Reading album page")
+<request>
+page = tabs[1];
+const s7 = await snapshot(page, {interactive:true});
+console.log(s7.tree);
+</request>
+<result tokens_used="73" elapsed_time="58ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Seeing Is Forgetting | Elori Saxl & Henry Solomon | Elori Saxl" [url=https://elorisaxl.bandcamp.com/album/seeing-is-forgetting?from=discover_page]
+- link "←" [ref=e1]: "←\n        \n            more from True Panther"
+- link [ref=e2]
+- textbox "Search for artist, album, or track" [ref=e3] [placeholder="Search for artist, album, or track"]
+- button "submit for full search page" [ref=e4]
+- link "sign up" [ref=e5]
+- link "log in" [ref=e6]
+- link "MUSIC" [ref=e7]
+- link "MERCH" [ref=e8]
+- link "NOTES" [ref=e9]
+- heading "Seeing Is Forgetting" [level=2]
+- heading "by" [level=3]:
+  - text: "by"
+  - link "Elori Saxl & Henry Solomon" [ref=e10]
+- link [ref=e11]
+- button "Share / Embed" [ref=e12]
+- link [ref=e13]
+- link "Wishlist" [ref=e14]
+- text: "supported by"
+- link "Raven V thumbnail" [ref=e15]
+- link "Raven V" [ref=e16]
+- text: "If you don't feel like you could live entirely within the spaces conjured by \"A Thousand Steps\" or \"Heart\", I genuinely feel sorry for you\n\n        \n             Favorite track: Heart."
+- link "Bas thumbnail" [ref=e17]
+- link "Bas" [ref=e18]
+- text: "Going to sail around the city at night on my bicycle while listening to this <3\n\n        \n             Favorite track: Heart."
+- link "Grant Worth Most thumbnail" [ref=e19]
+- link "Grant Worth Most" [ref=e20]
+- text: "Since it was released, I've listened to the album maybe ten times - graceful, playful, curious, inspiring. Every time track four opens, my sternum wants to crack wide open to let my heart float up to heaven. What a gift! Thank you Elori and Henry!\n\n        \n            Favorite track: Reno Silver."
+- link "Joe Borreson thumbnail" [ref=e21]
+- link "Joe Borreson" [ref=e22]
+- text: "To quote the title of this first song, Elori‘s music is always abundant with reverence, and grace. She is an outstanding composer and this one with Henry is full of magic. Elori & Henrys compositions here, whether synthetic, or organic hold a warm human tenderness that I find enthralling. While I find the cover here pretty unappealing, the music thankfully speaks of rare beauty and wonder, and outshines the album art ten fold.\n\n        \n            Favorite track: Reverence."
+- link "b:ck thumbnail" [ref=e23]
+- link "katiejeannef thumbnail" [ref=e24]
+- link "BoulevardRodin thumbnail" [ref=e25]
+- link "Garrett E. thumbnail" [ref=e26]
+- link "hedda76 thumbnail" [ref=e27]
+- link "jmfowl thumbnail" [ref=e28]
+- link "shelfrash thumbnail" [ref=e29]
+- link "oliver isaacs thumbnail" [ref=e30]
+- link "David Gaetan thumbnail" [ref=e31]
+- link "Steve Meyer thumbnail" [ref=e32]
+- link "per sonar thumbnail" [ref=e33]
+- link "Jonathan Cutler thumbnail" [ref=e34]
+- link "Nootrian thumbnail" [ref=e35]
+- link "Spider Hill thumbnail" [ref=e36]
+- link "Isaac Sherman thumbnail" [ref=e37]
+- link "i-sm thumbnail" [ref=e38]
+- link "James Swift thumbnail" [ref=e39]
+- link "marrryooom thumbnail" [ref=e40]
+- link "маиsо thumbnail" [ref=e41]
+- link "BykerGruv thumbnail" [ref=e42]
+- link "Toby Meller thumbnail" [ref=e43]
+- link "s_ean_ thumbnail" [ref=e44]
+- link "keichorst thumbnail" [ref=e45]
+- link "Matthew Goik thumbnail" [ref=e46]
+- link "downTemple thumbnail" [ref=e47]
+- link "lorikkk thumbnail" [ref=e48]
+- link "ben aguero thumbnail" [ref=e49]
+- link "32031314 thumbnail" [ref=e50]
+- link "modulification thumbnail" [ref=e51]
+- link "ninaemocional thumbnail" [ref=e52]
+- link "brunobrandes thumbnail" [ref=e53]
+- link "mm/dd/yyyy/ thumbnail" [ref=e54]
+- link "Emily Jeanne thumbnail" [ref=e55]
+- link "GB78 thumbnail" [ref=e56]
+- link "AV thumbnail" [ref=e57]
+- link "Rhythm Section INTL thumbnail" [ref=e58]
+- link "lnnnnnnnn- thumbnail" [ref=e59]
+- link "Dave Heaton thumbnail" [ref=e60]
+- link "Matthias thumbnail" [ref=e61]
+- link "slaygurz thumbnail" [ref=e62]
+- link "tschark thumbnail" [ref=e63]
+- link "nicobermudez thumbnail" [ref=e64]
+- link "stahl303 thumbnail" [ref=e65]
+- link "constantgardener thumbnail" [ref=e66]
+- link "JHolmes thumbnail" [ref=e67]
+- link "pablocanto thumbnail" [ref=e68]
+- link "seekaaaaaaa thumbnail" [ref=e69]
+- link "zachseely thumbnail" [ref=e70]
+- link "Michael Wehunt thumbnail" [ref=e71]
+- link "la ra thumbnail" [ref=e72]
+- link "sweatersuit thumbnail" [ref=e73]
+- link "jki thumbnail" [ref=e74]
+- link "heynongman thumbnail" [ref=e75]
+- link "danone thumbnail" [ref=e76]
+- link "mogue-een thumbnail" [ref=e77]
+- link "raytheotter thumbnail" [ref=e78]
+- link "post utility thumbnail" [ref=e79]
+- link "Scubadevils thumbnail" [ref=e80]
+- link "Codename: Raymundo thumbnail" [ref=e81]
+- link "jkahin thumbnail" [ref=e82]
+- link "more..." [ref=e83]
+- button "Play/pause" [ref=e84]
+- link "Reno Silver" [ref=e85]
+- text: "00:00\n                    /\n                    03:24"
+- button "Previous track" [ref=e87]
+- button "Next track" [ref=e88]
+- heading [level=3]:
+  - button "Digital Album" [ref=e89]
+  - text: "Streaming + Download"
+- text: "Includes unlimited streaming via the free Bandcamp app, plus high-quality download in MP3, FLAC and more.\n            \n        \n        \n		\n\n\n  \n  \n\n\n        \n            \n        \n    \n\n    \n        \n    \n    \n    \n        \n            Download available in 24-bit/48kHz."
+- heading "Buy Digital Album" [level=4]:
+  - button "Buy Digital Album" [ref=e90]
+  - text: "$9\n                     USD\n                  or more"
+- heading "Send as Gift" [level=4]:
+  - button "Send as Gift" [ref=e91]
+- heading [level=3]:
+  - button "Seeing Is Forgetting (Clear 12\" LP)" [ref=e92]
+  - text: "Record/Vinyl + Digital Album"
+- link "package image" [ref=e93]
+- link "package image" [ref=e94]
+- text: "PREORDER: Limited edition pressing on clear vinyl. Ships out early June.\n        \n            \n                \n            \n            \n            \n\n    \n        \n        \n            \n            Includes unlimited streaming of  Seeing Is Forgetting \n            via the free Bandcamp app, plus high-quality download in MP3, FLAC and more.\n            \n        \n    \n    \n        \n            Download available in 24-bit/48kHz.  \n        \n    \n\n\n        \n    \n\n\n\n\n\n\n  \n  \n\n\n\n    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    \n        \n    \n\n\n\n\n\n    \n\n    \n    \n    \n        \n            \n                \n                shipping out on or around  June 1, 2026"
+- heading "Buy Vinyl" [level=4]:
+  - button "Buy Vinyl" [ref=e95]
+  - text: "$25\n                         USD\n                      or more"
+- heading "Send as Gift" [level=4]:
+  - button "Send as Gift" [ref=e96]
+- heading [level=3]: "Seeing Is Forgetting (Black 12\" LP)\n\n\n\n    \n\n    \n    \n    \n    \n        \n            \n            \n            Record/Vinyl + Digital Album"
+- link "package image" [ref=e97]
+- link "package image" [ref=e98]
+- link "package image" [ref=e99]
+- link "package image" [ref=e100]
+- link "package image" [ref=e101]
+- text: "Limited edition pressing on black vinyl.\n        \n            \n                \n            \n            \n            \n\n    \n        \n        \n            \n            Includes unlimited streaming of  Seeing Is Forgetting \n            via the free Bandcamp app, plus high-quality download in MP3, FLAC and more.\n            \n        \n    \n    \n        \n            Download available in 24-bit/48kHz."
+- heading "Sold Out" [level=4]
+- button "Play Reverence" [ref=e102]
+- text: "1."
+- link "Reverence" [ref=e103]
+- text: "06:18"
+- button "Play Raindrops" [ref=e104]
+- text: "2."
+- link "Raindrops" [ref=e105]
+- text: "04:35"
+- button "Play Symmetries" [ref=e106]
+- text: "3."
+- link "Symmetries" [ref=e107]
+- text: "04:49"
+- button "Play Reno Silver" [ref=e108]
+- text: "4."
+- link "Reno Silver" [ref=e109]
+- text: "03:24"
+- button "Play A Thousand Steps" [ref=e110]
+- text: "5."
+- link "A Thousand Steps" [ref=e111]
+- text: "04:06"
+- button "Play Hiding Place" [ref=e112]
+- text: "6."
+- link "Hiding Place" [ref=e113]
+- text: "01:52"
+- button "Play Dream" [ref=e114]
+- text: "7."
+- link "Dream" [ref=e115]
+- text: "01:51"
+- button "Play Heart" [ref=e116]
+- text: "8."
+- link "Heart" [ref=e117]
+- text: "06:56"
+- button "Play Seeing Is Forgetting" [ref=e118]
+- text: "9."
+- link "Seeing Is Forgetting" [ref=e119]
+- text: "03:36"
+- heading "about" [level=3]
+- link "found.ee/seeing-is-forgetting" [ref=e120]
+- text: "Producer/composer Elori Saxl & prolific saxophonist Henry Solomon present their new debut project as a duo: Seeing Is Forgetting, a torch of minimalism fused with an electronic sensibility informed by soundsystem culture and modern pop production. Across its nine tracks, Solomon’s baritone sax and bass clarinet weave tendrils around Saxl’s heartwrenching Juno 106 harmonies. Recorded over just a few nights in Los Angeles, the album is a testament to their near-telepathic intuition. The performances on the LP embody an ethos of physicality and presence, displaying a honed focus on the minutiae of their interplay, the acoustics of the room, and the gradients of harmonic color between Solomon’s woodwinds and Saxl’s synth."
+- heading "credits" [level=3]
+- text: "released February 6, 2026\n            \n             Written, produced, recorded, and performed by Elori Saxl (keyboards) and Henry Solomon (woodwinds)\n\nMixed and Mastered by David Darlington\n \nDesign by Collin Fletcher\n \nStills by Reno Silver\n\n© 2026 Elori Saxl and Henry Solomon under exclusive license to True Panther Records"
+- heading "license" [level=3]
+- text: "all rights reserved"
+- heading "tags" [level=3]
+- heading [level=3]: "Tags"
+- link "electronic" [ref=e121]
+- link "experimental" [ref=e122]
+- link "ambient" [ref=e123]
+- link "avant-garde" [ref=e124]
+- link "classical" [ref=e125]
+- link "experimental jazz" [ref=e126]
+- link "improvisation" [ref=e127]
+- link "neoclassical" [ref=e128]
+- link "New York" [ref=e129]
+- link [ref=e130]
+- link [ref=e131]
+- heading "about" [level=3]
+- link "Elori Saxl image" [ref=e132]
+- text: "Elori Saxl\n         New York, New York"
+- link [ref=e133]
+- button "Follow" [ref=e134]
+- link "elorisaxl.com" [ref=e135]
+- link [ref=e136]
+- link [ref=e137]
+- heading "shows" [level=3]
+- text: "May 15"
+- link "The Lab" [ref=e138]
+- text: "San Francisco, CA\n    \n    \n    \n    \n         May 19"
+- link "Lodge Room" [ref=e139]
+- text: "Los Angeles (LA), CA\n    \n    \n    \n    \n         Jun 5"
+- link "Fortune Sound Club" [ref=e140]
+- text: "Vancouver, BC"
+- link "more shows..." [ref=e141]
+- heading "discography" [level=3]:
+  - link "discography" [ref=e142]
+- link [ref=e143]
+- link "Seeing Is Forgetting" [ref=e144]
+- text: "Feb 2026"
+- link [ref=e145]
+- link "Texada (Original Score)" [ref=e146]
+- text: "Apr 2025"
+- link [ref=e147]
+- link "Earth Focus (Original Score)" [ref=e148]
+- text: "Nov 2024"
+- link "more releases..." [ref=e149]
+- heading "contact / help" [level=3]
+- link "Contact Elori Saxl" [ref=e150]
+- link "Streaming and Download help" [ref=e151]
+- link "Redeem code" [ref=e152]
+- link "Report this album or account" [ref=e153]
+- text: "If you like Seeing Is Forgetting, you may also like:"
+- image [ref=e154]
+- link "Endlessness by Nala Sinephro" [ref=e155]
+- image [ref=e156]
+- link "Space 1.8 by Nala Sinephro" [ref=e157]
+- image [ref=e158]
+- link "Promises by Floating Points, Pharoah Sanders & The London Symphony Orchestra" [ref=e159]
+- image [ref=e160]
+- link "Too Small to be a Plain by Lia Kohl" [ref=e161]
+- image [ref=e162]
+- link "The Risk Of Hyperbole - Vol.2 - Object by Jack Prest" [ref=e163]
+- image [ref=e164]
+- link "Fractured Whole by Cruel Diagonals" [ref=e165]
+- image [ref=e166]
+- link "The Way Out of Easy by Jeff Parker ETA IVtet" [ref=e167]
+- contentinfo:
+  - heading "Bandcamp Daily" [level=3]:
+    - link "Bandcamp Daily" [ref=e168]
+    - text: "your guide to the world of Bandcamp"
+  - link "On Her Latest Album, KJADE Moves From Grief to Joy" [ref=e169]
+  - link "Nothing Pick Their Bandcamp Favorites" [ref=e170]
+  - link "The Polish Composers Pushing the Boundaries of Classical Music" [ref=e171]
+  - heading "On Bandcamp Radio" [level=3]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e172]
+  - link "The Lemon Twigs talk about new record \"Look For Your Mind!\" plus a hit parade of 60s pop and garage." [ref=e173]
+  - link "Listen now" [ref=e174]
+  - navigation:
+    - link "About" [ref=e175]
+    - link "Buttons/Logos" [ref=e176]
+    - link "Bandcamp Daily" [ref=e177]
+    - link "Gift Cards" [ref=e178]
+    - link "Bandcamp Merch" [ref=e179]
+    - link "Help" [ref=e180]
+    - link "Jobs" [ref=e181]
+    - link "Press" [ref=e182]
+    - link "Facebook" [ref=e183]
+    - link "Instagram" [ref=e184]
+    - link "TikTok" [ref=e185]
+    - link "Twitter" [ref=e186]
+    - link "Acceptable Use & Moderation Policy" [ref=e187]
+    - link "Fair Trade Music Policy" [ref=e188]
+    - link "Copyright" [ref=e189]
+    - link "Privacy" [ref=e190]
+    - link "Terms of Use" [ref=e191]
+    - button "Cookie Settings" [ref=e192]
+    - link "Bandcamp for Artists" [ref=e193]
+    - link "Bandcamp for Fans" [ref=e194]
+    - link "Bandcamp for Labels" [ref=e195]
+    - text: "Apps:"
+    - link "Android" [ref=e196]
+    - link "iOS" [ref=e197]
+    - button "Mobile View" [ref=e198]
+    - button "Language: English" [ref=e199]
+  - link "Bandcamp home" [ref=e200]
+</result>
+
+[13] thinking: **Clarifying search results**
+
+I have an answer ready, but it seems the user might prefer a more straightforward approach without needing citations. I could mention that using Bandcamp's discovery filters for classical vinyl from New York City leads to the top result being "Seeing Is Forgetting," specifically the clear 12" LP available for preorder at $25. I don't need to include citations since the browser tool evidence isn't mandatory here, so I can keep it concise!
+
+[14] assistant: The best-selling classical vinyl record by an artist from New York City on Bandcamp is:
+
+**Seeing Is Forgetting** by **Elori Saxl & Henry Solomon**
+
+I found it using Bandcamp’s Discover filters:
+- Genre: **Classical**
+- Format: **Vinyl**
+- Artist location: **New York City**
+- Sort: **Best-selling**
+
+The album page lists Elori Saxl as **New York, New York** and includes vinyl editions, including **“Seeing Is Forgetting (Clear 12" LP)”**.

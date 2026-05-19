@@ -1,0 +1,984 @@
+[1] user: Go to https://www.bbb.org/, Look up if the phone number 555555555 is a scam.
+
+[2] thinking: **Looking into BBB interaction**
+
+I need to interact with the Better Business Bureau (BBB) and confirm their phone number, "555555555." That seems like it could be a 9-digit number. I should check if it’s a scam. Inspecting the website could help, and I might also consider using a web search. Since the user specifically mentioned going to bbb.org, using a browser to access that site seems wise. I wonder if the BBB has a scam tracker I can use too. I'll open that up!
+
+[3] tool_call: repl("Opening BBB website")
+<request>
+const p1 = await openTab('https://www.bbb.org/');
+const s1 = await snapshot(page, {interactive:true});
+console.log(s1.tree);
+</request>
+<result tokens_used="126" elapsed_time="3528ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → BBB | Better Business Bureau (https://www.bbb.org/)
+# note: interactive (clickable / focusable) elements only.
+- title: "BBB | Better Business Bureau" [url=https://www.bbb.org/]
+- link "Skip to main content" [ref=e1]
+- banner:
+  - link "BBB" [ref=e2]: "BBB  Homepage"
+  - navigation "Main navigation" [ref=e3]:
+    - button "Consumers" [ref=e4]
+    - button "Businesses" [ref=e5]
+    - button "Scam Tracker" [ref=e6]
+    - button "About" [ref=e7]
+  - button "Select language" [ref=e8]: "Language"
+  - button "My BBB" [ref=e9]
+- main:
+  - heading "TRUST,BUILT LOCALLY." [level=1]
+  - text: "The Better Business Bureau is built on clarity, credibility, and trust"
+  - link "Allow us to introduce ourselves" [ref=e10]
+  - region:
+    - text: "Find"
+    - combobox "Find" [ref=e11] [placeholder="businesses, category"]
+    - listbox "Find" [ref=e12]
+    - text: "Near"
+    - combobox "Near" [ref=e13] [placeholder="city, state or zip"]: "San Francisco, CA"
+    - button "clear input" [ref=e14]
+    - text: "Country"
+    - combobox "Country" [ref=e15]: "United States"
+    - listbox "Near" [ref=e16]
+    - button "Search" [ref=e17]
+    - heading "Find a businessyou can trust." [level=2]: "Find a business you can trust."
+  - region:
+    - text: "FOR BUSINESSES"
+    - heading "Apply for Accreditation" [level=2]
+    - text: "Apply for BBB Accreditation and show customers that your company operates honestly and with integrity.Accredited Business"
+    - link "Apply for accreditation" [ref=e18]
+- contentinfo:
+  - link "BBB" [ref=e19]
+  - heading "For Consumers" [level=2]
+  - link "Get a Quote" [ref=e20]
+  - link "Start a Review" [ref=e21]
+  - link "File a Complaint" [ref=e22]
+  - heading "For Businesses" [level=2]
+  - link "Get Your Business Listed" [ref=e23]
+  - link "BBB Accreditation" [ref=e24]
+  - link "Apply for BBB Accreditation" [ref=e25]
+  - heading "Affiliated Programs" [level=2]
+  - link "BBB Institute for Marketplace Trust" [ref=e26]
+  - link "BBB Wise Giving Alliance (Give.org)" [ref=e27]
+  - link "BBB National Programs" [ref=e28]
+  - link "our Twitter (opens in a new tab)" [ref=e29]
+  - link "our LinkedIn (opens in a new tab)" [ref=e30]
+  - link "our Facebook (opens in a new tab)" [ref=e31]
+  - link "our Instagram (opens in a new tab)" [ref=e32]
+  - navigation "footer navigation" [ref=e33]:
+    - link "About BBB®" [ref=e34]
+    - text: "|"
+    - link "Terms of Use" [ref=e35]
+    - text: "|"
+    - link "Privacy Policy" [ref=e36]
+    - text: "|"
+    - link "Contact Us" [ref=e37]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[4] tool_call: repl("Opening Scam Tracker menu")
+<request>
+await page.locator('e6').click();
+const s2 = await snapshot(page, {interactive:true});
+console.log(s2.diff);
+</request>
+<result tokens_used="68" elapsed_time="527ms">
+@@ -7 +7,4 @@
+-    - button "Scam Tracker" [ref=e6]
++    - button "Scam Tracker" [ref=e6] [focused]
++    - link "Report a Scam" [ref=e38]
++    - link "Look Up a Scam" [ref=e39]
++    - link "Scam Survival Kit" [ref=e40]
+@@ -61,0 +64,3 @@
++- iframe:
++  - main:
++    - button "Open LiveChat chat widget" [ref=f6e1]
+</result>
+
+[5] tool_call: repl("Opening BBB scam lookup")
+<request>
+await page.locator('e39').click();
+const s3 = await snapshot(page, {interactive:true});
+console.log(s3.diff);
+</request>
+<result tokens_used="56" elapsed_time="2392ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "Search for Scams | BBB Scam Tracker | Better Business Bureau" [url=https://www.bbb.org/scamtracker/lookupscam]
+- banner:
+  - link "BBB" [ref=e1]: "BBB  Homepage"
+  - navigation "Main navigation" [ref=e2]:
+    - button "Consumers" [ref=e3]
+    - button "Businesses" [ref=e4]
+    - button "Scam Tracker" [ref=e5]
+    - button "About" [ref=e6]
+  - button "Select language" [ref=e7]: "Language"
+  - button "My BBB" [ref=e8]
+- main:
+  - heading "BBB Scam Tracker" [level=1]
+  - text: "Report a scam. Search scams. Protect yourself and others."
+  - heading "Look Up a Scam" [level=2]
+  - textbox "Phone number, website, email, business name, scam ID..." [ref=e9] [placeholder="Phone number, website, email, business name, scam ID..."]
+  - button "Filter" [ref=e10]
+  - button "Search" [ref=e11]
+  - text: "Search Results (682954)Other - Hackler & Associates I got a call from this collection agency claiming that a lawsuit was being filed for a 2018 credit card balance. They had all of my personal information and said that a forceable recovery lawsuit was being filed in my county of residence, and that wage garnishments and bank levy's would be placed against bank accounts and retirement accounts. They sent paperwork via DropBox to be docusigned to release the debt from my personal records. The amount of personal information they had convinced me that it was legitimate. I have an ex-spouse so I couldn't dispute that it was not mine in that moment so I fell victim to this payment scheme.Dollars Lost: $1069.88 Victim Location: Shingle Springs, CA, USA - 95682 Date Reported: May 13, 2026 Business Name Used: Hackler  Associates"
+  - link "Other - Hackler & Associates" [ref=e12]
+  - text: "Online Purchase - Literalous Purchased on 3/21/26 for granddaughter still have not received have sent multiple emails to company as well as shipping company with no response Dollars Lost: $41.97 Victim Location: Oroville, CA, USA - 95966 Date Reported: May 13, 2026 Business Name Used: Literalous"
+  - link "Online Purchase - Literalous" [ref=e13]
+  - text: "Other - Vishing Call was from 1-760-548-2155. Message in voicemail that said to call 888-342-9218 regarding service of legal documents, a signature showing proof of service and to call them back with a file number 2026-408020. They said the legal documents would be delivered at your home or place of employment between 8am-4pm and only two attempts would be made to serve the documents and they it will be considered a failed action if they cannot be delivered and this could result in further action without your consent. Made to sound ominous like some collection agency is hunting you down.Dollars Lost: $0.0 Victim Location: Santa Rosa, CA, USA - 95409 Date Reported: May 13, 2026 Business Name Used: Document Recovery Services"
+  - link "Other - Vishing" [ref=e14]
+  - text: "Debt Collections - (312) 778-9467 Left a voicemail “ Hello, my name is Frank Thomas. This is a final procedural reminder regarding your account with us. Action is required without delay. Please contact us at 312-778-9467 immediately. That's 312-778-9467.Dollars Lost: $0.0 Victim Location: Athena, OR, USA - 97813 Date Reported: May 13, 2026 Business Name Used: 312 778-9467"
+  - link "Debt Collections - (312) 778-9467" [ref=e15]
+  - text: "Employment - Velmora Logistics I was apply for job in Stockton and I found this job on indeed well a scam I figure to search the website up cause I always look into business before I get hired or set an interview I did that and gave the my card information and out of nowhere $1000 was took out of my account and they have my name / and social security number Dollars Lost: $1000 Victim Location: Stockton, CA, USA - 95210 Date Reported: May 13, 2026 Business Name Used: Velmora Logistics"
+  - link "Employment - Velmora Logistics" [ref=e16]
+  - text: "Other - Imposter This is the letter i received:Dollars Lost: $0.0 Victim Location: Floyds Knobs, IN, USA - 47119 Date Reported: May 13, 2026 Business Name Used: Amazon Group Decals Wrap Imposter"
+  - link "Other - Imposter" [ref=e17]
+  - text: "Phishing - Phishing Crafty scam for virus pritection Dollars Lost: $0.0 Victim Location: BC, CAN - V2T 2J9 Date Reported: May 13, 2026 Business Name Used: McAfee"
+  - link "Phishing - Phishing" [ref=e18]
+  - text: "Phishing - (888) 731-2187 I was mailed something identified as an allocated waiver ($199) they can revoke after 7 days. It referenced by actual lender from my recently refinanced home. The letter told me to call 888-731-2187 immediately as the letter was the final attempt to notify. The letter came with what looked like a check, but was identified as not a check, in the amount of $199, and had a place for us to sign. The company said it was not affiliated with our HELOC lender, but did not identify its own name or address.Dollars Lost: $0.0 Victim Location: Broomfield, CO, USA - 80020 Date Reported: May 13, 2026 Business Name Used: 888 731-2187"
+  - link "Phishing - (888) 731-2187" [ref=e19]
+  - text: "Other - Vhishing Voice mail received from 760-663-2221 and they addressed the message to my legal full name. Message below:\nI am calling on behalf of document delivery services.  We have been retained to schedule and deliver legal documents to you between the hours of 8 AM and 4 PM at either your home or your place of employment.  We'll be making only 2 attempts to deliver these documents, which will require signature as proof of delivery.  If we are unable to deliver these documents after 2 attempts, it will be classified as a failed action to serve, which will result in the pending matter to proceed further without your consent.  If you have any questions or if you need to reschedule this delivery, press one now to be connected to the next available representative, or you can call the office directly at 888-342-9218 and reference your file number 2026-125678.  Please be advised this call has been logged and submitted as proof you have been notified of this pending legal matter.  Have a good day.Dollars Lost: $0.0 Victim Location: Nice, CA, USA - 95464 Date Reported: May 13, 2026 Business Name Used: DOCUMENT DELIVERY SERVICES"
+  - link "Other - Vhishing" [ref=e20]
+  - text: "Other - Vishing  This is Maria calling to follow up with a complaint we receive in our office against *Name* with a reference case number ***-****** again ***-*****.  Documents regarding your file are being prepared to be sent out.  You will need to be available to sign for the delivery.  The issuing agent will dispatch confirmation.  If they are unable to reach you at home, they will attempt to reach you at your verified place of employment.  In order to stop further action from being taken.  You will need to call 951-999-4091.  This call has been logged and recorded as proof of efforts being made to notify you Dollars Lost: $0.0 Victim Location: Pleasanton, CA, USA - 94588 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Other - Vishing" [ref=e21]
+  - text: "Debt Collections - Compliance Department / Process Server Imposter Debt Collections Vishing and Identity Theft Scam I’ve been contacted multiple times and given the phone number to call back 833-587-6336 saying that they are the compliance department and there’s pending legal file and they’re trying to coordinate services with me that they’ve been provided with two addresses one appears to be my place of employment and my HR department will be contacted for their policy and procedure and they could come to my place of work and they’re trying to let me know this before it is disruptive and embarrassing. The case number they referenced is 67502558.Dollars Lost: $0.0 Victim Location: Wylie, TX, USA - 75098 Date Reported: May 13, 2026 Business Name Used: Compliance Department / Process Server Imposter Debt Collections Vishing and Identity Theft Scam"
+  - link "Debt Collections - Compliance Department / Process Server Imposter Debt Collections Vishing and Iden" [ref=e22]
+  - text: "Online Purchase Purchased bag online, repeated delays even after asking to cancel order and refund purchase price. Item not received and no refund a month after order placed.Dollars Lost: $73 Victim Location: Fort Walton Beach, FL, USA - 32547 Date Reported: May 13, 2026 Business Name Used: Emma Books"
+  - link "Online Purchase" [ref=e23]
+  - text: "Online Purchase - Apollo AI They invite you to answer a series of questioned us to build data for AI.  Each time you answer a question if banks a few dollars for you to be able to withdraw the funds when it reaches $20,000 but not before.  I got suspicious and tired of it and sought to cancel the subscription or contract because they gave you 60 days to ask for a refund.  I have been asking but only get form letters in response.Dollars Lost: $481.69 Victim Location: Eros, LA, USA - 71238 Date Reported: May 13, 2026 Business Name Used: Apollo AI"
+  - link "Online Purchase - Apollo AI" [ref=e24]
+  - text: "Healthcare/Medicaid/Medicare - GPAAK EQUIPMENTS LLC Medicare Health Insurance Billing Fake Medical Equipment Invoice Phishing and Identity Theft Scam Gpaak Equipments LLC billed Medicare for $9,500 in equipment using my medical information.  I contacted Medicare and let them know it had been submitted fraudulently.Dollars Lost: $0.0 Victim Location: Bellevue, ID, USA - 83313 Date Reported: May 13, 2026 Business Name Used: GPAAK EQUIPMENTS LLC Medicare Health Insurance Billing Fake Medical Equipment Invoice Phishing and Identity Theft Scam"
+  - link "Healthcare/Medicaid/Medicare - GPAAK EQUIPMENTS LLC Medicare Health Insurance Billing Fake Medical E" [ref=e25]
+  - text: "Employment - Boyden I was first approached by Carita Lahti, claiming to be from Boyden.  She has a LinkedIn page stating she is with Boyden Finland.  She said she came across my name and thought my background made a good fit.  She sent this email:\nDear Michael,\nI came across your profile and saw you’re actively exploring new opportunities—your MBA and background make you a strong fit for a high-impact role I’m currently hiring for.\nI’m working with on a Business Operations / Strategy Manager position in the Sacramento area (hybrid/remote flexibility). The team is looking for someone who can drive operational efficiency, support strategic initiatives, and partner with leadership on key business decisions.\nComp: $110K–$140K base + bonus + equity\nStart: Immediate interviews\nWe’re moving fast on this.\nIf you’re interested, please reply ASAP with your updated resume, and I’ll connect you directly with the Hiring Manager.\nShe never mentioned the company.  I sent her my resume.  She immediately responded that I need to work on my resume to make it work for the role and tried to get me to contact some resume writers.  I explained this had already been reviewed by a resume company and I wasn't going to pay for another one.\nShe then moved on to say that the hiring manager wanted to schedule an interview (miraculous since my resume apparently needed work, but without changing a thing, I now had an interview scheduled).  I should reach out to him, let him know she referred me, although she called herself Taylor in the message, not Carita.  She gave me this Teams link to use:  https://teams.live.com/l/invite/FEAlYSHhmnaXBPQdQc?v=g1 and that I would be talking to a person named Matthew Lawson.\nI reached out and spoke to Matthew, who finally told me the position was with Deloitte.  He gave me the job description, but it was one I had already applied for and been denied.  He then suggested I use a resume and cover letter writer to hone my professional image.  Red flags were going off all over the place, so I refused to use the recommended link he provided.  I did go ahead and make some updates using AI and sent him a resume and cover letter to match the job description.  He then told me I would need to supply an ATS friendly cover letter (which I had provided), A personal brand statement, a professional elevator pitch, a short executive bio, and a salary negotiation letter.  I created all those with the help of AI and sent them to him.  He asked me if I had AI create them or a professional.  I admitted it was AI.  He then said he wouldn't get me in front of the hiring manager without having these be created by a professional and told me to reach out to Leveth Grace Specialist at https://teams.live.com/l/invite/FEAiN3vW4zRoTDrsgw?v=g1. I did and explained what he needed from me.  She said she can do it for $500 and have them ready within the hour, as Matthew was stating was required.  I told her no, I wouldn't be willing to pay more than $100.  She lowered her price to $150, which I still refused.  Then I found reports of her being a scammer.  She then responded saying she would do it for $100, but I still told her no since she was a scammer.\nEven though I told Matthew I wasn't willing to work with her, I miraculously had an interview scheduled.  I have stopped responding to their inquries, even though I've continued to be pinged by both Matthew and Carita/Taylor or whatever her name is.Dollars Lost: $0.0 Victim Location: Rescue, CA, USA - 95672 Date Reported: May 13, 2026 Business Name Used: Boyden"
+  - link "Employment - Boyden" [ref=e26]
+  - text: "Phishing - Phishing The person asked to set up my business for voice activation devices like Alexa. They asked to confirm my business.Dollars Lost: $0.0 Victim Location: BC, CAN - V4T 2L6 Date Reported: May 13, 2026 Business Name Used: Unknown"
+  - link "Phishing - Phishing" [ref=e27]
+  - text: "Online Purchase - Online Retailer - Brushing Scam Received mail that is part of the Brushing Scam.  Received a little black plastic wrapped package with only a piece of cardboard in it.   Did research and saw on fb that it is called a Brushing Scam.Dollars Lost: $0.0 Victim Location: Red Banks, MS, USA - 38661 Date Reported: May 13, 2026 Business Name Used: Dave Garzaz"
+  - link "Online Purchase - Online Retailer - Brushing Scam" [ref=e28]
+  - text: "Credit Cards I received a call and a voicemail stating that I purchased an iPhone 17pro for 1099 and to call back immediately to either confirm or reverse charge. Nothing was taken out of my account, this number didn’t correspond with any retail or banking and my checking account was fine. I believe they were trying to get my information to perform a phishing scam.Dollars Lost: $0.0 Victim Location: Lawndale, CA, USA - 90260 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Credit Cards" [ref=e29]
+  - text: "Phishing - Sergeant Noveaak A man called me saying he was a sergeant and even gave his “badge number” and said that I had two citations for failing to appear for jury duty. He gave me one of my old addresses saying that’s where the summons was sent but I explained I hadn’t lived there in years. He told me I would have a bench warrant the following day if I didn’t go to the sheriffs office and prove that the summons got sent to an old address and I had to update with my new address. Thankfully I didn’t give him my current address.\nIt sounded a little weird so I called the actual sheriffs department and they said “yeah no that’s a scam, this happens a lot. I’m surprised he didn’t tell you to make a payment over the phone to avoid jail time. We do not have a sergeant with that name or anyone with that badge number. ”Dollars Lost: $0.0 Victim Location: Lincoln, NE, USA - 68506 Date Reported: May 13, 2026 Business Name Used: Sergeant Noveaak"
+  - link "Phishing - Sergeant Noveaak" [ref=e30]
+  - text: "Employment - Unipart Group What follows is the email I received from the gmail account I submitted.  It used a name at the bottom that didn't match the email.  No phone number or country listed.  I've received a few of these same messages so I'm reporting this one.  I have applied for jobs via Indeed, but not this one as it is too low paying for what I'm looking for.  I'm not sure if they actually knew I applied for jobs via Indeed or if this was a guess.\nThank you for applying through INDEED.\nAfter carefully reviewing your application, we are pleased to inform you that we would like to proceed with your candidacy for one of the following positions at UNIPART GROUP OF COMPANIES:\nCustomer Service Representative\nData Entry Clerk\nData Processor\nProject Manager\nData Analyst\nCall Center Representative / Customer Service\nBased on your qualifications and professional background, we believe your experience aligns well with the requirements of our team.\nPosition Overview\nPosition: Customer Service Representative / Data Entry Clerk / Office Manager / Data Analyst / Data Processor\nKey Responsibilities Include:\nResponding to customer and client inquiries via phone, email, or chat in a professional and timely manner\nEntering, updating, and maintaining accurate records and documentation\nAssisting with scheduling, reporting, and administrative support tasks\nCoordinating internal communications and supporting daily office operations\nManaging assigned projects, timelines, and workflow tracking for management-related roles\nAnalyzing data, preparing reports, and identifying trends for analytical positions\nSupporting team operations while ensuring compliance with company policies and procedures\nPosition Details:\nLocation: Fully Remote\nEmployment Type: Full-Time or Part-Time (based on availability)\nHourly Pay: $30.00 – $35.00 per hour\nTraining Pay: $17.22 per hour\nSchedule: 35–40 hours per week\nRequirements:\nExcellent communication and customer service skills\nAbility to work independently and manage time efficiently\nStrong organizational, teamwork, and communication abilities\nReliable internet connection and a quiet workspace suitable for remote work\nTo proceed with the interview process, please confirm your availability by contacting the HR Manager through Microsoft Teams using the meeting link below:\nhttps://teams.live.com/l/invite/FDAf3Ia99k40eaP8Bw?v=g1\nShould you have any questions or require assistance with scheduling, please feel free to contact the HR Manager via the Teams application.\nThank you once again for your interest in joining UNIPART GROUP OF COMPANIES. We look forward to speaking with you and discussing this opportunity further.\nWarm regards,\nJanae Payne\nUNIPART GROUP OF COMPANIES Dollars Lost: $0.0 Victim Location: Rescue, CA, USA - 95672 Date Reported: May 13, 2026 Business Name Used: Unipart Group"
+  - link "Employment - Unipart Group" [ref=e31]
+  - text: "Online Purchase Website says \"proudly made in Mississippi.\"  Shipping/trackling information says it comes from Italy.Dollars Lost: $39.98 Victim Location: Starkville, MS, USA - 39759 Date Reported: May 13, 2026 Business Name Used: Mississippi Linen Cotton"
+  - link "Online Purchase" [ref=e32]
+  - text: "Online Purchase - Online Retailer - Brushing Scam Shipped in a small white bag was a small soft 5g package of Hunmui / centella asisitca bubble facial mask Dollars Lost: $0.0 Victim Location: Terrell, NC, USA - 28682 Date Reported: May 13, 2026 Business Name Used: Davve Garzaz"
+  - link "Online Purchase - Online Retailer - Brushing Scam" [ref=e33]
+  - text: "Online Purchase On May 5, 2026, I ordered a Deluxe Blooming Garden Basket from Flowers By Eva (thinking it was a local small business in or near The Villages) for Mother's Day and was told that the flowers would be delivered between Friday, May 8th-Sunday, May 10th (Mother's Day). When the flowers still had not been delivered to my Mom by Tuesday the 12th I contacted the company by phone and was told that the driver was \"still out on the delivery route\" and someone would return my call once they heard from the driver. No call back, no flowers and then reading HUNDREDS of complaints about this company I realize that I have been scammed.  I am heartbroken that my Mom didn't receive any flowers and angry about the situation.Dollars Lost: $121.28 Victim Location: RI, USA - 02891 Date Reported: May 13, 2026 Business Name Used: Flowers By Eva"
+  - link "Online Purchase" [ref=e34]
+  - text: "Debt Collections - RMS Debt Collections Vishing and Identity Theft Scam Once I told him that when I called back and got the name of company calling me and googled the phone number and the first thing that came up was listed as scam on BBB with the phone number and company name he started talking over me and said “if you don’t believe me it’s fine you can hang up right now” - he became very defensive about me questioned whether they were a scam or not and would literally not let me speak.Dollars Lost: $0.0 Victim Location: Cooper, TX, USA - 75432 Date Reported: May 13, 2026 Business Name Used: RMS Debt Collections Vishing and Identity Theft Scam"
+  - link "Debt Collections - RMS Debt Collections Vishing and Identity Theft Scam" [ref=e35]
+  - text: "Advance Fee Loan - Loan Solicitation - Phishing Scam Everyday I receive calls from the same people pretending to be Heather Holland. Its all the same saying that I applied for a load and they just need my information to finalize it. The initial call is from 406-520-6766 but then they leave two other callback numbers 855-357-2205 and also 877-961-0995. The numbers they use to call from are always different, but the message is the same, and same call back numbers Dollars Lost: $0.0 Victim Location: Staten Island, NY, USA - 10314 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Advance Fee Loan - Loan Solicitation - Phishing Scam" [ref=e36]
+  - text: "Debt Collections Robot left voicemail indicating they are from a Document Delivery Service using scare tactics if I do not call back or they cant reach me they will escalate serving documents to a higher up person- this is fake and not a real company, this is the second time this year I have received the call-  you cannot reach a live human at the number they are calling from- I tried to contact the number they left in the voicemail- turns out there is a person who does own a Legal Document Delivery Service who informed me the number to his business was spammed by scammers-  He was seemingly nice and did not pose a threat on the phone- I gave him my name and he confirmed he has no documents in his possession to serve someone with my name- I was relieved to say the least and blocked the call- just block the number and move about with your day.Dollars Lost: $0.0 Victim Location: Tarzana, CA, USA - 91356 Date Reported: May 13, 2026 Business Name Used: Document Delivery Services"
+  - link "Debt Collections" [ref=e37]
+  - text: "Home Improvement This company poses as a legit locksmith and overcharges...they dont give you a quote upfront and force you into overpaying..the same job cost me 330.00 see invoice..we had to get a legit locksmith out to change eveything because we feared they have keys Dollars Lost: $1300 Victim Location: Los Angeles, CA, USA - 90020 Date Reported: May 13, 2026 Business Name Used: South Gate lock and key and South gate Locksmith store"
+  - link "Home Improvement" [ref=e38]
+  - text: "Advance Fee Loan I called them back because I am going through a hardship and thought it was real I gave them all my information and they told me to paid a fee through crypto after that they even used Plaid for my bank info so I thought it was legit but then my bank told me someone tried to deposit a check for 1999 into my account then they tried to withdraw the same day Dollars Lost: $500 Victim Location: Orlando, FL, USA - 32811 Date Reported: May 13, 2026 Business Name Used: Alliance financial Relief"
+  - link "Advance Fee Loan" [ref=e39]
+  - text: "Online Purchase - Science Decor I ordered an item online and while their confirmation email said my product would be shipped in 72 hours. Also, when purchasing the product, there was a date range to expect the delivery. I followed up with them 5 days later after not hearing anything and they informed me that the product was out of stock and that it would be shipped soon. I then told them that the item was a gift and I would not receive it in time as this was outside of their expected delivery time indicated at purchase. They then told me that the product was shipped and supplied a fake tracking number. When I reached back out to insist on a real tracking number, they did not respond so I had to email again. I finally received an email that said that package was delivered already and that I needed to look around my property and was supplied a different tracking number that showed shipped while the product was \"out of stock\" and delivered. However, the package was never received. SCAM!Dollars Lost: $40 Victim Location: Gretna, NE, USA - 68028 Date Reported: May 13, 2026 Business Name Used: Science Decor"
+  - link "Online Purchase - Science Decor" [ref=e40]
+  - text: "Worthless Problem-solving Service The scamming company is a \"sponsored\" link on google search.  They are posing as a company which is doing your passport renewal for you.  All they do is fill in a form.  Absolute scam.  Others should be warned.  Sure, Caveat Emptor and all that, but this is an absolute scam.  I can't believe I got screwed by them. $111 for nothing.  This needs to be pulled from Google search.  Absolutely ridiculous that this stuff is allowed.Dollars Lost: $111.12 Victim Location: Crownsville, MD, USA - 21032 Date Reported: May 13, 2026 Business Name Used: US Passport and Visa Support"
+  - link "Worthless Problem-solving Service" [ref=e41]
+  - text: "Phishing - Samantha Fisher  I receive this call at least 5 times a day, from different numbers. I have blocked every one but the calls keep coming.Dollars Lost: $0.0 Victim Location: Barberton, OH, USA - 44203 Date Reported: May 13, 2026 Business Name Used: Samantha Fisher"
+  - link "Phishing - Samantha Fisher" [ref=e42]
+  - text: "Online Purchase - Dental Health Essentials, LLC Dental products were ordered through their website.  I received a confirmation of payment (credit card) from Shop - and then never heard anything again.  I've tried calling, emailing, chatting with the 'bot', but I can't access anyone at this company.Dollars Lost: $29.99 Victim Location: MA, USA - 02180 Date Reported: May 13, 2026 Business Name Used: Dental Health Essentials LLC"
+  - link "Online Purchase - Dental Health Essentials, LLC" [ref=e43]
+  - text: "Advance Fee Loan I've been consistently contacted by this business multiple times a day, every day every week. I've requested constantly to be placed on their DNC list and I still am being practically harassed by these people. I have spoken to the following individuals that I have documented;\n-Agent Name: Charieseo,\n-Agent Name: Steven Guzman, Agent ID Number; 6703\n-Agent Name: Michael Scrape, Agent ID Number; 4414 Dollars Lost: $0.0 Victim Location: CT, USA - 06110 Date Reported: May 13, 2026 Business Name Used: Stone Gate Lending Union"
+  - link "Advance Fee Loan" [ref=e44]
+  - text: "Phishing - Phishing Claimed to be legal service handling a case being sued by hospital for bill.  I had not even been to this hospital and they used a name I had over 20 years ago.  Stated I incurred this hospital bill last year, again, have not been to this hospital, have not been to a hospital in years and I have great insurance through the state of Florida so I would not have this bill.  Caller I spoke to found out he was going to get nowhere and said angrily, \"we will see you in court!\" and hung up.Dollars Lost: $0.0 Victim Location: Pensacola, FL, USA - 32503 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Phishing - Phishing" [ref=e45]
+  - text: "Phishing I have been getting fraudulent calls from Voice Search Call Center from various phone numbers within my area code of (424) telling me that I have missed several phone leads from potential clients trying to reach me. They call from different phone numbers such as (424) 252-7981, (424) 204-0032, (424) 206-7769, (424) 204-0032. They are trying to collect payment so that I can receive these leads that supposedly I am missing. The phone calls begins with an initial recording saying that I am missing leads from GOOGLE VOICE that clients are trying to get ahold of me via this platform and search engine. It's a nuisance, they are taking over my phone!Dollars Lost: $0.0 Victim Location: San Pedro, CA, USA - 90731 Date Reported: May 13, 2026 Business Name Used: Voice Search Call Center or Voice Search"
+  - link "Phishing" [ref=e46]
+  - text: "Online Purchase - Macy's Imposter Website - Online Retailer Scam They claim to have access to clothing that were purchased from various stores. These items were discounted for venders who offer them at cheap prices. Only, to never receive anything.Dollars Lost: $80 Victim Location: Smyrna, DE, USA - 19977 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Online Purchase - Macy's Imposter Website - Online Retailer Scam" [ref=e47]
+  - text: "Other Text msssages claiming my application was approved via clicking on link that is claiming to be set to expire within 30 days. Claiming I have money loans to claim. Scammers after personal information. DO NOT CLICK! Be smart people!Dollars Lost: $0.0 Victim Location: CT, USA - 06320 Date Reported: May 13, 2026 Business Name Used: Checkgo"
+  - link "Other" [ref=e48]
+  - text: "Employment I am filing this complaint regarding a fraudulent company that recruited me under the false pretense of legitimate employment as a remote logistics/shipping agent. The company contacted me directly and explained that they operated as a third-party logistics service that helped individuals in other countries obtain products that were otherwise unavailable to them. They presented the opportunity as a legitimate remote position and required me to complete onboarding documentation, including a W-4 tax form, which led me to believe the company was operating legally. As part of my job duties, I received expensive packages at my home address, documented the contents by taking photographs, and uploaded shipment information through the company’s platform before forwarding the packages to destinations provided by the company. I performed these duties consistently for approximately one month and fulfilled all responsibilities expected of me. I was promised a base salary of $2,900 per month in addition to bonuses for every package that I processed and shipped on time. When it became time for me to receive payment, the company suddenly stopped communicating with me entirely. I was locked out of the company platform, my attempts to contact management went unanswered, and I never received the wages that I was promised for the work I completed. Based on the circumstances, I now believe I was targeted in a reshipping/package mule scam operation in which unsuspecting individuals are used to move potentially fraudulently obtained merchandise while the company avoids accountability and labor payment obligations. I believe this company intentionally misrepresented itself as a legitimate employer in order to exploit workers for free labor and potentially involve them in illegal shipping activity without their knowledge or informed consent. I am deeply concerned not only about the unpaid wages owed to me, but also about the fact that I provided sensitive personal and tax information during the hiring process under false pretenses.Dollars Lost: $3313 Victim Location: Kenner, LA, USA - 70065 Date Reported: May 13, 2026 Business Name Used: Silvergate Logistics"
+  - link "Employment" [ref=e49]
+  - text: "Credit Cards Woman called and hung up, when the call was returned she said she was with a tech company and hung up again when asked what it was regarding. Tried calling back kept hanging up Dollars Lost: $0.0 Victim Location: Encino, CA, USA - 91436 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Credit Cards" [ref=e50]
+  - text: "Online Purchase - Online Retailer - Brushing Scam Receiving multiple little packages in the mail. Most packages are empty but some had seeds and a cheap ring.Dollars Lost: $0.0 Victim Location: Prescott, AZ, USA - 86305 Date Reported: May 13, 2026 Business Name Used: Davve Garzaz"
+  - link "Online Purchase - Online Retailer - Brushing Scam" [ref=e51]
+  - text: "Phishing - Home Warranty Mail Phishing Scam Received a notice claiming my \"home warranty\" was about to expire and stating I needed to reply before 5/21/2026. I don't have a home warranty.  It also claimed to be: \"secured by USAA FSB\", however, USAA does NOT currently offer home warranties, Letter was signed by \"Eric Henderson, Program Director\".  I'm sure they are looking for credit card information.Dollars Lost: $0.0 Victim Location: MA, USA - 01464 Date Reported: May 13, 2026 Business Name Used: Home Warranty Division"
+  - link "Phishing - Home Warranty Mail Phishing Scam" [ref=e52]
+  - text: "Phishing - Phishing Called me 2 days in a row, from 855-432-3604, 480-400-1880, 844-412-8393, 602-500-4503. They will not provide detailed company information. They AI sounding voicemail is threatening that they leave. When I try and callback they will not answer the phone. They are threatening to go to my work now. To the best of my knowledge this same company tried scamming me for money last year, they would not provide company details, a man with a strong latin accent raised his voice, threatened me with jail, and hung up on me twice.Dollars Lost: $0.0 Victim Location: Salt Lake City, UT, USA - 84123 Date Reported: May 13, 2026 Business Name Used: Rd Processing  CBA"
+  - link "Phishing - Phishing" [ref=e53]
+  - text: "Debt Collections - Imposter Debt Collection Scam Scammer keeps calling, saying $299.89 is owed for Network Solutions, or for Charter Spectrum.Dollars Lost: $0.0 Victim Location: MA, USA - 01220 Date Reported: May 13, 2026 Business Name Used: Network Solutions"
+  - link "Debt Collections - Imposter Debt Collection Scam" [ref=e54]
+  - text: "Employment I got a call, saying that they have a job which is shipping things internationally, and I have to do it to check it and see if it’s broken or not. And then send it to fedex or ups things. Then they asked me a few questions and also told me if I hav a car, license, over 18 years old, and a printer. Then they told me they got my information from app called “indeed” which is helping you to apply jobs which yes I do have that app. And then, sent me an email which was filling out information uploading, front and back of license ID card, and also a selfie holding the license. Then, I filled out the information and sent my license. And tomarrow I found out it was a Scam Dollars Lost: $0.0 Victim Location: Sacramento, CA, USA - 95842 Date Reported: May 13, 2026 Business Name Used: Postland Limited Liability Company"
+  - link "Employment" [ref=e55]
+  - text: "Online Purchase - Averissea Order never received. Was told it was shipped twice. No refund ever received Dollars Lost: $25 Victim Location: Saint Joseph, MO, USA - 64504 Date Reported: May 13, 2026 Business Name Used: Averissea"
+  - link "Online Purchase - Averissea" [ref=e56]
+  - text: "Advance Fee Loan these scammer people will call me several times a day even after they have taken me off their call list.Dollars Lost: $0.0 Victim Location: Brandon, FL, USA - 33511 Date Reported: May 13, 2026 Business Name Used: STONEGATE LENDING"
+  - link "Advance Fee Loan" [ref=e57]
+  - text: "Fake Invoice/Supplier Bill - Fake Invoice Phishing Scam Invoice\nInvoice Number:2026_905162JBNE_TA\nDate of Issue:2026-May-13\nPayPal\nStripe 2 Sherman Ave, Auburn, MA 1501\nBilled to\nmarva66@yahoo.com\nPayPal Stripe User\n$488.68 (USD) due Wednesday, 13 May, 2026\nYOU'VE SENT A PAYMENT OF $488.68 TO COINBASE CORPORATION\nIt may take a few moments for this transaction to appear in your statement.\nIssues with this transaction?\nIf you have any questions about your order, please contact us within 24 hr by calling at +1 (838) 243-5499\nDescription Qty Unit price Amount\nBtc Purchased 1 $488.68 $488.68\nSubtotal $488.68\nTotal $488.68\nAmount due $488.68\nDon’t recognize this transaction? Contact PayPal +1 (838) 243-5499 For dispute/claim\nCopyright © 1999–2026 PayPal, Inc. All rights reserved.Dollars Lost: $0.0 Victim Location: Suffolk, VA, USA - 23435 Date Reported: May 13, 2026 Business Name Used: INV - UGTHIJHGAPKKUIWCE - GOVERNANCE POLICY REGISTER"
+  - link "Fake Invoice/Supplier Bill - Fake Invoice Phishing Scam" [ref=e58]
+  - text: "Online Purchase - Online Retailer - Brushing Scam Received 3 packages in the mail from same person/address. Package that weight 2 ounces contained a single serve of a powdered mix. Threw those in trash. Third package arrived. Reported to BBB and wrote \"RTS\" on package, hoping it goes back. QR code next to my name but did not scan.Dollars Lost: $0.0 Victim Location: New Rochelle, NY, USA - 10801 Date Reported: May 13, 2026 Business Name Used: N/A"
+  - link "Online Purchase - Online Retailer - Brushing Scam" [ref=e59]
+  - text: "Online Purchase - mynuora.com Website is a scam and number Dollars Lost: $45.94 Victim Location: Modesto, CA, USA - 95358 Date Reported: May 13, 2026 Business Name Used: mynuora.com"
+  - link "Online Purchase - mynuora.com" [ref=e60]
+  - text: "Phishing We received an unsolicited call or email claiming to be from a credit card processor, Shopify Merchant Services.They claimed we are owed a rebate, refund, or reimbursement for over-billed credit card processing fees.They asked me to email a copy of my most recent merchant processing or sales statement  sent to statements@merchantprocessingcenter.com to have an auditor open a case number. Persistant that I needed to send it while on the phone so I could get a confirmation number.Dollars Lost: $0.0 Victim Location: Lafayette, LA, USA - 70508 Date Reported: May 13, 2026 Business Name Used: Merchant Support for Shopify"
+  - link "Phishing" [ref=e61]
+  - navigation "pagination navigation" [ref=e62]:
+    - button "Go to previous page" [ref=e63] [disabled]
+    - button "page 1" [ref=e64]: "1"
+    - button "Go to page 2" [ref=e65]: "2"
+    - button "Go to page 3" [ref=e66]: "3"
+    - button "Go to page 4" [ref=e67]: "4"
+    - button "Go to page 5" [ref=e68]: "5"
+    - text: "…"
+    - button "Go to page 1000" [ref=e69]: "1000"
+    - button "Go to next page" [ref=e70]
+  - text: "Didn't find the scam you were looking for?"
+  - link "Report a Scam" [ref=e71]
+- contentinfo:
+  - link "BBB" [ref=e72]
+  - heading "For Consumers" [level=2]
+  - link "Get a Quote" [ref=e73]
+  - link "Start a Review" [ref=e74]
+  - link "File a Complaint" [ref=e75]
+  - heading "For Businesses" [level=2]
+  - link "Get Your Business Listed" [ref=e76]
+  - link "BBB Accreditation" [ref=e77]
+  - link "Apply for BBB Accreditation" [ref=e78]
+  - heading "Affiliated Programs" [level=2]
+  - link "BBB Institute for Marketplace Trust" [ref=e79]
+  - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
+  - link "BBB National Programs" [ref=e81]
+  - link "our Twitter (opens in a new tab)" [ref=e82]
+  - link "our LinkedIn (opens in a new tab)" [ref=e83]
+  - link "our Facebook (opens in a new tab)" [ref=e84]
+  - link "our Instagram (opens in a new tab)" [ref=e85]
+  - navigation "footer navigation" [ref=e86]:
+    - link "About BBB®" [ref=e87]
+    - text: "|"
+    - link "Terms of Use" [ref=e88]
+    - text: "|"
+    - link "Privacy Policy" [ref=e89]
+    - text: "|"
+    - link "Contact Us" [ref=e90]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[6] thinking: **Searching for a number**
+
+I need to enter a 9-digit number: 555555555. I’m wondering if it needs dashes for formatting—should I include those when I search? I really want to ensure that I get accurate results. Maybe I should look into using a specific fill function to help with this search. I’ll check it out and see what works best for finding the information I need.
+
+[7] tool_call: repl("Searching phone number on BBB Scam Tracker")
+<request>
+await page.locator('e9').fill('555555555');
+await page.locator('e11').click();
+const s4 = await snapshot(page);
+console.log(s4.diff);
+</request>
+<result tokens_used="107" elapsed_time="1167ms">
+@@ -1 +1,98 @@
+-
++- banner:
++  - link "BBB" [ref=e1]:
++    - image "BBB"
++    - text: "Homepage"
++  - navigation "Main navigation" [ref=e2]:
++    - list:
++      - listitem "Consumers" [ref=e91]:
++        - button "Consumers" [ref=e3]
++      - listitem "Businesses" [ref=e92]:
++        - button "Businesses" [ref=e4]
++      - listitem "Scam Tracker" [ref=e93]:
++        - button "Scam Tracker" [ref=e5]
++      - listitem "About" [ref=e94]:
++        - button "About" [ref=e6]
++  - button "Select language" [ref=e7]: "Language"
++  - button "My BBB" [ref=e8]
++- main:
++  - heading "BBB Scam Tracker" [level=1]
++  - text: "Report a scam. Search scams. Protect yourself and others."
++  - heading "Look Up a Scam" [level=2]
++  - textbox "Phone number, website, email, business name, scam ID..." [ref=e9] [placeholder="Phone number, website, email, business name, scam ID..."]: "555555555"
++  - button "Filter" [ref=e10]
++  - button "Search" [ref=e11] [focused]
++  - generic [ref=e95]:
++    - text: "555555555"
++    - button "delete" [ref=e96]
++  - text: "Search Results (3)Tax Collection Left a voice mail:\nHi this is Nancy from U.S tax Consultants today is Tuesday September 16th I'm following up on the notice we sent out regarding your back taxes and missed filings for the account linked to  555555555  this may be our only attempt to reach you and it's critical that you speak with someone today please call us right away at 888-498-0251 we can bring your extensions current request penalty waivers and review new relief programs that could significantly reduce or even eliminate what you owe with important deadlines approaching do not make another payment until we've spoken again please call 888-498-0251 today Dollars Lost: $0.0 Victim Location: FL, USA - 32707 Date Reported: September 17, 2025 Business Name Used: US tax consultant"
++  - link "Tax Collection" [ref=e97]
++  - text: "Online Purchase They took money out my account,Without my knowledge.Also when I asks for a refund on 08/19/2021,they said it will take up to 48hrs for my refund, it’s now the 25th of August and still ain’t receive my refund., or they didn’t give me a update when I wrote them to get Update on my refund status. No response Dollars Lost: $424.15 Victim Location: LA, USA - 70043 Date Reported: August 25, 2021 Business Name Used: NsbShoeBot"
++  - link "Online Purchase" [ref=e98]
++  - text: "Online Purchase Facebook had an ad for tribal clothing. I paid about $30 for a hood. I didnt memorize the company name because I didnt think I would need to. There was no email from the company confirming the order. When I received the package, it wasnt at all what I ordered. I went to check the packaging for information on returning items and there is no contact information or even a name of the company. The only thing it had was the P.O. box it was shipped from. I went digging for a name or any kind of information on this place but nothing came up on google, except the fac TV that other people have dealt with the same issue from this p.o. box and some individuals stated that this address has had multiple names of companies shipping online purchases. The ad is no where to be found. I want to report that this P.O. box is a scam Dollars Lost: $30 Victim Location: NY, USA - 14094 Date Reported: September 28, 2020 Business Name Used: Multiple names"
++  - link "Online Purchase" [ref=e99]
++  - navigation "pagination navigation" [ref=e62]:
++    - list:
++      - listitem "Go to previous page" [ref=e100]:
++        - button "Go to previous page" [ref=e63] [disabled]
++      - listitem "page 1" [ref=e101]:
++        - button "page 1" [ref=e64]: "1"
++      - listitem "Go to next page" [ref=e102]:
++        - button "Go to next page" [ref=e103] [disabled]
++  - text: "Didn't find the scam you were looking for?"
++  - link "Report a Scam" [ref=e71]
++- contentinfo:
++  - link "BBB" [ref=e72]:
++    - image "BBB"
++  - heading "For Consumers" [level=2]
++  - list:
++    - listitem "Get a Quote" [ref=e104]:
++      - link "Get a Quote" [ref=e73]
++    - listitem "Start a Review" [ref=e105]:
++      - link "Start a Review" [ref=e74]
++    - listitem "File a Complaint" [ref=e106]:
++      - link "File a Complaint" [ref=e75]
++  - heading "For Businesses" [level=2]
++  - list:
++    - listitem "Get Your Business Listed" [ref=e107]:
++      - link "Get Your Business Listed" [ref=e76]
++    - listitem "BBB Accreditation" [ref=e108]:
++      - link "BBB Accreditation" [ref=e77]
++    - listitem "Apply for BBB Accreditation" [ref=e109]:
++      - link "Apply for BBB Accreditation" [ref=e78]
++  - heading "Affiliated Programs" [level=2]
++  - list:
++    - listitem "BBB Institute for Marketplace Trust" [ref=e110]:
++      - link "BBB Institute for Marketplace Trust" [ref=e79]
++    - listitem "BBB Wise Giving Alliance (Give.org)" [ref=e111]:
++      - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
++    - listitem "BBB National Programs" [ref=e112]:
++      - link "BBB National Programs" [ref=e81]
++  - list:
++    - listitem:
++      - link "our Twitter (opens in a new tab)" [ref=e82]
++    - listitem:
++      - link "our LinkedIn (opens in a new tab)" [ref=e83]
++    - listitem:
++      - link "our Facebook (opens in a new tab)" [ref=e84]
++    - listitem:
++      - link "our Instagram (opens in a new tab)" [ref=e85]
++  - navigation "footer navigation" [ref=e86]:
++    - list:
++      - listitem "About BBB®|" [ref=e113]:
++        - link "About BBB®" [ref=e87]
++        - text: "|"
++      - listitem "Terms of Use|" [ref=e114]:
++        - link "Terms of Use" [ref=e88]
++        - text: "|"
++      - listitem "Privacy Policy|" [ref=e115]:
++        - link "Privacy Policy" [ref=e89]
++        - text: "|"
++      - listitem "Contact Us" [ref=e116]:
++        - link "Contact Us" [ref=e90]
++  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
++- iframe "LiveChat chat widget" [ref=e117]:
++  - main:
++    - button "Open LiveChat chat widget" [ref=f7e1]
++- status: "1Password menu is available. Press down arrow to select."
++- iframe:
++  - text: "protected by  reCAPTCHA"
+</result>
+
+[8] thinking: **Investigating a phone number scam**
+
+I need to determine whether a phone number is a scam and confirm some details. The search returned three results, including one that explicitly links an account to the number. It seems to match a text rather than the caller directly. I wonder if the user's exact number of 555555555, which is missing a digit, shows up, and maybe checking alternate formats like 555-555-555 would help. Let's explore the BBB Scam Tracker reports for more details.
+
+[9] tool_call: repl("Opening matching BBB report details")
+<request>
+await page.locator('e97').click();
+const s5 = await snapshot(page);
+console.log(s5.diff);
+</request>
+<result tokens_used="245" elapsed_time="974ms">
+- title: "Scams Details" [url=https://www.bbb.org/scamtracker/lookupscam]
+- banner:
+  - link "BBB" [ref=e1]:
+    - image "BBB"
+    - text: "Homepage"
+  - navigation "Main navigation" [ref=e2]:
+    - list:
+      - listitem "Consumers" [ref=e91]:
+        - button "Consumers" [ref=e3]
+      - listitem "Businesses" [ref=e92]:
+        - button "Businesses" [ref=e4]
+      - listitem "Scam Tracker" [ref=e93]:
+        - button "Scam Tracker" [ref=e5]
+      - listitem "About" [ref=e94]:
+        - button "About" [ref=e6]
+  - button "Select language" [ref=e7]: "Language"
+  - button "My BBB" [ref=e8]
+- main:
+  - heading "BBB Scam Tracker" [level=2]
+  - generic "Back to search" [ref=e118]
+  - image "Scam information"
+  - text: "This content is based on victim and potential victim accounts. Government agencies and legitimate business names and phone numbers are often used by scam artists to take advantage of people."
+  - heading "Description" [level=6]
+  - text: "Left a voice mail:\nHi this is Nancy from U.S tax Consultants today is Tuesday September 16th I'm following up on the notice we sent out regarding your back taxes and missed filings for the account linked to 555555555 this may be our only attempt to reach you and it's critical that you speak with someone today please call us right away at 888-498-0251 we can bring your extensions current request penalty waivers and review new relief programs that could significantly reduce or even eliminate what you owe with important deadlines approaching do not make another payment until we've spoken again please call 888-498-0251 today"
+  - heading "Targeted Person's Location" [level=6]
+  - text: "FL, USA - 32707"
+  - heading "Scammer Information" [level=6]
+  - image "Scammer location logo"
+  - text: "FL"
+  - image "Mail logo"
+  - text: "Unknown Email"
+  - image "Mobile logo"
+  - text: "(909) 698-6196"
+  - image "Web logo"
+  - text: "Unknown URL"
+  - heading "Scam Type" [level=6]
+  - text: "Tax Collection"
+  - paragraph "Learn More" [ref=e119]
+  - heading "Business name" [level=6]
+  - text: "US tax consultant"
+  - heading "Date Reported" [level=6]
+  - text: "September 17, 2025"
+  - heading "Scam ID" [level=6]
+  - text: "1061335"
+  - region "Tell us what happened" [ref=e120]:
+    - heading "Tell us what happened" [level=2]
+    - text: "Your input keeps Scam Tracker accurate and useful for the next person who searches this scam."
+    - button "I avoided this scam ▾" [ref=e121]
+    - button "I experienced this scam" [ref=e122]
+    - paragraph:
+      - text: "Are you the business named in this report?"
+      - link "Dispute this report" [ref=e123]
+      - text: "."
+    - status
+- contentinfo:
+  - link "BBB" [ref=e72]:
+    - image "BBB"
+  - heading "For Consumers" [level=2]
+  - list:
+    - listitem "Get a Quote" [ref=e104]:
+      - link "Get a Quote" [ref=e73]
+    - listitem "Start a Review" [ref=e105]:
+      - link "Start a Review" [ref=e74]
+    - listitem "File a Complaint" [ref=e106]:
+      - link "File a Complaint" [ref=e75]
+  - heading "For Businesses" [level=2]
+  - list:
+    - listitem "Get Your Business Listed" [ref=e107]:
+      - link "Get Your Business Listed" [ref=e76]
+    - listitem "BBB Accreditation" [ref=e108]:
+      - link "BBB Accreditation" [ref=e77]
+    - listitem "Apply for BBB Accreditation" [ref=e109]:
+      - link "Apply for BBB Accreditation" [ref=e78]
+  - heading "Affiliated Programs" [level=2]
+  - list:
+    - listitem "BBB Institute for Marketplace Trust" [ref=e110]:
+      - link "BBB Institute for Marketplace Trust" [ref=e79]
+    - listitem "BBB Wise Giving Alliance (Give.org)" [ref=e111]:
+      - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
+    - listitem "BBB National Programs" [ref=e112]:
+      - link "BBB National Programs" [ref=e81]
+  - list:
+    - listitem:
+      - link "our Twitter (opens in a new tab)" [ref=e82]
+    - listitem:
+      - link "our LinkedIn (opens in a new tab)" [ref=e83]
+    - listitem:
+      - link "our Facebook (opens in a new tab)" [ref=e84]
+    - listitem:
+      - link "our Instagram (opens in a new tab)" [ref=e85]
+  - navigation "footer navigation" [ref=e86]:
+    - list:
+      - listitem "About BBB®|" [ref=e113]:
+        - link "About BBB®" [ref=e87]
+        - text: "|"
+      - listitem "Terms of Use|" [ref=e114]:
+        - link "Terms of Use" [ref=e88]
+        - text: "|"
+      - listitem "Privacy Policy|" [ref=e115]:
+        - link "Privacy Policy" [ref=e89]
+        - text: "|"
+      - listitem "Contact Us" [ref=e116]:
+        - link "Contact Us" [ref=e90]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe "LiveChat chat widget" [ref=e117]:
+  - main:
+    - button "Open LiveChat chat widget" [ref=f7e1]
+- status: "1Password menu is available. Press down arrow to select."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[10] tool_call: repl("Reviewing other matching BBB reports")
+<request>
+await page.locator('e118').click();
+const s6 = await snapshot(page, {interactive:true});
+console.log(s6.diff);
+</request>
+<result tokens_used="190" elapsed_time="640ms">
+@@ -1 +1,64 @@
+-
++- banner:
++  - link "BBB" [ref=e1]: "BBB  Homepage"
++  - navigation "Main navigation" [ref=e2]:
++    - button "Consumers" [ref=e3]
++    - button "Businesses" [ref=e4]
++    - button "Scam Tracker" [ref=e5]
++    - button "About" [ref=e6]
++  - button "Select language" [ref=e7]: "Language"
++  - button "My BBB" [ref=e8]
++- main:
++  - heading "BBB Scam Tracker" [level=1]
++  - text: "Report a scam. Search scams. Protect yourself and others."
++  - heading "Look Up a Scam" [level=2]
++  - textbox "Phone number, website, email, business name, scam ID..." [ref=e124] [placeholder="Phone number, website, email, business name, scam ID..."]
++  - button "Filter" [ref=e125]
++  - button "Search" [ref=e126]
++  - generic [ref=e127]:
++    - text: "555555555"
++    - button "delete" [ref=e128]
++  - text: "Search Results (3)Tax Collection Left a voice mail:\nHi this is Nancy from U.S tax Consultants today is Tuesday September 16th I'm following up on the notice we sent out regarding your back taxes and missed filings for the account linked to  555555555  this may be our only attempt to reach you and it's critical that you speak with someone today please call us right away at 888-498-0251 we can bring your extensions current request penalty waivers and review new relief programs that could significantly reduce or even eliminate what you owe with important deadlines approaching do not make another payment until we've spoken again please call 888-498-0251 today Dollars Lost: $0.0 Victim Location: FL, USA - 32707 Date Reported: September 17, 2025 Business Name Used: US tax consultant"
++  - link "Tax Collection" [ref=e129]
++  - text: "Online Purchase They took money out my account,Without my knowledge.Also when I asks for a refund on 08/19/2021,they said it will take up to 48hrs for my refund, it’s now the 25th of August and still ain’t receive my refund., or they didn’t give me a update when I wrote them to get Update on my refund status. No response Dollars Lost: $424.15 Victim Location: LA, USA - 70043 Date Reported: August 25, 2021 Business Name Used: NsbShoeBot"
++  - link "Online Purchase" [ref=e130]
++  - text: "Online Purchase Facebook had an ad for tribal clothing. I paid about $30 for a hood. I didnt memorize the company name because I didnt think I would need to. There was no email from the company confirming the order. When I received the package, it wasnt at all what I ordered. I went to check the packaging for information on returning items and there is no contact information or even a name of the company. The only thing it had was the P.O. box it was shipped from. I went digging for a name or any kind of information on this place but nothing came up on google, except the fac TV that other people have dealt with the same issue from this p.o. box and some individuals stated that this address has had multiple names of companies shipping online purchases. The ad is no where to be found. I want to report that this P.O. box is a scam Dollars Lost: $30 Victim Location: NY, USA - 14094 Date Reported: September 28, 2020 Business Name Used: Multiple names"
++  - link "Online Purchase" [ref=e131]
++  - navigation "pagination navigation" [ref=e132]:
++    - button "Go to previous page" [ref=e133] [disabled]
++    - button "page 1" [ref=e134]: "1"
++    - button "Go to next page" [ref=e135] [disabled]
++  - text: "Didn't find the scam you were looking for?"
++  - link "Report a Scam" [ref=e136]
++- contentinfo:
++  - link "BBB" [ref=e72]
++  - heading "For Consumers" [level=2]
++  - link "Get a Quote" [ref=e73]
++  - link "Start a Review" [ref=e74]
++  - link "File a Complaint" [ref=e75]
++  - heading "For Businesses" [level=2]
++  - link "Get Your Business Listed" [ref=e76]
++  - link "BBB Accreditation" [ref=e77]
++  - link "Apply for BBB Accreditation" [ref=e78]
++  - heading "Affiliated Programs" [level=2]
++  - link "BBB Institute for Marketplace Trust" [ref=e79]
++  - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
++  - link "BBB National Programs" [ref=e81]
++  - link "our Twitter (opens in a new tab)" [ref=e82]
++  - link "our LinkedIn (opens in a new tab)" [ref=e83]
++  - link "our Facebook (opens in a new tab)" [ref=e84]
++  - link "our Instagram (opens in a new tab)" [ref=e85]
++  - navigation "footer navigation" [ref=e86]:
++    - link "About BBB®" [ref=e87]
++    - text: "|"
++    - link "Terms of Use" [ref=e88]
++    - text: "|"
++    - link "Privacy Policy" [ref=e89]
++    - text: "|"
++    - link "Contact Us" [ref=e90]
++  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
++- status: "1Password menu is available. Press down arrow to select."
++- iframe:
++  - text: "protected by  reCAPTCHA"
++- iframe:
++  - main:
++    - button "Open LiveChat chat widget" [ref=f7e1]
+</result>
+
+[11] tool_call: repl("Opening second matching report")
+<request>
+await page.locator('e130').click();
+const s7 = await snapshot(page);
+console.log(s7.diff);
+</request>
+<result tokens_used="51" elapsed_time="1115ms">
+- title: "Scams Details" [url=https://www.bbb.org/scamtracker/lookupscam]
+- banner:
+  - link "BBB" [ref=e1]:
+    - image "BBB"
+    - text: "Homepage"
+  - navigation "Main navigation" [ref=e2]:
+    - list:
+      - listitem "Consumers" [ref=e91]:
+        - button "Consumers" [ref=e3]
+      - listitem "Businesses" [ref=e92]:
+        - button "Businesses" [ref=e4]
+      - listitem "Scam Tracker" [ref=e93]:
+        - button "Scam Tracker" [ref=e5]
+      - listitem "About" [ref=e94]:
+        - button "About" [ref=e6]
+  - button "Select language" [ref=e7]: "Language"
+  - button "My BBB" [ref=e8]
+- main:
+  - heading "BBB Scam Tracker" [level=2]
+  - generic "Back to search" [ref=e137]
+  - image "Scam information"
+  - text: "This content is based on victim and potential victim accounts. Government agencies and legitimate business names and phone numbers are often used by scam artists to take advantage of people."
+  - heading "Description" [level=6]
+  - text: "They took money out my account,Without my knowledge.Also when I asks for a refund on 08/19/2021,they said it will take up to 48hrs for my refund, it’s now the 25th of August and still ain’t receive my refund., or they didn’t give me a update when I wrote them to get Update on my refund status. No response"
+  - heading "Dollars Lost" [level=6]
+  - text: "$424.15"
+  - heading "Targeted Person's Location" [level=6]
+  - text: "LA, USA - 70043"
+  - heading "Scammer Information" [level=6]
+  - image "Scammer location logo"
+  - text: "Young America, MN - 55555"
+  - image "Mail logo"
+  - text: "nikeshoebot@nikeshoebot.com"
+  - image "Mobile logo"
+  - text: "555555555"
+  - image "Web logo"
+  - text: "https://www.nikeshoebot.com"
+  - heading "Scam Type" [level=6]
+  - text: "Online Purchase"
+  - paragraph "Learn More" [ref=e138]
+  - heading "Business name" [level=6]
+  - text: "NsbShoeBot"
+  - heading "Date Reported" [level=6]
+  - text: "August 25, 2021"
+  - heading "Scam ID" [level=6]
+  - text: "536325"
+  - region "Tell us what happened" [ref=e139]:
+    - heading "Tell us what happened" [level=2]
+    - text: "Your input keeps Scam Tracker accurate and useful for the next person who searches this scam."
+    - button "I avoided this scam ▾" [ref=e140]
+    - button "I experienced this scam" [ref=e141]
+    - paragraph:
+      - text: "Are you the business named in this report?"
+      - link "Dispute this report" [ref=e142]
+      - text: "."
+    - status
+- contentinfo:
+  - link "BBB" [ref=e72]:
+    - image "BBB"
+  - heading "For Consumers" [level=2]
+  - list:
+    - listitem "Get a Quote" [ref=e104]:
+      - link "Get a Quote" [ref=e73]
+    - listitem "Start a Review" [ref=e105]:
+      - link "Start a Review" [ref=e74]
+    - listitem "File a Complaint" [ref=e106]:
+      - link "File a Complaint" [ref=e75]
+  - heading "For Businesses" [level=2]
+  - list:
+    - listitem "Get Your Business Listed" [ref=e107]:
+      - link "Get Your Business Listed" [ref=e76]
+    - listitem "BBB Accreditation" [ref=e108]:
+      - link "BBB Accreditation" [ref=e77]
+    - listitem "Apply for BBB Accreditation" [ref=e109]:
+      - link "Apply for BBB Accreditation" [ref=e78]
+  - heading "Affiliated Programs" [level=2]
+  - list:
+    - listitem "BBB Institute for Marketplace Trust" [ref=e110]:
+      - link "BBB Institute for Marketplace Trust" [ref=e79]
+    - listitem "BBB Wise Giving Alliance (Give.org)" [ref=e111]:
+      - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
+    - listitem "BBB National Programs" [ref=e112]:
+      - link "BBB National Programs" [ref=e81]
+  - list:
+    - listitem:
+      - link "our Twitter (opens in a new tab)" [ref=e82]
+    - listitem:
+      - link "our LinkedIn (opens in a new tab)" [ref=e83]
+    - listitem:
+      - link "our Facebook (opens in a new tab)" [ref=e84]
+    - listitem:
+      - link "our Instagram (opens in a new tab)" [ref=e85]
+  - navigation "footer navigation" [ref=e86]:
+    - list:
+      - listitem "About BBB®|" [ref=e113]:
+        - link "About BBB®" [ref=e87]
+        - text: "|"
+      - listitem "Terms of Use|" [ref=e114]:
+        - link "Terms of Use" [ref=e88]
+        - text: "|"
+      - listitem "Privacy Policy|" [ref=e115]:
+        - link "Privacy Policy" [ref=e89]
+        - text: "|"
+      - listitem "Contact Us" [ref=e116]:
+        - link "Contact Us" [ref=e90]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe "LiveChat chat widget" [ref=e117]:
+  - main:
+    - button "Open LiveChat chat widget" [ref=f7e1]
+- status: "1Password menu is available. Press down arrow to select."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[12] tool_call: repl("Opening third matching report")
+<request>
+await page.locator('e137').click();
+const s8 = await snapshot(page, {interactive:true});
+console.log(s8.diff);
+</request>
+<result tokens_used="66" elapsed_time="1297ms">
+@@ -1 +1,64 @@
+-
++- banner:
++  - link "BBB" [ref=e1]: "BBB  Homepage"
++  - navigation "Main navigation" [ref=e2]:
++    - button "Consumers" [ref=e3]
++    - button "Businesses" [ref=e4]
++    - button "Scam Tracker" [ref=e5]
++    - button "About" [ref=e6]
++  - button "Select language" [ref=e7]: "Language"
++  - button "My BBB" [ref=e8]
++- main:
++  - heading "BBB Scam Tracker" [level=1]
++  - text: "Report a scam. Search scams. Protect yourself and others."
++  - heading "Look Up a Scam" [level=2]
++  - textbox "Phone number, website, email, business name, scam ID..." [ref=e143] [placeholder="Phone number, website, email, business name, scam ID..."]
++  - button "Filter" [ref=e144]
++  - button "Search" [ref=e145]
++  - generic [ref=e146]:
++    - text: "555555555"
++    - button "delete" [ref=e147]
++  - text: "Search Results (3)Tax Collection Left a voice mail:\nHi this is Nancy from U.S tax Consultants today is Tuesday September 16th I'm following up on the notice we sent out regarding your back taxes and missed filings for the account linked to  555555555  this may be our only attempt to reach you and it's critical that you speak with someone today please call us right away at 888-498-0251 we can bring your extensions current request penalty waivers and review new relief programs that could significantly reduce or even eliminate what you owe with important deadlines approaching do not make another payment until we've spoken again please call 888-498-0251 today Dollars Lost: $0.0 Victim Location: FL, USA - 32707 Date Reported: September 17, 2025 Business Name Used: US tax consultant"
++  - link "Tax Collection" [ref=e148]
++  - text: "Online Purchase They took money out my account,Without my knowledge.Also when I asks for a refund on 08/19/2021,they said it will take up to 48hrs for my refund, it’s now the 25th of August and still ain’t receive my refund., or they didn’t give me a update when I wrote them to get Update on my refund status. No response Dollars Lost: $424.15 Victim Location: LA, USA - 70043 Date Reported: August 25, 2021 Business Name Used: NsbShoeBot"
++  - link "Online Purchase" [ref=e149]
++  - text: "Online Purchase Facebook had an ad for tribal clothing. I paid about $30 for a hood. I didnt memorize the company name because I didnt think I would need to. There was no email from the company confirming the order. When I received the package, it wasnt at all what I ordered. I went to check the packaging for information on returning items and there is no contact information or even a name of the company. The only thing it had was the P.O. box it was shipped from. I went digging for a name or any kind of information on this place but nothing came up on google, except the fac TV that other people have dealt with the same issue from this p.o. box and some individuals stated that this address has had multiple names of companies shipping online purchases. The ad is no where to be found. I want to report that this P.O. box is a scam Dollars Lost: $30 Victim Location: NY, USA - 14094 Date Reported: September 28, 2020 Business Name Used: Multiple names"
++  - link "Online Purchase" [ref=e150]
++  - navigation "pagination navigation" [ref=e151]:
++    - button "Go to previous page" [ref=e152] [disabled]
++    - button "page 1" [ref=e153]: "1"
++    - button "Go to next page" [ref=e154] [disabled]
++  - text: "Didn't find the scam you were looking for?"
++  - link "Report a Scam" [ref=e155]
++- contentinfo:
++  - link "BBB" [ref=e72]
++  - heading "For Consumers" [level=2]
++  - link "Get a Quote" [ref=e73]
++  - link "Start a Review" [ref=e74]
++  - link "File a Complaint" [ref=e75]
++  - heading "For Businesses" [level=2]
++  - link "Get Your Business Listed" [ref=e76]
++  - link "BBB Accreditation" [ref=e77]
++  - link "Apply for BBB Accreditation" [ref=e78]
++  - heading "Affiliated Programs" [level=2]
++  - link "BBB Institute for Marketplace Trust" [ref=e79]
++  - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
++  - link "BBB National Programs" [ref=e81]
++  - link "our Twitter (opens in a new tab)" [ref=e82]
++  - link "our LinkedIn (opens in a new tab)" [ref=e83]
++  - link "our Facebook (opens in a new tab)" [ref=e84]
++  - link "our Instagram (opens in a new tab)" [ref=e85]
++  - navigation "footer navigation" [ref=e86]:
++    - link "About BBB®" [ref=e87]
++    - text: "|"
++    - link "Terms of Use" [ref=e88]
++    - text: "|"
++    - link "Privacy Policy" [ref=e89]
++    - text: "|"
++    - link "Contact Us" [ref=e90]
++  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
++- status: "1Password menu is available. Press down arrow to select."
++- iframe:
++  - text: "protected by  reCAPTCHA"
++- iframe:
++  - main:
++    - button "Open LiveChat chat widget" [ref=f7e1]
+</result>
+
+[13] tool_call: repl("Opening final matching report")
+<request>
+await page.locator('e150').click();
+const s9 = await snapshot(page);
+console.log(s9.diff);
+</request>
+<result tokens_used="51" elapsed_time="1178ms">
+- title: "Scams Details" [url=https://www.bbb.org/scamtracker/lookupscam]
+- banner:
+  - link "BBB" [ref=e1]:
+    - image "BBB"
+    - text: "Homepage"
+  - navigation "Main navigation" [ref=e2]:
+    - list:
+      - listitem "Consumers" [ref=e91]:
+        - button "Consumers" [ref=e3]
+      - listitem "Businesses" [ref=e92]:
+        - button "Businesses" [ref=e4]
+      - listitem "Scam Tracker" [ref=e93]:
+        - button "Scam Tracker" [ref=e5]
+      - listitem "About" [ref=e94]:
+        - button "About" [ref=e6]
+  - button "Select language" [ref=e7]: "Language"
+  - button "My BBB" [ref=e8]
+- main:
+  - heading "BBB Scam Tracker" [level=2]
+  - generic "Back to search" [ref=e156]
+  - image "Scam information"
+  - text: "This content is based on victim and potential victim accounts. Government agencies and legitimate business names and phone numbers are often used by scam artists to take advantage of people."
+  - heading "Description" [level=6]
+  - text: "Facebook had an ad for tribal clothing. I paid about $30 for a hood. I didnt memorize the company name because I didnt think I would need to. There was no email from the company confirming the order. When I received the package, it wasnt at all what I ordered. I went to check the packaging for information on returning items and there is no contact information or even a name of the company. The only thing it had was the P.O. box it was shipped from. I went digging for a name or any kind of information on this place but nothing came up on google, except the fac TV that other people have dealt with the same issue from this p.o. box and some individuals stated that this address has had multiple names of companies shipping online purchases. The ad is no where to be found. I want to report that this P.O. box is a scam"
+  - heading "Dollars Lost" [level=6]
+  - text: "$30"
+  - heading "Targeted Person's Location" [level=6]
+  - text: "NY, USA - 14094"
+  - heading "Scammer Information" [level=6]
+  - image "Scammer location logo"
+  - text: "Rosemead, CA - 91770"
+  - image "Mail logo"
+  - text: "Unsure@unsure.com"
+  - image "Mobile logo"
+  - text: "None,555555555"
+  - image "Web logo"
+  - text: "Unsure"
+  - heading "Scam Type" [level=6]
+  - text: "Online Purchase"
+  - paragraph "Learn More" [ref=e157]
+  - heading "Business name" [level=6]
+  - text: "Multiple names"
+  - heading "Date Reported" [level=6]
+  - text: "September 28, 2020"
+  - heading "Scam ID" [level=6]
+  - text: "440865"
+  - region "Tell us what happened" [ref=e158]:
+    - heading "Tell us what happened" [level=2]
+    - text: "Your input keeps Scam Tracker accurate and useful for the next person who searches this scam."
+    - button "I avoided this scam ▾" [ref=e159]
+    - button "I experienced this scam" [ref=e160]
+    - paragraph:
+      - text: "Are you the business named in this report?"
+      - link "Dispute this report" [ref=e161]
+      - text: "."
+    - status
+- contentinfo:
+  - link "BBB" [ref=e72]:
+    - image "BBB"
+  - heading "For Consumers" [level=2]
+  - list:
+    - listitem "Get a Quote" [ref=e104]:
+      - link "Get a Quote" [ref=e73]
+    - listitem "Start a Review" [ref=e105]:
+      - link "Start a Review" [ref=e74]
+    - listitem "File a Complaint" [ref=e106]:
+      - link "File a Complaint" [ref=e75]
+  - heading "For Businesses" [level=2]
+  - list:
+    - listitem "Get Your Business Listed" [ref=e107]:
+      - link "Get Your Business Listed" [ref=e76]
+    - listitem "BBB Accreditation" [ref=e108]:
+      - link "BBB Accreditation" [ref=e77]
+    - listitem "Apply for BBB Accreditation" [ref=e109]:
+      - link "Apply for BBB Accreditation" [ref=e78]
+  - heading "Affiliated Programs" [level=2]
+  - list:
+    - listitem "BBB Institute for Marketplace Trust" [ref=e110]:
+      - link "BBB Institute for Marketplace Trust" [ref=e79]
+    - listitem "BBB Wise Giving Alliance (Give.org)" [ref=e111]:
+      - link "BBB Wise Giving Alliance (Give.org)" [ref=e80]
+    - listitem "BBB National Programs" [ref=e112]:
+      - link "BBB National Programs" [ref=e81]
+  - list:
+    - listitem:
+      - link "our Twitter (opens in a new tab)" [ref=e82]
+    - listitem:
+      - link "our LinkedIn (opens in a new tab)" [ref=e83]
+    - listitem:
+      - link "our Facebook (opens in a new tab)" [ref=e84]
+    - listitem:
+      - link "our Instagram (opens in a new tab)" [ref=e85]
+  - navigation "footer navigation" [ref=e86]:
+    - list:
+      - listitem "About BBB®|" [ref=e113]:
+        - link "About BBB®" [ref=e87]
+        - text: "|"
+      - listitem "Terms of Use|" [ref=e114]:
+        - link "Terms of Use" [ref=e88]
+        - text: "|"
+      - listitem "Privacy Policy|" [ref=e115]:
+        - link "Privacy Policy" [ref=e89]
+        - text: "|"
+      - listitem "Contact Us" [ref=e116]:
+        - link "Contact Us" [ref=e90]
+  - text: "© 2026 BBB, Inc. All rights reserved. All trademarks are property of BBB, Inc."
+- iframe "LiveChat chat widget" [ref=e117]:
+  - main:
+    - button "Open LiveChat chat widget" [ref=f7e1]
+- status: "1Password menu is available. Press down arrow to select."
+- iframe:
+  - text: "protected by  reCAPTCHA"
+</result>
+
+[14] thinking: **Finalizing the scam report response**
+
+I need to keep my response concise since no web search citations are necessary. I should mention that while my answer isn’t definitive proof, the Better Business Bureau (BBB) notes that scammers often use government names and legitimate entities. I'll state that the phone number isn't a standard US 10-digit format. My search turned up three matching scam reports, and I should advise treating this as suspicious based on the BBB reports — no need for citations since I didn’t use web searches.
+
+[15] assistant: Yes. BBB Scam Tracker returned 3 matching scam reports for `555555555`.
+
+Key matches:
+- Online Purchase scam, business name “NsbShoeBot”, reported Aug. 25, 2021, with `555555555` listed as the scammer mobile number.
+- Online Purchase scam, business name “Multiple names”, reported Sept. 28, 2020, with `555555555` listed under scammer phone info.
+- Tax Collection scam, reported Sept. 17, 2025, where `555555555` appeared in the scam voicemail text.
+
+I’d treat this number as suspicious and avoid engaging with it.
+
+[16] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="tax" path="/Users/vista/.aside/u/0/agents/main/skills/tax/SKILL.md">
+# Federal Income Tax Reference (Tax Year 2025)
+
+This skill is a Tax Year 2025 reference library for federal income tax guidance, official instructions, and fillable PDF forms.
+
+All paths below are relative to the `dir` value in this skill's metadata header. Use `read_file` with absolute paths (e.g. `{dir}/references/quick-reference.md`) and `rg` for searching.
+
+## Contents
+
+- `forms/`: blank IRS PDF forms and schedules.
+- `irs-instructions/`: Tax Year 2025 IRS instruction excerpts organized by form.
+- `references/`: concise lookup guides and topical notes that point back to the IRS materials.
+
+## Reading and Filling PDF Forms
+
+For **reading** fillable PDFs (W-2, 1040, schedules, etc.), use `extract_form_field_info.py` instead of `read_file`. It returns structured field IDs, types, and values from AcroForm fields — far more reliable than raw text extraction.
+
+```sh
+python3 {dir}/../pdf/scripts/extract_form_field_info.py <path-to-pdf>
+```
+
+For **filling** PDF forms, use the fill script which writes values into AcroForm fields:
+
+```sh
+python3 {dir}/../pdf/scripts/fill_fillable_fields.py <input.pdf> <output.pdf> --fields '{"field_name": "value", ...}'
+```
+
+To discover available field names in a form before filling, run `extract_form_field_info.py` first.
+
+## Navigation
+
+- Start with `references/lookup-guide/overview.md` to find the right instruction set.
+- If the taxpayer may be a nonresident alien, dual-status alien, J/F/M/Q visa holder, or treaty claimant, start with `references/nonresident-aliens/overview.md` before using the resident-style 1040 guides.
+- Use `references/quick-reference.md` for a short list of common Tax Year 2025 thresholds.
+- Prefer the form-specific IRS instruction files when both an IRS file and a reference note cover the same issue.
+
+## Search Efficiently
+
+```sh
+rg -n "<term>" {dir}/irs-instructions {dir}/references
+rg -n "Line 16|qualified dividends" {dir}/irs-instructions/f1040 {dir}/references
+```
+
+## Proactively Solicit Documents
+
+If fulfilling the user's request requires certain tax forms or source documents, first ask them to upload the relevant materials they already have. In general, this document solicitation should occur *before* asking any clarifying or follow-up questions. No tool call is necessary; a plaintext request suffices.
+
+## Always Use IRS Forms
+
+When generating draft return or filing documents, always proceed by using the forms in `forms/` (or the official IRS site, if the relevant form does not exist in `forms/`). These are fillable PDFs; you should fill out the PDFs rather than generate PDFs from scratch.
+
+## Outside Resources
+
+Although this skill contains a very comprehensive set of resources, you are permitted to use the means available to you to consult (fetch, search, research, etc) any resources that are **not** contained herein.
+
+## Privacy Protocol
+
+To protect user privacy, do not include full SSNs, EINs, or other tax identifiers in text outputs. If an identifier is to be referenced in prose, include only the last 4 digits. Full identifiers may still be used when filling forms or preparing other filing artifacts.
+
+## Offer Assistance Liberally, with Appropriate Disclaimers
+
+If this skill is invoked, the user is requesting your assistance on a tax-related request and you should offer it liberally (up to and including generating return documents). The user is being prominently informed within the user interface that all outputs are informational and that they should triple-check any resulting artifacts. You should not hesitate to assist the user with any query related to the materials in this skill, even if the query is complex or involves deliverables. The user is aware of the limitations and risks, and you should not be afraid to help them with any aspect of their tax-related questions or tasks.
+
+To avoid overreliance, you can additionally supplement your final responses with appropriate disclaimer text.
+
+For instance, for a purely informational query, you might say:
+
+> Please note that this is for reference purposes only and should not be considered tax advice. For personalized guidance, please consult a qualified tax professional.
+
+For a more complex query involving deliverables (e.g., "do my tax return and give me the filled-out IRS PDFs"), you should faithfully service the user's request, then end with a disclaimer resembling the following (adapted as needed):
+
+> Please note that these draft documents are provided for reference purposes only and should not be considered tax advice. Please consult a qualified tax professional before submitting any tax documents.
+</skill>
+</system_message>

@@ -1,0 +1,2595 @@
+[1] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>
+
+[2] user: Go to https://www.google.com/shopping?udm=28, Search for smart TVs with a screen size of 55 to 65 inches and filter the results to show only those that have an LED display.
+
+[3] thinking: **Browsing for Smart TVs**
+
+I need to operate the browser for the user and possibly use Google accounts, but maybe that's not necessary since I can go directly to the URL. I want to search for smart TVs, filtering for sizes between 55 and 65 inches and LED displays. It seems like I should interact with the site and start by opening a new tab. I'm thinking I may not need a final product, just perform the filters, so let's open it and see!
+
+[4] tool_call: repl("Opening Google Shopping")
+<request>
+const p1 = await openTab('https://www.google.com/shopping?udm=28');
+const s1 = await snapshot(page, {interactive: true});
+console.log(s1.tree);
+</request>
+<result tokens_used="162" elapsed_time="7974ms">
+✔︎ Opened a new tab and set it active: tabs[0], page → Google Shopping - Shop Online, Compare Prices & Where to Buy (https://www.google.com/shopping?udm=28)
+# note: interactive (clickable / focusable) elements only.
+- title: "Google Shopping - Shop Online, Compare Prices & Where to Buy" [url=https://www.google.com/shopping?udm=28]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [focused] [placeholder="Shop for anything"]
+    - button "Search by voice" [ref=e5]
+    - button "Search by image" [ref=e6]
+    - button "Search" [ref=e7]
+  - button "Google apps" [ref=e8]
+  - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e9]
+  - link [ref=e10]
+  - link [ref=e11]:
+    - link "Search" [ref=e12]
+  - link [ref=e13]:
+    - link "Nearby" [ref=e14]
+  - link [ref=e15]:
+    - link "Deals" [ref=e16]
+  - link [ref=e17]:
+    - link "For you" [ref=e18]
+  - heading "Accessibility Links" [level=2]
+- main:
+  - heading "Continue shopping" [level=3]
+  - list:
+    - listitem:
+      - link "SALE" [ref=e19]
+      - link "Ray-Ban" [ref=e20]
+      - link "Up to 50% off sitewide" [ref=e21]
+    - listitem:
+      - link "DEALS" [ref=e22]
+      - link "Rimowa Suitcase" [ref=e23]
+      - link "Up to 78% off" [ref=e24]
+    - listitem:
+      - link "SALE" [ref=e25]
+      - link "Giro Sport Design" [ref=e26]
+      - link "Up to 70% off sitewide" [ref=e27]
+    - listitem:
+      - link "DEALS" [ref=e28]
+      - link "Apple Watch Hermes" [ref=e29]
+      - link "Up to 72% off" [ref=e30]
+    - listitem:
+      - link "DEALS" [ref=e31]
+      - link "Anon Helmet" [ref=e32]
+      - link "Up to 60% off" [ref=e33]
+    - listitem:
+      - link "DEALS" [ref=e34]
+      - link "Alpinestars Bicycle Helmets" [ref=e35]
+      - link "Up to 57% off" [ref=e36]
+    - listitem:
+      - link "DEALS" [ref=e37]
+      - link "8tb Hdds For Mac" [ref=e38]
+      - link "Up to 56% off" [ref=e39]
+  - text: "Who do you shop for?"
+  - list:
+    - listitem:
+      - generic [ref=e40]:
+        - button "Men" [ref=e41]
+        - text: "Men"
+    - listitem:
+      - generic [ref=e42]:
+        - button "Women" [ref=e43]
+        - text: "Women"
+    - listitem:
+      - generic [ref=e44]:
+        - button "Kids" [ref=e45]
+        - text: "Kids"
+    - listitem:
+      - generic [ref=e46]:
+        - button "Baby" [ref=e47]
+        - text: "Baby"
+    - listitem:
+      - generic [ref=e48]:
+        - button "Dog" [ref=e49]
+        - text: "Dog"
+    - listitem:
+      - generic [ref=e50]:
+        - button "Cat" [ref=e51]
+        - text: "Cat"
+  - button "Next" [ref=e52] [disabled]
+  - article:
+    - heading "Helmets for Thrilling Rides" [level=2]
+    - button "Like" [ref=e53]
+    - button "Dislike" [ref=e54]
+    - button "Explore more BMX helmets with MIPS" [ref=e55]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e56]:
+      - button [ref=e58]:
+        - img "20% OFF.": "20% OFF"
+        - img "Giro Fixture MIPS II Helmet"
+        - text: "Giro Fixture MIPS II Helmet Mike's Bikes·"
+        - group "Current Price: $67.95. Was $85."
+    - button [ref=e59]:
+      - button [ref=e61]:
+        - img "52% OFF.": "52% OFF"
+        - img "Troy Lee Designs Flowline MIPS Bicycle Helmet"
+        - text: "Troy Lee Designs Flowline MIPS Bicycle Helmet Lordgun.com·"
+        - group "Current Price: $60.41. Was $127."
+    - button [ref=e62]:
+      - button [ref=e64]:
+        - img "41% OFF.": "41% OFF"
+        - img "Bell Falcon XR MIPS Helmet"
+        - text: "Bell Falcon XR MIPS Helmet REI·"
+        - group "Current Price: $70.73. Was $120."
+    - button [ref=e65]:
+      - button [ref=e67]:
+        - img "30% OFF.": "30% OFF"
+        - img "POC Crane MIPS Helmet"
+        - text: "POC Crane MIPS Helmet POC·"
+        - group "Current Price: $98.00. Was $140."
+    - button [ref=e68]:
+      - button [ref=e70]:
+        - img "50% OFF.": "50% OFF"
+        - img "Bern Major MIPS Helmet"
+        - text: "Bern Major MIPS Helmet Bern Helmets·"
+        - group "Current Price: $65.00. Was $130."
+    - button [ref=e71]:
+      - button [ref=e73]:
+        - img "Fox Racing Flight Pro Helmet"
+        - text: "Fox Racing Flight Pro Helmet Newbury Park Bike Shop·"
+        - group "Current Price: $99.95."
+    - button [ref=e74]:
+      - button [ref=e76]:
+        - img "Pro Tec Low Pro Certified Helmet"
+        - text: "Pro Tec Low Pro Certified Helmet kunstform BMX Shop·"
+        - group "Current Price: $78.67. Foreign Price: €67"
+    - button [ref=e77]:
+      - button [ref=e79]:
+        - img "Fly Racing Kinetic Verdict Helmet"
+        - text: "Fly Racing Kinetic Verdict Helmet J&R Bicycles BMX Super Store·"
+        - group "Current Price: $159.95."
+    - generic [ref=e80] [scrollable]:
+      - list:
+        - listitem:
+          - button "Top 5 Best Mountain Bike Helmet | Top Rated Mountain Bike Helmet by Best5Picks on YouTube. Play on G" [ref=e81]
+          - button [ref=e82]:
+            - heading [level=3]: "Top 5 Best Mountain Bike Helmet | Top Rated Mountain Bike Helmet"
+            - text: "Best5Picks · YouTube  ·  3w"
+        - listitem:
+          - button "Is This Finally the BEST BUDGET HARDTAIL mountain bike ... by Adrenaline Is Life on YouTube. Play on" [ref=e83]
+          - button [ref=e84]:
+            - heading [level=3]: "Is This Finally the BEST BUDGET HARDTAIL mountain bike ..."
+            - text: "Adrenaline Is Life · YouTube  ·  2mo"
+        - listitem:
+          - button "I got the Aventon Ramblas for Review, Then They Released a New ... by Adrenaline Is Life on YouTube." [ref=e85]
+          - button [ref=e86]:
+            - heading [level=3]: "I got the Aventon Ramblas for Review, Then They Released a New ..."
+            - text: "Adrenaline Is Life · YouTube  ·  2w"
+  - article:
+    - heading "Dyson V11's Powerful Clean" [level=2]
+    - button "Like" [ref=e87]
+    - button "Dislike" [ref=e88]
+    - button "Explore more Dyson V11 vacuums" [ref=e89]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e90]:
+      - button [ref=e92]:
+        - img "31% OFF.": "31% OFF"
+        - img "Dyson V11 Extra Cordless Vacuum Cleaner"
+        - text: "Dyson V11 Extra Cordless Vacuum Cleaner Dyson Official·"
+        - group "Current Price: $449.99. Was $660."
+    - button [ref=e93]:
+      - button [ref=e95]:
+        - img "28% OFF.": "28% OFF"
+        - button "An interactive autorotating 180 image showing the item from different angles" [ref=e96]:
+          - img
+        - text: "Dyson V11 Cordless Vacuum Dyson Official·"
+        - group "Current Price: $449.99. Was $630."
+    - button [ref=e97]:
+      - button [ref=e99]:
+        - img "28% OFF.": "28% OFF"
+        - button "An interactive autorotating 180 image showing the item from different angles" [ref=e100]:
+          - img
+        - text: "Dyson V11 Plus Cordless Stick Vacuum Best Buy·"
+        - group "Current Price: $449.99. Was $630."
+    - button [ref=e101]:
+      - button [ref=e103]:
+        - img "35% OFF.": "35% OFF"
+        - img "Citi Card Off | Dyson V11 Absolute (Latest Technology) Cordless Stick Vacuum Cleaner"
+        - text: "Citi Card Off | Dyson V11 Absolute (Latest Technology) Cordless Stick Vacuum Cleaner dyson.com·"
+        - group "Current Price: $449.99. Was $700."
+    - button [ref=e104]
+  - article:
+    - heading "Hasselblad's Iconic Image Makers" [level=2]
+    - button "Like" [ref=e105]
+    - button "Dislike" [ref=e106]
+    - button "Explore more Hasselblad cameras" [ref=e107]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e108]:
+      - button [ref=e110]:
+        - img "Low price.": "LOW PRICE"
+        - img "Hasselblad X2D 100C Medium Format Mirrorless Camera"
+        - text: "Hasselblad X2D 100C Medium Format Mirrorless Camera The Photo Center·"
+        - group "Current Price: $4,495.00. Usually $7,725."
+    - button [ref=e111]:
+      - button [ref=e113]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e114]:
+          - img
+        - text: "Hasselblad 907X & CFV 100C Medium Format Mirrorless Camera B&H Photo-Video-Audio·"
+        - group "Current Price: $7,399.00."
+    - button [ref=e115]:
+      - button [ref=e117]:
+        - img "Hasselblad X2D II Medium Format Mirrorless Camera"
+        - text: "Hasselblad X2D II Medium Format Mirrorless Camera Adorama·"
+        - group "Current Price: $7,399.00."
+    - button [ref=e118]:
+      - button [ref=e120]:
+        - img "7% OFF.": "7% OFF"
+        - img "Hasselblad 907X Anniversary Edition Medium Format Camera Kit"
+        - text: "Hasselblad 907X Anniversary Edition Medium Format Camera Kit pictureline·"
+        - group "Current Price: $13,994.00. Was $15,100."
+    - button [ref=e121]
+  - article:
+    - heading "Ergonomic Comfort with Aeron" [level=2]
+    - button "Like" [ref=e122]
+    - button "Dislike" [ref=e123]
+    - button "Explore more Aeron chairs" [ref=e124]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e125]:
+      - button [ref=e127]:
+        - img "25% OFF.": "25% OFF"
+        - img "Herman Miller Aeron Chair"
+        - text: "Herman Miller Aeron Chair Herman Miller·"
+        - group "Current Price: $1,485.00. Was $1,980."
+    - button [ref=e128]:
+      - button [ref=e130]:
+        - img "25% OFF.": "25% OFF"
+        - img "Herman Miller Aeron Chair, Size B - Medium"
+        - text: "Herman Miller Aeron Chair, Size B - Medium Herman Miller·"
+        - group "Current Price: $1,920.00. Was $2,560."
+    - button [ref=e131]:
+      - button [ref=e133]:
+        - img "11% OFF.": "11% OFF"
+        - img "Aeron Chair - Fully Adjustable Ergonomic Office Chair"
+        - text: "Aeron Chair - Fully Adjustable Ergonomic Office Chair Wayfair·"
+        - group "Current Price: $205.39. Was $232."
+    - button [ref=e134]:
+      - button [ref=e136]:
+        - img "25% OFF.": "25% OFF"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e137]:
+          - img
+        - text: "Herman Miller Aeron Gaming Chair Herman Miller·"
+        - group "Current Price: $1,537.50. Was $2,050."
+    - button [ref=e138]
+  - article:
+    - heading "Purifying air with Dyson" [level=2]
+    - button "Like" [ref=e139]
+    - button "Dislike" [ref=e140]
+    - button "Explore more Dyson air purifiers" [ref=e141]: "Explore"
+    - heading "Top deals" [level=2]
+    - button [ref=e142]:
+      - button [ref=e144]:
+        - img "18% OFF.": "18% OFF"
+        - img "Dyson Purifier Cool PC1"
+        - text: "Dyson Purifier Cool PC1 Dyson Official·"
+        - group "Current Price: $449.99. Was $550."
+    - button [ref=e145]:
+      - button [ref=e147]:
+        - img "15% OFF.": "15% OFF"
+        - img "Dyson Cool PC2 De-NOx Air Purifier"
+        - text: "Dyson Cool PC2 De-NOx Air Purifier Best Buy·"
+        - group "Current Price: $719.99. Was $850."
+    - button [ref=e148]:
+      - button [ref=e150]:
+        - img "26% OFF.": "26% OFF"
+        - img "Dyson Purifier Hot+Cool HP2 De-NOx"
+        - text: "Dyson Purifier Hot+Cool HP2 De-NOx Macy's·"
+        - group "Current Price: $699.99. Was $950."
+    - button [ref=e151]:
+      - button [ref=e153]:
+        - img "9% OFF.": "9% OFF"
+        - img "Dyson Purifier Hot+Cool HP1"
+        - text: "Dyson Purifier Hot+Cool HP1 Best Buy·"
+        - group "Current Price: $599.99. Was $660."
+    - button [ref=e154]:
+      - button [ref=e156]:
+        - img "44% OFF.": "44% OFF"
+        - img "Dyson Pure Cool Purifying Tower Fan TP04"
+        - text: "Dyson Pure Cool Purifying Tower Fan TP04 Walmart - Dyson, Inc.·"
+        - group "Current Price: $209.99. Was $380."
+    - button [ref=e157]:
+      - button [ref=e159]:
+        - img "Low price.": "LOW PRICE"
+        - img "Dyson Humidify+ Cool PH2 De-NOx Purifier"
+        - text: "Dyson Humidify+ Cool PH2 De-NOx Purifier Rebel·"
+        - group "Current Price: $929.99. Usually $1,050."
+    - button [ref=e160]:
+      - button [ref=e162]:
+        - img "10% OFF.": "10% OFF"
+        - button "An interactive autorotating 180 image showing the item from different angles" [ref=e163]:
+          - img
+        - text: "Dyson Purifier Humidify+Cool PH03 Walmart - SoluShine·"
+        - group "Current Price: $850.00. Was $950."
+    - button [ref=e164]:
+      - button [ref=e166]:
+        - img "20% OFF.": "20% OFF"
+        - img "Dyson Purifier Fan HP07"
+        - text: "Dyson Purifier Fan HP07 Rebel·"
+        - group "Current Price: $599.99. Was $750."
+  - article:
+    - heading "Bianchi Bikes: Ride the Legend" [level=2]
+    - button "Like" [ref=e167]
+    - button "Dislike" [ref=e168]
+    - button "Explore more Bianchi bikes" [ref=e169]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e170]:
+      - button [ref=e172]:
+        - img "23% OFF.": "23% OFF"
+        - img "Bianchi Nero SS"
+        - text: "Bianchi Nero SS Wheelworks·"
+        - group "Current Price: $649.99. Was $850."
+    - button [ref=e173]:
+      - button [ref=e175]:
+        - img "6% OFF.": "6% OFF"
+        - img "Bianchi Via Nirone Claris"
+        - text: "Bianchi Via Nirone Claris BikeExchange·"
+        - group "Current Price: $1,100.00. Was $1,175."
+    - button [ref=e176]:
+      - button [ref=e178]:
+        - img "Bianchi Bicycle Oltre Race 105 Di2 12v"
+        - text: "Bianchi Bicycle Oltre Race 105 Di2 12v Francesconi Bike·"
+        - group "Current Price: $2,440.00."
+    - button [ref=e179]:
+      - button [ref=e181]:
+        - img "23% OFF.": "23% OFF"
+        - img "Bianchi - Oltre Race 105 Sky Blue 44"
+        - text: "Bianchi - Oltre Race 105 Sky Blue 44 Cicli Mattio US·"
+        - group "Current Price: $2,114.22. Was $2,751."
+    - button [ref=e182]
+  - article:
+    - heading "Meals, organized" [level=2]
+    - button "Like" [ref=e183]
+    - button "Dislike" [ref=e184]
+    - button "Explore more Bento boxes" [ref=e185]: "Explore"
+    - heading "Top deals" [level=2]
+    - button [ref=e186]:
+      - button [ref=e188]:
+        - img "17% OFF.": "17% OFF"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e189]:
+          - img
+        - text: "Bentgo Kids Snap & Go Leak-Proof Lunch Box Walmart·"
+        - group "Current Price: $16.44. Was $20."
+    - button [ref=e190]:
+      - button [ref=e192]:
+        - img "32% OFF.": "32% OFF"
+        - img "The Big One 3-Compartment Bento Box, Blue"
+        - text: "The Big One 3-Compartment Bento Box, Blue Kohl's·"
+        - group "Current Price: $8.15. Was $12."
+    - button [ref=e193]:
+      - button [ref=e195]:
+        - img "27% OFF.": "27% OFF"
+        - img "Bento Box, Leak Proof Lunch Box, No Harmful Substance Microwave and Dishwasher Safe, Compartmentaliz"
+        - text: "Bento Box, Leak Proof Lunch Box, No Harmful Substance Microwave and Dishwasher Safe, Compartmentalized Lunch Container, Reusable with Utensils, Brown Walmart - QiSaFu·"
+        - group "Current Price: $7.99. Was $11."
+    - button [ref=e196]:
+      - button [ref=e198]:
+        - img "55% OFF.": "55% OFF"
+        - img "Confetti Glitter Bento Box"
+        - text: "Confetti Glitter Bento Box Pottery Barn Teen·"
+        - group "Current Price: $9.97. Was $23."
+    - button [ref=e199]:
+      - button [ref=e201]:
+        - img "25% OFF.": "25% OFF"
+        - img "PackIt Mod Large Bento Container"
+        - text: "PackIt Mod Large Bento Container Target·"
+        - group "Current Price: $22.49. Was $30."
+    - button [ref=e202]:
+      - button [ref=e204]:
+        - img "30% OFF.": "30% OFF"
+        - img "Aohea 3-Compartment Bento Box, Leakproof Food-Grade Lunch Container, 1140ml, Cute Animals Design, 20"
+        - text: "Aohea 3-Compartment Bento Box, Leakproof Food-Grade Lunch Container, 1140ml, Cute Animals Design, 20915060mm for Kids and Adults, Blue Walmart - AOHEA·"
+        - group "Current Price: $11.19. Was $16."
+    - button [ref=e205]:
+      - button [ref=e207]:
+        - img "Low price.": "LOW PRICE"
+        - img "Yumbox Go Leakproof Bento Lunch Box"
+        - text: "Yumbox Go Leakproof Bento Lunch Box Yumbox·"
+        - group "Current Price: $28.00. Usually $39."
+    - button [ref=e208]:
+      - button [ref=e210]:
+        - img "44% OFF.": "44% OFF"
+        - img "My Neighbor Totoro Traditional Japanese Lacquer Ware Bento Box"
+        - text: "My Neighbor Totoro Traditional Japanese Lacquer Ware Bento Box Crunchyroll·"
+        - group "Current Price: $25.15. Was $45."
+  - article:
+    - heading "Bye bye blue light" [level=2]
+    - button "Like" [ref=e211]
+    - button "Dislike" [ref=e212]
+    - button "Explore more Blue-light glasses" [ref=e213]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e214]:
+      - button [ref=e216]:
+        - img "Gunnar Intercept Gaming Glasses"
+        - text: "Gunnar Intercept Gaming Glasses Best Buy·"
+        - group "Current Price: $69.99."
+    - button [ref=e217]:
+      - button [ref=e219]:
+        - img "Warby Parker Blue Light Anti-Fatigue Eyeglasses"
+        - text: "Warby Parker Blue Light Anti-Fatigue Eyeglasses Warby Parker·"
+        - group "Current Price: $95.00."
+    - button [ref=e220]:
+      - button [ref=e222]:
+        - img "Oakley Hex Jector Eyeglasses"
+        - text: "Oakley Hex Jector Eyeglasses Target Optical·"
+        - group "Current Price: $187.00."
+    - button [ref=e223]:
+      - button [ref=e225]:
+        - img "Tom Ford TF5634-B Blue Light Glasses Black Square Unisex"
+        - text: "Tom Ford TF5634-B Blue Light Glasses Black Square Unisex Fashion Eyewear·"
+        - group "Current Price: $430.00."
+    - button [ref=e226]:
+      - button [ref=e228]:
+        - img "25% OFF.": "25% OFF"
+        - img "Ray-Ban Meta Skyler"
+        - text: "Ray-Ban Meta Skyler Ray-Ban·"
+        - group "Current Price: $284.25. Was $379."
+    - button [ref=e229]:
+      - button [ref=e231]:
+        - img "Low price.": "LOW PRICE"
+        - img "Balenciaga BB0113O Eyeglasses"
+        - text: "Balenciaga BB0113O Eyeglasses opticabassol.com·"
+        - group "Current Price: $260.00. Usually $385."
+    - button [ref=e232]:
+      - button [ref=e234]:
+        - img "Cartier Signature C Eyeglasses"
+        - text: "Cartier Signature C Eyeglasses Arts of Optics·"
+        - group "Current Price: $1,245.00."
+    - button [ref=e235]:
+      - button [ref=e237]:
+        - img "Warby Parker Women's Eyeglasses"
+        - text: "Warby Parker Women's Eyeglasses Warby Parker·"
+        - group "Current Price: $95.00."
+  - article:
+    - heading "Classic home cooking" [level=2]
+    - button "Like" [ref=e238]
+    - button "Dislike" [ref=e239]
+    - button "Explore more Dutch ovens" [ref=e240]: "Explore"
+    - heading "Popular products" [level=2]
+    - button [ref=e241]:
+      - button [ref=e243]:
+        - img "42% OFF.": "42% OFF"
+        - img "Drew Barrymore Beautiful 4 Quart Enameled Cast Iron Round Dutch Oven with Petal Design Lid"
+        - text: "Drew Barrymore Beautiful 4 Quart Enameled Cast Iron Round Dutch Oven with Petal Design Lid Walmart·"
+        - group "Current Price: $34.74. Was $60."
+    - button [ref=e244]:
+      - button [ref=e246]:
+        - img "Le Creuset Signature Round Dutch Oven"
+        - text: "Le Creuset Signature Round Dutch Oven Williams-Sonoma·"
+        - group "Current Price: $480.00."
+    - button [ref=e247]:
+      - button [ref=e249]:
+        - img "360.": "360"
+        - button "An interactive autorotating 360 image showing the item from different angles. Use Alt or Option + ri" [ref=e250]:
+          - img
+        - text: "Lodge Enameled Cast Iron Dutch Oven 5.5 Quart Walmart·"
+        - group "Current Price: $48.86."
+    - button [ref=e251]:
+      - button [ref=e253]:
+        - img "3D.": "3D"
+        - button "An interactive autorotating 3D image showing the item from different angles. Use Alt or Option + rig" [ref=e254]:
+          - img
+        - text: "Hearth & Hand with Magnolia Dutch Oven Mini Red Target·"
+        - group "Current Price: $16.99."
+    - button [ref=e255]
+  - article:
+    - heading "Summer Skin Radiance" [level=2]
+    - button "Like" [ref=e256]
+    - button "Dislike" [ref=e257]
+    - button "Explore more Summer skincare products" [ref=e258]: "Explore"
+    - heading "Brand picks" [level=2]
+    - button [ref=e259]:
+      - button [ref=e261]:
+        - img "La Roche Posay Toleriane Face Moisturizer SPF 30"
+        - text: "La Roche Posay Toleriane Face Moisturizer SPF 30 La Roche-Posay·"
+        - group "Current Price: $12.49."
+    - button [ref=e262]:
+      - button [ref=e264]:
+        - img "CeraVe AM Facial Moisturizing Lotion"
+        - text: "CeraVe AM Facial Moisturizing Lotion FragranceNet.com·"
+        - group "Current Price: $11.96."
+    - button [ref=e265]:
+      - button [ref=e267]:
+        - img "Chanel Hydra Beauty Micro Sérum"
+        - text: "Chanel Hydra Beauty Micro Sérum CHANEL·"
+        - group "Current Price: $115.00."
+    - button [ref=e268]:
+      - button [ref=e270]:
+        - img "La Roche-Posay Toleriane Purifying Foaming Cleanser"
+        - text: "La Roche-Posay Toleriane Purifying Foaming Cleanser Target·"
+        - group "Current Price: $15.99."
+    - button [ref=e271]:
+      - button [ref=e273]:
+        - img "7% OFF.": "7% OFF"
+        - img "La Roche Posay Cicaplast Baume B5 Balm"
+        - text: "La Roche Posay Cicaplast Baume B5 Balm eCosmetics·"
+        - group "Current Price: $17.48. Was $19."
+    - button [ref=e274]:
+      - button [ref=e276]:
+        - img "La Roche Posay Cicaplast Baume B5 SPF50"
+        - text: "La Roche Posay Cicaplast Baume B5 SPF50 La Roche-Posay·"
+        - group "Current Price: $19.99."
+    - button [ref=e277]:
+      - button [ref=e279]:
+        - img "La Roche-Posay Anthelios Clear Skin Dry Touch Sunscreen SPF 60"
+        - text: "La Roche-Posay Anthelios Clear Skin Dry Touch Sunscreen SPF 60 LovelySkin.com·"
+        - group "Current Price: $27.99."
+    - button [ref=e280]:
+      - button [ref=e282]:
+        - img "CeraVe Moisturizing Lotion"
+        - text: "CeraVe Moisturizing Lotion FragranceNet.com·"
+        - group "Current Price: $15.11."
+    - generic [ref=e283] [scrollable]:
+      - list:
+        - listitem:
+          - button "GREATEST SKINCARE PRODUCTS 2026 - Skincare Awards 2026 ... by Mad About Skin on YouTube. Play on Goo" [ref=e284]
+          - button [ref=e285]:
+            - heading [level=3]: "GREATEST SKINCARE PRODUCTS 2026 - Skincare Awards 2026 ..."
+            - text: "Mad About Skin · YouTube  ·  1mo"
+        - listitem:
+          - button "The ONLY Summer Essentials You Need from Nykaa Pink Summer ... by Arpita Ghoshal on YouTube. Play on" [ref=e286]
+          - button [ref=e287]:
+            - heading [level=3]: "The ONLY Summer Essentials You Need from Nykaa Pink Summer ..."
+            - text: "Arpita Ghoshal · YouTube  ·  6d"
+        - listitem:
+          - button "PLUMP IT UP! Hydrating Korean Skincare for Warm Weather! by Kelly Driscoll on YouTube. Play on Googl" [ref=e288]
+          - button [ref=e289]:
+            - heading [level=3]: "PLUMP IT UP! Hydrating Korean Skincare for Warm Weather!"
+            - text: "Kelly Driscoll · YouTube  ·  4w"
+- status: "1Password menu is available. Press down arrow to select."
+</result>
+
+[5] tool_call: repl("Searching for smart TVs")
+<request>
+await page.locator('e3').fill('smart TVs');
+await page.locator('e7').click();
+const s2 = await snapshot(page);
+console.log(s2.diff);
+</request>
+<result tokens_used="88" elapsed_time="5041ms">
+- title: "smart TVs - Google Shopping" [url=https://www.google.com/search?q=smart+TVs&sca_esv=5c55c0604bc74172&udm=28&sxsrf=ANbL-n6gpjWBv66muB5BTvLfYT8IiCNqYg%3A17786659541…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "smart TVs smart TVs"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - list:
+      - listitem:
+        - list:
+          - listitem "On sale filter. Not selected." [ref=e22]:
+            - link "On sale filter. Not selected." [ref=e23]: "On sale"
+          - listitem "Nearby filter. Not selected." [ref=e24]:
+            - link "Nearby filter. Not selected." [ref=e25]: "Nearby"
+          - listitem "Get it today filter. Not selected." [ref=e26]:
+            - link "Get it today filter. Not selected." [ref=e27]: "Get it today"
+          - listitem "New filter. Not selected." [ref=e28]:
+            - link "New filter. Not selected." [ref=e29]: "New"
+        - button "See more" [ref=e30]
+      - listitem:
+        - button "Screen Size" [ref=e31]
+        - list:
+          - listitem "Under 32 inches filter. Not selected." [ref=e32]:
+            - link "Under 32 inches filter. Not selected." [ref=e33]: "Under 32 inches"
+          - listitem "32 – 43 inches filter. Not selected." [ref=e34]:
+            - link "32 – 43 inches filter. Not selected." [ref=e35]: "32 – 43 inches"
+          - listitem "43 – 55 inches filter. Not selected." [ref=e36]:
+            - link "43 – 55 inches filter. Not selected." [ref=e37]: "43 – 55 inches"
+          - listitem "55 – 65 inches filter. Not selected." [ref=e38]:
+            - link "55 – 65 inches filter. Not selected." [ref=e39]: "55 – 65 inches"
+          - listitem "Over 65 inches filter. Not selected." [ref=e40]:
+            - link "Over 65 inches filter. Not selected." [ref=e41]: "Over 65 inches"
+      - listitem:
+        - button "Supported Streaming Services" [ref=e42]
+        - list:
+          - listitem "Roku filter. Not selected." [ref=e43]:
+            - link "Roku filter. Not selected." [ref=e44]: "Roku"
+          - listitem "Prime Video filter. Not selected." [ref=e45]:
+            - link "Prime Video filter. Not selected." [ref=e46]: "Prime Video"
+          - listitem "Google Play filter. Not selected." [ref=e47]:
+            - link "Google Play filter. Not selected." [ref=e48]: "Google Play"
+          - listitem "Spotify filter. Not selected." [ref=e49]:
+            - link "Spotify filter. Not selected." [ref=e50]: "Spotify"
+        - button "See more" [ref=e51]
+      - listitem:
+        - button "Product Rating" [ref=e52]
+        - list:
+          - listitem "Four stars and up filter. Not selected." [ref=e53]:
+            - link "Four stars and up filter. Not selected." [ref=e54]:
+              - img "Rated 4.0 out of 5,"
+              - text: "4 and up"
+      - listitem:
+        - button "Color" [ref=e55]
+        - list:
+          - listitem "Black filter. Not selected." [ref=e56]:
+            - link "Black filter. Not selected." [ref=e57]: "Black"
+          - listitem "Silver filter. Not selected." [ref=e58]:
+            - link "Silver filter. Not selected." [ref=e59]: "Silver"
+          - listitem "Brown filter. Not selected." [ref=e60]:
+            - link "Brown filter. Not selected." [ref=e61]: "Brown"
+      - listitem:
+        - button "Stores" [ref=e62]
+        - list:
+          - listitem "Walmart filter. Not selected." [ref=e63]:
+            - link "Walmart filter. Not selected." [ref=e64]: "Walmart"
+          - listitem "Best Buy filter. Not selected." [ref=e65]:
+            - link "Best Buy filter. Not selected." [ref=e66]: "Best Buy"
+          - listitem "Target filter. Not selected." [ref=e67]:
+            - link "Target filter. Not selected." [ref=e68]: "Target"
+          - listitem "BJ's Wholesale Club filter. Not selected." [ref=e69]:
+            - link "BJ's Wholesale Club filter. Not selected." [ref=e70]: "BJ's Wholesale Club"
+        - button "See more" [ref=e71]
+      - listitem:
+        - button "Features" [ref=e72]
+        - list:
+          - listitem "Smart TV filter. Not selected." [ref=e73]:
+            - link "Smart TV filter. Not selected." [ref=e74]: "Smart TV"
+          - listitem "CEC Enabled filter. Not selected." [ref=e75]:
+            - link "CEC Enabled filter. Not selected." [ref=e76]: "CEC Enabled"
+          - listitem "Portable filter. Not selected." [ref=e77]:
+            - link "Portable filter. Not selected." [ref=e78]: "Portable"
+          - listitem "With V-chip filter. Not selected." [ref=e79]:
+            - link "With V-chip filter. Not selected." [ref=e80]: "With V-chip"
+        - button "See more" [ref=e81]
+      - listitem:
+        - button "Connectivity" [ref=e82]
+        - list:
+          - listitem "Wi-Fi filter. Not selected." [ref=e83]:
+            - link "Wi-Fi filter. Not selected." [ref=e84]: "Wi-Fi"
+          - listitem "Optical Audio filter. Not selected." [ref=e85]:
+            - link "Optical Audio filter. Not selected." [ref=e86]: "Optical Audio"
+          - listitem "AUX filter. Not selected." [ref=e87]:
+            - link "AUX filter. Not selected." [ref=e88]: "AUX"
+          - listitem "IrDA filter. Not selected." [ref=e89]:
+            - link "IrDA filter. Not selected." [ref=e90]: "IrDA"
+        - button "See more" [ref=e91]
+      - listitem:
+        - button "Display Type" [ref=e92]
+        - list:
+          - listitem "LED filter. Not selected." [ref=e93]:
+            - link "LED filter. Not selected." [ref=e94]: "LED"
+          - listitem "QLED filter. Not selected." [ref=e95]:
+            - link "QLED filter. Not selected." [ref=e96]: "QLED"
+          - listitem "CRT filter. Not selected." [ref=e97]:
+            - link "CRT filter. Not selected." [ref=e98]: "CRT"
+      - listitem:
+        - button "Width" [ref=e99]
+        - list:
+          - listitem "Under 35.1 in wide filter. Not selected." [ref=e100]:
+            - link "Under 35.1 in wide filter. Not selected." [ref=e101]: "Under 35.1 in wide"
+          - listitem "35.1 – 48.2 in wide filter. Not selected." [ref=e102]:
+            - link "35.1 – 48.2 in wide filter. Not selected." [ref=e103]: "35.1 – 48.2 in wide"
+          - listitem "48.2 – 65.7 in wide filter. Not selected." [ref=e104]:
+            - link "48.2 – 65.7 in wide filter. Not selected." [ref=e105]: "48.2 – 65.7 in wide"
+          - listitem "Over 65.7 in wide filter. Not selected." [ref=e106]:
+            - link "Over 65.7 in wide filter. Not selected." [ref=e107]: "Over 65.7 in wide"
+      - listitem:
+        - button "Depth" [ref=e108]
+        - list:
+          - listitem "Under 1.4 in deep filter. Not selected." [ref=e109]:
+            - link "Under 1.4 in deep filter. Not selected." [ref=e110]: "Under 1.4 in deep"
+          - listitem "1.4 – 2.2 in deep filter. Not selected." [ref=e111]:
+            - link "1.4 – 2.2 in deep filter. Not selected." [ref=e112]: "1.4 – 2.2 in deep"
+          - listitem "2.2 – 3 in deep filter. Not selected." [ref=e113]:
+            - link "2.2 – 3 in deep filter. Not selected." [ref=e114]: "2.2 – 3 in deep"
+          - listitem "Over 3 in deep filter. Not selected." [ref=e115]:
+            - link "Over 3 in deep filter. Not selected." [ref=e116]: "Over 3 in deep"
+      - listitem:
+        - button "Brand" [ref=e117]
+        - list:
+          - listitem "VIZIO filter. Not selected." [ref=e118]:
+            - link "VIZIO filter. Not selected." [ref=e119]: "VIZIO"
+          - listitem "Amazon filter. Not selected." [ref=e120]:
+            - link "Amazon filter. Not selected." [ref=e121]: "Amazon"
+          - listitem "Volkswagen filter. Not selected." [ref=e122]:
+            - link "Volkswagen filter. Not selected." [ref=e123]: "Volkswagen"
+          - listitem "Pioneer filter. Not selected." [ref=e124]:
+            - link "Pioneer filter. Not selected." [ref=e125]: "Pioneer"
+        - button "See more" [ref=e126]
+      - listitem:
+        - button "Refresh Rate" [ref=e127]
+        - list:
+          - listitem "60 Hz filter. Not selected." [ref=e128]:
+            - link "60 Hz filter. Not selected." [ref=e129]: "60 Hz"
+          - listitem "50 Hz filter. Not selected." [ref=e130]:
+            - link "50 Hz filter. Not selected." [ref=e131]: "50 Hz"
+          - listitem "100 Hz filter. Not selected." [ref=e132]:
+            - link "100 Hz filter. Not selected." [ref=e133]: "100 Hz"
+      - listitem:
+        - button "Weight" [ref=e134]
+        - list:
+          - listitem "Under 18.5 lb filter. Not selected." [ref=e135]:
+            - link "Under 18.5 lb filter. Not selected." [ref=e136]: "Under 18.5 lb"
+          - listitem "18.5 – 39 lb filter. Not selected." [ref=e137]:
+            - link "18.5 – 39 lb filter. Not selected." [ref=e138]: "18.5 – 39 lb"
+          - listitem "39 – 76.7 lb filter. Not selected." [ref=e139]:
+            - link "39 – 76.7 lb filter. Not selected." [ref=e140]: "39 – 76.7 lb"
+          - listitem "Over 76.7 lb filter. Not selected." [ref=e141]:
+            - link "Over 76.7 lb filter. Not selected." [ref=e142]: "Over 76.7 lb"
+      - listitem:
+        - button "Price" [ref=e143]
+        - list:
+          - listitem "Under $1,000 filter. Not selected." [ref=e144]:
+            - link "Under $1,000 filter. Not selected." [ref=e145]: "Under $1,000"
+          - listitem "Over $1,000 filter. Not selected." [ref=e146]:
+            - link "Over $1,000 filter. Not selected." [ref=e147]: "Over $1,000"
+          - listitem:
+            - textbox "Minimum price ($)" [ref=e148]
+            - label: "Min"
+            - text: "Please provide a valid price."
+            - textbox "Maximum price ($)" [ref=e149]
+            - label: "Max"
+            - text: "Please provide a valid price."
+            - button "Go" [ref=e150] [disabled]
+      - listitem:
+        - button "Resolution" [ref=e151]
+        - list:
+          - listitem "1366 x 768 filter. Not selected." [ref=e152]:
+            - link "1366 x 768 filter. Not selected." [ref=e153]: "1366 x 768"
+          - listitem "7680 x 4320 filter. Not selected." [ref=e154]:
+            - link "7680 x 4320 filter. Not selected." [ref=e155]: "7680 x 4320"
+          - listitem "1280 x 720 filter. Not selected." [ref=e156]:
+            - link "1280 x 720 filter. Not selected." [ref=e157]: "1280 x 720"
+      - listitem:
+        - button "Free shipping" [ref=e158]
+        - list:
+          - listitem "Free shipping filter. Not selected." [ref=e159]:
+            - link "Free shipping filter. Not selected." [ref=e160]: "Free shipping"
+- navigation "Refinement" [ref=e161]:
+  - generic [ref=e162] [scrollable]:
+    - list:
+      - button "All filters." [ref=e163]
+      - listitem [ref=e164]:
+        - link "On sale filter. Not selected." [ref=e165]: "On sale"
+      - listitem [ref=e166]:
+        - link "Over 65 inches filter. Not selected." [ref=e167]: "Over 65 inches"
+      - listitem [ref=e168]:
+        - link "43 – 55 inches filter. Not selected." [ref=e169]: "43 – 55 inches"
+      - listitem [ref=e170]:
+        - link "55 – 65 inches filter. Not selected." [ref=e171]: "55 – 65 inches"
+      - listitem [ref=e172]:
+        - link "32 – 43 inches filter. Not selected." [ref=e173]: "32 – 43 inches"
+      - listitem [ref=e174]:
+        - link "Under 32 inches filter. Not selected." [ref=e175]: "Under 32 inches"
+      - listitem [ref=e176]:
+        - link "4K filter. Not selected." [ref=e177]: "4K"
+      - listitem [ref=e178]:
+        - link "Roku filter. Not selected." [ref=e179]: "Roku"
+      - listitem [ref=e180]:
+        - link "Nearby filter. Not selected." [ref=e181]: "Nearby"
+      - listitem [ref=e182]:
+        - link "Flat filter. Not selected." [ref=e183]: "Flat"
+      - listitem [ref=e184]:
+        - link "Get it today filter. Not selected." [ref=e185]: "Get it today"
+      - listitem [ref=e186]:
+        - link "Prime Video filter. Not selected." [ref=e187]: "Prime Video"
+      - listitem [ref=e188]:
+        - link "Black filter. Not selected." [ref=e189]: "Black"
+      - listitem [ref=e190]:
+        - link "Smart TV filter. Not selected." [ref=e191]: "Smart TV"
+      - listitem [ref=e192]:
+        - link "Wi-Fi filter. Not selected." [ref=e193]: "Wi-Fi"
+      - listitem [ref=e194]:
+        - link "LED filter. Not selected." [ref=e195]: "LED"
+      - listitem [ref=e196]:
+        - link "QLED filter. Not selected." [ref=e197]: "QLED"
+      - listitem [ref=e198]:
+        - link "48.2 – 65.7 in wide filter. Not selected." [ref=e199]: "48.2 – 65.7 in wide"
+      - listitem [ref=e200]:
+        - link "Over 3 in deep filter. Not selected." [ref=e201]: "Over 3 in deep"
+      - listitem [ref=e202]:
+        - link "Price filter. Not selected." [ref=e203]: "Price"
+      - listitem [ref=e204]:
+        - link "2.2 – 3 in deep filter. Not selected." [ref=e205]: "2.2 – 3 in deep"
+      - listitem [ref=e206]:
+        - link "1.4 – 2.2 in deep filter. Not selected." [ref=e207]: "1.4 – 2.2 in deep"
+  - combobox "Sort by:Relevance" [ref=e208]
+- main:
+  - region "Ads" [ref=e209]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e210]
+    - generic [ref=e211] [scrollable]:
+      - link "for from Best Buy" [ref=e212]:
+        - link "for from Best Buy" [ref=e213]
+      - link [ref=e214]:
+        - link [ref=e215]
+      - heading [level=3]: "TCL - 55\" Class F35-Series 4K UHD HDR LED Smart Fire TV (2025)"
+      - text: "$229.99 Best Buy"
+      - img "Rated 4.6 out of 5, (3k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Google Play, Netflix, Prime Video, Vudu, YouTube, Spotify, Disney+ · 19.8 lb · 55 inches"
+      - link "for from Samsung" [ref=e216]:
+        - link "for from Samsung" [ref=e217]
+      - link [ref=e218]:
+        - link [ref=e219]
+      - heading [level=3]: "Samsung 50 Inch Class Mini LED M70H 4K Samsung TV in Titan Black (2026)"
+      - text: "$399.99 Samsung"
+      - img "Rated 4.2 out of 5, (89) user reviews"
+      - text: "Bluetooth, Wi-Fi, IrDA, RF, USB, HDMI · 28 lb · 50 inches · LED · 4K"
+      - link "for was $150 from Reperch - Bay Area" [ref=e220]:
+        - link "for was $150 from Reperch - Bay Area" [ref=e221]
+      - text: "Sale"
+      - link [ref=e222]:
+        - link [ref=e223]
+      - heading [level=3]: "Hisense 50\" Roku Smart TV - Easy Streaming, Multiple HDMI Ports"
+      - text: "$133.00$150 Reperch - Bay Area Used Wi-Fi, USB, HDMI, Ethernet, Optical Audio · Roku · 19.8 lb · 50 inches · LED · 4K"
+      - link "for from Best Buy" [ref=e224]:
+        - link "for from Best Buy" [ref=e225]
+      - link [ref=e226]:
+        - link [ref=e227]
+      - heading [level=3]: "LG - 65” Class UA7050 Series LED AI 4K UHD Smart webOS TV (2025)"
+      - text: "$329.99 Best Buy"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Netflix, Prime Video, YouTube, HBO, Disney+ · 36.4 lb · 65 inches"
+      - link "for from Best Buy" [ref=e228]:
+        - link "for from Best Buy" [ref=e229]
+      - link [ref=e230]:
+        - link [ref=e231]
+      - heading [level=3]: "Roku - 55\" Class 4K HDR LED Smart RokuTV"
+      - text: "$259.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, Spotify, HBO, Disney+, Roku · 22 lb · 55 inches"
+      - link "for from freeoak.store" [ref=e232]:
+        - link "for from freeoak.store" [ref=e233]
+      - link [ref=e234]:
+        - link [ref=e235]
+      - heading [level=3]: "86-inch UHD smart TV 86UQ7590PUD, artificial intelligence 4K, built-in Alexa"
+      - text: "$42.64 freeoak.store Free 86 inches · LED · 4K · 3840 x 2160 · Flat · Black"
+      - link "for from LG" [ref=e236]:
+        - link "for from LG" [ref=e237]
+      - link [ref=e238]:
+        - link [ref=e239]
+      - heading [level=3]: "LG C5 55 inch class OLED evo 4K webOS TV - OLED55C5PUA"
+      - text: "$1,199.99 LG"
+      - img "Rated 4.8 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI · 55 inches · OLED · 4K · 3840 x 2160 · Flat · Amazon Alexa"
+      - link "for from Best Buy" [ref=e240]:
+        - link "for from Best Buy" [ref=e241]
+      - link [ref=e242]:
+        - link "Oakland" [ref=e243]
+      - heading [level=3]: "Insignia - 65\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$269.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, HDMI · Netflix, Prime Video, Disney+ · 65 inches · LED · 4K · 3840 x 2160 · Flat"
+      - link "for from Best Buy" [ref=e244]:
+        - link "for from Best Buy" [ref=e245]
+      - link [ref=e246]:
+        - link "Mission District" [ref=e247]
+      - heading [level=3]: "Insignia - 75\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$399.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, HBO, Disney+ · 40.4 lb · 75 inches"
+      - link "for from Walmart" [ref=e248]:
+        - link "for from Walmart" [ref=e249]
+      - link [ref=e250]:
+        - link [ref=e251]
+      - heading [level=3]: "Vizio 55 Class 4K UHD LED HDR Smart TV (v4k55m-08)"
+      - text: "$198.00 Walmart"
+      - img "Rated 4.2 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Optical Audio · Netflix · 28.9 lb · 55 inches · LED · 4K"
+      - link "for from Best Buy" [ref=e252]:
+        - link "for from Best Buy" [ref=e253]
+      - link [ref=e254]:
+        - link "Oakland" [ref=e255]
+      - heading [level=3]: "TCL - 55\" Class S5-Series 4K UHD HDR LED Smart Google TV (2024)"
+      - text: "$249.99 Best Buy"
+      - img "Rated 4.4 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, DVI, Ethernet, AUX · Hulu, Google Play, Netflix, Prime Video, Vudu, YouTube, Spotify, HBO, Disney+ · 23.1 lb · 55 inches"
+      - link "for was $200 from Best Buy" [ref=e256]:
+        - link "for was $200 from Best Buy" [ref=e257]
+      - text: "Sale"
+      - link [ref=e258]:
+        - link [ref=e259]
+      - heading [level=3]: "Roku - 40\" Class Select Series Full HD (1080p) LED Smart RokuTV"
+      - text: "$149.99$200 Best Buy"
+      - img "Rated 4.6 out of 5, (594) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, Spotify, HBO, Disney+, Roku · 10.7 lb · 40 inches"
+      - link "for from Samsung" [ref=e260]:
+        - link "for from Samsung" [ref=e261]
+      - link [ref=e262]:
+        - link [ref=e263]
+      - heading [level=3]: "Samsung 55\" Class QLED Q7F 4K Samsung Vision AI Smart TV (2025)"
+      - text: "$379.99 Samsung"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet · 23.8 lb · 55 inches · QLED · 4K"
+      - link "for from Best Buy" [ref=e264]:
+        - link "for from Best Buy" [ref=e265]
+      - link [ref=e266]:
+        - link "Mission District" [ref=e267]
+      - heading [level=3]: "Insignia - 65\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$299.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "Wi-Fi, USB, HDMI, Ethernet, AUX · Hulu, Netflix, Prime Video, HBO, Disney+ · 65 inches · LED"
+      - link "for from Best Buy" [ref=e268]:
+        - link "for from Best Buy" [ref=e269]
+      - link [ref=e270]:
+        - link "Oakland" [ref=e271]
+      - heading [level=3]: "TCL - 40\" Class Q3K Series 1080P FHD QLED Smart TV with Google TV (2025)"
+      - text: "$159.99 Best Buy"
+      - img "Rated 4.5 out of 5, (1k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Ethernet · Hulu, Netflix, Prime Video, YouTube, Disney+ · 40 inches · QLED"
+      - link "for from Best Buy" [ref=e272]:
+        - link "for from Best Buy" [ref=e273]
+      - link [ref=e274]:
+        - link "San Rafael" [ref=e275]
+      - heading [level=3]: "Roku - 55\" Class Select Series 4K LED Smart RokuTV"
+      - text: "$269.99 Best Buy"
+      - img "Rated 4.4 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Optical Audio · Hulu, Netflix, Prime Video, Disney+, Roku · 55 inches · LED"
+      - link "for from Best Buy" [ref=e276]:
+        - link "for from Best Buy" [ref=e277]
+      - link [ref=e278]:
+        - link [ref=e279]
+      - heading [level=3]: "Roku - 43\" Class Select Series 4K LED Smart RokuTV"
+      - text: "$199.99 Best Buy"
+      - img "Rated 4.8 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, Spotify, HBO, Disney+, Roku · 14.4 lb · 43 inches"
+      - link "for from Quvon" [ref=e280]:
+        - link "for from Quvon" [ref=e281]
+      - link [ref=e282]:
+        - link [ref=e283]
+      - heading [level=3]: "VIZIO 40-inch D-Series Full HD 1080p Smart TV with AMD FreeSync, Apple AirPlay"
+      - text: "$49.99 Quvon Free USB, HDMI, Optical Audio · Netflix · 40 inches · LED · 1080p · 1920 x 1080 · Flat · 60 Hz"
+      - link "for from Best Buy" [ref=e284]:
+        - link "for from Best Buy" [ref=e285]
+      - link [ref=e286]:
+        - link "Mission District" [ref=e287]
+      - heading [level=3]: "Toshiba - 50\" Class C350 Series LED 4K UHD Smart Fire TV"
+      - text: "$199.99 Best Buy"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Ethernet, Optical Audio · 20.9 lb · 50 inches · LED · 4K"
+      - link "for from Best Buy" [ref=e288]:
+        - link "for from Best Buy" [ref=e289]
+      - link [ref=e290]:
+        - link "Mission District" [ref=e291]
+      - heading [level=3]: "Pioneer - 55\" Class LED 4K UHD Smart Roku TV"
+      - text: "$219.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "Roku · 55 inches · LED · 4K · 3840 x 2160 · Flat"
+      - link "for from Best Buy" [ref=e292]:
+        - link "for from Best Buy" [ref=e293]
+      - link [ref=e294]:
+        - link "Mission District" [ref=e295]
+      - heading [level=3]: "Pioneer - 70\" Class LED 4K UHD Smart Roku TV"
+      - text: "$349.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "Wi-Fi, IrDA, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Spotify, HBO, Disney+, Apple TV+, Roku · 42.7 lb · 70 inches"
+      - link "for from Best Buy" [ref=e296]:
+        - link "for from Best Buy" [ref=e297]
+      - link [ref=e298]:
+        - link "Mission District" [ref=e299]
+      - heading [level=3]: "Pioneer - 65\" Class LED 4K UHD Smart Roku TV"
+      - text: "$299.99 Best Buy"
+      - img "Rated 4.8 out of 5, (340) user reviews"
+      - text: "Wi-Fi, IrDA, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, HBO, Disney+, Apple TV+, Roku · 35.1 lb · 65 inches"
+      - link "for from Best Buy" [ref=e300]:
+        - link "for from Best Buy" [ref=e301]
+      - link [ref=e302]:
+        - link "Mission District" [ref=e303]
+      - heading [level=3]: "Insignia - 70\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$349.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, HBO, Disney+ · 43 lb · 70 inches"
+      - link "for from Best Buy" [ref=e304]:
+        - link "for from Best Buy" [ref=e305]
+      - link [ref=e306]:
+        - link "Mission District" [ref=e307]
+      - heading [level=3]: "Roku - 55\" Class Select Series 4K QLED Smart RokuTV (2026)"
+      - text: "$269.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, Spotify, HBO, Disney+, Roku · 20.1 lb · 55 inches"
+      - link "for was $348 from B&H Photo-Video-Audio" [ref=e308]:
+        - link "for was $348 from B&H Photo-Video-Audio" [ref=e309]
+      - text: "Sale"
+      - link [ref=e310]:
+        - link [ref=e311]
+      - heading [level=3]: "Samsung U8000F 55\" 4K HDR Smart LED TV"
+      - text: "$297.99$348 B&H Photo-Video-Audio"
+      - img "Rated 4.5 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, IrDA, RF, USB, HDMI, Ethernet, AUX · 25.6 lb · 55 inches · LED"
+      - link "for from Best Buy" [ref=e312]:
+        - link "for from Best Buy" [ref=e313]
+      - link [ref=e314]:
+        - link [ref=e315]
+      - heading [level=3]: "Toshiba - 43\" Class C350 Series LED 4K UHD Smart Fire TV"
+      - text: "$159.99 Best Buy"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, HBO, Disney+ · 16.3 lb · 43 inches"
+      - link "for from Best Buy" [ref=e316]:
+        - link "for from Best Buy" [ref=e317]
+      - link [ref=e318]:
+        - link "Mission District" [ref=e319]
+      - heading [level=3]: "Hisense - 40\" Class A4 Series LED Full HD 1080P Smart Fire TV (2025)"
+      - text: "$139.99 Best Buy"
+      - img "Rated 4.6 out of 5, (599) user reviews"
+      - text: "Bluetooth, Wi-Fi · 40 inches · LED · 1080p · 1920 x 1080 · Flat · Amazon Alexa · 60 Hz · A4 Series"
+      - link "for from LG" [ref=e320]:
+        - link "for from LG" [ref=e321]
+      - link [ref=e322]:
+        - link [ref=e323]
+      - heading [level=3]: "LG 75 inch class QNED 4K Smart TV - 75QNED82AUA"
+      - text: "$749.99 LG"
+      - img "Rated 4.6 out of 5, (1k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Netflix, Prime Video, YouTube, HBO, Disney+ · 69.2 lb · 75 inches"
+      - link "for from Samsung" [ref=e324]:
+        - link "for from Samsung" [ref=e325]
+      - link [ref=e326]:
+        - link [ref=e327]
+      - heading [level=3]: "Samsung 55\" Class Neo QLED 4K QN70F Samsung Vision AI Smart TV (2025), Black"
+      - text: "$699.99 Samsung"
+      - img "Rated 4.6 out of 5, (5k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Netflix · 44 lb · 55 inches"
+      - link "for was $400 from Reperch - Bay Area" [ref=e328]:
+        - link "for was $400 from Reperch - Bay Area" [ref=e329]
+      - text: "Sale"
+      - link [ref=e330]:
+        - link [ref=e331]
+      - heading [level=3]: "Samsung 65-Inch Flat Screen LED TV - Sleek Design, Excellent Condition"
+      - text: "$250.00$400 Reperch - Bay Area Used 65 inches · LED · Flat · 57.3 in wide"
+      - link "for from Ktchic" [ref=e332]:
+        - link "for from Ktchic" [ref=e333]
+      - link [ref=e334]:
+        - link [ref=e335]
+      - heading [level=3]: "LG UQ7590 86-Inch Class UHD Smart TV 86UQ7590PUD, 2022 - AI-Powered 4K, Alexa Built-In, Grey"
+      - text: "$42.52 Ktchic 86 inches · LED · 4K · 3840 x 2160 · Flat · Black"
+      - link "for from Best Buy" [ref=e336]:
+        - link "for from Best Buy" [ref=e337]
+      - link [ref=e338]:
+        - link [ref=e339]
+      - heading [level=3]: "Samsung - 65\" Class U7900 Series UHD 4K Smart Tizen TV (2025)"
+      - text: "$329.99 Best Buy"
+      - img "Rated 4.5 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Ethernet · Google Play, Netflix, Prime Video, YouTube, Spotify · 31.3 lb · 65 inches"
+      - link "for from Best Buy" [ref=e340]:
+        - link "for from Best Buy" [ref=e341]
+      - link [ref=e342]:
+        - link [ref=e343]
+      - heading [level=3]: "Pioneer - 55\" Class LED 4K UHD Smart Xumo TV"
+      - text: "$189.99 Best Buy"
+      - img "Rated 4.3 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Spotify, Disney+ · 28.7 lb · 55 inches"
+      - link "for from Best Buy" [ref=e344]:
+        - link "for from Best Buy" [ref=e345]
+      - link [ref=e346]:
+        - link "Mission District" [ref=e347]
+      - heading [level=3]: "Roku - 65\" Class Select Series 4K LED Smart RokuTV"
+      - text: "$379.99 Best Buy"
+      - img "Rated 4.8 out of 5, (2k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Optical Audio · Hulu, Netflix, Disney+, Roku · 65 inches · LED"
+      - link "for from Best Buy" [ref=e348]:
+        - link "for from Best Buy" [ref=e349]
+      - link [ref=e350]:
+        - link [ref=e351]
+      - heading [level=3]: "Samsung - 75\" Class U7900 Series UHD 4K Smart Tizen TV (2025)"
+      - text: "$449.99 Best Buy"
+      - img "Rated 4.5 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Ethernet · Google Play, Netflix, Prime Video, YouTube, Spotify · 49.4 lb · 75 inches"
+      - link "for from Best Buy" [ref=e352]:
+        - link "for from Best Buy" [ref=e353]
+      - link [ref=e354]:
+        - link "Mission District" [ref=e355]
+      - heading [level=3]: "Roku - 32\" Class Select Series Full HD (1080p) LED Smart RokuTV (2026)"
+      - text: "$129.99 Best Buy"
+      - img "Rated 4.7 out of 5, (368) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI · Roku · 32 inches · LED · 1080p · 1920 x 1080 · Flat"
+      - link "for from Best Buy" [ref=e356]:
+        - link "for from Best Buy" [ref=e357]
+      - link [ref=e358]:
+        - link [ref=e359]
+      - heading [level=3]: "LG - 55” Class UA7050 Series LED AI 4K UHD Smart webOS TV (2025)"
+      - text: "$249.99 Best Buy"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet · Netflix, Prime Video, YouTube, HBO, Disney+ · 25.4 lb · 55 inches"
+      - link "for from LG" [ref=e360]:
+        - link "for from LG" [ref=e361]
+      - link [ref=e362]:
+        - link [ref=e363]
+      - heading [level=3]: "LG C5 65 inch class OLED evo 4K webOS TV - OLED65C5PUA"
+      - text: "$1,399.99 LG"
+      - img "Rated 4.8 out of 5, (9k+) user reviews"
+      - text: "Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Netflix, Prime Video, YouTube, HBO, Disney+ · 36.6 lb · 65 inches"
+      - link "for from Best Buy" [ref=e364]:
+        - link "for from Best Buy" [ref=e365]
+      - link [ref=e366]:
+        - link "Mission District" [ref=e367]
+      - heading [level=3]: "Samsung - 55\" Class S85H OLED 4K UHD SmartVision AI Smart Tizen TV (2026)"
+      - text: "$1,499.99 Best Buy"
+      - img "Rated 4.9 out of 5, (33) user reviews"
+      - text: "Bluetooth, Wi-Fi, USB, HDMI, Ethernet, Optical Audio · Netflix, YouTube · 28.7 lb · 55 inches"
+      - link "for was $300 from Best Buy" [ref=e368]:
+        - link "for was $300 from Best Buy" [ref=e369]
+      - text: "Sale"
+      - link [ref=e370]:
+        - link [ref=e371]
+      - heading [level=3]: "Samsung - 43” Class U8000H Series Crystal UHD 4K Smart Tizen TV (2026)"
+      - text: "$249.99$300 Best Buy"
+      - img "Rated 4.7 out of 5, (187) user reviews"
+      - text: "Bluetooth, Wi-Fi, IrDA, RF, USB, HDMI · Google Play, Netflix, YouTube, Disney+ · 14.4 lb · 43 inches"
+  - text: "Sifting through reviews..."
+  - heading "All products" [level=2]
+  - list:
+    - listitem:
+      - button [ref=e372]:
+        - generic [ref=e373]:
+          - img "Onn. 32\" HD Smart Television"
+          - text: "Nearby, 22 mi Onn. 32\" HD Smart Television"
+          - group "Current Price: $78.00."
+          - text: "Walmart & more Free delivery by Fri"
+          - img "Rated 3.7 out of 5. 1.5K reviews.":
+            - img "Rated 3.7 out of 5, 1.5K user reviews"
+    - listitem:
+      - button [ref=e374]:
+        - generic [ref=e375]:
+          - img "29% OFF.": "29% OFF"
+          - img "Samsung Class U7900 Series 4K UHD Smart TV"
+          - text: "Nearby, 2 mi Samsung Class U7900 Series 4K UHD Smart TV"
+          - group "Current Price: $329.99. Was $470."
+          - text: "Best Buy & more"
+          - img "Rated 4.5 out of 5. 16K reviews.":
+            - img "Rated 4.5 out of 5, 16K user reviews"
+    - listitem:
+      - button [ref=e376]:
+        - generic [ref=e377]:
+          - img "17% OFF.": "17% OFF"
+          - img "Roku Select Series 50\" 4K HDR Smart Roku TV with Roku TV Remote"
+          - text: "Nearby, 20 mi Roku Select Series 50\" 4K HDR Smart Roku TV with Roku TV Remote"
+          - group "Current Price: $229.99. Was $280."
+          - text: "Target & more Free delivery by Tue"
+          - img "Rated 4.8 out of 5. 1.5K reviews.":
+            - img "Rated 4.8 out of 5, 1.5K user reviews"
+    - listitem:
+      - button [ref=e378]:
+        - generic [ref=e379]:
+          - img "26% OFF.": "26% OFF"
+          - img "Hisense 43\" Roku Smart Led Tv 43h4030f4"
+          - text: "Nearby, 22 mi Hisense 43\" Roku Smart Led Tv 43h4030f4"
+          - group "Current Price: $124.00. Was $168."
+          - text: "Walmart & more Free delivery"
+          - img "Rated 4.0 out of 5. 14K reviews.":
+            - img "Rated 4.0 out of 5, 14K user reviews"
+    - listitem:
+      - button [ref=e380]:
+        - generic [ref=e381]:
+          - img "46% OFF.": "46% OFF"
+          - img "Toshiba C350 Series 4K UHD Smart Fire TV"
+          - text: "Nearby, 2 mi Toshiba C350 Series 4K UHD Smart Fire TV"
+          - group "Current Price: $159.99. Was $300."
+          - text: "Best Buy & more Free delivery by Fri"
+          - img "Rated 4.5 out of 5. 2.3K reviews.":
+            - img "Rated 4.5 out of 5, 2.3K user reviews"
+    - listitem:
+      - button [ref=e382]:
+        - generic [ref=e383]:
+          - img "21% OFF.": "21% OFF"
+          - img "LG UA77 LED AI 4K UHD Smart webOS TV"
+          - text: "Nearby, 0.6 mi LG UA77 LED AI 4K UHD Smart webOS TV"
+          - group "Current Price: $299.99. Was $380."
+          - text: "Target & more"
+          - img "Rated 4.6 out of 5. 4.9K reviews.":
+            - img "Rated 4.6 out of 5, 4.9K user reviews"
+    - listitem:
+      - button [ref=e384]:
+        - generic [ref=e385]:
+          - img "Philips 32\" HD Smart LED TV"
+          - text: "Nearby, 28 mi Philips 32\" HD Smart LED TV"
+          - group "Current Price: $118.00."
+          - text: "Walmart Free next-day delivery"
+          - img "Rated 4.0 out of 5. 25 reviews.":
+            - img "Rated 4.0 out of 5, 25 user reviews"
+    - listitem:
+      - button [ref=e386]:
+        - generic [ref=e387]:
+          - img "40% OFF.": "40% OFF"
+          - img "Insignia Class F50 Series LED 4K UHD Smart Fire TV"
+          - text: "Nearby, 2 mi Insignia Class F50 Series LED 4K UHD Smart Fire TV"
+          - group "Current Price: $179.99. Was $300."
+          - text: "Best Buy & more Free delivery by Sat"
+          - img "Rated 4.6 out of 5. 11K reviews.":
+            - img "Rated 4.6 out of 5, 11K user reviews"
+    - listitem:
+      - button [ref=e388]:
+        - generic [ref=e389]:
+          - img "Target hiro 65\" 4K HDR Smart TV"
+          - text: "Nearby, 0.6 mi Target hiro 65\" 4K HDR Smart TV"
+          - group "Current Price: $329.99."
+          - text: "Target & more"
+          - img "Rated 3.5 out of 5. 124 reviews.":
+            - img "Rated 3.5 out of 5, 124 user reviews"
+    - listitem:
+      - button [ref=e390]:
+        - generic [ref=e391]:
+          - img "34% OFF.": "34% OFF"
+          - img "Vizio Class Quantum 4K QLED HDR Smart TV"
+          - text: "Nearby, 22 mi Vizio Class Quantum 4K QLED HDR Smart TV"
+          - group "Current Price: $328.00. Was $498."
+          - text: "Walmart & more Free next-day delivery"
+          - img "Rated 4.2 out of 5. 13K reviews.":
+            - img "Rated 4.2 out of 5, 13K user reviews"
+  - list:
+    - listitem:
+      - button [ref=e392]:
+        - generic [ref=e393]:
+          - img "35% OFF.": "35% OFF"
+          - img "TCL QM5K Series 4K UHD Smart TV"
+          - text: "Nearby, 2 mi TCL QM5K Series 4K UHD Smart TV"
+          - group "Current Price: $449.99. Was $700."
+          - text: "Best Buy & more Free delivery by Sat"
+          - img "Rated 4.7 out of 5. 2.2K reviews.":
+            - img "Rated 4.7 out of 5, 2.2K user reviews"
+    - listitem:
+      - button [ref=e394]:
+        - generic [ref=e395]:
+          - img "10% OFF.": "10% OFF"
+          - img "Roku 4K HDR Smart TV with Remote Select Series"
+          - text: "Nearby, 20 mi Roku 4K HDR Smart TV with Remote Select Series"
+          - group "Current Price: $269.99. Was $300."
+          - text: "Target & more Free delivery by Tue"
+          - img "Rated 4.7 out of 5. 1.6K reviews.":
+            - img "Rated 4.7 out of 5, 1.6K user reviews"
+    - listitem:
+      - button [ref=e396]:
+        - generic [ref=e397]:
+          - img "5% OFF.": "5% OFF"
+          - img "Samsung Q7F 4K QLED Vision AI Smart TV"
+          - text: "Also nearby Samsung Q7F 4K QLED Vision AI Smart TV"
+          - group "Current Price: $327.99. Was $348."
+          - text: "Walmart & more Free delivery"
+          - img "Rated 4.6 out of 5. 17K reviews.":
+            - img "Rated 4.6 out of 5, 17K user reviews"
+    - listitem:
+      - button [ref=e398]:
+        - generic [ref=e399]:
+          - img "TCL S Class 1080p FHD HDR LED Smart TV with Google TV"
+          - text: "Nearby, 3 mi TCL S Class 1080p FHD HDR LED Smart TV with Google TV"
+          - group "Current Price: $139.99."
+          - text: "Target & more"
+          - img "Rated 3.8 out of 5. 977 reviews.":
+            - img "Rated 3.8 out of 5, 977 user reviews"
+    - listitem:
+      - button [ref=e400]:
+        - generic [ref=e401]:
+          - img "41% OFF.": "41% OFF"
+          - img "Roku Select Series 32\" HD Smart Roku TV"
+          - text: "Nearby, 2 mi Roku Select Series 32\" HD Smart Roku TV"
+          - group "Current Price: $99.99. Was $170."
+          - text: "Best Buy & more"
+          - img "Rated 4.5 out of 5. 424 reviews.":
+            - img "Rated 4.5 out of 5, 424 user reviews"
+    - listitem:
+      - button [ref=e402]:
+        - generic [ref=e403]:
+          - img "Samsung Class U8000H Series Crystal UHD 4K Vision AI Companion Smart Tizen TV"
+          - text: "Nearby, 22 mi Samsung Class U8000H Series Crystal UHD 4K Vision AI Companion Smart Tizen TV"
+          - group "Current Price: $248.00."
+          - text: "Walmart & more Free delivery by Sat"
+          - img "Rated 4.7 out of 5. 187 reviews.":
+            - img "Rated 4.7 out of 5, 187 user reviews"
+    - listitem:
+      - button [ref=e404]:
+        - generic [ref=e405]:
+          - img "6% OFF.": "6% OFF"
+          - img "Samsung Crystal U8000F Smart 4K UHD TV"
+          - text: "Nearby, 9 mi Samsung Crystal U8000F Smart 4K UHD TV"
+          - group "Current Price: $399.99. Was $430."
+          - text: "Target & more Free delivery by Tue"
+          - img "Rated 4.5 out of 5. 22K reviews.":
+            - img "Rated 4.5 out of 5, 22K user reviews"
+    - listitem:
+      - button [ref=e406]:
+        - generic [ref=e407]:
+          - img "28% OFF.": "28% OFF"
+          - img "Roku Class Select Series 4K LED Smart TV"
+          - text: "Also nearby Roku Class Select Series 4K LED Smart TV"
+          - group "Current Price: $178.69. Was $250."
+          - text: "Best Buy & more"
+          - img "Rated 4.8 out of 5. 2.7K reviews.":
+            - img "Rated 4.8 out of 5, 2.7K user reviews"
+    - listitem:
+      - button [ref=e408]:
+        - generic [ref=e409]:
+          - img "10% OFF.": "10% OFF"
+          - img "LG 32\" HD LR60 Smart TV"
+          - text: "Nearby, 22 mi LG 32\" HD LR60 Smart TV"
+          - group "Current Price: $124.00. Was $138."
+          - text: "Walmart Free delivery by Sat"
+          - img "Rated 4.2 out of 5. 366 reviews.":
+            - img "Rated 4.2 out of 5, 366 user reviews"
+    - listitem:
+      - button [ref=e410]:
+        - generic [ref=e411]:
+          - img "Samsung Neo QLED QN90F 4K Smart TV"
+          - text: "Also nearby Samsung Neo QLED QN90F 4K Smart TV"
+          - group "Current Price: $969.99."
+          - text: "Virginia Tech Bookstore & more Free delivery"
+          - img "Rated 4.7 out of 5. 5.5K reviews.":
+            - img "Rated 4.7 out of 5, 5.5K user reviews"
+  - list:
+    - listitem:
+      - button [ref=e412]:
+        - generic [ref=e413]:
+          - img "20% OFF.": "20% OFF"
+          - img "TCL Class Q3K Series 1080P FHD QLED Smart TV with Google TV"
+          - text: "Also nearby TCL Class Q3K Series 1080P FHD QLED Smart TV with Google TV"
+          - group "Current Price: $159.99. Was $200."
+          - text: "NFM & more"
+          - img "Rated 4.5 out of 5. 1.8K reviews.":
+            - img "Rated 4.5 out of 5, 1.8K user reviews"
+    - listitem:
+      - button [ref=e414]:
+        - generic [ref=e415]:
+          - img "Tcl Q Series Qled 4K UHD HDR Smart Google TV Dolby Vision"
+          - text: "Nearby, 22 mi Tcl Q Series Qled 4K UHD HDR Smart Google TV Dolby Vision"
+          - group "Current Price: $198.00."
+          - text: "Walmart & more Free delivery by Sat"
+          - img "Rated 4.1 out of 5. 2K reviews.":
+            - img "Rated 4.1 out of 5, 2K user reviews"
+    - listitem:
+      - button [ref=e416]:
+        - generic [ref=e417]:
+          - img "Sony BRAVIA 2 II 4K HDR Smart LED Google TV"
+          - text: "Nearby, 2 mi Sony BRAVIA 2 II 4K HDR Smart LED Google TV"
+          - group "Current Price: $669.99."
+          - text: "Best Buy & more Free delivery by Sat"
+          - img "Rated 4.7 out of 5. 1.3K reviews.":
+            - img "Rated 4.7 out of 5, 1.3K user reviews"
+    - listitem:
+      - button [ref=e418]:
+        - generic [ref=e419]:
+          - img "Samsung QN70H 4K Neo QLED Vision AI Smart TV"
+          - text: "Also nearby Samsung QN70H 4K Neo QLED Vision AI Smart TV"
+          - group "Current Price: $897.99."
+          - text: "ABC Warehouse & more"
+          - img "Rated 4.8 out of 5. 32 reviews.":
+            - img "Rated 4.8 out of 5, 32 user reviews"
+    - listitem:
+      - button [ref=e420]:
+        - generic [ref=e421]:
+          - img "Hisense Class 4K UHD LED Roku Smart TV HDR"
+          - text: "Nearby, 22 mi Hisense Class 4K UHD LED Roku Smart TV HDR"
+          - group "Current Price: $238.00."
+          - text: "Walmart & more Free delivery by Sat"
+          - img "Rated 4.0 out of 5. 18K reviews.":
+            - img "Rated 4.0 out of 5, 18K user reviews"
+    - listitem:
+      - button [ref=e422]:
+        - generic [ref=e423]:
+          - img "Samsung H5000F 32\" HD LED Smart TV"
+          - text: "Nearby, 0.6 mi Samsung H5000F 32\" HD LED Smart TV"
+          - group "Current Price: $147.99."
+          - text: "Target Same-day delivery $10"
+          - img "Rated 4.6 out of 5. 5.6K reviews.":
+            - img "Rated 4.6 out of 5, 5.6K user reviews"
+    - listitem:
+      - button [ref=e424]:
+        - generic [ref=e425]:
+          - img "30% OFF.": "30% OFF"
+          - img "TCL F35-Series 4K UHD Smart Fire TV"
+          - text: "Nearby, 15 mi TCL F35-Series 4K UHD Smart Fire TV"
+          - group "Current Price: $229.99. Was $330."
+          - text: "Best Buy & more Free delivery by Sat"
+          - img "Rated 4.6 out of 5. 3.2K reviews.":
+            - img "Rated 4.6 out of 5, 3.2K user reviews"
+    - listitem:
+      - button [ref=e426]:
+        - generic [ref=e427]:
+          - img "21% OFF.": "21% OFF"
+          - img "Vizio Quantum 65\"4k UHD Qled Television Type Vqd65m-0804"
+          - text: "Also nearby Vizio Quantum 65\"4k UHD Qled Television Type Vqd65m-0804"
+          - group "Current Price: $298.00. Was $378."
+          - text: "Walmart & more Free delivery"
+          - img "Rated 4.0 out of 5. 129 reviews.":
+            - img "Rated 4.0 out of 5, 129 user reviews"
+    - listitem:
+      - button [ref=e428]:
+        - generic [ref=e429]:
+          - img "48% OFF.": "48% OFF"
+          - img "LG OLED evo AI C5 4K Smart TV"
+          - text: "Also nearby LG OLED evo AI C5 4K Smart TV"
+          - group "Current Price: $2,199.99. Was $4,300."
+          - text: "Electronic Express & more Free delivery"
+          - img "Rated 4.8 out of 5. 11K reviews.":
+            - img "Rated 4.8 out of 5, 11K user reviews"
+    - listitem:
+      - button [ref=e430]:
+        - generic [ref=e431]:
+          - img "50% OFF.": "50% OFF"
+          - img "Hisense Class U6 Series 4K Mini-LED QLED UHD Smart Fire TV"
+          - text: "Nearby, 2 mi Hisense Class U6 Series 4K Mini-LED QLED UHD Smart Fire TV"
+          - group "Current Price: $399.99. Was $800."
+          - text: "Best Buy & more Free delivery by Sat"
+          - img "Rated 4.7 out of 5. 681 reviews.":
+            - img "Rated 4.7 out of 5, 681 user reviews"
+  - list:
+    - listitem:
+      - button [ref=e432]:
+        - generic [ref=e433]:
+          - img "Vizio Class 720p HD LED Smart TV"
+          - text: "Vizio Class 720p HD LED Smart TV"
+          - group "Current Price: $58.00."
+          - text: "Walmart - VIPOUTLET & more Free delivery"
+          - img "Rated 3.9 out of 5. 2.1K reviews.":
+            - img "Rated 3.9 out of 5, 2.1K user reviews"
+    - listitem:
+      - button [ref=e434]:
+        - generic [ref=e435]:
+          - img "Low price.": "LOW PRICE"
+          - img "Hisense 32 inch Full HD Smart Google TV"
+          - text: "Hisense 32 inch Full HD Smart Google TV"
+          - group "Current Price: $69.00. Usually $78."
+          - text: "Instacart & more"
+          - img "Rated 4.1 out of 5. 173 reviews.":
+            - img "Rated 4.1 out of 5, 173 user reviews"
+    - listitem:
+      - button [ref=e436]:
+        - generic [ref=e437]:
+          - img "Apple TV 4K"
+          - text: "Nearby, 0.8 mi Apple TV 4K"
+          - group "Current Price: $129.00."
+          - text: "Apple & more Free next-day delivery"
+          - img "Rated 4.8 out of 5. 17K reviews.":
+            - img "Rated 4.8 out of 5, 17K user reviews"
+    - listitem:
+      - button [ref=e438]:
+        - generic [ref=e439]:
+          - img "TCL Q21k Series 32\" HD QLED Smart TV"
+          - text: "Nearby, 22 mi TCL Q21k Series 32\" HD QLED Smart TV"
+          - group "Current Price: $108.00."
+          - text: "Walmart Free delivery by Fri"
+          - img "Rated 3.9 out of 5. 41 reviews.":
+            - img "Rated 3.9 out of 5, 41 user reviews"
+    - listitem:
+      - button [ref=e440]:
+        - generic [ref=e441]:
+          - img "52% OFF.": "52% OFF"
+          - img "Samsung 77\" Class OLED 4K S84F Vision AI Smart TV"
+          - text: "Nearby, 2 mi Samsung 77\" Class OLED 4K S84F Vision AI Smart TV"
+          - group "Current Price: $949.99. Was $2,000."
+          - text: "Best Buy & more Free delivery by Sat"
+          - img "Rated 4.8 out of 5. 1.6K reviews.":
+            - img "Rated 4.8 out of 5, 1.6K user reviews"
+    - listitem:
+      - button [ref=e442]:
+        - generic [ref=e443]:
+          - img "25% OFF.": "25% OFF"
+          - img "Samsung The Frame QLED 4K Smart TV"
+          - text: "Nearby, 20 mi Samsung The Frame QLED 4K Smart TV"
+          - group "Current Price: $899.99. Was $1,200."
+          - text: "Target & more"
+          - img "Rated 4.6 out of 5. 21K reviews.":
+            - img "Rated 4.6 out of 5, 21K user reviews"
+    - listitem:
+      - button [ref=e444]:
+        - generic [ref=e445]:
+          - img "37% OFF.": "37% OFF"
+          - img "Vizio Class 4K UHD LED HDR Smart TV"
+          - text: "Vizio Class 4K UHD LED HDR Smart TV"
+          - group "Current Price: $268.00. Was $428."
+          - text: "Walmart & more Free delivery"
+          - img "Rated 4.2 out of 5. 27K reviews.":
+            - img "Rated 4.2 out of 5, 27K user reviews"
+    - listitem:
+      - button [ref=e446]:
+        - generic [ref=e447]:
+          - img "LG 24\" HD Smart TV"
+          - text: "Nearby, 6 mi LG 24\" HD Smart TV"
+          - group "Current Price: $169.99."
+          - text: "Best Buy & more Free delivery by Fri"
+          - img "Rated 4.5 out of 5. 629 reviews.":
+            - img "Rated 4.5 out of 5, 629 user reviews"
+    - listitem:
+      - button [ref=e448]:
+        - generic [ref=e449]:
+          - img "30% OFF.": "30% OFF"
+          - img "TCL Class QM6K Series QD-Mini LED QLED 4K UHD Smart Google TV"
+          - text: "Also nearby TCL Class QM6K Series QD-Mini LED QLED 4K UHD Smart Google TV"
+          - group "Current Price: $699.99. Was $1,000."
+          - text: "TCL US & more Free delivery"
+          - img "Rated 4.6 out of 5. 3K reviews.":
+            - img "Rated 4.6 out of 5, 3K user reviews"
+    - listitem:
+      - button [ref=e450]:
+        - generic [ref=e451]:
+          - img "20% OFF.": "20% OFF"
+          - img "Westinghouse 24\" Roku Smart TV"
+          - text: "Westinghouse 24\" Roku Smart TV"
+          - group "Current Price: $79.99. Was $100."
+          - text: "BJ's Wholesale Club & more Free delivery"
+          - img "Rated 4.7 out of 5. 7.8K reviews.":
+            - img "Rated 4.7 out of 5, 7.8K user reviews"
+  - heading "Page Navigation" [level=1]
+  - button "More results" [ref=e453]
+  - navigation
+</result>
+
+[6] thinking: **Processing smart TV search**
+
+I’m searching for “smart TVs,” and I find that a bit odd, but the results look fine. I think I need to apply some filters like clicking on the sizes between 55-65 inches and LED options. Should I use fresh references? It seems like the current S2 references are valid until the next snapshot. I might click e39 or e171 and then check the snapshot differences. Let's see how this unfolds!
+
+[7] tool_call: repl("Applying the screen-size filter")
+<request>
+await page.locator('e39').click();
+const s3 = await snapshot(page);
+console.log(s3.diff);
+</request>
+<result tokens_used="108" elapsed_time="6757ms">
+[Output too large (62.2KB). Full output saved to: /Users/vista/.aside/u/0/agents/main/sessions/2026-05-13_ZewRDeiGdWuK4XJA/tmp/repl-result-1g6eULmoe6XZIVqF.txt]
+
+Preview (first 4.0KB):
+- title: "55 inches to 65 inches smart tvs - Google Shopping" [url=https://www.google.com/search?q=55+inches+to+65+inches+smart+tvs&udm=28&shopmd=1&shoprs=CAESGioYCLPaPRISCQAAAGBmdmFAEQAAAEAzo2RA…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "55 inches to 65 inches smart tvs 55 inches to 65 inches smart tvs"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - list:
+      - listitem:
+        - list:
+          - listitem "On sale filter. Not selected." [ref=e22]:
+            - link "On sale filter. Not selected." [ref=e23]: "On sale"
+          - listitem "Get it today filter. Not selected." [ref=e24]:
+            - link "Get it today filter. Not selected." [ref=e25]: "Get it today"
+          - listitem "New filter. Not selected." [ref=e26]:
+            - link "New filter. Not selected." [ref=e27]: "New"
+          - listitem "Used filter. Not selected." [ref=e28]:
+            - link "Used filter. Not selected." [ref=e29]: "Used"
+          - listitem "Small business filter. Not selected." [ref=e30]:
+            - link "Small business filter. Not selected." [ref=e31]: "Small business"
+      - listitem:
+        - button "HDTV Format" [ref=e32]
+        - list:
+          - listitem "4K filter. Not selected." [ref=e33]:
+            - link "4K filter. Not selected." [ref=e34]: "4K"
+          - listitem "1080p filter. Not selected." [ref=e35]:
+            - link "1080p filter. Not selected." [ref=e36]: "1080p"
+      - listitem:
+        - button "Connectivity" [ref=e37]
+        - list:
+          - listitem "Wi-Fi filter. Not selected." [ref=e38]:
+            - link "Wi-Fi filter. Not selected." [ref=e39]: "Wi-Fi"
+          - listitem "HDMI filter. Not selected." [ref=e40]:
+            - link "HDMI filter. Not selected." [ref=e41]: "HDMI"
+          - listitem "AUX filter. Not selected." [ref=e42]:
+            - link "AUX filter. Not selected." [ref=e43]: "AUX"
+          - listitem "IrDA filter. Not selected." [ref=e44]:
+            - link "IrDA filter. Not selected." [ref=e45]: "IrDA"
+        - button "See more" [ref=e46]
+      - listitem:
+        - button "Supported Streaming Services" [ref=e47]
+        - list:
+          - listitem "Netflix filter. Not selected." [ref=e48]:
+            - link "Netflix filter. Not selected." [ref=e49]: "Netflix"
+          - listitem "Prime Video filter. Not selected." [ref=e50]:
+            - link "Prime Video filter. Not selected." [ref=e51]: "Prime Video"
+          - listitem "Hulu filter. Not selected." [ref=e52]:
+            - link "Hulu filter. Not selected." [ref=e53]: "Hulu"
+          - listitem "Roku filter. Not selected." [ref=e54]:
+            - link "Roku filter. Not selected." [ref=e55]: "Roku"
+        - button "See more" [ref=e56]
+      - listitem:
+        - button "Display Type" [ref=e57]
+        - list:
+          - listitem "QLED filter. Not selected." [ref=e58]:
+            - link "QLED filter. Not selected." [ref=e59]: "QLED"
+          - listitem "LED filter. Not selected." [ref=e60]:
+            - link "LED filter. Not selected." [ref=e61]: "LED"
+          - listitem "OLED filter. Not selected." [ref=e62]:
+            - link "OLED filter. Not selected." [ref=e63]: "OLED"
+          - listitem "CRT filter. Not selected." [ref=e64]:
+            - link "CRT filter. Not selected." [ref=e65]: "CRT"
+      - listitem:
+        - button "Features" [ref=e66]
+...
+</result>
+
+[8] thinking: **Verifying snapshot actions**
+
+I need to click the LED reference e61 from S3 since the new snapshot is completed and the references are valid. I must also verify the selected filters. The output seems a bit large, but that’s alright; I could consider using an interactive snapshot that might be smaller or more focused. After clicking the LED, maybe the interactive snapshot can be useful, and I’ll make sure to print the diff after taking action.
+
+[9] tool_call: repl("Applying the LED display filter")
+<request>
+await page.locator('e61').click();
+const s4 = await snapshot(page, {interactive: true});
+console.log(s4.diff);
+</request>
+<result tokens_used="139" elapsed_time="5030ms">
+# note: interactive (clickable / focusable) elements only.
+- title: "led 55 inches to 65 inches smart tvs - Google Shopping" [url=https://www.google.com/search?q=led+55+inches+to+65+inches+smart+tvs&udm=28&shopmd=1&shoprs=CAESGioYCLPaPRISCQAAAGBmdmFAEQAAAEAz…]
+- banner:
+  - button "Shopping main menu" [ref=e1]:
+    - img "Shopping main menu"
+  - link "Shopping Home" [ref=e2]
+  - search:
+    - combobox "Search" [ref=e3] [placeholder="Shop for anything"]: "led 55 inches to 65 inches smart tvs led 55 inches to 65 inches smart tvs"
+    - button "Clear" [ref=e5]
+    - button "Search by voice" [ref=e6]
+    - button "Search by image" [ref=e7]
+    - button "Search" [ref=e8]
+  - banner:
+    - link "Search Labs" [ref=e9]
+    - button "Google apps" [ref=e10]
+    - button "Google Account: Jun Kim (retail3210@gmail.com)" [ref=e11]
+  - link [ref=e12]
+  - link [ref=e13]:
+    - link "Search" [ref=e14]
+  - link [ref=e15]:
+    - link "Nearby" [ref=e16]
+  - link [ref=e17]:
+    - link "Deals" [ref=e18]
+  - link [ref=e19]:
+    - link "For you" [ref=e20]
+- heading "Search Results" [level=1]
+- navigation:
+  - heading "Refine results" [level=2]
+  - generic [ref=e21] [scrollable]:
+    - link "On sale filter. Not selected." [ref=e22]: "On sale"
+    - link "Get it today filter. Not selected." [ref=e23]: "Get it today"
+    - link "New filter. Not selected." [ref=e24]: "New"
+    - link "Used filter. Not selected." [ref=e25]: "Used"
+    - link "Small business filter. Not selected." [ref=e26]: "Small business"
+    - button "Display Type" [ref=e27]
+    - link "Remove LED filter. Selected." [ref=e28]: "LED"
+    - link "LCD filter. Not selected." [ref=e29]: "LCD"
+    - link "OLED filter. Not selected." [ref=e30]: "OLED"
+    - link "QLED filter. Not selected." [ref=e31]: "QLED"
+    - button "See more" [ref=e32]
+    - button "HDTV Format" [ref=e33]
+    - link "4K filter. Not selected." [ref=e34]: "4K"
+    - link "1080p filter. Not selected." [ref=e35]: "1080p"
+    - button "Connectivity" [ref=e36]
+    - link "Wi-Fi filter. Not selected." [ref=e37]: "Wi-Fi"
+    - link "HDMI filter. Not selected." [ref=e38]: "HDMI"
+    - link "USB filter. Not selected." [ref=e39]: "USB"
+    - link "Ethernet filter. Not selected." [ref=e40]: "Ethernet"
+    - button "See more" [ref=e41]
+    - button "Features" [ref=e42]
+    - link "High Definition filter. Not selected." [ref=e43]: "High Definition"
+    - link "Smart TV filter. Not selected." [ref=e44]: "Smart TV"
+    - link "Anti-glare filter. Not selected." [ref=e45]: "Anti-glare"
+    - link "3D filter. Not selected." [ref=e46]: "3D"
+    - button "See more" [ref=e47]
+    - button "Supported Streaming Services" [ref=e48]
+    - link "Prime Video filter. Not selected." [ref=e49]: "Prime Video"
+    - link "Netflix filter. Not selected." [ref=e50]: "Netflix"
+    - link "YouTube filter. Not selected." [ref=e51]: "YouTube"
+    - link "Roku filter. Not selected." [ref=e52]: "Roku"
+    - button "See more" [ref=e53]
+    - button "Resolution" [ref=e54]
+    - link "3840 x 2160 filter. Not selected." [ref=e55]: "3840 x 2160"
+    - link "1920 x 1080 filter. Not selected." [ref=e56]: "1920 x 1080"
+    - button "Refresh Rate" [ref=e57]
+    - link "120 Hz filter. Not selected." [ref=e58]: "120 Hz"
+    - link "50 Hz filter. Not selected." [ref=e59]: "50 Hz"
+    - button "Weight" [ref=e60]
+    - link "Under 23.8 lb filter. Not selected." [ref=e61]: "Under 23.8 lb"
+    - link "23.8 – 29.3 lb filter. Not selected." [ref=e62]: "23.8 – 29.3 lb"
+    - link "29.3 – 34.2 lb filter. Not selected." [ref=e63]: "29.3 – 34.2 lb"
+    - link "34.2 – 39.7 lb filter. Not selected." [ref=e64]: "34.2 – 39.7 lb"
+    - link "Over 39.7 lb filter. Not selected." [ref=e65]: "Over 39.7 lb"
+    - button "Color" [ref=e66]
+    - link "Black filter. Not selected." [ref=e67]: "Black"
+    - link "Beige filter. Not selected." [ref=e68]: "Beige"
+    - button "Product Rating" [ref=e69]
+    - link "Four stars and up filter. Not selected." [ref=e70]:
+      - img "Rated 4.0 out of 5,"
+      - text: "4 and up"
+    - button "Price" [ref=e71]
+    - link "Under $300 filter. Not selected." [ref=e72]: "Under $300"
+    - link "$300 to $500 filter. Not selected." [ref=e73]: "$300 - $500"
+    - link "$500 to $1,000 filter. Not selected." [ref=e74]: "$500 - $1,000"
+    - link "Over $1,000 filter. Not selected." [ref=e75]: "Over $1,000"
+    - textbox "Minimum price ($)" [ref=e76]
+    - text: "Min"
+    - textbox "Maximum price ($)" [ref=e77]
+    - text: "Max"
+    - button "Go" [ref=e78] [disabled]
+    - button "Depth" [ref=e79]
+    - link "Under 1.1 in deep filter. Not selected." [ref=e80]: "Under 1.1 in deep"
+    - link "1.1 – 1.6 in deep filter. Not selected." [ref=e81]: "1.1 – 1.6 in deep"
+    - link "1.6 – 2.2 in deep filter. Not selected." [ref=e82]: "1.6 – 2.2 in deep"
+    - link "2.2 – 3 in deep filter. Not selected." [ref=e83]: "2.2 – 3 in deep"
+    - link "Over 3 in deep filter. Not selected." [ref=e84]: "Over 3 in deep"
+    - button "Stores" [ref=e85]
+    - link "Walmart filter. Not selected." [ref=e86]: "Walmart"
+    - link "Best Buy filter. Not selected." [ref=e87]: "Best Buy"
+    - link "BJ's Wholesale Club filter. Not selected." [ref=e88]: "BJ's Wholesale Club"
+    - link "Home Depot filter. Not selected." [ref=e89]: "Home Depot"
+    - button "See more" [ref=e90]
+    - button "Brand" [ref=e91]
+    - link "Sony filter. Not selected." [ref=e92]: "Sony"
+    - link "LG filter. Not selected." [ref=e93]: "LG"
+    - link "VIZIO filter. Not selected." [ref=e94]: "VIZIO"
+    - link "Hisense filter. Not selected." [ref=e95]: "Hisense"
+    - button "See more" [ref=e96]
+    - button "Free shipping" [ref=e97]
+    - link "Free shipping filter. Not selected." [ref=e98]: "Free shipping"
+- navigation "Refinement" [ref=e99]:
+  - generic [ref=e100] [scrollable]:
+    - list:
+      - button "All filters." [ref=e101]
+      - listitem [ref=e102]:
+        - link "Remove 55 – 65 inches filter. Selected." [ref=e103]: "55 – 65 inches"
+      - listitem [ref=e104]:
+        - link "Remove LED filter. Selected." [ref=e105]: "LED"
+      - listitem [ref=e106]:
+        - link "4K filter. Not selected." [ref=e107]: "4K"
+      - listitem [ref=e108]:
+        - link "Wi-Fi filter. Not selected." [ref=e109]: "Wi-Fi"
+      - listitem [ref=e110]:
+        - link "HDMI filter. Not selected." [ref=e111]: "HDMI"
+      - listitem [ref=e112]:
+        - link "Flat filter. Not selected." [ref=e113]: "Flat"
+      - listitem [ref=e114]:
+        - link "High Definition filter. Not selected." [ref=e115]: "High Definition"
+      - listitem [ref=e116]:
+        - link "Smart TV filter. Not selected." [ref=e117]: "Smart TV"
+      - listitem [ref=e118]:
+        - link "Prime Video filter. Not selected." [ref=e119]: "Prime Video"
+      - listitem [ref=e120]:
+        - link "1080p filter. Not selected." [ref=e121]: "1080p"
+      - listitem [ref=e122]:
+        - link "Netflix filter. Not selected." [ref=e123]: "Netflix"
+      - listitem [ref=e124]:
+        - link "Anti-glare filter. Not selected." [ref=e125]: "Anti-glare"
+      - listitem [ref=e126]:
+        - link "On sale filter. Not selected." [ref=e127]: "On sale"
+      - listitem [ref=e128]:
+        - link "3840 x 2160 filter. Not selected." [ref=e129]: "3840 x 2160"
+      - listitem [ref=e130]:
+        - link "120 Hz filter. Not selected." [ref=e131]: "120 Hz"
+      - listitem [ref=e132]:
+        - link "Get it today filter. Not selected." [ref=e133]: "Get it today"
+      - listitem [ref=e134]:
+        - link "29.3 – 34.2 lb filter. Not selected." [ref=e135]: "29.3 – 34.2 lb"
+      - listitem [ref=e136]:
+        - link "YouTube filter. Not selected." [ref=e137]: "YouTube"
+      - listitem [ref=e138]:
+        - link "34.2 – 39.7 lb filter. Not selected." [ref=e139]: "34.2 – 39.7 lb"
+      - listitem [ref=e140]:
+        - link "Roku filter. Not selected." [ref=e141]: "Roku"
+      - listitem [ref=e142]:
+        - link "23.8 – 29.3 lb filter. Not selected." [ref=e143]: "23.8 – 29.3 lb"
+      - listitem [ref=e144]:
+        - link "Under 23.8 lb filter. Not selected." [ref=e145]: "Under 23.8 lb"
+      - listitem [ref=e146]:
+        - link "Over 39.7 lb filter. Not selected." [ref=e147]: "Over 39.7 lb"
+      - listitem [ref=e148]:
+        - link "Hulu filter. Not selected." [ref=e149]: "Hulu"
+      - listitem [ref=e150]:
+        - link "Black filter. Not selected." [ref=e151]: "Black"
+      - listitem [ref=e152]:
+        - link "USB filter. Not selected." [ref=e153]: "USB"
+      - listitem [ref=e154]:
+        - link "Ethernet filter. Not selected." [ref=e155]: "Ethernet"
+      - listitem [ref=e156]:
+        - link "3D filter. Not selected." [ref=e157]: "3D"
+  - combobox "Sort by:Relevance" [ref=e158]
+- main:
+  - region "Ads" [ref=e159]:
+    - heading [level=3]: "Sponsored products"
+    - button "Why this ad?" [ref=e160]
+    - generic [ref=e161] [scrollable]:
+      - link "for from Best Buy" [ref=e162]:
+        - link "for from Best Buy" [ref=e163]
+      - link [ref=e164]:
+        - link "Mission District" [ref=e165]
+      - heading [level=3]: "LG - 65” Class UA7050 Series LED AI 4K UHD Smart webOS TV (2025)"
+      - text: "$329.99 Best Buy"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Netflix, Prime Video, YouTube, HBO, Disney+"
+      - link "for was $800 from Best Buy" [ref=e166]:
+        - link "for was $800 from Best Buy" [ref=e167]
+      - text: "Sale"
+      - link [ref=e168]:
+        - link [ref=e169]
+      - heading [level=3]: "Sony - 65\" Class BRAVIA 3 LED 4K UHD Smart Google TV (2024)"
+      - text: "$649.99$800 Best Buy"
+      - img "Rated 4.5 out of 5, (6k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Hulu, Netflix, Prime Video, YouTube, HBO, Disney+, Apple TV+"
+      - link "for from Walmart" [ref=e170]:
+        - link "for from Walmart" [ref=e171]
+      - link [ref=e172]:
+        - link [ref=e173]
+      - heading [level=3]: "Vizio 55 Class 4K UHD LED HDR Smart TV (v4k55m-08)"
+      - text: "$198.00 Walmart"
+      - img "Rated 4.2 out of 5, (9k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi, USB, HDMI, Optical Audio · Netflix · 60 Hz · 3840 x 2160"
+      - link "for from Best Buy" [ref=e174]:
+        - link "for from Best Buy" [ref=e175]
+      - link [ref=e176]:
+        - link "Pinole" [ref=e177]
+      - heading [level=3]: "TCL - 55\" Class F35-Series 4K UHD HDR LED Smart Fire TV (2025)"
+      - text: "$229.99 Best Buy"
+      - img "Rated 4.6 out of 5, (3k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Google Play, Netflix, Prime Video, Vudu, YouTube, Spotify, Disney+"
+      - link "for was $600 from Best Buy" [ref=e178]:
+        - link "for was $600 from Best Buy" [ref=e179]
+      - text: "Sale"
+      - link [ref=e180]:
+        - link "Mission District" [ref=e181]
+      - heading [level=3]: "LG - 55\" Class 75B Series QNED AI Mini LED 4K Smart webOS TV (2026)"
+      - text: "$449.99$600 Best Buy"
+      - img "Rated 4.3 out of 5, (1k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi · 3840 x 2160 · Flat · 4K · Black · 48.3 in wide"
+      - link "for was $650 from Best Buy" [ref=e182]:
+        - link "for was $650 from Best Buy" [ref=e183]
+      - text: "Sale"
+      - link [ref=e184]:
+        - link "Mission District" [ref=e185]
+      - heading [level=3]: "Roku - 65\" Class Plus Series 4K QLED Mini-LED Smart RokuTV (2025)"
+      - text: "$479.99$650 Best Buy"
+      - img "Rated 4.7 out of 5, (749) user reviews"
+      - text: "QLED · 65 inches · Bluetooth, Wi-Fi, HDMI · Hulu, Netflix, Prime Video, Disney+, Roku"
+      - link "for from Best Buy" [ref=e186]:
+        - link "for from Best Buy" [ref=e187]
+      - link [ref=e188]:
+        - link "Oakland" [ref=e189]
+      - heading [level=3]: "Insignia - 65\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$269.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, HDMI · Netflix, Prime Video, Disney+ · 3840 x 2160 · Flat · Amazon Alexa"
+      - link "for from Best Buy" [ref=e190]:
+        - link "for from Best Buy" [ref=e191]
+      - link [ref=e192]:
+        - link "Mission District" [ref=e193]
+      - heading [level=3]: "Toshiba - 65\" Class C350 Series LED 4K UHD Smart Fire TV"
+      - text: "$339.99 Best Buy"
+      - img "Rated 4.5 out of 5, (2k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, HBO, Disney+"
+      - link "for from Best Buy" [ref=e194]:
+        - link "for from Best Buy" [ref=e195]
+      - link [ref=e196]:
+        - link "Mission District" [ref=e197]
+      - heading [level=3]: "Sony - 65\" Class BRAVIA 2 II LED 4K UHD Smart Google TV (2025)"
+      - text: "$669.99 Best Buy"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, Wi-Fi, USB, HDMI, Ethernet · Netflix, Prime Video, YouTube, Disney+"
+      - link "for was $700 from Best Buy" [ref=e198]:
+        - link "for was $700 from Best Buy" [ref=e199]
+      - text: "Sale"
+      - link [ref=e200]:
+        - link [ref=e201]
+      - heading [level=3]: "Sony - 55\" Class BRAVIA 3 LED 4K UHD Smart Google TV (2024)"
+      - text: "$549.99$700 Best Buy"
+      - img "Rated 4.5 out of 5, (6k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi, IrDA, RF, USB, HDMI, Ethernet, Optical Audio · Netflix, Prime Video, YouTube, Disney+, Apple TV+"
+      - link "for from Best Buy" [ref=e202]:
+        - link "for from Best Buy" [ref=e203]
+      - link [ref=e204]:
+        - link "Oakland" [ref=e205]
+      - heading [level=3]: "TCL - 55\" Class S5-Series 4K UHD HDR LED Smart Google TV (2024)"
+      - text: "$249.99 Best Buy"
+      - img "Rated 4.4 out of 5, (2k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, DVI, Ethernet, AUX · Hulu, Google Play, Netflix, Prime Video, Vudu, YouTube, Spotify, HBO, Disney+"
+      - link "for from Best Buy" [ref=e206]:
+        - link "for from Best Buy" [ref=e207]
+      - link [ref=e208]:
+        - link "Mission District" [ref=e209]
+      - heading [level=3]: "Samsung - 65\" Class U7900 Series UHD 4K Smart Tizen TV (2025)"
+      - text: "$329.99 Best Buy"
+      - img "Rated 4.5 out of 5, (9k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, Wi-Fi, USB, HDMI · 60 Hz · 3840 x 2160 · Flat · 4K"
+      - link "for from Best Buy" [ref=e210]:
+        - link "for from Best Buy" [ref=e211]
+      - link [ref=e212]:
+        - link "Mission District" [ref=e213]
+      - heading [level=3]: "Roku - 65\" Class 4K HDR LED Smart RokuTV (2025)"
+      - text: "$429.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "LED · 65 inches · Roku · 60 Hz · 3840 x 2160 · Flat · 4K"
+      - link "for from Best Buy" [ref=e214]:
+        - link "for from Best Buy" [ref=e215]
+      - link [ref=e216]:
+        - link "Mission District" [ref=e217]
+      - heading [level=3]: "Insignia - 65\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$299.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "LED · 65 inches · Wi-Fi, USB, HDMI, Ethernet, AUX · Hulu, Netflix, Prime Video, HBO, Disney+"
+      - link "for from Best Buy" [ref=e218]:
+        - link "for from Best Buy" [ref=e219]
+      - link [ref=e220]:
+        - link "Mission District" [ref=e221]
+      - heading [level=3]: "TCL - 65\" Class QM5K Series 4K UHD QD-Mini LED Smart TV with Google TV (2025)"
+      - text: "$549.99 Best Buy"
+      - img "Rated 4.7 out of 5, (2k+) user reviews"
+      - text: "LED · 65 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, Optical Audio · Hulu, Google Play, Netflix, Prime Video, Vudu, YouTube, Spotify, HBO, Disney+"
+      - link "for from Best Buy" [ref=e222]:
+        - link "for from Best Buy" [ref=e223]
+      - link [ref=e224]:
+        - link "Mission District" [ref=e225]
+      - heading [level=3]: "Insignia - 55\" Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "$199.99 Best Buy"
+      - img "Rated 4.6 out of 5, (9k+) user reviews"
+      - text: "LED · 55 inches · Wi-Fi, USB, HDMI, Ethernet, AUX · Hulu, Netflix, Prime Video, HBO, Disney+"
+      - link "for from Best Buy" [ref=e226]:
+        - link "for from Best Buy" [ref=e227]
+      - link [ref=e228]:
+        - link [ref=e229]
+      - heading [level=3]: "Roku - 55\" Class 4K HDR LED Smart RokuTV"
+      - text: "$259.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, AUX, Optical Audio · Hulu, Netflix, Prime Video, YouTube, Pandora, Spotify, HBO, Disney+, Roku"
+      - link "for from Best Buy" [ref=e230]:
+        - link "for from Best Buy" [ref=e231]
+      - link [ref=e232]:
+        - link "Oakland" [ref=e233]
+      - heading [level=3]: "TCL - 65\" Class Q6-Series 4K UHD QLED Smart Google TV (2024)"
+      - text: "$429.99 Best Buy"
+      - img "Rated 4.5 out of 5, (6k+) user reviews"
+      - text: "QLED · 65 inches · Bluetooth, Wi-Fi, RF, USB, HDMI, Ethernet, AUX, Optical Audio · Hulu, Google Play, Netflix, Prime Video, Vudu, YouTube, Spotify, Disney+"
+      - link "for from Best Buy" [ref=e234]:
+        - link "for from Best Buy" [ref=e235]
+      - link [ref=e236]:
+        - link "Mission District" [ref=e237]
+      - heading [level=3]: "Roku - 65\" Class Select Series 4K QLED Smart RokuTV (2026)"
+      - text: "$379.99 Best Buy"
+      - img "Rated 4.8 out of 5, (1k+) user reviews"
+      - text: "QLED · 65 inches · USB, HDMI · Roku · 60 Hz · 3840 x 2160 · Flat · 4K · Black"
+      - link "for was $600 from Best Buy" [ref=e238]:
+        - link "for was $600 from Best Buy" [ref=e239]
+      - text: "Sale"
+      - link [ref=e240]:
+        - link [ref=e241]
+      - heading [level=3]: "Sony - 55\" Class BRAVIA 2 II LED 4K UHD Smart Google TV (2025)"
+      - text: "$569.99$600 Best Buy"
+      - img "Rated 4.7 out of 5, (1k+) user reviews"
+      - text: "LED · 55 inches · Bluetooth, Wi-Fi, IrDA, RF, USB, HDMI, Ethernet, Optical Audio · Hulu, Google Play, Netflix, Prime Video, YouTube, Disney+"
+  - heading "55-inch Smart TVs under $500" [level=2]
+  - link "More" [ref=e242]
+  - button "55-inch Smart TVs under $500" [ref=e243]
+  - generic [ref=e244] [scrollable]:
+    - list:
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e245]:
+          - generic [ref=e246]:
+            - img "36% OFF.": "36% OFF"
+            - text: "Pioneer 55\" Class LED 4K UHD Smart Xumo TV"
+            - group "Current Price: $189.99. Was $300."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.3 out of 5. 2.5K reviews.":
+              - img "Rated 4.3 out of 5, 2.5K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e247]:
+          - generic [ref=e248]:
+            - text: "Vizio Class 4K UHD LED HDR Smart TV"
+            - group "Current Price: $198.00."
+            - text: "Walmart & more Free next-day delivery Free 90-day returns"
+            - img "Rated 4.2 out of 5. 28K reviews.":
+              - img "Rated 4.2 out of 5, 28K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e249]:
+          - generic [ref=e250]:
+            - img "34% OFF.": "34% OFF"
+            - text: "Samsung Class U7900 Series 4K UHD Smart TV"
+            - group "Current Price: $249.99. Was $380."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.5 out of 5. 16K reviews.":
+              - img "Rated 4.5 out of 5, 16K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e251]:
+          - generic [ref=e252]:
+            - img "10% OFF.": "10% OFF"
+            - text: "Roku 4K HDR Smart TV with Remote Select Series"
+            - group "Current Price: $269.99. Was $300."
+            - text: "Target & more Free delivery by Tue 90-day returns"
+            - img "Rated 4.7 out of 5. 1.6K reviews.":
+              - img "Rated 4.7 out of 5, 1.6K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e253]:
+          - generic [ref=e254]:
+            - img "21% OFF.": "21% OFF"
+            - text: "LG UA77 LED AI 4K UHD Smart webOS TV"
+            - group "Current Price: $299.99. Was $380."
+            - text: "Target & more Free delivery by Tue 90-day returns"
+            - img "Rated 4.6 out of 5. 4.9K reviews.":
+              - img "Rated 4.6 out of 5, 4.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e255]:
+          - generic [ref=e256]:
+            - text: "Samsung DU7200 Crystal 4K UHD Smart TV"
+            - group "Current Price: $339.97."
+            - text: "Walts TV & more Free next-day delivery 30-day returns"
+            - img "Rated 4.1 out of 5. 9.9K reviews.":
+              - img "Rated 4.1 out of 5, 9.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e257]:
+          - generic [ref=e258]:
+            - img "37% OFF.": "37% OFF"
+            - text: "Toshiba Class C350 Series LED 4K UHD Smart Fire TV"
+            - group "Current Price: $249.99. Was $400."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.5 out of 5. 2.3K reviews.":
+              - img "Rated 4.5 out of 5, 2.3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e259]:
+          - generic [ref=e260]:
+            - img "26% OFF.": "26% OFF"
+            - text: "Samsung Q8F 4K QLED Vision AI Smart TV"
+            - group "Current Price: $549.00. Was $749."
+            - text: "The Big Screen Store & more 15-day returns"
+            - img "Rated 4.6 out of 5. 5.4K reviews.":
+              - img "Rated 4.6 out of 5, 5.4K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e261]:
+          - generic [ref=e262]:
+            - text: "Tcl 55 inch Q Series Qled 4K UHD HDR Smart Google TV Dolby Vision 55q51k"
+            - group "Current Price: $258.00."
+            - text: "Walmart & more Free delivery by Fri Free 90-day returns"
+            - img "Rated 4.1 out of 5. 617 reviews.":
+              - img "Rated 4.1 out of 5, 617 user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e263]:
+          - generic [ref=e264]:
+            - img "42% OFF.": "42% OFF"
+            - text: "Insignia Class F50 Series LED 4K UHD Smart Fire TV"
+            - group "Current Price: $199.99. Was $350."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.6 out of 5. 11K reviews.":
+              - img "Rated 4.6 out of 5, 11K user reviews"
+    - link "More" [ref=e265]
+  - heading "65-inch Smart TVs for Gaming" [level=2]
+  - link "More" [ref=e266]
+  - button "65-inch Smart TVs for Gaming" [ref=e267]
+  - generic [ref=e268] [scrollable]:
+    - list:
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e269]:
+          - generic [ref=e270]:
+            - text: "TCL Class QM6K Series QD-Mini LED QLED 4K UHD Smart Google TV"
+            - group "Current Price: $698.00."
+            - text: "Walmart & more Free delivery by Fri Free 90-day returns"
+            - img "Rated 4.6 out of 5. 3K reviews.":
+              - img "Rated 4.6 out of 5, 3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e271]:
+          - generic [ref=e272]:
+            - text: "LG Class B5 Series OLED AI 4K Smart webOS TV"
+            - group "Current Price: $999.96."
+            - text: "Sams Best Brand Plus & more Free delivery"
+            - img "Rated 4.7 out of 5. 4.9K reviews.":
+              - img "Rated 4.7 out of 5, 4.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e273]:
+          - generic [ref=e274]:
+            - img "50% OFF.": "50% OFF"
+            - text: "Samsung Neo QLED 4K QN80F Vision AI Smart TV"
+            - group "Current Price: $899.99. Was $1,800."
+            - text: "Jetson's Appliance & more 14-day returns"
+            - img "Rated 4.7 out of 5. 3.8K reviews.":
+              - img "Rated 4.7 out of 5, 3.8K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e275]:
+          - generic [ref=e276]:
+            - img "26% OFF.": "26% OFF"
+            - text: "Samsung Q8F 4K QLED Vision AI Smart TV"
+            - group "Current Price: $549.00. Was $749."
+            - text: "The Big Screen Store & more 15-day returns"
+            - img "Rated 4.6 out of 5. 5.4K reviews.":
+              - img "Rated 4.6 out of 5, 5.4K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e277]:
+          - generic [ref=e278]:
+            - img "44% OFF.": "44% OFF"
+            - text: "Samsung OLED 4K S90F Smart TV"
+            - group "Current Price: $1,397.99. Was $2,500."
+            - text: "Best Buy & more"
+            - img "Rated 4.8 out of 5. 9.3K reviews.":
+              - img "Rated 4.8 out of 5, 9.3K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e279]:
+          - generic [ref=e280]:
+            - text: "Vizio Class 4K UHD LED HDR Smart TV"
+            - group "Current Price: $198.00."
+            - text: "Walmart & more Free next-day delivery Free 90-day returns"
+            - img "Rated 4.2 out of 5. 28K reviews.":
+              - img "Rated 4.2 out of 5, 28K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e281]:
+          - generic [ref=e282]:
+            - img "29% OFF.": "29% OFF"
+            - text: "Samsung Class U7900 Series 4K UHD Smart TV"
+            - group "Current Price: $329.99. Was $470."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.5 out of 5. 16K reviews.":
+              - img "Rated 4.5 out of 5, 16K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e283]:
+          - generic [ref=e284]:
+            - img "21% OFF.": "21% OFF"
+            - text: "LG UA77 LED AI 4K UHD Smart webOS TV"
+            - group "Current Price: $299.99. Was $380."
+            - text: "Target & more Free delivery by Tue 90-day returns"
+            - img "Rated 4.6 out of 5. 4.9K reviews.":
+              - img "Rated 4.6 out of 5, 4.9K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e285]:
+          - generic [ref=e286]:
+            - img "36% OFF.": "36% OFF"
+            - text: "Pioneer 55\" Class LED 4K UHD Smart Xumo TV"
+            - group "Current Price: $189.99. Was $300."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.3 out of 5. 2.5K reviews.":
+              - img "Rated 4.3 out of 5, 2.5K user reviews"
+      - listitem:
+        - button "Go to product viewer for this item." [ref=e287]:
+          - generic [ref=e288]:
+            - img "42% OFF.": "42% OFF"
+            - text: "Insignia Class F50 Series LED 4K UHD Smart Fire TV"
+            - group "Current Price: $199.99. Was $350."
+            - text: "Best Buy & more Free delivery by Sat 15-day returns"
+            - img "Rated 4.6 out of 5. 11K reviews.":
+              - img "Rated 4.6 out of 5, 11K user reviews"
+    - link "More" [ref=e289]
+  - heading "All products" [level=2]
+  - button [ref=e290]:
+    - generic [ref=e291]:
+      - img "Vizio Class 4K UHD LED HDR Smart TV"
+      - text: "Nearby, 22 mi Vizio Class 4K UHD LED HDR Smart TV"
+      - group "Current Price: $198.00."
+      - text: "Walmart & more Free next-day delivery"
+      - img "Rated 4.2 out of 5. 28K reviews.":
+        - img "Rated 4.2 out of 5, 28K user reviews"
+  - button [ref=e292]:
+    - generic [ref=e293]:
+      - img "38% OFF.": "38% OFF"
+      - img "Pioneer Class LED 4K UHD Smart Roku TV"
+      - text: "Nearby, 2 mi Pioneer Class LED 4K UHD Smart Roku TV"
+      - group "Current Price: $219.99. Was $360."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.8 out of 5. 1.3K reviews.":
+        - img "Rated 4.8 out of 5, 1.3K user reviews"
+  - button [ref=e294]:
+    - generic [ref=e295]:
+      - img "TCL S41CG Series 4K UHD Smart Google TV Limited Edition"
+      - text: "Nearby, 22 mi TCL S41CG Series 4K UHD Smart Google TV Limited Edition"
+      - group "Current Price: $198.00."
+      - text: "Walmart"
+      - img "Rated 3.9 out of 5. 147 reviews.":
+        - img "Rated 3.9 out of 5, 147 user reviews"
+  - button [ref=e296]:
+    - generic [ref=e297]:
+      - img "21% OFF.": "21% OFF"
+      - img "LG UA77 LED AI 4K UHD Smart webOS TV"
+      - text: "Nearby, 0.6 mi LG UA77 LED AI 4K UHD Smart webOS TV"
+      - group "Current Price: $299.99. Was $380."
+      - text: "Target & more Free delivery by Tue"
+      - img "Rated 4.6 out of 5. 4.9K reviews.":
+        - img "Rated 4.6 out of 5, 4.9K user reviews"
+  - button [ref=e298]:
+    - generic [ref=e299]:
+      - img "42% OFF.": "42% OFF"
+      - img "Insignia Class F50 Series LED 4K UHD Smart Fire TV"
+      - text: "Nearby, 2 mi Insignia Class F50 Series LED 4K UHD Smart Fire TV"
+      - group "Current Price: $199.99. Was $350."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.6 out of 5. 11K reviews.":
+        - img "Rated 4.6 out of 5, 11K user reviews"
+  - button [ref=e300]:
+    - generic [ref=e301]:
+      - img "26% OFF.": "26% OFF"
+      - img "Samsung Q8F 4K QLED Vision AI Smart TV"
+      - text: "Also nearby Samsung Q8F 4K QLED Vision AI Smart TV"
+      - group "Current Price: $549.00. Was $749."
+      - text: "The Big Screen Store & more"
+      - img "Rated 4.6 out of 5. 5.4K reviews.":
+        - img "Rated 4.6 out of 5, 5.4K user reviews"
+  - button [ref=e302]:
+    - generic [ref=e303]:
+      - img "Onn Class 4K UHD Powered by Vizio Smart Television"
+      - text: "Nearby, 22 mi Onn Class 4K UHD Powered by Vizio Smart Television"
+      - group "Current Price: $198.00."
+      - text: "Walmart & more Free delivery by Fri"
+      - img "Rated 3.7 out of 5. 639 reviews.":
+        - img "Rated 3.7 out of 5, 639 user reviews"
+  - button [ref=e304]:
+    - generic [ref=e305]:
+      - img "30% OFF.": "30% OFF"
+      - img "TCL F35-Series 4K UHD Smart Fire TV"
+      - text: "Nearby, 15 mi TCL F35-Series 4K UHD Smart Fire TV"
+      - group "Current Price: $229.99. Was $330."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.6 out of 5. 3.2K reviews.":
+        - img "Rated 4.6 out of 5, 3.2K user reviews"
+  - button [ref=e306]:
+    - generic [ref=e307]:
+      - img "10% OFF.": "10% OFF"
+      - img "Roku 4K HDR Smart TV with Remote Select Series"
+      - text: "Nearby, 20 mi Roku 4K HDR Smart TV with Remote Select Series"
+      - group "Current Price: $269.99. Was $300."
+      - text: "Target & more Free delivery by Tue"
+      - img "Rated 4.7 out of 5. 1.6K reviews.":
+        - img "Rated 4.7 out of 5, 1.6K user reviews"
+  - button [ref=e308]:
+    - generic [ref=e309]:
+      - img "Low price.": "LOW PRICE"
+      - img "Vizio Quantum 55\" 4K QLED HDR Smart TV"
+      - text: "Also nearby Vizio Quantum 55\" 4K QLED HDR Smart TV"
+      - group "Current Price: $211.00. Usually $298."
+      - text: "Walmart - VIPOUTLET & more Free delivery"
+      - img "Rated 3.8 out of 5. 103 reviews.":
+        - img "Rated 3.8 out of 5, 103 user reviews"
+  - button [ref=e310]:
+    - generic [ref=e311]:
+      - img "14% OFF.": "14% OFF"
+      - img "Samsung Crystal U8000F Smart 4K UHD TV"
+      - text: "Also nearby Samsung Crystal U8000F Smart 4K UHD TV"
+      - group "Current Price: $297.99. Was $348."
+      - text: "B&H Photo-Video-Audio & more"
+      - img "Rated 4.5 out of 5. 20K reviews.":
+        - img "Rated 4.5 out of 5, 20K user reviews"
+  - button [ref=e312]:
+    - generic [ref=e313]:
+      - img "47% OFF.": "47% OFF"
+      - img "Insignia Class QF Series QLED 4K UHD Smart Fire TV"
+      - text: "Nearby, 2 mi Insignia Class QF Series QLED 4K UHD Smart Fire TV"
+      - group "Current Price: $209.99. Was $400."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.6 out of 5. 2.1K reviews.":
+        - img "Rated 4.6 out of 5, 2.1K user reviews"
+  - button [ref=e314]:
+    - generic [ref=e315]:
+      - img "53% OFF.": "53% OFF"
+      - img "Samsung Class U7900 Series 4K UHD Smart TV"
+      - text: "Samsung Class U7900 Series 4K UHD Smart TV"
+      - group "Current Price: $327.99. Was $700."
+      - text: "Electronic Express & more"
+      - img "Rated 4.5 out of 5. 16K reviews.":
+        - img "Rated 4.5 out of 5, 16K user reviews"
+  - button [ref=e316]:
+    - generic [ref=e317]:
+      - img "TCL Q Series 55\" 4K UHD QLED Smart Google TV (New 2025)"
+      - text: "Nearby, 22 mi TCL Q Series 55\" 4K UHD QLED Smart Google TV (New 2025)"
+      - group "Current Price: $258.00."
+      - text: "Walmart & more Free delivery by Sat"
+      - img "Rated 4.1 out of 5. 617 reviews.":
+        - img "Rated 4.1 out of 5, 617 user reviews"
+  - button [ref=e318]:
+    - generic [ref=e319]:
+      - img "50% OFF.": "50% OFF"
+      - img "Hisense Class U6 Series 4K Mini-LED QLED UHD Smart Fire TV"
+      - text: "Nearby, 2 mi Hisense Class U6 Series 4K Mini-LED QLED UHD Smart Fire TV"
+      - group "Current Price: $399.99. Was $800."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.7 out of 5. 681 reviews.":
+        - img "Rated 4.7 out of 5, 681 user reviews"
+  - button [ref=e320]:
+    - generic [ref=e321]:
+      - img "Target hiro 55\" 4K HDR Smart TV"
+      - text: "Nearby, 0.6 mi Target hiro 55\" 4K HDR Smart TV"
+      - group "Current Price: $249.99."
+      - text: "Target & more Free delivery by Tue"
+      - img "Rated 3.8 out of 5. 92 reviews.":
+        - img "Rated 3.8 out of 5, 92 user reviews"
+  - button [ref=e322]:
+    - generic [ref=e323]:
+      - img "Tcl Class S4 4K UHD HDR Smart Roku TV"
+      - text: "Nearby, 28 mi Tcl Class S4 4K UHD HDR Smart Roku TV"
+      - group "Current Price: $228.00."
+      - text: "Walmart & more Free next-day delivery"
+      - img "Rated 4.0 out of 5. 20K reviews.":
+        - img "Rated 4.0 out of 5, 20K user reviews"
+  - button [ref=e324]:
+    - generic [ref=e325]:
+      - img "Sony BRAVIA 3 II Class 4K HDR LED Google TV with Gemini"
+      - text: "Also nearby Sony BRAVIA 3 II Class 4K HDR LED Google TV with Gemini"
+      - group "Current Price: $799.99."
+      - text: "Sony & more Free delivery by Fri"
+  - button [ref=e326]:
+    - generic [ref=e327]:
+      - img "37% OFF.": "37% OFF"
+      - img "Toshiba C350 Series 4K UHD Smart Fire TV"
+      - text: "Nearby, 15 mi Toshiba C350 Series 4K UHD Smart Fire TV"
+      - group "Current Price: $249.99. Was $400."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.5 out of 5. 2.3K reviews.":
+        - img "Rated 4.5 out of 5, 2.3K user reviews"
+  - button [ref=e328]:
+    - generic [ref=e329]:
+      - img "LG Class QNED AI 4K QNED82A Series Smart TV"
+      - text: "Also nearby LG Class QNED AI 4K QNED82A Series Smart TV"
+      - group "Current Price: $479.00."
+      - text: "B&H Photo-Video-Audio & more"
+      - img "Rated 4.6 out of 5. 1.7K reviews.":
+        - img "Rated 4.6 out of 5, 1.7K user reviews"
+  - button [ref=e330]:
+    - generic [ref=e331]:
+      - img "21% OFF.": "21% OFF"
+      - img "Vizio Quantum 65\"4k UHD Qled Television Type Vqd65m-0804"
+      - text: "Also nearby Vizio Quantum 65\"4k UHD Qled Television Type Vqd65m-0804"
+      - group "Current Price: $298.00. Was $378."
+      - text: "Walmart & more Free delivery"
+      - img "Rated 4.0 out of 5. 129 reviews.":
+        - img "Rated 4.0 out of 5, 129 user reviews"
+  - button [ref=e332]:
+    - generic [ref=e333]:
+      - img "36% OFF.": "36% OFF"
+      - img "Pioneer 55\" Class LED 4K UHD Smart Xumo TV"
+      - text: "Pioneer 55\" Class LED 4K UHD Smart Xumo TV"
+      - group "Current Price: $189.99. Was $300."
+      - text: "Best Buy & more Free delivery"
+      - img "Rated 4.3 out of 5. 2.5K reviews.":
+        - img "Rated 4.3 out of 5, 2.5K user reviews"
+  - button [ref=e334]:
+    - generic [ref=e335]:
+      - img "50% OFF.": "50% OFF"
+      - img "Roku Class Plus Series 4K Qled Mini-LED Smart TV"
+      - text: "Also nearby Roku Class Plus Series 4K Qled Mini-LED Smart TV"
+      - group "Current Price: $369.99. Was $750."
+      - text: "Electronic Express & more"
+      - img "Rated 4.7 out of 5. 752 reviews.":
+        - img "Rated 4.7 out of 5, 752 user reviews"
+  - button [ref=e336]:
+    - generic [ref=e337]:
+      - img "Samsung M70H Mini LED 4K Smart TV"
+      - text: "Also nearby Samsung M70H Mini LED 4K Smart TV"
+      - group "Current Price: $449.99."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.2 out of 5. 89 reviews.":
+        - img "Rated 4.2 out of 5, 89 user reviews"
+  - button [ref=e338]:
+    - generic [ref=e339]:
+      - img "19% OFF.": "19% OFF"
+      - img "LG 4K UHD UA75 AI Smart TV 43ua7500zua"
+      - text: "Nearby, 22 mi LG 4K UHD UA75 AI Smart TV 43ua7500zua"
+      - group "Current Price: $378.00. Was $468."
+      - text: "Walmart Free delivery"
+      - img "Rated 4.4 out of 5. 4.2K reviews.":
+        - img "Rated 4.4 out of 5, 4.2K user reviews"
+  - button [ref=e340]:
+    - generic [ref=e341]:
+      - img "35% OFF.": "35% OFF"
+      - img "TCL QM5K Series 4K UHD Smart TV"
+      - text: "Nearby, 2 mi TCL QM5K Series 4K UHD Smart TV"
+      - group "Current Price: $449.99. Was $700."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.7 out of 5. 2.2K reviews.":
+        - img "Rated 4.7 out of 5, 2.2K user reviews"
+  - button [ref=e342]:
+    - generic [ref=e343]:
+      - img "34% OFF.": "34% OFF"
+      - img "Hisense Class QD7 Series MiniLED QLED 4K UHD Smart Fire TV"
+      - text: "Also nearby Hisense Class QD7 Series MiniLED QLED 4K UHD Smart Fire TV"
+      - group "Current Price: $329.99. Was $500."
+      - text: "BJ's Wholesale Club & more Free delivery"
+      - img "Rated 4.6 out of 5. 873 reviews.":
+        - img "Rated 4.6 out of 5, 873 user reviews"
+  - button [ref=e344]:
+    - generic [ref=e345]:
+      - img "20% OFF.": "20% OFF"
+      - img "TCL Class Q6 QLED 4K UHD HDR Smart Google TV"
+      - text: "Also nearby TCL Class Q6 QLED 4K UHD HDR Smart Google TV"
+      - group "Current Price: $319.99. Was $400."
+      - text: "NFM & more"
+      - img "Rated 4.5 out of 5. 6.7K reviews.":
+        - img "Rated 4.5 out of 5, 6.7K user reviews"
+  - button [ref=e346]:
+    - generic [ref=e347]:
+      - img "39% OFF.": "39% OFF"
+      - img "Samsung Neo QLED 4K QN80F Vision AI Smart TV"
+      - text: "Also nearby Samsung Neo QLED 4K QN80F Vision AI Smart TV"
+      - group "Current Price: $787.99. Was $1,300."
+      - text: "Home Depot & more Free delivery"
+      - img "Rated 4.7 out of 5. 3.8K reviews.":
+        - img "Rated 4.7 out of 5, 3.8K user reviews"
+  - button [ref=e348]:
+    - generic [ref=e349]:
+      - img "11% OFF.": "11% OFF"
+      - img "Roku Class Select Series 4K LED Smart TV"
+      - text: "Nearby, 2 mi Roku Class Select Series 4K LED Smart TV"
+      - group "Current Price: $379.99. Was $430."
+      - text: "Best Buy & more Free delivery by Sat"
+      - img "Rated 4.8 out of 5. 2.7K reviews.":
+        - img "Rated 4.8 out of 5, 2.7K user reviews"
+  - button [ref=e350]:
+    - generic [ref=e351]:
+      - img "31% OFF.": "31% OFF"
+      - img "TCL Class QM6K Series QD-Mini LED QLED 4K UHD Smart Google TV"
+      - text: "Also nearby TCL Class QM6K Series QD-Mini LED QLED 4K UHD Smart Google TV"
+      - group "Current Price: $549.99. Was $800."
+      - text: "Queen City Homestore & more Free delivery on $600+"
+      - img "Rated 4.6 out of 5. 3K reviews.":
+        - img "Rated 4.6 out of 5, 3K user reviews"
+  - button [ref=e352]:
+    - generic [ref=e353]:
+      - img "28% OFF.": "28% OFF"
+      - img "Sony BRAVIA 5 Mini LED 4K HDR Google TV"
+      - text: "Also nearby Sony BRAVIA 5 Mini LED 4K HDR Google TV"
+      - group "Current Price: $999.99. Was $1,400."
+      - text: "Merlin's TV & Appliance & more"
+      - img "Rated 4.6 out of 5. 1.9K reviews.":
+        - img "Rated 4.6 out of 5, 1.9K user reviews"
+  - button [ref=e354]:
+    - generic [ref=e355]:
+      - img "Hisense H5 Series 4K UHD HDR Google Smart TV"
+      - text: "Hisense H5 Series 4K UHD HDR Google Smart TV"
+      - group "Current Price: $240.00."
+      - text: "Walmart - VIPOUTLET & more Free delivery"
+      - img "Rated 3.9 out of 5. 793 reviews.":
+        - img "Rated 3.9 out of 5, 793 user reviews"
+  - button [ref=e356]:
+    - generic [ref=e357]:
+      - img "38% OFF.": "38% OFF"
+      - img "Samsung OLED 4K S90F Smart TV"
+      - text: "Samsung OLED 4K S90F Smart TV"
+      - group "Current Price: $1,099.99. Was $1,800."
+      - text: "Samsung & more Free delivery"
+      - img "Rated 4.8 out of 5. 9.3K reviews.":
+        - img "Rated 4.8 out of 5, 9.3K user reviews"
+  - button [ref=e358]:
+    - generic [ref=e359]:
+      - img "18% OFF.": "18% OFF"
+      - img "LG QNED Evo AI Mini LED 4K Smart TV"
+      - text: "Nearby, 15 mi LG QNED Evo AI Mini LED 4K Smart TV"
+      - group "Current Price: $729.99. Was $900."
+      - text: "Best Buy & more"
+      - img "Rated 3.0 out of 5. 1 reviews.":
+        - img "Rated 3.0 out of 5, 1 user review"
+  - button [ref=e360]:
+    - generic [ref=e361]:
+      - img "Samsung QN70H 4K Neo QLED Vision AI Smart TV"
+      - text: "Also nearby Samsung QN70H 4K Neo QLED Vision AI Smart TV"
+      - group "Current Price: $897.99."
+      - text: "ABC Warehouse & more"
+      - img "Rated 4.8 out of 5. 32 reviews.":
+        - img "Rated 4.8 out of 5, 32 user reviews"
+  - button [ref=e362]:
+    - generic [ref=e363]:
+      - img "11% OFF.": "11% OFF"
+      - img "LG Class QNED70A Series 4K QNED Smart TV"
+      - text: "Also nearby LG Class QNED70A Series 4K QNED Smart TV"
+      - group "Current Price: $399.99. Was $450."
+      - text: "BrandsMart USA & more"
+      - img "Rated 4.6 out of 5. 2.3K reviews.":
+        - img "Rated 4.6 out of 5, 2.3K user reviews"
+  - button [ref=e364]:
+    - generic [ref=e365]:
+      - img "Samsung M80H Mini LED 4K Smart TV"
+      - text: "Also nearby Samsung M80H Mini LED 4K Smart TV"
+      - group "Current Price: $699.99."
+      - text: "Home Depot & more Free delivery"
+      - img "Rated 4.2 out of 5. 15 reviews.":
+        - img "Rated 4.2 out of 5, 15 user reviews"
+  - button [ref=e366]:
+    - generic [ref=e367]:
+      - img "18% OFF.": "18% OFF"
+      - img "Samsung The Frame QLED 4K Smart TV"
+      - text: "Also nearby Samsung The Frame QLED 4K Smart TV"
+      - group "Current Price: $899.99. Was $1,100."
+      - text: "crateandbarrel.com & more"
+      - img "Rated 4.6 out of 5. 21K reviews.":
+        - img "Rated 4.6 out of 5, 21K user reviews"
+  - button [ref=e368]:
+    - generic [ref=e369]:
+      - img "25% OFF.": "25% OFF"
+      - img "LG 4K Smart TV"
+      - text: "Nearby, 2 mi LG 4K Smart TV"
+      - group "Current Price: $449.99. Was $600."
+      - text: "Best Buy & more"
+      - img "Rated 4.3 out of 5. 1K reviews.":
+        - img "Rated 4.3 out of 5, 1K user reviews"
+  - heading "Page Navigation" [level=1]
+  - button "More results" [ref=e371]
+  - navigation
+</result>
+
+[10] thinking: **Clarifying search process**
+
+I need to finalize the search results and address potential duplicate terms. The snapshot indicates that while the search field has duplicate terms, the results are still correct with selected filters. It might be better to revise the search to something like "smart TVs with a screen size of 55 to 65 inches LED display." The user only requested me to perform the filter, not to report products, so I need to ensure clarity without unnecessary citations.
+
+[11] assistant: Done. The Google Shopping results are filtered for 55-65 inch smart TVs with LED display selected.
+
+[12] system_message (site_skill):
+<system_message>
+Following skills are automatically injected for the current context. use if relevant:
+<skill name="google-accounts" path="/Users/vista/.aside/u/0/agents/main/skills/google-accounts/SKILL.md">
+# Google Accounts
+
+Use the `googleAccounts` global in the REPL tool to discover signed-in Google accounts. Uses cookie-only HTTP — no tab needed.
+
+## Usage
+
+```js
+await googleAccounts.print();
+```
+
+## Methods
+
+### `googleAccounts.print(): Promise<void>`
+
+Print all signed-in Google accounts to the console. Token-efficient.
+
+### `googleAccounts.list(): Promise<GoogleAccountInfo[]>`
+
+Returns all signed-in Google accounts. Use this when you need programmatic access.
+
+```ts
+interface GoogleAccountInfo {
+  accountId: number;      // matches Gmail /u/{uid}/
+  name: string;
+  email: string;
+  profileImageUrl: string;
+}
+```
+</skill>
+</system_message>
