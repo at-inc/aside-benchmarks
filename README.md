@@ -23,7 +23,7 @@ Online-Mind2Web contains 300 diverse online tasks across 136 popular websites.
 It is designed to evaluate web agents in a real-world online environment rather
 than only against frozen or simulated webpages.
 
-![Benchmark Results](./mind2web/charts.png)
+![Online-Mind2Web Benchmark Result Chart](./mind2web/chart.png)
 
 | Model | Tasks | Passed | Failed | Impossible | Pass Rate | Pass Rate (excl. impossible) |
 |-------|-------|--------|--------|------------|-----------|------------------------------|
@@ -72,6 +72,8 @@ binary success benchmark, Odysseys grades each task with multiple
 task-specific rubrics, so the most informative result surface includes both
 perfect-task rate and partial-progress rubric scores.
 
+![Oddysseys Benchmark Result Chart](./odysseys/chart.png)
+
 The included Aside evaluation is a `gpt-5.5` / `openai-codex` run with
 `high` thinking, fast mode enabled, `gemini-3.1-flash-lite` as grader, and a
 200-step maximum trajectory budget. Results are stored in
@@ -87,7 +89,7 @@ runner code in [`odysseys/runner/`](./odysseys/runner/).
 | Task-average rubric score | **86.5%** |
 | Errors | 0 |
 
-### Odysseys by difficulty
+### Breakdown by difficulty
 
 | Level | Tasks | Perfect tasks | Perfect-task rate | Rubric items passed | Rubric pass rate | Task-average rubric score |
 |-------|-------|---------------|-------------------|---------------------|------------------|---------------------------|
@@ -100,9 +102,10 @@ runner code in [`odysseys/runner/`](./odysseys/runner/).
 [BU Bench V1](https://github.com/browser-use/benchmark) contains 100
 hand-selected browser automation tasks. The benchmark combines tasks from
 WebBenchREAD, Online-Mind2Web 2, InteractionTests, GAIA, and BrowseComp, with
-20 tasks in each category. The included Aside artifacts contain two complete
-100-task runs in [`bu-bench-v1/results/`](./bu-bench-v1/results/), with
-runner code in [`bu-bench-v1/runner/`](./bu-bench-v1/runner/).
+20 tasks in each category.
+
+![Bu-Bench-v1 Benchmark Result Chart](./bu-bench-v1/chart.png)
+
 
 | Run | Provider | Model | Tasks | Passed | Failed | Impossible | Pass rate | Pass rate excl. impossible |
 |-----|----------|-------|-------|--------|--------|------------|-----------|----------------------------|
@@ -115,7 +118,7 @@ tasks passing and most remaining failures concentrated in GAIA and BrowseComp.
 The `kimi-k2.6` run also passed all OM2W2 and InteractionTests tasks, but lost
 more tasks in GAIA and BrowseComp.
 
-### BU Bench V1 by category
+### Breakdown by category
 
 | Category | `gpt-5.5` passed | `gpt-5.5` failed | `gpt-5.5` impossible | `kimi-k2.6` passed | `kimi-k2.6` failed |
 |----------|------------------|------------------|----------------------|--------------------|--------------------|
