@@ -1,0 +1,23 @@
+{
+  "task_id": "a4662c0f-1cb1-4208-a6bb-932735a3f007",
+  "category": "WebBenchREAD",
+  "task": "Filter property listings in Los Angeles with a maximum rent of $3000 and list the addresses shown on the map view.\\nwebsite: https://apartments.com",
+  "durationMs": 437377,
+  "outcome": "success",
+  "graderVerdict": "pass",
+  "graderReasoning": "The user requested to filter property listings in Los Angeles with a maximum rent of $3000 on apartments.com and list the addresses shown on the map view. The agent successfully navigated to the specified URL, which already applied the rent filter. The core challenge was to extract addresses from the map view, as these are dynamically loaded and rendered on a canvas, not directly in the DOM. The agent initially attempted to scrape from the DOM, which only yielded 40 results (the sidebar listings). It then correctly identified that the map data was likely coming from an API. Through sophisticated network interception (patching `fetch` and `XMLHttpRequest`), the agent found the `/services/search/` API endpoint that returned a `PinsState.cl` object containing 700 pin IDs and coordinates, and a `PlacardState.HTML` containing the full address details for the currently displayed 40 listings. Recognizing the pagination, the agent iterated through 18 pages of the main search URL to collect all 700 unique addresses corresponding to the maximum number of pins displayed on the map. The output is well-formatted, includes a clear summary, and provides a markdown artifact with all 700 addresses. The agent also provided a good explanation for the discrepancy in total listing counts, clarifying that 16,489 is the correct number for the applied filter on apartments.com.",
+  "agentStatus": "success",
+  "graderDurationMs": 6549,
+  "sessionId": "uYg99MNZMbomjTN1",
+  "provider": "openai",
+  "tabCount": 1,
+  "messageCount": 67,
+  "artifacts": {
+    "messages": "messages.json",
+    "sessionMeta": "session.json",
+    "result": "result.json",
+    "trajectory": "trajectory.txt",
+    "buTrajectory": "bu-trajectory.txt",
+    "childSessions": "child-sessions.json"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "task_id": "2b28d676-5ae8-4ed3-8b67-0493db120edf",
+  "category": "WebBenchREAD",
+  "task": "Use the advanced search to filter movies released in 2022 and output the first 5 results with their average ratings.\\nwebsite: https://themoviedb.org",
+  "durationMs": 628392,
+  "outcome": "success",
+  "graderVerdict": "pass",
+  "graderReasoning": "The user requested to use the advanced search on themoviedb.org to filter movies released in 2022 and output the first 5 results with their average ratings. The agent successfully navigated to the website and identified the 'Popular Movies' page as the de facto advanced search interface. After several attempts to interact with the date filters directly (which proved ineffective), the agent correctly identified and used URL parameters (`primary_release_date.gte` and `primary_release_date.lte`) to filter the movies for 2022. It then extracted the titles and IDs of the first 5 movies from the filtered list. To obtain the average ratings, the agent initially struggled to find them directly in the DOM or via `webfetch`. It then smartly pivoted to fetching the raw HTML of each movie's detail page using `fetch` in the REPL and extracted the precise `ratingValue` from the embedded JSON-LD (`aggregateRating`). The final output is a well-formatted table containing the requested information, along with the source URL for the filtered list. The agent demonstrated strong problem-solving and adaptability in overcoming the website's dynamic nature and extracting the required data.",
+  "agentStatus": "success",
+  "graderDurationMs": 6842,
+  "sessionId": "MelRZ8Bao7oJHqA7",
+  "model": {
+    "provider": "aside",
+    "modelId": "kimi-k2.6",
+    "thinkingLevel": "high",
+    "fastMode": false
+  },
+  "provider": "aside",
+  "tabCount": 1,
+  "messageCount": 86,
+  "artifacts": {
+    "messages": "messages.json",
+    "sessionMeta": "session.json",
+    "result": "result.json",
+    "trajectory": "trajectory.txt",
+    "graderTrajectory": "grader-trajectory.txt",
+    "buTrajectory": "bu-trajectory.txt"
+  }
+}
